@@ -1,0 +1,78 @@
+import { translate } from "@/utilities/i18n";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import { getMenu} from "@/services/menuService";
+import { MenuResponseData } from "@/models/types/menu";
+
+// @ts-ignore
+const LanguageSwitcher = dynamic(
+  () => import("@/components/layouts/Footer/LanguageSwitcher")
+);
+// @ts-ignore
+const Menu = dynamic(() => import("@/components/common/Menu"));
+
+const navItemClasses =
+  "font-bold py-3 lg:py-0 first:pt-0 last:pb-0 px-4 transition duration-300 hover:text-[#EE3123]";
+
+const Footer = async (): Promise<React.ReactElement> => {
+  const menuData = getMenu("footerMenu") as MenuResponseData;
+  //TODO menu items validation
+  return (
+    <footer className="w-full text-sm">
+      <nav className="bg-[#141414]/0">
+        <div className="container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
+          <div className="flex py-6">
+            <Image
+              width={34}
+              height={34}
+              alt={"Facebook"}
+              className={`mr-4 transition duration-300 hover:text-[#EE3123]`}
+              src={"/icons/footer_facebook_logo.svg"}
+            />
+            <Image
+              width={34}
+              height={34}
+              alt={"YouTube"}
+              className={`mr-4`}
+              src={"/icons/footer_youtube_logo.svg"}
+            />
+            <Image
+              width={34}
+              height={34}
+              alt={"Instagram"}
+              className={`mr-4`}
+              src={"/icons/footer_instagram_logo.svg"}
+            />
+            <Image
+              width={34}
+              height={34}
+              alt={"Twitter"}
+              className={`mr-4`}
+              src={"/icons/footer_twitter_logo.svg"}
+            />
+          </div>
+
+          <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">
+            <LanguageSwitcher
+              enLanguageTranslation={translate("lang_en-gb")}
+              frLanguageTranslation={translate("lang_fr-fr")}
+            />
+          </div>
+        </div>
+        <div className="container mx-auto py-12 lg:text-center">
+          <div className="flex flex-col lg:flex-row uppercase justify-between">
+            <Menu menuItems={menuData?.menuItems} navItemClasses={navItemClasses}></Menu>
+          </div>
+        </div>
+
+        <div className="container px-4 mx-auto pb-12 text-[#BEBEBE]">
+          <div>
+            <p>{translate("copyright")}</p>
+          </div>
+        </div>
+      </nav>
+    </footer>
+  );
+};
+
+export default Footer;

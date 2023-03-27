@@ -1,0 +1,49 @@
+.c-hero-swiper-pagination__item::before{
+  content:"";
+  width:100%;
+  height:115px;
+  background-color: black;
+  position: absolute;
+  top:0;
+  left: 0;
+  opacity: 0.5;
+  transition: opacity;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
+  z-index:1;
+}
+
+.c-hero-swiper-pagination__item {
+  outline: 4px solid rgba(238, 49, 35, 0);
+}
+
+.c-hero-swiper-pagination__item.is-active {
+  outline-color: rgba(238, 49, 35, 1);
+  width: 200px;
+}
+
+.c-hero-swiper-pagination__item.is-active::before{
+  opacity: 0;
+}
+
+.c-hero-swiper__progress-bar{
+  opacity: 0;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  left:0;
+  bottom: -16px;
+  background-color: rgba(255,255,255,0.2);
+  transition: all;
+  transition-duration: 500ms;
+}
+
+.c-hero-swiper-pagination__item.is-active .c-hero-swiper__progress-bar {
+  opacity: 1;
+}
+
+.c-hero-swiper__progress-bar-percent {
+  height: 3px;
+  width: 0%;
+  background-color: rgba(255,255,255,1);
+}

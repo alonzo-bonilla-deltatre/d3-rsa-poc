@@ -1,0 +1,61 @@
+import { ComponentProps } from "@/models/types/components";
+import { getSelection } from "@/services/dapiService";
+import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
+import { DistributionEntity } from "@/models/types/dapi";
+import dynamic from "next/dynamic";
+
+// @ts-ignore
+const Title = dynamic(() => import("@/components/common/Title"));
+
+type ModuleProps = {
+  moduleTitle: string;
+  headingLevel: string;
+  displayModuleTitle: string;
+  hideDate: string;
+  selectionSlug: string;
+  limit: string;
+};
+
+const getFilteredItems = (
+  items: DistributionEntity[] | null | undefined,
+  limit: number
+) => {
+  if (!items?.length) {
+    return [];
+  }
+  if (limit === 0) {
+    return items;
+  }
+  return items.slice(0, limit);
+};
+
+const Hero = async ({ ...data }: ComponentProps) => {
+  const {
+    moduleTitle,
+    headingLevel,
+    displayModuleTitle,
+    hideDate,
+    selectionSlug,
+    limit,
+  } = data.properties as ModuleProps;
+  const defaultItemLimit = 5;
+
+  const selectionFetch = getSelection(selectionSlug);
+  const [selection] = await Promise.all([selectionFetch]);
+  const items = selection?.items;
+
+  return (
+    <>
+      <Title
+        canRender={/true/.test(displayModuleTitle)}
+        heading={headingLevel}
+        text={moduleTitle}
+      ></Title>
+      <HeroSwiper
+        slides={getFilteredItems(items, Number(limit ?? defaultItemLimit))}
+        hideDate={/true/.test(hideDate)}
+      />
+    </>
+  );
+};
+export default Hero;

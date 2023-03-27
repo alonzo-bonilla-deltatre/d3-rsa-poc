@@ -1,0 +1,26 @@
+export type GraphicAssetsDashboardItem = {
+  name: string;
+  publicId: string;
+  resourceType: string;
+  type: string;
+  format: string;
+  tags: string[];
+  tagsInString: string;
+  created: string;
+  uploaded: string;
+  width: number;
+  height: number;
+  length: number;
+  assetUrl: string;
+  assetThumbnailUrl: string;
+  assetOriginalUrl: string;
+  assetOriginalCdnUrl: string;
+  version: string;
+  imageMetadata: null;
+  context: null;
+  imageAnalysis: null;
+  path: string;
+  pathWithFormat: string;
+  templatedPath: string;
+  templatedPathWithFormat: string;
+};

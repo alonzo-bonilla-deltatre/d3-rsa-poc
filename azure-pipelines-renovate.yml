@@ -1,0 +1,25 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: pipelines.yml.templates
+
+schedules:
+  - cron: "0 5 * * *"
+    displayName: 05:00 AM build
+    branches:
+      include:
+        - main
+    always: true
+
+trigger: none
+pool:
+  name: WebPlu
+  demands:
+    - Docker
+
+variables:
+  system.debug: "true"
+
+steps:
+  - template: templates/renovate.yml@templates

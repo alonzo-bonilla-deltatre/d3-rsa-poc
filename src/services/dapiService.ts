@@ -1,0 +1,117 @@
+import { LoggerLevel } from "@/models/types/logger";
+import { DistributionEntity, PagedResult } from "@/models/types/dapi";
+import logger from "@/utilities/logger";
+import { ForgeApiError } from "@/models/types/errors";
+
+const culture = process.env.CULTURE;
+const slugPlaceholder = "{slug}";
+const entityCodePlaceholder = "{entityCode}";
+const distributionDetailUrl = `v2/content/${culture}/${entityCodePlaceholder}/${slugPlaceholder}`;
+const distributionListUrl = `v2/content/${culture}/${entityCodePlaceholder}`;
+const distributionSelectionDetailUrl = `v2/content/${culture}/sel-${slugPlaceholder}`;
+
+const revalidateTime =
+process.env.FORGE_DISTRIBUTION_API_REVALIDATE_TIME ?? "0";
+
+export const getEntity = async (
+  entityCode: string,
+  slug: string
+): Promise<DistributionEntity | null> => {
+  try {
+    let apiUrl = distributionDetailUrl
+      .replace(entityCodePlaceholder, entityCode)
+      .replace(slugPlaceholder, slug);
+    apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+    logger.log(
+      `Getting ${entityCode} entity slug:${slug} data from FORGE DAPI ${apiUrl}`,
+      LoggerLevel.debug
+    );
+
+    const response = await fetch(apiUrl, {
+      next: { revalidate: parseInt(revalidateTime) },
+    });
+
+    if (response.status !== 200) {
+      const error = (await response.json()) as ForgeApiError;
+      let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
+      logger.log(errorMessage, LoggerLevel.error);
+      return null;
+    }
+
+    if (response.status === 200) {
+      const json = await response.json();
+      return json;
+    }
+
+    return null;
+  } catch (error: unknown) {
+    logger.log(
+      `FORGE DAPI Exception: ${(error as Error).message}`,
+      LoggerLevel.error
+    );
+    return null;
+  }
+};
+
+export const getAllEntities = async (
+  entityCode: string,
+  queryParameters: string
+): Promise<PagedResult | null> => {
+  const queryString = queryParameters.length ? `?${queryParameters}` : "";
+  let apiUrl =
+    distributionListUrl.replace(entityCodePlaceholder, entityCode) +
+    queryString;
+  apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+  logger.log(
+    `Getting ${entityCode} entity list data from FORGE DAPI ${apiUrl}`,
+    LoggerLevel.debug
+  );
+
+  const response = await fetch(apiUrl, {
+    next: { revalidate: parseInt(revalidateTime) },
+  });
+
+  if (response.status !== 200) {
+    const error = (await response.json()) as ForgeApiError;
+    let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
+    logger.log(errorMessage, LoggerLevel.error);
+    return null;
+  }
+
+  if (response.status === 200) {
+    const json = await response.json();
+    return json;
+  }
+
+  return null;
+};
+
+export const getSelection = async (
+  slug: string
+): Promise<PagedResult | null> => {
+  let apiUrl = distributionSelectionDetailUrl.replace(slugPlaceholder, slug);
+  apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+  logger.log(
+    `Getting selection slug:${slug} data from FORGE DAPI ${apiUrl}`,
+    LoggerLevel.debug
+  );
+
+  const response = await fetch(apiUrl, {
+    next: { revalidate: parseInt(revalidateTime) },
+  });
+  let errorMessage = "";
+
+  if (response.status !== 200) {
+    const error = (await response.json()) as ForgeApiError;
+    let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
+    logger.log(errorMessage, LoggerLevel.error);
+    return null;
+  }
+
+  if (response.status === 200) {
+    const json = await response.json();
+    return json;
+  }
+
+  return null;
+};
