@@ -35,7 +35,7 @@ const NavItem = ({ ...data }: NavItemProps) => {
   return (
     <>
     {//@ts-ignore}
-      <a href={itemLink} class={classNames} data-id={menuItem.id} {...additionalAttributes}>
+      <a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
         {
           hasIcon && (<SvgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>)
         }
