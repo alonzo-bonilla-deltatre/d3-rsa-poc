@@ -1,36 +1,4 @@
 {
-  "baseBranches": ["main", "develop"],
-  "enabledManagers": ["yarn", "dockerfile", "nuget"],
-  "nuget": {
-    "registryUrls": [
-      "https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/nuget/v3/index.json",
-      "https://alm.deltatre.it/tfs/D3Alm/_packaging/Common.Libraries/nuget/v3/index.json",
-      "https://api.nuget.org/v3/index.json"
-    ]
-  },
-  "hostRules": [
-    {
-      "matchHost": "alm.deltatre.it",
-      "token": "#{SYSTEM_ACCESSTOKEN}#"
-    }
-  ],
-  "packageRules": [
-    {
-      "packagePatterns": ["^react$", "react-scripts", "^@types/react(-dom)?$"],
-      "updateTypes": ["major"],
-      "labels": ["react", "majors"],
-      "groupName": ["React Majors"]
-    },
-    {
-      "packagePatterns": ["^react$", "react-scripts", "^@types/react(-dom)?$"],
-      "updateTypes": ["minors"],
-      "labels": ["react", "minors"],
-      "groupName": ["React Minors"]
-    },
-    {
-      "updateTypes": ["minor", "patch", "pin", "digest"],
-      "labels": ["minors", "patch"],
-      "groupName": ["Minors"]
-    }
-  ]
+  "baseBranches": ["master", "develop"],
+  "enabledManagers": ["yarn", "dockerfile"]
 }

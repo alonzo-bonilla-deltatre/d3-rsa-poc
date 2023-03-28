@@ -48,7 +48,18 @@ steps:
   # Create GitFinalVersion variable
   - template: build/common-solution/steps/set-version-universal.yml@templates
 
-  ## OWASP move node modules on build server ##
+  # Build Frontend DockerFile per Owasp
+  - template: build/common-solution/steps/docker-build-for-ci.yml@templates
+    parameters:
+      DOCKER_FILE: "$(_npmFrontendDockerFile)"
+      IMAGE_VERSION: npm_$(_imageVersion)
+      PROJECT_NAME: $(_prjName)
+      SLN_NAME: $(_slnname)
+      CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
+      CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
+      NPM_VERSION: $(_npm_version)
+      ASS_VERSION: $(_imageVersion)
+
   - template: build/common-solution/steps/owasp-node-modules.yml@templates
     parameters:
       IMAGE_VERSION: "npm_$(_imageVersion)"

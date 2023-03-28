@@ -1,7 +1,7 @@
 FROM node:18-alpine AS deps
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock
+COPY ./package.json ./yarn.lock ./
 RUN  yarn install --pure-lockfile
 
 FROM node:18-alpine AS builder
@@ -9,8 +9,20 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 
-ARG yarnBuildCommand
-RUN $yarnBuildCommand
+# ----- SONARQUBE ---
+# in case of PR builds substitute ARG BuildSourceBranchName with the 3 ARG below
+ARG PRPullRequestId
+ARG PRSourceBranch
+ARG PRTargetBranch
+ARG TeamProject
+ARG RepositoryName
+ARG CollectionUri
+ARG sonarprojectkey
+ARG sonarlogin
+
+# RUN yarn sonar
+
+RUN yarn build
 
 FROM node:18-alpine AS runner
 WORKDIR /app
