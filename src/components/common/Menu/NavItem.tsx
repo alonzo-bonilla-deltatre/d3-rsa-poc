@@ -1,5 +1,4 @@
 import { translate } from "@/utilities/i18n";
-import Link from "next/link";
 import { MenuItem } from "@/models/types/menu";
 import { usePathname } from 'next/navigation';
 import SvgIcon from "../SvgIcon";

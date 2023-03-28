@@ -16,16 +16,24 @@ export type DistributionEntity = {
   contentDate: string;
   context: Tag;
   featured: number;
-  thumbnail: {
-    title: string;
-    templateUrl: string;
-    thumbnailUrl: string;
-    format: string;
-    overriddenFormats: { [key: string]: any };
-    slug: string;
-    selfUrl: string;
-  };
+  thumbnail: Image;
+  image: Image;
+  content: string;
+  parts: DistributionEntity[];
   entityCode: string;
+};
+// export type StoryPart = DistributionEntity & {
+//   content: string;
+//   Image: Image;
+// };
+export type Image = {
+  title: string;
+  templateUrl: string;
+  thumbnailUrl: string;
+  format: string;
+  overriddenFormats: { [key: string]: any };
+  slug: string;
+  selfUrl: string;
 };
 
 export type PagedResult = {

@@ -16,7 +16,7 @@ type CardProps = {
 const Card = ({ ...props }: CardProps) => {
   const entity = props.entity;
 
-  return props.entity && (
+  return entity && (
     <>
       {entity.thumbnail && (
         <figure className="col-start-1 row-start-1">

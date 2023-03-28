@@ -1,10 +1,13 @@
 import { ComponentProps } from "@/models/types/components";
-import { getFilteredItems, getSelection } from "@/services/dapiService";
-import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
+import { getSelection } from "@/services/dapiService";
+import { DistributionEntity } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
+import { nanoid } from "nanoid";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
+// @ts-ignore
+const Partner = dynamic(() => import("@/components/common/Partner"));
 
 type ModuleProps = {
   moduleTitle: string;
@@ -15,14 +18,12 @@ type ModuleProps = {
   limit: string;
 };
 
-const Hero = async ({ ...data }: ComponentProps) => {
+const Partners = async ({ ...data }: ComponentProps) => {
   const {
     moduleTitle,
     headingLevel,
     displayModuleTitle,
-    hideDate,
-    selectionSlug,
-    limit,
+    selectionSlug
   } = data.properties as ModuleProps;
   const defaultItemLimit = 5;
 
@@ -30,18 +31,25 @@ const Hero = async ({ ...data }: ComponentProps) => {
   const [selection] = await Promise.all([selectionFetch]);
   const items = selection?.items;
 
-  return (
-    <>
+  return items?.length ? (
+    <section className="relative mx-60 mt-20 col-start-1">
       <Title
         canRender={/true/.test(displayModuleTitle)}
-        heading={headingLevel}
+        heading="h3"
         text={moduleTitle}
       ></Title>
-      <HeroSwiper
-        slides={getFilteredItems(items, Number(limit ?? defaultItemLimit))}
-        hideDate={/true/.test(hideDate)}
-      />
-    </>
+      <div className="flex flex-wrap">
+        {items.map((entity: DistributionEntity) => {
+          return (
+            <Partner key={nanoid()} entity={entity} width={100} height={50}></Partner>
+          );
+        })}
+      </div>
+    </section>
+  ) : (
+    <></>
   );
 };
-export default Hero;
+export default Partners;
+
+

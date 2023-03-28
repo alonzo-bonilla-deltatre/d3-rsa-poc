@@ -1,5 +1,5 @@
 import { ComponentProps } from "@/models/types/components";
-import { getAllEntities } from "@/services/dapiService";
+import { getAllEntities, getQueryString } from "@/services/dapiService";
 import { DistributionEntity, PagedResult } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
 import Card from "@/components/common/Card";
@@ -15,30 +15,6 @@ type ModuleProps = {
   skip: number;
   limit: number;
   tags: string;
-};
-
-type QueryStringModuleProps = {
-  skip: number;
-  limit: number;
-  tags: string;
-};
-
-const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
-  // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
-  let queryString: string[] = [];
-  if (skip) {
-    queryString.push(`$skip=${skip}`);
-  }
-  if (limit) {
-    queryString.push(`$limit=${limit}`);
-  }
-  if (tags?.length && tags.includes(",")) {
-    const tagSlugs = tags.split(",");
-    tagSlugs.forEach((tag) => {
-      queryString.push(`$tags.slug=${tag}`);
-    });
-  }
-  return queryString.join("&");
 };
 
 const PromoGrid = async ({ ...data }: ComponentProps) => {

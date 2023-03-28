@@ -35,6 +35,18 @@ export const getAssetsByTag = async (
     return null;
   }
 };
+export const getSingleAssetByTag = async (
+  tag: string
+): Promise<GraphicAssetsDashboardItem | null> => {
+const gadAssetsFetch = getAssetsByTag(tag);
+  const [gadAssets] = await Promise.all([gadAssetsFetch]);
+  // const logo: GraphicAssetsDashboardItem | null = gadAssets?.length
+  //   ? gadAssets[0]
+  //   : null;
+    const asset = firstAssetOrDefault(gadAssets);
+  
+    return asset;
+}
 
 export const firstAssetOrDefault = (
   assets: GraphicAssetsDashboardItem[] | null

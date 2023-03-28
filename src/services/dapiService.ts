@@ -115,3 +115,39 @@ export const getSelection = async (
 
   return null;
 };
+
+type QueryStringModuleProps = {
+  skip: number;
+  limit: number;
+  tags: string;
+};
+export const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
+  // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
+  let queryString: string[] = [];
+  if (skip) {
+    queryString.push(`$skip=${skip}`);
+  }
+  if (limit) {
+    queryString.push(`$limit=${limit}`);
+  }
+  if (tags?.length && tags.includes(",")) {
+    const tagSlugs = tags.split(",");
+    tagSlugs.forEach((tag) => {
+      queryString.push(`$tags.slug=${tag}`);
+    });
+  }
+  return queryString.join("&");
+};
+
+export const getFilteredItems = (
+  items: DistributionEntity[] | null | undefined,
+  limit: number
+) => {
+  if (!items?.length) {
+    return [];
+  }
+  if (limit === 0) {
+    return items;
+  }
+  return items.slice(0, limit);
+};

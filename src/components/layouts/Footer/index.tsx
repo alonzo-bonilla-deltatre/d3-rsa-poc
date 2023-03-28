@@ -3,6 +3,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getMenu} from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";
+import SocialIcons from "@/components/common/SocialIcons";
 
 // @ts-ignore
 const LanguageSwitcher = dynamic(
@@ -22,34 +23,7 @@ const Footer = async (): Promise<React.ReactElement> => {
       <nav className="bg-[#141414]/0">
         <div className="container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
           <div className="flex py-6">
-            <Image
-              width={34}
-              height={34}
-              alt={"Facebook"}
-              className={`mr-4 transition duration-300 hover:text-[#EE3123]`}
-              src={"/icons/footer_facebook_logo.svg"}
-            />
-            <Image
-              width={34}
-              height={34}
-              alt={"YouTube"}
-              className={`mr-4`}
-              src={"/icons/footer_youtube_logo.svg"}
-            />
-            <Image
-              width={34}
-              height={34}
-              alt={"Instagram"}
-              className={`mr-4`}
-              src={"/icons/footer_instagram_logo.svg"}
-            />
-            <Image
-              width={34}
-              height={34}
-              alt={"Twitter"}
-              className={`mr-4`}
-              src={"/icons/footer_twitter_logo.svg"}
-            />
+          <SocialIcons hide={false} size={34} className={"mr-4"}></SocialIcons>
           </div>
 
           <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">
