@@ -1,7 +1,7 @@
 FROM node:18-alpine AS deps
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock
+COPY ./package.json ./yarn.lock ./
 RUN  yarn install --pure-lockfile
 
 FROM node:18-alpine AS builder
