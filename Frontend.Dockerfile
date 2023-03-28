@@ -2,15 +2,16 @@ FROM node:18-alpine AS deps
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock
-RUN  yarn install
+RUN  yarn install --pure-lockfile
 
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 
-ARG yarnBuildCommand
-RUN $yarnBuildCommand
+# ARG yarnBuildCommand
+# RUN $yarnBuildCommand
+RUN yarn build
 
 FROM node:18-alpine AS runner
 WORKDIR /app
