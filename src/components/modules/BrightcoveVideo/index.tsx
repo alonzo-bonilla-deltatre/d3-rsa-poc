@@ -8,6 +8,7 @@ import CardRoofline from "@/components/common/CardRoofline";
 import CardAuthor from "@/components/common/CardAuthor";
 import CardDate from "@/components/common/CardDate";
 import SocialIcons from "@/components/common/SocialIcons";
+import { formatDate } from "@/utilities/dateFormatter";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
@@ -33,6 +34,8 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
 
   const [entity] = await Promise.all([entityFetch]);
 
+  const description = entity?.fields["description"] as string;
+
   return entity ? (
     <>
       <section className="mt-8">
@@ -42,24 +45,32 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
           text={properties.moduleTitle}
         ></Title>
         <section className="w-full container mx-auto mt-40 px-4">
-          <CardRoofline context={entity.context} hide={false}></CardRoofline>
           <div className="flex justify-between">
-            <header className="">
+            <header className="w-full">
               <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
-              <p className="mt-8">{entity.headline}</p>
-              <CardAuthor author={entity.createdBy} hide={false}></CardAuthor>
-              <CardDate
-                date={entity.contentDate}
-                format={null}
-                hide={false}
-              ></CardDate>
+              <div className="flex justify-between items-center">
+                <div>
+                  {description && <p className="mt-8 mb-3">{description}</p>}
+                  <div className="mb-3 text-sm font-light text-[#BEBEBE]">
+                    {entity.createdBy}
+                  </div>
+                  <time className="mb-3 text-sm font-light text-[#BEBEBE]">
+                    {formatDate(entity.contentDate)}
+                  </time>
+                </div>
+                <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
+                  <SocialIcons
+                    hide={false}
+                    size={50}
+                    className={"mr-4"}
+                  ></SocialIcons>
+                </div>
+              </div>
             </header>
           </div>
         </section>
-        <section className="w-full container mx-auto mt-20 px-4">
-          <div className="grid grid-cols-1 relative overflow-hidden w-full pt-[56.25%]">
-            <BrightcoveVideoPlayer entity={entity} />
-          </div>
+        <section className="w-full container mx-auto mt-8 px-4">
+          <BrightcoveVideoPlayer entity={entity} isStoryPart={false} />
         </section>
       </section>
     </>
