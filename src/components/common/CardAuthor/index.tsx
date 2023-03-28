@@ -6,7 +6,7 @@ type CardAuthorProps = {
 
 const CardAuthor = ({ ...props }: CardAuthorProps) => {
 
-  return props.author ? (
+  return props.author && !props.hide ? (
     <div className="mb-3 text-sm font-light text-[#BEBEBE]">
       {props.author}
     </div>

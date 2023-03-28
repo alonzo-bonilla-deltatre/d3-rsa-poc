@@ -39,7 +39,14 @@ const PromoGrid = async ({ ...data }: ComponentProps) => {
       <div className="grid grid-cols-3 gap-4 px-8">
         {items.map((entity: DistributionEntity) => {
           return (
-            <Card  key={nanoid()} entity={entity} ></Card>
+            <Card key={nanoid()} entity={entity} options={{
+              hideIcon: true,
+              hideRoofline: false,
+              hideTitle: false,
+              hideDate: false,
+              hideAuthor: true,
+              hideCta: true
+            }} ></Card>
           );
         })}
       </div>

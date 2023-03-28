@@ -58,3 +58,17 @@ export type Tag = {
   externalSourceReference: Record<string, unknown>;
   fields: Record<string, unknown>;
 };
+export type QueryStringModuleProps = {
+  skip: number;
+  limit: number;
+  tags: string;
+}; 
+
+export type CardOptions = {
+  hideIcon: boolean | false;
+  hideRoofline: boolean | false;
+  hideTitle: boolean | false;
+  hideDate: boolean | false;
+  hideAuthor: boolean | true;
+  hideCta: boolean | true;
+};

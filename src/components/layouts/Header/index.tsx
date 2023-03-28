@@ -1,17 +1,9 @@
-import Picture from "@/components/common/Picture";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { firstAssetOrDefault, getAssetsByTag } from "@/services/gadService";
-import { transformations } from "@/utilities/cloudinaryTransformations";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getMenu } from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";
 
 const Header = async (): Promise<React.ReactElement> => {
-  // const gadAssetsFetch = getAssetsByTag("react-poc-supercars-logo");
-
-  // const [gadAssets] = await Promise.all([gadAssetsFetch]);
-  // const logo: GraphicAssetsDashboardItem | null = firstAssetOrDefault(gadAssets);
 
   // @ts-ignore
   const MenuHeaderService = dynamic(() => import("@/components/common/Menu"));
@@ -37,54 +29,9 @@ const Header = async (): Promise<React.ReactElement> => {
             </button>
           </div>
           <Logo tagName={"react-poc-supercars-logo"} className={"max-sm:w-full"} width={226} height={25} alt={"Poc"} link="/test/react-poc/demo"></Logo>
-          {/* {logo && (
-            <div className="flex items-center" role="presentation">
-              <Picture
-                className="max-sm:w-full"
-                src={logo.assetUrl}
-                alt=""
-                width={226}
-                height={25}
-                transformations={transformations.logos}
-              />
-            </div>
-          )} */}
-
+         
           <div className="flex justify-end text-gray-600">
-            <MenuHeaderService menuItems={menuData?.menuItems} navItemClasses={navItemClasses}></MenuHeaderService>
-
-            {/* <Link href="/" className="mx-1">
-              <Image
-                src={"/icons/header_ticket.svg"}
-                width={44}
-                height={44}
-                alt=""
-              />
-            </Link>
-            <Link href="/" className="mx-1">
-              <Image
-                src={"/icons/header_shop.svg"}
-                width={44}
-                height={44}
-                alt=""
-              />
-            </Link>
-            <Link href="/" className="mx-1">
-              <Image
-                src={"/icons/header_search.svg"}
-                width={44}
-                height={44}
-                alt=""
-              />
-            </Link>
-            <Link href="/" className="mx-1">
-              <Image
-                src={"/icons/header_login.svg"}
-                width={44}
-                height={44}
-                alt=""
-              />
-            </Link> */}
+            <MenuHeaderService menuItems={menuData?.menuItems} navItemClasses={navItemClasses}></MenuHeaderService>         
           </div>
         </div>
       </nav>

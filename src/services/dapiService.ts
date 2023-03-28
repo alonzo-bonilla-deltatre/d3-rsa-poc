@@ -1,5 +1,5 @@
 import { LoggerLevel } from "@/models/types/logger";
-import { DistributionEntity, PagedResult } from "@/models/types/dapi";
+import { DistributionEntity, PagedResult, QueryStringModuleProps } from "@/models/types/dapi";
 import logger from "@/utilities/logger";
 import { ForgeApiError } from "@/models/types/errors";
 
@@ -116,11 +116,6 @@ export const getSelection = async (
   return null;
 };
 
-type QueryStringModuleProps = {
-  skip: number;
-  limit: number;
-  tags: string;
-};
 export const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
@@ -151,3 +146,5 @@ export const getFilteredItems = (
   }
   return items.slice(0, limit);
 };
+
+
