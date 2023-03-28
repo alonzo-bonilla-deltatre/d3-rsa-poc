@@ -9,6 +9,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 
+# ----- SONARQUBE ---
 # in case of PR builds substitute ARG BuildSourceBranchName with the 3 ARG below
 ARG PRPullRequestId
 ARG PRSourceBranch
@@ -19,7 +20,7 @@ ARG CollectionUri
 ARG sonarprojectkey
 ARG sonarlogin
 
-RUN yarn sonar
+# RUN yarn sonar
 
 RUN yarn build
 
