@@ -1,5 +1,8 @@
 trigger:
-  beta
+  batch: true
+  branches:
+    include:
+      - beta
 
 pool:
   name: WebPlu
