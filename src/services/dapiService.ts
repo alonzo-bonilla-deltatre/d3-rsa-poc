@@ -1,5 +1,5 @@
 import { LoggerLevel } from "@/models/types/logger";
-import { DistributionEntity, PagedResult } from "@/models/types/dapi";
+import { DistributionEntity, PagedResult, QueryStringModuleProps } from "@/models/types/dapi";
 import logger from "@/utilities/logger";
 import { ForgeApiError } from "@/models/types/errors";
 
@@ -11,7 +11,7 @@ const distributionListUrl = `v2/content/${culture}/${entityCodePlaceholder}`;
 const distributionSelectionDetailUrl = `v2/content/${culture}/sel-${slugPlaceholder}`;
 
 const revalidateTime =
-process.env.FORGE_DISTRIBUTION_API_REVALIDATE_TIME ?? "0";
+  process.env.FORGE_DISTRIBUTION_API_REVALIDATE_TIME ?? "0";
 
 export const getEntity = async (
   entityCode: string,
@@ -51,6 +51,25 @@ export const getEntity = async (
     );
     return null;
   }
+};
+
+export const getEntityList = async (
+  selectionSlug: string,
+  { skip, limit, tags }: QueryStringModuleProps,
+  type: string
+): Promise<DistributionEntity[] | null> => {
+  if (selectionSlug) {
+    const dapiItems = await getSelection(selectionSlug);
+    const items = dapiItems?.items as DistributionEntity[];
+    return items;
+  }
+  if (type) {
+    const queryString = getQueryString({ skip, limit, tags });
+    const entities = await getAllEntities(type, queryString);
+    const items = entities?.items as DistributionEntity[];
+    return items;
+  }
+  return null;
 };
 
 export const getAllEntities = async (
@@ -116,11 +135,6 @@ export const getSelection = async (
   return null;
 };
 
-type QueryStringModuleProps = {
-  skip: number;
-  limit: number;
-  tags: string;
-};
 export const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
@@ -151,3 +165,5 @@ export const getFilteredItems = (
   }
   return items.slice(0, limit);
 };
+
+

@@ -30,7 +30,7 @@ const Partner = async ({ ...props }: ParnerProps) => {
   const logo = await getSingleAssetByTag(partnerTag);
 
   return logo ? (
-    <div className="basis-52">
+    <div className="">
                   
                   <Picture
                     className=""

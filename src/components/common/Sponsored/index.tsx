@@ -2,8 +2,7 @@ import { translate } from "@/utilities/i18n";
 import Picture from "../Picture";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag } from "@/services/gadService";
+import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 
 type SponsoredProps = {
@@ -23,11 +22,7 @@ const Sponsored = async ({ ...props }: SponsoredProps) => {
     );
     return null;
   }
-  const gadAssetsFetch = getAssetsByTag(props.tag);
-  const [gadAssets] = await Promise.all([gadAssetsFetch]);
-  const logo: GraphicAssetsDashboardItem | null = gadAssets?.length
-    ? gadAssets[0]
-    : null;
+  const logo = await getSingleAssetByTag(props.tag);
 
   return !props.hide && logo ? (
     <>

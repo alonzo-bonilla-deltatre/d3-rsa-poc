@@ -2,14 +2,13 @@ import { ComponentProps } from "@/models/types/components";
 import { getEntity } from "@/services/dapiService";
 import { CustomPromoFields } from "@/models/types/dapi.customEntityFields";
 import Picture from "@/components/common/Picture";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag } from "@/services/gadService";
+import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import { translate } from "@/utilities/i18n";
 import dynamic from "next/dynamic";
-import CardCta from "@/components/common/CardCta";
+import CardCta from "@/components/editorial/card/CardCta";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
@@ -31,12 +30,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const gadAssetsFetch = getAssetsByTag("sponsor-coates");
-
-  const [gadAssets] = await Promise.all([gadAssetsFetch]);
-  const logo: GraphicAssetsDashboardItem | null = gadAssets?.length
-    ? gadAssets[0]
-    : null;
+  const logo = await getSingleAssetByTag("sponsor-coates");
 
   const promoEntityFetch = getEntity(
     "promos",
@@ -82,7 +76,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
                     {promoEntity.title}
                   </h3>
                   <p className="mt-8">
-                    {(promoEntity.fields as CustomPromoFields).description}
+                    {(promoEntity.fields as CustomPromoFields)?.description}
                   </p>
                 </header>
 

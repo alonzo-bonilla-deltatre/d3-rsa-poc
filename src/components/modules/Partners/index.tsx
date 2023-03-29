@@ -30,24 +30,22 @@ const Partners = async ({ ...data }: ComponentProps) => {
   const selectionFetch = getSelection(selectionSlug);
   const [selection] = await Promise.all([selectionFetch]);
   const items = selection?.items;
-
-  return items?.length ? (
+  
+  return  (
     <section className="relative mx-60 mt-20 col-start-1">
       <Title
         canRender={/true/.test(displayModuleTitle)}
         heading="h3"
         text={moduleTitle}
       ></Title>
-      <div className="flex flex-wrap">
-        {items.map((entity: DistributionEntity) => {
+      <div className="flex flex-wrap grid grid-rows-2 grid-flow-col gap-4">
+        {items && items.map((entity: DistributionEntity) => {
           return (
             <Partner key={nanoid()} entity={entity} width={100} height={50}></Partner>
           );
         })}
       </div>
     </section>
-  ) : (
-    <></>
   );
 };
 export default Partners;

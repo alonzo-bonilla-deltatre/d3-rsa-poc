@@ -1,5 +1,5 @@
 import { ComponentProps } from "@/models/types/components";
-import { getEntityList} from "@/services/dapiService";
+import { getEntityList } from "@/services/dapiService";
 import { DistributionEntity } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
 import Card from "@/components/editorial/card/Card";
@@ -15,22 +15,16 @@ type ModuleProps = {
   skip: number;
   limit: number;
   tags: string;
+  entityType: string;
   selectionSlug: string;
 };
 
-const PromoGrid = async ({ ...data }: ComponentProps) => {
-  const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags , selectionSlug} =
+const EditorialList = async ({ ...data }: ComponentProps) => {
+  const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags, selectionSlug, entityType } =
     data.properties as ModuleProps;
-const entityType = "promos";
-  // const queryString = getQueryString({ skip, limit, tags });
-
-  // const promoEntitiesFetch = getAllEntities("promos", queryString);
-
-  // const [promos] = await Promise.all([promoEntitiesFetch]);
-  // const dapiItems = promos as PagedResult;
-  // const items = dapiItems?.items;
 
   const items = await getEntityList(selectionSlug, { skip, limit, tags }, entityType);
+
 
   return items?.length ? (
     <section className="mt-8">
@@ -58,4 +52,4 @@ const entityType = "promos";
     <></>
   );
 };
-export default PromoGrid;
+export default EditorialList;

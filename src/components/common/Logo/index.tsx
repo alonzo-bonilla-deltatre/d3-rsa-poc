@@ -1,5 +1,4 @@
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { firstAssetOrDefault, getAssetsByTag } from "@/services/gadService";
+import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import Picture from "../Picture";
 
@@ -15,11 +14,7 @@ type LogoProps = {
 
 const Logo = async ({ ...props }: LogoProps) => {
 
-  const gadAssetsFetch = getAssetsByTag(props.tagName);
-
-  const [gadAssets] = await Promise.all([gadAssetsFetch]);
-  const logo: GraphicAssetsDashboardItem | null = firstAssetOrDefault(gadAssets);
-
+  const logo = await getSingleAssetByTag(props.tagName);
 
   return logo && (
     <div className="flex items-center" role="presentation">

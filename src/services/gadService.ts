@@ -4,7 +4,7 @@ import { LoggerLevel } from "@/models/types/logger";
 import logger from "@/utilities/logger";
 
 const revalidateTime =
-process.env.GRAPHIC_ASSETS_DASHBOARD_API_REVALIDATE_TIME ?? "0";
+  process.env.GRAPHIC_ASSETS_DASHBOARD_API_REVALIDATE_TIME ?? "0";
 
 export const getAssetsByTag = async (
   tag: string
@@ -38,14 +38,10 @@ export const getAssetsByTag = async (
 export const getSingleAssetByTag = async (
   tag: string
 ): Promise<GraphicAssetsDashboardItem | null> => {
-const gadAssetsFetch = getAssetsByTag(tag);
+  const gadAssetsFetch = getAssetsByTag(tag);
   const [gadAssets] = await Promise.all([gadAssetsFetch]);
-  // const logo: GraphicAssetsDashboardItem | null = gadAssets?.length
-  //   ? gadAssets[0]
-  //   : null;
-    const asset = firstAssetOrDefault(gadAssets);
-  
-    return asset;
+  const asset = firstAssetOrDefault(gadAssets);
+  return asset;
 }
 
 export const firstAssetOrDefault = (
