@@ -11,7 +11,7 @@ export type StructureItem = {
     id: string;
     namespace: string;
   };
-  type: ItemType;
+  type: PageStructureItemType;
   properties: Record<string, unknown>;
   slot?: string;
   slots?: string[];
@@ -31,7 +31,7 @@ export type Metadata = {
   type: string;
 };
 
-export enum ItemType {
+export enum PageStructureItemType {
   module = "module",
   layout = "layout",
   template = "template",
