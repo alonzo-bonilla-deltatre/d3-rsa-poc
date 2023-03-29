@@ -9,10 +9,8 @@ import CardAuthor from "@/components/editorial/card/CardAuthor";
 import CardDate from "@/components/editorial/card/CardDate";
 import SocialIcons from "@/components/common/SocialIcons";
 import dynamic from "next/dynamic";
-import { DistributionEntity } from "@/models/types/dapi";
-import Markdown from "@/components/editorial/storyparts/Markdown";
-import PhotoPart from "@/components/editorial/storyparts/PhotoPart";
-import { nanoid } from "nanoid";
+import { StoryPart } from "@/models/types/storyPart";
+import { renderStoryPart } from "@/services/renderHandlers/renderStoryPart";
 
 // @ts-ignore
 const Sponsored = dynamic(() => import("@/components/common/Sponsored"));
@@ -40,10 +38,7 @@ const Story = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const storyEntityFetch = getEntity(
-    "stories",
-    props.slug
-  );
+  const storyEntityFetch = getEntity("stories", props.slug);
 
   const [storyEntity] = await Promise.all([storyEntityFetch]);
   const sponsorTag = "sponsor-coates";
@@ -51,63 +46,78 @@ const Story = async ({ ...data }: ComponentProps) => {
 
   return storyEntity ? (
     <>
-      <section className="relative mx-auto mt-20 w-full max-w-container px-4 sm:px-6 lg:px-8">
-        <CardRoofline context={storyEntity.context} hide={props.hideRoofline}></CardRoofline>
-        <div className="grid grid-cols-1">
-          <div className="mt-20 mx-40 col-start-1">
-            <div className="flex justify-between">
+      <section className="w-full container mx-auto mt-40">
+        <CardRoofline
+          context={storyEntity.context}
+          hide={props.hideRoofline}
+        ></CardRoofline>
+        <div className="flex justify-between mx-20">
+          <header className="w-full">
+            <h3 className="font-bold text-5xl uppercase">
+              {storyEntity.title}
+            </h3>
+            <div className="flex justify-between items-center">
               <div>
-                <header className="max-w-lg">
-                  <h3 className="font-bold text-5xl uppercase">
-                    {storyEntity.title}
-                  </h3>
-                  <p className="mt-8">
-                    {storyEntity.headline}
-                  </p>
-                  <CardAuthor author={storyEntity.createdBy} hide={props.hideAuthor}></CardAuthor>
-                  <CardDate date={storyEntity.contentDate} format={null} hide={props.hideDate}></CardDate>
-                </header>
-              </div>
-              <div>
-                <Sponsored hide={props.hideSponsor} tag={sponsorTag} name={props.sponsorName} width={70} height={20} className={""}></Sponsored>
-                {!props.hideSocial && (
-                  <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                    <SocialIcons hide={false} size={50} className={"mr-4"}></SocialIcons>
-                  </div>
+                {storyEntity.headline && (
+                  <p className="mt-8 mb-3">{storyEntity.headline}</p>
                 )}
+                <CardAuthor
+                  author={storyEntity.createdBy}
+                  hide={props.hideAuthor}
+                ></CardAuthor>
+                <CardDate
+                  date={storyEntity.contentDate}
+                  format={null}
+                  hide={props.hideDate}
+                ></CardDate>
+              </div>
+              <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
+                <div>
+                  <Sponsored
+                    hide={props.hideSponsor}
+                    tag={sponsorTag}
+                    name={props.sponsorName}
+                    width={70}
+                    height={20}
+                    className={""}
+                  ></Sponsored>
+                  {!props.hideSocial && (
+                    <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
+                      <SocialIcons
+                        hide={false}
+                        size={50}
+                        className={"mr-4"}
+                      ></SocialIcons>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-          {storyEntity.thumbnail && (
-            <div className="mt-8 mx-40 col-start-1">
-              <Picture
-                src={storyEntity.thumbnail.templateUrl}
-                transformations={transformations.thumbnailDetail}
-                width={630}
-                height={270}
-                alt={storyEntity.thumbnail.title ?? ""}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-
+          </header>
         </div>
       </section>
-      <section className="relative mx-auto mt-20 w-full max-w-container px-4 sm:px-6 lg:px-8">
-        {storyEntity.parts.map((part: DistributionEntity) => {
-          switch (part.type) {
-            case "markdown":
-              return <Markdown key={nanoid()} markdownText={part.content}></Markdown>;
-            case "photo":
-              return <PhotoPart key={nanoid()} image={part as DistributionEntity}></PhotoPart>;
-            default:
-              return <span key={nanoid()}>{part.type}</span>;
-          }
+      <section className="w-full container mx-auto mt-20">
+        {storyEntity.thumbnail && (
+          <div className="mt-8 col-start-1">
+            <Picture
+              src={storyEntity.thumbnail.templateUrl}
+              transformations={transformations.thumbnailDetail}
+              width={630}
+              height={270}
+              alt={storyEntity.thumbnail.title ?? ""}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+        {storyEntity.parts.map((part: StoryPart) => {
           return (
-            <span key={nanoid()}>{part.type}</span>
+            <>
+              <div className="mx-20 mt-20 col-start-1">
+                {renderStoryPart(part)}
+              </div>
+            </>
           );
         })}
-
       </section>
     </>
   ) : (

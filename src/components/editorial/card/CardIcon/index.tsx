@@ -1,4 +1,4 @@
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../../../common/SvgIcon";
 
 type CardIconProps = {
   entityCode: string;

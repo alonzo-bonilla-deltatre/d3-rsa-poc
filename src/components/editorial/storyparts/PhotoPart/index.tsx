@@ -1,26 +1,6 @@
-import { DistributionEntity } from "@/models/types/dapi";
-import Picture from "../../Picture";
-import { transformations } from "@/utilities/cloudinaryTransformations";
+import PhotoPart from "@/components/common/StoryPart/PhotoPart";
+import { StoryPart } from "@/models/types/storyPart";
+import { nanoid } from "nanoid";
 
-
-type PhotoPartProps = {
-  image: DistributionEntity;
-};
-
-
-const PhotoPart = ({ ...props }: PhotoPartProps) => {
-  const img = props.image;
-  return img.slug ? (
-    <>
-      <figure className="text-white mt-20 mx-60 col-start-1">
-        <Picture src={img.image.templateUrl}
-          width={800}
-          height={450} alt={img.image.title ?? ""}
-          transformations={transformations.heroSwiper}></Picture>
-      </figure>
-    </>
-  ) : <></>;
-};
-
-
-export default PhotoPart;
+export const renderPhotoStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
+data ? <PhotoPart key={nanoid()} image={data} /> : <></>;

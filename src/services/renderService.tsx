@@ -1,4 +1,4 @@
-import { ItemType, StructureItem } from "@/models/types/pageStructure";
+import { PageStructureItemType, StructureItem } from "@/models/types/pageStructure";
 import { JSXElementConstructor, ReactElement } from "react";
 import { renderLayout } from "./renderHandlers/renderLayout";
 import { renderModule } from "./renderHandlers/renderModule";
@@ -12,15 +12,15 @@ export const renderItem = (item: StructureItem): React.ReactElement => {
   if (!item) {
     return renderEmptyPage();
   }
-  if (item.type === ItemType.template) {
+  if (item.type === PageStructureItemType.template) {
     return renderTemplate(item);
   }
 
-  if (item.type === ItemType.layout) {
+  if (item.type === PageStructureItemType.layout) {
     return renderLayout(item);
   }
 
-  if (item.type === ItemType.module) {
+  if (item.type === PageStructureItemType.module) {
     return renderModule(item);
   }
   return renderEmptyPage();

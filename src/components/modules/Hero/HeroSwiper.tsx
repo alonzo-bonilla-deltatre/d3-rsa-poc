@@ -16,8 +16,8 @@ import Picture from "@/components/common/Picture";
 import { formatDate } from "@/utilities/dateFormatter";
 
 import "./HeroSwiper.css";
-import CardRoofline from "@/components/common/CardRoofline";
-import CardTitle from "@/components/common/CardTitle";
+import CardRoofline from "@/components/editorial/card/CardRoofline";
+import CardTitle from "@/components/editorial/card/CardTitle";
 import CardDate from "@/components/editorial/card/CardDate";
 
 type ModuleProps = {

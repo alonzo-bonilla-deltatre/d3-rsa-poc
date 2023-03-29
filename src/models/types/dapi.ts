@@ -1,3 +1,5 @@
+import { StoryPart } from "./storyPart";
+
 export type DistributionEntity = {
   type: string;
   _translationId: string;
@@ -18,14 +20,10 @@ export type DistributionEntity = {
   featured: number;
   thumbnail: Image;
   image: Image;
-  content: string;
-  parts: DistributionEntity[];
+  parts: StoryPart[];
   entityCode: string;
 };
-// export type StoryPart = DistributionEntity & {
-//   content: string;
-//   Image: Image;
-// };
+
 export type Image = {
   title: string;
   templateUrl: string;

@@ -1,6 +1,6 @@
 import { ComponentProps } from "@/models/types/components";
 import { getEntityList} from "@/services/dapiService";
-import { DistributionEntity, PagedResult } from "@/models/types/dapi";
+import { DistributionEntity } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
 import Card from "@/components/editorial/card/Card";
 import { nanoid } from "nanoid";

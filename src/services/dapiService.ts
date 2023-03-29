@@ -52,28 +52,26 @@ export const getEntity = async (
     return null;
   }
 };
+
 export const getEntityList = async (
   selectionSlug: string,
   { skip, limit, tags }: QueryStringModuleProps,
   type: string
 ): Promise<DistributionEntity[] | null> => {
-  if (selectionSlug){
-    const selectionFetch = getSelection(selectionSlug);
-    const [selection] = await Promise.all([selectionFetch]);
-    const dapiItems = selection as PagedResult;
-    const items = dapiItems?.items;
+  if (selectionSlug) {
+    const dapiItems = await getSelection(selectionSlug);
+    const items = dapiItems?.items as DistributionEntity[];
     return items;
   }
   if (type) {
     const queryString = getQueryString({ skip, limit, tags });
-    const entitiesFetch = getAllEntities(type, queryString);
-    const [entities] = await Promise.all([entitiesFetch]);
-    const dapiItems = entities as PagedResult;
-    const items = dapiItems?.items;
+    const entities = await getAllEntities(type, queryString);
+    const items = entities?.items as DistributionEntity[];
     return items;
   }
   return null;
 };
+
 export const getAllEntities = async (
   entityCode: string,
   queryParameters: string

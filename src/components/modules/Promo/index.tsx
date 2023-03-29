@@ -2,14 +2,13 @@ import { ComponentProps } from "@/models/types/components";
 import { getEntity } from "@/services/dapiService";
 import { CustomPromoFields } from "@/models/types/dapi.customEntityFields";
 import Picture from "@/components/common/Picture";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag, getSingleAssetByTag } from "@/services/gadService";
+import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import { translate } from "@/utilities/i18n";
 import dynamic from "next/dynamic";
-import CardCta from "@/components/common/CardCta";
+import CardCta from "@/components/editorial/card/CardCta";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
