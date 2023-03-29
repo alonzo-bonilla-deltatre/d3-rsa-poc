@@ -4,14 +4,14 @@ import Picture from "@/components/common/Picture";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import CardRoofline from "@/components/common/CardRoofline";
-import CardAuthor from "@/components/common/CardAuthor";
-import CardDate from "@/components/common/CardDate";
+import CardRoofline from "@/components/editorial/card/CardRoofline";
+import CardAuthor from "@/components/editorial/card/CardAuthor";
+import CardDate from "@/components/editorial/card/CardDate";
 import SocialIcons from "@/components/common/SocialIcons";
 import dynamic from "next/dynamic";
 import { DistributionEntity } from "@/models/types/dapi";
-import Markdown from "@/components/common/storyparts/Markdown";
-import PhotoPart from "@/components/common/storyparts/PhotoPart";
+import Markdown from "@/components/editorial/storyparts/Markdown";
+import PhotoPart from "@/components/editorial/storyparts/PhotoPart";
 import { nanoid } from "nanoid";
 
 // @ts-ignore

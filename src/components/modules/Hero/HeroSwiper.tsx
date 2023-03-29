@@ -18,7 +18,7 @@ import { formatDate } from "@/utilities/dateFormatter";
 import "./HeroSwiper.css";
 import CardRoofline from "@/components/common/CardRoofline";
 import CardTitle from "@/components/common/CardTitle";
-import CardDate from "@/components/common/CardDate";
+import CardDate from "@/components/editorial/card/CardDate";
 
 type ModuleProps = {
   slides: DistributionEntity[];
