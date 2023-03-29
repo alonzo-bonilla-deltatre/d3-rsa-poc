@@ -35,40 +35,38 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
 
   return entity ? (
     <>
-      <section className="mt-8">
+      <section className="w-full container mx-auto mt-40">
         <Title
           canRender={/true/.test(properties.displayModuleTitle)}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
         ></Title>
-        <section className="w-full container mx-auto mt-40 px-4">
-          <div className="flex justify-between">
-            <header className="w-full">
-              <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
-              <div className="flex justify-between items-center">
-                <div>
-                  {description && <p className="mt-8 mb-3">{description}</p>}
-                  <div className="mb-3 text-sm font-light text-[#BEBEBE]">
-                    {entity.createdBy}
-                  </div>
-                  <time className="mb-3 text-sm font-light text-[#BEBEBE]">
-                    {formatDate(entity.contentDate)}
-                  </time>
+        <div className="flex justify-between mx-20">
+          <header className="w-full">
+            <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
+            <div className="flex justify-between items-center mt-8">
+              <div>
+                {description && <p className="mb-3">{description}</p>}
+                <div className="mb-3 text-sm font-light text-[#BEBEBE]">
+                  {entity.createdBy}
                 </div>
-                <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                  <SocialIcons
-                    hide={false}
-                    size={50}
-                    className={"mr-4"}
-                  ></SocialIcons>
-                </div>
+                <time className="mb-3 text-sm font-light text-[#BEBEBE]">
+                  {formatDate(entity.contentDate)}
+                </time>
               </div>
-            </header>
-          </div>
-        </section>
-        <section className="w-full container mx-auto mt-8 px-4">
+              <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
+                <SocialIcons
+                  hide={false}
+                  size={50}
+                  className={"mr-4"}
+                ></SocialIcons>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div className="mt-20">
           <BrightcoveVideoPlayer entity={entity} isStoryPart={false} />
-        </section>
+        </div>
       </section>
     </>
   ) : (
