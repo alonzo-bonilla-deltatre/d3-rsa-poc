@@ -1,5 +1,5 @@
 trigger:
-  none
+  beta
 
 pool:
   name: WebPlu
