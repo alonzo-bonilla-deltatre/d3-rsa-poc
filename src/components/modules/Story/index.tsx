@@ -56,10 +56,10 @@ const Story = async ({ ...data }: ComponentProps) => {
             <h3 className="font-bold text-5xl uppercase">
               {storyEntity.title}
             </h3>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mt-8">
               <div>
                 {storyEntity.headline && (
-                  <p className="mt-8 mb-3">{storyEntity.headline}</p>
+                  <p className="mb-3">{storyEntity.headline}</p>
                 )}
                 <CardAuthor
                   author={storyEntity.createdBy}
@@ -71,26 +71,24 @@ const Story = async ({ ...data }: ComponentProps) => {
                   hide={props.hideDate}
                 ></CardDate>
               </div>
-              <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                <div>
-                  <Sponsored
-                    hide={props.hideSponsor}
-                    tag={sponsorTag}
-                    name={props.sponsorName}
-                    width={70}
-                    height={20}
-                    className={""}
-                  ></Sponsored>
-                  {!props.hideSocial && (
-                    <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                      <SocialIcons
-                        hide={false}
-                        size={50}
-                        className={"mr-4"}
-                      ></SocialIcons>
-                    </div>
-                  )}
-                </div>
+              <div className="max-sm:hidden">
+                <Sponsored
+                  hide={props.hideSponsor}
+                  tag={sponsorTag}
+                  name={props.sponsorName}
+                  width={70}
+                  height={20}
+                  className={""}
+                ></Sponsored>
+                {!props.hideSocial && (
+                  <div className="flex flex-row items-end mt-8">
+                    <SocialIcons
+                      hide={false}
+                      size={50}
+                      className={"mr-4 last:mr-0"}
+                    ></SocialIcons>
+                  </div>
+                )}
               </div>
             </div>
           </header>
