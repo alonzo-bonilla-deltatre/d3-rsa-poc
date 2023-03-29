@@ -4,9 +4,6 @@ import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import dynamic from "next/dynamic";
 import BrightcoveVideoPlayer from "@/components/common/BrightcoveVideoPlayer";
-import CardRoofline from "@/components/common/CardRoofline";
-import CardAuthor from "@/components/common/CardAuthor";
-import CardDate from "@/components/common/CardDate";
 import SocialIcons from "@/components/common/SocialIcons";
 import { formatDate } from "@/utilities/dateFormatter";
 
