@@ -16,7 +16,8 @@ const PhotoPart = ({ ...props }: PhotoPartProps) => {
         <Picture src={img.image.templateUrl}
           width={800}
           height={450} alt={img.image.title ?? ""}
-          transformations={transformations.heroSwiper}></Picture>
+          transformations={transformations.thumbnailDetail}
+          className="w-full h-full object-cover"></Picture>
       </figure>
     </>
   ) : <></>;
