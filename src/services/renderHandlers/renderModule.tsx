@@ -14,6 +14,7 @@ import renderTestMosaicList from "@/components/modules/TestMosaic/TestMosaicWrap
 import renderMenu from "@/components/modules/Menu/MenuWrapper";
 import renderStory from "@/components/modules/Story/StoryWrapper";
 import renderPartners from "@/components/modules/Partners/PartnersWrapper";
+import renderBrightcoveVideo from "@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper";
 
 const componentList: Record<
   any,
@@ -29,7 +30,8 @@ const componentList: Record<
   PocTestMosaic : renderTestMosaicList,
   PocMenu: renderMenu,
   PocStory: renderStory,
-  PocPartners: renderPartners
+  PocPartners: renderPartners,
+  PocBrightcoveVideo: renderBrightcoveVideo
 };
 
 export const renderModule = (item: StructureItem): React.ReactElement => {

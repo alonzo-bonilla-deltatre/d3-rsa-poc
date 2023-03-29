@@ -9,10 +9,8 @@ import CardAuthor from "@/components/common/CardAuthor";
 import CardDate from "@/components/common/CardDate";
 import SocialIcons from "@/components/common/SocialIcons";
 import dynamic from "next/dynamic";
-import { DistributionEntity } from "@/models/types/dapi";
-import Markdown from "@/components/common/storyparts/Markdown";
-import PhotoPart from "@/components/common/storyparts/PhotoPart";
-import { nanoid } from "nanoid";
+import { StoryPart } from "@/models/types/storyPart";
+import { renderStoryPart } from "@/services/renderHandlers/renderStoryPart";
 
 // @ts-ignore
 const Sponsored = dynamic(() => import("@/components/common/Sponsored"));
@@ -40,10 +38,7 @@ const Story = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const storyEntityFetch = getEntity(
-    "stories",
-    props.slug
-  );
+  const storyEntityFetch = getEntity("stories", props.slug);
 
   const [storyEntity] = await Promise.all([storyEntityFetch]);
   const sponsorTag = "sponsor-coates";
@@ -52,7 +47,10 @@ const Story = async ({ ...data }: ComponentProps) => {
   return storyEntity ? (
     <>
       <section className="relative mx-auto mt-20 w-full max-w-container px-4 sm:px-6 lg:px-8">
-        <CardRoofline context={storyEntity.context} hide={props.hideRoofline}></CardRoofline>
+        <CardRoofline
+          context={storyEntity.context}
+          hide={props.hideRoofline}
+        ></CardRoofline>
         <div className="grid grid-cols-1">
           <div className="mt-20 mx-40 col-start-1">
             <div className="flex justify-between">
@@ -61,18 +59,34 @@ const Story = async ({ ...data }: ComponentProps) => {
                   <h3 className="font-bold text-5xl uppercase">
                     {storyEntity.title}
                   </h3>
-                  <p className="mt-8">
-                    {storyEntity.headline}
-                  </p>
-                  <CardAuthor author={storyEntity.createdBy} hide={props.hideAuthor}></CardAuthor>
-                  <CardDate date={storyEntity.contentDate} format={null} hide={props.hideDate}></CardDate>
+                  <p className="mt-8">{storyEntity.headline}</p>
+                  <CardAuthor
+                    author={storyEntity.createdBy}
+                    hide={props.hideAuthor}
+                  ></CardAuthor>
+                  <CardDate
+                    date={storyEntity.contentDate}
+                    format={null}
+                    hide={props.hideDate}
+                  ></CardDate>
                 </header>
               </div>
               <div>
-                <Sponsored hide={props.hideSponsor} tag={sponsorTag} name={props.sponsorName} width={70} height={20} className={""}></Sponsored>
+                <Sponsored
+                  hide={props.hideSponsor}
+                  tag={sponsorTag}
+                  name={props.sponsorName}
+                  width={70}
+                  height={20}
+                  className={""}
+                ></Sponsored>
                 {!props.hideSocial && (
                   <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                    <SocialIcons hide={false} size={50} className={"mr-4"}></SocialIcons>
+                    <SocialIcons
+                      hide={false}
+                      size={50}
+                      className={"mr-4"}
+                    ></SocialIcons>
                   </div>
                 )}
               </div>
@@ -90,24 +104,18 @@ const Story = async ({ ...data }: ComponentProps) => {
               />
             </div>
           )}
-
         </div>
       </section>
       <section className="relative mx-auto mt-20 w-full max-w-container px-4 sm:px-6 lg:px-8">
-        {storyEntity.parts.map((part: DistributionEntity) => {
-          switch (part.type) {
-            case "markdown":
-              return <Markdown key={nanoid()} markdownText={part.content}></Markdown>;
-            case "photo":
-              return <PhotoPart key={nanoid()} image={part as DistributionEntity}></PhotoPart>;
-            default:
-              return <span key={nanoid()}>{part.type}</span>;
-          }
+        {storyEntity.parts.map((part: StoryPart) => {
           return (
-            <span key={nanoid()}>{part.type}</span>
+            <>
+              <div className="mt-20 mx-60 col-start-1">
+                {renderStoryPart(part)}
+              </div>
+            </>
           );
         })}
-
       </section>
     </>
   ) : (

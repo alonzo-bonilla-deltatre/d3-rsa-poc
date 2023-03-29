@@ -1,7 +1,7 @@
-import { ItemType, StructureItem } from "./pageStructure";
+import { PageStructureItemType, StructureItem } from "./pageStructure";
 
 export type ComponentProps = {
-  type: ItemType;
+  type: PageStructureItemType;
   properties: Record<string, unknown>;
   slot: string;
   slots?: string[];
