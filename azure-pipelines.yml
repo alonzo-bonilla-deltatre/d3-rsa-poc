@@ -71,7 +71,7 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
       SOLUTION_PATH: "${PWD}"
       SRC_FOLDER: ""
-  
+
   - template: build/common-solution/steps/OWASP-dependency-check.yml@templates
     parameters:
       projectname: Deltatre.Frontend.React.Poc.Frontend
