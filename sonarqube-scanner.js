@@ -1,6 +1,7 @@
 const sonarqubeScanner = require("sonarqube-scanner");
-
+console.log(process.env)
 if (process.env.PRPullRequestId === '$(System.PullRequest.PullRequestId)') {
+    console.log("Starting PR sq scanner")
     sonarqubeScanner(
         {
             serverUrl: "https://sqcorporate.deltatre.com/",
@@ -30,6 +31,7 @@ if (process.env.PRPullRequestId === '$(System.PullRequest.PullRequestId)') {
         }
     );
 } else {
+    console.log("Starting sq scanner")
     sonarqubeScanner(
         {
             serverUrl: "https://sqcorporate.deltatre.com/",
