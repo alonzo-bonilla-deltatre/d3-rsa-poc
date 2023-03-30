@@ -48,19 +48,3 @@ if (process.env.PRPullRequestId === "'$(System.PullRequest.PullRequestId)'") {
         }
     );
 }
-
-sonarqubeScanner(
-    {
-        serverUrl: "https://sqcorporate.deltatre.com/",
-        token: "squ_edd97b71c4e2fff895d817d9a4a1eb374de23b2b",
-        options: {
-            "sonar.host.url": "https://sqcorporate.deltatre.com/",
-            "sonar.projectVersion": "1.0.0",
-            "sonar.projectKey": "Deltatre.Frontend.React.Poc.Web",
-            "sonar.sources": ".",
-            "sonar.branch.name": "test-sq-build"
-        },
-    },
-    () => {
-    }
-);
