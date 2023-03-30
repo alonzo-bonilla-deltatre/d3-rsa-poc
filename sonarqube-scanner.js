@@ -1,5 +1,5 @@
 const sonarqubeScanner = require("sonarqube-scanner");
-
+console.log(process.env);
 if (process.env.PRPullRequestId){
   sonarqubeScanner(
     {
