@@ -20,7 +20,7 @@ ARG CollectionUri
 ARG sonarprojectkey
 ARG sonarlogin
 
-# RUN yarn sonar
+RUN yarn sonar
 
 RUN yarn build
 
