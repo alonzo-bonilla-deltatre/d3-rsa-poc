@@ -10,6 +10,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 
 # ----- SONARQUBE ---
+ARG version=1.0.0
+ARG BuildSourceBranchName=refs/heads/master
 # in case of PR builds substitute ARG BuildSourceBranchName with the 3 ARG below
 ARG PRPullRequestId
 ARG PRSourceBranch
