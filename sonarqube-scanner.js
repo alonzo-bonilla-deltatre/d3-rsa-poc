@@ -41,7 +41,7 @@ if (process.env.PRPullRequestId === "'$(System.PullRequest.PullRequestId)'") {
                 "sonar.projectVersion": process.env.version,
                 "sonar.projectKey": process.env.sonarprojectkey,
                 "sonar.sources": ".",
-                "sonar.pullrequest.branch": process.env.BuildSourceBranchName
+                "sonar.branch.name": process.env.BuildSourceBranchName
             },
         },
         () => {
