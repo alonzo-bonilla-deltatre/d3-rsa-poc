@@ -1,6 +1,6 @@
 const sonarqubeScanner = require("sonarqube-scanner");
 
-if (process.env.PRPullRequestId) {
+if (process.env.PRPullRequestId === '$(System.PullRequest.PullRequestId)') {
     sonarqubeScanner(
         {
             serverUrl: "https://sqcorporate.deltatre.com/",
