@@ -1,6 +1,6 @@
 const sonarqubeScanner = require("sonarqube-scanner");
 console.log(process.env)
-if (process.env.PRPullRequestId === '$(System.PullRequest.PullRequestId)') {
+if (process.env.PRPullRequestId === "'$(System.PullRequest.PullRequestId)'") {
     console.log("Starting PR sq scanner")
     sonarqubeScanner(
         {
