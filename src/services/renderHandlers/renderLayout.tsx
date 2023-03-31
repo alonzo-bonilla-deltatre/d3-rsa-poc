@@ -9,7 +9,7 @@ import renderTwoColumns from "@/components/layouts/TwoColumns";
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> =
   {
     Section: renderSection, 
-    PocTwoColumns: renderTwoColumns
+    TwoColumns: renderTwoColumns
   };
 
 export const renderLayout = (item: StructureItem): React.ReactElement => {

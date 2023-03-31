@@ -20,18 +20,10 @@ const componentList: Record<
   any,
   (props: ComponentProps) => React.ReactElement
 > = {
-  PocPromo: renderPromo,
-  PocAdv: renderAdv,
-  PocPromoGrid : renderPromoGrid,
-  PocHero : renderHero,
-  PocCalendar : renderCalendar,
-  PocTestDetail : renderTestDetail,
-  PocTestList : renderTestList,
-  PocTestMosaic : renderTestMosaicList,
-  PocMenu: renderMenu,
-  PocStory: renderStory,
-  PocPartners: renderPartners,
-  PocBrightcoveVideo: renderBrightcoveVideo
+  Hero : renderHero,
+  Story: renderStory,
+  Partners: renderPartners,
+  BrightcoveVideo: renderBrightcoveVideo
 };
 
 export const renderModule = (item: StructureItem): React.ReactElement => {

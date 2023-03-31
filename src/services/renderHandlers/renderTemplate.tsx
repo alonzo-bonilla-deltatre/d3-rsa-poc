@@ -8,7 +8,7 @@ import renderNoTemplate from "@/components/templates/NoTemplate";
 
 const templateList: Record<any, (props: ComponentProps) => React.ReactElement> =
   {
-    PocDefault: renderDefaultTemplate,
+    Default: renderDefaultTemplate,
     "No Template": renderNoTemplate
   };
 
