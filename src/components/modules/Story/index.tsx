@@ -54,10 +54,10 @@ const Story = async ({ ...data }: ComponentProps) => {
             <h3 className="font-bold text-5xl uppercase">
               {storyEntity.title}
             </h3>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mt-8">
               <div>
                 {storyEntity.headline && (
-                  <p className="mt-8 mb-3">{storyEntity.headline}</p>
+                  <p className="mb-3">{storyEntity.headline}</p>
                 )}
                 <CardAuthor
                   author={storyEntity.createdBy}
