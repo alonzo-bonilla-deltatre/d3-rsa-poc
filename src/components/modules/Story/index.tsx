@@ -8,12 +8,10 @@ import CardRoofline from "@/components/editorial/card/CardRoofline";
 import CardAuthor from "@/components/editorial/card/CardAuthor";
 import CardDate from "@/components/editorial/card/CardDate";
 import SocialIcons from "@/components/common/SocialIcons";
-import dynamic from "next/dynamic";
 import { StoryPart } from "@/models/types/storyPart";
 import { renderStoryPart } from "@/services/renderHandlers/renderStoryPart";
-
-// @ts-ignore
-const Sponsored = dynamic(() => import("@/components/common/Sponsored"));
+import Sponsored from "@/components/common/Sponsored";
+import { getSingleAssetByTag } from "@/services/gadService";
 
 type ModuleProps = {
   slug: string;
@@ -41,7 +39,7 @@ const Story = async ({ ...data }: ComponentProps) => {
   const storyEntityFetch = getEntity("stories", props.slug);
 
   const [storyEntity] = await Promise.all([storyEntityFetch]);
-  const sponsorTag = "sponsor-coates";
+  const sponsor = await getSingleAssetByTag("sponsor-coates");
   //TODO: sponsor as a related tag?
 
   return storyEntity ? (
@@ -73,14 +71,9 @@ const Story = async ({ ...data }: ComponentProps) => {
               </div>
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>
-                  <Sponsored
-                    hide={props.hideSponsor}
-                    tag={sponsorTag}
-                    name={props.sponsorName}
-                    width={70}
-                    height={20}
-                    className={""}
-                  ></Sponsored>
+                  {sponsor && (
+                    <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""} assetUrl={sponsor.assetUrl}></Sponsored>
+                  )}
                   {!props.hideSocial && (
                     <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                       <SocialIcons

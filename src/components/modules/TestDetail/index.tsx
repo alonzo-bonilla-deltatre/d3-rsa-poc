@@ -2,12 +2,12 @@ import { ComponentProps } from "@/models/types/components";
 import { getEntity } from "@/services/dapiService";
 import Picture from "@/components/common/Picture";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag } from "@/services/gadService";
+import { getAssetsByTag, getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import { translate } from "@/utilities/i18n";
 import dynamic from "next/dynamic";
+import Sponsored from "@/components/common/Sponsored";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
@@ -40,13 +40,10 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const gadAssetsFetch = getAssetsByTag("sponsor-coates");
+  const sponsor = await getSingleAssetByTag("sponsor-coates");
   const gadAssetsPlaceHolderFetch = getAssetsByTag("react-poc-placeholder");
 
-  const [gadAssets] = await Promise.all([gadAssetsFetch]);
-  const logo: GraphicAssetsDashboardItem | null = gadAssets?.length
-    ? gadAssets[0]
-    : null;
+
 
   const [gadThumbnailPlaceHolderAssets] = await Promise.all([
     gadAssetsPlaceHolderFetch,
@@ -103,21 +100,9 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
                 </header>
               </div>
 
-              {logo && (
+              {sponsor && (
                 <div>
-                  <div className="flex flex-row items-end col-start-10 row-start-10">
-                    <span className="text-xs uppercase">
-                      {translate("sponsored-by")}
-                    </span>
-                    <Picture
-                      className=""
-                      src={logo.assetUrl}
-                      alt="Coates"
-                      width={70}
-                      height={20}
-                      transformations={transformations.logos}
-                    />
-                  </div>
+                  <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""} assetUrl={sponsor.assetUrl}></Sponsored>
                 </div>
               )}
             </div>
