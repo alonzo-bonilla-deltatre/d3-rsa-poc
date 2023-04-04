@@ -2,6 +2,7 @@ import { LoggerLevel } from "@/models/types/logger";
 import { DistributionEntity, PagedResult, QueryStringModuleProps } from "@/models/types/dapi";
 import logger from "@/utilities/logger";
 import { ForgeApiError } from "@/models/types/errors";
+import { ImageAsset } from "@/models/types/images";
 
 const culture = process.env.CULTURE;
 const slugPlaceholder = "{slug}";
@@ -166,4 +167,14 @@ export const getFilteredItems = (
   return items.slice(0, limit);
 };
 
+export const imageToImageAsset = (
+  item: DistributionEntity | null
+): ImageAsset | null => {
+  if (item && item.image){
+    item.image.slug = item.image.slug;
+    item.image.selfUrl = item.image.selfUrl;
+    return item.image;
+  }
+  return null;
+};
 

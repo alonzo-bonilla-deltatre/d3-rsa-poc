@@ -1,5 +1,4 @@
 import { translate } from "@/utilities/i18n";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getMenu} from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";

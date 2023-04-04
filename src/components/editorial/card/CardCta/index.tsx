@@ -1,4 +1,4 @@
-import SvgIcon from "../../../common/SvgIcon";
+import SvgIcon from "@/components/common/SvgIcon";
 
 type CardCtaProps = {
   url: string;

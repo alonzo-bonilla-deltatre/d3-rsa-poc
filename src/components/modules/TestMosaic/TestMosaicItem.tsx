@@ -4,7 +4,6 @@ import Picture from "@/components/common/Picture";
 import { DistributionEntity } from "@/models/types/dapi";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import { ImageTransformations } from "@/models/types/images";
-import { transformations } from "@/utilities/cloudinaryTransformations";
 import { formatDate } from "@/utilities/dateFormatter";
 import { nanoid } from "nanoid";
 

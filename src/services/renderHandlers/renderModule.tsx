@@ -32,6 +32,8 @@ const componentList: Record<
   PocStory: renderStory,
   PocPartners: renderPartners,
   PocBrightcoveVideo: renderBrightcoveVideo
+  // ,
+  // PocEditorialList: renderEditorialList
 };
 
 export const renderModule = (item: StructureItem): React.ReactElement => {

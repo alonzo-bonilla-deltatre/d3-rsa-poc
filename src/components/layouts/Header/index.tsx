@@ -2,17 +2,20 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getMenu } from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";
+import { getSingleAssetByTag } from "@/services/gadService";
+import Logo from "@/components/common/Logo";
 
 const Header = async (): Promise<React.ReactElement> => {
 
   // @ts-ignore
   const MenuHeaderService = dynamic(() => import("@/components/common/Menu"));
-  // @ts-ignore
-  const Logo = dynamic(() => import("@/components/common/Logo"));
-  
+ 
+
   const menuData = getMenu("headerServiceMenu") as MenuResponseData;
   const navItemClasses = "mx-1";
-  const iconSize = "44"; 
+  const iconSize = "44";
+  const logo = await getSingleAssetByTag("react-poc-supercars-logo");
+
 
   return (
     <header className="w-full fixed z-10 bg-gradient-to-b from-black to-transparent">
@@ -22,16 +25,17 @@ const Header = async (): Promise<React.ReactElement> => {
             <button>
               <Image
                 src={"/icons/header_hamburger_menu.svg"}
-                width={44}
-                height={44}
+                width={iconSize}
+                height={iconSize}
                 alt=""
               />
             </button>
           </div>
-          <Logo tagName={"react-poc-supercars-logo"} className={"max-sm:w-full"} width={226} height={25} alt={"Poc"} link="/test/react-poc/demo"></Logo>
-         
+          {logo && (
+            <Logo className={"max-sm:w-full"} width={226} height={25} alt={"Poc"} link={"/test/react-poc/demo"} assetUrl={logo.assetUrl}></Logo>
+          )}
           <div className="flex justify-end text-gray-600">
-            <MenuHeaderService menuItems={menuData?.menuItems} navItemClasses={navItemClasses}></MenuHeaderService>         
+            <MenuHeaderService menuItems={menuData?.menuItems} navItemClasses={navItemClasses}></MenuHeaderService>
           </div>
         </div>
       </nav>
