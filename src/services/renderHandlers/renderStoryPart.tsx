@@ -5,6 +5,7 @@ import { StoryPart } from "@/models/types/storyPart";
 import { renderMarkdownStoryPart } from "@/components/editorial/storyparts/Markdown";
 import { renderPhotoStoryPart } from "@/components/editorial/storyparts/PhotoPart";
 import renderBrightcoveVideoStoryPart from "@/components/editorial/storyparts/BrightcoveVideo";
+import { nanoid } from "nanoid";
 
 const storyPartList: Record<any, (item: StoryPart) => React.ReactElement> = {
   "markdown": renderMarkdownStoryPart,
