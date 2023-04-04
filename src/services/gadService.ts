@@ -1,5 +1,6 @@
 import { ApiResponseError } from "@/models/types/errors";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
+import { ImageAsset } from "@/models/types/images";
 import { LoggerLevel } from "@/models/types/logger";
 import logger from "@/utilities/logger";
 
@@ -49,3 +50,62 @@ export const firstAssetOrDefault = (
 ): GraphicAssetsDashboardItem | null => {
   return assets?.length ? assets[0] : null;
 };
+
+export const getPlaceholderAsset = async (placeHolderTag: string): Promise<GraphicAssetsDashboardItem | null> => {
+  const tag = placeHolderTag ? placeHolderTag : "react-poc-placeholder";
+  return await getSingleAssetByTag(tag);
+};
+export const getPlaceholderAssetUrl = async (placeHolderTag: string): Promise<string> => {
+   try {
+  const tag = placeHolderTag ? placeHolderTag : "react-poc-placeholder";
+  const asset = await getPlaceholderAsset(tag);
+  console.log("GAD API PLACEHOLDER Found:", asset?.assetUrl);
+
+  return asset?.assetUrl ?? "";
+} catch (error: unknown) {
+  logger.log(`GAD API PLACEHOLDER Exception: ${(error as Error).message}`, LoggerLevel.error);
+  return "";
+}
+};
+
+export const getImageOrPlaceholder = async (
+  image: ImageAsset,
+  placeHolderTag: string
+): Promise<ImageAsset | null> => {
+  const needPlaceholderImage = image?.templateUrl;
+  if (needPlaceholderImage){
+    return getPlaceholderImage(placeHolderTag);
+  }
+  return image;
+};
+export const getPlaceholderImage = async (
+  placeHolderTag: string
+): Promise<ImageAsset | null> => {
+  const asset = await getPlaceholderAsset(placeHolderTag);
+  if (asset != null) {
+    return gadAssetToImageAsset(asset);
+  }
+  return null;
+};
+export const gadAssetToImageAsset = (
+  item: GraphicAssetsDashboardItem | null
+): ImageAsset | null => {
+  if (item && item.assetUrl) {
+    const asset = {
+      title: item.name,
+      templateUrl: item.assetUrl,
+      thumbnailUrl: item.assetThumbnailUrl,
+      format: item.format
+    } as ImageAsset;
+
+    return asset;
+  }
+  return null;
+};
+export const getPlaceholderUrl = (tag: string) => {
+  let imagePlaceholder = "";
+  getPlaceholderAssetUrl("").then((x) => {
+    imagePlaceholder = x;
+  });
+  return imagePlaceholder;
+}

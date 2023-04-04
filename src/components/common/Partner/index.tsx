@@ -2,7 +2,7 @@ import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import Picture from "../Picture";
+import Picture from "@/components/common/Picture";
 import { DistributionEntity } from "@/models/types/dapi";
 import { PartnerFields } from "@/models/types/dapi.customEntityFields";
 

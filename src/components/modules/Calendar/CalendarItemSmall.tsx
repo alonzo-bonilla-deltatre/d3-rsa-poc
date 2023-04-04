@@ -2,7 +2,7 @@
 
 import { DistributionEntity } from "@/models/types/dapi";
 import { GrandPrixFields } from "@/models/types/dapi.customEntityFields";
-import { getEventDayString, getEventMonthString } from "./CalendarHelpers";
+import { getEventDayString, getEventMonthString } from "@/components/modules/Calendar/CalendarHelpers";
 
 type ModuleProps = {
   entity: DistributionEntity;

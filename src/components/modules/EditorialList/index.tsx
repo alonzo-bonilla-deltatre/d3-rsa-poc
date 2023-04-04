@@ -2,11 +2,14 @@ import { ComponentProps } from "@/models/types/components";
 import { getEntityList } from "@/services/dapiService";
 import { DistributionEntity } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
-import Card from "@/components/editorial/card/Card";
 import { nanoid } from "nanoid";
+import logger from "@/utilities/logger";
+import { LoggerLevel } from "@/models/types/logger";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
+// @ts-ignore
+const Card = dynamic(() => import("@/components/editorial/card/Card"));
 
 type ModuleProps = {
   moduleTitle: string;
@@ -22,6 +25,13 @@ type ModuleProps = {
 const EditorialList = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags, selectionSlug, entityType } =
     data.properties as ModuleProps;
+    if (!Object.hasOwn(data.properties, "entityType") || !entityType.length) {
+      logger.log(
+        "Cannot render TestList module with empty entityType",
+        LoggerLevel.warning
+      );
+      return null;
+    }
 
   const items = await getEntityList(selectionSlug, { skip, limit, tags }, entityType);
 

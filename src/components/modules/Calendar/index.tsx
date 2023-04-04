@@ -5,9 +5,9 @@ import { nanoid } from "nanoid";
 import { GrandPrixFields } from "@/models/types/dapi.customEntityFields";
 import { isDateGreaterThanNow } from "@/utilities/dateComparer";
 
-import CalendarItemSmall from "./CalendarItemSmall";
-import CalendarItemExpanded from "./CalendarItemExpanded";
-import { orderedItems } from "./CalendarHelpers";
+import CalendarItemSmall from "@/components/modules/Calendar/CalendarItemSmall";
+import CalendarItemExpanded from "@/components/modules/Calendar/CalendarItemExpanded";
+import { orderedItems } from "@/components/modules/Calendar/CalendarHelpers";
 import { firstAssetOrDefault, getAssetsByTag } from "@/services/gadService";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import dynamic from "next/dynamic";
