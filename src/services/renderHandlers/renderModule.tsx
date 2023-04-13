@@ -1,7 +1,7 @@
 import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import { ComponentProps } from "@/models/types/components";
-import { StructureItem } from "@/models/types/pageStructure";
+import {LoggerLevel} from "@/models/types/logger";
+import {ComponentProps} from "@/models/types/components";
+import {StructureItem} from "@/models/types/pageStructure";
 /**/
 import renderPromo from "@/components/modules/Promo/PromoWrapper";
 import renderAdv from "@/components/modules/Adv/AdvWrapper";
@@ -20,7 +20,21 @@ const componentList: Record<
   any,
   (props: ComponentProps) => React.ReactElement
 > = {
-  Hero : renderHero,
+  PocPromo: renderPromo,
+  PocAdv: renderAdv,
+  PocPromoGrid: renderPromoGrid,
+  PocHero: renderHero,
+  PocCalendar: renderCalendar,
+  PocTestDetail: renderTestDetail,
+  PocTestList: renderTestList,
+  PocTestMosaic: renderTestMosaicList,
+  PocMenu: renderMenu,
+  PocStory: renderStory,
+  PocPartners: renderPartners,
+  PocBrightcoveVideo: renderBrightcoveVideo,
+
+  // products-demo modules
+  Hero: renderHero,
   Story: renderStory,
   Partners: renderPartners,
   BrightcoveVideo: renderBrightcoveVideo
@@ -29,7 +43,7 @@ const componentList: Record<
 export const renderModule = (item: StructureItem): React.ReactElement => {
   const render = componentList[item.key.id];
   if (render) {
-    return render({ ...item } as ComponentProps);
+    return render({...item} as ComponentProps);
   }
   logger.log(`Cannot render module ${item.key.id}`, LoggerLevel.error);
   return <div/>;
