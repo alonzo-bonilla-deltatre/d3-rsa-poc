@@ -24,7 +24,10 @@ export const getTranslations = async (): Promise<Translations | null> => {
       `Getting Translations from VOCABULARY TOOL ${apiUrl}`,
       LoggerLevel.debug
     );
-    const response = await fetch(apiUrl);
+    
+    const response = await fetch(apiUrl, {
+      cache: 'no-store'
+    });
 
     if (response.status !== 200) {
       const error = (await response.json()) as ApiResponseError;
