@@ -1,33 +1,24 @@
-import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import Picture from "../Picture";
+import Picture from "@/components/common/Picture";
+
 
 type LogoProps = {
   width: number;
   height: number;
   alt: string;
   className: string;
-  tagName: string;
   link: string;
+  assetUrl: string;
 };
 
 
-const Logo = async ({ ...props }: LogoProps) => {
+const Logo = ({ ...props }: LogoProps) => {
 
-  const logo = await getSingleAssetByTag(props.tagName);
-
-  return logo && (
+  return props.assetUrl ? (
     <div className="flex items-center" role="presentation">
-      <Picture
-        className="max-sm:w-full"
-        src={logo.assetUrl}
-        alt={props.alt}
-        width={props.width}
-        height={props.height}
-        transformations={transformations.logos}
-      />
+      <Picture src={props.assetUrl} width={props.width} height={props.height} className="max-sm:w-full" alt={props.alt} transformations={transformations.logos}></Picture>
     </div>
-  );
+  ): <></>;
 };
 
 export default Logo;

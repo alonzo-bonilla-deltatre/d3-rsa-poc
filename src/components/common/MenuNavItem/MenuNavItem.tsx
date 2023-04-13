@@ -1,17 +1,16 @@
 import { translate } from "@/utilities/i18n";
 import { MenuItem } from "@/models/types/menu";
-import { usePathname } from 'next/navigation';
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "@/components/common/SvgIcon";
 
-type NavItemProps = {
+type MenuNavItemProps = {
   menuItem: MenuItem;
   navItemClasses: string;
   parentId: string;
   iconSize: number;
 }
 
-const NavItem = ({ ...data }: NavItemProps) => {
-  const { menuItem, navItemClasses, parentId, iconSize } = data as NavItemProps;
+const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
+  const { menuItem, navItemClasses, parentId, iconSize } = data as MenuNavItemProps;
   //const router = usePathname();
   const parentid = parentId;
   const itemLink = menuItem.properties.link ?? "#nolink";
@@ -49,4 +48,4 @@ const NavItem = ({ ...data }: NavItemProps) => {
 };
 
 
-export default NavItem;
+export default MenuNavItem;

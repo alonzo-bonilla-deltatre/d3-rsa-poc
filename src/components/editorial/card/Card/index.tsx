@@ -1,12 +1,14 @@
 import { CardOptions, DistributionEntity } from "@/models/types/dapi";
-import Picture from "../../../common/Picture";
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import CardTitle from "../CardTitle";
-import CardDate from "../CardDate";
-import CardAuthor from "../CardAuthor";
-import CardCta from "../CardCta";
-import CardRoofline from "../CardRoofline";
-import CardIcon from "../CardIcon";
+import CardTitle from "@/components/editorial/card/CardTitle";
+import CardDate from "@/components/editorial/card/CardDate";
+import CardAuthor from "@/components/editorial/card/CardAuthor";
+import CardCta from "@/components/editorial/card/CardCta";
+import CardRoofline from "@/components/editorial/card/CardRoofline";
+import CardIcon from "@/components/editorial/card/CardIcon";
+import { getImageOrPlaceholder } from "@/services/gadService";
+import Picture from "@/components/common/Picture";
+
 
 type CardProps = {
   entity: DistributionEntity;
@@ -14,22 +16,24 @@ type CardProps = {
 };
 
 
-const Card = ({ ...props }: CardProps) => {
+const Card = async ({ ...props }: CardProps) => {
   const entity = props.entity;
-  const options = props.options;
+  const options = props.options
+
+  // const getImageOrPlaceholderFetch = getImageOrPlaceholder(entity.thumbnail, "");
+  // const [entityImage] = await Promise.all([getImageOrPlaceholderFetch]);
+  const entityImage = entity.thumbnail;
   return entity && (
     <><div>
-      {entity.thumbnail && (
+      {entityImage != null && (
 
         <figure className="col-start-1 row-start-1">
           <Picture
+            src={entityImage.templateUrl}
             className="w-full h-full object-cover"
-            src={entity.thumbnail.templateUrl}
             transformations={transformations.thumbnailGridItem}
             width={416}
-            height={234}
-            alt={entity.thumbnail.title ?? ""}
-          />
+            height={234} alt={entity.title}          />
         </figure>
 
       )}

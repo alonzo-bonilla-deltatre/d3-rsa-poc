@@ -1,4 +1,5 @@
 import { StoryPart } from "./storyPart";
+import { ImageAsset} from "./images";
 
 export type DistributionEntity = {
   type: string;
@@ -18,21 +19,13 @@ export type DistributionEntity = {
   contentDate: string;
   context: Tag;
   featured: number;
-  thumbnail: Image;
-  image: Image;
+  thumbnail: ImageAsset;
+  image: ImageAsset;
   parts: StoryPart[];
   entityCode: string;
 };
 
-export type Image = {
-  title: string;
-  templateUrl: string;
-  thumbnailUrl: string;
-  format: string;
-  overriddenFormats: { [key: string]: any };
-  slug: string;
-  selfUrl: string;
-};
+
 
 export type PagedResult = {
   pagination: {

@@ -1,7 +1,7 @@
 import { ComponentProps } from "@/models/types/components";
 import { MenuItem, MenuResponseData } from "@/models/types/menu";
 import MenuList from "@/components/common/Menu";
-import { getFooterMenu, getHeaderServiceMenu, getMenu } from "@/services/menuService";
+import { getFooterMenu } from "@/services/menuService";
 
 
 type MenuModuleProps = {

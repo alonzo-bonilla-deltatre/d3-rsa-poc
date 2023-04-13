@@ -8,8 +8,8 @@ import {
 } from "@/models/types/dapi.customEntityFields";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import { getEventDayString, getEventMonthString } from "./CalendarHelpers";
-import CountDownClock from "./CountDownClock";
+import { getEventDayString, getEventMonthString } from "@/components/modules/Calendar/CalendarHelpers";
+import CountDownClock from "@/components/modules/Calendar/CountDownClock";
 
 type ModuleProps = {
   entity: DistributionEntity;

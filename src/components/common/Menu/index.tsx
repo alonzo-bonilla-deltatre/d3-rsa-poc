@@ -1,5 +1,5 @@
 import { MenuItem } from "@/models/types/menu";
-import NavItem from "./NavItem";
+import MenuNavItem from "@/components/common/MenuNavItem/MenuNavItem";
 import { nanoid } from "nanoid";
 
 type MenuProps = {
@@ -17,11 +17,11 @@ const MenuList = ({ ...data }: MenuProps) => {
       {menuItems && menuItems.map((menuItem) => (
 
         <>
-          <NavItem key={nanoid()} menuItem={menuItem} navItemClasses={navItemClasses} parentId="" iconSize={iconSize} />
+          <MenuNavItem key={nanoid()} menuItem={menuItem} navItemClasses={navItemClasses} parentId="" iconSize={iconSize} />
 
           {
             menuItem.menuItems.map((subMenuItem) => (
-              <NavItem key={nanoid()} menuItem={subMenuItem} navItemClasses={navItemClasses+" sub"} parentId={menuItem.id} iconSize={iconSize} />
+              <MenuNavItem key={nanoid()} menuItem={subMenuItem} navItemClasses={navItemClasses+" sub"} parentId={menuItem.id} iconSize={iconSize} />
             ))
           }
         </>

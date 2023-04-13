@@ -12,13 +12,14 @@ import {
   getSrcWithTransformation,
   transformations,
 } from "@/utilities/cloudinaryTransformations";
-import Picture from "@/components/common/Picture";
 import { formatDate } from "@/utilities/dateFormatter";
+import { getPlaceholderUrl } from "@/services/gadService";
 
 import "./HeroSwiper.css";
 import CardRoofline from "@/components/editorial/card/CardRoofline";
-import CardTitle from "@/components/editorial/card/CardTitle";
+import PictureEditorial from "@/components/common/Picture";
 import CardDate from "@/components/editorial/card/CardDate";
+import Picture from "@/components/common/Picture";
 
 type ModuleProps = {
   slides: DistributionEntity[];
@@ -35,7 +36,14 @@ const customPagination = (slides: DistributionEntity[]) => ({
   renderBullet: function (index: number, className: string) {
     if (!slides.length) {
       return "";
-    }
+    }  
+    const needPlaceholderImage = !slides[index] || !slides[index].thumbnail?.templateUrl;
+
+  const imageUrl = needPlaceholderImage ? getPlaceholderUrl("") : slides[index].thumbnail?.templateUrl;
+  console.log(index, "needPlaceholderImage: ",slides[index]);
+  if (needPlaceholderImage){
+    console.log("needPlaceholderImage: ",slides[index]);
+  }
     const imageSrc = getSrcWithTransformation(
       slides[index].thumbnail?.templateUrl,
       transformations.heroThumbnail.mobile
@@ -91,13 +99,10 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                 {slide.thumbnail && (
                   <div className="col-start-1 row-start-1 bg-black">
                     <Picture
-                      src={slide.thumbnail.templateUrl}
                       transformations={transformations.heroSwiper}
                       width={630}
                       height={270}
-                      alt={slide.thumbnail.title ?? ""}
-                      className="w-full h-full object-cover opacity-[.50]"
-                    />
+                      className="w-full h-full object-cover opacity-[.50]" src={slide.thumbnail.templateUrl} alt={slide.title}               />
                   </div>
                 )}
                 <div className="mt-[35vh] ml-40 max-w-[500px] col-start-1 row-start-1 z-10">
@@ -113,7 +118,8 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                         <time className="mt-3 font-light text-[#BEBEBE]">
                           {formatDate(slide.contentDate)}
                         </time>
-                      )}</>
+                      )}
+                      </>
                   </header>
                 </div>
               </div>

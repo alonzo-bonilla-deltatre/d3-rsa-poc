@@ -6,12 +6,13 @@ import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import { translate } from "@/utilities/i18n";
 import dynamic from "next/dynamic";
 import CardCta from "@/components/editorial/card/CardCta";
+import Sponsored from "@/components/common/Sponsored";
 
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
+
 
 type ModuleProps = {
   slug: string;
@@ -30,13 +31,11 @@ const Promo = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const logo = await getSingleAssetByTag("sponsor-coates");
-
   const promoEntityFetch = getEntity(
     "promos",
     properties.slug
   );
-  
+
   const [promoEntity] = await Promise.all([promoEntityFetch]);
   const cta1Url = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.url;
   const cta1Text = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.displayText;
@@ -45,16 +44,16 @@ const Promo = async ({ ...data }: ComponentProps) => {
   const cta2Text = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction2Link?.displayText;
   const cta2Ext = (promoEntity && (promoEntity.fields as CustomPromoFields).callToAction2Link?.openInNewTab) ?? false;
 
- 
- 
+  const sponsor = await getSingleAssetByTag("sponsor-coates");
+
   return promoEntity ? (
     <>
       <section className="mt-8">
-      <Title
-        canRender={/true/.test(properties.displayModuleTitle)}
-        heading={properties.headingLevel}
-        text={properties.moduleTitle}
-      ></Title>
+        <Title
+          canRender={/true/.test(properties.displayModuleTitle)}
+          heading={properties.headingLevel}
+          text={properties.moduleTitle}
+        ></Title>
         <div className="grid grid-cols-1 max-h-[790px] min-h-[500px] bg-gray-700 w-full overflow-hidden">
           {promoEntity.thumbnail && (
             <div className="col-start-1 row-start-1">
@@ -82,12 +81,12 @@ const Promo = async ({ ...data }: ComponentProps) => {
 
                 <nav className="mt-8">
                   <ul className="list-none flex space-x-5">
-                    {(cta1Url)&& (
+                    {(cta1Url) && (
                       <li>
                         <CardCta url={cta1Url} text={cta1Text} isExternal={cta1Ext} style={"default"} icon={""} hide={false}></CardCta>
                       </li>
                     )}
-                    {(cta2Url)&& (
+                    {(cta2Url) && (
                       <li>
                         <CardCta url={cta2Url} text={cta2Text} isExternal={cta2Ext} style={"reverse"} icon={""} hide={false}></CardCta>
                       </li>
@@ -96,21 +95,9 @@ const Promo = async ({ ...data }: ComponentProps) => {
                 </nav>
               </div>
 
-              {logo && (
+              {sponsor && (
                 <div>
-                  <div className="flex flex-row items-end col-start-10 row-start-10">
-                    <span className="text-xs uppercase">
-                      {translate("sponsored-by")}
-                    </span>
-                    <Picture
-                      className=""
-                      src={logo.assetUrl}
-                      alt="Coates"
-                      width={70}
-                      height={20}
-                      transformations={transformations.logos}
-                    />
-                  </div>
+                  <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""} assetUrl={sponsor.assetUrl}></Sponsored>
                 </div>
               )}
             </div>

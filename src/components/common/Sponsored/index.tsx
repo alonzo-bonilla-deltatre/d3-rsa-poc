@@ -1,30 +1,19 @@
 import { translate } from "@/utilities/i18n";
-import Picture from "../Picture";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import { getSingleAssetByTag } from "@/services/gadService";
+import Picture from "@/components/common/Picture";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 
 type SponsoredProps = {
   hide: boolean;
-  tag: string;
   name: string;
   width: number;
   height: number;
   className: string;
+  assetUrl: string;
 };
 
-const Sponsored = async ({ ...props }: SponsoredProps) => {
-  if (!Object.hasOwn(props, "tag") || !props.tag) {
-    logger.log(
-      "Cannot render Sponsor with empty tag",
-      LoggerLevel.warning
-    );
-    return null;
-  }
-  const logo = await getSingleAssetByTag(props.tag);
+const Sponsored = ({ ...props }: SponsoredProps) => {
 
-  return !props.hide && logo ? (
+  return !props.hide && props.assetUrl ? (
     <>
     <div className="flex flex-row items-end col-start-10 row-start-10">
                   <span className="text-xs uppercase">
@@ -32,7 +21,7 @@ const Sponsored = async ({ ...props }: SponsoredProps) => {
                   </span>
                   <Picture
                     className={props.className}
-                    src={logo.assetUrl}
+                    src={props.assetUrl}
                     alt={props.name}
                     width={props.width}
                     height={props.height}
