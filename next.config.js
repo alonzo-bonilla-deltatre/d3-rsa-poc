@@ -3,6 +3,7 @@ const tracer = require('dd-trace').init();
 const nextConfig = {
   experimental: {
     appDir: true,
+    esmExternals: false,
     // Defaults to 50MB
     isrMemoryCacheSize: 0,
   },
