@@ -34,6 +34,7 @@ export const getPage = async (
     );
 
     const response = await fetch(apiUrl, {
+      cache: 'no-store',
       credentials: "include",
       headers: {
         Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET ?? "",
