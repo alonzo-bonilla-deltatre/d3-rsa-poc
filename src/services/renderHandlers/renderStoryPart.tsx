@@ -2,9 +2,9 @@ import {LoggerLevel} from "@/models/types/logger";
 import logger from "@/utilities/logger";
 import {StoryPart} from "@/models/types/storyPart";
 /* */
-import {renderMarkdownStoryPart} from "@/components/common/StoryPart/Markdown";
-import {renderPhotoStoryPart} from "@/components/common/StoryPart/PhotoPart";
-import renderBrightcoveVideoStoryPart from "@/components/common/StoryPart/BrightcoveVideo";
+import {renderMarkdownStoryPart} from "@/components/editorial/storyparts/Markdown";
+import {renderPhotoStoryPart} from "@/components/editorial/storyparts/PhotoPart";
+import renderBrightcoveVideoStoryPart from "@/components/editorial/storyparts/BrightcoveVideo";
 import {nanoid} from "nanoid";
 
 const storyPartList: Record<any, (item: StoryPart) => React.ReactElement> = {
