@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { PageBuilderFrontendApiError } from "@/models/types/errors";
 import { LoggerLevel } from "@/models/types/logger";
 import { PageStructureResponse } from "@/models/types/pageStructure";
@@ -33,16 +34,14 @@ export const getPage = async (
       LoggerLevel.debug
     );
 
-    const response = await fetch(apiUrl, {
-      cache: 'no-store',
-      credentials: "include",
+    const response = await axios.get(apiUrl, {
       headers: {
         Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET ?? "",
       },
     });
 
     if (response.status !== 200) {
-      const error = (await response.json()) as PageBuilderFrontendApiError;
+      const error = response.data as PageBuilderFrontendApiError;
       let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
       if (error.detail) {
         errorMessage = errorMessage + ` - Error Detail: ${error.detail}`;
@@ -52,7 +51,7 @@ export const getPage = async (
     }
 
     if (response.status === 200) {
-      const json = await response.json();
+      const json = response.data;
       return json;
     }
 

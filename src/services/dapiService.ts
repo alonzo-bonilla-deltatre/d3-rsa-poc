@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { LoggerLevel } from "@/models/types/logger";
 import { DistributionEntity, PagedResult, QueryStringModuleProps } from "@/models/types/dapi";
 import logger from "@/utilities/logger";
@@ -28,19 +29,17 @@ export const getEntity = async (
       LoggerLevel.debug
     );
 
-    const response = await fetch(apiUrl, {
-      cache: 'no-store'
-    });
+    const response = await axios.get(apiUrl);
 
     if (response.status !== 200) {
-      const error = (await response.json()) as ForgeApiError;
+      const error = response.data as ForgeApiError;
       let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
       logger.log(errorMessage, LoggerLevel.error);
       return null;
     }
 
     if (response.status === 200) {
-      const json = await response.json();
+      const json = response.data;
       return json;
     }
 
@@ -87,19 +86,17 @@ export const getAllEntities = async (
     LoggerLevel.debug
   );
 
-    const response = await fetch(apiUrl, {
-      cache: 'no-store'
-    });
+    const response = await axios.get(apiUrl);
 
   if (response.status !== 200) {
-    const error = (await response.json()) as ForgeApiError;
+    const error = response.data as ForgeApiError;
     let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
     logger.log(errorMessage, LoggerLevel.error);
     return null;
   }
 
   if (response.status === 200) {
-    const json = await response.json();
+    const json = response.data;
     return json;
   }
 
@@ -116,20 +113,18 @@ export const getSelection = async (
     LoggerLevel.debug
   );
 
-    const response = await fetch(apiUrl, {
-      cache: 'no-store'
-    });
+    const response = await axios.get(apiUrl);
   let errorMessage = "";
 
   if (response.status !== 200) {
-    const error = (await response.json()) as ForgeApiError;
+    const error = response.data as ForgeApiError;
     let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
     logger.log(errorMessage, LoggerLevel.error);
     return null;
   }
 
   if (response.status === 200) {
-    const json = await response.json();
+    const json = response.data;
     return json;
   }
 

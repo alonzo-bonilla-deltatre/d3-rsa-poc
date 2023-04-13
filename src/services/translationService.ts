@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ApiResponseError } from "@/models/types/errors";
 import { LoggerLevel } from "@/models/types/logger";
 import { Translations } from "@/models/types/translations";
@@ -25,19 +26,17 @@ export const getTranslations = async (): Promise<Translations | null> => {
       LoggerLevel.debug
     );
     
-    const response = await fetch(apiUrl, {
-      cache: 'no-store'
-    });
+    const response = await axios.get(apiUrl);
 
     if (response.status !== 200) {
-      const error = (await response.json()) as ApiResponseError;
+      const error = response.data as ApiResponseError;
       let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
       logger.log(errorMessage, LoggerLevel.error);
       return null;
     }
 
     if (response.status === 200) {
-      const translations: Translations = await response.json();
+      const translations: Translations = response.data;
 
       const areTranslationsValid =
         translations &&

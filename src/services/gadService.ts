@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ApiResponseError } from "@/models/types/errors";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import { ImageAsset } from "@/models/types/images";
@@ -14,19 +15,17 @@ export const getAssetsByTag = async (
     const apiUrl = `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=${tag}`;
     logger.log(`Getting Asset from GAD ${apiUrl}`, LoggerLevel.debug);
 
-    const response = await fetch(apiUrl, {
-      cache: 'no-store'
-    });
+    const response = await axios.get(apiUrl);
 
     if (response.status !== 200) {
-      const error = (await response.json()) as ApiResponseError;
+      const error = response.data as ApiResponseError;
       let errorMessage = `GAD API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
       logger.log(errorMessage, LoggerLevel.error);
       return null;
     }
 
     if (response.status === 200) {
-      const json = await response.json();
+      const json = response.data;
       return json;
     }
 
