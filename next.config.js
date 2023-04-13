@@ -6,6 +6,16 @@ const nextConfig = {
     // Defaults to 50MB
     isrMemoryCacheSize: 0,
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // eslint-disable-next-line no-param-reassign
+      config.resolve.fallback = {
+        fs: false,
+      };
+    }
+
+    return config;
+  },
   images: {
     domains: [
       "via.placeholder.com",
