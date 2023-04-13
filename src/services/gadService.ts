@@ -14,7 +14,9 @@ export const getAssetsByTag = async (
     const apiUrl = `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=${tag}`;
     logger.log(`Getting Asset from GAD ${apiUrl}`, LoggerLevel.debug);
 
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, {
+      cache: 'no-store'
+    });
 
     if (response.status !== 200) {
       const error = (await response.json()) as ApiResponseError;
