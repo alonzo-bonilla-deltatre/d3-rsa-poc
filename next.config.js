@@ -2,7 +2,9 @@ const tracer = require('dd-trace').init();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true
+    appDir: true,
+    // Defaults to 50MB
+    isrMemoryCacheSize: 0,
   },
   images: {
     domains: [

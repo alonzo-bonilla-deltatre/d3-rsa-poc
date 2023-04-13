@@ -34,7 +34,6 @@ export const getPage = async (
     );
 
     const response = await fetch(apiUrl, {
-      next: { revalidate: parseInt(revalidateTime) }, // this endpoint cannot be static during the build, is mandatory to configure this value to zero for build fase
       credentials: "include",
       headers: {
         Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET ?? "",

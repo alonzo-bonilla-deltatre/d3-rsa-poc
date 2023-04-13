@@ -28,9 +28,7 @@ export const getEntity = async (
       LoggerLevel.debug
     );
 
-    const response = await fetch(apiUrl, {
-      next: { revalidate: parseInt(revalidateTime) },
-    });
+    const response = await fetch(apiUrl);
 
     if (response.status !== 200) {
       const error = (await response.json()) as ForgeApiError;
@@ -87,9 +85,7 @@ export const getAllEntities = async (
     LoggerLevel.debug
   );
 
-  const response = await fetch(apiUrl, {
-    next: { revalidate: parseInt(revalidateTime) },
-  });
+  const response = await fetch(apiUrl);
 
   if (response.status !== 200) {
     const error = (await response.json()) as ForgeApiError;
@@ -116,9 +112,7 @@ export const getSelection = async (
     LoggerLevel.debug
   );
 
-  const response = await fetch(apiUrl, {
-    next: { revalidate: parseInt(revalidateTime) },
-  });
+  const response = await fetch(apiUrl);
   let errorMessage = "";
 
   if (response.status !== 200) {
