@@ -24,9 +24,7 @@ export const getTranslations = async (): Promise<Translations | null> => {
       `Getting Translations from VOCABULARY TOOL ${apiUrl}`,
       LoggerLevel.debug
     );
-    const response = await fetch(apiUrl, {
-      next: { revalidate: parseInt(revalidateTime) },
-    });
+    const response = await fetch(apiUrl);
 
     if (response.status !== 200) {
       const error = (await response.json()) as ApiResponseError;
