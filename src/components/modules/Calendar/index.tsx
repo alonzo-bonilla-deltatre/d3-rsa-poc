@@ -11,9 +11,7 @@ import { orderedItems } from "@/components/modules/Calendar/CalendarHelpers";
 import { firstAssetOrDefault, getAssetsByTag } from "@/services/gadService";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import dynamic from "next/dynamic";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import Title from "@/components/common/Title";
 
 type ModuleProps = {
   moduleTitle: string;

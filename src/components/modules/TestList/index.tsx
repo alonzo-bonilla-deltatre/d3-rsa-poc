@@ -10,9 +10,7 @@ import { formatDate } from "@/utilities/dateFormatter";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import dynamic from "next/dynamic";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import Title from "@/components/common/Title";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -146,9 +144,7 @@ const TestList = async ({ ...data }: ComponentProps) => {
       </div>
     </section>
   ) : (
-    <>
-      <div />
-    </>
+    <div />
   );
 };
 export default TestList;

@@ -1,20 +1,14 @@
 import { translate } from "@/utilities/i18n";
-import dynamic from "next/dynamic";
 import { getMenu} from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";
 import SocialIcons from "@/components/common/SocialIcons";
-
-// @ts-ignore
-const LanguageSwitcher = dynamic(
-  () => import("@/components/layouts/Footer/LanguageSwitcher")
-);
-// @ts-ignore
-const Menu = dynamic(() => import("@/components/common/Menu"));
+import Menu from "@/components/common/Menu";
+import LanguageSwitcher from "@/components/layouts/Footer/LanguageSwitcher";
 
 const navItemClasses =
   "font-bold py-3 lg:py-0 first:pt-0 last:pb-0 px-4 transition duration-300 hover:text-[#EE3123]";
 
-const Footer = async (): Promise<React.ReactElement> => {
+const Footer = (): React.ReactElement => {
   const menuData = getMenu("footerMenu") as MenuResponseData;
   //TODO menu items validation
   return (

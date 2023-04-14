@@ -3,9 +3,8 @@ import { getSelection } from "@/services/dapiService";
 import { DistributionEntity } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
+import Title from "@/components/common/Title";
 
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
 // @ts-ignore
 const Partner = dynamic(() => import("@/components/common/Partner"));
 

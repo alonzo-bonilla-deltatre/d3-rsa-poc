@@ -8,9 +8,7 @@ import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import dynamic from "next/dynamic";
 import Sponsored from "@/components/common/Sponsored";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import Title from "@/components/common/Title";
 
 type ModuleProps = {
   entityType: string;
@@ -111,7 +109,7 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <><div /></>
+    <div />
   );
 };
 export default TestDetail;

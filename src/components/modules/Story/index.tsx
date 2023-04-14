@@ -12,6 +12,7 @@ import { StoryPart } from "@/models/types/storyPart";
 import { renderStoryPart } from "@/services/renderHandlers/renderStoryPart";
 import Sponsored from "@/components/common/Sponsored";
 import { getSingleAssetByTag } from "@/services/gadService";
+import {nanoid} from "nanoid";
 
 type ModuleProps = {
   slug: string;
@@ -105,7 +106,7 @@ const Story = async ({ ...data }: ComponentProps) => {
         {storyEntity.parts.map((part: StoryPart) => {
           return (
             <>
-              <div className="mx-20 mt-20 col-start-1">
+              <div key={nanoid()} className="mx-20 mt-20 col-start-1">
                 {renderStoryPart(part)}
               </div>
             </>
@@ -114,7 +115,7 @@ const Story = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <></>
+    <div />
   );
 };
 export default Story;

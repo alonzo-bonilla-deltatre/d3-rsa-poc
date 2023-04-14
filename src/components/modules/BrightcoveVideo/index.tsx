@@ -2,19 +2,18 @@ import { ComponentProps } from "@/models/types/components";
 import { getEntity } from "@/services/dapiService";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import dynamic from "next/dynamic";
 import BrightcoveVideoPlayer from "@/components/common/BrightcoveVideoPlayer";
 import SocialIcons from "@/components/common/SocialIcons";
 import { formatDate } from "@/utilities/dateFormatter";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import Title from "@/components/common/Title";
+import {DistributionEntity} from "@/models/types/dapi";
 
 type ModuleProps = {
   slug: string;
   moduleTitle: string;
   headingLevel: string;
   displayModuleTitle: string;
+  entity: DistributionEntity | null;
 };
 
 const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
@@ -70,7 +69,7 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <></>
+    <div />
   );
 };
 

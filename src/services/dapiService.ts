@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { LoggerLevel } from "@/models/types/logger";
-import { DistributionEntity, PagedResult, QueryStringModuleProps } from "@/models/types/dapi";
+import {LoggerLevel} from "@/models/types/logger";
+import {DistributionEntity, PagedResult, QueryStringModuleProps} from "@/models/types/dapi";
 import logger from "@/utilities/logger";
-import { ForgeApiError } from "@/models/types/errors";
-import { ImageAsset } from "@/models/types/images";
+import {ForgeApiError} from "@/models/types/errors";
 
 const culture = process.env.CULTURE;
 const slugPlaceholder = "{slug}";
@@ -12,64 +11,37 @@ const distributionDetailUrl = `v2/content/${culture}/${entityCodePlaceholder}/${
 const distributionListUrl = `v2/content/${culture}/${entityCodePlaceholder}`;
 const distributionSelectionDetailUrl = `v2/content/${culture}/sel-${slugPlaceholder}`;
 
-const revalidateTime =
-  process.env.FORGE_DISTRIBUTION_API_REVALIDATE_TIME ?? "0";
-
 export const getEntity = async (
   entityCode: string,
   slug: string
 ): Promise<DistributionEntity | null> => {
-  try {
-    let apiUrl = distributionDetailUrl
-      .replace(entityCodePlaceholder, entityCode)
-      .replace(slugPlaceholder, slug);
-    apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
-    logger.log(
-      `Getting ${entityCode} entity slug:${slug} data from FORGE DAPI ${apiUrl}`,
-      LoggerLevel.debug
-    );
+  let apiUrl = distributionDetailUrl
+    .replace(entityCodePlaceholder, entityCode)
+    .replace(slugPlaceholder, slug);
+  apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+  logger.log(
+    `Getting ${entityCode} entity slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}`,
+    LoggerLevel.debug
+  );
 
-    const response = await axios.get(apiUrl);
+  return await axios.get(apiUrl)
+    .then(response => {
+      logger.log(
+        `Retrieved ${entityCode} entity slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
+      return response.data;
+    }).catch(response => {
+      if (response && response.data) {
+        const error = response.data as ForgeApiError;
+        let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
+        logger.log(errorMessage, LoggerLevel.error);
+      } else {
+        logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      }
 
-    if (response.status !== 200) {
-      const error = response.data as ForgeApiError;
-      let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
-      logger.log(errorMessage, LoggerLevel.error);
       return null;
-    }
-
-    if (response.status === 200) {
-      const json = response.data;
-      return json;
-    }
-
-    return null;
-  } catch (error: unknown) {
-    logger.log(
-      `FORGE DAPI Exception: ${(error as Error).message}`,
-      LoggerLevel.error
-    );
-    return null;
-  }
-};
-
-export const getEntityList = async (
-  selectionSlug: string,
-  { skip, limit, tags }: QueryStringModuleProps,
-  type: string
-): Promise<DistributionEntity[] | null> => {
-  if (selectionSlug) {
-    const dapiItems = await getSelection(selectionSlug);
-    const items = dapiItems?.items as DistributionEntity[];
-    return items;
-  }
-  if (type) {
-    const queryString = getQueryString({ skip, limit, tags });
-    const entities = await getAllEntities(type, queryString);
-    const items = entities?.items as DistributionEntity[];
-    return items;
-  }
-  return null;
+    });
 };
 
 export const getAllEntities = async (
@@ -82,25 +54,28 @@ export const getAllEntities = async (
     queryString;
   apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
   logger.log(
-    `Getting ${entityCode} entity list data from FORGE DAPI ${apiUrl}`,
+    `Getting ${entityCode} entity list data from FORGE DISTRIBUTION API ${apiUrl}`,
     LoggerLevel.debug
   );
 
-    const response = await axios.get(apiUrl);
+  return await axios.get(apiUrl)
+    .then(response => {
+      logger.log(
+        `Retrieved ${entityCode} ${entityCode} entity list data from FORGE DISTRIBUTION API ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
+      return response.data;
+    }).catch(response => {
+      if (response && response.data) {
+        const error = response.data as ForgeApiError;
+        let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
+        logger.log(errorMessage, LoggerLevel.error);
+      } else {
+        logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      }
 
-  if (response.status !== 200) {
-    const error = response.data as ForgeApiError;
-    let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
-    logger.log(errorMessage, LoggerLevel.error);
-    return null;
-  }
-
-  if (response.status === 200) {
-    const json = response.data;
-    return json;
-  }
-
-  return null;
+      return null;
+    });
 };
 
 export const getSelection = async (
@@ -109,29 +84,48 @@ export const getSelection = async (
   let apiUrl = distributionSelectionDetailUrl.replace(slugPlaceholder, slug);
   apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
   logger.log(
-    `Getting selection slug:${slug} data from FORGE DAPI ${apiUrl}`,
+    `Getting selection slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}`,
     LoggerLevel.debug
   );
 
-    const response = await axios.get(apiUrl);
-  let errorMessage = "";
+  return await axios.get(apiUrl)
+    .then(response => {
+      logger.log(
+        `Retrieved selection slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
+      return response.data;
+    }).catch(response => {
+      if (response && response.data) {
+        const error = response.data as ForgeApiError;
+        let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
+        logger.log(errorMessage, LoggerLevel.error);
+      } else {
+        logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      }
 
-  if (response.status !== 200) {
-    const error = response.data as ForgeApiError;
-    let errorMessage = `FORGE DAPI Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
-    logger.log(errorMessage, LoggerLevel.error);
-    return null;
+      return null;
+    });
+};
+
+export const getEntityList = async (
+  selectionSlug: string,
+  {skip, limit, tags}: QueryStringModuleProps,
+  type: string
+): Promise<DistributionEntity[] | null> => {
+  if (selectionSlug) {
+    const selection = await getSelection(selectionSlug);
+    return selection?.items as DistributionEntity[];
   }
-
-  if (response.status === 200) {
-    const json = response.data;
-    return json;
+  if (type) {
+    const queryString = getQueryString({skip, limit, tags});
+    const entities = await getAllEntities(type, queryString);
+    return entities?.items as DistributionEntity[];
   }
-
   return null;
 };
 
-export const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
+export const getQueryString = ({skip, limit, tags}: QueryStringModuleProps) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
   if (skip) {
@@ -161,15 +155,3 @@ export const getFilteredItems = (
   }
   return items.slice(0, limit);
 };
-
-export const imageToImageAsset = (
-  item: DistributionEntity | null
-): ImageAsset | null => {
-  if (item && item.image){
-    item.image.slug = item.image.slug;
-    item.image.selfUrl = item.image.selfUrl;
-    return item.image;
-  }
-  return null;
-};
-

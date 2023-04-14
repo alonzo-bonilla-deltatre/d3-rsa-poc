@@ -6,13 +6,9 @@ import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import dynamic from "next/dynamic";
 import CardCta from "@/components/editorial/card/CardCta";
 import Sponsored from "@/components/common/Sponsored";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
-
+import Title from "@/components/common/Title";
 
 type ModuleProps = {
   slug: string;
@@ -106,7 +102,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <></>
+    <div />
   );
 };
 export default Promo;

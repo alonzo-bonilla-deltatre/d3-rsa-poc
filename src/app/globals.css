@@ -100,12 +100,12 @@ ol, ul {
     list-style-position: outside;
 }
 
-ol li {
+.c-markdown-story-part ol li {
     list-style-type: decimal;
     margin-left: 1.1em;
 }
 
-ul li {
+.c-markdown-story-part ul li {
     list-style-type: circle;
     margin-left: 1.1em;
 }

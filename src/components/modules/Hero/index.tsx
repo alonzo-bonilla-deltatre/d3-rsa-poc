@@ -1,10 +1,7 @@
 import { ComponentProps } from "@/models/types/components";
 import { getFilteredItems, getSelection } from "@/services/dapiService";
 import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
-import dynamic from "next/dynamic";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import Title from "@/components/common/Title";
 
 type ModuleProps = {
   moduleTitle: string;

@@ -1,13 +1,10 @@
 import { ComponentProps } from "@/models/types/components";
 import { getEntityList} from "@/services/dapiService";
 import { DistributionEntity } from "@/models/types/dapi";
-import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
-// @ts-ignore
-const Card = dynamic(() => import("@/components/editorial/card/Card"));
+import Title from "@/components/common/Title";
+import React from "react";
+import Card from "@/components/editorial/card/Card";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -56,7 +53,7 @@ const entityType = "promos";
       </div>
     </section>
   ) : (
-    <></>
+    <div />
   );
 };
 export default PromoGrid;

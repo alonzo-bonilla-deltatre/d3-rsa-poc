@@ -4,14 +4,9 @@ import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import { getAssetsByTag } from "@/services/gadService";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import dynamic from "next/dynamic";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
-// @ts-ignore
-const TestMosaicContainer = dynamic(
-  () => import("@/components/modules/TestMosaic/TestMosaicContainer")
-);
+import Title from "@/components/common/Title";
+import React from "react";
+import TestMosaicContainer from "@/components/modules/TestMosaic/TestMosaicContainer";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -96,9 +91,7 @@ const TestMosaicList = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <>
-      <div />
-    </>
+    <div />
   );
 };
 export default TestMosaicList;

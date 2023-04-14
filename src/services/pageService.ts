@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { PageBuilderFrontendApiError } from "@/models/types/errors";
-import { LoggerLevel } from "@/models/types/logger";
-import { PageStructureResponse } from "@/models/types/pageStructure";
+import {PageBuilderFrontendApiError} from "@/models/types/errors";
+import {LoggerLevel} from "@/models/types/logger";
+import {PageStructureResponse} from "@/models/types/pageStructure";
 import logger from "@/utilities/logger";
 
 const culture = process.env.CULTURE;
@@ -11,56 +11,49 @@ const tokenPlaceholder = "{token}";
 const siteStructureApiUrl = `api/v1/Page?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`;
 const siteStructureApiUrlWithToken = `api/v1/Page?path=${pathPlaceholder}&culture=${culture}&environment=${environment}&token=${tokenPlaceholder}`;
 
-const revalidateTime =
-process.env.PAGE_BUILDER_FRONTEND_API_REVALIDATE_TIME ?? "0";
-
 export const getPage = async (
   path: string,
   token: string = ""
 ): Promise<PageStructureResponse | null> => {
-  try {
-    let apiUrl = "";
-    if (token) {
-      apiUrl = siteStructureApiUrlWithToken
-        .replace(pathPlaceholder, path)
-        .replace(tokenPlaceholder, token);
-    } else {
-      apiUrl = siteStructureApiUrl.replace(pathPlaceholder, path);
-    }
-    apiUrl = new URL(apiUrl, process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL)
-      .href;
-    logger.log(
-      `Getting SITE STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}`,
-      LoggerLevel.debug
-    );
-
-    const response = await axios.get(apiUrl, {
-      headers: {
-        Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET ?? "",
-      },
-    });
-
-    if (response.status !== 200) {
-      const error = response.data as PageBuilderFrontendApiError;
-      let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
-      if (error.detail) {
-        errorMessage = errorMessage + ` - Error Detail: ${error.detail}`;
-      }
-      logger.log(errorMessage, LoggerLevel.error);
-      return null;
-    }
-
-    if (response.status === 200) {
-      const json = response.data;
-      return json;
-    }
-
-    return null;
-  } catch (error: unknown) {
-    logger.log(
-      `PAGE BUILDER FRONTEND API Exception: ${(error as Error).message} ${error}`,
-      LoggerLevel.error
-    );
-    return null;
+  let apiUrl = "";
+  if (token) {
+    apiUrl = siteStructureApiUrlWithToken
+      .replace(pathPlaceholder, path)
+      .replace(tokenPlaceholder, token);
+  } else {
+    apiUrl = siteStructureApiUrl.replace(pathPlaceholder, path);
   }
+  apiUrl = new URL(apiUrl, process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL)
+    .href;
+  logger.log(
+    `Getting SITE STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}`,
+    LoggerLevel.debug
+  );
+
+  return await axios.get(apiUrl, {
+    headers: {
+      Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET ?? "",
+    },
+  })
+    .then(response => {
+      logger.log(
+        `Retrieved SITE STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
+      return response.data;
+    }).catch(response => {
+      if (response && response.data) {
+        const error = response.data as PageBuilderFrontendApiError;
+        let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
+        if (error.detail) {
+          errorMessage = errorMessage + ` - Error Detail: ${error.detail}`;
+        }
+        logger.log(errorMessage, LoggerLevel.error);
+        return null;
+      } else {
+        logger.log(`PAGE BUILDER FRONTEND API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      }
+
+      return null;
+    });
 };

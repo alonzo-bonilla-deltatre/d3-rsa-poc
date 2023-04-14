@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { ApiResponseError } from "@/models/types/errors";
-import { LoggerLevel } from "@/models/types/logger";
-import { Translations } from "@/models/types/translations";
+import {ApiResponseError, ForgeApiError} from "@/models/types/errors";
+import {LoggerLevel} from "@/models/types/logger";
+import {Translations} from "@/models/types/translations";
 import logger from "@/utilities/logger";
 
 export const getFallBackTranslations = (): Translations => {
@@ -11,31 +11,24 @@ export const getFallBackTranslations = (): Translations => {
     languages: [culture],
     resources: {},
   } as Translations;
-  translations.resources[culture] = { translation: {} };
+  translations.resources[culture] = {translation: {}};
   return translations;
 };
 
 export const getTranslations = async (): Promise<Translations | null> => {
-  try {
-    const apiUrl = `${process.env.VOCABULARY_TOOL_API_BASE_URL}/api/vocabularies/${process.env.VOCABULARY_TOOL_VOC_CODE}/i18n`;
-    const revalidateTime =
-      process.env.VOCABULARY_TOOL_TRANSLATIONS_REVALIDATE_TIME ?? "120";
+  const apiUrl = `${process.env.VOCABULARY_TOOL_API_BASE_URL}/api/vocabularies/${process.env.VOCABULARY_TOOL_VOC_CODE}/i18n`;
 
-    logger.log(
-      `Getting Translations from VOCABULARY TOOL ${apiUrl}`,
-      LoggerLevel.debug
-    );
-    
-    const response = await axios.get(apiUrl);
+  logger.log(
+    `Getting Translations from VOCABULARY TOOL ${apiUrl}`,
+    LoggerLevel.debug
+  );
 
-    if (response.status !== 200) {
-      const error = response.data as ApiResponseError;
-      let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
-      logger.log(errorMessage, LoggerLevel.error);
-      return null;
-    }
-
-    if (response.status === 200) {
+  return await axios.get(apiUrl)
+    .then(response => {
+      logger.log(
+        `Retrieved Translations from VOCABULARY TOOL ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
       const translations: Translations = response.data;
 
       const areTranslationsValid =
@@ -45,11 +38,16 @@ export const getTranslations = async (): Promise<Translations | null> => {
         translations.resources;
 
       return areTranslationsValid ? translations : null;
-    }
+    }).catch(response => {
+      if (response && response.data) {
+        const error = response.data as ApiResponseError;
+        let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
+        logger.log(errorMessage, LoggerLevel.error);
+        return null;
+      } else {
+        logger.log(`VOCABULARY TOOL API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      }
 
-    return null;
-  } catch (error: unknown) {
-    logger.log(`VOCABULARY TOOL API Exception: ${(error as Error).message}`, LoggerLevel.error);
-    return null;
-  }
+      return null;
+    });
 };

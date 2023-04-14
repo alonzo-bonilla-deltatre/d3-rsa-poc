@@ -6,22 +6,17 @@ import CardAuthor from "@/components/editorial/card/CardAuthor";
 import CardCta from "@/components/editorial/card/CardCta";
 import CardRoofline from "@/components/editorial/card/CardRoofline";
 import CardIcon from "@/components/editorial/card/CardIcon";
-import { getImageOrPlaceholder } from "@/services/gadService";
 import Picture from "@/components/common/Picture";
-
 
 type CardProps = {
   entity: DistributionEntity;
   options: CardOptions;
 };
 
-
-const Card = async ({ ...props }: CardProps) => {
+const Card = ({ ...props }: CardProps) => {
   const entity = props.entity;
   const options = props.options
 
-  // const getImageOrPlaceholderFetch = getImageOrPlaceholder(entity.thumbnail, "");
-  // const [entityImage] = await Promise.all([getImageOrPlaceholderFetch]);
   const entityImage = entity.thumbnail;
   return entity && (
     <><div>

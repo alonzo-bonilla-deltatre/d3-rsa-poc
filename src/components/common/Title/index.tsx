@@ -7,9 +7,8 @@ type TitleProps = {
   text: string;
 };
 
-const Title = async ({ ...props }: TitleProps) => {
+const Title = ({ ...props }: TitleProps) => {
   const { canRender, heading, text } = props as TitleProps;
-
 
   const HeadingTag = `${
     heading ? heading.toLowerCase() : "h2"

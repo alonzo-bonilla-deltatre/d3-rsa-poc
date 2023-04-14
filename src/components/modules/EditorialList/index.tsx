@@ -5,11 +5,8 @@ import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
-// @ts-ignore
-const Card = dynamic(() => import("@/components/editorial/card/Card"));
+import Title from "@/components/common/Title";
+import Card from "@/components/editorial/card/Card";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -59,7 +56,7 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
       </div>
     </section>
   ) : (
-    <></>
+    <div />
   );
 };
 export default EditorialList;

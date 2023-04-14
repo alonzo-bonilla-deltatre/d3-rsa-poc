@@ -1,24 +1,21 @@
 "use client";
 
 // Import Swiper React components and styles
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 // import required modules
-import { Autoplay, Pagination } from "swiper";
+import {Autoplay, Pagination} from "swiper";
 import "swiper/swiper-bundle.css";
 
-import { DistributionEntity } from "@/models/types/dapi";
-import { nanoid } from "nanoid";
+import {DistributionEntity} from "@/models/types/dapi";
+import {nanoid} from "nanoid";
 import {
   getSrcWithTransformation,
   transformations,
 } from "@/utilities/cloudinaryTransformations";
-import { formatDate } from "@/utilities/dateFormatter";
-import { getPlaceholderUrl } from "@/services/gadService";
+import {formatDate} from "@/utilities/dateFormatter";
 
 import "./HeroSwiper.css";
 import CardRoofline from "@/components/editorial/card/CardRoofline";
-import PictureEditorial from "@/components/common/Picture";
-import CardDate from "@/components/editorial/card/CardDate";
 import Picture from "@/components/common/Picture";
 
 type ModuleProps = {
@@ -36,14 +33,13 @@ const customPagination = (slides: DistributionEntity[]) => ({
   renderBullet: function (index: number, className: string) {
     if (!slides.length) {
       return "";
-    }  
+    }
     const needPlaceholderImage = !slides[index] || !slides[index].thumbnail?.templateUrl;
 
-  const imageUrl = needPlaceholderImage ? getPlaceholderUrl("") : slides[index].thumbnail?.templateUrl;
-  console.log(index, "needPlaceholderImage: ",slides[index]);
-  if (needPlaceholderImage){
-    console.log("needPlaceholderImage: ",slides[index]);
-  }
+    console.log(index, "needPlaceholderImage: ", slides[index]);
+    if (needPlaceholderImage) {
+      console.log("needPlaceholderImage: ", slides[index]);
+    }
     const imageSrc = getSrcWithTransformation(
       slides[index].thumbnail?.templateUrl,
       transformations.heroThumbnail.mobile
@@ -71,7 +67,7 @@ const onAutoplayTimeLeft = (swiper: any, time: number, progress: number) => {
   activeProgressbar.style.width = `${100 - progress * 100}%`;
 };
 
-export const HeroSwiper = ({ ...data }: ModuleProps) => {
+export const HeroSwiper = ({...data}: ModuleProps) => {
   return (
     <div className="">
       <Swiper
@@ -102,7 +98,8 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                       transformations={transformations.heroSwiper}
                       width={630}
                       height={270}
-                      className="w-full h-full object-cover opacity-[.50]" src={slide.thumbnail.templateUrl} alt={slide.title}               />
+                      className="w-full h-full object-cover opacity-[.50]" src={slide.thumbnail.templateUrl}
+                      alt={slide.title}/>
                   </div>
                 )}
                 <div className="mt-[35vh] ml-40 max-w-[500px] col-start-1 row-start-1 z-10">
@@ -119,7 +116,7 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                           {formatDate(slide.contentDate)}
                         </time>
                       )}
-                      </>
+                    </>
                   </header>
                 </div>
               </div>
