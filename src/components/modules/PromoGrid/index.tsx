@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 // @ts-ignore
 const Title = dynamic(() => import("@/components/common/Title"));
 // @ts-ignore
-const Card = dynamic(() => import("@/components/editorial/card/Card"));
+const Card = dynamic(() => import("@/components/editorial/Card"));
 
 type ModuleProps = {
   moduleTitle: string;

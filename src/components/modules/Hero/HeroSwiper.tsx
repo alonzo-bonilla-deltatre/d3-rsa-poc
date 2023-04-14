@@ -16,9 +16,9 @@ import { formatDate } from "@/utilities/dateFormatter";
 import { getPlaceholderUrl } from "@/services/gadService";
 
 import "./HeroSwiper.css";
-import CardRoofline from "@/components/editorial/card/CardRoofline";
+import Roofline from "@/components/editorial/Roofline";
 import PictureEditorial from "@/components/common/Picture";
-import CardDate from "@/components/editorial/card/CardDate";
+import Date from "@/components/common/Date";
 import Picture from "@/components/common/Picture";
 
 type ModuleProps = {
@@ -108,12 +108,12 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                 <div className="mt-[35vh] ml-40 max-w-[500px] col-start-1 row-start-1 z-10">
                   <header>
                     <>
-                      <CardRoofline context={slide.context} hide={false}></CardRoofline>
+                      <Roofline context={slide.context} hide={false}></Roofline>
                       {/* <CardTitle title={slide.title} heading="h1" hide={false}></CardTitle> */}
                       <h3 className="font-bold text-5xl uppercase mt-4">
                         {slide.title}
                       </h3>
-                      {/* <CardDate date={slide.contentDate} format={null}  hide={false}></CardDate> */}
+                      {/* <Date date={slide.contentDate} format={null}  hide={false}></Date> */}
                       {!data.hideDate && (
                         <time className="mt-3 font-light text-[#BEBEBE]">
                           {formatDate(slide.contentDate)}

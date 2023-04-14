@@ -7,7 +7,7 @@ import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import dynamic from "next/dynamic";
-import CardCta from "@/components/editorial/card/CardCta";
+import CallToAction from "@/components/common/CallToAction";
 import Sponsored from "@/components/common/Sponsored";
 
 // @ts-ignore
@@ -83,12 +83,12 @@ const Promo = async ({ ...data }: ComponentProps) => {
                   <ul className="list-none flex space-x-5">
                     {(cta1Url) && (
                       <li>
-                        <CardCta url={cta1Url} text={cta1Text} isExternal={cta1Ext} style={"default"} icon={""} hide={false}></CardCta>
+                        <CallToAction url={cta1Url} text={cta1Text} isExternal={cta1Ext} style={"default"} icon={""} hide={false}></CallToAction>
                       </li>
                     )}
                     {(cta2Url) && (
                       <li>
-                        <CardCta url={cta2Url} text={cta2Text} isExternal={cta2Ext} style={"reverse"} icon={""} hide={false}></CardCta>
+                        <CallToAction url={cta2Url} text={cta2Text} isExternal={cta2Ext} style={"reverse"} icon={""} hide={false}></CallToAction>
                       </li>
                     )}
                   </ul>
