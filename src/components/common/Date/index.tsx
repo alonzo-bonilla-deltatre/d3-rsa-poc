@@ -1,13 +1,13 @@
 import { formatDate } from "@/utilities/dateFormatter";
 
-type CardDateProps = {
+type DateProps = {
   date: string;
   format: string | null;
   hide: boolean;
 };
 
 
-const CardDate = ({ ...props }: CardDateProps) => {
+const Date = ({ ...props }: DateProps) => {
 
   return props.date ? (
     <time className="mb-3 text-sm font-light text-[#BEBEBE]">
@@ -16,4 +16,4 @@ const CardDate = ({ ...props }: CardDateProps) => {
   ) : <></> ;
 };
 
-export default CardDate;
+export default Date;

@@ -4,9 +4,9 @@ import Picture from "@/components/common/Picture";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import CardRoofline from "@/components/editorial/card/CardRoofline";
-import CardAuthor from "@/components/editorial/card/CardAuthor";
-import CardDate from "@/components/editorial/card/CardDate";
+import Roofline from "@/components/editorial/Roofline";
+import Author from "@/components/editorial/Author";
+import Date from "@/components/common/Date";
 import SocialIcons from "@/components/common/SocialIcons";
 import { StoryPart } from "@/models/types/storyPart";
 import { renderStoryPart } from "@/services/renderHandlers/renderStoryPart";
@@ -45,10 +45,10 @@ const Story = async ({ ...data }: ComponentProps) => {
   return storyEntity ? (
     <>
       <section className="w-full container mx-auto mt-40">
-        <CardRoofline
+        <Roofline
           context={storyEntity.context}
           hide={props.hideRoofline}
-        ></CardRoofline>
+        ></Roofline>
         <div className="flex justify-between mx-20">
           <header className="w-full">
             <h3 className="font-bold text-5xl uppercase">
@@ -59,15 +59,15 @@ const Story = async ({ ...data }: ComponentProps) => {
                 {storyEntity.headline && (
                   <p className="mb-3">{storyEntity.headline}</p>
                 )}
-                <CardAuthor
+                <Author
                   author={storyEntity.createdBy}
                   hide={props.hideAuthor}
-                ></CardAuthor>
-                <CardDate
+                ></Author>
+                <Date
                   date={storyEntity.contentDate}
                   format={null}
                   hide={props.hideDate}
-                ></CardDate>
+                ></Date>
               </div>
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>

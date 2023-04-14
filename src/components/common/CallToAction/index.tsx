@@ -1,6 +1,6 @@
 import SvgIcon from "@/components/common/SvgIcon";
 
-type CardCtaProps = {
+type CallToActionProps = {
   url: string;
   text: string | null;
   isExternal: boolean;
@@ -10,7 +10,7 @@ type CardCtaProps = {
 };
 
 
-const CardCta = ({ ...props }: CardCtaProps) => {
+const CallToAction = ({ ...props }: CallToActionProps) => {
   const displayText = props.text ? props.text: "read-more";
   const iconSize = 20;
   var additionalAttributes = {
@@ -31,7 +31,7 @@ const CardCta = ({ ...props }: CardCtaProps) => {
   ) : <></>;
 };
 
-export default CardCta;
+export default CallToAction;
 
 export const getCtaClasses = (style: string) => {
   switch (style) {

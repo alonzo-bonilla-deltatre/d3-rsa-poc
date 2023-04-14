@@ -1,10 +1,10 @@
-type CardAuthorProps = {
+type AuthorProps = {
   author: string;
   hide: boolean;
 };
 
 
-const CardAuthor = ({ ...props }: CardAuthorProps) => {
+const Author = ({ ...props }: AuthorProps) => {
 
   return props.author && !props.hide ? (
     <div className="mb-3 text-sm font-light text-[#BEBEBE]">
@@ -13,4 +13,4 @@ const CardAuthor = ({ ...props }: CardAuthorProps) => {
   ) : <></>;
 };
 
-export default CardAuthor;
+export default Author;

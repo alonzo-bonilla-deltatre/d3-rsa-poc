@@ -1,13 +1,13 @@
 import { Tag } from "@/models/types/dapi";
 import { nanoid } from "nanoid";
 
-type CardRooflineProps = {
+type RooflineProps = {
   context: Tag;
   hide: boolean;
 };
 
 
-const CardRoofline = ({ ...props }: CardRooflineProps) => {
+const Roofline = ({ ...props }: RooflineProps) => {
   return props.context && (
     <div className="flex">
       <span
@@ -20,4 +20,4 @@ const CardRoofline = ({ ...props }: CardRooflineProps) => {
   );
 };
 
-export default CardRoofline;
+export default Roofline;
