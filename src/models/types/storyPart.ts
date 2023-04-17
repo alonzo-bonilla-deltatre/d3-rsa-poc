@@ -3,5 +3,7 @@ import { DistributionEntity } from "./dapi";
 export type StoryPart = DistributionEntity & DistributionEntityStoryPart;
 
 type DistributionEntityStoryPart = {
-  content: string;
+  content: any;
+  externalType: string;
+  inputUrl: string;
 }
