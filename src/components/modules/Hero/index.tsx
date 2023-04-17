@@ -2,6 +2,8 @@ import { ComponentProps } from "@/models/types/components";
 import { getFilteredItems, getSelection } from "@/services/dapiService";
 import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
 import Title from "@/components/common/Title";
+import logger from "@/utilities/logger";
+import {LoggerLevel} from "@/models/types/logger";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -23,11 +25,19 @@ const Hero = async ({ ...data }: ComponentProps) => {
   } = data.properties as ModuleProps;
   const defaultItemLimit = 5;
 
+  if (!selectionSlug) {
+    logger.log(
+      "Cannot render CustomPromo module with empty slug",
+      LoggerLevel.warning
+    );
+    return <div />;
+  }
+
   const selectionFetch = getSelection(selectionSlug);
   const [selection] = await Promise.all([selectionFetch]);
   const items = selection?.items;
 
-  return (
+  return items ? (
     <>
       <Title
         canRender={/true/.test(displayModuleTitle)}
@@ -39,6 +49,6 @@ const Hero = async ({ ...data }: ComponentProps) => {
         hideDate={/true/.test(hideDate)}
       />
     </>
-  );
+  ) : <div />;
 };
 export default Hero;

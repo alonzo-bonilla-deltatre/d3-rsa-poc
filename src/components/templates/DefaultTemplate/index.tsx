@@ -3,10 +3,11 @@ import { renderItemsInSlot } from "@/services/renderService";
 import dynamic from "next/dynamic";
 import {nanoid} from "nanoid";
 import React from "react";
-import Footer from "@/components/layouts/Footer";
 
 // @ts-ignore
 const Header = dynamic(() => import("@/components/layouts/Header"));
+// @ts-ignore
+const Footer = dynamic(() => import("@/components/layouts/Footer"));
 
 const DefaultTemplate = ({ ...props }: ComponentProps) => {
   const mainSlot = "main";

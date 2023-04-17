@@ -4,12 +4,15 @@ import { MenuResponseData } from "@/models/types/menu";
 import SocialIcons from "@/components/common/SocialIcons";
 import Menu from "@/components/common/Menu";
 import LanguageSwitcher from "@/components/layouts/Footer/LanguageSwitcher";
+import React from "react";
+import {getFrontendAllSiteConfiguration} from "@/services/configurationService";
 
 const navItemClasses =
   "font-bold py-3 lg:py-0 first:pt-0 last:pb-0 px-4 transition duration-300 hover:text-[#EE3123]";
 
-const Footer = (): React.ReactElement => {
+const Footer = async(): Promise<React.ReactElement> => {
   const menuData = getMenu("footerMenu") as MenuResponseData;
+  const allSiteConfiguration = await getFrontendAllSiteConfiguration();
   //TODO menu items validation
   return (
     <footer className="w-full text-sm">
@@ -20,10 +23,7 @@ const Footer = (): React.ReactElement => {
           </div>
 
           <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">
-            <LanguageSwitcher
-              enLanguageTranslation={translate("lang_en-gb")}
-              frLanguageTranslation={translate("lang_fr-fr")}
-            />
+            <LanguageSwitcher allSiteConfiguration={allSiteConfiguration}/>
           </div>
         </div>
         <div className="container mx-auto py-12 lg:text-center">

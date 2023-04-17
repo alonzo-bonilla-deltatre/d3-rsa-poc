@@ -24,7 +24,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
       "Cannot render CustomPromo module with empty slug",
       LoggerLevel.warning
     );
-    return null;
+    return <div />;
   }
 
   const promoEntityFetch = getEntity(
