@@ -1,7 +1,7 @@
 import { ComponentProps } from "@/models/types/components";
 import { MenuItem, MenuResponseData } from "@/models/types/menu";
 import MenuList from "@/components/common/Menu";
-import { getFooterMenu } from "@/services/menuService";
+import { getMenu } from "@/services/menuService";
 
 
 type MenuModuleProps = {
@@ -16,7 +16,7 @@ const Menu = async ({ ...data }: ComponentProps) => {
     const { menuItems, navItemClasses, menuName } = data.properties as MenuModuleProps;
     //TODO: remove default menuName
     const defaultMenuName = menuName ? menuName :"footerMenu";
-    const getMenuData = getFooterMenu() as MenuResponseData;
+    const getMenuData = getMenu(defaultMenuName) as MenuResponseData;
     const [menuData] = await Promise.all([getMenuData]);
     return menuData ? (
         <>
