@@ -12,7 +12,7 @@ const Oembed = ({...props}: OembedProps) => {
     entity && (
       <>
         <div className="grid grid-cols-1 relative overflow-hidden w-full">
-          <div className="w-full mx-auto" dangerouslySetInnerHTML={{__html: content["html"]}} />
+          <div className="w-full mx-auto flex flex-col items-center" dangerouslySetInnerHTML={{__html: content["html"]}} />
         </div>
       </>
     )
