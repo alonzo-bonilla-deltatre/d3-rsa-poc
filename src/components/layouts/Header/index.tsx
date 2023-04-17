@@ -1,15 +1,12 @@
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { getMenu } from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";
 import { getSingleAssetByTag } from "@/services/gadService";
 import Logo from "@/components/common/Logo";
+import MenuHeaderService from "@/components/common/Menu";
+import React from "react";
 
 const Header = async (): Promise<React.ReactElement> => {
-
-  // @ts-ignore
-  const MenuHeaderService = dynamic(() => import("@/components/common/Menu"));
- 
 
   const menuData = getMenu("headerServiceMenu") as MenuResponseData;
   const navItemClasses = "mx-1";

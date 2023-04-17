@@ -6,11 +6,8 @@ import { getAssetsByTag, getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import dynamic from "next/dynamic";
 import Sponsored from "@/components/common/Sponsored";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import ModuleTitle from "@/components/common/ModuleTitle";
 
 type ModuleProps = {
   entityType: string;
@@ -63,11 +60,11 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
   return testDetailEntity ? (
     <>
       <section className="mt-8">
-        <Title
+        <ModuleTitle
           canRender={/true/.test(properties.displayModuleTitle)}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
-        ></Title>
+        ></ModuleTitle>
         <div className="grid grid-cols-1 max-h-[790px] min-h-[500px] bg-gray-700 w-full overflow-hidden">
           <div className="col-start-1 row-start-1 bg-black">
             {testDetailEntity.thumbnail ? (
@@ -111,7 +108,7 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <><div /></>
+    <div />
   );
 };
 export default TestDetail;

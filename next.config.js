@@ -3,8 +3,6 @@ const tracer = require('dd-trace').init();
 const nextConfig = {
   experimental: {
     appDir: true,
-    // Defaults to 50MB
-    isrMemoryCacheSize: 0,
   },
   images: {
     domains: [

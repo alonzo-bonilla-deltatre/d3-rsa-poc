@@ -6,13 +6,9 @@ import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import dynamic from "next/dynamic";
 import CallToAction from "@/components/common/CallToAction";
 import Sponsored from "@/components/common/Sponsored";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
-
+import ModuleTitle from "@/components/common/ModuleTitle";
 
 type ModuleProps = {
   slug: string;
@@ -28,7 +24,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
       "Cannot render CustomPromo module with empty slug",
       LoggerLevel.warning
     );
-    return null;
+    return <div />;
   }
 
   const promoEntityFetch = getEntity(
@@ -49,11 +45,11 @@ const Promo = async ({ ...data }: ComponentProps) => {
   return promoEntity ? (
     <>
       <section className="mt-8">
-        <Title
+        <ModuleTitle
           canRender={/true/.test(properties.displayModuleTitle)}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
-        ></Title>
+        ></ModuleTitle>
         <div className="grid grid-cols-1 max-h-[790px] min-h-[500px] bg-gray-700 w-full overflow-hidden">
           {promoEntity.thumbnail && (
             <div className="col-start-1 row-start-1">
@@ -106,7 +102,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <></>
+    <div />
   );
 };
 export default Promo;

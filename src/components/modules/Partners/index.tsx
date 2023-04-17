@@ -3,9 +3,8 @@ import { getSelection } from "@/services/dapiService";
 import { DistributionEntity } from "@/models/types/dapi";
 import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
+import ModuleTitle from "@/components/common/ModuleTitle";
 
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
 // @ts-ignore
 const Partner = dynamic(() => import("@/components/common/Partner"));
 
@@ -33,11 +32,11 @@ const Partners = async ({ ...data }: ComponentProps) => {
   
   return  (
     <section className="relative mx-60 mt-20 col-start-1">
-      <Title
+      <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading="h3"
         text={moduleTitle}
-      ></Title>
+      ></ModuleTitle>
       <div className="flex flex-wrap grid grid-rows-2 grid-flow-col gap-4">
         {items && items.map((entity: DistributionEntity) => {
           return (

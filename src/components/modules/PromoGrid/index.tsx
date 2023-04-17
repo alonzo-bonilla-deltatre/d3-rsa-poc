@@ -1,13 +1,10 @@
 import { ComponentProps } from "@/models/types/components";
 import { getEntityList} from "@/services/dapiService";
 import { DistributionEntity } from "@/models/types/dapi";
-import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
-// @ts-ignore
-const Card = dynamic(() => import("@/components/editorial/Card"));
+import ModuleTitle from "@/components/common/ModuleTitle";
+import React from "react";
+import Card from "@/components/common/Card";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -35,11 +32,11 @@ const entityType = "promos";
 
   return items?.length ? (
     <section className="mt-8">
-      <Title
+      <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading={headingLevel}
         text={moduleTitle}
-      ></Title>
+      ></ModuleTitle>
       <div className="grid grid-cols-3 gap-4 px-8">
         {items.map((entity: DistributionEntity) => {
           return (
@@ -56,7 +53,7 @@ const entityType = "promos";
       </div>
     </section>
   ) : (
-    <></>
+    <div />
   );
 };
 export default PromoGrid;
