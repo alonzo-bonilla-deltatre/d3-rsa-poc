@@ -1,12 +1,13 @@
 import { PageStructureItemType, StructureItem } from "@/models/types/pageStructure";
-import { JSXElementConstructor, ReactElement } from "react";
+import React, { JSXElementConstructor, ReactElement } from "react";
 import { renderLayout } from "./renderHandlers/renderLayout";
 import { renderModule } from "./renderHandlers/renderModule";
 import { renderTemplate } from "./renderHandlers/renderTemplate";
+import {nanoid} from "nanoid";
 
 export const renderItem = (item: StructureItem): React.ReactElement => {
   function renderEmptyPage():React.ReactElement {
-    return <div />; // return empty div to not have an error on the page in the future we need to manage the page error
+    return <div key={nanoid()} />; // return empty div to not have an error on the page in the future we need to manage the page error
   }
 
   if (!item) {

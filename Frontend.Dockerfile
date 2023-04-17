@@ -24,7 +24,8 @@ ARG sonarlogin
 
 RUN yarn sonar
 
-RUN yarn build
+ARG yarnBuildCommand
+RUN $yarnBuildCommand
 
 FROM node:18-buster AS runner
 WORKDIR /app

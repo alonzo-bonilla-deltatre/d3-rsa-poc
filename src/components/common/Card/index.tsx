@@ -1,27 +1,22 @@
 import { CardOptions, DistributionEntity } from "@/models/types/dapi";
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import CardTitle from "@/components/editorial/CardTitle";
+import Title from "@/components/common/Title";
 import Date from "@/components/common/Date";
-import Author from "@/components/editorial/Author";
+import Author from "@/components/common/Author";
 import CallToAction from "@/components/common/CallToAction";
-import Roofline from "@/components/editorial/Roofline";
-import CardIcon from "@/components/editorial/CardIcon";
-import { getImageOrPlaceholder } from "@/services/gadService";
+import Roofline from "@/components/common/Roofline";
+import CardIcon from "@/components/common/CardIcon";
 import Picture from "@/components/common/Picture";
-
 
 type CardProps = {
   entity: DistributionEntity;
   options: CardOptions;
 };
 
-
-const Card = async ({ ...props }: CardProps) => {
+const Card = ({ ...props }: CardProps) => {
   const entity = props.entity;
   const options = props.options
 
-  // const getImageOrPlaceholderFetch = getImageOrPlaceholder(entity.thumbnail, "");
-  // const [entityImage] = await Promise.all([getImageOrPlaceholderFetch]);
   const entityImage = entity.thumbnail;
   return entity && (
     <><div>
@@ -42,7 +37,7 @@ const Card = async ({ ...props }: CardProps) => {
         <>
           <CardIcon entityCode={entity.entityCode} hide={options.hideIcon}></CardIcon>
           <Roofline context={entity.context} hide={options.hideRoofline}></Roofline>
-          <CardTitle title={entity.title} heading={null} hide={options.hideTitle}></CardTitle>
+          <Title title={entity.title} heading={null} hide={options.hideTitle}></Title>
           <Date date={entity.contentDate} format={null} hide={options.hideDate}></Date>
           <Author author={entity.createdBy} hide={options.hideAuthor}></Author>
           <CallToAction url={"#nolink"} text={""} isExternal={false} style={""} icon={""} hide={options.hideCta}></CallToAction>

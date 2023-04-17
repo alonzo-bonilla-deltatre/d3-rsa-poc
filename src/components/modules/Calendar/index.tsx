@@ -4,16 +4,12 @@ import { DistributionEntity, PagedResult } from "@/models/types/dapi";
 import { nanoid } from "nanoid";
 import { GrandPrixFields } from "@/models/types/dapi.customEntityFields";
 import { isDateGreaterThanNow } from "@/utilities/dateComparer";
-
 import CalendarItemSmall from "@/components/modules/Calendar/CalendarItemSmall";
 import CalendarItemExpanded from "@/components/modules/Calendar/CalendarItemExpanded";
 import { orderedItems } from "@/components/modules/Calendar/CalendarHelpers";
 import { firstAssetOrDefault, getAssetsByTag } from "@/services/gadService";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import dynamic from "next/dynamic";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import ModuleTitle from "@/components/common/ModuleTitle";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -46,11 +42,11 @@ const Calendar = async ({ ...data }: ComponentProps) => {
 
   return (
     <div className="container mx-auto border-b border-[#FFFFFF33]">
-      <Title
+      <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading={headingLevel}
         text={moduleTitle}
-      ></Title>
+      ></ModuleTitle>
       <div
         className={`container flex justify-center mx-auto ${marginTopCalendarContainer} mb-[160px] flex divide-x divide-dashed divide-white/[.20]`}
       >

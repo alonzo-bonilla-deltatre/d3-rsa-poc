@@ -1,10 +1,9 @@
 import { ComponentProps } from "@/models/types/components";
 import { getFilteredItems, getSelection } from "@/services/dapiService";
 import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
-import dynamic from "next/dynamic";
-
-// @ts-ignore
-const Title = dynamic(() => import("@/components/common/Title"));
+import ModuleTitle from "@/components/common/ModuleTitle";
+import logger from "@/utilities/logger";
+import {LoggerLevel} from "@/models/types/logger";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -26,22 +25,30 @@ const Hero = async ({ ...data }: ComponentProps) => {
   } = data.properties as ModuleProps;
   const defaultItemLimit = 5;
 
+  if (!selectionSlug) {
+    logger.log(
+      "Cannot render CustomPromo module with empty slug",
+      LoggerLevel.warning
+    );
+    return <div />;
+  }
+
   const selectionFetch = getSelection(selectionSlug);
   const [selection] = await Promise.all([selectionFetch]);
   const items = selection?.items;
 
-  return (
+  return items ? (
     <>
-      <Title
+      <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading={headingLevel}
         text={moduleTitle}
-      ></Title>
+      ></ModuleTitle>
       <HeroSwiper
         slides={getFilteredItems(items, Number(limit ?? defaultItemLimit))}
         hideDate={/true/.test(hideDate)}
       />
     </>
-  );
+  ) : <div />;
 };
 export default Hero;

@@ -7,14 +7,14 @@ import { DistributionEntity } from "@/models/types/dapi";
 import { PartnerFields } from "@/models/types/dapi.customEntityFields";
 
 
-type ParnerProps = {
+type PartnerProps = {
   entity: DistributionEntity;
   width: number;
   height: number;
 };
 
 
-const Partner = async ({ ...props }: ParnerProps) => {
+const Partner = async ({ ...props }: PartnerProps) => {
   const entity = props.entity;
   const partnerTag = entity && (entity.fields as PartnerFields).PartnerLogo;
   const partnerName = entity && (entity.fields as PartnerFields).PartnerName;

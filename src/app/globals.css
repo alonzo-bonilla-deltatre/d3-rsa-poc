@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Delete if you remove simplecss */ 
+@layer base {
+    h1 {
+        @apply text-4xl;
+    }
+    h2 {
+        @apply text-3xl;
+    }
+    h3 {
+        @apply text-2xl;
+    }
+    h4 {
+        @apply text-xl;
+    }
+    h5,h6 {
+        @apply text-lg;
+    }
+    ul {
+        @apply list-disc list-outside;
+    }
+    ol {
+        @apply list-decimal list-outside;
+    }
+}
+
+@import url("./simple.min.css");
+:root,
+::backdrop {
+  --sans-font: var(--font-poppins);
+  --standard-border-radius: 0px;
+  --border: rgba(0,0,0,0);
+  --accent: #EE3123;
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #EE3123;
+}
+/* end simplecss customization */
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -13,107 +51,6 @@ body {
     max-width: 100vw;
     overflow-x: hidden;
     background-color: black;
-    color: white;
-    font-size: 16px;
-    line-height: 1.25;
-}
-a:visited {
-    color: currentColor;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 16px;
-}
-
-h2 {
-    font-size: 32px;
-    line-height: 1.18;
-    padding-top: 32px;
-    margin-bottom: 12px;
-    font-weight: 700;
-}
-
-h3 {
-    font-size: 28px;
-    line-height: 1.25;
-    padding-top: 12px;
-    margin-bottom: 12px;
-    font-weight: 700;
-}
-
-h4 {
-    font-size: 24px;
-    line-height: 1.25;
-    padding-top: 8px;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-h5 {
-    font-size: 20px;
-    line-height: 1.25;
-    padding-top: 4px;
-    font-weight: 400;
-}
-
-strong {
-    font-weight: 700;
-}
-
-em {
-    font-style: italic;
-}
-
-s {
-    text-decoration: line-through;
-}
-
-sub, sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-
-sup {
-    top: -0.5em;
-}
-
-sub {
-    bottom: -0.25em;
-}
-
-blockquote {
-    border-left: 4px solid #ccc;
-    padding-left: 4px;
-    margin: 10px 0;
-}
-
-ol, ul {
-    font-size: 16px;
-    line-height: 1.8;
-    font-weight: 300;
-    padding-left: 24px;
-    list-style-position: outside;
-}
-
-ol li {
-    list-style-type: decimal;
-    margin-left: 1.1em;
-}
-
-ul li {
-    list-style-type: circle;
-    margin-left: 1.1em;
-}
-
-.c-markdown-story-part a {
-    color: #f75258;
-}
-
-.c-markdown-story-part a:hover {
-    text-decoration: underline;
+    color: white; 
+    display: block;
 }
