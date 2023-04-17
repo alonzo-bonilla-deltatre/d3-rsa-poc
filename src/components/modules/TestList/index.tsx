@@ -9,8 +9,7 @@ import { nanoid } from "nanoid";
 import { formatDate } from "@/utilities/dateFormatter";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import dynamic from "next/dynamic";
-import Title from "@/components/common/Title";
+import ModuleTitle from "@/components/common/ModuleTitle";
 
 type ModuleProps = {
   moduleTitle: string;
@@ -83,11 +82,11 @@ const TestList = async ({ ...data }: ComponentProps) => {
 
   return items?.length ? (
     <section className="mt-8">
-      <Title
+      <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading={headingLevel}
         text={moduleTitle}
-      ></Title>
+      ></ModuleTitle>
       <div className="grid grid-cols-3 gap-4 px-8">
         {items.map((entity: DistributionEntity) => {
           return (

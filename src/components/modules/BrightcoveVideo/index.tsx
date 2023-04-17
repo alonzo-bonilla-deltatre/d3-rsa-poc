@@ -5,7 +5,7 @@ import { LoggerLevel } from "@/models/types/logger";
 import BrightcoveVideoPlayer from "@/components/common/BrightcoveVideoPlayer";
 import SocialIcons from "@/components/common/SocialIcons";
 import { formatDate } from "@/utilities/dateFormatter";
-import Title from "@/components/common/Title";
+import ModuleTitle from "@/components/common/ModuleTitle";
 import {DistributionEntity} from "@/models/types/dapi";
 
 type ModuleProps = {
@@ -35,11 +35,11 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
   return entity ? (
     <>
       <section className="w-full container mx-auto mt-40">
-        <Title
+        <ModuleTitle
           canRender={/true/.test(properties.displayModuleTitle)}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
-        ></Title>
+        ></ModuleTitle>
         <div className="flex justify-between mx-20">
           <header className="w-full">
             <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>

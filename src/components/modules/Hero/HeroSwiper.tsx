@@ -15,7 +15,7 @@ import {
 import {formatDate} from "@/utilities/dateFormatter";
 
 import "./HeroSwiper.css";
-import CardRoofline from "@/components/editorial/card/CardRoofline";
+import Roofline from "@/components/common/Roofline";
 import Picture from "@/components/common/Picture";
 
 type ModuleProps = {
@@ -105,7 +105,7 @@ export const HeroSwiper = ({...data}: ModuleProps) => {
                 <div className="mt-[35vh] ml-40 max-w-[500px] col-start-1 row-start-1 z-10">
                   <header>
                     <>
-                      <CardRoofline context={slide.context} hide={false}></CardRoofline>
+                      <Roofline context={slide.context} hide={false}></Roofline>
                       {/* <CardTitle title={slide.title} heading="h1" hide={false}></CardTitle> */}
                       <h3 className="font-bold text-5xl uppercase mt-4">
                         {slide.title}

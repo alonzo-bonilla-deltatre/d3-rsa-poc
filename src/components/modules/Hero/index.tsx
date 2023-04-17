@@ -1,7 +1,7 @@
 import { ComponentProps } from "@/models/types/components";
 import { getFilteredItems, getSelection } from "@/services/dapiService";
 import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
-import Title from "@/components/common/Title";
+import ModuleTitle from "@/components/common/ModuleTitle";
 import logger from "@/utilities/logger";
 import {LoggerLevel} from "@/models/types/logger";
 
@@ -39,11 +39,11 @@ const Hero = async ({ ...data }: ComponentProps) => {
 
   return items ? (
     <>
-      <Title
+      <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading={headingLevel}
         text={moduleTitle}
-      ></Title>
+      ></ModuleTitle>
       <HeroSwiper
         slides={getFilteredItems(items, Number(limit ?? defaultItemLimit))}
         hideDate={/true/.test(hideDate)}

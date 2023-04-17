@@ -6,9 +6,9 @@ import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import CardCta from "@/components/editorial/card/CardCta";
+import CallToAction from "@/components/common/CallToAction";
 import Sponsored from "@/components/common/Sponsored";
-import Title from "@/components/common/Title";
+import ModuleTitle from "@/components/common/ModuleTitle";
 
 type ModuleProps = {
   slug: string;
@@ -45,11 +45,11 @@ const Promo = async ({ ...data }: ComponentProps) => {
   return promoEntity ? (
     <>
       <section className="mt-8">
-        <Title
+        <ModuleTitle
           canRender={/true/.test(properties.displayModuleTitle)}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
-        ></Title>
+        ></ModuleTitle>
         <div className="grid grid-cols-1 max-h-[790px] min-h-[500px] bg-gray-700 w-full overflow-hidden">
           {promoEntity.thumbnail && (
             <div className="col-start-1 row-start-1">
@@ -79,12 +79,12 @@ const Promo = async ({ ...data }: ComponentProps) => {
                   <ul className="list-none flex space-x-5">
                     {(cta1Url) && (
                       <li>
-                        <CardCta url={cta1Url} text={cta1Text} isExternal={cta1Ext} style={"default"} icon={""} hide={false}></CardCta>
+                        <CallToAction url={cta1Url} text={cta1Text} isExternal={cta1Ext} style={"default"} icon={""} hide={false}></CallToAction>
                       </li>
                     )}
                     {(cta2Url) && (
                       <li>
-                        <CardCta url={cta2Url} text={cta2Text} isExternal={cta2Ext} style={"reverse"} icon={""} hide={false}></CardCta>
+                        <CallToAction url={cta2Url} text={cta2Text} isExternal={cta2Ext} style={"reverse"} icon={""} hide={false}></CallToAction>
                       </li>
                     )}
                   </ul>

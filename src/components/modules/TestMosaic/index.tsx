@@ -4,7 +4,7 @@ import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import { getAssetsByTag } from "@/services/gadService";
 import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
-import Title from "@/components/common/Title";
+import ModuleTitle from "@/components/common/ModuleTitle";
 import React from "react";
 import TestMosaicContainer from "@/components/modules/TestMosaic/TestMosaicContainer";
 
@@ -80,11 +80,11 @@ const TestMosaicList = async ({ ...data }: ComponentProps) => {
   return items?.length ? (
     <>
       <section className="mt-8">
-        <Title
+        <ModuleTitle
           canRender={/true/.test(displayModuleTitle)}
           heading={headingLevel}
           text={moduleTitle}
-        ></Title>
+        ></ModuleTitle>
         <div className="flex px-8">
           <TestMosaicContainer items={items} thumbnailPlaceHolder={thumbnailPlaceHolder}></TestMosaicContainer>
         </div>
