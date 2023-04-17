@@ -1,12 +1,12 @@
 import { DistributionEntity } from "@/models/types/dapi";
 
-type CardProps = {
+type BrightcoveVideoPlayerProps = {
   entity: DistributionEntity;
   isStoryPart: boolean;
 };
 
-const BrightcoveVideoPlayer = ({ ...props }: CardProps) => {
-  const { entity, isStoryPart } = props as CardProps;
+const BrightcoveVideoPlayer = ({ ...props }: BrightcoveVideoPlayerProps) => {
+  const { entity, isStoryPart } = props as BrightcoveVideoPlayerProps;
   const oembedUrl = `https://players.brightcove.net/${entity.fields["brightcoveAccountId"]}/default_default/index.html?videoId=${entity.fields["brightcoveId"]}`;
 
   return (
