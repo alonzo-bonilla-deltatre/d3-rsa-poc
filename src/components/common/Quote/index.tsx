@@ -4,7 +4,7 @@ type QuoteProps = {
   entity: StoryPart;
 };
 
-const Oembed = ({...props}: QuoteProps) => {
+const Quote = ({...props}: QuoteProps) => {
   const {entity} = props as QuoteProps;
   const content = entity.content as any;
   const quote = content["quote"];
@@ -24,4 +24,4 @@ const Oembed = ({...props}: QuoteProps) => {
   );
 };
 
-export default Oembed;
+export default Quote;
