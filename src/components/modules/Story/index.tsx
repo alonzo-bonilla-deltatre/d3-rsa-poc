@@ -1,17 +1,17 @@
-import { ComponentProps } from "@/models/types/components";
-import { getEntity } from "@/services/dapiService";
+import {ComponentProps} from "@/models/types/components";
+import {getEntity} from "@/services/dapiService";
 import Picture from "@/components/common/Picture";
-import { transformations } from "@/utilities/cloudinaryTransformations";
+import {transformations} from "@/utilities/cloudinaryTransformations";
 import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
+import {LoggerLevel} from "@/models/types/logger";
 import Roofline from "@/components/common/Roofline";
 import Author from "@/components/common/Author";
 import Date from "@/components/common/Date";
 import SocialIcons from "@/components/common/SocialIcons";
-import { StoryPart } from "@/models/types/storyPart";
-import { renderStoryPart } from "@/services/renderHandlers/renderStoryPart";
+import {StoryPart} from "@/models/types/storyPart";
+import {renderStoryPart} from "@/services/renderHandlers/renderStoryPart";
 import Sponsored from "@/components/common/Sponsored";
-import { getSingleAssetByTag } from "@/services/gadService";
+import {getSingleAssetByTag} from "@/services/gadService";
 import {nanoid} from "nanoid";
 
 type ModuleProps = {
@@ -27,7 +27,7 @@ type ModuleProps = {
   sponsorName: string;
 };
 
-const Story = async ({ ...data }: ComponentProps) => {
+const Story = async ({...data}: ComponentProps) => {
   const props = data.properties as ModuleProps;
   if (!Object.hasOwn(props, "slug") || !props.slug.length) {
     logger.log(
@@ -46,12 +46,13 @@ const Story = async ({ ...data }: ComponentProps) => {
   return storyEntity ? (
     <>
       <section className="w-full container mx-auto mt-40">
-        <Roofline
-          context={storyEntity.context}
-          hide={props.hideRoofline}
-        ></Roofline>
         <div className="flex justify-between mx-20">
           <header className="w-full">
+            <Roofline
+              className={"uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2"}
+              context={storyEntity.context}
+              hide={props.hideRoofline}
+            ></Roofline>
             <h3 className="font-bold text-5xl uppercase">
               {storyEntity.title}
             </h3>
@@ -73,7 +74,8 @@ const Story = async ({ ...data }: ComponentProps) => {
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>
                   {sponsor && (
-                    <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""} assetUrl={sponsor.assetUrl}></Sponsored>
+                    <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""}
+                               assetUrl={sponsor.assetUrl}></Sponsored>
                   )}
                   {!props.hideSocial && (
                     <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
@@ -115,7 +117,7 @@ const Story = async ({ ...data }: ComponentProps) => {
       </section>
     </>
   ) : (
-    <div />
+    <div/>
   );
 };
 export default Story;

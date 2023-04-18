@@ -1,4 +1,4 @@
-﻿export const GetSrcFromMarkup = (html: string): string => {
+﻿export const getSrcFromMarkup = (html: string): string => {
   if (!html) {
     return "";
   }
