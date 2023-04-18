@@ -9,14 +9,14 @@ type MarkdownObject = {
     subScripts: string[]
 }
 
-export const Transform = async (text: string): Promise<string> => {
+export const transform = async (text: string): Promise<string> => {
     if (!text) {
         return "";
     }
-    return await Encode(text);
+    return await encode(text);
 }
 
-async function Encode(text: string): Promise<string> {
+async function encode(text: string): Promise<string> {
     if (!text) {
         return "";
     }
@@ -29,10 +29,10 @@ async function Encode(text: string): Promise<string> {
     };
 
     // remark and remark-html not manage in the proper way some html tags for this we need to put some placeholder and replace them after the remake process 
-    markdownObject = ReplaceAnchorTagsWithPlaceholder(markdownObject);
-    markdownObject = ReplaceStrikeoutTagsWithPlaceholder(markdownObject);
-    markdownObject = ReplaceSuperScriptTagsWithPlaceholder(markdownObject);
-    markdownObject = ReplaceSubScriptTagsWithPlaceholder(markdownObject);
+    markdownObject = replaceAnchorTagsWithPlaceholder(markdownObject);
+    markdownObject = replaceStrikeoutTagsWithPlaceholder(markdownObject);
+    markdownObject = replaceSuperScriptTagsWithPlaceholder(markdownObject);
+    markdownObject = replaceSubScriptTagsWithPlaceholder(markdownObject);
 
     // Use remark to convert markdown into HTML string
     const processedContent = await remark()
@@ -41,15 +41,15 @@ async function Encode(text: string): Promise<string> {
     markdownObject.text = processedContent.toString();
 
     // replaced placeholder with correct html tags 
-    markdownObject = ReplacePlaceholderWithAnchorTags(markdownObject);
-    markdownObject = ReplacePlaceholderWithStrikeoutTags(markdownObject);
-    markdownObject = ReplacePlaceholderWithSuperScriptTags(markdownObject);
-    markdownObject = ReplacePlaceholderWithSubScriptTags(markdownObject);
+    markdownObject = replacePlaceholderWithAnchorTags(markdownObject);
+    markdownObject = replacePlaceholderWithStrikeoutTags(markdownObject);
+    markdownObject = replacePlaceholderWithSuperScriptTags(markdownObject);
+    markdownObject = replacePlaceholderWithSubScriptTags(markdownObject);
     
     return markdownObject.text;
 }
 
-function ReplaceAnchorTagsWithPlaceholder(markdownObject: MarkdownObject) {
+function replaceAnchorTagsWithPlaceholder(markdownObject: MarkdownObject) {
     // manage links
     const patternRegex = /<\s*(a)[^>]*>(.*?)<\s*\/\s*(a)>/g;
     const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map(m => m[0]);
@@ -62,7 +62,7 @@ function ReplaceAnchorTagsWithPlaceholder(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplaceStrikeoutTagsWithPlaceholder(markdownObject: MarkdownObject) {
+function replaceStrikeoutTagsWithPlaceholder(markdownObject: MarkdownObject) {
     // manage strikeout
     const patternRegex = /<\s*(s)[^>]*>(.*?)<\s*\/\s*(s)>/g;
     const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map(m => m[0]);
@@ -75,7 +75,7 @@ function ReplaceStrikeoutTagsWithPlaceholder(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplaceSuperScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
+function replaceSuperScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
     // manage superscript
     const patternRegex = /<\s*(sup)[^>]*>(.*?)<\s*\/\s*(sup)>/g;
     const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map(m => m[0]);
@@ -87,7 +87,7 @@ function ReplaceSuperScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplaceSubScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
+function replaceSubScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
     // manage subscript
     const patternRegex = /<\s*(sub)[^>]*>(.*?)<\s*\/\s*(sub)>/g;
     const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map(m => m[0]);
@@ -100,7 +100,7 @@ function ReplaceSubScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplacePlaceholderWithAnchorTags(markdownObject: MarkdownObject) {
+function replacePlaceholderWithAnchorTags(markdownObject: MarkdownObject) {
     // manage links
     for (let i = 0; i < markdownObject.links.length; i++)
     {
@@ -111,7 +111,7 @@ function ReplacePlaceholderWithAnchorTags(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplacePlaceholderWithStrikeoutTags(markdownObject: MarkdownObject) {
+function replacePlaceholderWithStrikeoutTags(markdownObject: MarkdownObject) {
     // manage strikeouts
     for (let i = 0; i < markdownObject.strikeouts.length; i++)
     {
@@ -122,7 +122,7 @@ function ReplacePlaceholderWithStrikeoutTags(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplacePlaceholderWithSuperScriptTags(markdownObject: MarkdownObject) {
+function replacePlaceholderWithSuperScriptTags(markdownObject: MarkdownObject) {
     // manage superscripts
     for (let i = 0; i < markdownObject.superScripts.length; i++)
     {
@@ -133,7 +133,7 @@ function ReplacePlaceholderWithSuperScriptTags(markdownObject: MarkdownObject) {
     return markdownObject;
 }
 
-function ReplacePlaceholderWithSubScriptTags(markdownObject: MarkdownObject) {
+function replacePlaceholderWithSubScriptTags(markdownObject: MarkdownObject) {
     // manage subscripts
     for (let i = 0; i < markdownObject.subScripts.length; i++)
     {
