@@ -1,5 +1,5 @@
 import { Metadata } from "@/models/types/pageStructure";
-import { getPage } from "@/services/pageService";
+import { getPageStructure } from "@/services/pageService";
 import { requestUrlParser } from "@/utilities/requestUrlParser";
 
 
@@ -18,8 +18,8 @@ export default async function Head({
 }) {
   const path = requestUrlParser.getPathName(params);
   const token = searchParams?.token?.toString() ?? "";
-  const pageStructureFetch = getPage(path, token);
-  const [pageStructure] = await Promise.all([pageStructureFetch]);
+  const pageStructure = await getPageStructure(path, token);
+
   if (!pageStructure) {
     return null;
   }
@@ -51,7 +51,7 @@ export default async function Head({
         <meta name="twitter:image" content={todo} />
         <meta name="twitter:image:src" content={todo} />
         <meta name="twitter:card" content="summary_large_image" />
-    </>
+      </>
   );
 }
 

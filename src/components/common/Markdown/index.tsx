@@ -1,11 +1,11 @@
-import {Transform} from "@/helpers/markdown";
+import {transform} from "@/helpers/markdown";
 
 type MarkdownProps = {
   markdownText: string;
 };
 
 const Markdown = async ({...props}: MarkdownProps) => {
-  const markdownTransformFetch = Transform(props.markdownText);
+  const markdownTransformFetch = transform(props.markdownText);
   const [html] = await Promise.all([markdownTransformFetch]);
   return props.markdownText ? (
       <>
