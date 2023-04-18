@@ -30,17 +30,16 @@ const Partner = async ({ ...props }: PartnerProps) => {
   const logo = await getSingleAssetByTag(partnerTag);
 
   return logo ? (
-    <div className="">
+    <div className="flex flex-col items-center">
                   
                   <Picture
-                    className=""
                     src={logo.assetUrl}
                     alt={partnerName}
                     width={props.width}
                     height={props.height}
                     transformations={transformations.logos}
                   />
-                  <span className="text-xs uppercase">
+                  <span className="text-xs uppercase mt-2">
                     {partnerName}
                   </span>
                 </div>

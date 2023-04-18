@@ -37,7 +37,7 @@ const Partners = async ({ ...data }: ComponentProps) => {
         heading="h3"
         text={moduleTitle}
       ></ModuleTitle>
-      <div className="flex flex-wrap grid grid-rows-2 grid-flow-col gap-4">
+      <div className="grid grid-flow-row-dense lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
         {items && items.map((entity: DistributionEntity) => {
           return (
             <Partner key={nanoid()} entity={entity} width={100} height={50}></Partner>
