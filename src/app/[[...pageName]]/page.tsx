@@ -1,4 +1,4 @@
-import { getPage } from "@/services/pageService";
+import { getPageStructure } from "@/services/pageService";
 import { renderItem } from "@/services/renderService";
 import { requestUrlParser } from "@/utilities/requestUrlParser";
 import { initI18n } from "@/utilities/i18n";
@@ -14,8 +14,7 @@ export default async function Page({
   await initI18n();
   const path = requestUrlParser.getPathName(params);
   const token = searchParams?.token?.toString() ?? "";
-  const pageStructureFetch = getPage(path, token);
-  const pageStructure = await pageStructureFetch;
+  const pageStructure = await getPageStructure(path, token);
   if (!pageStructure) {
     return null;
   }

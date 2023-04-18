@@ -11,7 +11,7 @@ const tokenPlaceholder = "{token}";
 const siteStructureApiUrl = `api/v1/Page?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`;
 const siteStructureApiUrlWithToken = `api/v1/Page?path=${pathPlaceholder}&culture=${culture}&environment=${environment}&token=${tokenPlaceholder}`;
 
-export const getPage = async (
+export const getPageStructure = async (
   path: string,
   token: string = ""
 ): Promise<PageStructureResponse | null> => {
