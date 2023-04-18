@@ -8,7 +8,7 @@ type RooflineProps = {
 
 
 const Roofline = ({ ...props }: RooflineProps) => {
-  return props.context && (
+  return props.context &&  (
     <div className="flex">
       <span
         key={nanoid()}

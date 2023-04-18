@@ -1,6 +1,6 @@
 import { MenuItem, MenuResponse, MenuResponseData } from "@/models/types/menu";
-import { footerMenu } from "@/pages/api/__mocks__/footerMenu"
-import { headerServiceMenu } from "@/pages/api/__mocks__/headerServiceMenu"
+import { footerMenu } from "@/__mocks__/menu/footerMenu"
+import { headerServiceMenu } from "@/__mocks__/menu/headerServiceMenu"
 
 export const getFooterMenu = (): MenuResponseData => {
 

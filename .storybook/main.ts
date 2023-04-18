@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "@storybook/addon-a11y"
   ],
-  staticDirs: ['../public', '../src/pages/'],
+  staticDirs: ['../public','../src/__mocks__'],
   framework: {
     name: "@storybook/nextjs",
     options: {},

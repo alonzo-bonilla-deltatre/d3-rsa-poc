@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { Metadata, StructureItem } from '@/models/types/pageStructure';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { indexStructure } from './__mocks__/pageStructures';
+import { indexStructure } from '../../__mocks__/pageStructures';
 
 type DataType = {
   data: {
