@@ -19,7 +19,8 @@ export default async function Head({
   const path = requestUrlParser.getPathName(params);
   const token = searchParams?.token?.toString() ?? "";
   const pageStructureFetch = getPage(path, token);
-  const [pageStructure] = await Promise.all([pageStructureFetch]);
+  const pageStructure = await pageStructureFetch;
+
   if (!pageStructure) {
     return null;
   }
@@ -51,7 +52,7 @@ export default async function Head({
         <meta name="twitter:image" content={todo} />
         <meta name="twitter:image:src" content={todo} />
         <meta name="twitter:card" content="summary_large_image" />
-    </>
+      </>
   );
 }
 

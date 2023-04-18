@@ -19,9 +19,8 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
   const isActiveClass= isActive ? "-active":"";
   const itemText = translate(menuItem.properties.tag) ?? menuItem.text
   
-  const itemTooltip = menuItem.properties.toolTip ? translate(menuItem.properties.toolTip) : itemText;
   const itemIcon = menuItem.properties.icon;
-  var additionalAttributes = {
+  const additionalAttributes = {
     ...(parentid ? {parentid: parentid} : undefined),
     ...(menuItem.properties.target ? {target: menuItem.properties.target} : undefined),
     ...(!menuItem.properties.target ? {rel: "noopener"} : undefined),
