@@ -16,25 +16,6 @@ export default meta;
 
 type Story = StoryObj<typeof Card>;
 
-// type StoryArgs = Partial<CardProps>;
-// export const Default = ({args: StoryArgs}) => (
-//   <div className="grid ">
-//     <Card {...args} />
-//   </div>
-//  );
-
-// Story.args = {
-//   entity: storyEntity,
-//   options: {
-//     hideIcon: true,
-//     hideRoofline: false,
-//     hideTitle: false,
-//     hideDate: false,
-//     hideAuthor: true,
-//     hideCta: true,
-//   }
-// };
-
 export const Story: Story = {
   render: (args) => (
     <>
