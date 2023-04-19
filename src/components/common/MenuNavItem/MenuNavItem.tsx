@@ -1,6 +1,7 @@
 import { translate } from "@/utilities/i18n";
 import { MenuItem } from "@/models/types/menu";
 import SvgIcon from "@/components/common/SvgIcon";
+import { IconTicket } from "@/components/common/Svgs";
 
 type MenuNavItemProps = {
   menuItem: MenuItem;
@@ -16,7 +17,7 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
   const itemLink = menuItem.properties.link ?? "#nolink";
   const isActive = false;//router.pathname == itemLink;
   //TODO isActive handler
-  const isActiveClass= isActive ? "-active":"";
+  const isActiveClass = isActive ? "-active" : "";
   const itemText = translate(menuItem.properties.tag) ?? menuItem.text
   
   const itemIcon = menuItem.properties.icon;
@@ -28,20 +29,18 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
     ...(itemText ? {alt: itemText} : undefined),
     ...(itemText ? {"aria-label": itemText} : undefined)
   }
-  const classNames = navItemClasses+isActiveClass;
+  const classNames = navItemClasses + isActiveClass;
   const hasIcon = itemIcon && iconSize;
   return (
     <>
-    {//@ts-ignore}
-      <a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
-        {
-          hasIcon && (<SvgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>)
-        }
-        {
-          !hasIcon && itemText
-        }
-      </a>
-}
+      {//@ts-ignore}
+        <><a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
+          {hasIcon && (<SvgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>)}
+          {!hasIcon && itemText}
+        </a>
+        <IconTicket className=""/>
+        </>
+      }
     </>
   )
 };

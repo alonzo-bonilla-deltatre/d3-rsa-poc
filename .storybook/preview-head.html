@@ -1,0 +1,53 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&display=swap"
+    rel="stylesheet"
+/>
+<link rel="preload" href="/fonts/Poppins/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="/fonts/Poppins/Poppins-Light.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="/fonts/Poppins/Poppins-Medium.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="/fonts/Poppins/Poppins-Bold.ttf" as="font" type="font/ttf" crossorigin />
+
+
+<style>
+    :root {
+        --theme-txt_primary_color: #ffffff;
+        --theme-txt_secondary_color: #5af7dc;
+        --theme-btn_bg_secondary_color: #5af7dc;
+        --theme-btn_txt_secondary_color: #000;
+        --theme-home_team_color: #5af7dc;
+        --theme-away_team_color: #df49fe;
+    }
+
+    @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        src: url("/fonts/Poppins-Regular.woff");
+    }
+    body {
+        font-family: "Poppins", "Poppins", "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("./dist/assets/images/default_background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: darkblue;
+        color: #fff;
+    }
+    body.sb-show-main.sb-main-padded {
+        padding: 8px;
+    }
+    .container {
+        margin: 0 auto;
+        max-width: 1540px;
+    }
+    *,
+    *::before,
+    *::after {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
