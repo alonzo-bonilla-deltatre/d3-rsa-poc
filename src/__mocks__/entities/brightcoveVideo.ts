@@ -11,7 +11,7 @@ const sampleBrightcoveVideo = {
   _entityId: '35cd864c-41df-45cf-949d-fd556e0b65be',
   selfUrl: '',
   slug: '23-gotm-march-16x9',
-  title: '23_GOTM_March_16x9',
+  title: 'Goal of the match',
   headline: '',
   tags: [],
   relations: [],

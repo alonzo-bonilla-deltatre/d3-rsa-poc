@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/runtime": "^7.21.0",
     "@next/font": "13.1.6",
+    "@storybook/global": "^5.0.0",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
@@ -43,11 +44,11 @@
     "@storybook/addon-interactions": "7.0.4",
     "@storybook/addon-links": "7.0.4",
     "@storybook/blocks": "7.0.4",
-    "@storybook/nextjs": "^7.0.5",
+    "@storybook/nextjs": "7.0.4",
     "@storybook/react": "7.0.4",
     "@storybook/testing-library": "0.0.14-next.2",
     "@svgr/webpack": "^7.0.0",
     "eslint-plugin-storybook": "^0.6.11",
-    "storybook": "^7.0.5"
+    "storybook": "^7.0.4"
   }
 }
