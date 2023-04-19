@@ -37,7 +37,8 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
         <><a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
           {hasIcon && (<SvgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>)}
           {!hasIcon && itemText}
-        </a><IconTicket />
+        </a>
+        <IconTicket className=""/>
         </>
       }
     </>

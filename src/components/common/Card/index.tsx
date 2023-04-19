@@ -8,7 +8,7 @@ import Roofline from "@/components/common/Roofline";
 import CardIcon from "@/components/common/CardIcon";
 import Picture from "@/components/common/Picture";
 
-type CardProps = {
+export type CardProps = {
   entity: DistributionEntity;
   options: CardOptions;
 };
