@@ -2,6 +2,7 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
+RUN  yarn add -g esbuild
 RUN  yarn install --pure-lockfile --modules-folder prd_node_modules
 
 RUN mkdir -p /npm/src/prd_node_modules
