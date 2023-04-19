@@ -1,6 +1,6 @@
 import { translate } from "@/utilities/i18n";
 import { MenuItem } from "@/models/types/menu";
-import SvgIcon from "@/components/common/SvgIcon";
+import ImgIcon from "@/components/common/SvgIcon";
 
 type MenuNavItemProps = {
   menuItem: MenuItem;
@@ -35,7 +35,7 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
     {//@ts-ignore}
       <a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
         {
-          hasIcon && (<SvgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>)
+          hasIcon && (<ImgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></ImgIcon>)
         }
         {
           !hasIcon && itemText

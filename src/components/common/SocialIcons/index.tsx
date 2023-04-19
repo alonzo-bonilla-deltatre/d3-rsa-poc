@@ -1,4 +1,6 @@
 import Image from "next/image";
+import FacebookLogo from "@/components/icons/FacebookLogo";
+import {SvgIcon} from "@/components/common/SvgIcon";
 
 type SocialIconsProps = {
   hide: boolean;
@@ -6,11 +8,12 @@ type SocialIconsProps = {
   className: string;
 };
 
-
 const SocialIcons = ({ ...props }: SocialIconsProps) => {
 
   return !props.hide ? (
-    <><Image
+    <>
+      {/*<SvgIcon className="text-pink-800 hover:text-pink-600" size={34} icon={FacebookLogo}></SvgIcon>*/}
+      <Image
       width={props.size}
       height={props.size}
       alt={"Facebook"}

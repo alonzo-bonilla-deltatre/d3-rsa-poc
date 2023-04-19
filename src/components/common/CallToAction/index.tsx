@@ -1,4 +1,4 @@
-import SvgIcon from "@/components/common/SvgIcon";
+import ImgIcon from "@/components/common/SvgIcon";
 
 type CallToActionProps = {
   url: string;
@@ -24,7 +24,7 @@ const CallToAction = ({ ...props }: CallToActionProps) => {
       className={getCtaClasses(props.style)}
       {...additionalAttributes}
     >{
-      props.icon && (<SvgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></SvgIcon>)
+      props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></ImgIcon>)
     }
       {displayText}
     </a></>

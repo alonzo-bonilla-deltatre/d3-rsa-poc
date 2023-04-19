@@ -1,4 +1,4 @@
-import SvgIcon from "@/components/common/SvgIcon";
+import ImgIcon from "@/components/common/SvgIcon";
 
 type CardIconProps = {
   entityCode: string;
@@ -12,7 +12,7 @@ const icon = "/icons/header_ticket.svg";
 const iconSize = 44;
 const itemText = props.entityCode;
   return !props.hide ? (
-      <SvgIcon src={icon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>
+      <ImgIcon src={icon} width={iconSize} height={iconSize} alt={itemText}></ImgIcon>
   ) : <></>;
 };
 
