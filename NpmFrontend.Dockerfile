@@ -1,4 +1,4 @@
-FROM node:18-buster AS builder
+FROM node:18 AS builder
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
