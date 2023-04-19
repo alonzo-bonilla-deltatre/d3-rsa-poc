@@ -6,6 +6,4 @@ RUN yarn install --pure-lockfile
 
 RUN mkdir -p /npm/src/prd_node_modules
 
-RUN ls /app/node_modules
-
 RUN cp -r /app/node_modules/*  /npm/src/prd_node_modules/

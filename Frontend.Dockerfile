@@ -2,7 +2,7 @@ FROM node:18-buster AS deps
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
-RUN  yarn install --pure-lockfile
+RUN yarn install --pure-lockfile
 
 FROM node:18-buster AS builder
 WORKDIR /app
