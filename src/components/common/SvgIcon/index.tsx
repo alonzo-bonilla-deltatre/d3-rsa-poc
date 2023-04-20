@@ -2,7 +2,7 @@ import React, {DetailedHTMLProps, HTMLAttributes} from "react";
 
 interface IIconProps extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   size?: number
-  icon: any
+  icon: React.ElementType
 }
 
 type SvgExtraProps = {
@@ -23,7 +23,7 @@ const SvgIcon: React.FC<IIconProps> = (props) => {
     svgExtraProps.height = `${size}px`;
   }
   
-  const IconComp: any = icon;
+  const IconComp: React.ElementType = icon;
   return (
     <IconComp {...svgProps } {...svgExtraProps} />
   )
