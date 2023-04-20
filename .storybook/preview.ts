@@ -1,7 +1,8 @@
 import type { Preview } from "@storybook/react";
-import { Poppins } from "@next/font/google"
 import "@/app/globals.css";
 import {INITIAL_VIEWPORTS} from "@storybook/addon-viewport"
+
+
 
 const preview: Preview = {
   parameters: {

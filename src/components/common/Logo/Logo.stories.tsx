@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Logo from "@/components/common/Logo";
-import { sampleLogo1, sampleLogo2, sampleLogo3, sampleLogo4, sampleLogoSquared } from '@/__mocks__/components/sampleLogos';
+import { sampleLogo1, sampleLogoSquared } from '@/__mocks__/components/sampleLogos';
 
 const meta: Meta<typeof Logo> = {
   title: 'UiComponents/Logo',

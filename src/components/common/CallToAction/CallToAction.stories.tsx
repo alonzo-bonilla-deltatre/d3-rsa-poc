@@ -8,7 +8,7 @@ const meta: Meta<typeof CallToAction> = {
   tags: ['autodocs'],
   argTypes: {
     style: {
-      options: ['default', 'reverse'],
+      options: ['default', 'reverse','outline','link'],
       control: { type: 'radio' },
     },
     hide: {
@@ -29,12 +29,33 @@ export const Default: Story = {
   parameters: {
     layout: 'centered',
   },
+ 
 };
 export const Reverse: Story = {
   args: {
     url: "#nolink",
     text: 'Call to Action',
     style: 'reverse'
+  },
+  parameters: {
+    layout: 'centered',
+  },
+};
+export const Outline: Story = {
+  args: {
+    url: "#nolink",
+    text: 'Call to Action',
+    style: 'outline'
+  },
+  parameters: {
+    layout: 'centered',
+  },
+};
+export const Link: Story = {
+  args: {
+    url: "#nolink",
+    text: 'Call to Action',
+    style: 'link'
   },
   parameters: {
     layout: 'centered',
@@ -52,6 +73,14 @@ export const All: Story = {
         <li>
           <CallToAction url={'#nolink'} text={'Reverse'} isExternal={false} style={"reverse"} icon={""} hide={false}></CallToAction>
         </li>
+        <li>
+          <CallToAction url={'#nolink'} text={'Outline'} isExternal={false} style={"outline"} icon={""} hide={false}></CallToAction>
+        </li>
+        <li>
+          <CallToAction url={'#nolink'} text={'Link'} isExternal={false} style={"link"} icon={""} hide={false}></CallToAction>
+        </li>
+
+    
       </ul>
     </>
   ),

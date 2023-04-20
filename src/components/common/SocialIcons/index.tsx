@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type SocialIconsProps = {
+export type SocialIconsProps = {
   hide: boolean;
   size: number;
   className: string;

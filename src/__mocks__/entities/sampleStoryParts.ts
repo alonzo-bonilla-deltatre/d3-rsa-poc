@@ -95,6 +95,7 @@ const sampleInstagram: StoryPart = {
   ...partialInstagramPart
 };
 
+
 export { sampleQuote, sampleYoutube, sampleTwitter,sampleInstagram };
 
 

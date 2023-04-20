@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Menu from "@/components/common/Menu";
 import { sampleMenu } from "@/__mocks__/menu/sampleMenu"
 import { sampleMenuWithIcons } from "@/__mocks__/menu/sampleMenuWithIcons"
-import { footerMenu } from "@/__mocks__/menu/footerMenu"
 import { headerServiceMenu } from "@/__mocks__/menu/headerServiceMenu"
 
 import { MenuResponse } from '@/models/types/menu';

@@ -8,6 +8,11 @@ const meta: Meta<typeof Card> = {
   title: 'UiComponents/Card',
   component: Card,
   tags: ['autodocs'],
+  argTypes: {
+    entity: {
+      control: false,
+    }
+  },
 };
 const storyEntity: DistributionEntity = sampleStory;
 const brightcoveEntity: DistributionEntity = sampleBrightcoveVideo;
@@ -19,23 +24,23 @@ type Story = StoryObj<typeof Card>;
 export const Story: Story = {
   render: (args) => (
     <>
-    <h3 className={classNames}>2 columns</h3>
-    <div className="grid grid-cols-2 gap-4 px-8 ">
-      <Card {...args}></Card> 
-    </div>
-    <h3 className={classNames}>3 columns</h3>
-    <div className="grid grid-cols-3 gap-4 px-8 ">
-      <Card {...args}></Card>
-    </div>
-    <h3 className={classNames}>4 columns</h3>
-    <div className="grid grid-cols-4 gap-4 px-8 ">
-    <Card {...args}></Card>
-  </div>
-  <h3 className={classNames}>5 columns</h3>
-  <div className="grid grid-cols-5 gap-4 px-8 ">
-    <Card {...args}></Card>
-  </div>
-  </>
+      <h3 className={classNames}>2 columns</h3>
+      <div className="grid grid-cols-2 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>3 columns</h3>
+      <div className="grid grid-cols-3 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>4 columns</h3>
+      <div className="grid grid-cols-4 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>5 columns</h3>
+      <div className="grid grid-cols-5 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+    </>
   ),
   args: {
     entity: storyEntity,
@@ -53,23 +58,23 @@ const classNames = "my-2 mt-4 text-xxl tracking-tight dark:text-white px-8";
 export const BrightcoveVideo: Story = {
   render: (args) => (
     <>
-    <h3 className={classNames}>2 columns</h3>
-    <div className="grid grid-cols-2 gap-4 px-8 ">
-      <Card {...args}></Card> 
-    </div>
-    <h3 className={classNames}>3 columns</h3>
-    <div className="grid grid-cols-3 gap-4 px-8 ">
-      <Card {...args}></Card>
-    </div>
-    <h3 className={classNames}>4 columns</h3>
-    <div className="grid grid-cols-4 gap-4 px-8 ">
-    <Card {...args}></Card>
-  </div>
-  <h3 className={classNames}>5 columns</h3>
-  <div className="grid grid-cols-5 gap-4 px-8 ">
-    <Card {...args}></Card>
-  </div>
-  </>
+      <h3 className={classNames}>2 columns</h3>
+      <div className="grid grid-cols-2 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>3 columns</h3>
+      <div className="grid grid-cols-3 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>4 columns</h3>
+      <div className="grid grid-cols-4 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>5 columns</h3>
+      <div className="grid grid-cols-5 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+    </>
   ),
   args: {
     entity: brightcoveEntity,
