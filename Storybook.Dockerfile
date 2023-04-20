@@ -7,5 +7,4 @@ RUN yarn install --frozen-lockfile --silent && \
     yarn run build-storybook
 
 FROM nginx:alpine
-COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
