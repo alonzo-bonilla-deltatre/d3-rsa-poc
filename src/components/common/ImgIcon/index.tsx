@@ -5,8 +5,8 @@ type ImgIconProps = {
   width: number;
   height: number;
   alt: string;
-  className: string;
-  ariaHidden: boolean;
+  className?: string;
+  ariaHidden?: boolean;
 };
 
 const ImgIcon = ({ ...props }: ImgIconProps) => {

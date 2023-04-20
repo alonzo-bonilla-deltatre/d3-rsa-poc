@@ -41,7 +41,7 @@ const MenuNavItem = ({...data}: MenuNavItemProps) => {
               hasIcon && (
                 <ImgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}
                          className={"cursor-pointer transition duration-300 c-img-menu-nav-item"}
-                         ariaHidden={itemText ? false : true}></ImgIcon>
+                         ariaHidden={!itemText}></ImgIcon>
               )
             }
           </a>

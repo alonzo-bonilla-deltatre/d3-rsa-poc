@@ -12,7 +12,7 @@ const CardIcon = ({...props}: CardIconProps) => {
   const iconSize = 44;
   const itemText = props.entityCode;
   return !props.hide ? (
-    <ImgIcon src={icon} width={iconSize} height={iconSize} alt={itemText} className={""} ariaHidden={false}></ImgIcon>
+    <ImgIcon src={icon} width={iconSize} height={iconSize} alt={itemText}></ImgIcon>
   ) : <></>;
 };
 

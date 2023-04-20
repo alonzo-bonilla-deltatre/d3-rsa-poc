@@ -2,27 +2,28 @@ import React, {DetailedHTMLProps, HTMLAttributes} from "react";
 
 interface IIconProps extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   size?: number
-  color?: string
   icon: any
 }
 
+type SvgExtraProps = {
+  width: string
+  height: string
+}
+
 const SvgIcon: React.FC<IIconProps> = (props) => {
-  const { size, color, icon, style: styleArg, ...svgProps } = props
-  let svgExtraProps: any = {}
+  const { size, icon, ...svgProps } = props;
+  // default
+  let svgExtraProps: SvgExtraProps = {
+    width: '24px',
+    height: '24px'
+  };
 
   if (size !== undefined) {
-    svgExtraProps.width = `${size}px`
-    svgExtraProps.height = `${size}px`
-  } else {
-    // default
-    svgExtraProps.width = '24px'
-    svgExtraProps.height = '24px'
+    svgExtraProps.width = `${size}px`;
+    svgExtraProps.height = `${size}px`;
   }
-
-  if (color !== undefined) {
-    svgExtraProps.style = { color, ...styleArg }
-  }
-  const IconComp: any = icon
+  
+  const IconComp: any = icon;
   return (
     <IconComp {...svgProps } {...svgExtraProps} />
   )

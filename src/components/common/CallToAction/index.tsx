@@ -24,8 +24,7 @@ const CallToAction = ({ ...props }: CallToActionProps) => {
       className={getCtaClasses(props.style)}
       {...additionalAttributes}
     >{
-      props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText} className={""}
-                              ariaHidden={false}></ImgIcon>)
+      props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></ImgIcon>)
     }
       {displayText}
     </a></>
