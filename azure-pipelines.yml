@@ -40,10 +40,14 @@ variables:
     value: "Deltatre.Frontend.React.Poc.Web"
   - name: _frontendImageName
     value: "integrations/poc/frontend/fe"
+  - name: _storybookImageName
+    value: "integrations/poc/frontend/storybook"
   - name: _frontendDockerFile
     value: "Frontend.Dockerfile"
   - name: _npmFrontendDockerFile
     value: "NpmFrontend.Dockerfile"
+  - name: _storybookDockerFile
+    value: "Storybook.Dockerfile"
   - name: _npm_version
     value: "18"
 
@@ -110,4 +114,33 @@ steps:
     parameters:
       IMAGE_VERSION: npm_$(_imageVersion)
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
+      CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
+      
+  # Build Storybook DockerFile per Storybook
+  - template: build/common-solution/steps/docker-build-for-ci.yml@templates
+    parameters:
+      DOCKER_FILE: "$(_storybookDockerFile)"
+      IMAGE_VERSION: $(_imageVersion)
+      PROJECT_NAME: $(_prjName)
+      SLN_NAME: $(_slnname)
+      CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
+      CONTAINER_REGISTRY_REPOSITORY_NAME: $(_storybookImageName)
+      NPM_VERSION: $(_npm_version)
+      ASS_VERSION: $(_imageVersion)
+
+  # Docker push Storybook Image
+  - template: build/common-solution/steps/docker-push.yml@templates
+    parameters:
+      IMAGE_NAME: $(_storybookImageName)
+      IMAGE_VERSION: $(_imageVersion)
+      CONTAINER_REGISTRY: $(_azureContainerRegistry)
+
+  # Clean files build server
+  - template: build/common-solution/steps/delete-files.yml@templates
+
+  # Removing images
+  - template: build/common-solution/steps/docker-remove-image.yml@templates
+    parameters:
+      IMAGE_VERSION: npm_$(_imageVersion)
+      CONTAINER_REGISTRY_REPOSITORY_NAME: $(_storybookImageName)
       CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
