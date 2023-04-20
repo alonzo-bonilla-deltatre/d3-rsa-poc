@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import { sampleStory } from '@/__mocks__/entities/story';
-import Card, { CardProps } from "@/components/common/Card";
+import Card from "@/components/common/Card";
 import { DistributionEntity } from '@/models/types/dapi';
 
 const meta: Meta<typeof Card> = {

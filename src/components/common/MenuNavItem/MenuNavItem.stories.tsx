@@ -7,12 +7,6 @@ const meta: Meta<typeof MenuNavItem> = {
   title: 'UiComponents/MenuNavItem',
   component: MenuNavItem,
    tags: ['autodocs'],
-  //  argTypes: {
-  //    style: {
-  //     options: ['default', 'reverse'],
-  //     control: { type: 'radio' },
-  //   },
-  //  },
 };
 
 const sampleMenuItem: MenuItem ={

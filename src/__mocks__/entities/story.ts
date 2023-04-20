@@ -1,3 +1,14 @@
+const sampleContext = {
+  _translationId: '2d9edf1c-6432-44f7-b065-c09ffacfb5dc',
+  _entityId: 'f3cd7696-faa9-490e-841b-ee0c907df43e',
+  selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/tags/supercars',
+  title: 'supercars',
+  slug: 'supercars',
+  neutralSlug: 'supercars',
+  externalSourceReference: {},
+  fields: {},
+  type:'tag'
+};
 
 const sampleStory = {
     fields: {
@@ -16,16 +27,7 @@ const sampleStory = {
     lastUpdatedBy: '',
     lastUpdatedDate: '',
     contentDate: '',
-    context: {
-      _translationId: '',
-      _entityId: '',
-      selfUrl: '',
-      title: '',
-      slug: '',
-      neutralSlug: '',
-      externalSourceReference: {},
-      fields: {}
-    },
+    context: sampleContext,
     featured: 0,
     thumbnail: {
       title: 'GEN3_Supercars_Ford_Mustang_Chevrolet_Camaro_4',
@@ -50,5 +52,6 @@ const sampleStory = {
   };
   
   
-  export { sampleStory };
+  
+  export { sampleStory, sampleContext };
   

@@ -1,7 +1,6 @@
 import { translate } from "@/utilities/i18n";
 import { MenuItem } from "@/models/types/menu";
 import SvgIcon from "@/components/common/SvgIcon";
-import { IconTicket } from "@/components/common/Svgs";
 
 type MenuNavItemProps = {
   menuItem: MenuItem;
@@ -38,7 +37,6 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
           {hasIcon && (<SvgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></SvgIcon>)}
           {!hasIcon && itemText}
         </a>
-        <IconTicket className=""/>
         </>
       }
     </>

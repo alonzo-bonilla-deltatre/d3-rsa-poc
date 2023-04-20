@@ -8,17 +8,10 @@ import { headerServiceMenu } from "@/__mocks__/menu/headerServiceMenu"
 
 import { MenuResponse } from '@/models/types/menu';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Menu> = {
   title: 'UiComponents/Menu',
   component: Menu,
   tags: ['autodocs'],
-  //  argTypes: {
-  //    style: {
-  //     options: ['default', 'reverse'],
-  //     control: { type: 'radio' },
-  //   },
-  //  },
 };
 export default meta;
 const menuDataBasic = sampleMenu as MenuResponse;
@@ -29,6 +22,16 @@ const menuDataWithIcons = sampleMenuWithIcons as MenuResponse;
 type Story = StoryObj<typeof Menu>;
 
 export const Basic: Story = {
+  render: (args) => (
+    <>
+      <div className='container mx-20 py-12 lg:text-center'>
+        <div className='flex flex-col lg:flex-row uppercase justify-between'>
+          <Menu {...args}></Menu>
+        </div>
+      </div>
+    </>
+
+  ),
   args: {
     menuItems: menuDataBasic.data.menuItems,
     navItemClasses: 'default'

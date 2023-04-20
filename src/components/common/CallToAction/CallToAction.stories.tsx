@@ -41,18 +41,21 @@ export const Reverse: Story = {
   },
 };
 
-// export const All: Story = {
-//   render:(args) => {
-//     const { url, text, style } = args;
-//     return <CallToAction {...args} />;
-//   },
-//   }
-//   args: {
-//     url: "#nolink",
-//     text: 'Call to Action',
-//     style: 'reverse'
-//   },
-//   parameters: {
-//     layout: 'centered',
-//   },
-// };
+export const All: Story = {
+  render: (args) => (
+    <>
+      <ul className="list-none flex space-x-5">
+        <li>
+          <CallToAction url={'#nolink'} text={'Default'} isExternal={false} style={"default"} icon={""} hide={false}></CallToAction>
+        </li>
+
+        <li>
+          <CallToAction url={'#nolink'} text={'Reverse'} isExternal={false} style={"reverse"} icon={""} hide={false}></CallToAction>
+        </li>
+      </ul>
+    </>
+  ),
+  parameters: {
+    layout: 'centered',
+  },
+};
