@@ -3,8 +3,8 @@ WORKDIR /storybook
 
 COPY ./ ./
 
-RUN yarn install --frozen-lockfile --silent && \
-    yarn run build-storybook
+RUN yarn install --frozen-lockfile
+RUN yarn run build-storybook
 
 FROM nginx:alpine
-COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
+COPY --from=npm-base /storybook/storybook-static/ /usr/share/nginx/html/
