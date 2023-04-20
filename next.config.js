@@ -10,6 +10,14 @@ const nextConfig = {
       "images.unsplash.com",
       "res.cloudinary.com"
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/robots.txt',
+        destination: '/api/robots',
+      },
+    ];
   }
 }
 
