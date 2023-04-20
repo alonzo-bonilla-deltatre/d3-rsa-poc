@@ -19,7 +19,7 @@ const Footer = async(): Promise<React.ReactElement> => {
       <nav className="bg-[#141414]/0">
         <div className="container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
           <div className="flex py-6">
-          <SocialIcons hide={false} size={34} className={"mr-4"}></SocialIcons>
+          <SocialIcons hide={false} size={34} className={"mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300"}></SocialIcons>
           </div>
 
           <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">

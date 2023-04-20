@@ -1,26 +1,32 @@
-import Image from "next/image";
+import React, {DetailedHTMLProps, HTMLAttributes} from "react";
 
-type SvgIconProps = {
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
-};
+interface IIconProps extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
+  size?: number
+  icon: React.ElementType
+}
 
+type SvgExtraProps = {
+  width: string
+  height: string
+}
 
-const SvgIcon = ({ ...props }: SvgIconProps) => {
-const src =  props.src;
+const SvgIcon: React.FC<IIconProps> = (props) => {
+  const { size, icon, ...svgProps } = props;
+  // default
+  let svgExtraProps: SvgExtraProps = {
+    width: '24px',
+    height: '24px'
+  };
 
-  return props.src && props.width && (props.src.startsWith("/") || props.src.startsWith("http"))? (
-    <>
-    <Image
-      width={props.width}
-      height={props.height}
-      alt={props.alt}
-      src={src}
-    />
-    </>
-  ) : null;
-};
+  if (size !== undefined) {
+    svgExtraProps.width = `${size}px`;
+    svgExtraProps.height = `${size}px`;
+  }
+  
+  const IconComp: React.ElementType = icon;
+  return (
+    <IconComp {...svgProps } {...svgExtraProps} />
+  )
+}
 
 export default SvgIcon;

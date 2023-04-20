@@ -13,7 +13,6 @@ const MenuList = ({ ...data }: MenuProps) => {
   const iconSize = 44;
   return (
     <>
-
       {menuItems && menuItems.map((menuItem) => (
 
         <>
