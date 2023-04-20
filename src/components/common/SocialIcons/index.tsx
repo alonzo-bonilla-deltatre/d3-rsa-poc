@@ -1,6 +1,8 @@
-import Image from "next/image";
-import FacebookLogo from "@/components/icons/FacebookLogo";
-import {SvgIcon} from "@/components/common/SvgIcon";
+import SvgIcon from "@/components/common/SvgIcon";
+import FacebookRounded from "@/components/icons/FacebookRounded";
+import InstagramRounded from "@/components/icons/InstagramRounded";
+import YouTubeRounded from "@/components/icons/YouTubeRounded";
+import TwitterRounded from "@/components/icons/TwitterRounded";
 
 type SocialIconsProps = {
   hide: boolean;
@@ -8,35 +10,15 @@ type SocialIconsProps = {
   className: string;
 };
 
-const SocialIcons = ({ ...props }: SocialIconsProps) => {
+const SocialIcons = ({...props}: SocialIconsProps) => {
 
   return !props.hide ? (
     <>
-      {/*<SvgIcon className="text-pink-800 hover:text-pink-600" size={34} icon={FacebookLogo}></SvgIcon>*/}
-      <Image
-      width={props.size}
-      height={props.size}
-      alt={"Facebook"}
-      className={props.className}
-      src={"/icons/footer_facebook_logo.svg"} />
-      <Image
-        width={props.size}
-        height={props.size}
-        alt={"YouTube"}
-        className={props.className}
-        src={"/icons/footer_youtube_logo.svg"} />
-      <Image
-        width={props.size}
-        height={props.size}
-        alt={"Instagram"}
-        className={props.className}
-        src={"/icons/footer_instagram_logo.svg"} />
-      <Image
-        width={props.size}
-        height={props.size}
-        alt={"Twitter"}
-        className={props.className}
-        src={"/icons/footer_twitter_logo.svg"} /></>
+      <SvgIcon className={props.className} size={props.size} icon={FacebookRounded}></SvgIcon>
+      <SvgIcon className={props.className} size={props.size} icon={YouTubeRounded}></SvgIcon>
+      <SvgIcon className={props.className} size={props.size} icon={InstagramRounded}></SvgIcon>
+      <SvgIcon className={props.className} size={props.size} icon={TwitterRounded}></SvgIcon>
+    </>
   ) : <></>;
 };
 

@@ -1,4 +1,5 @@
 import {transform} from "@/helpers/markdown";
+import "./Markdown.scss"
 
 type MarkdownProps = {
   markdownText: string;

@@ -82,7 +82,7 @@ const Story = async ({...data}: ComponentProps) => {
                       <SocialIcons
                         hide={false}
                         size={50}
-                        className={"mr-4"}
+                        className={"mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300"}
                       ></SocialIcons>
                     </div>
                   )}

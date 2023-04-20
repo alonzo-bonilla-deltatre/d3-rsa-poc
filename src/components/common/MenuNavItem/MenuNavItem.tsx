@@ -1,6 +1,7 @@
-import { translate } from "@/utilities/i18n";
-import { MenuItem } from "@/models/types/menu";
-import ImgIcon from "@/components/common/SvgIcon";
+import {translate} from "@/utilities/i18n";
+import {MenuItem} from "@/models/types/menu";
+import ImgIcon from "@/components/common/ImgIcon";
+import "./MenuNavItem.scss"
 
 type MenuNavItemProps = {
   menuItem: MenuItem;
@@ -9,16 +10,16 @@ type MenuNavItemProps = {
   iconSize: number;
 }
 
-const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
-  const { menuItem, navItemClasses, parentId, iconSize } = data as MenuNavItemProps;
+const MenuNavItem = ({...data}: MenuNavItemProps) => {
+  const {menuItem, navItemClasses, parentId, iconSize} = data as MenuNavItemProps;
   //const router = usePathname();
   const parentid = parentId;
   const itemLink = menuItem.properties.link ?? "#nolink";
   const isActive = false;//router.pathname == itemLink;
   //TODO isActive handler
-  const isActiveClass= isActive ? "-active":"";
+  const isActiveClass = isActive ? "-active" : "";
   const itemText = translate(menuItem.properties.tag) ?? menuItem.text
-  
+
   const itemIcon = menuItem.properties.icon;
   const additionalAttributes = {
     ...(parentid ? {parentid: parentid} : undefined),
@@ -28,23 +29,27 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
     ...(itemText ? {alt: itemText} : undefined),
     ...(itemText ? {"aria-label": itemText} : undefined)
   }
-  const classNames = navItemClasses+isActiveClass;
+  const classNames = navItemClasses + isActiveClass;
   const hasIcon = itemIcon && iconSize;
+
   return (
     <>
-    {//@ts-ignore}
-      <a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
-        {
-          hasIcon && (<ImgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}></ImgIcon>)
-        }
-        {
-          !hasIcon && itemText
-        }
-      </a>
-}
+      {
+        <a href={itemLink} className={classNames} data-id={menuItem.id} {...additionalAttributes}>
+          {
+            hasIcon && (
+              <ImgIcon src={itemIcon} width={iconSize} height={iconSize} alt={itemText}
+                       className={"cursor-pointer transition duration-300 c-img-menu-nav-item"}
+                       ariaHidden={false}></ImgIcon>
+            )
+          }
+          {
+            !hasIcon && itemText
+          }
+        </a>
+      }
     </>
   )
 };
-
 
 export default MenuNavItem;
