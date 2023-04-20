@@ -1,4 +1,5 @@
-﻿import {FrontendConfiguration} from "@/models/types/frontendConfiguration";
+﻿/* istanbul ignore file */
+import {FrontendConfiguration} from "@/models/types/frontendConfiguration";
 import {initI18n, translate} from "@/utilities/i18n";
 
 const environment = process.env.ENVIRONMENT as string;
