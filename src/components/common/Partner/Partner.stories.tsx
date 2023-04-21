@@ -4,6 +4,7 @@ import Partner from "@/components/common/Partner";
 import { samplePartner1 } from '@/__mocks__/entities/samplePartner';
 import Picture from '../Picture';
 import { transformations } from "@/utilities/cloudinaryTransformations";
+import GadAsset from '../GadAsset';
 
 
 const meta: Meta<typeof Partner> = {
@@ -23,9 +24,9 @@ export const Default: Story = {
   render: () => (
     <>
       <div className="flex flex-col items-center">
-        <Picture
+        <GadAsset
           src={samplePartner1.src}
-          alt={samplePartner1.name}
+          title={samplePartner1.name}
           width={100}
           height={20}
           transformations={transformations.logos}

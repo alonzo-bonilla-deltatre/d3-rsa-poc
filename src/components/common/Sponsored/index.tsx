@@ -1,6 +1,6 @@
 import { translate } from "@/utilities/i18n";
-import Picture from "@/components/common/Picture";
-import { transformations } from "@/utilities/cloudinaryTransformations";
+import { getSrcWithTransformation, transformations } from "@/utilities/cloudinaryTransformations";
+import Image from "next/image";
 
 type SponsoredProps = {
   hide: boolean;
@@ -12,6 +12,8 @@ type SponsoredProps = {
 };
 
 const Sponsored = ({ ...props }: SponsoredProps) => {
+  const desktopSrc = getSrcWithTransformation(props.assetUrl,transformations.logos.desktop);
+
 
   return !props.hide && props.assetUrl ? (
     <>
@@ -19,13 +21,12 @@ const Sponsored = ({ ...props }: SponsoredProps) => {
                   <span className="text-xs uppercase">
                     {translate("sponsored-by")}
                   </span>
-                  <Picture
+                  <Image
                     className={props.className}
-                    src={props.assetUrl}
+                    src={desktopSrc}
                     alt={props.name}
                     width={props.width}
                     height={props.height}
-                    transformations={transformations.logos}
                   />
                 </div>
     </>

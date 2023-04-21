@@ -96,8 +96,6 @@ export const HeroSwiper = ({...data}: ModuleProps) => {
                   <div className="col-start-1 row-start-1 bg-black">
                     <Picture
                       transformations={transformations.heroSwiper}
-                      width={630}
-                      height={270}
                       className="w-full h-full object-cover opacity-[.50]" src={slide.thumbnail.templateUrl}
                       alt={slide.title}/>
                   </div>

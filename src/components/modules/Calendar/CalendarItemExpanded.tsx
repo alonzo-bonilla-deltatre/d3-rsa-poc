@@ -10,6 +10,7 @@ import { GraphicAssetsDashboardItem } from "@/models/types/gad";
 import { transformations } from "@/utilities/cloudinaryTransformations";
 import { getEventDayString, getEventMonthString } from "@/components/modules/Calendar/CalendarHelpers";
 import CountDownClock from "@/components/modules/Calendar/CountDownClock";
+import GadAsset from "@/components/common/GadAsset";
 
 type ModuleProps = {
   entity: DistributionEntity;
@@ -52,14 +53,13 @@ const CalendarItemExpanded = ({ ...data }: ModuleProps) => {
       </span>
       <div className="mt-4 min-h-[110px] flex flex-col justify-center relative">
         {data.clockAsset?.assetThumbnailUrl?.length && (
-          <Picture
+          <GadAsset
             className="absolute left-10 top-[-16px]"
             src={data.clockAsset.assetUrl}
-            alt=""
+            title=""
             width={110}
             height={100}
             transformations={transformations.logos}
-            aria-hidden="true"
           />
         )}
         <CountDownClock deadline={fields.dateFrom} className="mx-auto"/>

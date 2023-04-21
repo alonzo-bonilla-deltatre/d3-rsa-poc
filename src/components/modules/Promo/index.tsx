@@ -56,8 +56,6 @@ const Promo = async ({ ...data }: ComponentProps) => {
               <Picture
                 src={promoEntity.thumbnail.templateUrl}
                 transformations={transformations.thumbnailDetail}
-                width={630}
-                height={270}
                 alt={promoEntity.thumbnail.title ?? ""}
                 className="w-full h-full object-cover"
               />

@@ -1,5 +1,5 @@
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import Picture from "@/components/common/Picture";
+import GadAsset from "../GadAsset";
 
 
 type LogoProps = {
@@ -17,7 +17,7 @@ const Logo = ({ ...props }: LogoProps) => {
   
   return props.assetUrl ? (
     <div className="flex items-center" role="presentation">
-      <Picture src={props.assetUrl} width={props.width} height={height} className="max-sm:w-full" alt={props.alt} transformations={transformations.logos}></Picture>
+      <GadAsset src={props.assetUrl} className="max-sm:w-full" title={props.alt} transformations={transformations.logos} width={props.width} height={props.height}></GadAsset>
     </div>
   ): <></>;
 };

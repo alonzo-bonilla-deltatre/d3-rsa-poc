@@ -24,7 +24,7 @@ const sampleLogo4 ={
   height:143,
   alt:"NewWave logo",
   className : "max-sm:w-full",
-  assetUrl: 'https://res.cloudinary.com/forgephotos/image/upload/v1637764260/sandbox-integrations/qa/partner/NewWave_2020x143_png'
+  assetUrl: 'https://res.cloudinary.com/forgephotos/image/upload/{formatInstructions}/v1637764260/sandbox-integrations/qa/partner/NewWave_2020x143_png'
 };
 const sampleLogoSquared ={
   width:200,
@@ -33,5 +33,11 @@ const sampleLogoSquared ={
   className : "max-sm:w-full",
   assetUrl: 'https://res.cloudinary.com/forgephotos/image/upload/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg'
 };
-
-export { sampleLogo1,sampleLogo2,sampleLogo3,sampleLogo4,sampleLogoSquared };
+const sampleLogoWithFormat ={
+  width:220,
+  height:143,
+  alt:"NewWave logo",
+  className : "max-sm:w-full",
+  assetUrl: 'https://res.cloudinary.com/forgephotos/image/upload/v1637764260/sandbox-integrations/qa/partner/NewWave_2020x143_png'
+};
+export { sampleLogo1,sampleLogo2,sampleLogo3,sampleLogo4,sampleLogoSquared,sampleLogoWithFormat };

@@ -15,8 +15,7 @@ const PhotoPart = ({ ...props }: PhotoPartProps) => {
     <>
       <figure>
         <Picture src={img.image.templateUrl}
-          width={800}
-          height={450} alt={img.image.title ?? ""}
+          alt={img.image.title ?? ""}
           transformations={transformations.thumbnailDetail}
           className="w-full h-full object-cover"></Picture>
       </figure>

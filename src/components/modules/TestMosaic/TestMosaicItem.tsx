@@ -28,8 +28,6 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                 <Picture
                   src={item.thumbnail.templateUrl}
                   transformations={transformation}
-                  width={416}
-                  height={234}
                   alt={item.thumbnail.title ?? ""}
                   className="w-full h-full object-cover opacity-[.50]"
                 />
@@ -39,8 +37,6 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                 <Picture
                   src={thumbnailPlaceHolder?.assetUrl ?? ""}
                   transformations={transformation}
-                  width={416}
-                  height={234}
                   alt={thumbnailPlaceHolder?.publicId ?? ""}
                   className="w-full h-full object-cover opacity-[.50]"
                 />
@@ -80,8 +76,6 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                 className="w-full h-full object-cover"
                 src={item.thumbnail.templateUrl}
                 transformations={transformation}
-                width={416}
-                height={234}
                 alt={item.thumbnail.title ?? ""}
               />
             </figure>
@@ -91,8 +85,6 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                 className="w-full h-full object-cover"
                 src={thumbnailPlaceHolder?.assetUrl ?? ""}
                 transformations={transformation}
-                width={416}
-                height={234}
                 alt={thumbnailPlaceHolder?.publicId ?? ""}
               />
             </figure>
