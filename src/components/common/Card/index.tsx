@@ -27,8 +27,7 @@ const Card = ({ ...props }: CardProps) => {
             src={entityImage.templateUrl}
             className="w-full h-full object-cover"
             transformations={transformations.thumbnailGridItem}
-            width={416}
-            height={234} alt={entity.title} />
+            alt={entity.title} />
         </figure>
 
       )}

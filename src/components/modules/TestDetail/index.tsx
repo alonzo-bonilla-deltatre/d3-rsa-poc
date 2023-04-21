@@ -71,8 +71,6 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
               <Picture
                 src={testDetailEntity.thumbnail.templateUrl}
                 transformations={transformations.thumbnailDetail}
-                width={630}
-                height={270}
                 alt={testDetailEntity.thumbnail.title ?? ""}
                 className="w-full h-full object-cover opacity-[.50]"
               />
@@ -80,8 +78,6 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
               <Picture
                 src={thumbnailPlaceHolder?.assetUrl ?? ""}
                 transformations={transformations.thumbnailDetail}
-                width={630}
-                height={270}
                 alt={thumbnailPlaceHolder?.publicId ?? ""}
                 className="w-full h-full object-cover opacity-[.50]"
               />

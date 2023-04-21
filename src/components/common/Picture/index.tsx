@@ -4,8 +4,6 @@ import Image from "next/image";
 
 type PictureProps = {
   src: string | "";
-  width: number;
-  height: number;
   alt: string;
   transformations: ImageTransformations;
   className?: string;
@@ -17,6 +15,8 @@ const Picture = ({ ...props }: PictureProps) => {
   const desktopSrc = getSrcWithTransformation(props.src,props.transformations.desktop);
   const tabletSrc = getSrcWithTransformation(props.src,props.transformations.tablet);
   const mobileSrc = getSrcWithTransformation(props.src,props.transformations.mobile);
+  const mobileWidth = props.transformations.mobileWidth;
+  const mobileHeight = props.transformations.mobileHeight;
 
   return canRender ? (
     <picture>
@@ -33,8 +33,8 @@ const Picture = ({ ...props }: PictureProps) => {
         ></source>
       )}
       <Image
-        width={props.width}
-        height={props.height}
+        width={mobileWidth}
+        height={mobileHeight}
         alt={props.alt}
         className={`max-w-none ${
           props.className ?? ""

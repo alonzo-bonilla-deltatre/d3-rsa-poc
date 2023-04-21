@@ -2,9 +2,9 @@ import logger from "@/utilities/logger";
 import { LoggerLevel } from "@/models/types/logger";
 import { getSingleAssetByTag } from "@/services/gadService";
 import { transformations } from "@/utilities/cloudinaryTransformations";
-import Picture from "@/components/common/Picture";
 import { DistributionEntity } from "@/models/types/dapi";
 import { PartnerFields } from "@/models/types/dapi.customEntityFields";
+import GadAsset from "../GadAsset";
 
 
 type PartnerProps = {
@@ -32,9 +32,9 @@ const Partner = async ({ ...props }: PartnerProps) => {
   return logo ? (
     <div className="flex flex-col items-center">
                   
-                  <Picture
+                  <GadAsset
                     src={logo.assetUrl}
-                    alt={partnerName}
+                    title={partnerName}
                     width={props.width}
                     height={props.height}
                     transformations={transformations.logos}

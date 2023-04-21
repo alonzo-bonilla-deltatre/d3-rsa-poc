@@ -97,8 +97,6 @@ const TestList = async ({ ...data }: ComponentProps) => {
                     className="w-full h-full object-cover"
                     src={entity.thumbnail.templateUrl}
                     transformations={transformations.thumbnailGridItem}
-                    width={416}
-                    height={234}
                     alt={entity.thumbnail.title ?? ""}
                   />
                 </figure>
@@ -108,8 +106,6 @@ const TestList = async ({ ...data }: ComponentProps) => {
                     className="w-full h-full object-cover"
                     src={thumbnailPlaceHolder?.assetUrl ?? ""}
                     transformations={transformations.thumbnailGridItem}
-                    width={416}
-                    height={234}
                     alt={thumbnailPlaceHolder?.publicId ?? ""}
                   />
                 </figure>

@@ -98,8 +98,6 @@ const Story = async ({...data}: ComponentProps) => {
             <Picture
               src={storyEntity.thumbnail.templateUrl}
               transformations={transformations.thumbnailDetail}
-              width={630}
-              height={270}
               alt={storyEntity.thumbnail.title ?? ""}
               className="w-full h-full object-cover"
             />
