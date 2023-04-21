@@ -11,23 +11,23 @@ type CallToActionProps = {
 
 
 const CallToAction = ({ ...props }: CallToActionProps) => {
-  const displayText = props.text ? props.text: "read-more";
+  const displayText = props.text ? props.text : "read-more";
   const iconSize = 20;
   const additionalAttributes = {
     ...(props.isExternal ? {target: "blank"} : undefined)
   };
   return props.url && !props.hide ? (
     <>
-    <a
-      href={props.url}
-      title = {displayText}
-      className={getCtaClasses(props.style)}
-      {...additionalAttributes}
-    >{
-      props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></ImgIcon>)
-    }
-      {displayText}
-    </a></>
+      <a
+        href={props.url}
+        title={displayText}
+        className={getCtaClasses(props.style)}
+        {...additionalAttributes}
+      >{
+          props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></ImgIcon>)
+        }
+        {displayText}
+      </a></>
   ) : <></>;
 };
 
@@ -39,7 +39,11 @@ export const getCtaClasses = (style: string) => {
       return "inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
     case "reverse":
       return "inline-block text-black bg-white font-bold uppercase px-8 py-3 rounded-full outline-none";
-    default:
+    case "outline":
       return "inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
+    case "link":
+      return "inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
+    default:
+      return "inline-block text-black border-2  bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
   }
 };

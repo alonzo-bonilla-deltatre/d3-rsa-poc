@@ -28,7 +28,7 @@ const Card = ({ ...props }: CardProps) => {
             className="w-full h-full object-cover"
             transformations={transformations.thumbnailGridItem}
             width={416}
-            height={234} alt={entity.title}          />
+            height={234} alt={entity.title} />
         </figure>
 
       )}

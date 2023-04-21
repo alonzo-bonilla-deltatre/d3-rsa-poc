@@ -13,10 +13,11 @@ type LogoProps = {
 
 
 const Logo = ({ ...props }: LogoProps) => {
-
+  const height = props.height ? props.height : (props.width ? props.width : 50);
+  
   return props.assetUrl ? (
     <div className="flex items-center" role="presentation">
-      <Picture src={props.assetUrl} width={props.width} height={props.height} className="max-sm:w-full" alt={props.alt} transformations={transformations.logos}></Picture>
+      <Picture src={props.assetUrl} width={props.width} height={height} className="max-sm:w-full" alt={props.alt} transformations={transformations.logos}></Picture>
     </div>
   ): <></>;
 };

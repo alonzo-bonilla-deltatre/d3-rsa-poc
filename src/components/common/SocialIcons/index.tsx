@@ -4,7 +4,7 @@ import InstagramRounded from "@/components/icons/InstagramRounded";
 import YouTubeRounded from "@/components/icons/YouTubeRounded";
 import TwitterRounded from "@/components/icons/TwitterRounded";
 
-type SocialIconsProps = {
+export type SocialIconsProps = {
   hide: boolean;
   size: number;
   className: string;

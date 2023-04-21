@@ -1,4 +1,4 @@
-import { DistributionEntity } from "./dapi";
+import { DistributionEntity } from "@/models/types/dapi";
 
 export type StoryPart = DistributionEntity & DistributionEntityStoryPart;
 
