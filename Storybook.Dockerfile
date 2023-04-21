@@ -9,5 +9,4 @@ RUN yarn run build-storybook
 FROM nginx:alpine
 COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
 RUN ls /usr/share/nginx/html
-RUN ls /usr/share/nginx/html/storybook-static
-RUN ls /usr/share/nginx/html/storybook-static/sb-manager
+RUN ls /usr/share/nginx/html/sb-manager
