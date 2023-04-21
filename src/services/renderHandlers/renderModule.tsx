@@ -15,7 +15,7 @@ import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
-import React from "react";
+import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   PocPromo: renderPromo,
