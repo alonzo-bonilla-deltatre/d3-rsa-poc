@@ -44,6 +44,7 @@ const MenuNavItem = ({...data}: MenuNavItemProps) => {
                          ariaHidden={!itemText}></ImgIcon>
               )
             }
+            {!hasIcon && itemText}          
           </a>
         </>
       }

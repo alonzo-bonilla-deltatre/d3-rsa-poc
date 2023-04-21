@@ -29,7 +29,6 @@ export const Basic: Story = {
         </div>
       </div>
     </>
-
   ),
   args: {
     menuItems: menuDataBasic.data.menuItems,
@@ -44,6 +43,12 @@ export const OnlyIcons: Story = {
   }
 };
 export const WithIcons: Story = {
+  render: (args) => (
+    <>
+      <div>To be mplemented</div>
+      <Menu {...args}></Menu>
+    </>
+  ),
   args: {
     menuItems: menuDataWithIcons.data.menuItems,
     navItemClasses: 'default'
