@@ -15,17 +15,5 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  webpackFinal: async (config) => {
-    const updatedConfig = {
-      output: {
-        path: './storybook',
-        filename: '/storybook/[name].[hash].bundle.js',
-        publicPath: '/storybook/',
-      },
-      ...config,
-    };
-
-    return updatedConfig;
-  },
 };
 export default config;
