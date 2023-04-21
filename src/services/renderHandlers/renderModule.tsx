@@ -10,11 +10,12 @@ import renderHero from '@/components/modules/Hero/HeroWrapper';
 import renderCalendar from '@/components/modules/Calendar/CalendarWrapper';
 import renderTestDetail from '@/components/modules/TestDetail/TestDetailWrapper';
 import renderTestList from '@/components/modules/TestList/TestListWrapper';
-import renderTestMosaicList from '@/components/modules/TestMosaic/TestMosaicWrapper';
+import renderMosaicList from '@/components/modules/Mosaic/MosaicWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
+import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   PocPromo: renderPromo,
@@ -24,7 +25,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocCalendar: renderCalendar,
   PocTestDetail: renderTestDetail,
   PocTestList: renderTestList,
-  PocTestMosaic: renderTestMosaicList,
+  PocTestMosaic: renderMosaicList,
   PocMenu: renderMenu,
   PocStory: renderStory,
   PocPartners: renderPartners,
@@ -35,6 +36,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Story: renderStory,
   Partners: renderPartners,
   BrightcoveVideo: renderBrightcoveVideo,
+  Mosaic: renderMosaicList,
 };
 
 export const renderModule = (item: StructureItem): React.ReactElement => {

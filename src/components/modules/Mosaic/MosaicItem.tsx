@@ -7,15 +7,15 @@ import { ImageTransformations } from '@/models/types/images';
 import { formatDate } from '@/utilities/dateFormatter';
 import { nanoid } from 'nanoid';
 
-type TestMosaicItemProps = {
+type MosaicItemProps = {
   item: DistributionEntity;
   thumbnailPlaceHolder: GraphicAssetsDashboardItem | null;
   transformation: ImageTransformations;
   hasTextOverlap: boolean;
 };
 
-const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
-  const { item, thumbnailPlaceHolder, transformation, hasTextOverlap } = data as TestMosaicItemProps;
+const MosaicItem = ({ ...data }: MosaicItemProps) => {
+  const { item, thumbnailPlaceHolder, transformation, hasTextOverlap } = data as MosaicItemProps;
 
   return (
     <>
@@ -108,4 +108,4 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
   );
 };
 
-export default TestMosaicItem;
+export default MosaicItem;
