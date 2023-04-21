@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Picture from "@/components/common/Picture";
-import { DistributionEntity } from "@/models/types/dapi";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { ImageTransformations } from "@/models/types/images";
-import { formatDate } from "@/utilities/dateFormatter";
-import { nanoid } from "nanoid";
+import Picture from '@/components/common/Picture';
+import { DistributionEntity } from '@/models/types/dapi';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { ImageTransformations } from '@/models/types/images';
+import { formatDate } from '@/utilities/dateFormatter';
+import { nanoid } from 'nanoid';
 
 type TestMosaicItemProps = {
   item: DistributionEntity;
@@ -15,8 +15,7 @@ type TestMosaicItemProps = {
 };
 
 const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
-  const { item, thumbnailPlaceHolder, transformation, hasTextOverlap } =
-    data as TestMosaicItemProps;
+  const { item, thumbnailPlaceHolder, transformation, hasTextOverlap } = data as TestMosaicItemProps;
 
   return (
     <>
@@ -28,16 +27,16 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                 <Picture
                   src={item.thumbnail.templateUrl}
                   transformations={transformation}
-                  alt={item.thumbnail.title ?? ""}
+                  alt={item.thumbnail.title ?? ''}
                   className="w-full h-full object-cover opacity-[.50]"
                 />
               </figure>
             ) : (
               <figure className="p-2 col-start-1 row-start-1">
                 <Picture
-                  src={thumbnailPlaceHolder?.assetUrl ?? ""}
+                  src={thumbnailPlaceHolder?.assetUrl ?? ''}
                   transformations={transformation}
-                  alt={thumbnailPlaceHolder?.publicId ?? ""}
+                  alt={thumbnailPlaceHolder?.publicId ?? ''}
                   className="w-full h-full object-cover opacity-[.50]"
                 />
               </figure>
@@ -58,34 +57,30 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                   })}
                 </div>
               )}
-              <h3 className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">
-                {item.title}
-              </h3>
-              <time className="mb-3 text-sm font-light text-[#BEBEBE]">
-                {formatDate(item.contentDate)}
-              </time>
+              <h3 className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">{item.title}</h3>
+              <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(item.contentDate)}</time>
             </div>
           </div>
         </>
       ) : (
         <>
-          {" "}
+          {' '}
           {item.thumbnail ? (
             <figure className="p-2">
               <Picture
                 className="w-full h-full object-cover"
                 src={item.thumbnail.templateUrl}
                 transformations={transformation}
-                alt={item.thumbnail.title ?? ""}
+                alt={item.thumbnail.title ?? ''}
               />
             </figure>
           ) : (
             <figure className="p-2">
               <Picture
                 className="w-full h-full object-cover"
-                src={thumbnailPlaceHolder?.assetUrl ?? ""}
+                src={thumbnailPlaceHolder?.assetUrl ?? ''}
                 transformations={transformation}
-                alt={thumbnailPlaceHolder?.publicId ?? ""}
+                alt={thumbnailPlaceHolder?.publicId ?? ''}
               />
             </figure>
           )}
@@ -104,12 +99,8 @@ const TestMosaicItem = ({ ...data }: TestMosaicItemProps) => {
                 })}
               </div>
             )}
-            <h3 className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">
-              {item.title}
-            </h3>
-            <time className="mb-3 text-sm font-light text-[#BEBEBE]">
-              {formatDate(item.contentDate)}
-            </time>
+            <h3 className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">{item.title}</h3>
+            <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(item.contentDate)}</time>
           </div>
         </>
       )}

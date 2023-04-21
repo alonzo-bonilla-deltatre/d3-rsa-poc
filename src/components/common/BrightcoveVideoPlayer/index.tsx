@@ -1,4 +1,4 @@
-import { DistributionEntity } from "@/models/types/dapi";
+import { DistributionEntity } from '@/models/types/dapi';
 
 type BrightcoveVideoPlayerProps = {
   entity: DistributionEntity;
@@ -7,7 +7,7 @@ type BrightcoveVideoPlayerProps = {
 
 const BrightcoveVideoPlayer = ({ ...props }: BrightcoveVideoPlayerProps) => {
   const { entity, isStoryPart } = props as BrightcoveVideoPlayerProps;
-  const oembedUrl = `https://players.brightcove.net/${entity.fields["brightcoveAccountId"]}/default_default/index.html?videoId=${entity.fields["brightcoveId"]}`;
+  const oembedUrl = `https://players.brightcove.net/${entity.fields['brightcoveAccountId']}/default_default/index.html?videoId=${entity.fields['brightcoveId']}`;
 
   return (
     entity && (

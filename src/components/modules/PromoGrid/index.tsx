@@ -1,10 +1,10 @@
-import { ComponentProps } from "@/models/types/components";
-import { getEntityList} from "@/services/dapiService";
-import { DistributionEntity } from "@/models/types/dapi";
-import { nanoid } from "nanoid";
-import ModuleTitle from "@/components/common/ModuleTitle";
-import React from "react";
-import Card from "@/components/common/Card";
+import { ComponentProps } from '@/models/types/components';
+import { getEntityList } from '@/services/dapiService';
+import { DistributionEntity } from '@/models/types/dapi';
+import { nanoid } from 'nanoid';
+import ModuleTitle from '@/components/common/ModuleTitle';
+import React from 'react';
+import Card from '@/components/common/Card';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -17,9 +17,9 @@ type ModuleProps = {
 };
 
 const PromoGrid = async ({ ...data }: ComponentProps) => {
-  const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags , selectionSlug} =
+  const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags, selectionSlug } =
     data.properties as ModuleProps;
-const entityType = "promos";
+  const entityType = 'promos';
   // const queryString = getQueryString({ skip, limit, tags });
 
   // const promoEntitiesFetch = getAllEntities("promos", queryString);
@@ -40,14 +40,18 @@ const entityType = "promos";
       <div className="grid grid-cols-3 gap-4 px-8">
         {items.map((entity: DistributionEntity) => {
           return (
-            <Card key={nanoid()} entity={entity} options={{
-              hideIcon: true,
-              hideRoofline: false,
-              hideTitle: false,
-              hideDate: false,
-              hideAuthor: true,
-              hideCta: true
-            }} ></Card>
+            <Card
+              key={nanoid()}
+              entity={entity}
+              options={{
+                hideIcon: true,
+                hideRoofline: false,
+                hideTitle: false,
+                hideDate: false,
+                hideAuthor: true,
+                hideCta: true,
+              }}
+            ></Card>
           );
         })}
       </div>

@@ -15,14 +15,14 @@ export type CustomPromoFields = {
     url: string;
     openInNewTab: boolean;
   };
-}
+};
 
 export type AccessibleLink = {
   displayText: string;
   accessibleText: string;
   url: string;
   openInNewTab: boolean;
-}
+};
 
 export type GrandPrixFields = {
   headline: string;
@@ -41,4 +41,4 @@ export type PartnerFields = {
   PartnerLink: AccessibleLink;
   PartnerLogo: string;
   PartnerName: string;
-}
+};

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Author from "@/components/common/Author";
+import Author from '@/components/common/Author';
 
 const meta: Meta<typeof Author> = {
   title: 'UiComponents/Author',
@@ -9,7 +9,7 @@ const meta: Meta<typeof Author> = {
   argTypes: {
     hide: {
       control: false,
-    }
+    },
   },
 };
 
@@ -18,10 +18,9 @@ type Story = StoryObj<typeof Author>;
 
 export const Default: Story = {
   args: {
-    author: "Mario Rossi",
+    author: 'Mario Rossi',
   },
   parameters: {
     layout: 'centered',
   },
 };
-

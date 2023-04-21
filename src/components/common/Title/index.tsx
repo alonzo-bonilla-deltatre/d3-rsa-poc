@@ -4,18 +4,14 @@ type CardTitleProps = {
   hide: boolean;
 };
 
-
 const EditorialTitle = ({ ...props }: CardTitleProps) => {
-
-  const HeadingTag = `${
-    props.heading ? props.heading.toLowerCase() : "h3"
-  }` as keyof JSX.IntrinsicElements;
+  const HeadingTag = `${props.heading ? props.heading.toLowerCase() : 'h3'}` as keyof JSX.IntrinsicElements;
 
   return props.title ? (
-    <HeadingTag className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">
-              {props.title}
-            </HeadingTag>
-  ) : <></> ;
+    <HeadingTag className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">{props.title}</HeadingTag>
+  ) : (
+    <></>
+  );
 };
 
 export default EditorialTitle;

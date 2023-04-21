@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CallToAction from "@/components/common/CallToAction";
+import CallToAction from '@/components/common/CallToAction';
 
 const meta: Meta<typeof CallToAction> = {
   title: 'UiComponents/CallToAction',
@@ -8,12 +8,12 @@ const meta: Meta<typeof CallToAction> = {
   tags: ['autodocs'],
   argTypes: {
     style: {
-      options: ['default', 'reverse','outline','link'],
+      options: ['default', 'reverse', 'outline', 'link'],
       control: { type: 'radio' },
     },
     hide: {
       control: false,
-    }
+    },
   },
 };
 
@@ -22,20 +22,19 @@ type Story = StoryObj<typeof CallToAction>;
 
 export const Default: Story = {
   args: {
-    url: "#nolink",
+    url: '#nolink',
     text: 'Call to Action',
-    style: 'default'
+    style: 'default',
   },
   parameters: {
     layout: 'centered',
   },
- 
 };
 export const Reverse: Story = {
   args: {
-    url: "#nolink",
+    url: '#nolink',
     text: 'Call to Action',
-    style: 'reverse'
+    style: 'reverse',
   },
   parameters: {
     layout: 'centered',
@@ -43,9 +42,9 @@ export const Reverse: Story = {
 };
 export const Outline: Story = {
   args: {
-    url: "#nolink",
+    url: '#nolink',
     text: 'Call to Action',
-    style: 'outline'
+    style: 'outline',
   },
   parameters: {
     layout: 'centered',
@@ -53,9 +52,9 @@ export const Outline: Story = {
 };
 export const Link: Story = {
   args: {
-    url: "#nolink",
+    url: '#nolink',
     text: 'Call to Action',
-    style: 'link'
+    style: 'link',
   },
   parameters: {
     layout: 'centered',
@@ -67,20 +66,46 @@ export const All: Story = {
     <>
       <ul className="list-none flex space-x-5">
         <li>
-          <CallToAction url={'#nolink'} text={'Default'} isExternal={false} style={"default"} icon={""} hide={false}></CallToAction>
+          <CallToAction
+            url={'#nolink'}
+            text={'Default'}
+            isExternal={false}
+            style={'default'}
+            icon={''}
+            hide={false}
+          ></CallToAction>
         </li>
 
         <li>
-          <CallToAction url={'#nolink'} text={'Reverse'} isExternal={false} style={"reverse"} icon={""} hide={false}></CallToAction>
+          <CallToAction
+            url={'#nolink'}
+            text={'Reverse'}
+            isExternal={false}
+            style={'reverse'}
+            icon={''}
+            hide={false}
+          ></CallToAction>
         </li>
         <li>
-          <CallToAction url={'#nolink'} text={'Outline'} isExternal={false} style={"outline"} icon={""} hide={false}></CallToAction>
+          <CallToAction
+            url={'#nolink'}
+            text={'Outline'}
+            isExternal={false}
+            style={'outline'}
+            icon={''}
+            hide={false}
+          ></CallToAction>
         </li>
         <li>
-          <CallToAction url={'#nolink'} text={'Link'} isExternal={false} style={"link"} icon={""} hide={false}></CallToAction>
+          <CallToAction
+            url={'#nolink'}
+            text={'Link'}
+            isExternal={false}
+            style={'link'}
+            icon={''}
+            hide={false}
+          ></CallToAction>
         </li>
-
-    
       </ul>
     </>
   ),

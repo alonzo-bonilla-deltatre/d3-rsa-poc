@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
-import BrightcoveVideoPlayer from "@/components/common/BrightcoveVideoPlayer";
+import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer';
 import { DistributionEntity } from '@/models/types/dapi';
 import { withBaseDecorator, withStoryPartDecorator } from '@/services/storybookService';
 
@@ -11,11 +11,9 @@ const meta: Meta<typeof BrightcoveVideoPlayer> = {
   argTypes: {
     entity: {
       control: false,
-    }
+    },
   },
-  decorators: [
-    withBaseDecorator,
-  ],
+  decorators: [withBaseDecorator],
 };
 
 const brightcoveEntity: DistributionEntity = sampleBrightcoveVideo;
@@ -27,18 +25,14 @@ type Story = StoryObj<typeof BrightcoveVideoPlayer>;
 export const Default: Story = {
   args: {
     entity: brightcoveEntity,
-    isStoryPart: false
-  }
+    isStoryPart: false,
+  },
 };
 export const StoryPart: Story = {
-  render: (args) => (
-    <BrightcoveVideoPlayer {...args}></BrightcoveVideoPlayer>
-  ),
+  render: (args) => <BrightcoveVideoPlayer {...args}></BrightcoveVideoPlayer>,
   args: {
     entity: brightcoveEntity,
-    isStoryPart: true
+    isStoryPart: true,
   },
-  decorators: [
-    withStoryPartDecorator,
-  ],
+  decorators: [withStoryPartDecorator],
 };

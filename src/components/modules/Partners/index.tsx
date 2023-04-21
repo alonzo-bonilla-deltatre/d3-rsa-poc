@@ -1,12 +1,12 @@
-import { ComponentProps } from "@/models/types/components";
-import { getSelection } from "@/services/dapiService";
-import { DistributionEntity } from "@/models/types/dapi";
-import dynamic from "next/dynamic";
-import { nanoid } from "nanoid";
-import ModuleTitle from "@/components/common/ModuleTitle";
+import { ComponentProps } from '@/models/types/components';
+import { getSelection } from '@/services/dapiService';
+import { DistributionEntity } from '@/models/types/dapi';
+import dynamic from 'next/dynamic';
+import { nanoid } from 'nanoid';
+import ModuleTitle from '@/components/common/ModuleTitle';
 
 // @ts-ignore
-const Partner = dynamic(() => import("@/components/common/Partner"));
+const Partner = dynamic(() => import('@/components/common/Partner'));
 
 type ModuleProps = {
   moduleTitle: string;
@@ -18,19 +18,14 @@ type ModuleProps = {
 };
 
 const Partners = async ({ ...data }: ComponentProps) => {
-  const {
-    moduleTitle,
-    headingLevel,
-    displayModuleTitle,
-    selectionSlug
-  } = data.properties as ModuleProps;
+  const { moduleTitle, headingLevel, displayModuleTitle, selectionSlug } = data.properties as ModuleProps;
   const defaultItemLimit = 5;
 
   const selectionFetch = getSelection(selectionSlug);
   const [selection] = await Promise.all([selectionFetch]);
   const items = selection?.items;
-  
-  return  (
+
+  return (
     <section className="relative mx-60 mt-20 col-start-1">
       <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
@@ -38,15 +33,19 @@ const Partners = async ({ ...data }: ComponentProps) => {
         text={moduleTitle}
       ></ModuleTitle>
       <div className="grid grid-flow-row-dense lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-        {items && items.map((entity: DistributionEntity) => {
-          return (
-            <Partner key={nanoid()} entity={entity} width={100} height={50}></Partner>
-          );
-        })}
+        {items &&
+          items.map((entity: DistributionEntity) => {
+            return (
+              <Partner
+                key={nanoid()}
+                entity={entity}
+                width={100}
+                height={50}
+              ></Partner>
+            );
+          })}
       </div>
     </section>
   );
 };
 export default Partners;
-
-

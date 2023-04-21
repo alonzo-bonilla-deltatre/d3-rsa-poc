@@ -1,12 +1,12 @@
-import { PageStructureItemType, StructureItem } from "@/models/types/pageStructure";
-import React, { JSXElementConstructor, ReactElement } from "react";
-import { renderLayout } from "./renderHandlers/renderLayout";
-import { renderModule } from "./renderHandlers/renderModule";
-import { renderTemplate } from "./renderHandlers/renderTemplate";
-import {nanoid} from "nanoid";
+import { PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
+import React, { JSXElementConstructor, ReactElement } from 'react';
+import { renderLayout } from './renderHandlers/renderLayout';
+import { renderModule } from './renderHandlers/renderModule';
+import { renderTemplate } from './renderHandlers/renderTemplate';
+import { nanoid } from 'nanoid';
 
 export const renderItem = (item: StructureItem): React.ReactElement => {
-  function renderEmptyPage():React.ReactElement {
+  function renderEmptyPage(): React.ReactElement {
     return <div key={nanoid()} />; // return empty div to not have an error on the page in the future we need to manage the page error
   }
 
@@ -31,18 +31,14 @@ export const renderItemsInSlot = (
   items: StructureItem[] | undefined,
   slotName: string
 ): ReactElement<any, string | JSXElementConstructor<any>>[] | null => {
-  if (typeof items === "undefined" || !items.length) {
+  if (typeof items === 'undefined' || !items.length) {
     return null;
   }
 
-  const itemsBySlot = items.filter(
-    (item: StructureItem) => item.slot === slotName
-  );
+  const itemsBySlot = items.filter((item: StructureItem) => item.slot === slotName);
 
   if (!itemsBySlot.length) {
     return null;
   }
   return itemsBySlot.map((item: StructureItem) => renderItem(item));
 };
-
-

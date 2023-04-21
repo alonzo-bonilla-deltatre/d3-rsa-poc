@@ -1,21 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Partner from "@/components/common/Partner";
+import Partner from '@/components/common/Partner';
 import { samplePartner1 } from '@/__mocks__/entities/samplePartner';
 import Picture from '../Picture';
-import { transformations } from "@/utilities/cloudinaryTransformations";
+import { transformations } from '@/utilities/cloudinaryTransformations';
 import GadAsset from '../GadAsset';
-
 
 const meta: Meta<typeof Partner> = {
   title: 'UiComponents/Partner',
   //component: Partner,
   tags: ['autodocs'],
   argTypes: {
-    assetUrl: ['https://res.cloudinary.com/forgephotos/image/private/t_q-best/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png', 'reverse'],
+    assetUrl: [
+      'https://res.cloudinary.com/forgephotos/image/private/t_q-best/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
+      'reverse',
+    ],
   },
 };
-
 
 export default meta;
 type Story = StoryObj<typeof Partner>;
@@ -31,9 +32,7 @@ export const Default: Story = {
           height={20}
           transformations={transformations.logos}
         />
-        <span className="text-xs uppercase mt-2">
-          {samplePartner1.name}
-        </span>
+        <span className="text-xs uppercase mt-2">{samplePartner1.name}</span>
       </div>
     </>
   ),
@@ -41,6 +40,3 @@ export const Default: Story = {
     layout: 'centered',
   },
 };
-
-
-

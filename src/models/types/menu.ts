@@ -2,7 +2,7 @@ export type MenuResponse = {
   data: MenuResponseData;
   meta: {
     version: string;
-  }
+  };
 };
 export type MenuResponseData = {
   menuItems: MenuItem[] | [];
@@ -10,7 +10,7 @@ export type MenuResponseData = {
   id: string;
   name: string;
   uriSegmentTranslations: object;
-}
+};
 
 export type MenuItem = {
   id: string;

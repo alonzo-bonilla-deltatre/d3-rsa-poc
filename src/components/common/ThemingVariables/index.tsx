@@ -1,5 +1,5 @@
-import { Metadata } from "@/models/types/pageStructure";
-import { renderThemingVariables } from "@/utilities/theming";
+import { Metadata } from '@/models/types/pageStructure';
+import { renderThemingVariables } from '@/utilities/theming';
 
 type ThemingVariablesProps = {
   metadata: Metadata[];

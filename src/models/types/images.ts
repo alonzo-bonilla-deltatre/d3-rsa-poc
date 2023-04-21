@@ -1,10 +1,10 @@
 export type ImageTransformations = {
-  mobile: string,
-  tablet: string,
-  desktop: string,
-  mobileWidth: number,
-  mobileHeight: number
-}
+  mobile: string;
+  tablet: string;
+  desktop: string;
+  mobileWidth: number;
+  mobileHeight: number;
+};
 
 export type ImageAsset = {
   title: string;
@@ -14,4 +14,4 @@ export type ImageAsset = {
   overriddenFormats: { [key: string]: any };
   slug: string;
   selfUrl: string;
-}
+};

@@ -1,12 +1,12 @@
-import { ComponentProps } from "@/models/types/components";
-import { getEntity } from "@/services/dapiService";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import BrightcoveVideoPlayer from "@/components/common/BrightcoveVideoPlayer";
-import SocialIcons from "@/components/common/SocialIcons";
-import { formatDate } from "@/utilities/dateFormatter";
-import ModuleTitle from "@/components/common/ModuleTitle";
-import {DistributionEntity} from "@/models/types/dapi";
+import { ComponentProps } from '@/models/types/components';
+import { getEntity } from '@/services/dapiService';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer';
+import SocialIcons from '@/components/common/SocialIcons';
+import { formatDate } from '@/utilities/dateFormatter';
+import ModuleTitle from '@/components/common/ModuleTitle';
+import { DistributionEntity } from '@/models/types/dapi';
 
 type ModuleProps = {
   slug: string;
@@ -18,19 +18,16 @@ type ModuleProps = {
 
 const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, "slug") || !properties.slug.length) {
-    logger.log(
-      "Cannot render CustomPromo module with empty slug",
-      LoggerLevel.warning
-    );
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+    logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
     return null;
   }
 
-  const entityFetch = getEntity("brightcovevideos", properties.slug);
+  const entityFetch = getEntity('brightcovevideos', properties.slug);
 
   const [entity] = await Promise.all([entityFetch]);
 
-  const description = entity?.fields["description"] as string;
+  const description = entity?.fields['description'] as string;
 
   return entity ? (
     <>
@@ -46,25 +43,24 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
             <div className="flex justify-between items-center mt-8">
               <div>
                 {description && <p className="mb-3">{description}</p>}
-                <div className="mb-3 text-sm font-light text-[#BEBEBE]">
-                  {entity.createdBy}
-                </div>
-                <time className="mb-3 text-sm font-light text-[#BEBEBE]">
-                  {formatDate(entity.contentDate)}
-                </time>
+                <div className="mb-3 text-sm font-light text-[#BEBEBE]">{entity.createdBy}</div>
+                <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(entity.contentDate)}</time>
               </div>
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <SocialIcons
                   hide={false}
                   size={50}
-                  className={"mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300"}
+                  className={'mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300'}
                 ></SocialIcons>
               </div>
             </div>
           </header>
         </div>
         <div className="mt-20">
-          <BrightcoveVideoPlayer entity={entity} isStoryPart={false} />
+          <BrightcoveVideoPlayer
+            entity={entity}
+            isStoryPart={false}
+          />
         </div>
       </section>
     </>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Logo from "@/components/common/Logo";
+import Logo from '@/components/common/Logo';
 import { sampleLogo1, sampleLogoSquared } from '@/__mocks__/components/sampleLogos';
 
 const meta: Meta<typeof Logo> = {
@@ -8,7 +8,10 @@ const meta: Meta<typeof Logo> = {
   component: Logo,
   tags: ['autodocs'],
   argTypes: {
-    assetUrl: ['https://res.cloudinary.com/forgephotos/image/private/t_q-best/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png', 'reverse'],
+    assetUrl: [
+      'https://res.cloudinary.com/forgephotos/image/private/t_q-best/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
+      'reverse',
+    ],
   },
 };
 
@@ -37,5 +40,3 @@ export const Squared: Story = {
     layout: 'centered',
   },
 };
-
-

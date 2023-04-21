@@ -1,4 +1,4 @@
-import { formatDate } from "@/utilities/dateFormatter";
+import { formatDate } from '@/utilities/dateFormatter';
 
 type DateProps = {
   date: string;
@@ -6,14 +6,8 @@ type DateProps = {
   hide: boolean;
 };
 
-
 const Date = ({ ...props }: DateProps) => {
-
-  return props.date ? (
-    <time className="mb-3 text-sm font-light text-[#BEBEBE]">
-          {formatDate(props.date)}
-        </time>
-  ) : <></> ;
+  return props.date ? <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(props.date)}</time> : <></>;
 };
 
 export default Date;

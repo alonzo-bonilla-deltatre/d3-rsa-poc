@@ -16,50 +16,48 @@ const indexStructure = {
           },
           type: 'module',
           properties: {
-            title : "Promo module title"
+            title: 'Promo module title',
           },
           slot: 'main',
         },
         {
           key: {
-            id: "Section",
-            namespace: "urn:online-common-xrc"
+            id: 'Section',
+            namespace: 'urn:online-common-xrc',
           },
-          type: "layout",
+          type: 'layout',
           properties: {
-            templates: "4",
-            sectionTitle: "TITLE SECTION"
+            templates: '4',
+            sectionTitle: 'TITLE SECTION',
           },
-          slot: "main",
-          slots: ["item"],
+          slot: 'main',
+          slots: ['item'],
           items: [
             {
-          
               key: {
                 id: 'Brightcove',
                 namespace: 'urn:online-common',
               },
               type: 'module',
               properties: {
-                title : "Brightcove first module title"
+                title: 'Brightcove first module title',
               },
               slot: 'item',
             },
             {
-          
               key: {
                 id: 'Brightcove',
                 namespace: 'urn:online-common',
               },
               type: 'module',
               properties: {
-                title : "Brightcove second module title"
+                title: 'Brightcove second module title',
               },
               slot: 'item',
-            }
-          ]
-        }
-      ]
+            },
+          ],
+        },
+      ],
     },
     variables: [
       {
@@ -81,23 +79,22 @@ const indexStructure = {
     ],
     metadata: [
       {
-        category: "seo",
-        key: "title",
-        value: "Deltatre Frontend Rendering Engine",
-        type: "string"      
+        category: 'seo',
+        key: 'title',
+        value: 'Deltatre Frontend Rendering Engine',
+        type: 'string',
       },
       {
-        category: "seo",
-        key: "description",
-        value: "POC for the new frontend rendering engine",
-        type: "string"      
-      }
-    ]
+        category: 'seo',
+        key: 'description',
+        value: 'POC for the new frontend rendering engine',
+        type: 'string',
+      },
+    ],
   },
   meta: {
     version: '1.0',
   },
 };
-
 
 export { indexStructure };

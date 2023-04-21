@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { headerServiceMenu } from "@/__mocks__/menu/headerServiceMenu"
-import { sampleAsset } from "@/__mocks__/components/sampleGadAsset"
-import HeaderElement from "@/components/layouts/Header/HeaderElement";
+import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
+import { sampleAsset } from '@/__mocks__/components/sampleGadAsset';
+import HeaderElement from '@/components/layouts/Header/HeaderElement';
 import { MenuResponseData } from '@/models/types/menu';
-
 
 const meta: Meta<typeof HeaderElement> = {
   title: 'Layouts/Header',
@@ -15,11 +14,10 @@ const meta: Meta<typeof HeaderElement> = {
     },
     logo: {
       control: false,
-    }
+    },
   },
 };
 const menuDataService = headerServiceMenu.data as MenuResponseData;
-
 
 export default meta;
 type Story = StoryObj<typeof HeaderElement>;
@@ -39,5 +37,5 @@ export const Default: Story = {
     logoHeight: 25,
     logoName: 'Supercars',
     logoLink: '/test/react-poc/demo',
-  }
+  },
 };

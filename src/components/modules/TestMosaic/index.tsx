@@ -1,12 +1,12 @@
-import { ComponentProps } from "@/models/types/components";
-import { getAllEntities } from "@/services/dapiService";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag } from "@/services/gadService";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import ModuleTitle from "@/components/common/ModuleTitle";
-import React from "react";
-import TestMosaicContainer from "@/components/modules/TestMosaic/TestMosaicContainer";
+import { ComponentProps } from '@/models/types/components';
+import { getAllEntities } from '@/services/dapiService';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { getAssetsByTag } from '@/services/gadService';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import ModuleTitle from '@/components/common/ModuleTitle';
+import React from 'react';
+import TestMosaicContainer from '@/components/modules/TestMosaic/TestMosaicContainer';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -33,30 +33,20 @@ const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
   if (limit) {
     queryString.push(`$limit=${limit}`);
   }
-  if (tags?.length && tags.includes(",")) {
-    const tagSlugs = tags.split(",");
+  if (tags?.length && tags.includes(',')) {
+    const tagSlugs = tags.split(',');
     tagSlugs.forEach((tag) => {
       queryString.push(`$tags.slug=${tag}`);
     });
   }
-  return queryString.join("&");
+  return queryString.join('&');
 };
 
 const TestMosaicList = async ({ ...data }: ComponentProps) => {
-  const {
-    moduleTitle,
-    headingLevel,
-    displayModuleTitle,
-    entityType,
-    skip,
-    limit,
-    tags,
-  } = data.properties as ModuleProps;
-  if (!Object.hasOwn(data.properties, "entityType") || !entityType.length) {
-    logger.log(
-      "Cannot render TestMosaicList module with empty entityType",
-      LoggerLevel.warning
-    );
+  const { moduleTitle, headingLevel, displayModuleTitle, entityType, skip, limit, tags } =
+    data.properties as ModuleProps;
+  if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
+    logger.log('Cannot render TestMosaicList module with empty entityType', LoggerLevel.warning);
     return null;
   }
 
@@ -67,15 +57,12 @@ const TestMosaicList = async ({ ...data }: ComponentProps) => {
   const [promos] = await Promise.all([promoEntitiesFetch]);
   const items = promos?.items;
 
-  const gadAssetsPlaceHolderFetch = getAssetsByTag("react-poc-placeholder");
+  const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
 
-  const [gadThumbnailPlaceHolderAssets] = await Promise.all([
-    gadAssetsPlaceHolderFetch,
-  ]);
-  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null =
-    gadThumbnailPlaceHolderAssets?.length
-      ? gadThumbnailPlaceHolderAssets[0]
-      : null;
+  const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
+  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length
+    ? gadThumbnailPlaceHolderAssets[0]
+    : null;
 
   return items?.length ? (
     <>
@@ -86,7 +73,10 @@ const TestMosaicList = async ({ ...data }: ComponentProps) => {
           text={moduleTitle}
         ></ModuleTitle>
         <div className="flex px-8">
-          <TestMosaicContainer items={items} thumbnailPlaceHolder={thumbnailPlaceHolder}></TestMosaicContainer>
+          <TestMosaicContainer
+            items={items}
+            thumbnailPlaceHolder={thumbnailPlaceHolder}
+          ></TestMosaicContainer>
         </div>
       </section>
     </>

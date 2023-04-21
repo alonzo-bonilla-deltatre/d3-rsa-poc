@@ -32,7 +32,7 @@ export type Metadata = {
 };
 
 export enum PageStructureItemType {
-  module = "module",
-  layout = "layout",
-  template = "template",
+  module = 'module',
+  layout = 'layout',
+  template = 'template',
 }

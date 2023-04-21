@@ -20,7 +20,8 @@
     @apply text-xl;
   }
 
-  h5, h6 {
+  h5,
+  h6 {
     @apply text-lg;
   }
 
@@ -33,16 +34,16 @@
   }
 }
 
-@import url("./simple.min.css");
+@import url('./simple.min.css');
 :root,
 ::backdrop {
   --sans-font: var(--font-poppins);
   --standard-border-radius: 0px;
   --border: rgba(0, 0, 0, 0);
-  --accent: #EE3123;
+  --accent: #ee3123;
   --code: #d81b60;
   --preformatted: #444;
-  --marked: #EE3123;
+  --marked: #ee3123;
 }
 
 header > nav a:hover {
@@ -50,7 +51,8 @@ header > nav a:hover {
   color: unset;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: unset;
 }
 

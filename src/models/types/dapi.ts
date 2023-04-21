@@ -1,5 +1,5 @@
-import { StoryPart } from "./storyPart";
-import { ImageAsset} from "./images";
+import { StoryPart } from './storyPart';
+import { ImageAsset } from './images';
 
 export type DistributionEntity = {
   type: string;
@@ -24,8 +24,6 @@ export type DistributionEntity = {
   parts: StoryPart[];
   entityCode: string;
 };
-
-
 
 export type PagedResult = {
   pagination: {
@@ -53,7 +51,7 @@ export type QueryStringModuleProps = {
   skip: number;
   limit: number;
   tags: string;
-}; 
+};
 
 export type CardOptions = {
   hideIcon: boolean | false;

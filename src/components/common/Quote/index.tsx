@@ -1,14 +1,14 @@
-import {StoryPart} from "@/models/types/storyPart";
+import { StoryPart } from '@/models/types/storyPart';
 
 type QuoteProps = {
   entity: StoryPart;
 };
 
-const Quote = ({...props}: QuoteProps) => {
-  const {entity} = props as QuoteProps;
+const Quote = ({ ...props }: QuoteProps) => {
+  const { entity } = props as QuoteProps;
   const content = entity.content as any;
-  const quote = content["quote"];
-  const author = content["author"];
+  const quote = content['quote'];
+  const author = content['author'];
 
   return (
     entity && (

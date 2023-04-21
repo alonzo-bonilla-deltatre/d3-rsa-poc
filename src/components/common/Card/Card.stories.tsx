@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import { sampleStory } from '@/__mocks__/entities/story';
-import Card from "@/components/common/Card";
+import Card from '@/components/common/Card';
 import { DistributionEntity } from '@/models/types/dapi';
 
 const meta: Meta<typeof Card> = {
@@ -11,13 +11,12 @@ const meta: Meta<typeof Card> = {
   argTypes: {
     entity: {
       control: false,
-    }
+    },
   },
 };
 const storyEntity: DistributionEntity = sampleStory;
 const brightcoveEntity: DistributionEntity = sampleBrightcoveVideo;
 export default meta;
-
 
 type Story = StoryObj<typeof Card>;
 
@@ -51,10 +50,10 @@ export const Story: Story = {
       hideDate: false,
       hideAuthor: true,
       hideCta: true,
-    }
-  }
+    },
+  },
 };
-const classNames = "my-2 mt-4 text-xxl tracking-tight dark:text-white px-8";
+const classNames = 'my-2 mt-4 text-xxl tracking-tight dark:text-white px-8';
 export const BrightcoveVideo: Story = {
   render: (args) => (
     <>
@@ -85,7 +84,6 @@ export const BrightcoveVideo: Story = {
       hideDate: false,
       hideAuthor: true,
       hideCta: true,
-    }
-  }
+    },
+  },
 };
-

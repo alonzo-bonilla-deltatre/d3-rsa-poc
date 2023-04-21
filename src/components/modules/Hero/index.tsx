@@ -1,9 +1,9 @@
-import { ComponentProps } from "@/models/types/components";
-import { getFilteredItems, getSelection } from "@/services/dapiService";
-import { HeroSwiper } from "@/components/modules/Hero/HeroSwiper";
-import ModuleTitle from "@/components/common/ModuleTitle";
-import logger from "@/utilities/logger";
-import {LoggerLevel} from "@/models/types/logger";
+import { ComponentProps } from '@/models/types/components';
+import { getFilteredItems, getSelection } from '@/services/dapiService';
+import { HeroSwiper } from '@/components/modules/Hero/HeroSwiper';
+import ModuleTitle from '@/components/common/ModuleTitle';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -15,21 +15,12 @@ type ModuleProps = {
 };
 
 const Hero = async ({ ...data }: ComponentProps) => {
-  const {
-    moduleTitle,
-    headingLevel,
-    displayModuleTitle,
-    hideDate,
-    selectionSlug,
-    limit,
-  } = data.properties as ModuleProps;
+  const { moduleTitle, headingLevel, displayModuleTitle, hideDate, selectionSlug, limit } =
+    data.properties as ModuleProps;
   const defaultItemLimit = 5;
 
   if (!selectionSlug) {
-    logger.log(
-      "Cannot render CustomPromo module with empty slug",
-      LoggerLevel.warning
-    );
+    logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
     return <div />;
   }
 
@@ -49,6 +40,8 @@ const Hero = async ({ ...data }: ComponentProps) => {
         hideDate={/true/.test(hideDate)}
       />
     </>
-  ) : <div />;
+  ) : (
+    <div />
+  );
 };
 export default Hero;

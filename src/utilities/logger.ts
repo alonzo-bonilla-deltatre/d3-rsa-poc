@@ -1,7 +1,6 @@
-import { isLoggerEnabledByLevel, LoggerLevel } from "@/models/types/logger";
+import { isLoggerEnabledByLevel, LoggerLevel } from '@/models/types/logger';
 
-const logMinimumLevel =
-  (process.env.LOG_MINIMUM_LEVEL as LoggerLevel) ?? LoggerLevel.info;
+const logMinimumLevel = (process.env.LOG_MINIMUM_LEVEL as LoggerLevel) ?? LoggerLevel.info;
 
 const nodeEnv = process.env.NODE_ENV;
 
@@ -22,7 +21,7 @@ const logger = {
         RenderedMessage: message,
       };
 
-      if (process.env.NODE_ENV !== "production") {
+      if (process.env.NODE_ENV !== 'production') {
         console.log(`[${hours}:${minutes}:${seconds} ${type}] ${message}`);
       } else {
         switch (type) {

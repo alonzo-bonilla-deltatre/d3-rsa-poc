@@ -1,13 +1,13 @@
-import { ComponentProps } from "@/models/types/components";
-import { getEntity } from "@/services/dapiService";
-import Picture from "@/components/common/Picture";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag, getSingleAssetByTag } from "@/services/gadService";
-import { transformations } from "@/utilities/cloudinaryTransformations";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import Sponsored from "@/components/common/Sponsored";
-import ModuleTitle from "@/components/common/ModuleTitle";
+import { ComponentProps } from '@/models/types/components';
+import { getEntity } from '@/services/dapiService';
+import Picture from '@/components/common/Picture';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { getAssetsByTag, getSingleAssetByTag } from '@/services/gadService';
+import { transformations } from '@/utilities/cloudinaryTransformations';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import Sponsored from '@/components/common/Sponsored';
+import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
   entityType: string;
@@ -19,41 +19,24 @@ type ModuleProps = {
 
 const TestDetail = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (
-    !Object.hasOwn(properties, "entityType") ||
-    !properties.entityType.length
-  ) {
-    logger.log(
-      "Cannot render TestDetail module with empty entityType",
-      LoggerLevel.warning
-    );
+  if (!Object.hasOwn(properties, 'entityType') || !properties.entityType.length) {
+    logger.log('Cannot render TestDetail module with empty entityType', LoggerLevel.warning);
     return null;
   }
-  if (!Object.hasOwn(properties, "slug") || !properties.slug.length) {
-    logger.log(
-      "Cannot render TestDetail module with empty slug",
-      LoggerLevel.warning
-    );
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+    logger.log('Cannot render TestDetail module with empty slug', LoggerLevel.warning);
     return null;
   }
 
-  const sponsor = await getSingleAssetByTag("sponsor-coates");
-  const gadAssetsPlaceHolderFetch = getAssetsByTag("react-poc-placeholder");
+  const sponsor = await getSingleAssetByTag('sponsor-coates');
+  const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
 
+  const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
+  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length
+    ? gadThumbnailPlaceHolderAssets[0]
+    : null;
 
-
-  const [gadThumbnailPlaceHolderAssets] = await Promise.all([
-    gadAssetsPlaceHolderFetch,
-  ]);
-  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null =
-    gadThumbnailPlaceHolderAssets?.length
-      ? gadThumbnailPlaceHolderAssets[0]
-      : null;
-
-  const TestDetailEntityFetch = getEntity(
-    properties.entityType,
-    properties.slug
-  );
+  const TestDetailEntityFetch = getEntity(properties.entityType, properties.slug);
 
   const [testDetailEntity] = await Promise.all([TestDetailEntityFetch]);
 
@@ -71,14 +54,14 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
               <Picture
                 src={testDetailEntity.thumbnail.templateUrl}
                 transformations={transformations.thumbnailDetail}
-                alt={testDetailEntity.thumbnail.title ?? ""}
+                alt={testDetailEntity.thumbnail.title ?? ''}
                 className="w-full h-full object-cover opacity-[.50]"
               />
             ) : (
               <Picture
-                src={thumbnailPlaceHolder?.assetUrl ?? ""}
+                src={thumbnailPlaceHolder?.assetUrl ?? ''}
                 transformations={transformations.thumbnailDetail}
-                alt={thumbnailPlaceHolder?.publicId ?? ""}
+                alt={thumbnailPlaceHolder?.publicId ?? ''}
                 className="w-full h-full object-cover opacity-[.50]"
               />
             )}
@@ -87,15 +70,20 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
             <div className="flex justify-between">
               <div>
                 <header className="max-w-md">
-                  <h3 className="font-bold text-4xl uppercase">
-                    {testDetailEntity.title}
-                  </h3>
+                  <h3 className="font-bold text-4xl uppercase">{testDetailEntity.title}</h3>
                 </header>
               </div>
 
               {sponsor && (
                 <div>
-                  <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""} assetUrl={sponsor.assetUrl}></Sponsored>
+                  <Sponsored
+                    hide={false}
+                    name={sponsor.name}
+                    width={70}
+                    height={20}
+                    className={''}
+                    assetUrl={sponsor.assetUrl}
+                  ></Sponsored>
                 </div>
               )}
             </div>

@@ -1,15 +1,15 @@
-import { ComponentProps } from "@/models/types/components";
-import { getAllEntities } from "@/services/dapiService";
-import { DistributionEntity, PagedResult } from "@/models/types/dapi";
-import { nanoid } from "nanoid";
-import { GrandPrixFields } from "@/models/types/dapi.customEntityFields";
-import { isDateGreaterThanNow } from "@/utilities/dateComparer";
-import CalendarItemSmall from "@/components/modules/Calendar/CalendarItemSmall";
-import CalendarItemExpanded from "@/components/modules/Calendar/CalendarItemExpanded";
-import { orderedItems } from "@/components/modules/Calendar/CalendarHelpers";
-import { firstAssetOrDefault, getAssetsByTag } from "@/services/gadService";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import ModuleTitle from "@/components/common/ModuleTitle";
+import { ComponentProps } from '@/models/types/components';
+import { getAllEntities } from '@/services/dapiService';
+import { DistributionEntity, PagedResult } from '@/models/types/dapi';
+import { nanoid } from 'nanoid';
+import { GrandPrixFields } from '@/models/types/dapi.customEntityFields';
+import { isDateGreaterThanNow } from '@/utilities/dateComparer';
+import CalendarItemSmall from '@/components/modules/Calendar/CalendarItemSmall';
+import CalendarItemExpanded from '@/components/modules/Calendar/CalendarItemExpanded';
+import { orderedItems } from '@/components/modules/Calendar/CalendarHelpers';
+import { firstAssetOrDefault, getAssetsByTag } from '@/services/gadService';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -18,15 +18,11 @@ type ModuleProps = {
 };
 
 const Calendar = async ({ ...data }: ComponentProps) => {
-  const { moduleTitle, headingLevel, displayModuleTitle } =
-    data.properties as ModuleProps;
-  const grandPrixFetch = getAllEntities("poc-grand-prix", "$limit=5");
-  const clockAssetsFetch = getAssetsByTag("react-poc-calendar-seiko-watch");
+  const { moduleTitle, headingLevel, displayModuleTitle } = data.properties as ModuleProps;
+  const grandPrixFetch = getAllEntities('poc-grand-prix', '$limit=5');
+  const clockAssetsFetch = getAssetsByTag('react-poc-calendar-seiko-watch');
 
-  const [grandPrix, clockAssets] = await Promise.all([
-    grandPrixFetch,
-    clockAssetsFetch,
-  ]);
+  const [grandPrix, clockAssets] = await Promise.all([grandPrixFetch, clockAssetsFetch]);
 
   const dapiItems = grandPrix as PagedResult;
 
@@ -35,10 +31,7 @@ const Calendar = async ({ ...data }: ComponentProps) => {
 
   let firstItemExpandedRendered = false;
 
-  const marginTopCalendarContainer =
-    /true/.test(displayModuleTitle) && moduleTitle
-      ? "mt-[140px]"
-      : "mt-[200px]";
+  const marginTopCalendarContainer = /true/.test(displayModuleTitle) && moduleTitle ? 'mt-[140px]' : 'mt-[200px]';
 
   return (
     <div className="container mx-auto border-b border-[#FFFFFF33]">
@@ -52,10 +45,7 @@ const Calendar = async ({ ...data }: ComponentProps) => {
       >
         {items.map((item: DistributionEntity) => {
           const fields = item.fields as GrandPrixFields;
-          if (
-            isDateGreaterThanNow(fields.dateFrom) &&
-            !firstItemExpandedRendered
-          ) {
+          if (isDateGreaterThanNow(fields.dateFrom) && !firstItemExpandedRendered) {
             firstItemExpandedRendered = true;
             return (
               <CalendarItemExpanded

@@ -1,4 +1,4 @@
-import ImgIcon from "@/components/common/ImgIcon";
+import ImgIcon from '@/components/common/ImgIcon';
 
 type CallToActionProps = {
   url: string;
@@ -9,12 +9,11 @@ type CallToActionProps = {
   hide: boolean;
 };
 
-
 const CallToAction = ({ ...props }: CallToActionProps) => {
-  const displayText = props.text ? props.text : "read-more";
+  const displayText = props.text ? props.text : 'read-more';
   const iconSize = 20;
   const additionalAttributes = {
-    ...(props.isExternal ? {target: "blank"} : undefined)
+    ...(props.isExternal ? { target: 'blank' } : undefined),
   };
   return props.url && !props.hide ? (
     <>
@@ -23,27 +22,36 @@ const CallToAction = ({ ...props }: CallToActionProps) => {
         title={displayText}
         className={getCtaClasses(props.style)}
         {...additionalAttributes}
-      >{
-          props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></ImgIcon>)
-        }
+      >
+        {props.icon && (
+          <ImgIcon
+            src={props.icon}
+            width={iconSize}
+            height={iconSize}
+            alt={displayText}
+          ></ImgIcon>
+        )}
         {displayText}
-      </a></>
-  ) : <></>;
+      </a>
+    </>
+  ) : (
+    <></>
+  );
 };
 
 export default CallToAction;
 
 export const getCtaClasses = (style: string) => {
   switch (style) {
-    case "default":
-      return "inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
-    case "reverse":
-      return "inline-block text-black bg-white font-bold uppercase px-8 py-3 rounded-full outline-none";
-    case "outline":
-      return "inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
-    case "link":
-      return "inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
+    case 'default':
+      return 'inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none';
+    case 'reverse':
+      return 'inline-block text-black bg-white font-bold uppercase px-8 py-3 rounded-full outline-none';
+    case 'outline':
+      return 'inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none';
+    case 'link':
+      return 'inline-block text-white bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none';
     default:
-      return "inline-block text-black border-2  bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none";
+      return 'inline-block text-black border-2  bg-[#EE3123] font-bold uppercase px-8 py-3 rounded-full outline-none';
   }
 };

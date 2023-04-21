@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import LanguageSwitcher from "@/components/layouts/Footer/LanguageSwitcher";
-
+import LanguageSwitcher from '@/components/layouts/Footer/LanguageSwitcher';
 
 const meta: Meta<typeof LanguageSwitcher> = {
   title: 'Layouts/LanguageSwitcher',
@@ -26,20 +25,20 @@ export const Default: Story = {
     allSiteConfiguration: {
       allSites: [
         {
-          culture: "en-GB",
-          environment: "sandbox",
-          platform: "default",
-          originUrl: "https://react-fe-en-poc.integrations-lab-forge.deltatre.digital",
-          translation: "English"
+          culture: 'en-GB',
+          environment: 'sandbox',
+          platform: 'default',
+          originUrl: 'https://react-fe-en-poc.integrations-lab-forge.deltatre.digital',
+          translation: 'English',
         },
         {
-          culture: "fr-FR",
-          environment: "sandbox",
-          platform: "default",
-          originUrl: "https://react-fe-fr-poc.integrations-lab-forge.deltatre.digital",
-          translation: "Francais"
-        }
-      ]
-    }
-  }
+          culture: 'fr-FR',
+          environment: 'sandbox',
+          platform: 'default',
+          originUrl: 'https://react-fe-fr-poc.integrations-lab-forge.deltatre.digital',
+          translation: 'Francais',
+        },
+      ],
+    },
+  },
 };

@@ -1,14 +1,14 @@
-import { ComponentProps } from "@/models/types/components";
-import { getEntity } from "@/services/dapiService";
-import { CustomPromoFields } from "@/models/types/dapi.customEntityFields";
-import Picture from "@/components/common/Picture";
-import { getSingleAssetByTag } from "@/services/gadService";
-import { transformations } from "@/utilities/cloudinaryTransformations";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import CallToAction from "@/components/common/CallToAction";
-import Sponsored from "@/components/common/Sponsored";
-import ModuleTitle from "@/components/common/ModuleTitle";
+import { ComponentProps } from '@/models/types/components';
+import { getEntity } from '@/services/dapiService';
+import { CustomPromoFields } from '@/models/types/dapi.customEntityFields';
+import Picture from '@/components/common/Picture';
+import { getSingleAssetByTag } from '@/services/gadService';
+import { transformations } from '@/utilities/cloudinaryTransformations';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import CallToAction from '@/components/common/CallToAction';
+import Sponsored from '@/components/common/Sponsored';
+import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
   slug: string;
@@ -19,18 +19,12 @@ type ModuleProps = {
 
 const Promo = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, "slug") || !properties.slug.length) {
-    logger.log(
-      "Cannot render CustomPromo module with empty slug",
-      LoggerLevel.warning
-    );
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+    logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
     return <div />;
   }
 
-  const promoEntityFetch = getEntity(
-    "promos",
-    properties.slug
-  );
+  const promoEntityFetch = getEntity('promos', properties.slug);
 
   const [promoEntity] = await Promise.all([promoEntityFetch]);
   const cta1Url = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.url;
@@ -40,7 +34,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
   const cta2Text = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction2Link?.displayText;
   const cta2Ext = (promoEntity && (promoEntity.fields as CustomPromoFields).callToAction2Link?.openInNewTab) ?? false;
 
-  const sponsor = await getSingleAssetByTag("sponsor-coates");
+  const sponsor = await getSingleAssetByTag('sponsor-coates');
 
   return promoEntity ? (
     <>
@@ -56,7 +50,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
               <Picture
                 src={promoEntity.thumbnail.templateUrl}
                 transformations={transformations.thumbnailDetail}
-                alt={promoEntity.thumbnail.title ?? ""}
+                alt={promoEntity.thumbnail.title ?? ''}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -65,24 +59,34 @@ const Promo = async ({ ...data }: ComponentProps) => {
             <div className="flex justify-between">
               <div>
                 <header className="max-w-md">
-                  <h3 className="font-bold text-4xl uppercase">
-                    {promoEntity.title}
-                  </h3>
-                  <p className="mt-8">
-                    {(promoEntity.fields as CustomPromoFields)?.description}
-                  </p>
+                  <h3 className="font-bold text-4xl uppercase">{promoEntity.title}</h3>
+                  <p className="mt-8">{(promoEntity.fields as CustomPromoFields)?.description}</p>
                 </header>
 
                 <nav className="mt-8">
                   <ul className="list-none flex space-x-5">
-                    {(cta1Url) && (
+                    {cta1Url && (
                       <li>
-                        <CallToAction url={cta1Url} text={cta1Text} isExternal={cta1Ext} style={"default"} icon={""} hide={false}></CallToAction>
+                        <CallToAction
+                          url={cta1Url}
+                          text={cta1Text}
+                          isExternal={cta1Ext}
+                          style={'default'}
+                          icon={''}
+                          hide={false}
+                        ></CallToAction>
                       </li>
                     )}
-                    {(cta2Url) && (
+                    {cta2Url && (
                       <li>
-                        <CallToAction url={cta2Url} text={cta2Text} isExternal={cta2Ext} style={"reverse"} icon={""} hide={false}></CallToAction>
+                        <CallToAction
+                          url={cta2Url}
+                          text={cta2Text}
+                          isExternal={cta2Ext}
+                          style={'reverse'}
+                          icon={''}
+                          hide={false}
+                        ></CallToAction>
                       </li>
                     )}
                   </ul>
@@ -91,7 +95,14 @@ const Promo = async ({ ...data }: ComponentProps) => {
 
               {sponsor && (
                 <div>
-                  <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""} assetUrl={sponsor.assetUrl}></Sponsored>
+                  <Sponsored
+                    hide={false}
+                    name={sponsor.name}
+                    width={70}
+                    height={20}
+                    className={''}
+                    assetUrl={sponsor.assetUrl}
+                  ></Sponsored>
                 </div>
               )}
             </div>

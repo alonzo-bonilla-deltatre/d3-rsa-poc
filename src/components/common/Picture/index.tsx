@@ -1,9 +1,9 @@
-import { ImageTransformations } from "@/models/types/images";
-import { getSrcWithTransformation } from "@/utilities/cloudinaryTransformations";
-import Image from "next/image";
+import { ImageTransformations } from '@/models/types/images';
+import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
+import Image from 'next/image';
 
 type PictureProps = {
-  src: string | "";
+  src: string | '';
   alt: string;
   transformations: ImageTransformations;
   className?: string;
@@ -12,9 +12,9 @@ type PictureProps = {
 const Picture = ({ ...props }: PictureProps) => {
   const canRender = props.transformations;
 
-  const desktopSrc = getSrcWithTransformation(props.src,props.transformations.desktop);
-  const tabletSrc = getSrcWithTransformation(props.src,props.transformations.tablet);
-  const mobileSrc = getSrcWithTransformation(props.src,props.transformations.mobile);
+  const desktopSrc = getSrcWithTransformation(props.src, props.transformations.desktop);
+  const tabletSrc = getSrcWithTransformation(props.src, props.transformations.tablet);
+  const mobileSrc = getSrcWithTransformation(props.src, props.transformations.mobile);
   const mobileWidth = props.transformations.mobileWidth;
   const mobileHeight = props.transformations.mobileHeight;
 
@@ -22,7 +22,7 @@ const Picture = ({ ...props }: PictureProps) => {
     <picture>
       {props.transformations.desktop && (
         <source
-          srcSet={desktopSrc} 
+          srcSet={desktopSrc}
           media="(min-width: 64em)"
         ></source>
       )}
@@ -36,9 +36,7 @@ const Picture = ({ ...props }: PictureProps) => {
         width={mobileWidth}
         height={mobileHeight}
         alt={props.alt}
-        className={`max-w-none ${
-          props.className ?? ""
-        }`}
+        className={`max-w-none ${props.className ?? ''}`}
         src={mobileSrc}
       />
     </picture>

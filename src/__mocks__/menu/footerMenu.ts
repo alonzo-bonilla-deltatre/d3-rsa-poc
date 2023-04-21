@@ -5,93 +5,91 @@ const footerMenu = {
     variables: [],
     menuItems: [
       {
-        id: "13012066-b02f-4213-b00e-691804f438fc",
-        text: "Contact",
+        id: '13012066-b02f-4213-b00e-691804f438fc',
+        text: 'Contact',
         properties: {
-          tag: "contact",
-          toolTip: "toolTip",
-          link: "link",
-          target: "target",
-          data: "datacontect",
-          customproperties: "custom-prop"
+          tag: 'contact',
+          toolTip: 'toolTip',
+          link: 'link',
+          target: 'target',
+          data: 'datacontect',
+          customproperties: 'custom-prop',
         },
-        menuItems: []
-      }
-      ,
+        menuItems: [],
+      },
       {
-        id: "6cf370a6-dec1-4632-950c-123243d10923",
-        text: "supercars-tenders",
+        id: '6cf370a6-dec1-4632-950c-123243d10923',
+        text: 'supercars-tenders',
         properties: {
-          tag: "supercars-tenders"
+          tag: 'supercars-tenders',
         },
         menuItems: [
           {
-            id: "ss04e0423e-3da2-4c9c-88b9-a4d29089b329",
-            text: "submenu",
+            id: 'ss04e0423e-3da2-4c9c-88b9-a4d29089b329',
+            text: 'submenu',
             properties: {
-              tag: "submenu supercars-job"
+              tag: 'submenu supercars-job',
             },
-            menuItems: []
-          }
-        ]
+            menuItems: [],
+          },
+        ],
       },
       {
-        id: "04e0423e-3da2-4c9c-88b9-a4d29089b329",
-        text: "supercars-job",
+        id: '04e0423e-3da2-4c9c-88b9-a4d29089b329',
+        text: 'supercars-job',
         properties: {
-          tag: "supercars-job"
+          tag: 'supercars-job',
         },
-        menuItems: []
+        menuItems: [],
       },
       {
-        id: "591afec6-134c-47e3-b34b-425784301fc8",
-        text: "media",
+        id: '591afec6-134c-47e3-b34b-425784301fc8',
+        text: 'media',
         properties: {
-          tag: "media"
+          tag: 'media',
         },
-        menuItems: []
+        menuItems: [],
       },
       {
-        id: "551cf9d2-44d3-4ca3-9797-59924cfd2bfd",
-        text: "news-rss",
+        id: '551cf9d2-44d3-4ca3-9797-59924cfd2bfd',
+        text: 'news-rss',
         properties: {
-          tag: "news-rss"
+          tag: 'news-rss',
         },
-        menuItems: []
+        menuItems: [],
       },
       {
-        id: "916aede7-8f53-4a04-8e98-3951f2fd11e8",
-        text: "sitemap",
+        id: '916aede7-8f53-4a04-8e98-3951f2fd11e8',
+        text: 'sitemap',
         properties: {
-          tag: "sitemap"
+          tag: 'sitemap',
         },
-        menuItems: []
+        menuItems: [],
       },
       {
-        id: "700d8f31-7dc9-4d65-b468-a2b00026dac8",
-        text: "privacy-policy",
+        id: '700d8f31-7dc9-4d65-b468-a2b00026dac8',
+        text: 'privacy-policy',
         properties: {
-          tag: "privacy-policy"
+          tag: 'privacy-policy',
         },
-        menuItems: []
+        menuItems: [],
       },
       {
-        id: "1dc39a9f-00e0-45a4-9ba9-67653375055d",
-        text: "terms-&-conditions",
+        id: '1dc39a9f-00e0-45a4-9ba9-67653375055d',
+        text: 'terms-&-conditions',
         properties: {
-          tag: "terms-&-conditions"
+          tag: 'terms-&-conditions',
         },
-        menuItems: []
-      }
+        menuItems: [],
+      },
     ],
-    id: "475183fd-cebe-4c56-90e9-28895782cc29",
+    id: '475183fd-cebe-4c56-90e9-28895782cc29',
     uriSegmentTranslations: {},
-    name: "_footer-menu"
+    name: '_footer-menu',
   },
   meta: {
     version: '1.0',
-  }
+  },
 };
-
 
 export { footerMenu };

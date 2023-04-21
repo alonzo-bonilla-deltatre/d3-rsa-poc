@@ -1,18 +1,18 @@
-import {ComponentProps} from "@/models/types/components";
-import {getEntity} from "@/services/dapiService";
-import Picture from "@/components/common/Picture";
-import {transformations} from "@/utilities/cloudinaryTransformations";
-import logger from "@/utilities/logger";
-import {LoggerLevel} from "@/models/types/logger";
-import Roofline from "@/components/common/Roofline";
-import Author from "@/components/common/Author";
-import Date from "@/components/common/Date";
-import SocialIcons from "@/components/common/SocialIcons";
-import {StoryPart} from "@/models/types/storyPart";
-import {renderStoryPart} from "@/services/renderHandlers/renderStoryPart";
-import Sponsored from "@/components/common/Sponsored";
-import {getSingleAssetByTag} from "@/services/gadService";
-import {nanoid} from "nanoid";
+import { ComponentProps } from '@/models/types/components';
+import { getEntity } from '@/services/dapiService';
+import Picture from '@/components/common/Picture';
+import { transformations } from '@/utilities/cloudinaryTransformations';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import Roofline from '@/components/common/Roofline';
+import Author from '@/components/common/Author';
+import Date from '@/components/common/Date';
+import SocialIcons from '@/components/common/SocialIcons';
+import { StoryPart } from '@/models/types/storyPart';
+import { renderStoryPart } from '@/services/renderHandlers/renderStoryPart';
+import Sponsored from '@/components/common/Sponsored';
+import { getSingleAssetByTag } from '@/services/gadService';
+import { nanoid } from 'nanoid';
 
 type ModuleProps = {
   slug: string;
@@ -27,20 +27,17 @@ type ModuleProps = {
   sponsorName: string;
 };
 
-const Story = async ({...data}: ComponentProps) => {
+const Story = async ({ ...data }: ComponentProps) => {
   const props = data.properties as ModuleProps;
-  if (!Object.hasOwn(props, "slug") || !props.slug.length) {
-    logger.log(
-      "Cannot render Story module with empty slug",
-      LoggerLevel.warning
-    );
+  if (!Object.hasOwn(props, 'slug') || !props.slug.length) {
+    logger.log('Cannot render Story module with empty slug', LoggerLevel.warning);
     return null;
   }
 
-  const storyEntityFetch = getEntity("stories", props.slug);
+  const storyEntityFetch = getEntity('stories', props.slug);
 
   const [storyEntity] = await Promise.all([storyEntityFetch]);
-  const sponsor = await getSingleAssetByTag("sponsor-coates");
+  const sponsor = await getSingleAssetByTag('sponsor-coates');
   //TODO: sponsor as a related tag?
 
   return storyEntity ? (
@@ -49,18 +46,14 @@ const Story = async ({...data}: ComponentProps) => {
         <div className="flex justify-between mx-20">
           <header className="w-full">
             <Roofline
-              className={"uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2"}
+              className={'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2'}
               context={storyEntity.context}
               hide={props.hideRoofline}
             ></Roofline>
-            <h3 className="font-bold text-5xl uppercase">
-              {storyEntity.title}
-            </h3>
+            <h3 className="font-bold text-5xl uppercase">{storyEntity.title}</h3>
             <div className="flex justify-between items-center mt-8">
               <div>
-                {storyEntity.headline && (
-                  <p className="mb-3">{storyEntity.headline}</p>
-                )}
+                {storyEntity.headline && <p className="mb-3">{storyEntity.headline}</p>}
                 <Author
                   author={storyEntity.createdBy}
                   hide={props.hideAuthor}
@@ -74,15 +67,21 @@ const Story = async ({...data}: ComponentProps) => {
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>
                   {sponsor && (
-                    <Sponsored hide={false} name={sponsor.name} width={70} height={20} className={""}
-                               assetUrl={sponsor.assetUrl}></Sponsored>
+                    <Sponsored
+                      hide={false}
+                      name={sponsor.name}
+                      width={70}
+                      height={20}
+                      className={''}
+                      assetUrl={sponsor.assetUrl}
+                    ></Sponsored>
                   )}
                   {!props.hideSocial && (
                     <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                       <SocialIcons
                         hide={false}
                         size={50}
-                        className={"mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300"}
+                        className={'mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300'}
                       ></SocialIcons>
                     </div>
                   )}
@@ -98,7 +97,7 @@ const Story = async ({...data}: ComponentProps) => {
             <Picture
               src={storyEntity.thumbnail.templateUrl}
               transformations={transformations.thumbnailDetail}
-              alt={storyEntity.thumbnail.title ?? ""}
+              alt={storyEntity.thumbnail.title ?? ''}
               className="w-full h-full object-cover"
             />
           </div>
@@ -106,7 +105,10 @@ const Story = async ({...data}: ComponentProps) => {
         {storyEntity.parts.map((part: StoryPart) => {
           return (
             <>
-              <div key={nanoid()} className="mx-20 mt-20 col-start-1">
+              <div
+                key={nanoid()}
+                className="mx-20 mt-20 col-start-1"
+              >
                 {renderStoryPart(part)}
               </div>
             </>
@@ -115,7 +117,7 @@ const Story = async ({...data}: ComponentProps) => {
       </section>
     </>
   ) : (
-    <div/>
+    <div />
   );
 };
 export default Story;

@@ -1,0 +1,16 @@
+**/README.md
+**/.next/**
+**/.storybook/**
+**/node_modules/**
+**/public/**
+**/coverage/**
+**/test-results/**
+**/eslint/**
+**/__tests__/__snapshots__/**
+**/*.test.ts
+**/*.config.js
+**/*.config.mjs
+**/sonarqube-scanner.js
+**/*.yml
+**/*.json
+**/*.min.css

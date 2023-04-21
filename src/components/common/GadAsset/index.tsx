@@ -1,9 +1,9 @@
-import { ImageTransformations } from "@/models/types/images";
-import { getSrcWithTransformation } from "@/utilities/cloudinaryTransformations";
-import Image from "next/image";
+import { ImageTransformations } from '@/models/types/images';
+import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
+import Image from 'next/image';
 
 type GadAssetProps = {
-  src: string | "";
+  src: string | '';
   width: number;
   height: number;
   title: string;

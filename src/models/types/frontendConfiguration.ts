@@ -1,6 +1,6 @@
 ﻿export type FrontendConfiguration = {
-  allSites: FrontendSiteConfiguration[]
-}
+  allSites: FrontendSiteConfiguration[];
+};
 
 export type FrontendSiteConfiguration = {
   culture: string;
@@ -8,4 +8,4 @@ export type FrontendSiteConfiguration = {
   platform: string;
   originUrl: string;
   translation: string;
-}
+};

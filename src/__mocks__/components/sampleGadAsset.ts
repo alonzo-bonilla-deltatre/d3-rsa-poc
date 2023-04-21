@@ -1,4 +1,4 @@
-const sampleAsset ={
+const sampleAsset = {
   name: 'SC21_whjgmi',
   publicId: 'sandbox-integrations/react-poc/SC21_whjgmi',
   resourceType: 'image',
@@ -11,10 +11,14 @@ const sampleAsset ={
   width: 0,
   height: 0,
   length: 25974,
-  assetUrl: 'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
-  assetThumbnailUrl: 'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.jpg',
-  assetOriginalUrl: 'https://res.cloudinary.com/forgephotos/image/private/s--47HW-a1a--/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
-  assetOriginalCdnUrl: 'https://res.cloudinary.com/forgephotos/image/private/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
+  assetUrl:
+    'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
+  assetThumbnailUrl:
+    'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.jpg',
+  assetOriginalUrl:
+    'https://res.cloudinary.com/forgephotos/image/private/s--47HW-a1a--/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
+  assetOriginalCdnUrl:
+    'https://res.cloudinary.com/forgephotos/image/private/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
   version: '1678095311',
   imageMetadata: null,
   context: null,
@@ -22,7 +26,8 @@ const sampleAsset ={
   path: 'image/private/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi',
   pathWithFormat: 'image/private/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
   templatedPath: 'image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi',
-  templatedPathWithFormat: 'image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png'
+  templatedPathWithFormat:
+    'image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
 };
 
 export { sampleAsset };

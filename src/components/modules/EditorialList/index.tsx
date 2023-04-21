@@ -1,11 +1,11 @@
-import { ComponentProps } from "@/models/types/components";
-import { getEntityList } from "@/services/dapiService";
-import { DistributionEntity } from "@/models/types/dapi";
-import { nanoid } from "nanoid";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import ModuleTitle from "@/components/common/ModuleTitle";
-import Card from "@/components/common/Card";
+import { ComponentProps } from '@/models/types/components';
+import { getEntityList } from '@/services/dapiService';
+import { DistributionEntity } from '@/models/types/dapi';
+import { nanoid } from 'nanoid';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import ModuleTitle from '@/components/common/ModuleTitle';
+import Card from '@/components/common/Card';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -21,16 +21,12 @@ type ModuleProps = {
 const EditorialList = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags, selectionSlug, entityType } =
     data.properties as ModuleProps;
-    if (!Object.hasOwn(data.properties, "entityType") || !entityType.length) {
-      logger.log(
-        "Cannot render TestList module with empty entityType",
-        LoggerLevel.warning
-      );
-      return null;
-    }
+  if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
+    logger.log('Cannot render TestList module with empty entityType', LoggerLevel.warning);
+    return null;
+  }
 
   const items = await getEntityList(selectionSlug, { skip, limit, tags }, entityType);
-
 
   return items?.length ? (
     <section className="mt-8">
@@ -42,14 +38,18 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
       <div className="grid grid-cols-3 gap-4 px-8">
         {items.map((entity: DistributionEntity) => {
           return (
-            <Card key={nanoid()} entity={entity} options={{
-              hideIcon: true,
-              hideRoofline: false,
-              hideTitle: false,
-              hideDate: false,
-              hideAuthor: true,
-              hideCta: true
-            }} ></Card>
+            <Card
+              key={nanoid()}
+              entity={entity}
+              options={{
+                hideIcon: true,
+                hideRoofline: false,
+                hideTitle: false,
+                hideDate: false,
+                hideAuthor: true,
+                hideCta: true,
+              }}
+            ></Card>
           );
         })}
       </div>

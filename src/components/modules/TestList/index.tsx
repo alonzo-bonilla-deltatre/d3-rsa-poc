@@ -1,15 +1,15 @@
-import { ComponentProps } from "@/models/types/components";
-import { getAllEntities } from "@/services/dapiService";
-import Picture from "@/components/common/Picture";
-import { GraphicAssetsDashboardItem } from "@/models/types/gad";
-import { getAssetsByTag } from "@/services/gadService";
-import { transformations } from "@/utilities/cloudinaryTransformations";
-import { DistributionEntity } from "@/models/types/dapi";
-import { nanoid } from "nanoid";
-import { formatDate } from "@/utilities/dateFormatter";
-import logger from "@/utilities/logger";
-import { LoggerLevel } from "@/models/types/logger";
-import ModuleTitle from "@/components/common/ModuleTitle";
+import { ComponentProps } from '@/models/types/components';
+import { getAllEntities } from '@/services/dapiService';
+import Picture from '@/components/common/Picture';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { getAssetsByTag } from '@/services/gadService';
+import { transformations } from '@/utilities/cloudinaryTransformations';
+import { DistributionEntity } from '@/models/types/dapi';
+import { nanoid } from 'nanoid';
+import { formatDate } from '@/utilities/dateFormatter';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -36,30 +36,20 @@ const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
   if (limit) {
     queryString.push(`$limit=${limit}`);
   }
-  if (tags?.length && tags.includes(",")) {
-    const tagSlugs = tags.split(",");
+  if (tags?.length && tags.includes(',')) {
+    const tagSlugs = tags.split(',');
     tagSlugs.forEach((tag) => {
       queryString.push(`$tags.slug=${tag}`);
     });
   }
-  return queryString.join("&");
+  return queryString.join('&');
 };
 
 const TestList = async ({ ...data }: ComponentProps) => {
-  const {
-    moduleTitle,
-    headingLevel,
-    displayModuleTitle,
-    entityType,
-    skip,
-    limit,
-    tags,
-  } = data.properties as ModuleProps;
-  if (!Object.hasOwn(data.properties, "entityType") || !entityType.length) {
-    logger.log(
-      "Cannot render TestList module with empty entityType",
-      LoggerLevel.warning
-    );
+  const { moduleTitle, headingLevel, displayModuleTitle, entityType, skip, limit, tags } =
+    data.properties as ModuleProps;
+  if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
+    logger.log('Cannot render TestList module with empty entityType', LoggerLevel.warning);
     return null;
   }
 
@@ -70,15 +60,12 @@ const TestList = async ({ ...data }: ComponentProps) => {
   const [promos] = await Promise.all([promoEntitiesFetch]);
   const items = promos?.items;
 
-  const gadAssetsPlaceHolderFetch = getAssetsByTag("react-poc-placeholder");
+  const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
 
-  const [gadThumbnailPlaceHolderAssets] = await Promise.all([
-    gadAssetsPlaceHolderFetch,
-  ]);
-  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null =
-    gadThumbnailPlaceHolderAssets?.length
-      ? gadThumbnailPlaceHolderAssets[0]
-      : null;
+  const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
+  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length
+    ? gadThumbnailPlaceHolderAssets[0]
+    : null;
 
   return items?.length ? (
     <section className="mt-8">
@@ -97,16 +84,16 @@ const TestList = async ({ ...data }: ComponentProps) => {
                     className="w-full h-full object-cover"
                     src={entity.thumbnail.templateUrl}
                     transformations={transformations.thumbnailGridItem}
-                    alt={entity.thumbnail.title ?? ""}
+                    alt={entity.thumbnail.title ?? ''}
                   />
                 </figure>
               ) : (
                 <figure className="col-start-1 row-start-1">
                   <Picture
                     className="w-full h-full object-cover"
-                    src={thumbnailPlaceHolder?.assetUrl ?? ""}
+                    src={thumbnailPlaceHolder?.assetUrl ?? ''}
                     transformations={transformations.thumbnailGridItem}
-                    alt={thumbnailPlaceHolder?.publicId ?? ""}
+                    alt={thumbnailPlaceHolder?.publicId ?? ''}
                   />
                 </figure>
               )}
@@ -126,12 +113,8 @@ const TestList = async ({ ...data }: ComponentProps) => {
                     })}
                   </div>
                 )}
-                <h3 className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">
-                  {entity.title}
-                </h3>
-                <time className="mb-3 text-sm font-light text-[#BEBEBE]">
-                  {formatDate(entity.contentDate)}
-                </time>
+                <h3 className="my-2 mt-4 text-xl font-bold tracking-tight dark:text-white">{entity.title}</h3>
+                <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(entity.contentDate)}</time>
               </div>
             </div>
           );

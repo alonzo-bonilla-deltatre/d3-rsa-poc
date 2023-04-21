@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { ComponentProps } from "@/models/types/components";
+import Image from 'next/image';
+import { ComponentProps } from '@/models/types/components';
 
 const Adv = async ({ ...data }: ComponentProps) => {
   const { properties } = data;

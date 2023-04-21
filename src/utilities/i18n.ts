@@ -1,11 +1,8 @@
-import { LoggerLevel } from "@/models/types/logger";
-import { TermType, Translation } from "@/models/types/translations";
-import {
-  getFallBackTranslations,
-  getTranslations,
-} from "@/services/translationService";
-import i18n, { InitOptions } from "i18next";
-import logger from "./logger";
+import { LoggerLevel } from '@/models/types/logger';
+import { TermType, Translation } from '@/models/types/translations';
+import { getFallBackTranslations, getTranslations } from '@/services/translationService';
+import i18n, { InitOptions } from 'i18next';
+import logger from './logger';
 
 const fallback = getFallBackTranslations();
 const options: InitOptions = {
@@ -24,17 +21,14 @@ export const initI18n = async (): Promise<any> => {
 
   if (translations != null) {
     translations.languages.forEach((culture) => {
-      const namespace = "translation";
+      const namespace = 'translation';
       const resources = translations.resources[culture];
       i18n.addResourceBundle(culture, namespace, resources[namespace]);
     });
   }
 };
 
-export const translate = (
-  key: string,
-  type: TermType = TermType.standard
-): string => {
+export const translate = (key: string, type: TermType = TermType.standard): string => {
   const term = i18n.t(key.toLowerCase(), { returnObjects: true }) as Translation;
   if (!term[type]) {
     logger.log(`TRANSLATION not found for this key: '${key}' and this type: '${type}'`, LoggerLevel.warning);
