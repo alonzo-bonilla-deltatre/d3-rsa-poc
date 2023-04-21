@@ -1,12 +1,12 @@
 import { ComponentProps } from '@/models/types/components';
-import { getAllEntities } from '@/services/dapiService';
+import { getAllEntities, getQueryString } from '@/services/dapiService';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { getAssetsByTag } from '@/services/gadService';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import ModuleTitle from '@/components/common/ModuleTitle';
 import React from 'react';
-import TestMosaicContainer from '@/components/modules/TestMosaic/TestMosaicContainer';
+import MosaicContainer from '@/components/modules/Mosaic/MosaicContainer';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -18,31 +18,7 @@ type ModuleProps = {
   tags: string;
 };
 
-type QueryStringModuleProps = {
-  skip: number;
-  limit: number;
-  tags: string;
-};
-
-const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
-  // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
-  let queryString: string[] = [];
-  if (skip) {
-    queryString.push(`$skip=${skip}`);
-  }
-  if (limit) {
-    queryString.push(`$limit=${limit}`);
-  }
-  if (tags?.length && tags.includes(',')) {
-    const tagSlugs = tags.split(',');
-    tagSlugs.forEach((tag) => {
-      queryString.push(`$tags.slug=${tag}`);
-    });
-  }
-  return queryString.join('&');
-};
-
-const TestMosaicList = async ({ ...data }: ComponentProps) => {
+const Mosaic = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, entityType, skip, limit, tags } =
     data.properties as ModuleProps;
   if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
@@ -73,10 +49,10 @@ const TestMosaicList = async ({ ...data }: ComponentProps) => {
           text={moduleTitle}
         ></ModuleTitle>
         <div className="flex px-8">
-          <TestMosaicContainer
+          <MosaicContainer
             items={items}
             thumbnailPlaceHolder={thumbnailPlaceHolder}
-          ></TestMosaicContainer>
+          ></MosaicContainer>
         </div>
       </section>
     </>
@@ -84,4 +60,4 @@ const TestMosaicList = async ({ ...data }: ComponentProps) => {
     <div />
   );
 };
-export default TestMosaicList;
+export default Mosaic;

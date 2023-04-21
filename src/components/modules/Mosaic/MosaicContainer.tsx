@@ -5,15 +5,15 @@ import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { nanoid } from 'nanoid';
 import Masonry from 'react-masonry-css';
-import TestMosaicItem from './TestMosaicItem';
+import MosaicItem from './MosaicItem';
 
-type TestMosaicContainerProps = {
+type MosaicContainerProps = {
   items: DistributionEntity[];
   thumbnailPlaceHolder: GraphicAssetsDashboardItem | null;
 };
 
-const TestMosaicContainer = ({ ...data }: TestMosaicContainerProps) => {
-  const { items, thumbnailPlaceHolder } = data as TestMosaicContainerProps;
+const MosaicContainer = ({ ...data }: MosaicContainerProps) => {
+  const { items, thumbnailPlaceHolder } = data as MosaicContainerProps;
 
   let transformationsList = ['mosaicSquareThumbnail', 'mosaicLandscapeThumbnail', 'mosaicPortraitThumbnail'];
   let textOverlapValue = [true, false];
@@ -34,7 +34,7 @@ const TestMosaicContainer = ({ ...data }: TestMosaicContainerProps) => {
       >
         {items.map((item: DistributionEntity) => {
           return (
-            <TestMosaicItem
+            <MosaicItem
               key={nanoid()}
               item={item}
               thumbnailPlaceHolder={thumbnailPlaceHolder}
@@ -42,7 +42,7 @@ const TestMosaicContainer = ({ ...data }: TestMosaicContainerProps) => {
                 transformations[transformationsList[Math.floor(Math.random() * transformationsList.length)]]
               }
               hasTextOverlap={textOverlapValue[Math.floor(Math.random() * textOverlapValue.length)]}
-            ></TestMosaicItem>
+            ></MosaicItem>
           );
         })}
       </Masonry>
@@ -50,4 +50,4 @@ const TestMosaicContainer = ({ ...data }: TestMosaicContainerProps) => {
   );
 };
 
-export default TestMosaicContainer;
+export default MosaicContainer;
