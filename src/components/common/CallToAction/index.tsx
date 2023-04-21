@@ -1,4 +1,4 @@
-import SvgIcon from "@/components/common/SvgIcon";
+import ImgIcon from "@/components/common/ImgIcon";
 
 type CallToActionProps = {
   url: string;
@@ -13,9 +13,9 @@ type CallToActionProps = {
 const CallToAction = ({ ...props }: CallToActionProps) => {
   const displayText = props.text ? props.text : "read-more";
   const iconSize = 20;
-  var additionalAttributes = {
-    ...(props.isExternal ? { target: "blank" } : undefined)
-  }
+  const additionalAttributes = {
+    ...(props.isExternal ? {target: "blank"} : undefined)
+  };
   return props.url && !props.hide ? (
     <>
       <a
@@ -24,7 +24,7 @@ const CallToAction = ({ ...props }: CallToActionProps) => {
         className={getCtaClasses(props.style)}
         {...additionalAttributes}
       >{
-          props.icon && (<SvgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></SvgIcon>)
+          props.icon && (<ImgIcon src={props.icon} width={iconSize} height={iconSize} alt={displayText}></ImgIcon>)
         }
         {displayText}
       </a></>

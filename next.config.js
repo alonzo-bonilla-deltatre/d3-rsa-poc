@@ -10,19 +10,15 @@ const nextConfig = {
       "images.unsplash.com",
       "res.cloudinary.com"
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/robots.txt',
+        destination: '/api/robots',
+      },
+    ];
   }
 }
 
-
 module.exports = nextConfig
-
-module.exports = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
-    })
-    return config
-  },
-}

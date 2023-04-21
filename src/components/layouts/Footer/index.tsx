@@ -20,37 +20,13 @@ const Footer = async(): Promise<React.ReactElement> => {
   const SocialIconsProps = {
     hide: false,
     size: 34,
-    className: "mr-4"
+    className: "mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300"
   };
 
   return (
     <>
     <FooterElement social={SocialIconsProps} languages={allSiteConfiguration} menuData={menuData} menuItemClasses={navItemClasses}
  copyright={translate("copyright")}></FooterElement>
-    {/* <footer className="w-full text-sm">
-      <nav className="bg-[#141414]/0">
-        <div className="container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
-          <div className="flex py-6">
-            <SocialIcons hide={false} size={34} className={"mr-4"}></SocialIcons>
-          </div>
-
-          <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">
-            <LanguageSwitcher allSiteConfiguration={allSiteConfiguration} />
-          </div>
-        </div>
-        <div className="container mx-auto py-12 lg:text-center">
-          <div className="flex flex-col lg:flex-row uppercase justify-between">
-            <Menu menuItems={menuData?.menuItems} navItemClasses={navItemClasses}></Menu>
-          </div>
-        </div>
-
-        <div className="container px-4 mx-auto pb-12 text-[#BEBEBE]">
-          <div>
-            <p>{translate("copyright")}</p>
-          </div>
-        </div>
-      </nav>
-    </footer> */}
     </>
   );
 };

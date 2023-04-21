@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getMenu } from "@/services/menuService";
 import { MenuResponseData } from "@/models/types/menu";
 import { getSingleAssetByTag } from "@/services/gadService";
@@ -7,6 +6,8 @@ import MenuHeaderService from "@/components/common/Menu";
 import React from "react";
 import HeaderElement from "./HeaderElement";
 import { GraphicAssetsDashboardItem } from "@/models/types/gad";
+import SvgIcon from "@/components/common/SvgIcon";
+import HamburgerMenuTwoRow from "@/components/icons/HamburgerMenuTwoRow";
 
 const Header = async (): Promise<React.ReactElement> => {
 
