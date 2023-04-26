@@ -7,33 +7,36 @@ import CallToAction from '@/components/common/CallToAction';
 import Roofline from '@/components/common/Roofline';
 import CardIcon from '@/components/common/CardIcon';
 import Picture from '@/components/common/Picture';
+import { ImageTransformations } from '@/models/types/images';
 
 export type CardProps = {
   entity: DistributionEntity;
   options: CardOptions;
+  layout: string | null;
 };
 
 const Card = ({ ...props }: CardProps) => {
   const entity = props.entity;
   const options = props.options;
+  const layout = props.layout ?? 'default'; // default, fullimage, fullimage-portrait
 
   const entityImage = entity.thumbnail;
   return (
     entity && (
       <>
-        <div>
+        <div className={getContainerClassName(layout)}>
           {entityImage != null && (
             <figure className="col-start-1 row-start-1">
               <Picture
                 src={entityImage.templateUrl}
                 className="w-full h-full object-cover"
-                transformations={transformations.thumbnailGridItem}
+                transformations={getImageTransformation(layout)}
                 alt={entity.title}
               />
             </figure>
           )}
 
-          <div className="py-5 w-4/6">
+          <div className={getInfoClassName(layout)}>
             <>
               <CardIcon
                 entityCode={entity.entityCode}
@@ -75,3 +78,35 @@ const Card = ({ ...props }: CardProps) => {
 };
 
 export default Card;
+
+
+const getImageTransformation = (name: string): ImageTransformations => {
+  switch (name) {
+    case 'fullimage':
+      return transformations.mosaicSquareThumbnail;
+    case 'fullimage-portrait':
+      return transformations.mosaicPortraitThumbnail;
+    default:
+      return transformations.thumbnailGridItem;
+  }
+};
+const getContainerClassName = (name: string): string => {
+  switch (name) {
+    case 'fullimage':
+      return 'grid';
+    case 'fullimage-portrait':
+      return 'grid';
+    default:
+      return '';
+  }
+};
+const getInfoClassName = (name: string): string => {
+  switch (name) {
+    case 'fullimage':
+      return 'p-5 col-start-1 row-start-1 flex justify-end flex-col z-10';
+    case 'fullimage-portrait':
+      return 'p-5 col-start-1 row-start-1 flex justify-end flex-col z-10';
+    default:
+      return 'py-5 w-4/6';
+  }
+};

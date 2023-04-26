@@ -19,6 +19,35 @@ const brightcoveEntity: DistributionEntity = sampleBrightcoveVideo;
 export default meta;
 
 type Story = StoryObj<typeof Card>;
+export const CardLayout: Story = {
+  render: (args) => (
+    <>
+      <h3 className={classNames}>default (with landscape transformation)</h3>
+      <div className="grid grid-cols-3 gap-4 px-8 ">
+        <Card {...args}></Card>
+      </div>
+      <h3 className={classNames}>fullimage (with squared transformation)</h3>
+      <div className="grid grid-cols-3 gap-4 px-8 ">
+        <Card {...args} layout='fullimage'></Card>
+      </div>
+      <h3 className={classNames}>fullimage-portrait (with portrait transformation)</h3>
+      <div className="grid grid-cols-3 gap-4 px-8">
+        <Card {...args} layout='fullimage-portrait'></Card>
+      </div>
+    </>
+  ),
+  args: {
+    entity: storyEntity,
+    options: {
+      hideIcon: true,
+      hideRoofline: false,
+      hideTitle: false,
+      hideDate: false,
+      hideAuthor: true,
+      hideCta: true,
+    }
+  },
+};
 
 export const Story: Story = {
   render: (args) => (
@@ -50,7 +79,7 @@ export const Story: Story = {
       hideDate: false,
       hideAuthor: true,
       hideCta: true,
-    },
+    }
   },
 };
 const classNames = 'my-2 mt-4 text-xxl tracking-tight dark:text-white px-8';
