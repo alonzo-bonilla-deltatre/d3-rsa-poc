@@ -16,10 +16,10 @@ const renderPromoRelatedItem = ({ ...data }: DistributionEntity): React.ReactEle
           hideDate: true,
           hideAuthor: true,
           hideCta: false,
-        }} 
-        layout={'fullimage'}></Card>
+        }}
+        layout={'fullimage'}
+      ></Card>
     </>
-
   ) : (
     <></>
   );

@@ -5,9 +5,8 @@ import renderEditorialRelatedItem from '@/components/relatedItems/EditorialEntit
 import renderPromoRelatedItem from '@/components/relatedItems/PromoEntity';
 import { DistributionEntity } from '@/models/types/dapi';
 
-
 const relatedItemsList: Record<any, (item: DistributionEntity) => React.ReactElement> = {
-  story:renderEditorialRelatedItem,
+  story: renderEditorialRelatedItem,
   'customentity.brightcovevideo': renderEditorialRelatedItem,
   'customentity.promo': renderPromoRelatedItem,
 };

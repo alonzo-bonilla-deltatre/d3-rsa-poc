@@ -123,18 +123,18 @@ const Story = async ({ ...data }: ComponentProps) => {
 
       {!props.hideRelatedItems && storyEntity.relations && (
         <section className="w-full container mx-auto mt-40">
-          <Title title={'related-items'} heading={'h3'} hide={false}></Title>
+          <Title
+            title={'related-items'}
+            heading={'h3'}
+            hide={false}
+          ></Title>
           <div className="grid grid-cols-4 gap-4 px-8">
             {storyEntity.relations.map((relItem: DistributionEntity) => {
-              return (
-                renderRelatedItem(relItem)
-              );
+              return renderRelatedItem(relItem);
             })}
           </div>
         </section>
       )}
-
-
     </>
   ) : (
     <div />

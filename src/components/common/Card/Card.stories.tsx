@@ -28,11 +28,17 @@ export const CardLayout: Story = {
       </div>
       <h3 className={classNames}>fullimage (with squared transformation)</h3>
       <div className="grid grid-cols-3 gap-4 px-8 ">
-        <Card {...args} layout='fullimage'></Card>
+        <Card
+          {...args}
+          layout="fullimage"
+        ></Card>
       </div>
       <h3 className={classNames}>fullimage-portrait (with portrait transformation)</h3>
       <div className="grid grid-cols-3 gap-4 px-8">
-        <Card {...args} layout='fullimage-portrait'></Card>
+        <Card
+          {...args}
+          layout="fullimage-portrait"
+        ></Card>
       </div>
     </>
   ),
@@ -45,7 +51,7 @@ export const CardLayout: Story = {
       hideDate: false,
       hideAuthor: true,
       hideCta: true,
-    }
+    },
   },
 };
 
@@ -79,7 +85,7 @@ export const Story: Story = {
       hideDate: false,
       hideAuthor: true,
       hideCta: true,
-    }
+    },
   },
 };
 const classNames = 'my-2 mt-4 text-xxl tracking-tight dark:text-white px-8';

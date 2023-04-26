@@ -79,7 +79,6 @@ const Card = ({ ...props }: CardProps) => {
 
 export default Card;
 
-
 const getImageTransformation = (name: string): ImageTransformations => {
   switch (name) {
     case 'fullimage':

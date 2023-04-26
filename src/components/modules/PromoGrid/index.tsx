@@ -50,7 +50,9 @@ const PromoGrid = async ({ ...data }: ComponentProps) => {
                 hideDate: false,
                 hideAuthor: true,
                 hideCta: true,
-              }} layout={null}></Card>
+              }}
+              layout={null}
+            ></Card>
           );
         })}
       </div>
