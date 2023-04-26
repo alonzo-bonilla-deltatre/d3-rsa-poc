@@ -3,15 +3,15 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const TestMosaicList = dynamic(() => import('@/components/modules/TestMosaic/index'));
+const Mosaic = dynamic(() => import('@/components/modules/Mosaic'));
 
-const TestMosaicListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <TestMosaicList {...data} />;
+const MosaicListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
+  return <Mosaic {...data} />;
 };
 
 const render = ({ ...data }: ComponentProps): React.ReactElement =>
   data ? (
-    <TestMosaicListWrapper
+    <MosaicListWrapper
       key={nanoid()}
       {...data}
     />
