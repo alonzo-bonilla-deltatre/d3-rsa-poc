@@ -14,7 +14,6 @@ export const getImageTransformation = (name: string): ImageTransformations => {
 export const getContainerClassName = (name: string): string => {
   switch (name) {
     case 'fullimage':
-      return 'grid';
     case 'fullimage-portrait':
       return 'grid';
     default:
@@ -24,7 +23,6 @@ export const getContainerClassName = (name: string): string => {
 export const getInfoClassName = (name: string): string => {
   switch (name) {
     case 'fullimage':
-      return 'p-5 col-start-1 row-start-1 flex justify-end flex-col z-10';
     case 'fullimage-portrait':
       return 'p-5 col-start-1 row-start-1 flex justify-end flex-col z-10';
     default:
