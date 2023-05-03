@@ -6,7 +6,6 @@ import { sampleLogo1, sampleLogoSquared } from '@/__mocks__/components/sampleLog
 const meta: Meta<typeof Logo> = {
   title: 'UiComponents/Logo',
   component: Logo,
-  //tags: ['autodocs'],
   argTypes: {
     assetUrl: [
       'https://res.cloudinary.com/forgephotos/image/private/t_q-best/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
