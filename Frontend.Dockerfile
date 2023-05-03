@@ -22,6 +22,7 @@ ARG CollectionUri
 ARG sonarprojectkey
 ARG sonarlogin
 
+RUN yarn test
 RUN yarn sonar
 
 ARG yarnBuildCommand
@@ -32,7 +33,7 @@ WORKDIR /app
 
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 

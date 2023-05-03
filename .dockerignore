@@ -33,3 +33,4 @@ README.md
 **/localhost.key
 renovate.json
 **/NuGet.Config
+test-report.xml

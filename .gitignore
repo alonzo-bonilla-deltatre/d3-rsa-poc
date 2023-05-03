@@ -310,5 +310,8 @@ yarn-error.log*
 # sonarscanner
 .scannerwork/
 
-#storybook
+# storybook
 **/storybook-static/
+
+# jest Test
+test-report.xml
