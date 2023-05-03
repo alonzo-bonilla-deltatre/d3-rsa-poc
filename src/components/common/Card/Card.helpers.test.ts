@@ -3,7 +3,6 @@ import { getContainerClassName, getImageTransformation, getInfoClassName } from 
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
 describe('getImageTransformation', (): void => {
-
   test('should return default transformation if name is empty', (): void => {
     // ACT
     const result = getImageTransformation('');
