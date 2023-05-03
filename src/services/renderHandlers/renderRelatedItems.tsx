@@ -13,7 +13,7 @@ const relatedItemsList: Record<any, (item: DistributionEntity) => React.ReactEle
 
 export const renderRelatedItem = (item: DistributionEntity): React.ReactElement => {
   let relItemType = item.type;
-  if (relItemType == 'customentity') {
+  if (relItemType === 'customentity') {
     relItemType = `customentity.${item.entityCode}`;
   }
   const renderRelatedItem = relatedItemsList[relItemType];
