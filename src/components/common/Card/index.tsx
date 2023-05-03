@@ -6,7 +6,7 @@ import CallToAction from '@/components/common/CallToAction';
 import Roofline from '@/components/common/Roofline';
 import CardIcon from '@/components/common/CardIcon';
 import Picture from '@/components/common/Picture';
-import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/Card.helpers'
+import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/Card.helpers';
 
 export type CardProps = {
   entity: DistributionEntity;
@@ -77,5 +77,3 @@ const Card = ({ ...props }: CardProps) => {
 };
 
 export default Card;
-
-
