@@ -31,8 +31,8 @@ const sampleLogo4 = {
     'https://res.cloudinary.com/forgephotos/image/upload/{formatInstructions}/v1637764260/sandbox-integrations/qa/partner/NewWave_2020x143_png',
 };
 const sampleLogoSquared = {
-  width: 200,
-  height: 200,
+  width: 100,
+  height: 100,
   alt: 'NFL logo',
   className: 'max-sm:w-full',
   assetUrl:

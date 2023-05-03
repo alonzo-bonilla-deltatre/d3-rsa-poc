@@ -7,7 +7,6 @@
 **/test-results/**
 **/eslint/**
 **/__tests__/__snapshots__/**
-**/*.test.ts
 **/*.config.js
 **/*.config.mjs
 **/sonarqube-scanner.js
