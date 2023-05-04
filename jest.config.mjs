@@ -17,7 +17,7 @@ const config = {
     "!**/models/**"
   ],
   coverageReporters: ["lcov", "text"],
-  coverageDirectory: "<rootDir>/coverage",
+  coverageDirectory: "../coverage",
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/components/$1',

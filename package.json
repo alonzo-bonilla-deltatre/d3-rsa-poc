@@ -9,7 +9,7 @@
     "sonar": "node sonarqube-scanner.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --silent --coverage --watchAll",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --silent --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter",
     "prepare": "husky install",
     "format": "prettier --write ."
   },
@@ -26,6 +26,8 @@
     "eslint-config-next": "13.1.6",
     "graphql": "^16.6.0",
     "i18next": "^22.4.10",
+    "jest-sonar-reporter": "^2.0.0",
+    "moment": "^2.29.4",
     "nanoid": "^4.0.1",
     "next": "13.1.6",
     "postcss": "^8.4.21",
@@ -53,10 +55,11 @@
     "@storybook/testing-library": "0.0.14-next.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "@types/moment-duration-format": "^2.2.3",
     "eslint-plugin-storybook": "^0.6.11",
+    "husky": "^8.0.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
-    "storybook": "^7.0.4",
-    "husky": "^8.0.0"
+    "storybook": "^7.0.4"
   }
 }
