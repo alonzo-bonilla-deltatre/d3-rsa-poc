@@ -1,6 +1,6 @@
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
-import { StructureItem } from '@/models/types/pageStructure';
+import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 import logger from '@/utilities/logger';
 /* */
 import renderDefaultTemplate from '@/components/templates/DefaultTemplate';
@@ -13,10 +13,14 @@ const templateList: Record<any, (props: ComponentProps) => React.ReactElement> =
   Default: renderDefaultTemplate,
 };
 
-export const renderTemplate = (item: StructureItem): React.ReactElement => {
+export const renderTemplate = (
+  item: StructureItem,
+  variables?: Variable[] | null,
+  metadata?: Metadata[] | null
+): React.ReactElement => {
   const render = templateList[item.key.id];
   if (render) {
-    return render({ ...item } as ComponentProps);
+    return render({ ...item, variables, metadata } as ComponentProps);
   }
   logger.log(`Cannot render template ${item.key.id}`, LoggerLevel.error);
   return <div />;

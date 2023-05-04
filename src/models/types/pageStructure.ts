@@ -1,9 +1,11 @@
 export type PageStructureResponse = {
-  data: {
-    structure: StructureItem;
-    variables: Variable[];
-    metadata: Metadata[];
-  };
+  data: PageStructureData;
+};
+
+export type PageStructureData = {
+  structure: StructureItem;
+  variables: Variable[];
+  metadata: Metadata[];
 };
 
 export type StructureItem = {

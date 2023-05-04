@@ -19,12 +19,13 @@ export default async function Page({
     return null;
   }
 
-  const template = pageStructure.data.structure;
+  const structure = pageStructure.data.structure;
   const metadata = pageStructure.data.metadata;
+  const variables = pageStructure.data.variables;
   return (
     <>
       <ThemingVariables metadata={metadata} />
-      {template && renderItem(template)}
+      {structure && renderItem(structure, variables, metadata)}
     </>
   );
 }

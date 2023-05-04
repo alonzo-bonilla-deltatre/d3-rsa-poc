@@ -1,7 +1,7 @@
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { ComponentProps } from '@/models/types/components';
-import { StructureItem } from '@/models/types/pageStructure';
+import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 /**/
 import renderPromo from '@/components/modules/Promo/PromoWrapper';
 import renderAdv from '@/components/modules/Adv/AdvWrapper';
@@ -39,10 +39,14 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Mosaic: renderMosaicList,
 };
 
-export const renderModule = (item: StructureItem): React.ReactElement => {
+export const renderModule = (
+  item: StructureItem,
+  variables?: Variable[] | null,
+  metadata?: Metadata[] | null
+): React.ReactElement => {
   const render = componentList[item.key.id];
   if (render) {
-    return render({ ...item } as ComponentProps);
+    return render({ ...item, variables, metadata } as ComponentProps);
   }
   logger.log(`Cannot render module ${item.key.id}`, LoggerLevel.error);
   return <div />;

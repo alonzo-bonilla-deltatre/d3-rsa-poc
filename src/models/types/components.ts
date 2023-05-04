@@ -1,4 +1,4 @@
-import { PageStructureItemType, StructureItem } from './pageStructure';
+import { Metadata, PageStructureItemType, StructureItem, Variable } from './pageStructure';
 
 export type ComponentProps = {
   type: PageStructureItemType;
@@ -6,4 +6,6 @@ export type ComponentProps = {
   slot: string;
   slots?: string[];
   items?: StructureItem[];
+  variables?: Variable[];
+  metadata?: Metadata[];
 };
