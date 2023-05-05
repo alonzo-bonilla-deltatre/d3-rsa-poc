@@ -60,4 +60,5 @@ export type CardOptions = {
   hideDate: boolean | false;
   hideAuthor: boolean | true;
   hideCta: boolean | true;
+  className: string;
 };

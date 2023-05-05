@@ -16,14 +16,5 @@ const TwoColumns = ({ ...data }: ComponentProps) => {
   );
 };
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <TwoColumns
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
 
-export default render;
+export default TwoColumns;

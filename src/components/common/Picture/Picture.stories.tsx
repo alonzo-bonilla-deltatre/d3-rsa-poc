@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Picture from '@/components/common/Picture';
-import { transformations } from '@/utilities/cloudinaryTransformations';
 
 const meta: Meta<typeof Picture> = {
   title: 'UiComponents/Picture',

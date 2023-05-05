@@ -6,32 +6,30 @@ import CallToAction from '@/components/common/CallToAction';
 import Roofline from '@/components/common/Roofline';
 import CardIcon from '@/components/common/CardIcon';
 import Picture from '@/components/common/Picture';
-import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/Card.helpers';
+import { transformations } from '@/utilities/cloudinaryTransformations';
 
 export type CardProps = {
   entity: DistributionEntity;
   options: CardOptions;
-  layout: string | null;
 };
 
-const Card = ({ ...props }: CardProps) => {
+const CardFullPortrait = ({ ...props }: CardProps) => {
   const entity = props.entity;
   const options = props.options;
-  const layout = props.layout ?? 'default'; // default, fullimage, fullimage-portrait
-  const cardClassName = getContainerClassName(layout) + ' ' + options.className;
-  const cardInfoClassName = getInfoClassName(layout);
   const entityImage = entity.thumbnail;
+  const cardClassName = 'grid ' + options.className;
+  const cardInfoClassName = 'p-5 col-start-1 row-start-1 flex justify-end flex-col z-10';
+  const imgTrasformation = transformations.mosaicPortraitThumbnail;
 
   return (
     entity && (
-      <>
-        <div className={cardClassName}>
+      <div className={cardClassName}>
           {entityImage != null && (
             <figure className="col-start-1 row-start-1">
               <Picture
                 src={entityImage.templateUrl}
                 className="w-full h-full object-cover"
-                transformations={getImageTransformation(layout)}
+                transformations={imgTrasformation}
                 alt={entity.title}
               />
             </figure>
@@ -44,8 +42,8 @@ const Card = ({ ...props }: CardProps) => {
                 hide={options.hideIcon}
               ></CardIcon>
               <Roofline
-                context={entity.context}
-                hide={options.hideRoofline} icon={null} asset={null}></Roofline>
+              context={entity.context}
+              hide={options.hideRoofline} icon={null} asset={null}></Roofline>
               <Title
                 title={entity.title}
                 heading={null}
@@ -72,9 +70,8 @@ const Card = ({ ...props }: CardProps) => {
             </>
           </div>
         </div>
-      </>
     )
   );
 };
 
-export default Card;
+export default CardFullPortrait;

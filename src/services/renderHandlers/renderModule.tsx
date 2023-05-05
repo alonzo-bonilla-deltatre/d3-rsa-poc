@@ -15,6 +15,7 @@ import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
+import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
@@ -30,6 +31,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocStory: renderStory,
   PocPartners: renderPartners,
   PocBrightcoveVideo: renderBrightcoveVideo,
+  HtmlContent: renderHtmlContent,
 
   // products-demo modules
   Hero: renderHero,

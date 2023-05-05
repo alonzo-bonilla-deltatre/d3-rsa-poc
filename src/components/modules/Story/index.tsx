@@ -53,8 +53,7 @@ const Story = async ({ ...data }: ComponentProps) => {
             <Roofline
               className={'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2'}
               context={storyEntity.context}
-              hide={props.hideRoofline}
-            ></Roofline>
+              hide={props.hideRoofline} icon={null} asset={null}></Roofline>
             <h3 className="font-bold text-5xl uppercase">{storyEntity.title}</h3>
             <div className="flex justify-between items-center mt-8">
               <div>

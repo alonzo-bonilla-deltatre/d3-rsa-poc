@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Quote from '@/components/common/Quote';
 import { sampleQuote } from '@/__mocks__/entities/sampleStoryParts';
-import { withBaseDecorator } from '@/services/storybookService';
+import { withBaseDecorator } from '@/stories/storybookDecorators';
 
 const meta: Meta<typeof Quote> = {
   title: 'UiComponents/Quote',

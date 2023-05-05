@@ -30,4 +30,33 @@ const sampleAsset = {
     'image/private/{formatInstructions}/v1678095311/sandbox-integrations/react-poc/SC21_whjgmi.png',
 };
 
-export { sampleAsset };
+const sampleAssetSquared = {
+  name: "nfl_500x500_svg",
+  publicId: "sandbox-integrations/qa/logo/nfl_500x500_svg",
+  resourceType: "Image",
+  type: "upload",
+  format: "svg",
+  tags: [
+    "nfl-logo"
+  ],
+  tagsInString: "nfl-logo",
+  created: "2021-11-24T11:13:11Z",
+  uploaded: "0001-01-01T00:00:00Z",
+  width: 500,
+  height: 500,
+  length: 4232,
+  assetUrl: "https://res.cloudinary.com/forgephotos/image/upload/{formatInstructions}/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg.svg",
+  assetThumbnailUrl: "https://res.cloudinary.com/forgephotos/image/upload/{formatInstructions}/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg.jpg",
+  assetOriginalUrl: "https://res.cloudinary.com/forgephotos/image/upload/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg.svg",
+  assetOriginalCdnUrl: "https://res.cloudinary.com/forgephotos/image/upload/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg.svg",
+  version: "1637752391",
+  imageMetadata: null,
+  context: null,
+  imageAnalysis: null,
+  path: "image/upload/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg",
+  pathWithFormat: "image/upload/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg.svg",
+  templatedPath: "image/upload/{formatInstructions}/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg",
+  templatedPathWithFormat: "image/upload/{formatInstructions}/v1637752391/sandbox-integrations/qa/logo/nfl_500x500_svg.svg"
+};
+
+export { sampleAsset,sampleAssetSquared };
