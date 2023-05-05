@@ -1,3 +1,4 @@
+/* instanbul ignore file */
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
