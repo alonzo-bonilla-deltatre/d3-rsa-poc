@@ -5,7 +5,6 @@ import GadAsset from '../GadAsset';
 import SvgIcon from '../SvgIcon';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
-
 type RooflineProps = {
   context: Tag;
   hide: boolean;
@@ -27,13 +26,20 @@ const Roofline = ({ ...props }: RooflineProps) => {
         {props.icon && (
           <SvgIcon
             className={'w-4 h-4 mr-2 text-white '}
-            size={20} icon={props.icon}></SvgIcon>
+            size={20}
+            icon={props.icon}
+          ></SvgIcon>
         )}
         {asset && (
-          <GadAsset src={asset?.assetUrl} width={20} height={20} title={asset?.name} transformations={transformations.logos}></GadAsset>
- )}
-<span>
-        {props.context.title}</span>
+          <GadAsset
+            src={asset?.assetUrl}
+            width={20}
+            height={20}
+            title={asset?.name}
+            transformations={transformations.logos}
+          ></GadAsset>
+        )}
+        <span>{props.context.title}</span>
       </div>
     )
   );

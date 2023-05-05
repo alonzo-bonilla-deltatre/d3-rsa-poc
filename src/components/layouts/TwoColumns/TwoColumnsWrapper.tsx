@@ -18,4 +18,3 @@ const render = ({ ...data }: ComponentProps): React.ReactElement =>
   );
 
 export default render;
-

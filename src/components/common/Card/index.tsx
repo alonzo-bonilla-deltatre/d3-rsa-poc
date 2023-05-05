@@ -45,7 +45,10 @@ const Card = ({ ...props }: CardProps) => {
               ></CardIcon>
               <Roofline
                 context={entity.context}
-                hide={options.hideRoofline} icon={null} asset={null}></Roofline>
+                hide={options.hideRoofline}
+                icon={null}
+                asset={null}
+              ></Roofline>
               <Title
                 title={entity.title}
                 heading={null}

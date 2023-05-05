@@ -101,7 +101,10 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                     <>
                       <Roofline
                         context={slide.context}
-                        hide={false} icon={null} asset={null}></Roofline>
+                        hide={false}
+                        icon={null}
+                        asset={null}
+                      ></Roofline>
                       {/* <CardTitle title={slide.title} heading="h1" hide={false}></CardTitle> */}
                       <h3 className="font-bold text-5xl uppercase mt-4">{slide.title}</h3>
                       {/* <CardDate date={slide.contentDate} format={null}  hide={false}></CardDate> */}

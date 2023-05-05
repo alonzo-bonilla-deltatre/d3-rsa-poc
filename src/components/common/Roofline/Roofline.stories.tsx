@@ -4,7 +4,6 @@ import Roofline from '@/components/common/Roofline';
 import { sampleContext } from '@/__mocks__/entities/story';
 import { sampleAssetSquared } from '@/__mocks__/components/sampleGadAsset';
 
-
 const meta: Meta<typeof Roofline> = {
   title: 'UiComponents/Roofline',
   component: Roofline,
@@ -27,7 +26,7 @@ export const WithIcon: Story = {
     context: sampleContext,
     hide: false,
     className: 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 py-1 px-4 rounded inline-flex items-center',
-    icon:ArrowRight,
+    icon: ArrowRight,
   },
 };
 
@@ -36,6 +35,6 @@ export const WithAsset: Story = {
     context: sampleContext,
     hide: false,
     className: 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 py-1 px-4 rounded inline-flex items-center',
-    asset: sampleAssetSquared
+    asset: sampleAssetSquared,
   },
 };

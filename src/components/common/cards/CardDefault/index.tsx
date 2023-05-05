@@ -24,52 +24,55 @@ const CardDefault = ({ ...props }: CardProps) => {
   return (
     entity && (
       <div className={cardClassName}>
-          {entityImage != null && (
-            <figure className="col-start-1 row-start-1">
-              <Picture
-                src={entityImage.templateUrl}
-                className="w-full h-full object-cover"
-                transformations={imgTrasformation}
-                alt={entity.title}
-              />
-            </figure>
-          )}
+        {entityImage != null && (
+          <figure className="col-start-1 row-start-1">
+            <Picture
+              src={entityImage.templateUrl}
+              className="w-full h-full object-cover"
+              transformations={imgTrasformation}
+              alt={entity.title}
+            />
+          </figure>
+        )}
 
-          <div className={cardInfoClassName}>
-            <>
-              <CardIcon
-                entityCode={entity.entityCode}
-                hide={options.hideIcon}
-              ></CardIcon>
-              <Roofline
+        <div className={cardInfoClassName}>
+          <>
+            <CardIcon
+              entityCode={entity.entityCode}
+              hide={options.hideIcon}
+            ></CardIcon>
+            <Roofline
               context={entity.context}
-              hide={options.hideRoofline} icon={null} asset={null}></Roofline>
-              <Title
-                title={entity.title}
-                heading={null}
-                hide={options.hideTitle}
-              ></Title>
-              <Date
-                date={entity.contentDate}
-                format={null}
-                hide={options.hideDate}
-              ></Date>
-              <Author
-                author={entity.createdBy}
-                hide={options.hideAuthor}
-              ></Author>
-              <CallToAction
-                url={'#nolink'}
-                text={''}
-                isExternal={false}
-                style={''}
-                icon={''}
-                hide={options.hideCta}
-              ></CallToAction>
-              {/* //TODO: add card link */}
-            </>
-          </div>
+              hide={options.hideRoofline}
+              icon={null}
+              asset={null}
+            ></Roofline>
+            <Title
+              title={entity.title}
+              heading={null}
+              hide={options.hideTitle}
+            ></Title>
+            <Date
+              date={entity.contentDate}
+              format={null}
+              hide={options.hideDate}
+            ></Date>
+            <Author
+              author={entity.createdBy}
+              hide={options.hideAuthor}
+            ></Author>
+            <CallToAction
+              url={'#nolink'}
+              text={''}
+              isExternal={false}
+              style={''}
+              icon={''}
+              hide={options.hideCta}
+            ></CallToAction>
+            {/* //TODO: add card link */}
+          </>
         </div>
+      </div>
     )
   );
 };

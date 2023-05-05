@@ -4,7 +4,6 @@ import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer';
 import { DistributionEntity } from '@/models/types/dapi';
 import { withBaseDecorator, withStoryPartDecorator } from '@/stories/storybookDecorators';
 
-
 const meta: Meta<typeof BrightcoveVideoPlayer> = {
   title: 'UiComponents/BrightcoveVideoPlayer',
   component: BrightcoveVideoPlayer,

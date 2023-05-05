@@ -16,5 +16,4 @@ const TwoColumns = ({ ...data }: ComponentProps) => {
   );
 };
 
-
 export default TwoColumns;

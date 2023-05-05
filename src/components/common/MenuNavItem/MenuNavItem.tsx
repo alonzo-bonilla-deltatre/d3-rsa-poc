@@ -11,7 +11,7 @@ type MenuNavItemProps = {
 };
 
 const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
-  const { menuItem, navItemClasses, parentId, iconSize} = data as MenuNavItemProps;
+  const { menuItem, navItemClasses, parentId, iconSize } = data as MenuNavItemProps;
   //const router = usePathname();
   const parentid = parentId;
   const itemLink = menuItem.properties.link ?? '#nolink';
