@@ -5,24 +5,20 @@ import { renderModule } from './renderHandlers/renderModule';
 import { renderTemplate } from './renderHandlers/renderTemplate';
 import { nanoid } from 'nanoid';
 
-export const renderItem = (
-  item: StructureItem,
-  variables?: Variable[] | null,
-  metadata?: Metadata[] | null
-): React.ReactElement => {
+export const renderItem = (item: StructureItem, variables?: Variable[], metadata?: Metadata[]): React.ReactElement => {
   if (!item) {
     return renderEmptyPage();
   }
   if (item.type === PageStructureItemType.template) {
-    return renderTemplate(item);
+    return renderTemplate(item, variables, metadata);
   }
 
   if (item.type === PageStructureItemType.layout) {
-    return renderLayout(item);
+    return renderLayout(item, variables, metadata);
   }
 
   if (item.type === PageStructureItemType.module) {
-    return renderModule(item);
+    return renderModule(item, variables, metadata);
   }
   return renderEmptyPage();
 };
@@ -30,8 +26,8 @@ export const renderItem = (
 export const renderItemsInSlot = (
   items: StructureItem[] | undefined,
   slotName: string,
-  variables?: Variable[] | null,
-  metadata?: Metadata[] | null
+  variables?: Variable[],
+  metadata?: Metadata[]
 ): ReactElement<any, string | JSXElementConstructor<any>>[] | null => {
   if (typeof items === 'undefined' || !items.length) {
     return null;

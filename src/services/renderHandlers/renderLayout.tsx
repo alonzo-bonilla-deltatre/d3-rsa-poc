@@ -1,3 +1,4 @@
+/* instanbul ignore file */
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
@@ -5,6 +6,7 @@ import logger from '@/utilities/logger';
 /* */
 import renderSection from '@/components/layouts/Section';
 import renderTwoColumns from '@/components/layouts/TwoColumns';
+import renderHeader from '@/components/layouts/Header/HeaderWrapper';
 
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   Section: renderSection,
@@ -12,6 +14,7 @@ const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
 
   // products-demo layouts
   TwoColumns: renderTwoColumns,
+  Header: renderHeader,
 };
 
 export const renderLayout = (

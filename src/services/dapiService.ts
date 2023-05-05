@@ -20,9 +20,7 @@ export const getEntity = async (entityCode: string, slug: string): Promise<Distr
     .get(apiUrl)
     .then((response) => {
       logger.log(
-        `Retrieved ${entityCode} entity slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}. ${JSON.stringify(
-          response.data
-        )}`,
+        `Retrieved ${entityCode} entity slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}`,
         LoggerLevel.debug
       );
       return response.data;
@@ -50,9 +48,7 @@ export const getAllEntities = async (entityCode: string, queryParameters: string
     .get(apiUrl)
     .then((response) => {
       logger.log(
-        `Retrieved ${entityCode} ${entityCode} entity list data from FORGE DISTRIBUTION API ${apiUrl}. ${JSON.stringify(
-          response.data
-        )}`,
+        `Retrieved ${entityCode} ${entityCode} entity list data from FORGE DISTRIBUTION API ${apiUrl}`,
         LoggerLevel.debug
       );
       return response.data;

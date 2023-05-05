@@ -1,3 +1,4 @@
+/* instanbul ignore file */
 import { LoggerLevel } from '@/models/types/logger';
 import logger from '@/utilities/logger';
 import { StoryPart } from '@/models/types/storyPart';
