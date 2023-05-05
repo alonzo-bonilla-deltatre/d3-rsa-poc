@@ -1,4 +1,4 @@
-import { keyValue, Variable } from '@/models/types/pageStructure';
+import { KeyValue, Variable } from '@/models/types/pageStructure';
 import { getHeaderStructure } from '@/services/headerService';
 import { getPageStructure } from '@/services/pageService';
 
@@ -23,7 +23,7 @@ describe('getHeaderStructure function', () => {
 
   it('returns null if headerSource is null', async (): Promise<void> => {
     const variables: Variable[] = [
-      { key: 'some_other_key', type: 'string', keyValue: { value: 'some_other_value' } as keyValue },
+      { key: 'some_other_key', type: 'string', keyValue: { value: 'some_other_value' } as KeyValue },
     ];
 
     const header = await getHeaderStructure(variables);
@@ -32,7 +32,7 @@ describe('getHeaderStructure function', () => {
   });
 
   it('returns null if headerSource is empty string', async (): Promise<void> => {
-    const variables: Variable[] = [{ key: 'inc_header', type: 'string', keyValue: { value: '' } as keyValue }];
+    const variables: Variable[] = [{ key: 'inc_header', type: 'string', keyValue: { value: '' } as KeyValue }];
 
     const header = await getHeaderStructure(variables);
 
@@ -41,7 +41,7 @@ describe('getHeaderStructure function', () => {
 
   it('calls getPageStructure with the correct headerSource', async (): Promise<void> => {
     const variables: Variable[] = [
-      { key: 'inc_header', type: 'string', keyValue: { value: 'some_header_source' } as keyValue },
+      { key: 'inc_header', type: 'string', keyValue: { value: 'some_header_source' } as KeyValue },
     ];
     const mockGetPageStructure = (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: 'header_data' });
 
@@ -54,7 +54,7 @@ describe('getHeaderStructure function', () => {
 
   it('returns the header data if getPageStructure succeeds', async (): Promise<void> => {
     const variables: Variable[] = [
-      { key: 'inc_header', type: 'string', keyValue: { value: 'some_header_source' } as keyValue },
+      { key: 'inc_header', type: 'string', keyValue: { value: 'some_header_source' } as KeyValue },
     ];
     (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: 'header_data' });
 
@@ -64,7 +64,7 @@ describe('getHeaderStructure function', () => {
 
   it('returns null if getPageStructure fails', async (): Promise<void> => {
     const variables: Variable[] = [
-      { key: 'inc_header', type: 'string', keyValue: { value: 'some_header_source' } as keyValue },
+      { key: 'inc_header', type: 'string', keyValue: { value: 'some_header_source' } as KeyValue },
     ];
     (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
