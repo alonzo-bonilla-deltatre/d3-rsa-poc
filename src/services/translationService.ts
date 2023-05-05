@@ -23,10 +23,7 @@ export const getTranslations = async (): Promise<Translations | null> => {
   return await axios
     .get(apiUrl)
     .then((response) => {
-      logger.log(
-        `Retrieved Translations from VOCABULARY TOOL ${apiUrl}. ${JSON.stringify(response.data)}`,
-        LoggerLevel.debug
-      );
+      logger.log(`Retrieved Translations from VOCABULARY TOOL ${apiUrl}`, LoggerLevel.debug);
       const translations: Translations = response.data;
 
       const areTranslationsValid =
