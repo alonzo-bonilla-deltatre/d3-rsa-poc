@@ -1,4 +1,4 @@
-import { CardOptions, DistributionEntity } from '@/models/types/dapi';
+import { CardProps } from '@/models/types/card';
 import Title from '@/components/common/Title';
 import Date from '@/components/common/Date';
 import Author from '@/components/common/Author';
@@ -7,11 +7,6 @@ import Roofline from '@/components/common/Roofline';
 import CardIcon from '@/components/common/CardIcon';
 import Picture from '@/components/common/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-
-export type CardProps = {
-  entity: DistributionEntity;
-  options: CardOptions;
-};
 
 const CardDefault = ({ ...props }: CardProps) => {
   const entity = props.entity;

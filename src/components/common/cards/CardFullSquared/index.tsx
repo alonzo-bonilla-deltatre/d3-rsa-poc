@@ -1,4 +1,4 @@
-import { CardOptions, DistributionEntity } from '@/models/types/dapi';
+import { CardProps } from '@/models/types/card';
 import Title from '@/components/common/Title';
 import Date from '@/components/common/Date';
 import Author from '@/components/common/Author';
@@ -6,19 +6,13 @@ import CallToAction from '@/components/common/CallToAction';
 import Roofline from '@/components/common/Roofline';
 import CardIcon from '@/components/common/CardIcon';
 import Picture from '@/components/common/Picture';
-import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/Card.helpers';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-
-export type CardProps = {
-  entity: DistributionEntity;
-  options: CardOptions;
-};
 
 const CardFullSquared = ({ ...props }: CardProps) => {
   const entity = props.entity;
   const options = props.options;
   const entityImage = entity.thumbnail;
-  const cardClassName = 'grid ' + options.className;
+  const cardClassName = `grid ${options.className}`;
   const cardInfoClassName = 'p-5 col-start-1 row-start-1 flex justify-end flex-col z-10';
 
   const imgTrasformation = transformations.mosaicSquareThumbnail;

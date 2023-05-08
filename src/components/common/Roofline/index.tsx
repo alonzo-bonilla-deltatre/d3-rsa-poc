@@ -9,8 +9,8 @@ type RooflineProps = {
   context: Tag;
   hide: boolean;
   className?: string;
-  icon: React.ElementType | null;
-  asset: GraphicAssetsDashboardItem | null;
+  icon?: React.ElementType | null | undefined;
+  asset?: GraphicAssetsDashboardItem | null | undefined;
 };
 
 const defaultClassName = 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 w-fit';

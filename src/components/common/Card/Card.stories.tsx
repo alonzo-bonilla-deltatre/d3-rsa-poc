@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import { sampleStory } from '@/__mocks__/entities/story';
-import Card from '@/components/common/Card';
 import { DistributionEntity } from '@/models/types/dapi';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
-import CardFullSquared from '../cards/CardFullSquared';
-import CardFullPortrait from '../cards/CardFullPortrait';
-import CardDefault from '../cards/CardDefault';
+import Card from '@/components/common/Card';
+import CardFullSquared from '@/components/common/cards/CardFullSquared';
+import CardFullPortrait from '@/components/common/cards/CardFullPortrait';
+import CardDefault from '@/components/common/cards/CardDefault';
 const meta: Meta<typeof Card> = {
   title: 'UiComponents/Card',
   component: Card,

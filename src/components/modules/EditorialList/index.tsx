@@ -48,7 +48,6 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
                 hideDate: false,
                 hideAuthor: true,
                 hideCta: true,
-                className: '',
               }}
               layout={null}
             ></Card>

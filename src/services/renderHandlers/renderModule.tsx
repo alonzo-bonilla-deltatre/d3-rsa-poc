@@ -29,12 +29,10 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocTestList: renderTestList,
   PocTestMosaic: renderMosaicList,
   PocMenu: renderMenu,
-  PocStory: renderStory,
   PocPartners: renderPartners,
   PocBrightcoveVideo: renderBrightcoveVideo,
   HtmlContent: renderHtmlContent,
 
-  // products-demo modules
   Hero: renderHero,
   Story: renderStory,
   Partners: renderPartners,

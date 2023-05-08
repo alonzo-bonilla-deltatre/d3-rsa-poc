@@ -1,4 +1,4 @@
-import { CardOptions, DistributionEntity } from '@/models/types/dapi';
+import { CardProps } from '@/models/types/card';
 import Title from '@/components/common/Title';
 import Date from '@/components/common/Date';
 import Author from '@/components/common/Author';
@@ -8,17 +8,11 @@ import CardIcon from '@/components/common/CardIcon';
 import Picture from '@/components/common/Picture';
 import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/Card.helpers';
 
-export type CardProps = {
-  entity: DistributionEntity;
-  options: CardOptions;
-  layout: string | null;
-};
-
 const Card = ({ ...props }: CardProps) => {
   const entity = props.entity;
   const options = props.options;
   const layout = props.layout ?? 'default'; // default, fullimage, fullimage-portrait
-  const cardClassName = getContainerClassName(layout) + ' ' + options.className;
+  const cardClassName = `${getContainerClassName(layout)} ${options.className}`;
   const cardInfoClassName = getInfoClassName(layout);
   const entityImage = entity.thumbnail;
 
