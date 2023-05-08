@@ -23,7 +23,12 @@ export type StructureItem = {
 export type Variable = {
   key: string;
   type: string;
-  keyValue: Record<any, string>[];
+  keyValue: KeyValue;
+};
+
+export type KeyValue = {
+  value: string;
+  valueType: string;
 };
 
 export type Metadata = {

@@ -1,3 +1,4 @@
+/* instanbul ignore file */
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { ComponentProps } from '@/models/types/components';

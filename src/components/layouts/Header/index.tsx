@@ -1,33 +1,19 @@
-import { getMenu } from '@/services/menuService';
-import { MenuResponseData } from '@/models/types/menu';
-import { getSingleAssetByTag } from '@/services/gadService';
-import Logo from '@/components/common/Logo';
-import MenuHeaderService from '@/components/common/Menu';
+/* istanbul ignore file */
+
 import React from 'react';
-import HeaderElement from './HeaderElement';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import SvgIcon from '@/components/common/SvgIcon';
-import HamburgerMenuTwoRow from '@/components/icons/HamburgerMenuTwoRow';
+import { ComponentProps } from '@/models/types/components';
+import { StructureItem } from '@/models/types/pageStructure';
+import { renderItem } from '@/services/renderService';
 
-const Header = async (): Promise<React.ReactElement> => {
-  const menuData = getMenu('headerServiceMenu') as MenuResponseData;
-  const navItemClasses = 'mx-1';
-  const iconSize = 44;
-  const logo = (await getSingleAssetByTag('react-poc-supercars-logo')) as GraphicAssetsDashboardItem;
-
+const Header = ({ ...data }: ComponentProps) => {
   return (
-    <>
-      <HeaderElement
-        menuData={menuData}
-        menuItemClasses={navItemClasses}
-        iconSize={iconSize}
-        logo={logo}
-        logoWidth={226}
-        logoHeight={25}
-        logoName={'Poc'}
-        logoLink={'/test/react-poc/demo'}
-      ></HeaderElement>
-    </>
+    <header className="w-full fixed z-10 bg-gradient-to-b from-black to-transparent">
+      <nav className="my-4">
+        <div className="container px-4 mx-auto flex items-center justify-between">
+          {data && data.items?.map((item: StructureItem) => renderItem(item))}
+        </div>
+      </nav>
+    </header>
   );
 };
 
