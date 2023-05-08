@@ -20,9 +20,9 @@ export type DistributionEntity = {
   context: Tag;
   featured: number;
   thumbnail: ImageAsset;
-  image: ImageAsset;
+  image?: ImageAsset;
   parts: StoryPart[];
-  entityCode: string;
+  entityCode?: string;
 };
 
 export type PagedResult = {
