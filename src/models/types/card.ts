@@ -3,7 +3,7 @@ import { DistributionEntity } from '@/models/types/dapi';
 export type CardProps = {
   entity: DistributionEntity;
   options: CardOptions;
-  layout: string | null;
+  layout?: string | null;
 };
 
 export type CardOptions = {
@@ -13,5 +13,5 @@ export type CardOptions = {
   hideDate: boolean | false;
   hideAuthor: boolean | true;
   hideCta: boolean | true;
-  className?: string;
+  className?: string | '';
 };

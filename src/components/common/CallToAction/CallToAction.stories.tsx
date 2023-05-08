@@ -71,7 +71,6 @@ export const All: Story = {
             text={'Default'}
             isExternal={false}
             style={'default'}
-            icon={''}
             hide={false}
           ></CallToAction>
         </li>
@@ -82,7 +81,6 @@ export const All: Story = {
             text={'Reverse'}
             isExternal={false}
             style={'reverse'}
-            icon={''}
             hide={false}
           ></CallToAction>
         </li>
@@ -92,7 +90,6 @@ export const All: Story = {
             text={'Outline'}
             isExternal={false}
             style={'outline'}
-            icon={''}
             hide={false}
           ></CallToAction>
         </li>
@@ -102,7 +99,6 @@ export const All: Story = {
             text={'Link'}
             isExternal={false}
             style={'link'}
-            icon={''}
             hide={false}
           ></CallToAction>
         </li>

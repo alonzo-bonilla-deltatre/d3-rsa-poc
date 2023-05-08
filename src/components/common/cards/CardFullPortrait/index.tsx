@@ -39,17 +39,13 @@ const CardFullPortrait = ({ ...props }: CardProps) => {
             <Roofline
               context={entity.context}
               hide={options.hideRoofline}
-              icon={null}
-              asset={null}
             ></Roofline>
             <Title
               title={entity.title}
-              heading={null}
               hide={options.hideTitle}
             ></Title>
             <Date
               date={entity.contentDate}
-              format={null}
               hide={options.hideDate}
             ></Date>
             <Author
@@ -60,8 +56,6 @@ const CardFullPortrait = ({ ...props }: CardProps) => {
               url={'#nolink'}
               text={''}
               isExternal={false}
-              style={''}
-              icon={''}
               hide={options.hideCta}
             ></CallToAction>
             {/* //TODO: add card link */}

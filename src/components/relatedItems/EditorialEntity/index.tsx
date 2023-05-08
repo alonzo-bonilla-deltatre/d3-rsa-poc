@@ -16,9 +16,7 @@ const renderEditorialRelatedItem = ({ ...data }: DistributionEntity): React.Reac
           hideDate: true,
           hideAuthor: true,
           hideCta: true,
-          className: '',
         }}
-        layout={null}
       ></Card>
     </>
   ) : (

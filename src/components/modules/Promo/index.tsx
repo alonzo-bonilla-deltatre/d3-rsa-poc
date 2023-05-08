@@ -72,7 +72,6 @@ const Promo = async ({ ...data }: ComponentProps) => {
                           text={cta1Text}
                           isExternal={cta1Ext}
                           style={'default'}
-                          icon={''}
                           hide={false}
                         ></CallToAction>
                       </li>
@@ -84,7 +83,6 @@ const Promo = async ({ ...data }: ComponentProps) => {
                           text={cta2Text}
                           isExternal={cta2Ext}
                           style={'reverse'}
-                          icon={''}
                           hide={false}
                         ></CallToAction>
                       </li>
@@ -100,7 +98,6 @@ const Promo = async ({ ...data }: ComponentProps) => {
                     name={sponsor.name}
                     width={70}
                     height={20}
-                    className={''}
                     assetUrl={sponsor.assetUrl}
                   ></Sponsored>
                 </div>
