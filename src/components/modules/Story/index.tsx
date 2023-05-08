@@ -32,9 +32,15 @@ const Story = async ({ ...data }: ComponentProps) => {
 
   return storyEntity ? (
     <>
-      <StoryHeader storyEntity={storyEntity} {...props}></StoryHeader>
+      <StoryHeader
+        storyEntity={storyEntity}
+        {...props}
+      ></StoryHeader>
       <StoryParts storyEntity={storyEntity}></StoryParts>
-      <RelatedItems relations={storyEntity.relations} hide={props.hideRelatedItems}></RelatedItems>
+      <RelatedItems
+        relations={storyEntity.relations}
+        hide={props.hideRelatedItems}
+      ></RelatedItems>
     </>
   ) : (
     <div />

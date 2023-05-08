@@ -20,13 +20,25 @@ type Story = StoryObj<typeof Story>;
 export const Default: Story = {
   render: (args) => (
     <>
-    <StoryHeader hideRelatedItems={false} hideAuthor={false} hideDate={false} hideDescription={false} hideRoofline={false} hideTitle={false} hideSocial={false} storyEntity={sampleStory} {...args}></StoryHeader>
+      <StoryHeader
+        hideRelatedItems={false}
+        hideAuthor={false}
+        hideDate={false}
+        hideDescription={false}
+        hideRoofline={false}
+        hideTitle={false}
+        hideSocial={false}
+        storyEntity={sampleStory}
+        {...args}
+      ></StoryHeader>
       <StoryParts storyEntity={sampleStory}></StoryParts>
-      <RelatedItems relations={sampleStory.relations} hide={false}></RelatedItems>
+      <RelatedItems
+        relations={sampleStory.relations}
+        hide={false}
+      ></RelatedItems>
     </>
   ),
-  args: {
-  },
+  args: {},
   parameters: {
     layout: 'centered',
   },

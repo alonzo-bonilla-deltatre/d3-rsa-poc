@@ -2,7 +2,6 @@ import Title from '@/components/common/Title';
 import { DistributionEntity } from '@/models/types/dapi';
 import { renderRelatedItem } from '@/services/renderHandlers/renderRelatedItems';
 
-
 type ModuleProps = {
   relations: any[];
   hide: boolean;
@@ -26,6 +25,5 @@ const RelatedItems = ({ ...props }: ModuleProps) => {
     <div />
   );
 };
-
 
 export default RelatedItems;
