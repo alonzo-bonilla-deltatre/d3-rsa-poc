@@ -5,7 +5,7 @@ import { PageStructureItemType, StructureItem } from '@/models/types/pageStructu
 
 const meta: Meta<typeof TwoColumns> = {
   title: 'Layouts/TwoColumns',
-  //component: TwoColumns,
+  component: TwoColumns,
   tags: ['autodocs'],
   argTypes: {},
 };
