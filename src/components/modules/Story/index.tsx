@@ -10,8 +10,6 @@ import Date from '@/components/common/Date';
 import SocialIcons from '@/components/common/SocialIcons';
 import { StoryPart } from '@/models/types/storyPart';
 import { renderStoryPart } from '@/services/renderHandlers/renderStoryPart';
-import Sponsored from '@/components/common/Sponsored';
-import { getSingleAssetByTag } from '@/services/gadService';
 import { nanoid } from 'nanoid';
 import { DistributionEntity } from '@/models/types/dapi';
 
@@ -26,10 +24,7 @@ type ModuleProps = {
   hideRoofline: boolean;
   hideTitle: boolean;
   hideSocial: boolean;
-  hideSponsor: boolean;
   hideRelatedItems: boolean;
-  sponsor: string;
-  sponsorName: string;
 };
 
 const Story = async ({ ...data }: ComponentProps) => {
@@ -42,8 +37,6 @@ const Story = async ({ ...data }: ComponentProps) => {
   const storyEntityFetch = getEntity('stories', props.slug);
 
   const [storyEntity] = await Promise.all([storyEntityFetch]);
-  const sponsor = await getSingleAssetByTag('sponsor-coates');
-  //TODO: sponsor as a related tag?
 
   return storyEntity ? (
     <>
@@ -71,16 +64,6 @@ const Story = async ({ ...data }: ComponentProps) => {
               </div>
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>
-                  {sponsor && (
-                    <Sponsored
-                      hide={false}
-                      name={sponsor.name}
-                      width={70}
-                      height={20}
-                      className={''}
-                      assetUrl={sponsor.assetUrl}
-                    ></Sponsored>
-                  )}
                   {!props.hideSocial && (
                     <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                       <SocialIcons
