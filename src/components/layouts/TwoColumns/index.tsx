@@ -1,4 +1,4 @@
-import { ComponentProps } from '@/models/types/components';
+/* istanbul ignore file */ import { ComponentProps } from '@/models/types/components';
 import { renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
 
@@ -16,14 +16,4 @@ const TwoColumns = ({ ...data }: ComponentProps) => {
   );
 };
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <TwoColumns
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
-
-export default render;
+export default TwoColumns;

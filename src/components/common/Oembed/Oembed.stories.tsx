@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Oembed from '@/components/common/Oembed';
 import { sampleYoutube, sampleTwitter, sampleInstagram } from '@/__mocks__/entities/sampleStoryParts';
-import { withBaseDecorator } from '@/services/storybookService';
+import { withBaseDecorator } from '@/stories/storybookDecorators';
 
 const meta: Meta<typeof Oembed> = {
   title: 'UiComponents/Oembed',

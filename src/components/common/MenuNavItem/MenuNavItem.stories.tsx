@@ -16,9 +16,9 @@ const meta: Meta<typeof MenuNavItem> = {
 
 const sampleMenuItem: MenuItem = {
   id: 'id',
-  text: 'nav-news',
+  text: 'news',
   properties: {
-    tag: 'nav-tag',
+    tag: 'news',
     toolTip: '',
     link: '',
     icon: '',
@@ -31,9 +31,9 @@ const sampleMenuItem: MenuItem = {
 };
 const sampleMenuItemIcon: MenuItem = {
   id: 'id',
-  text: 'nav-news',
+  text: 'news',
   properties: {
-    tag: 'nav-tag',
+    tag: 'news',
     toolTip: '',
     link: '',
     icon: '',
@@ -49,6 +49,18 @@ export default meta;
 type Story = StoryObj<typeof MenuNavItem>;
 
 export const Default: Story = {
+  args: {
+    menuItem: sampleMenuItem,
+    navItemClasses: 'Call to Action',
+    parentId: 'default',
+    iconSize: 30,
+  },
+  parameters: {
+    layout: 'padded',
+  },
+};
+
+export const WithIcon: Story = {
   args: {
     menuItem: sampleMenuItem,
     navItemClasses: 'Call to Action',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer';
 import { DistributionEntity } from '@/models/types/dapi';
-import { withBaseDecorator, withStoryPartDecorator } from '@/services/storybookService';
+import { withBaseDecorator, withStoryPartDecorator } from '@/stories/storybookDecorators';
 
 const meta: Meta<typeof BrightcoveVideoPlayer> = {
   title: 'UiComponents/BrightcoveVideoPlayer',

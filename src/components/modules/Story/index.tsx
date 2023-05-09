@@ -65,7 +65,6 @@ const Story = async ({ ...data }: ComponentProps) => {
                 ></Author>
                 <Date
                   date={storyEntity.contentDate}
-                  format={null}
                   hide={props.hideDate}
                 ></Date>
               </div>
@@ -77,7 +76,6 @@ const Story = async ({ ...data }: ComponentProps) => {
                       name={sponsor.name}
                       width={70}
                       height={20}
-                      className={''}
                       assetUrl={sponsor.assetUrl}
                     ></Sponsored>
                   )}
