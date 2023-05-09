@@ -2,7 +2,7 @@ import { formatDate } from '@/utilities/dateFormatter';
 
 type DateProps = {
   date: string;
-  format: string | null;
+  format?: string | null;
   hide: boolean;
 };
 

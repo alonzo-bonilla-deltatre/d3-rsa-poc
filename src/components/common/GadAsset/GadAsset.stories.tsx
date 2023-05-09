@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
 import GadAsset from '@/components/common/GadAsset';
-import { sampleLogo2, sampleLogoWithFormat } from '@/__mocks__/components/sampleLogos';
+import { sampleLogoWithFormat } from '@/__mocks__/components/sampleLogos';
 
 const meta: Meta<typeof GadAsset> = {
   title: 'UiComponents/GadAsset',

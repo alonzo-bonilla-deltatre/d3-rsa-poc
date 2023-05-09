@@ -105,7 +105,7 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
                       ></Roofline>
                       {/* <CardTitle title={slide.title} heading="h1" hide={false}></CardTitle> */}
                       <h3 className="font-bold text-5xl uppercase mt-4">{slide.title}</h3>
-                      {/* <CardDate date={slide.contentDate} format={null}  hide={false}></CardDate> */}
+                      {/* <CardDate date={slide.contentDate} hide={false}></CardDate> */}
                       {!data.hideDate && (
                         <time className="mt-3 font-light text-[#BEBEBE]">{formatDate(slide.contentDate)}</time>
                       )}

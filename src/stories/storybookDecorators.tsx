@@ -1,4 +1,5 @@
 import { Decorator } from '@storybook/react';
+import React from 'react';
 
 export const withBaseDecorator: Decorator = (Story) => (
   <div className="container mx-auto py-12">

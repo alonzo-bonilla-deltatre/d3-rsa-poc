@@ -4,13 +4,14 @@ type CallToActionProps = {
   url: string;
   text: string | null;
   isExternal: boolean;
-  style: string;
-  icon: string;
+  style?: string;
+  icon?: string;
   hide: boolean;
 };
 
 const CallToAction = ({ ...props }: CallToActionProps) => {
   const displayText = props.text ? props.text : 'read-more';
+  const displayStyle = props.style ?? '';
   const iconSize = 20;
   const additionalAttributes = {
     ...(props.isExternal ? { target: 'blank' } : undefined),
@@ -20,7 +21,7 @@ const CallToAction = ({ ...props }: CallToActionProps) => {
       <a
         href={props.url}
         title={displayText}
-        className={getCtaClasses(props.style)}
+        className={getCtaClasses(displayStyle)}
         {...additionalAttributes}
       >
         {props.icon && (

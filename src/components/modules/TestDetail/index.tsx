@@ -81,7 +81,6 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
                     name={sponsor.name}
                     width={70}
                     height={20}
-                    className={''}
                     assetUrl={sponsor.assetUrl}
                   ></Sponsored>
                 </div>

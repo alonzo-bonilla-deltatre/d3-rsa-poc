@@ -1,6 +1,6 @@
 type CardTitleProps = {
   title: string;
-  heading: string | null;
+  heading?: string | null;
   hide: boolean;
 };
 
