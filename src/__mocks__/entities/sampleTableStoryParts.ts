@@ -1,5 +1,5 @@
 import { StoryPart } from '@/models/types/storyPart';
-import { sampleStory } from '@/__mocks__/entities/story';
+import { emptyDistributionEntity, emptyDistributionEntityStoryPart } from '@/__mocks__/entities/sampleStoryParts';
 
 //********** TABLE ************/
 const partiaTablePart1 = {
@@ -32,19 +32,22 @@ const partiaTablePart3 = {
   inputUrl: '',
 };
 
-const sampleTable1: StoryPart = {
-  ...sampleStory,
+const sampleTableStoryPart1: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partiaTablePart1,
 };
 
-const sampleTable2: StoryPart = {
-  ...sampleStory,
+const sampleTableStoryPart2: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partiaTablePart2,
 };
 
-const sampleTable3: StoryPart = {
-  ...sampleStory,
+const sampleTableStoryPart3: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partiaTablePart3,
 };
 
-export { sampleTable1, sampleTable2, sampleTable3 };
+export { sampleTableStoryPart1, sampleTableStoryPart2, sampleTableStoryPart3 };

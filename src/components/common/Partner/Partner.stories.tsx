@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Partner from '@/components/common/Partner';
 import { samplePartner1 } from '@/__mocks__/entities/samplePartner';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-import GadAsset from '../GadAsset';
+import GadAsset from '@/components/common/GadAsset';
 
 const meta: Meta<typeof Partner> = {
   title: 'UiComponents/Partner',

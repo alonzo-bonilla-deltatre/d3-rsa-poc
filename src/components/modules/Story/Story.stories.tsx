@@ -4,8 +4,7 @@ import { sampleStory } from '@/__mocks__/modules/sampleStory';
 import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
 import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
-import StoryWrapper from './StoryWrapper';
-import { DistributionEntity } from '@/models/types/dapi';
+import StoryWrapper from '@/components/modules/Story/StoryWrapper';
 
 const meta: Meta<typeof StoryWrapper> = {
   title: 'Modules/Story',

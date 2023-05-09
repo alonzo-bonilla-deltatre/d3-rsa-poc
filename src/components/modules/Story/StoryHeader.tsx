@@ -38,7 +38,6 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
                 ></Author>
                 <Date
                   date={storyEntity.contentDate}
-                  format={null}
                   hide={props.hideDate}
                 ></Date>
               </div>

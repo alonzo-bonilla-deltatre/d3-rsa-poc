@@ -1,3 +1,34 @@
+import {sampleBrightcoveVideoStoryPart, sampleQuoteStoryPart, sampleYoutubeStoryPart, sampleTwitterStoryPart, sampleInstagramStoryPart } from '@/__mocks__/entities/sampleStoryParts';
+import {sampleBrightcoveVideo} from '@/__mocks__/entities/brightcoveVideo';
+import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
+import { sampleTableStoryPart1 } from '@/__mocks__/entities/sampleTableStoryParts';
+const sampleStory2 = {
+  ...emptyDistributionEntity,
+  type: "story",
+  _translationId: "9b8c8008-ce91-42b9-908e-8a9cbe06701a",
+  _entityId: "71046099-fc69-46e6-b1fc-5d09a670b329",
+  selfUrl: "https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/stories/afl-stadium-upgrade",
+  title: "AFL stadium upgrade",
+  slug: "afl-stadium-upgrade",
+  fields: { },
+  summary: "\"The Marvel Stadium Upgrade represents a $225 million investment by the Victorian Government, providing a unique opportunity to revitalise Marvel Stadium as both a world class sports and entertainment venue and a day-to-day destination within the City of Melbourne!\\n\\nWhen it was first built, the Stadium set a world benchmark but",
+  thumbnail: {
+  title: "HIGHLIGHTS | Paulo Neto dominates in the eMLS League Series 1 Final by a score of 9-1",
+  templateUrl: "https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/forgego-sandbox/ptbaxl0hbnjjz9eovpbj",
+  thumbnailUrl: "https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/forgego-sandbox/ptbaxl0hbnjjz9eovpbj",
+  format: "jpg",
+  overriddenFormats: { },
+  slug: "highlights-paulo-neto-dominates-in-the-emls-league-series-1-final-by-a-sco-x8915",
+  selfUrl: "https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/highlights-paulo-neto-dominates-in-the-emls-league-series-1-final-by-a-sco-x8915"
+  },
+  featured: 0,
+  createdBy: "FORGE Importer",
+  lastUpdatedBy: "Mario Castellani",
+  lastUpdatedDate: "2023-02-08T10:01:52.197Z",
+  contentDate: "2022-10-25T12:23:16Z",
+  tags: [ ]
+  };
+
 const sampleStory = {
   type: 'story',
   _translationId: '5f8c5508-2495-482f-b02a-dcdfce610740',
@@ -7,7 +38,10 @@ const sampleStory = {
   slug: 'hurricanes-rally-past-blackhawks-season-opening-winning-streak-at-nine',
   title: 'Hurricanes rally past Blackhawks, season-opening winning streak at nine',
   tags: [],
-  relations: [],
+  relations: [
+     sampleStory2,
+     sampleBrightcoveVideo
+  ],
   references: {},
   fields: {},
   createdBy: 'Davide Giulietti',
@@ -28,12 +62,15 @@ const sampleStory = {
   headline: 'Come back from down two, Necas scores go-ahead goal early in third',
   summary:
     'As it happened\n- Necas scores go-ahead goal early in third\n- Seth Jarvis scored his first NHL goal\n- Carolina Hurricanes extendes their season-opening winning streak to nine games',
-  parts: [],
-  //   parts: [{
-  //     type: "markdown",
-  //     content: "**As it happened**\n------------------\n\n*   **Necas scores go-ahead goal early in third**\n*   **Seth Jarvis scored his first NHL goal**\n*   **Carolina Hurricanes extendes their season-opening winning streak to nine games**",
-  //     contextualFields: { }
-  //     }],
+  parts: [
+    sampleBrightcoveVideoStoryPart, 
+    sampleQuoteStoryPart, 
+    sampleYoutubeStoryPart, 
+    sampleTwitterStoryPart, 
+    sampleTableStoryPart1,
+    sampleInstagramStoryPart 
+  ],
+
   thumbnail: {
     title: 'QA - Martin Necas in action',
     templateUrl:
@@ -47,4 +84,6 @@ const sampleStory = {
   },
 };
 
-export { sampleStory };
+
+
+export { sampleStory, sampleStory2 };

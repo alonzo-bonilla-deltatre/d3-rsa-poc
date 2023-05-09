@@ -1,5 +1,5 @@
-import { StoryPart } from './storyPart';
-import { ImageAsset } from './images';
+import { StoryPart } from '@/models/types/storyPart';
+import { ImageAsset } from '@/models/types/images';
 
 export type DistributionEntity = {
   type: string;
