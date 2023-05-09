@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Quote from '@/components/common/Quote';
-import { sampleQuote } from '@/__mocks__/entities/sampleStoryParts';
+import { sampleQuoteStoryPart } from '@/__mocks__/entities/sampleStoryParts';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 
 const meta: Meta<typeof Quote> = {
@@ -16,6 +16,6 @@ type Story = StoryObj<typeof Quote>;
 
 export const Default: Story = {
   args: {
-    entity: sampleQuote,
+    entity: sampleQuoteStoryPart,
   },
 };

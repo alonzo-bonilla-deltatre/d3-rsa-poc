@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Oembed from '@/components/common/Oembed';
-import { sampleYoutube, sampleTwitter, sampleInstagram } from '@/__mocks__/entities/sampleStoryParts';
+import {
+  sampleYoutubeStoryPart,
+  sampleTwitterStoryPart,
+  sampleInstagramStoryPart,
+} from '@/__mocks__/entities/sampleStoryParts';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 
 const meta: Meta<typeof Oembed> = {
@@ -16,16 +20,16 @@ type Story = StoryObj<typeof Oembed>;
 
 export const YouTube: Story = {
   args: {
-    entity: sampleYoutube,
+    entity: sampleYoutubeStoryPart,
   },
 };
 export const Twitter: Story = {
   args: {
-    entity: sampleTwitter,
+    entity: sampleTwitterStoryPart,
   },
 };
 export const Instagram: Story = {
   args: {
-    entity: sampleInstagram,
+    entity: sampleInstagramStoryPart,
   },
 };

@@ -16,7 +16,7 @@ const ImgIcon = ({ ...props }: ImgIconProps) => {
         className={props.className}
         width={props.width}
         height={props.height}
-        alt={props.alt}
+        alt={props.alt ?? ''}
         src={props.src}
         aria-hidden={props.ariaHidden}
       />
