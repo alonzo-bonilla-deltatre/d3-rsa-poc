@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Table from '@/components/common/Table';
-import { sampleTableStoryPart1, sampleTableStoryPart2, sampleTableStoryPart3 } from '@/__mocks__/entities/sampleTableStoryParts';
+import {
+  sampleTableStoryPart1,
+  sampleTableStoryPart2,
+  sampleTableStoryPart3,
+} from '@/__mocks__/entities/sampleTableStoryParts';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 
 const meta: Meta<typeof Table> = {

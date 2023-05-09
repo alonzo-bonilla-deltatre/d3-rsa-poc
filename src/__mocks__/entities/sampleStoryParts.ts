@@ -2,8 +2,7 @@ import { StoryPart } from '@/models/types/storyPart';
 
 //********** EMPTY ************/
 const emptyDistributionEntity = {
-  fields: {
-  },
+  fields: {},
   createdBy: '',
   type: '',
   _translationId: '',
@@ -31,15 +30,12 @@ const emptyDistributionEntity = {
   featured: 0,
   thumbnail: {
     title: '',
-    templateUrl:
-      '',
-    thumbnailUrl:
-      '',
+    templateUrl: '',
+    thumbnailUrl: '',
     format: '',
     overriddenFormats: {},
     slug: '2',
-    selfUrl:
-      '',
+    selfUrl: '',
   },
   image: {
     title: '',
@@ -51,7 +47,7 @@ const emptyDistributionEntity = {
     selfUrl: '',
   },
   parts: [],
-  entityCode: ''
+  entityCode: '',
 };
 const emptyDistributionEntityStoryPart = {
   content: '',
@@ -157,33 +153,37 @@ const sampleInstagramStoryPart: StoryPart = {
 
 //********** BRIGHTCOVE ************/
 const partialBrightcoveVideoPart = {
-  type: "customentity",
-  _translationId: "59b6e3f1-dad3-4f87-9043-25c582cd7b4d",
-  _entityId: "35cd864c-41df-45cf-949d-fd556e0b65be",
-  selfUrl: "https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/brightcovevideos/23-gotm-march-16x9",
-  title: "23_GOTM_March_16x9",
-  slug: "23-gotm-march-16x9",
+  type: 'customentity',
+  _translationId: '59b6e3f1-dad3-4f87-9043-25c582cd7b4d',
+  _entityId: '35cd864c-41df-45cf-949d-fd556e0b65be',
+  selfUrl:
+    'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/brightcovevideos/23-gotm-march-16x9',
+  title: '23_GOTM_March_16x9',
+  slug: '23-gotm-march-16x9',
   fields: {
-    duration: "44864",
-    brightcoveAccountId: "5530036775001",
-    brightcoveId: "6323538882112"
+    duration: '44864',
+    brightcoveAccountId: '5530036775001',
+    brightcoveId: '6323538882112',
   },
-  entityCode: "brightcovevideo",
+  entityCode: 'brightcovevideo',
   thumbnail: {
-    title: "23_GOTM_March_16x9",
-    templateUrl: "https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/forgego-sandbox/hyqtbrhtvxjyg0iejqna",
-    thumbnailUrl: "https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/forgego-sandbox/hyqtbrhtvxjyg0iejqna",
-    format: "jpg",
+    title: '23_GOTM_March_16x9',
+    templateUrl:
+      'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/forgego-sandbox/hyqtbrhtvxjyg0iejqna',
+    thumbnailUrl:
+      'https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/forgego-sandbox/hyqtbrhtvxjyg0iejqna',
+    format: 'jpg',
     overriddenFormats: {},
-    slug: "23-gotm-march-16x9-x3983",
-    selfUrl: "https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/23-gotm-march-16x9-x3983"
+    slug: '23-gotm-march-16x9-x3983',
+    selfUrl:
+      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/23-gotm-march-16x9-x3983',
   },
   featured: 0,
-  createdBy: "Job Dispatcher Jobs Api",
-  lastUpdatedBy: "Job Dispatcher Jobs Api",
-  lastUpdatedDate: "2023-03-28T17:26:40.675Z",
-  contentDate: "2023-03-28T17:20:21Z",
-  tags: []
+  createdBy: 'Job Dispatcher Jobs Api',
+  lastUpdatedBy: 'Job Dispatcher Jobs Api',
+  lastUpdatedDate: '2023-03-28T17:26:40.675Z',
+  contentDate: '2023-03-28T17:20:21Z',
+  tags: [],
 };
 
 const sampleBrightcoveVideoStoryPart: StoryPart = {
@@ -192,4 +192,12 @@ const sampleBrightcoveVideoStoryPart: StoryPart = {
   ...partialBrightcoveVideoPart,
 };
 
-export { emptyDistributionEntity, emptyDistributionEntityStoryPart, sampleBrightcoveVideoStoryPart, sampleQuoteStoryPart, sampleYoutubeStoryPart, sampleTwitterStoryPart, sampleInstagramStoryPart };
+export {
+  emptyDistributionEntity,
+  emptyDistributionEntityStoryPart,
+  sampleBrightcoveVideoStoryPart,
+  sampleQuoteStoryPart,
+  sampleYoutubeStoryPart,
+  sampleTwitterStoryPart,
+  sampleInstagramStoryPart,
+};
