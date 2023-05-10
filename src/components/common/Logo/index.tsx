@@ -1,5 +1,5 @@
 import { transformations } from '@/utilities/cloudinaryTransformations';
-import GadAsset from '../GadAsset';
+import GadAsset from '@/components/common/GadAsset';
 
 type LogoProps = {
   width: number;

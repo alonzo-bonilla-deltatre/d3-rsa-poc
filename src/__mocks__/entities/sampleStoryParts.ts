@@ -1,5 +1,59 @@
 import { StoryPart } from '@/models/types/storyPart';
-import { sampleStory } from '@/__mocks__/entities/story';
+
+//********** EMPTY ************/
+const emptyDistributionEntity = {
+  fields: {},
+  createdBy: '',
+  type: '',
+  _translationId: '',
+  _entityId: '',
+  selfUrl: '',
+  slug: '',
+  title: '',
+  headline: '',
+  tags: [],
+  relations: [],
+  references: {},
+  lastUpdatedBy: '',
+  lastUpdatedDate: '',
+  contentDate: '',
+  context: {
+    _translationId: '',
+    _entityId: '',
+    selfUrl: '',
+    title: '',
+    slug: '',
+    neutralSlug: '',
+    externalSourceReference: {},
+    fields: {},
+  },
+  featured: 0,
+  thumbnail: {
+    title: '',
+    templateUrl: '',
+    thumbnailUrl: '',
+    format: '',
+    overriddenFormats: {},
+    slug: '2',
+    selfUrl: '',
+  },
+  image: {
+    title: '',
+    templateUrl: '',
+    thumbnailUrl: '',
+    format: '',
+    overriddenFormats: {},
+    slug: '',
+    selfUrl: '',
+  },
+  parts: [],
+  entityCode: '',
+};
+const emptyDistributionEntityStoryPart = {
+  content: '',
+  externalType: '',
+  inputUrl: '',
+};
 
 //********** QUOTE ************/
 const partialQuotePart = {
@@ -12,8 +66,9 @@ const partialQuotePart = {
   inputUrl: '',
 };
 
-const sampleQuote: StoryPart = {
-  ...sampleStory,
+const sampleQuoteStoryPart: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partialQuotePart,
 };
 
@@ -39,8 +94,9 @@ const partialYouTubePart = {
   inputUrl: 'https://www.youtube.com/watch?v=PIerxfLKQl8&t=2s',
 };
 
-const sampleYoutube: StoryPart = {
-  ...sampleStory,
+const sampleYoutubeStoryPart: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partialYouTubePart,
 };
 
@@ -63,8 +119,9 @@ const partialTwitterPart = {
   inputUrl: 'https://twitter.com/NYCFC/status/1643361966713450497?s=20',
 };
 
-const sampleTwitter: StoryPart = {
-  ...sampleStory,
+const sampleTwitterStoryPart: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partialTwitterPart,
 };
 
@@ -88,9 +145,59 @@ const partialInstagramPart = {
   inputUrl: 'https://www.instagram.com/p/CU5LIkxtYwm/',
 };
 
-const sampleInstagram: StoryPart = {
-  ...sampleStory,
+const sampleInstagramStoryPart: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
   ...partialInstagramPart,
 };
 
-export { sampleQuote, sampleYoutube, sampleTwitter, sampleInstagram };
+//********** BRIGHTCOVE ************/
+const partialBrightcoveVideoPart = {
+  type: 'customentity',
+  _translationId: '59b6e3f1-dad3-4f87-9043-25c582cd7b4d',
+  _entityId: '35cd864c-41df-45cf-949d-fd556e0b65be',
+  selfUrl:
+    'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/brightcovevideos/23-gotm-march-16x9',
+  title: '23_GOTM_March_16x9',
+  slug: '23-gotm-march-16x9',
+  fields: {
+    duration: '44864',
+    brightcoveAccountId: '5530036775001',
+    brightcoveId: '6323538882112',
+  },
+  entityCode: 'brightcovevideo',
+  thumbnail: {
+    title: '23_GOTM_March_16x9',
+    templateUrl:
+      'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/forgego-sandbox/hyqtbrhtvxjyg0iejqna',
+    thumbnailUrl:
+      'https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/forgego-sandbox/hyqtbrhtvxjyg0iejqna',
+    format: 'jpg',
+    overriddenFormats: {},
+    slug: '23-gotm-march-16x9-x3983',
+    selfUrl:
+      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/23-gotm-march-16x9-x3983',
+  },
+  featured: 0,
+  createdBy: 'Job Dispatcher Jobs Api',
+  lastUpdatedBy: 'Job Dispatcher Jobs Api',
+  lastUpdatedDate: '2023-03-28T17:26:40.675Z',
+  contentDate: '2023-03-28T17:20:21Z',
+  tags: [],
+};
+
+const sampleBrightcoveVideoStoryPart: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
+  ...partialBrightcoveVideoPart,
+};
+
+export {
+  emptyDistributionEntity,
+  emptyDistributionEntityStoryPart,
+  sampleBrightcoveVideoStoryPart,
+  sampleQuoteStoryPart,
+  sampleYoutubeStoryPart,
+  sampleTwitterStoryPart,
+  sampleInstagramStoryPart,
+};

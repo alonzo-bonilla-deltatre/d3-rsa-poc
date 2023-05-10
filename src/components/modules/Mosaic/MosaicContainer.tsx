@@ -5,7 +5,7 @@ import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { nanoid } from 'nanoid';
 import Masonry from 'react-masonry-css';
-import MosaicItem from './MosaicItem';
+import MosaicItem from '@/components/modules/Mosaic/MosaicItem';
 
 type MosaicContainerProps = {
   items: DistributionEntity[];

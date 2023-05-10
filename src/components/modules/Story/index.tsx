@@ -1,22 +1,11 @@
 import { ComponentProps } from '@/models/types/components';
 import { getEntity } from '@/services/dapiService';
-import Picture from '@/components/common/Picture';
-import { transformations } from '@/utilities/cloudinaryTransformations';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
-import Roofline from '@/components/common/Roofline';
-import Author from '@/components/common/Author';
-import Date from '@/components/common/Date';
-import SocialIcons from '@/components/common/SocialIcons';
-import { StoryPart } from '@/models/types/storyPart';
-import { renderStoryPart } from '@/services/renderHandlers/renderStoryPart';
-import Sponsored from '@/components/common/Sponsored';
-import { getSingleAssetByTag } from '@/services/gadService';
-import { nanoid } from 'nanoid';
+import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
+import StoryHeader from '@/components/modules/Story/StoryHeader';
+import StoryParts from '@/components/modules/Story/StoryParts';
 import { DistributionEntity } from '@/models/types/dapi';
-
-import Title from '@/components/common/Title';
-import { renderRelatedItem } from '@/services/renderHandlers/renderRelatedItems';
 
 type ModuleProps = {
   slug: string;
@@ -26,10 +15,8 @@ type ModuleProps = {
   hideRoofline: boolean;
   hideTitle: boolean;
   hideSocial: boolean;
-  hideSponsor: boolean;
   hideRelatedItems: boolean;
-  sponsor: string;
-  sponsorName: string;
+  entity?: DistributionEntity | null | undefined;
 };
 
 const Story = async ({ ...data }: ComponentProps) => {
@@ -42,97 +29,18 @@ const Story = async ({ ...data }: ComponentProps) => {
   const storyEntityFetch = getEntity('stories', props.slug);
 
   const [storyEntity] = await Promise.all([storyEntityFetch]);
-  const sponsor = await getSingleAssetByTag('sponsor-coates');
-  //TODO: sponsor as a related tag?
 
   return storyEntity ? (
     <>
-      <section className="w-full container mx-auto mt-40">
-        <div className="flex justify-between mx-20">
-          <header className="w-full">
-            <Roofline
-              className={'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2'}
-              context={storyEntity.context}
-              hide={props.hideRoofline}
-            ></Roofline>
-            <h3 className="font-bold text-5xl uppercase">{storyEntity.title}</h3>
-            <div className="flex justify-between items-center mt-8">
-              <div>
-                {storyEntity.headline && <p className="mb-3">{storyEntity.headline}</p>}
-                <Author
-                  author={storyEntity.createdBy}
-                  hide={props.hideAuthor}
-                ></Author>
-                <Date
-                  date={storyEntity.contentDate}
-                  hide={props.hideDate}
-                ></Date>
-              </div>
-              <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                <div>
-                  {sponsor && (
-                    <Sponsored
-                      hide={false}
-                      name={sponsor.name}
-                      width={70}
-                      height={20}
-                      assetUrl={sponsor.assetUrl}
-                    ></Sponsored>
-                  )}
-                  {!props.hideSocial && (
-                    <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                      <SocialIcons
-                        hide={false}
-                        size={50}
-                        className={'mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300'}
-                      ></SocialIcons>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </header>
-        </div>
-      </section>
-      <section className="w-full container mx-auto mt-20">
-        {storyEntity.thumbnail && (
-          <div className="mt-8 col-start-1">
-            <Picture
-              src={storyEntity.thumbnail.templateUrl}
-              transformations={transformations.thumbnailDetail}
-              alt={storyEntity.thumbnail.title ?? ''}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )}
-        {storyEntity.parts.map((part: StoryPart) => {
-          return (
-            <>
-              <div
-                key={nanoid()}
-                className="mx-20 mt-20 col-start-1"
-              >
-                {renderStoryPart(part)}
-              </div>
-            </>
-          );
-        })}
-      </section>
-
-      {!props.hideRelatedItems && storyEntity.relations && (
-        <section className="w-full container mx-auto mt-40">
-          <Title
-            title={'related-items'}
-            heading={'h3'}
-            hide={false}
-          ></Title>
-          <div className="grid grid-cols-4 gap-4 px-8">
-            {storyEntity.relations.map((relItem: DistributionEntity) => {
-              return renderRelatedItem(relItem);
-            })}
-          </div>
-        </section>
-      )}
+      <StoryHeader
+        storyEntity={storyEntity}
+        {...props}
+      ></StoryHeader>
+      <StoryParts storyEntity={storyEntity}></StoryParts>
+      <RelatedItems
+        relations={storyEntity.relations}
+        hide={props.hideRelatedItems}
+      ></RelatedItems>
     </>
   ) : (
     <div />

@@ -11,7 +11,7 @@ type PhotoPartProps = {
 const PhotoPart = ({ ...props }: PhotoPartProps) => {
   const img = props.image;
 
-  return img.slug ? (
+  return img.slug && img.image ? (
     <>
       <figure>
         <Picture

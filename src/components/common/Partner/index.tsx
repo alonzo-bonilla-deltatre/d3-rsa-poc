@@ -4,7 +4,7 @@ import { getSingleAssetByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { DistributionEntity } from '@/models/types/dapi';
 import { PartnerFields } from '@/models/types/dapi.customEntityFields';
-import GadAsset from '../GadAsset';
+import GadAsset from '@/components/common/GadAsset';
 
 type PartnerProps = {
   entity: DistributionEntity;

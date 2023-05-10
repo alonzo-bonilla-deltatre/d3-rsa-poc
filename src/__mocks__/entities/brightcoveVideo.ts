@@ -1,12 +1,13 @@
-//https://forge.integrations-lab-forge.deltatre.digital/deltatre.forge.vsm/api/menus/475183FD-CEBE-4C56-90E9-28895782CC29
+import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
 
 const sampleBrightcoveVideo = {
+  ...emptyDistributionEntity,
   fields: {
     brightcoveAccountId: '5530036775001',
     brightcoveId: '6323538882112',
   },
   createdBy: 'Mario Rossi',
-  type: '',
+  type: 'customentity',
   _translationId: '59b6e3f1-dad3-4f87-9043-25c582cd7b4d',
   _entityId: '35cd864c-41df-45cf-949d-fd556e0b65be',
   selfUrl: '',

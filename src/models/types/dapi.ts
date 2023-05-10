@@ -1,5 +1,5 @@
-import { StoryPart } from './storyPart';
-import { ImageAsset } from './images';
+import { StoryPart } from '@/models/types/storyPart';
+import { ImageAsset } from '@/models/types/images';
 
 export type DistributionEntity = {
   type: string;
@@ -20,9 +20,9 @@ export type DistributionEntity = {
   context: Tag;
   featured: number;
   thumbnail: ImageAsset;
-  image: ImageAsset;
+  image?: ImageAsset;
   parts: StoryPart[];
-  entityCode: string;
+  entityCode?: string;
 };
 
 export type PagedResult = {

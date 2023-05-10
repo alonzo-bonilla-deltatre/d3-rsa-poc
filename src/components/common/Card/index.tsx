@@ -34,7 +34,7 @@ const Card = ({ ...props }: CardProps) => {
           <div className={cardInfoClassName}>
             <>
               <CardIcon
-                entityCode={entity.entityCode}
+                entityCode={entity.entityCode as string}
                 hide={options.hideIcon}
               ></CardIcon>
               <Roofline
