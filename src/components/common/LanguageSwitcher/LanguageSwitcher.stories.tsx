@@ -1,39 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { footerMenu } from '@/__mocks__/menu/footerMenu';
-import FooterElement from '@/components/layouts/Footer/FooterElement';
-import { MenuResponseData } from '@/models/types/menu';
+import LanguageSwitcher from '@/components/common/LanguageSwitcher';
 
-const meta: Meta<typeof FooterElement> = {
-  title: 'Layouts/Footer',
-  component: FooterElement,
+const meta: Meta<typeof LanguageSwitcher> = {
+  title: 'Layouts/LanguageSwitcher',
+  component: LanguageSwitcher,
   tags: ['autodocs'],
   argTypes: {
-    menuData: {
-      control: false,
-    },
-    languages: {
+    allSiteConfiguration: {
       control: false,
     },
   },
 };
-const menuDataFooter = footerMenu.data as MenuResponseData;
 
 export default meta;
-type Story = StoryObj<typeof FooterElement>;
+type Story = StoryObj<typeof LanguageSwitcher>;
 
 export const Default: Story = {
   render: (args) => (
     <>
-      <FooterElement {...args}></FooterElement>
+      <LanguageSwitcher {...args}></LanguageSwitcher>
     </>
   ),
   args: {
-    social: {
-      hide: false,
-      size: 34,
-      className: 'mr-4',
-    },
-    languages: {
+    allSiteConfiguration: {
       allSites: [
         {
           culture: 'en-GB',
@@ -51,7 +40,5 @@ export const Default: Story = {
         },
       ],
     },
-    copyright: '@ Copyright',
-    menuData: menuDataFooter,
   },
 };
