@@ -18,7 +18,7 @@ const Menu = async ({ ...data }: ComponentProps) => {
   const [menuData] = await Promise.all([getMenuData]);
   return menuData ? (
     <>
-      <div className="container mx-auto py-12 lg:text-center">
+      <div className="container mx-auto lg:text-center">
         <div className="flex flex-col lg:flex-row uppercase justify-between">
           <MenuList
             menuItems={menuData?.menuItems}

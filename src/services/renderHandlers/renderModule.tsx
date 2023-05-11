@@ -17,6 +17,8 @@ import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
+import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
+
 import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
@@ -32,7 +34,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocPartners: renderPartners,
   PocBrightcoveVideo: renderBrightcoveVideo,
   HtmlContent: renderHtmlContent,
-
+  GraphicAsset: renderGraphicAsset,
   Hero: renderHero,
   Story: renderStory,
   Partners: renderPartners,

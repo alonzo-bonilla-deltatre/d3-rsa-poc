@@ -1,6 +1,7 @@
 import { MenuItem, MenuResponse, MenuResponseData } from '@/models/types/menu';
 import { footerMenu } from '@/__mocks__/menu/footerMenu';
 import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
+import { sampleMenu } from '@/__mocks__/menu/sampleMenu';
 
 export const getFooterMenu = (): MenuResponseData => {
   const result = footerMenu as MenuResponse;
@@ -12,12 +13,19 @@ export const getHeaderServiceMenu = (): MenuResponseData => {
   return result.data;
 };
 
+export const getSampleMenu = (): MenuResponseData => {
+  const result = sampleMenu as MenuResponse;
+  return result.data;
+};
+
 export const getMenu = (name: string): MenuResponseData | [] => {
   switch (name) {
     case 'footerMenu':
       return getFooterMenu();
     case 'headerServiceMenu':
       return getHeaderServiceMenu();
+    case 'sampleMenu':
+      return getSampleMenu();
     default:
       return [];
   }

@@ -1,3 +1,5 @@
+import { PageStructureItemType } from "@/models/types/pageStructure";
+
 const sampleHtmlContent = {
   key: {
     id: 'HtmlContent',
@@ -10,4 +12,17 @@ const sampleHtmlContent = {
   },
 };
 
-export { sampleHtmlContent };
+const sampleMiddleContent = {
+  key: {
+    id: 'HtmlContent',
+    namespace: 'd3-external',
+  },
+  type: PageStructureItemType.module,
+  properties: {
+    content:
+      '<div class="inline-block text-white bg-[#EE3123] uppercase px-8 py-6 outline-none">     <p class="text-neutral-50">Middle content</p>   </div>',
+  },
+  slot:'middleContent'
+};
+
+export { sampleHtmlContent, sampleMiddleContent };
