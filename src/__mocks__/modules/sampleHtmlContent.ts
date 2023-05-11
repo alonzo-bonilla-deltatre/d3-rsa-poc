@@ -1,4 +1,4 @@
-import { PageStructureItemType } from "@/models/types/pageStructure";
+import { PageStructureItemType } from '@/models/types/pageStructure';
 
 const sampleHtmlContent = {
   key: {
@@ -22,7 +22,7 @@ const sampleMiddleContent = {
     content:
       '<div class="inline-block text-white bg-[#EE3123] uppercase px-8 py-6 outline-none">     <p class="text-neutral-50">Middle content</p>   </div>',
   },
-  slot:'middleContent'
+  slot: 'middleContent',
 };
 
 export { sampleHtmlContent, sampleMiddleContent };

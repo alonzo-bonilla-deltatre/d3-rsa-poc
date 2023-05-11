@@ -11,9 +11,7 @@ const sampleHeader = {
   properties: {},
   slot: 'main',
   slots: ['logo'],
-  items: [
-    sampleMiddleContent
-  ],
+  items: [sampleMiddleContent],
 };
 
 export { sampleHeader };
