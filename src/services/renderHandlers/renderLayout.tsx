@@ -7,11 +7,13 @@ import logger from '@/utilities/logger';
 import renderSection from '@/components/layouts/Section';
 import renderTwoColumns from '@/components/layouts/TwoColumns/TwoColumnsWrapper';
 import renderHeader from '@/components/layouts/Header/HeaderWrapper';
+import renderFooter from '@/components/layouts/Footer/FooterWrapper';
 
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   Section: renderSection,
   TwoColumns: renderTwoColumns,
   Header: renderHeader,
+  Footer: renderFooter,
 };
 
 export const renderLayout = (

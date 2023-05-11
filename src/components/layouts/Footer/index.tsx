@@ -1,36 +1,44 @@
-import { translate } from '@/utilities/i18n';
-import { getMenu } from '@/services/menuService';
-import { MenuResponseData } from '@/models/types/menu';
-import SocialIcons from '@/components/common/SocialIcons';
-import Menu from '@/components/common/Menu';
-import LanguageSwitcher from '@/components/layouts/Footer/LanguageSwitcher';
+/* istanbul ignore file */
+
 import React from 'react';
-import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
-import FooterElement from './FooterElement';
+import dynamic from 'next/dynamic';
+import { ComponentProps } from '@/models/types/components';
+import { StructureItem } from '@/models/types/pageStructure';
+import { renderItem } from '@/services/renderService';
 
-const navItemClasses = 'font-bold py-3 lg:py-0 first:pt-0 last:pb-0 px-4 transition duration-300 hover:text-[#EE3123]';
+// @ts-ignore
+const SocialIcons = dynamic(() => import('@/components/common/SocialIcons'));
+// @ts-ignore
+const LanguageSwitcher = dynamic(() => import('@/components/common/LanguageSwitcher'));
 
-const Footer = async (): Promise<React.ReactElement> => {
-  const menuData = getMenu('footerMenu') as MenuResponseData;
-  const allSiteConfiguration = await getFrontendAllSiteConfiguration();
-  //TODO menu items validation
-
-  const SocialIconsProps = {
+const Footer = ({ ...data }: ComponentProps) => {
+  const socialIconsProps = {
     hide: false,
     size: 34,
     className: 'mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300',
   };
 
   return (
-    <>
-      <FooterElement
-        social={SocialIconsProps}
-        languages={allSiteConfiguration}
-        menuData={menuData}
-        menuItemClasses={navItemClasses}
-        copyright={translate('copyright')}
-      ></FooterElement>
-    </>
+    <footer className="w-full text-sm">
+      {/* Fixed Slots */}
+      <div className="container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
+        <div className="flex py-6">
+          <SocialIcons {...socialIconsProps}></SocialIcons>
+        </div>
+
+        <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">
+          <LanguageSwitcher />
+        </div>
+      </div>
+      <nav className="bg-[#141414]/0">
+        <div className="container mx-auto py-12 lg:text-center">
+          <div className="flex flex-col lg:flex-row uppercase justify-between">
+            {/* Footer  */}
+            {data && data.items?.map((item: StructureItem) => renderItem(item))}
+          </div>
+        </div>
+      </nav>
+    </footer>
   );
 };
 

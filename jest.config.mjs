@@ -14,7 +14,8 @@ const config = {
     "**/*.{ts,tsx}",
     "!**/coverage/**",
     "!**/app/**",
-    "!**/models/**"
+    "!**/models/**",
+    "!**/*Wrapper.{ts,tsx}"
   ],
   coverageReporters: ["lcov", "text"],
   coverageDirectory: "../coverage",

@@ -5,9 +5,9 @@ import YouTubeRounded from '@/components/icons/YouTubeRounded';
 import TwitterRounded from '@/components/icons/TwitterRounded';
 
 export type SocialIconsProps = {
-  hide: boolean;
-  size: number;
-  className: string;
+  hide: boolean | false;
+  size: number | undefined;
+  className: string | '';
 };
 
 const SocialIcons = ({ ...props }: SocialIconsProps) => {
