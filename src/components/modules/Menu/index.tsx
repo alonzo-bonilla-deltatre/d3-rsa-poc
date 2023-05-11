@@ -10,8 +10,7 @@ type MenuModuleProps = {
 };
 
 const Menu = async ({ ...data }: ComponentProps) => {
-  const properties = data.properties as MenuModuleProps;
-  const { menuItems, navItemClasses, menuName } = data.properties as MenuModuleProps;
+  const { navItemClasses, menuName } = data.properties as MenuModuleProps;
   //TODO: remove default menuName
   const defaultMenuName = menuName ? menuName : 'footerMenu';
   const getMenuData = getMenu(defaultMenuName) as MenuResponseData;

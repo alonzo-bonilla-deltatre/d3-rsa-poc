@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ComponentProps } from '@/models/types/components';
-import { StructureItem } from '@/models/types/pageStructure';
 import { renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
 import HamburgerMenu from '@/components/common/HamburgerMenu';

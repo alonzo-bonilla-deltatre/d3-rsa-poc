@@ -1,5 +1,3 @@
-import { PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
-import { sampleGraphicAsset } from '../modules/sampleGraphicAsset';
 import { sampleMiddleContent } from '../modules/sampleHtmlContent';
 
 const sampleHeader = {

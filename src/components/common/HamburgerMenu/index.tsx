@@ -1,6 +1,4 @@
 import { MenuItem } from '@/models/types/menu';
-import MenuNavItem from '@/components/common/MenuNavItem/MenuNavItem';
-import { nanoid } from 'nanoid';
 
 type MenuProps = {
   menuItems: MenuItem[];
@@ -20,28 +18,7 @@ const HamburgerMenu = ({ ...data }: MenuProps) => {
           </div>
         </div>
       </div>
-      {/* {menuItems &&
-        menuItems.map((menuItem) => (
-          <>
-            <MenuNavItem
-              key={nanoid()}
-              menuItem={menuItem}
-              navItemClasses={navItemClasses}
-              parentId=""
-              iconSize={iconSize}
-            />
-
-            {menuItem.menuItems.map((subMenuItem) => (
-              <MenuNavItem
-                key={nanoid()}
-                menuItem={subMenuItem}
-                navItemClasses={navItemClasses + ' sub'}
-                parentId={menuItem.id}
-                iconSize={iconSize}
-              />
-            ))}
-          </>
-        ))} */}
+      {/* TO DO */}
     </>
   );
 };
