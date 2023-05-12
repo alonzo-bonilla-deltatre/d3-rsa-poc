@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Poppins } from 'next/font/google';
 import './globals.css';
 
 // If loading a variable font, you don"t need to specify the font weight
@@ -9,7 +9,7 @@ const webFont = Poppins({
   display: 'swap',
 });
 
-const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       lang={process.env.LANGUAGE ?? 'en'}
