@@ -5,7 +5,8 @@ import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
 
 /* SSG revalidate time */
-export const revalidate = 60;
+export const revalidate = 300;
+export const runtime = 'edge';
 
 export default async function Page({
   params,
