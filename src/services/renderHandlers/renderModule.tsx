@@ -17,6 +17,7 @@ import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
+import renderEditorialList from '@/components/modules/EditorialList/EditorialListWrapper';
 import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
@@ -31,13 +32,18 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocMenu: renderMenu,
   PocPartners: renderPartners,
   PocBrightcoveVideo: renderBrightcoveVideo,
-  HtmlContent: renderHtmlContent,
+  PocEditorialList: renderEditorialList,
 
+  // products-demo modules
   Hero: renderHero,
   Story: renderStory,
   Partners: renderPartners,
   BrightcoveVideo: renderBrightcoveVideo,
   Mosaic: renderMosaicList,
+  EditorialList: renderEditorialList,
+  Menu: renderMenu,
+  HtmlContent: renderHtmlContent,
+  Promo: renderPromo,
 };
 
 export const renderModule = (

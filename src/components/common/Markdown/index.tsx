@@ -1,4 +1,4 @@
-import { transform } from '@/helpers/markdown';
+import { transform } from '@/helpers/markdownHelper';
 import './Markdown.scss';
 
 type MarkdownProps = {

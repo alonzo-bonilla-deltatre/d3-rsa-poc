@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/Card.helpers';
+import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/CardHelpers';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
 describe('getImageTransformation', (): void => {
