@@ -16,8 +16,8 @@ export default async function Page({
 }) {
   await initI18n();
   const path = requestUrlParser.getPathName(params);
-  //const token = searchParams?.token?.toString() ?? '';
-  const pageStructure = await getPageStructure(path, '');
+  const token = searchParams?.token?.toString() ?? '';
+  const pageStructure = await getPageStructure(path, token);
   if (!pageStructure) {
     return null;
   }
