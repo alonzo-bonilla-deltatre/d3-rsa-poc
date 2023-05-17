@@ -1,7 +1,7 @@
 const tracer = require('dd-trace').init();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: "standalone",
+  output: "standalone",
   images: {
     domains: [
       "via.placeholder.com",
