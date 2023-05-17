@@ -6,7 +6,6 @@ import ThemingVariables from '@/components/common/ThemingVariables';
 
 /* SSG revalidate time */
 export const revalidate = 60;
-export const dynamic = 'force-dynamic';
 
 export default async function Page({
   params,
