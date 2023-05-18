@@ -4,11 +4,9 @@ import { renderItem } from '@/services/renderService';
 import { requestUrlParser } from '@/utilities/requestUrlParser';
 import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
-
-import { SeoMetadata } from '@/app/metadata';
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 
-let seoData = SeoMetadata as Metadata;
+let seoData = {} as Metadata;
 
 type MetaProps = {
   params: { id: string };

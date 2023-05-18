@@ -14,30 +14,28 @@ export const setPageMetadata = (seoData: Metadata, metadataItems: MetadataItem[]
   const title = getMetadata(metadataItems, 'seo', 'title')?.value ?? '';
   const description = getMetadata(metadataItems, 'seo', 'description')?.value ?? '';
   const siteName = getMetadata(metadataItems, 'seo', 'sitename')?.value ?? '';
-  const siteUrl = getMetadata(metadataItems, 'config', 'vanityUrl')?.value ?? '';
+  const siteUrl = getMetadata(metadataItems, 'config', 'vanityurl')?.value ?? '';
   const robots = getMetadata(metadataItems, 'seo', 'robots')?.value ?? 'noodp';
   const image = getMetadata(metadataItems, 'seo', 'image')?.value ?? '';
-  const twitteraccount = getMetadata(metadataItems, 'socials', 'twitterid')?.value ?? '';
-  const fbpages = getMetadata(metadataItems, 'socials', 'fbpages')?.value ?? '';
-  const fbappid = getMetadata(metadataItems, 'socials', 'fbappid')?.value ?? '';
+  const twitterAccount = getMetadata(metadataItems, 'socials', 'twitterid')?.value ?? '';
+  const fbPages = getMetadata(metadataItems, 'socials', 'fbpages')?.value ?? '';
+  const fbAppId = getMetadata(metadataItems, 'socials', 'fbappid')?.value ?? '';
   const cultureCode = process.env.CULTURE;
   const canonicalUrl = siteUrl;
   const allSiteConfiguration = getFrontendAllSiteConfiguration();
-  let twitter = {} as Twitter;
-  twitter = {
+  const twitter = {
     title: title,
     description: description,
     card: 'summary_large_image',
-    site: twitteraccount,
-    creator: twitteraccount,
+    site: twitterAccount,
+    creator: twitterAccount,
     images: [
       {
         url: image,
       },
     ],
-  };
-  let openGraph = {} as OpenGraph;
-  openGraph = {
+  } as Twitter;
+  const openGraph = {
     type: getOgType(''), //TO DO
     title: title,
     description: description,
@@ -49,7 +47,7 @@ export const setPageMetadata = (seoData: Metadata, metadataItems: MetadataItem[]
     ],
     locale: cultureCode,
     url: canonicalUrl,
-  };
+  } as OpenGraph;
   seoData.title = title;
   seoData.description = description;
   seoData.authors = { url: siteUrl, name: siteName };
@@ -58,10 +56,10 @@ export const setPageMetadata = (seoData: Metadata, metadataItems: MetadataItem[]
   seoData.twitter = twitter;
 
   seoData.other = {
-    'fb:pages': fbpages,
-    'fb:appid': fbappid,
+    'fb:pages': fbPages,
+    'fb:appid': fbAppId,
   };
-  seoData.metadataBase = new URL(canonicalUrl);
+  seoData.metadataBase = canonicalUrl ? new URL(canonicalUrl) : undefined;
   const languages = {};
   seoData.alternates = {
     canonical: canonicalUrl,
@@ -81,8 +79,7 @@ function getLanguages(languages: object, allSiteConfiguration: FrontendConfigura
 
   allSiteConfiguration.allSites.map((item: FrontendSiteConfiguration) => {
     const culture = `${item.culture}`;
-    const url = new URL('/', item.originUrl).href;
-    lang[culture] = url;
+    lang[culture] = new URL('/', item.originUrl).href;
     Object.assign(languages, lang);
   });
   return languages;
