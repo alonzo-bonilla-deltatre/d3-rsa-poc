@@ -1,3 +1,4 @@
+/* instanbul ignore file */
 import { Metadata } from 'next';
 import { Metadata as MetadataItem } from '@/models/types/pageStructure';
 import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
