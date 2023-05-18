@@ -1,3 +1,4 @@
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 import { Poppins } from "next/font/google";
 import './globals.css';
 
@@ -20,5 +21,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     </html>
   );
 };
+// export const metadata: Metadata = {
+//   title: {
+//     template: '%s | Acme',
+//   },
+// };
 
 export default RootLayout;

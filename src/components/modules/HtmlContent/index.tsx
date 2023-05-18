@@ -4,6 +4,7 @@ type ModuleProps = {
   content: string;
 };
 
+
 const HtmlContent = ({ ...data }: ComponentProps) => {
   const { content } = data.properties as ModuleProps;
 

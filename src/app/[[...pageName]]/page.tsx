@@ -1,14 +1,42 @@
 import { getPageStructure } from '@/services/pageService';
+import { setPageMetadata } from '@/services/metadataService';
 import { renderItem } from '@/services/renderService';
 import { requestUrlParser } from '@/utilities/requestUrlParser';
 import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
 
+import { SeoMetadata } from '../metadata';
+import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
+
+let seoData = SeoMetadata as Metadata;
+
+type MetaProps = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+
+export async function generateMetadata(
+  { params, searchParams }: MetaProps,
+): Promise<Metadata> {
+  return {
+     title: seoData.title,
+    description: seoData.description,
+    metadataBase: seoData.metadataBase,
+    alternates: seoData.alternates,
+    authors: seoData.authors,
+    robots: seoData.robots,
+    openGraph : seoData.openGraph,
+    twitter: seoData.twitter,
+    other: seoData.other
+  }
+}
+
 export default async function Page({
   params,
   searchParams,
 }: {
-  params: { pageName: string[] };
+  params: { pageName: string[], id: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   await initI18n();
@@ -20,12 +48,16 @@ export default async function Page({
   }
 
   const structure = pageStructure.data.structure;
-  const metadata = pageStructure.data.metadata;
+  const metadataItems = pageStructure.data.metadata;
   const variables = pageStructure.data.variables;
+
+  seoData = setPageMetadata(seoData, metadataItems);
+
+ 
   return (
     <>
-      <ThemingVariables metadata={metadata} />
-      {structure && renderItem(structure, variables, metadata)}
+      <ThemingVariables metadata={metadataItems} />
+      {structure && renderItem(structure, variables, metadataItems)}
     </>
   );
 }
