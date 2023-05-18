@@ -15,28 +15,25 @@ type MetaProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-
-export async function generateMetadata(
-  { params, searchParams }: MetaProps,
-): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: MetaProps): Promise<Metadata> {
   return {
-     title: seoData.title,
+    title: seoData.title,
     description: seoData.description,
     metadataBase: seoData.metadataBase,
     alternates: seoData.alternates,
     authors: seoData.authors,
     robots: seoData.robots,
-    openGraph : seoData.openGraph,
+    openGraph: seoData.openGraph,
     twitter: seoData.twitter,
-    other: seoData.other
-  }
+    other: seoData.other,
+  };
 }
 
 export default async function Page({
   params,
   searchParams,
 }: {
-  params: { pageName: string[], id: string };
+  params: { pageName: string[]; id: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   await initI18n();
@@ -53,7 +50,6 @@ export default async function Page({
 
   seoData = setPageMetadata(seoData, metadataItems);
 
- 
   return (
     <>
       <ThemingVariables metadata={metadataItems} />

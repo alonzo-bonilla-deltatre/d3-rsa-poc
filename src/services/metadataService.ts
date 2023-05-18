@@ -1,9 +1,9 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 import { Metadata as MetadataItem } from '@/models/types/pageStructure';
 import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
-import { Twitter } from "next/dist/lib/metadata/types/twitter-types";
-import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
-import { FrontendConfiguration, FrontendSiteConfiguration } from "@/models/types/frontendConfiguration";
+import { Twitter } from 'next/dist/lib/metadata/types/twitter-types';
+import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { FrontendConfiguration, FrontendSiteConfiguration } from '@/models/types/frontendConfiguration';
 
 export function getMetadata(metadata: MetadataItem[], category: string, key: string) {
   return metadata.find((item) => item.category === category && item.key === key);
@@ -29,19 +29,23 @@ export const setPageMetadata = (seoData: Metadata, metadataItems: MetadataItem[]
     card: 'summary_large_image',
     site: twitteraccount,
     creator: twitteraccount,
-    images: [{
-      url: image,
-    }],
-  }
+    images: [
+      {
+        url: image,
+      },
+    ],
+  };
   let openGraph = {} as OpenGraph;
   openGraph = {
     type: getOgType(''), //TO DO
     title: title,
     description: description,
     siteName: siteName,
-    images: [{
-      url: image,
-    }],
+    images: [
+      {
+        url: image,
+      },
+    ],
     locale: cultureCode,
     url: canonicalUrl,
   };
@@ -50,7 +54,7 @@ export const setPageMetadata = (seoData: Metadata, metadataItems: MetadataItem[]
   seoData.authors = { url: siteUrl, name: siteName };
   seoData.robots = robots;
   seoData.openGraph = openGraph;
-  seoData.twitter =twitter;
+  seoData.twitter = twitter;
 
   seoData.other = {
     'fb:pages': fbpages,
@@ -66,9 +70,7 @@ export const setPageMetadata = (seoData: Metadata, metadataItems: MetadataItem[]
   return seoData;
 };
 
-
-function getOgType(entityCode: string | '') : any {
-  
+function getOgType(entityCode: string | ''): any {
   //article, video or website TO DO
   return 'website';
 }
