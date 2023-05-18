@@ -1,11 +1,11 @@
-import { ComponentProps } from '@/models/types/components';
-import { getEntity } from '@/services/dapiService';
-import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
-import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
 import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
+import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
+import { ComponentProps } from '@/models/types/components';
 import { DistributionEntity } from '@/models/types/dapi';
+import { LoggerLevel } from '@/models/types/logger';
+import { getEntity } from '@/services/dapiService';
+import logger from '@/utilities/logger';
 
 type ModuleProps = {
   slug: string;
@@ -26,9 +26,7 @@ const Story = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const storyEntityFetch = getEntity('stories', props.slug);
-
-  const [storyEntity] = await Promise.all([storyEntityFetch]);
+  const storyEntity = await getEntity('stories', props.slug);
 
   return storyEntity ? (
     <>

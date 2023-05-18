@@ -1,9 +1,9 @@
-import { ComponentProps } from '@/models/types/components';
-import { getFilteredItems, getSelection } from '@/services/dapiService';
-import { HeroSwiper } from '@/components/modules/Hero/HeroSwiper';
 import ModuleTitle from '@/components/common/ModuleTitle';
-import logger from '@/utilities/logger';
+import { HeroSwiper } from '@/components/modules/Hero/HeroSwiper';
+import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
+import { getFilteredItems, getSelection } from '@/services/dapiService';
+import logger from '@/utilities/logger';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -24,8 +24,7 @@ const Hero = async ({ ...data }: ComponentProps) => {
     return <div />;
   }
 
-  const selectionFetch = getSelection(selectionSlug);
-  const [selection] = await Promise.all([selectionFetch]);
+  const selection = await getSelection(selectionSlug);
   const items = selection?.items;
 
   return items ? (

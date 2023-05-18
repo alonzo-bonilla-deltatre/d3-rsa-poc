@@ -1,12 +1,12 @@
-import { ComponentProps } from '@/models/types/components';
-import { getEntity } from '@/services/dapiService';
-import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
 import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer';
-import SocialIcons from '@/components/common/SocialIcons';
-import { formatDate } from '@/utilities/dateFormatter';
 import ModuleTitle from '@/components/common/ModuleTitle';
+import SocialIcons from '@/components/common/SocialIcons';
+import { ComponentProps } from '@/models/types/components';
 import { DistributionEntity } from '@/models/types/dapi';
+import { LoggerLevel } from '@/models/types/logger';
+import { getEntity } from '@/services/dapiService';
+import { formatDate } from '@/utilities/dateFormatter';
+import logger from '@/utilities/logger';
 
 type ModuleProps = {
   slug: string;
@@ -23,9 +23,7 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const entityFetch = getEntity('brightcovevideos', properties.slug);
-
-  const [entity] = await Promise.all([entityFetch]);
+  const entity = await getEntity('brightcovevideos', properties.slug);
 
   const description = entity?.fields['description'] as string;
 

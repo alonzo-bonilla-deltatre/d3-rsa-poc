@@ -1,14 +1,14 @@
-import { ComponentProps } from '@/models/types/components';
-import { getEntity } from '@/services/dapiService';
-import { CustomPromoFields } from '@/models/types/dapi.customEntityFields';
+import CallToAction from '@/components/common/CallToAction';
+import ModuleTitle from '@/components/common/ModuleTitle';
 import Picture from '@/components/common/Picture';
+import Sponsored from '@/components/common/Sponsored';
+import { ComponentProps } from '@/models/types/components';
+import { CustomPromoFields } from '@/models/types/dapi.customEntityFields';
+import { LoggerLevel } from '@/models/types/logger';
+import { getEntity } from '@/services/dapiService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
-import CallToAction from '@/components/common/CallToAction';
-import Sponsored from '@/components/common/Sponsored';
-import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
   slug: string;
@@ -24,9 +24,8 @@ const Promo = async ({ ...data }: ComponentProps) => {
     return <div />;
   }
 
-  const promoEntityFetch = getEntity('promos', properties.slug);
+  const promoEntity = await getEntity('promos', properties.slug);
 
-  const [promoEntity] = await Promise.all([promoEntityFetch]);
   const cta1Url = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.url;
   const cta1Text = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.displayText;
   const cta1Ext = (promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.openInNewTab) ?? false;

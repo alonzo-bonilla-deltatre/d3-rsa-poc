@@ -1,15 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
-import { getAllEntities } from '@/services/dapiService';
+import ModuleTitle from '@/components/common/ModuleTitle';
 import Picture from '@/components/common/Picture';
+import { ComponentProps } from '@/models/types/components';
+import { DistributionEntity } from '@/models/types/dapi';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { LoggerLevel } from '@/models/types/logger';
+import { getAllEntities } from '@/services/dapiService';
 import { getAssetsByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-import { DistributionEntity } from '@/models/types/dapi';
-import { nanoid } from 'nanoid';
 import { formatDate } from '@/utilities/dateFormatter';
 import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
-import ModuleTitle from '@/components/common/ModuleTitle';
+import { nanoid } from 'nanoid';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -54,15 +54,12 @@ const TestList = async ({ ...data }: ComponentProps) => {
   }
 
   const queryString = getQueryString({ skip, limit, tags });
-
   const promoEntitiesFetch = getAllEntities(entityType, queryString);
-
-  const [promos] = await Promise.all([promoEntitiesFetch]);
-  const items = promos?.items;
-
   const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
 
-  const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
+  const [promos, gadThumbnailPlaceHolderAssets] = await Promise.all([promoEntitiesFetch, gadAssetsPlaceHolderFetch]);
+  const items = promos?.items;
+
   const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length
     ? gadThumbnailPlaceHolderAssets[0]
     : null;

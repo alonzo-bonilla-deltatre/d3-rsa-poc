@@ -6,8 +6,7 @@ type MarkdownProps = {
 };
 
 const Markdown = async ({ ...props }: MarkdownProps) => {
-  const markdownTransformFetch = transform(props.markdownText);
-  const [html] = await Promise.all([markdownTransformFetch]);
+  const html = await transform(props.markdownText);
   return props.markdownText ? (
     <>
       <div

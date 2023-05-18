@@ -1,13 +1,13 @@
-import { ComponentProps } from '@/models/types/components';
-import { getEntity } from '@/services/dapiService';
+import ModuleTitle from '@/components/common/ModuleTitle';
 import Picture from '@/components/common/Picture';
+import Sponsored from '@/components/common/Sponsored';
+import { ComponentProps } from '@/models/types/components';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { LoggerLevel } from '@/models/types/logger';
+import { getEntity } from '@/services/dapiService';
 import { getAssetsByTag, getSingleAssetByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
-import Sponsored from '@/components/common/Sponsored';
-import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
   entityType: string;
@@ -28,17 +28,19 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const sponsor = await getSingleAssetByTag('sponsor-coates');
-  const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
+  const sponsorFetch = getSingleAssetByTag('sponsor-coates');
+  const gadThumbnailPlaceHolderAssetsFetch = getAssetsByTag('react-poc-placeholder');
 
-  const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
+  const [sponsor, gadThumbnailPlaceHolderAssets] = await Promise.all([
+    sponsorFetch,
+    gadThumbnailPlaceHolderAssetsFetch,
+  ]);
+
   const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length
     ? gadThumbnailPlaceHolderAssets[0]
     : null;
 
-  const TestDetailEntityFetch = getEntity(properties.entityType, properties.slug);
-
-  const [testDetailEntity] = await Promise.all([TestDetailEntityFetch]);
+  const testDetailEntity = await getEntity(properties.entityType, properties.slug);
 
   return testDetailEntity ? (
     <>
