@@ -18,6 +18,8 @@ import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderEditorialList from '@/components/modules/EditorialList/EditorialListWrapper';
+import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
+
 import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
@@ -35,6 +37,8 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocEditorialList: renderEditorialList,
 
   // products-demo modules
+  HtmlContent: renderHtmlContent,
+  GraphicAsset: renderGraphicAsset,
   Hero: renderHero,
   Story: renderStory,
   Partners: renderPartners,
@@ -42,7 +46,6 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Mosaic: renderMosaicList,
   EditorialList: renderEditorialList,
   Menu: renderMenu,
-  HtmlContent: renderHtmlContent,
   Promo: renderPromo,
 };
 

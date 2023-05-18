@@ -10,15 +10,14 @@ type MenuModuleProps = {
 };
 
 const Menu = async ({ ...data }: ComponentProps) => {
-  const properties = data.properties as MenuModuleProps;
-  const { menuItems, navItemClasses, menuName } = data.properties as MenuModuleProps;
+  const { navItemClasses, menuName } = data.properties as MenuModuleProps;
   //TODO: remove default menuName
   const defaultMenuName = menuName ? menuName : 'footerMenu';
   const getMenuData = getMenu(defaultMenuName) as MenuResponseData;
   const [menuData] = await Promise.all([getMenuData]);
   return menuData ? (
     <>
-      <div className="container mx-auto py-12 lg:text-center">
+      <div className="container mx-auto lg:text-center">
         <div className="flex flex-col lg:flex-row uppercase justify-between">
           <MenuList
             menuItems={menuData?.menuItems}
