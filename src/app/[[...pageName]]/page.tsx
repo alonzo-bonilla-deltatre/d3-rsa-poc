@@ -29,6 +29,9 @@ export async function generateMetadata({ params, searchParams }: MetaProps): Pro
   };
 }
 
+/* SSG revalidate time */
+export const revalidate = 60;
+
 export default async function Page({
   params,
   searchParams,
@@ -38,8 +41,8 @@ export default async function Page({
 }) {
   await initI18n();
   const path = requestUrlParser.getPathName(params);
-  const token = searchParams?.token?.toString() ?? '';
-  const pageStructure = await getPageStructure(path, token);
+  // const token = searchParams?.token?.toString() ?? '';
+  const pageStructure = await getPageStructure(path, '');
   if (!pageStructure) {
     return null;
   }
@@ -56,4 +59,9 @@ export default async function Page({
       {structure && renderItem(structure, variables, metadataItems)}
     </>
   );
+}
+
+/* SSG process */
+export async function generateStaticParams() {
+  return [];
 }

@@ -1,4 +1,3 @@
-import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 
@@ -10,7 +9,7 @@ const webFont = Poppins({
   display: 'swap',
 });
 
-const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       lang={process.env.LANGUAGE ?? 'en'}
