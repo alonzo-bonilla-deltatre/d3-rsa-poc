@@ -16,8 +16,8 @@ const Sponsored = ({ ...props }: SponsoredProps) => {
 
   return !props.hide && props.assetUrl ? (
     <>
-      <div className="flex flex-row items-end col-start-10 row-start-10">
-        <span className="text-xs uppercase">{translate('sponsored-by')}</span>
+      <div className=" col-start-10 row-start-10 uppercase mr-2 font-bold text-base bg-white border-2 p-1 py-1 px-4 rounded-full inline-flex items-center">
+        <span className="text-s text-black uppercase">{translate('sponsored-by')}</span>
         <Image
           className={props.className}
           src={desktopSrc}
