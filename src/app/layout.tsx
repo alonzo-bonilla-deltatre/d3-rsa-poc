@@ -20,10 +20,5 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     </html>
   );
 };
-// export const metadata: Metadata = {
-//   title: {
-//     template: '%s | Acme',
-//   },
-// };
 
 export default RootLayout;
