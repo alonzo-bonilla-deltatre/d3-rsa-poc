@@ -4,10 +4,10 @@ import { renderItem } from '@/services/renderService';
 import { requestUrlParser } from '@/utilities/requestUrlParser';
 import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
-import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
+
+import { Metadata } from 'next';
 
 let seoData = {} as Metadata;
-
 type MetaProps = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -49,7 +49,7 @@ export default async function Page({
   const metadataItems = pageStructure.data.metadata;
   const variables = pageStructure.data.variables;
 
-  seoData = setPageMetadata(seoData, metadataItems);
+  seoData = setPageMetadata(metadataItems) as Metadata;
 
   return (
     <>
