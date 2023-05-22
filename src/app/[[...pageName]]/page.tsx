@@ -7,25 +7,7 @@ import ThemingVariables from '@/components/common/ThemingVariables';
 
 import { Metadata } from 'next';
 
-let seoData = {} as Metadata;
-type MetaProps = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export async function generateMetadata({ params, searchParams }: MetaProps): Promise<Metadata> {
-  return {
-    title: seoData.title,
-    description: seoData.description,
-    metadataBase: seoData.metadataBase,
-    alternates: seoData.alternates,
-    authors: seoData.authors,
-    robots: seoData.robots,
-    openGraph: seoData.openGraph,
-    twitter: seoData.twitter,
-    other: seoData.other,
-  };
-}
+export const metadata: Metadata = {};
 
 export default async function Page({
   params,
@@ -46,7 +28,19 @@ export default async function Page({
   const metadataItems = pageStructure.data.metadata;
   const variables = pageStructure.data.variables;
 
-  seoData = setPageMetadata(metadataItems) as Metadata;
+  // Enrich default metadata
+  const seoData: Metadata | null = setPageMetadata(metadataItems);
+  Object.assign(metadata, {
+    title: seoData?.title,
+    description: seoData?.description,
+    metadataBase: seoData?.metadataBase,
+    alternates: seoData?.alternates,
+    authors: seoData?.authors,
+    robots: seoData?.robots,
+    openGraph: seoData?.openGraph,
+    twitter: seoData?.twitter,
+    other: seoData?.other,
+  });
 
   return (
     <>

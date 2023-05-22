@@ -12,7 +12,7 @@ export function getMetadata(metadata: MetadataItem[] | null, category: string, k
 }
 
 export const setPageMetadata = (metadataItems: MetadataItem[] | null): Metadata | null => {
-  let seoData: Metadata = {};
+  const seoData: Metadata = {};
   if (metadataItems) {
     const title = getMetadata(metadataItems, 'seo', 'title')?.value ?? '';
     const description = getMetadata(metadataItems, 'seo', 'description')?.value ?? '';

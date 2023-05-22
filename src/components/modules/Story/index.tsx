@@ -6,6 +6,8 @@ import { DistributionEntity } from '@/models/types/dapi';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/dapiService';
 import logger from '@/utilities/logger';
+import { metadata as parentMetadata } from 'src/app/[[...pageName]]/page';
+import { overrideDefaultMetadata } from './StoryHelpers';
 
 type ModuleProps = {
   slug: string;
@@ -27,8 +29,15 @@ const Story = async ({ ...data }: ComponentProps) => {
   }
 
   const storyEntity = await getEntity('stories', props.slug);
+  if (storyEntity == null) {
+    logger.log(`Cannot find story entity with slug ${props.slug} `, LoggerLevel.warning);
+    return <div />;
+  }
 
-  return storyEntity ? (
+  // Override parent metadata
+  overrideDefaultMetadata(parentMetadata, storyEntity);
+
+  return (
     <>
       <StoryHeader
         storyEntity={storyEntity}
@@ -40,8 +49,6 @@ const Story = async ({ ...data }: ComponentProps) => {
         hide={props.hideRelatedItems}
       ></RelatedItems>
     </>
-  ) : (
-    <div />
   );
 };
 export default Story;
