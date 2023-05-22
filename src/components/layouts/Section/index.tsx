@@ -8,7 +8,9 @@ const Section = ({ ...data }: ComponentProps) => {
   const columns = (properties.templates as number) || 12;
   return (
     <section className={`grid grid-cols-${columns} gap-4`}>
-      {data?.items && data?.items?.length != 0 && data.items.map((item: StructureItem) => renderItem(item))}
+      {data?.items &&
+        data?.items?.length != 0 &&
+        data.items.map((item: StructureItem) => renderItem(item, data.variables, data.metadata, data.previewToken))}
     </section>
   );
 };

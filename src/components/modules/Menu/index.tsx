@@ -13,13 +13,13 @@ const Menu = async ({ ...data }: ComponentProps) => {
   const { navItemClasses, menuName } = data.properties as MenuModuleProps;
   //TODO: remove default menuName
   const defaultMenuName = menuName ? menuName : 'footerMenu';
-  const menuData = (await getMenu(defaultMenuName)) as MenuResponseData;
+  const menuData = await getMenu(defaultMenuName, data.previewToken);
   return menuData ? (
     <>
       <div className="container mx-auto lg:text-center">
         <div className="flex flex-col lg:flex-row uppercase justify-between">
           <MenuList
-            menuItems={menuData?.menuItems}
+            menuItems={menuData?.items}
             navItemClasses={navItemClasses}
           ></MenuList>
         </div>

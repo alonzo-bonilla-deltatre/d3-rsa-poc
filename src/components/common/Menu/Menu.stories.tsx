@@ -5,7 +5,7 @@ import { sampleMenu } from '@/__mocks__/menu/sampleMenu';
 import { sampleMenuWithIcons } from '@/__mocks__/menu/sampleMenuWithIcons';
 import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
 
-import { MenuResponse } from '@/models/types/menu';
+import { MenuStructureResponse } from '@/models/types/menu';
 
 const meta: Meta<typeof Menu> = {
   title: 'UiComponents/Menu',
@@ -13,9 +13,9 @@ const meta: Meta<typeof Menu> = {
   tags: ['autodocs'],
 };
 export default meta;
-const menuDataBasic = sampleMenu as MenuResponse;
-const menuDataIcons = headerServiceMenu as MenuResponse;
-const menuDataWithIcons = sampleMenuWithIcons as MenuResponse;
+const menuDataBasic = sampleMenu as MenuStructureResponse;
+const menuDataIcons = headerServiceMenu as MenuStructureResponse;
+const menuDataWithIcons = sampleMenuWithIcons as MenuStructureResponse;
 
 type Story = StoryObj<typeof Menu>;
 
@@ -30,14 +30,14 @@ export const Basic: Story = {
     </>
   ),
   args: {
-    menuItems: menuDataBasic.data.menuItems,
+    menuItems: menuDataBasic.data.items,
     navItemClasses: 'default',
   },
 };
 
 export const OnlyIcons: Story = {
   args: {
-    menuItems: menuDataIcons.data.menuItems,
+    menuItems: menuDataIcons.data.items,
     navItemClasses: 'default',
   },
 };
@@ -49,7 +49,7 @@ export const WithIcons: Story = {
     </>
   ),
   args: {
-    menuItems: menuDataWithIcons.data.menuItems,
+    menuItems: menuDataWithIcons.data.items,
     navItemClasses: 'default',
   },
 };

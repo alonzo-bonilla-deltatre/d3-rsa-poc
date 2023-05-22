@@ -17,11 +17,12 @@ const templateList: Record<any, (props: ComponentProps) => React.ReactElement> =
 export const renderTemplate = (
   item: StructureItem,
   variables?: Variable[] | null,
-  metadata?: Metadata[] | null
+  metadata?: Metadata[] | null,
+  previewToken?: string | null
 ): React.ReactElement => {
   const render = templateList[item.key.id];
   if (render) {
-    return render({ ...item, variables, metadata } as ComponentProps);
+    return render({ ...item, variables, metadata, previewToken } as ComponentProps);
   }
   logger.log(`Cannot render template ${item.key.id}`, LoggerLevel.error);
   return <div />;

@@ -1,22 +1,27 @@
-export type MenuResponse = {
+export type MenuStructureResponse = {
   data: MenuResponseData;
   meta: {
     version: string;
   };
 };
 export type MenuResponseData = {
-  menuItems: MenuItem[] | [];
+  items: MenuItem[] | [];
   variables: MenuVariable[] | [];
-  id: string;
   name: string;
-  uriSegmentTranslations: object;
+  path: string;
 };
 
 export type MenuItem = {
   id: string;
   text: string;
+  tag: string;
+  link: string;
+  target: string;
+  tooltip: string;
+  visible: boolean;
+  icon: MenuIcon;
   properties: MenuProperty;
-  menuItems: MenuItem[] | [];
+  items: MenuItem[] | [];
 };
 
 export type MenuVariable = {
@@ -25,13 +30,10 @@ export type MenuVariable = {
   keyValue: Record<any, string>[] | [];
 };
 
-export type MenuProperty = {
-  tag: string;
-  toolTip: string;
-  link: string;
-  icon: string;
-  target: string;
+export type MenuIcon = {
   data: string;
-  customProperties: string;
-  isActive: boolean;
+};
+
+export type MenuProperty = {
+  data: string;
 };

@@ -23,7 +23,7 @@ const MenuList = ({ ...data }: MenuProps) => {
               iconSize={iconSize}
             />
 
-            {menuItem.menuItems.map((subMenuItem) => (
+            {menuItem.items.map((subMenuItem) => (
               <MenuNavItem
                 key={nanoid()}
                 menuItem={subMenuItem}

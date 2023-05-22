@@ -14,17 +14,17 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
   const { menuItem, navItemClasses, parentId, iconSize } = data as MenuNavItemProps;
   //const router = usePathname();
   const parentid = parentId;
-  const itemLink = menuItem.properties.link ?? '#nolink';
+  const itemLink = menuItem.link ?? '#nolink';
   const isActive = false; //router.pathname == itemLink;
   //TODO isActive handler
   const isActiveClass = isActive ? '-active' : '';
-  const itemText = translate(menuItem.properties.tag) ?? menuItem.text;
+  const itemText = translate(menuItem.tag) ?? menuItem.text;
 
-  const itemIcon = menuItem.properties.icon;
+  const itemIcon = menuItem?.icon?.data ?? '';
   const additionalAttributes = {
     ...(parentid ? { parentid: parentid } : undefined),
-    ...(menuItem.properties.target ? { target: menuItem.properties.target } : undefined),
-    ...(!menuItem.properties.target ? { rel: 'noopener' } : undefined),
+    ...(menuItem.target ? { target: menuItem.target } : undefined),
+    ...(!menuItem.target ? { rel: 'noopener' } : undefined),
     ...(itemText ? { text: itemText } : undefined),
     ...(itemText ? { alt: itemText } : undefined),
     ...(itemText ? { 'aria-label': itemText } : undefined),

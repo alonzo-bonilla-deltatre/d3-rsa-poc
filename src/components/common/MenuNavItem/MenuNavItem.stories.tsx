@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MenuItem } from '@/models/types/menu';
+import { MenuItem, MenuIcon, MenuProperty } from '@/models/types/menu';
 import MenuNavItem from '@/components/common/MenuNavItem/MenuNavItem';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
@@ -17,32 +17,34 @@ const meta: Meta<typeof MenuNavItem> = {
 const sampleMenuItem: MenuItem = {
   id: 'id',
   text: 'news',
-  properties: {
-    tag: 'news',
-    toolTip: '',
-    link: '',
-    icon: '',
-    target: '',
+  tag: 'news',
+  link: '',
+  target: '',
+  tooltip: '',
+  visible: true,
+  icon: {
     data: '',
-    customProperties: '',
-    isActive: false,
   },
-  menuItems: [],
+  properties: {
+    data: '',
+  },
+  items: [],
 };
 const sampleMenuItemIcon: MenuItem = {
   id: 'id',
   text: 'news',
-  properties: {
-    tag: 'news',
-    toolTip: '',
-    link: '',
-    icon: '',
-    target: '',
+  tag: 'news',
+  link: '',
+  target: '',
+  tooltip: '',
+  visible: true,
+  icon: {
     data: '',
-    customProperties: '',
-    isActive: false,
   },
-  menuItems: [],
+  properties: {
+    data: '',
+  },
+  items: [],
 };
 
 export default meta;

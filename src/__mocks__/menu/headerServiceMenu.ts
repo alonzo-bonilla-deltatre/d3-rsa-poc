@@ -2,52 +2,66 @@
 const headerServiceMenu = {
   data: {
     variables: [],
-    menuItems: [
+    items: [
       {
         id: '9f9ba3fc-3438-4794-8200-480a5c0a06a3',
         text: 'Tickets',
-        properties: {
-          tag: 'tickets',
-          link: '/tickets',
-          icon: '/icons/header_ticket.svg',
+        tag: 'tickets',
+        link: '/tickets',
+        target: '',
+        tooltip: '',
+        visible: true,
+        icon: {
+          data: '/icons/header_ticket.svg',
         },
-        menuItems: [],
+        properties: {},
+        items: [],
       },
       {
         id: '241bf525-1f42-42b5-ae40-561b466ac3eb',
         text: 'Shop',
-        properties: {
-          tag: 'shop',
-          link: '/shop',
-          icon: '/icons/header_shop.svg',
-          Target: '_blank',
+        tag: 'shop',
+        link: '/shop',
+        target: '_blank',
+        tooltip: '',
+        visible: true,
+        icon: {
+          data: '/icons/header_shop.svg',
         },
-        menuItems: [],
+        properties: {},
+        items: [],
       },
       {
         id: '78248d03-72d8-459c-bec3-a83f841a75d1',
         text: 'Search',
-        properties: {
-          tag: 'search',
-          link: '/search',
-          icon: '/icons/header_search.svg',
+        tag: 'search',
+        link: '/search',
+        target: '',
+        tooltip: '',
+        visible: true,
+        icon: {
+          data: '/icons/header_search.svg',
         },
-        menuItems: [],
+        properties: {},
+        items: [],
       },
       {
         id: '7dad6f8d-deba-4cf5-9d82-0ba72b20d891',
         text: 'Login',
-        properties: {
-          tag: 'login',
-          link: '/user',
-          icon: '/icons/header_login.svg',
+        tag: 'login',
+        link: '/user',
+        target: '',
+        tooltip: '',
+        visible: true,
+        icon: {
+          data: '/icons/header_login.svg',
         },
-        menuItems: [],
+        properties: {},
+        items: [],
       },
     ],
-    id: 'd4b968b9-e094-45fb-aded-9c6dc90e4946',
-    uriSegmentTranslations: {},
     name: '_header-services',
+    path: '~/_header-services',
   },
   meta: {
     version: '1.0',

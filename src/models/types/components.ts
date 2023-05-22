@@ -8,4 +8,5 @@ export type ComponentProps = {
   items?: StructureItem[];
   variables?: Variable[];
   metadata?: Metadata[];
+  previewToken: string;
 };

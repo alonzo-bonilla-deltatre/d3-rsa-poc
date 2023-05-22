@@ -5,20 +5,25 @@ import { renderModule } from './renderHandlers/renderModule';
 import { renderTemplate } from './renderHandlers/renderTemplate';
 import { nanoid } from 'nanoid';
 
-export const renderItem = (item: StructureItem, variables?: Variable[], metadata?: Metadata[]): React.ReactElement => {
+export const renderItem = (
+  item: StructureItem,
+  variables?: Variable[],
+  metadata?: Metadata[],
+  previewToken?: string
+): React.ReactElement => {
   if (!item) {
     return renderEmptyPage();
   }
   if (item.type === PageStructureItemType.template) {
-    return renderTemplate(item, variables, metadata);
+    return renderTemplate(item, variables, metadata, previewToken);
   }
 
   if (item.type === PageStructureItemType.layout) {
-    return renderLayout(item, variables, metadata);
+    return renderLayout(item, variables, metadata, previewToken);
   }
 
   if (item.type === PageStructureItemType.module) {
-    return renderModule(item, variables, metadata);
+    return renderModule(item, variables, metadata, previewToken);
   }
   return renderEmptyPage();
 };
@@ -27,7 +32,8 @@ export const renderItemsInSlot = (
   items: StructureItem[] | undefined,
   slotName: string,
   variables?: Variable[],
-  metadata?: Metadata[]
+  metadata?: Metadata[],
+  previewToken?: string
 ): ReactElement<any, string | JSXElementConstructor<any>>[] | null => {
   if (typeof items === 'undefined' || !items.length) {
     return null;
@@ -38,7 +44,7 @@ export const renderItemsInSlot = (
   if (!itemsBySlot.length) {
     return null;
   }
-  return itemsBySlot.map((item: StructureItem) => renderItem(item, variables, metadata));
+  return itemsBySlot.map((item: StructureItem) => renderItem(item, variables, metadata, previewToken));
 };
 
 const renderEmptyPage = function (): React.ReactElement {

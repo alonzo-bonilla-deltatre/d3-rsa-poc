@@ -16,7 +16,7 @@ describe('getFooterStructure function', () => {
   });
 
   it('returns null if variables is undefined', async (): Promise<void> => {
-    const footer = await getFooterStructure(undefined);
+    const footer = await getFooterStructure(undefined, '');
 
     expect(footer).toBeNull();
   });
@@ -26,7 +26,7 @@ describe('getFooterStructure function', () => {
       { key: 'some_other_key', type: 'string', keyValue: { value: 'some_other_value' } as KeyValue },
     ];
 
-    const footer = await getFooterStructure(variables);
+    const footer = await getFooterStructure(variables, '');
 
     expect(footer).toBeNull();
   });
@@ -34,7 +34,7 @@ describe('getFooterStructure function', () => {
   it('returns null if footerSource is empty string', async (): Promise<void> => {
     const variables: Variable[] = [{ key: 'inc_footer', type: 'string', keyValue: { value: '' } as KeyValue }];
 
-    const footer = await getFooterStructure(variables);
+    const footer = await getFooterStructure(variables, '');
 
     expect(footer).toBeNull();
   });
@@ -45,10 +45,10 @@ describe('getFooterStructure function', () => {
     ];
     const mockGetPageStructure = (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: 'footer_data' });
 
-    const footer = await getFooterStructure(variables);
+    const footer = await getFooterStructure(variables, '');
 
     expect(mockGetPageStructure).toHaveBeenCalledTimes(1);
-    expect(mockGetPageStructure).toHaveBeenCalledWith('some_footer_source');
+    expect(mockGetPageStructure).toHaveBeenCalledWith('some_footer_source', '');
     expect(footer).toBe('footer_data');
   });
 
@@ -58,7 +58,7 @@ describe('getFooterStructure function', () => {
     ];
     (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: 'footer_data' });
 
-    const footer = await getFooterStructure(variables);
+    const footer = await getFooterStructure(variables, '');
     expect(footer).toBe('footer_data');
   });
 
@@ -68,7 +68,7 @@ describe('getFooterStructure function', () => {
     ];
     (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
-    const footer = await getFooterStructure(variables);
+    const footer = await getFooterStructure(variables, '');
 
     expect(footer).toBeNull();
   });

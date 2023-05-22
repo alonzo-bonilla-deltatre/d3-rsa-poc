@@ -6,7 +6,9 @@ import { nanoid } from 'nanoid';
 const NoTemplate = ({ ...data }: ComponentProps) => {
   return (
     <div className="d3-o-template d3-o-template--no-template">
-      {data?.items && data?.items?.length != 0 && data.items.map((item: StructureItem) => renderItem(item))}
+      {data?.items &&
+        data?.items?.length != 0 &&
+        data.items.map((item: StructureItem) => renderItem(item, data.variables, data.metadata, data.previewToken))}
     </div>
   );
 };

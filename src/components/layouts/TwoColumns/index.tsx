@@ -10,8 +10,12 @@ const TwoColumns = ({ ...data }: ComponentProps) => {
 
   return (
     <section className={`grid grid-cols-1 lg:grid-cols-2 gap-4`}>
-      <div id={`${leftContent}_${nanoid()}`}>{renderItemsInSlot(data.items, leftContent)}</div>
-      <div id={`${rightContent}_${nanoid()}`}>{renderItemsInSlot(data.items, rightContent)}</div>
+      <div id={`${leftContent}_${nanoid()}`}>
+        {renderItemsInSlot(data.items, leftContent, data.variables, data.metadata, data.previewToken)}
+      </div>
+      <div id={`${rightContent}_${nanoid()}`}>
+        {renderItemsInSlot(data.items, rightContent, data.variables, data.metadata, data.previewToken)}
+      </div>
     </section>
   );
 };

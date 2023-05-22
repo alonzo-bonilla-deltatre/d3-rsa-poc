@@ -16,7 +16,7 @@ describe('getHeaderStructure function', () => {
   });
 
   it('returns null if variables is undefined', async (): Promise<void> => {
-    const header = await getHeaderStructure(undefined);
+    const header = await getHeaderStructure(undefined, '');
 
     expect(header).toBeNull();
   });
@@ -26,7 +26,7 @@ describe('getHeaderStructure function', () => {
       { key: 'some_other_key', type: 'string', keyValue: { value: 'some_other_value' } as KeyValue },
     ];
 
-    const header = await getHeaderStructure(variables);
+    const header = await getHeaderStructure(variables, '');
 
     expect(header).toBeNull();
   });
@@ -34,7 +34,7 @@ describe('getHeaderStructure function', () => {
   it('returns null if headerSource is empty string', async (): Promise<void> => {
     const variables: Variable[] = [{ key: 'inc_header', type: 'string', keyValue: { value: '' } as KeyValue }];
 
-    const header = await getHeaderStructure(variables);
+    const header = await getHeaderStructure(variables, '');
 
     expect(header).toBeNull();
   });
@@ -45,10 +45,10 @@ describe('getHeaderStructure function', () => {
     ];
     const mockGetPageStructure = (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: 'header_data' });
 
-    const header = await getHeaderStructure(variables);
+    const header = await getHeaderStructure(variables, '');
 
     expect(mockGetPageStructure).toHaveBeenCalledTimes(1);
-    expect(mockGetPageStructure).toHaveBeenCalledWith('some_header_source');
+    expect(mockGetPageStructure).toHaveBeenCalledWith('some_header_source', '');
     expect(header).toBe('header_data');
   });
 
@@ -58,7 +58,7 @@ describe('getHeaderStructure function', () => {
     ];
     (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: 'header_data' });
 
-    const header = await getHeaderStructure(variables);
+    const header = await getHeaderStructure(variables, '');
     expect(header).toBe('header_data');
   });
 
@@ -68,7 +68,7 @@ describe('getHeaderStructure function', () => {
     ];
     (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
-    const header = await getHeaderStructure(variables);
+    const header = await getHeaderStructure(variables, '');
 
     expect(header).toBeNull();
   });

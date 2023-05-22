@@ -25,13 +25,13 @@ const Header = ({ ...data }: ComponentProps) => {
             role="presentation"
             id={`${logo}_${nanoid()}`}
           >
-            {renderItemsInSlot(data.items, logo)}
+            {renderItemsInSlot(data.items, logo, data.variables, data.metadata, data.previewToken)}
           </div>
           <div
             className="flex justify-end text-gray-600"
             id={`${serviceNavigation}_${nanoid()}`}
           >
-            {renderItemsInSlot(data.items, serviceNavigation)}
+            {renderItemsInSlot(data.items, serviceNavigation, data.variables, data.metadata, data.previewToken)}
           </div>
         </div>
         <div className="container px-4 mx-auto">
@@ -39,13 +39,13 @@ const Header = ({ ...data }: ComponentProps) => {
             className="w-full flex items-center bg-white"
             id={`${primaryNavigation}_${nanoid()}`}
           >
-            {renderItemsInSlot(data.items, primaryNavigation)}
+            {renderItemsInSlot(data.items, primaryNavigation, data.variables, data.metadata, data.previewToken)}
           </div>
           <div
             className="w-full flex items-center"
             id={`${middleContent}_${nanoid()}`}
           >
-            {renderItemsInSlot(data.items, middleContent)}
+            {renderItemsInSlot(data.items, middleContent, data.variables, data.metadata, data.previewToken)}
           </div>
         </div>
       </nav>

@@ -1,40 +1,51 @@
-import { MenuItem, MenuResponse, MenuResponseData } from '@/models/types/menu';
+import axios from 'axios';
+import { MenuItem, MenuStructureResponse, MenuResponseData } from '@/models/types/menu';
 import { footerMenu } from '@/__mocks__/menu/footerMenu';
 import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
 import { sampleMenu } from '@/__mocks__/menu/sampleMenu';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import { PageBuilderFrontendApiError } from '@/models/types/errors';
 
-export const getFooterMenu = (): MenuResponseData => {
-  const result = footerMenu as MenuResponse;
-  return result.data;
+const culture = process.env.CULTURE;
+const environment = process.env.ENVIRONMENT;
+const pathPlaceholder = '{path}';
+const tokenPlaceholder = '{token}';
+const menuStructureApiUrl = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`;
+const menuStructureApiUrlWithToken = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}&token=${tokenPlaceholder}`;
+
+export const getFooterMenu = async (previewToken: string): Promise<MenuResponseData | null> => {
+  const result = await getMenuStructure('~/test/react-poc/menu/footer', previewToken);
+  return result?.data ?? null;
 };
 
-export const getHeaderServiceMenu = (): MenuResponseData => {
-  const result = headerServiceMenu as MenuResponse;
-  return result.data;
+export const getHeaderServiceMenu = async (previewToken: string): Promise<MenuResponseData | null> => {
+  const result = await getMenuStructure('~/test/react-poc/menu/header', previewToken);
+  return result?.data ?? null;
 };
 
 export const getSampleMenu = (): MenuResponseData => {
-  const result = sampleMenu as MenuResponse;
-  return result.data;
+  const result = sampleMenu as MenuStructureResponse;
+  return result?.data ?? null;
 };
 
-export const getMenu = (name: string): MenuResponseData | [] => {
+export const getMenu = async (name: string, previewToken: string): Promise<MenuResponseData | null> => {
   switch (name) {
     case 'footerMenu':
-      return getFooterMenu();
+      return await getFooterMenu(previewToken);
     case 'headerServiceMenu':
-      return getHeaderServiceMenu();
+      return await getHeaderServiceMenu(previewToken);
     case 'sampleMenu':
       return getSampleMenu();
     default:
-      return [];
+      return null;
   }
 };
 
 export const setValidItems = (items: MenuItem[], pagePath: string): object[] => {
   let validMenuItems: object[] = [];
   items.forEach((item) => {
-    let menuItemLink = item.properties.link;
+    let menuItemLink = item.link;
     if (menuItemLink.endsWith('/')) {
       menuItemLink += 'index';
     }
@@ -59,4 +70,41 @@ export const setValidItems = (items: MenuItem[], pagePath: string): object[] => 
   });
 
   return validMenuItems;
+};
+
+export const getMenuStructure = async (path: string, token: string = ''): Promise<MenuStructureResponse | null> => {
+  let apiUrl = '';
+  if (token) {
+    apiUrl = menuStructureApiUrlWithToken.replace(pathPlaceholder, path).replace(tokenPlaceholder, token);
+  } else {
+    apiUrl = menuStructureApiUrl.replace(pathPlaceholder, path);
+  }
+  apiUrl = new URL(apiUrl, process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL).href;
+  logger.log(`Getting MENU STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}`, LoggerLevel.debug);
+
+  return await axios
+    .get(apiUrl, {
+      headers: {
+        Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET ?? '',
+      },
+    })
+    .then((response) => {
+      logger.log(`Retrieved MENU STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}`, LoggerLevel.debug);
+      return response.data;
+    })
+    .catch((response) => {
+      if (response && response.data) {
+        const error = response.data as PageBuilderFrontendApiError;
+        let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
+        if (error.detail) {
+          errorMessage = errorMessage + ` - Error Detail: ${error.detail}`;
+        }
+        logger.log(errorMessage, LoggerLevel.error);
+        return null;
+      } else {
+        logger.log(`PAGE BUILDER FRONTEND API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      }
+
+      return null;
+    });
 };

@@ -34,7 +34,10 @@ const Footer = ({ ...data }: ComponentProps) => {
         <div className="container mx-auto py-12 lg:text-center">
           <div className="flex flex-col lg:flex-row uppercase justify-between">
             {/* Footer  */}
-            {data && data.items?.map((item: StructureItem) => renderItem(item))}
+            {data &&
+              data.items?.map((item: StructureItem) =>
+                renderItem(item, data.variables, data.metadata, data.previewToken)
+              )}
           </div>
         </div>
       </nav>

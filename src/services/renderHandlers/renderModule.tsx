@@ -52,11 +52,12 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
 export const renderModule = (
   item: StructureItem,
   variables?: Variable[] | null,
-  metadata?: Metadata[] | null
+  metadata?: Metadata[] | null,
+  previewToken?: string | null
 ): React.ReactElement => {
   const render = componentList[item.key.id];
   if (render) {
-    return render({ ...item, variables, metadata } as ComponentProps);
+    return render({ ...item, variables, metadata, previewToken } as ComponentProps);
   }
   logger.log(`Cannot render module ${item.key.id}`, LoggerLevel.error);
   return <div />;
