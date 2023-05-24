@@ -18,6 +18,10 @@ const Hero = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, hideDate, selectionSlug, limit } =
     data.properties as ModuleProps;
   const defaultItemLimit = 5;
+  let itemLimit = parseInt(limit);
+  if (itemLimit <= 0) {
+    itemLimit = defaultItemLimit;
+  }
 
   if (!selectionSlug) {
     logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
@@ -27,7 +31,7 @@ const Hero = async ({ ...data }: ComponentProps) => {
   const selection = await getSelection(selectionSlug);
   const items = selection?.items;
 
-  return items ? (
+  return items && items.length > 0 ? (
     <>
       <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
@@ -35,7 +39,7 @@ const Hero = async ({ ...data }: ComponentProps) => {
         text={moduleTitle}
       ></ModuleTitle>
       <HeroSwiper
-        slides={getFilteredItems(items, Number(limit ?? defaultItemLimit))}
+        slides={getFilteredItems(items, Number(itemLimit))}
         hideDate={/true/.test(hideDate)}
       />
     </>

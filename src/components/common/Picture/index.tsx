@@ -10,7 +10,7 @@ type PictureProps = {
 };
 
 const Picture = ({ ...props }: PictureProps) => {
-  const canRender = props.transformations;
+  const canRender = props.transformations && props.src;
 
   const desktopSrc = getSrcWithTransformation(props.src, props.transformations.desktop);
   const tabletSrc = getSrcWithTransformation(props.src, props.transformations.tablet);
