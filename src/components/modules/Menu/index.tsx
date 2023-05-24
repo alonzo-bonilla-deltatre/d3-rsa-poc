@@ -1,26 +1,21 @@
 import MenuList from '@/components/common/Menu';
 import { ComponentProps } from '@/models/types/components';
-import { MenuItem, MenuResponseData } from '@/models/types/menu';
-import { getMenu } from '@/services/menuService';
+import { getMenuStructure } from '@/services/menuService';
 
 type MenuModuleProps = {
-  menuItems: MenuItem[];
-  navItemClasses: string;
-  menuName: string;
+  path: string;
 };
 
 const Menu = async ({ ...data }: ComponentProps) => {
-  const { navItemClasses, menuName } = data.properties as MenuModuleProps;
-  //TODO: remove default menuName
-  const defaultMenuName = menuName ? menuName : 'footerMenu';
-  const menuData = await getMenu(defaultMenuName, data.previewToken);
+  const { path } = data.properties as MenuModuleProps;
+  const menuData = await getMenuStructure(path, data.previewToken);
   return menuData ? (
     <>
-      <div className="container mx-auto lg:text-center">
-        <div className="flex flex-col lg:flex-row uppercase justify-between">
+      <div className="container mx-auto my-4 lg:text-center text-[#BEBEBE]">
+        <div className="flex flex-col lg:flex-row uppercase items-center justify-between">
           <MenuList
-            menuItems={menuData?.items}
-            navItemClasses={navItemClasses}
+            menuItems={menuData.data.items}
+            navItemClasses={''}
           ></MenuList>
         </div>
       </div>

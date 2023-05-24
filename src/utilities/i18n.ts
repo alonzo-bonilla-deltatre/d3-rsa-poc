@@ -29,6 +29,9 @@ export const initI18n = async (): Promise<any> => {
 };
 
 export const translate = (key: string, type: TermType = TermType.standard): string => {
+  if (!key) {
+    return key;
+  }
   const term = i18n.t(key.toLowerCase(), { returnObjects: true }) as Translation;
   if (!term[type]) {
     logger.log(`TRANSLATION not found for this key: '${key}' and this type: '${type}'`, LoggerLevel.warning);

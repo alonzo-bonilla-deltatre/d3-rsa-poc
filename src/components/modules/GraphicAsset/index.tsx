@@ -12,12 +12,10 @@ type ModuleProps = {
   assetWidth: number;
   assetHeight: number;
   transformation: string;
-  className?: string;
 };
 
 const GraphicAsset = async ({ ...data }: ComponentProps) => {
-  const { assetTag, assetName, assetLink, assetWidth, assetHeight, transformation, className } =
-    data.properties as ModuleProps;
+  const { assetTag, assetName, assetLink, assetWidth, assetHeight, transformation } = data.properties as ModuleProps;
   const namedTransformation = transformation ?? 'logos';
   const width = assetWidth ?? 50;
   const height = assetHeight ?? 50;
@@ -27,10 +25,7 @@ const GraphicAsset = async ({ ...data }: ComponentProps) => {
 
   return asset?.assetUrl ? (
     <>
-      <a
-        href={link}
-        className={className}
-      >
+      <a href={link}>
         <GadAsset
           src={asset.assetUrl}
           className="max-sm:w-full"

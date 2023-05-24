@@ -6,6 +6,8 @@ import { ComponentProps } from '@/models/types/components';
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
 
+import './Footer.css';
+
 // @ts-ignore
 const SocialIcons = dynamic(() => import('@/components/common/SocialIcons'));
 // @ts-ignore

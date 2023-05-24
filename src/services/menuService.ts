@@ -1,8 +1,5 @@
 import axios from 'axios';
-import { MenuItem, MenuStructureResponse, MenuResponseData } from '@/models/types/menu';
-import { footerMenu } from '@/__mocks__/menu/footerMenu';
-import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
-import { sampleMenu } from '@/__mocks__/menu/sampleMenu';
+import { MenuItem, MenuStructureResponse } from '@/models/types/menu';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { PageBuilderFrontendApiError } from '@/models/types/errors';
@@ -13,34 +10,6 @@ const pathPlaceholder = '{path}';
 const tokenPlaceholder = '{token}';
 const menuStructureApiUrl = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`;
 const menuStructureApiUrlWithToken = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}&token=${tokenPlaceholder}`;
-
-export const getFooterMenu = async (previewToken: string): Promise<MenuResponseData | null> => {
-  const result = await getMenuStructure('~/test/react-poc/menu/footer', previewToken);
-  return result?.data ?? null;
-};
-
-export const getHeaderServiceMenu = async (previewToken: string): Promise<MenuResponseData | null> => {
-  const result = await getMenuStructure('~/test/react-poc/menu/header', previewToken);
-  return result?.data ?? null;
-};
-
-export const getSampleMenu = (): MenuResponseData => {
-  const result = sampleMenu as MenuStructureResponse;
-  return result?.data ?? null;
-};
-
-export const getMenu = async (name: string, previewToken: string): Promise<MenuResponseData | null> => {
-  switch (name) {
-    case 'footerMenu':
-      return await getFooterMenu(previewToken);
-    case 'headerServiceMenu':
-      return await getHeaderServiceMenu(previewToken);
-    case 'sampleMenu':
-      return getSampleMenu();
-    default:
-      return null;
-  }
-};
 
 export const setValidItems = (items: MenuItem[], pagePath: string): object[] => {
   let validMenuItems: object[] = [];

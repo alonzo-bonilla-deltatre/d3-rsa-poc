@@ -9,7 +9,7 @@ const HtmlContent = ({ ...data }: ComponentProps) => {
 
   return (
     <div
-      className="htmlcontent-code"
+      className="htmlcontent-code w-full"
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );

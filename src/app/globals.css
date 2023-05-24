@@ -46,11 +46,6 @@
   --marked: #ee3123;
 }
 
-header > nav a:hover {
-  border-color: rgba(0, 0, 0, 0);
-  color: unset;
-}
-
 a,
 a:visited {
   color: unset;
