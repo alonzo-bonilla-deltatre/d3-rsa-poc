@@ -19,6 +19,7 @@ type ModuleProps = {
   hideSocial: boolean;
   hideRelatedItems: boolean;
   entity?: DistributionEntity | null | undefined;
+  preventSettingMetadata: boolean;
 };
 
 const Story = async ({ ...data }: ComponentProps) => {
@@ -35,7 +36,9 @@ const Story = async ({ ...data }: ComponentProps) => {
   }
 
   // Override parent metadata
-  overrideDefaultMetadata(parentMetadata, storyEntity);
+  if (props.preventSettingMetadata.toString() === 'false') {
+    overrideDefaultMetadata(parentMetadata, storyEntity);
+  }
 
   return (
     <>
