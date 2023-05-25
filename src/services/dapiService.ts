@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { LoggerLevel } from '@/models/types/logger';
 import { DistributionEntity, PagedResult, QueryStringModuleProps } from '@/models/types/dapi';
-import logger from '@/utilities/logger';
 import { ForgeApiError } from '@/models/types/errors';
+import { LoggerLevel } from '@/models/types/logger';
+import logger from '@/utilities/logger';
+import axios from 'axios';
 
 const culture = process.env.CULTURE;
 const slugPlaceholder = '{slug}';

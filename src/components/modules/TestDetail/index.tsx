@@ -7,6 +7,7 @@ import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/dapiService';
 import { getAssetsByTag, getSingleAssetByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
+import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
@@ -29,7 +30,7 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
   }
 
   const sponsorFetch = getSingleAssetByTag('sponsor-coates');
-  const gadThumbnailPlaceHolderAssetsFetch = getAssetsByTag('react-poc-placeholder');
+  const gadThumbnailPlaceHolderAssetsFetch = getAssetsByTag(IMAGE_PLACEHOLDER);
 
   const [sponsor, gadThumbnailPlaceHolderAssets] = await Promise.all([
     sponsorFetch,

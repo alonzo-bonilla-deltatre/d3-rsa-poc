@@ -9,9 +9,6 @@ export type ImageTransformations = {
 export type ImageAsset = {
   title: string;
   templateUrl: string;
-  thumbnailUrl: string;
   format: string;
-  overriddenFormats: { [key: string]: any };
   slug: string;
-  selfUrl: string;
 };

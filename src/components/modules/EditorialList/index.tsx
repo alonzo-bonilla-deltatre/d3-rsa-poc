@@ -1,11 +1,12 @@
-import { ComponentProps } from '@/models/types/components';
-import { getEntityList } from '@/services/dapiService';
-import { DistributionEntity } from '@/models/types/dapi';
-import { nanoid } from 'nanoid';
-import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
-import ModuleTitle from '@/components/common/ModuleTitle';
 import Card from '@/components/common/Card';
+import ModuleTitle from '@/components/common/ModuleTitle';
+import { getEntitiesWithPlaceholder } from '@/helpers/distributionEntityListHelper';
+import { ComponentProps } from '@/models/types/components';
+import { DistributionEntity } from '@/models/types/dapi';
+import { LoggerLevel } from '@/models/types/logger';
+import { getEntityList } from '@/services/dapiService';
+import logger from '@/utilities/logger';
+import { nanoid } from 'nanoid';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -28,30 +29,30 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
 
   const items = await getEntityList(selectionSlug, { skip, limit, tags }, entityType);
 
-  return items?.length ? (
+  const entitiesWithPlaceholder = getEntitiesWithPlaceholder(items ?? [], data.variables);
+
+  return entitiesWithPlaceholder?.length ? (
     <section className="mt-8">
       <ModuleTitle
         canRender={/true/.test(displayModuleTitle)}
         heading={headingLevel}
         text={moduleTitle}
-      ></ModuleTitle>
+      />
       <div className="grid grid-cols-3 gap-4 px-8">
-        {items.map((entity: DistributionEntity) => {
-          return (
-            <Card
-              key={nanoid()}
-              entity={entity}
-              options={{
-                hideIcon: true,
-                hideRoofline: false,
-                hideTitle: false,
-                hideDate: false,
-                hideAuthor: true,
-                hideCta: true,
-              }}
-            ></Card>
-          );
-        })}
+        {entitiesWithPlaceholder?.map((entity: DistributionEntity) => (
+          <Card
+            key={nanoid()}
+            entity={entity}
+            options={{
+              hideIcon: true,
+              hideRoofline: false,
+              hideTitle: false,
+              hideDate: false,
+              hideAuthor: true,
+              hideCta: true,
+            }}
+          />
+        ))}
       </div>
     </section>
   ) : (

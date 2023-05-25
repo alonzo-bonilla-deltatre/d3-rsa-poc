@@ -7,6 +7,7 @@ import { LoggerLevel } from '@/models/types/logger';
 import { getAllEntities } from '@/services/dapiService';
 import { getAssetsByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
+import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import { formatDate } from '@/utilities/dateFormatter';
 import logger from '@/utilities/logger';
 import { nanoid } from 'nanoid';
@@ -55,7 +56,7 @@ const TestList = async ({ ...data }: ComponentProps) => {
 
   const queryString = getQueryString({ skip, limit, tags });
   const promoEntitiesFetch = getAllEntities(entityType, queryString);
-  const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
+  const gadAssetsPlaceHolderFetch = getAssetsByTag(IMAGE_PLACEHOLDER);
 
   const [promos, gadThumbnailPlaceHolderAssets] = await Promise.all([promoEntitiesFetch, gadAssetsPlaceHolderFetch]);
   const items = promos?.items;

@@ -1,12 +1,12 @@
-import { ComponentProps } from '@/models/types/components';
-import { getAllEntities, getQueryString } from '@/services/dapiService';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { getAssetsByTag } from '@/services/gadService';
-import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
 import ModuleTitle from '@/components/common/ModuleTitle';
-import React from 'react';
 import MosaicContainer from '@/components/modules/Mosaic/MosaicContainer';
+import { ComponentProps } from '@/models/types/components';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { LoggerLevel } from '@/models/types/logger';
+import { getAllEntities, getQueryString } from '@/services/dapiService';
+import { getAssetsByTag } from '@/services/gadService';
+import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
+import logger from '@/utilities/logger';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -33,7 +33,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
   const [promos] = await Promise.all([promoEntitiesFetch]);
   const items = promos?.items;
 
-  const gadAssetsPlaceHolderFetch = getAssetsByTag('react-poc-placeholder');
+  const gadAssetsPlaceHolderFetch = getAssetsByTag(IMAGE_PLACEHOLDER);
 
   const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
   const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length

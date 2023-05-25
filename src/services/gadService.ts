@@ -1,9 +1,10 @@
-import axios from 'axios';
 import { ApiResponseError } from '@/models/types/errors';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { ImageAsset } from '@/models/types/images';
 import { LoggerLevel } from '@/models/types/logger';
+import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import logger from '@/utilities/logger';
+import axios from 'axios';
 
 export const getAssetsByTag = async (tag: string): Promise<GraphicAssetsDashboardItem[] | null> => {
   const apiUrl = `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=${tag}`;
@@ -36,14 +37,16 @@ export const firstAssetOrDefault = (assets: GraphicAssetsDashboardItem[] | null)
   return assets?.length ? assets[0] : null;
 };
 
-export const getPlaceholderAsset = async (placeHolderTag: string): Promise<GraphicAssetsDashboardItem | null> => {
-  const tag = placeHolderTag ? placeHolderTag : 'react-poc-placeholder';
+export const getPlaceholderAsset = async (
+  placeHolderTag: string = IMAGE_PLACEHOLDER
+): Promise<GraphicAssetsDashboardItem | null> => {
+  const tag = placeHolderTag ? placeHolderTag : IMAGE_PLACEHOLDER;
   return await getSingleAssetByTag(tag);
 };
 
 export const getPlaceholderAssetUrl = async (placeHolderTag: string): Promise<string> => {
   try {
-    const tag = placeHolderTag ? placeHolderTag : 'react-poc-placeholder';
+    const tag = placeHolderTag ? placeHolderTag : IMAGE_PLACEHOLDER;
     const asset = await getPlaceholderAsset(tag);
     console.log('GAD API PLACEHOLDER Found:', asset?.assetUrl);
 
@@ -75,7 +78,6 @@ export const gadAssetToImageAsset = (item: GraphicAssetsDashboardItem | null): I
     return {
       title: item.name,
       templateUrl: item.assetUrl,
-      thumbnailUrl: item.assetThumbnailUrl,
       format: item.format,
     } as ImageAsset;
   }
