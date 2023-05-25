@@ -36,7 +36,7 @@ const Story = async ({ ...data }: ComponentProps) => {
   }
 
   // Override parent metadata
-  if (props.preventSettingMetadata.toString() === 'false') {
+  if (props.preventSettingMetadata && props.preventSettingMetadata.toString() === 'false') {
     overrideDefaultMetadata(parentMetadata, storyEntity);
   }
 

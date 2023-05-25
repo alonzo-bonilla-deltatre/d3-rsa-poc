@@ -36,7 +36,7 @@ async function encode(text: string): Promise<string> {
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark().use(remarkHtml, { sanitize: true }).process(markdownObject.text);
-  markdownObject.text = processedContent.toString();
+  markdownObject.text = processedContent?.toString() ?? '';
 
   // replaced placeholder with correct html tags
   markdownObject = replacePlaceholderWithAnchorTags(markdownObject);

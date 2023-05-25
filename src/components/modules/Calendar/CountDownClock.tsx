@@ -41,17 +41,17 @@ const CountDownClock = ({ ...data }: ModuleProps) => {
       className={`${className} grid grid-cols-8 max-w-[270px] text-5xl font-black text-[#EE3123] leading-none text-center`}
     >
       <div className={timeItemClasses}>
-        <span>{days.toString().padStart(2, '0')}</span>
+        <span>{days?.toString().padStart(2, '0') ?? '-'}</span>
         <span className={timeLabelClasses}>Days</span>
       </div>
       <span className={timeDividerClasses}>:</span>
       <div className={timeItemClasses}>
-        <span>{hours.toString().padStart(2, '0')}</span>
+        <span>{hours?.toString().padStart(2, '0') ?? '-'}</span>
         <span className={timeLabelClasses}>hrs</span>
       </div>
       <span className={timeDividerClasses}>:</span>
       <div className={timeItemClasses}>
-        <span>{minutes.toString().padStart(2, '0')}</span>
+        <span>{minutes?.toString().padStart(2, '0') ?? '-'}</span>
         <span className={timeLabelClasses}>min</span>
       </div>
     </div>

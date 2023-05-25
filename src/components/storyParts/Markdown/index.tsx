@@ -9,7 +9,7 @@ export const renderMarkdownStoryPart = ({ ...data }: StoryPart): React.ReactElem
   data ? (
     <Markdown
       key={nanoid()}
-      markdownText={data.content.toString()}
+      markdownText={data.content?.toString()}
     />
   ) : (
     <></>
