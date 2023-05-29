@@ -6,6 +6,7 @@ import { DistributionEntity } from '@/models/types/dapi';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/dapiService';
 import logger from '@/utilities/logger';
+import { notFound } from 'next/navigation';
 import { metadata as parentMetadata } from 'src/app/[[...pageName]]/page';
 import { overrideDefaultMetadata } from './StoryHelpers';
 
@@ -24,15 +25,16 @@ type ModuleProps = {
 
 const Story = async ({ ...data }: ComponentProps) => {
   const props = data.properties as ModuleProps;
+  const invalidSlugErrorMessage = 'Cannot render Story module with empty slug';
   if (!Object.hasOwn(props, 'slug') || !props.slug.length) {
-    logger.log('Cannot render Story module with empty slug', LoggerLevel.warning);
-    return null;
+    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
+    throw new Error(invalidSlugErrorMessage);
   }
 
   const storyEntity = await getEntity('stories', props.slug);
   if (storyEntity == null) {
     logger.log(`Cannot find story entity with slug ${props.slug} `, LoggerLevel.warning);
-    return <div />;
+    notFound();
   }
 
   // Override parent metadata
