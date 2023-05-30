@@ -9,6 +9,14 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {};
 
+/* SSG revalidate time */
+export const revalidate = 60;
+
+/* SSG process */
+export async function generateStaticParams() {
+  return [];
+}
+
 export default async function Page({
   params,
   searchParams,
@@ -18,7 +26,7 @@ export default async function Page({
 }) {
   await initI18n();
   const path = requestUrlParser.getPathName(params);
-  const previewToken = searchParams?.token?.toString() ?? '';
+  const previewToken = ''; // Need to get this value not from searchParams
   const pageStructure = await getPageStructure(path, previewToken);
   if (!pageStructure) {
     return null;

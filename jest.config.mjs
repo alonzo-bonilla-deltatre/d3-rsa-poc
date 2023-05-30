@@ -20,7 +20,6 @@ const config = {
   ],
   coverageReporters: ["lcov", "text"],
   coverageDirectory: "../coverage",
-  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/helpers/(.*)$': '<rootDir>/helpers/$1',
@@ -30,6 +29,7 @@ const config = {
   },
   resetMocks: true,
   reporters: ["default"],
+  setupFiles: ['./__mocks__/jest-setup.js'],
   testMatch: ['**/*.test.{ts,tsx}'],
   testEnvironment: 'jest-environment-jsdom',
   transformIgnorePatterns: ["/node_modules/"],
