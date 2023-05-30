@@ -6,6 +6,7 @@ import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
 
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {};
 
@@ -28,8 +29,8 @@ export default async function Page({
   const path = requestUrlParser.getPathName(params);
   const previewToken = ''; // Need to get this value not from searchParams
   const pageStructure = await getPageStructure(path, previewToken);
-  if (!pageStructure) {
-    return null;
+  if (!pageStructure?.data) {
+    notFound();
   }
 
   const structure = pageStructure.data.structure;
