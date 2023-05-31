@@ -1,11 +1,10 @@
-import { getPageStructure } from '@/services/pageService';
-import { setPageMetadata } from '@/services/metadataService';
 import { renderItem } from '@/services/renderService';
 import { requestUrlParser } from '@/utilities/requestUrlParser';
 import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
 
 import { Metadata } from 'next';
+import { enrichPageMetadata, getPageData } from '../pageHelpers';
 import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {};
@@ -18,38 +17,17 @@ export async function generateStaticParams() {
   return [];
 }
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: { pageName: string[]; id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+export default async function Page({ params }: { params: { pageName: string[]; id: string } }) {
   await initI18n();
   const path = requestUrlParser.getPathName(params);
-  const previewToken = ''; // Need to get this value not from searchParams
-  const pageStructure = await getPageStructure(path, previewToken);
-  if (!pageStructure?.data) {
+  const previewToken = ''; // The token is empty outside of the "preview" route
+  const pageData = await getPageData(path, previewToken);
+  if (!pageData) {
     notFound();
   }
+  const { structure, metadataItems, variables, seoData } = pageData;
 
-  const structure = pageStructure.data.structure;
-  const metadataItems = pageStructure.data.metadata;
-  const variables = pageStructure.data.variables;
-
-  // Enrich default metadata
-  const seoData: Metadata | null = setPageMetadata(metadataItems);
-  Object.assign(metadata, {
-    title: seoData?.title,
-    description: seoData?.description,
-    metadataBase: seoData?.metadataBase,
-    alternates: seoData?.alternates,
-    authors: seoData?.authors,
-    robots: seoData?.robots,
-    openGraph: seoData?.openGraph,
-    twitter: seoData?.twitter,
-    other: seoData?.other,
-  });
+  enrichPageMetadata(metadata, seoData);
 
   return (
     <>
