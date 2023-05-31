@@ -13,7 +13,7 @@ export const getAssetsByTag = async (tag: string): Promise<GraphicAssetsDashboar
   return await axios
     .get(apiUrl)
     .then((response) => {
-      logger.log(`Retrieved Asset from GAD ${apiUrl}`, LoggerLevel.debug);
+      logger.log(`Retrieved Asset from GAD ${apiUrl}. ${JSON.stringify(response.data)}`, LoggerLevel.debug);
       return response.data;
     })
     .catch((response) => {

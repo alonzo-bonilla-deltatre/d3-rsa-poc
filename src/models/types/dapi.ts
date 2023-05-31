@@ -10,7 +10,7 @@ export type DistributionEntity = {
   title: string;
   headline: string;
   tags: Tag[];
-  relations: any[];
+  relations: DistributionEntity[];
   references: { [key: string]: any };
   fields: Record<string, unknown>;
   createdBy: string;
@@ -23,6 +23,7 @@ export type DistributionEntity = {
   image?: ImageAsset;
   parts: StoryPart[];
   entityCode?: string;
+  url?: string;
 };
 
 export type PagedResult = {

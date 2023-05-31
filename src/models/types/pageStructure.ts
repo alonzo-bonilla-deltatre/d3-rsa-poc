@@ -1,5 +1,9 @@
 export type PageStructureResponse = {
   data: PageStructureData;
+
+  meta: {
+    version: string;
+  };
 };
 
 export type PageStructureData = {

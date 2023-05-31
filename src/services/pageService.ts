@@ -28,7 +28,10 @@ export const getPageStructure = async (path: string, token: string = ''): Promis
       },
     })
     .then((response) => {
-      logger.log(`Retrieved SITE STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}`, LoggerLevel.debug);
+      logger.log(
+        `Retrieved SITE STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
       return response.data;
     })
     .catch((response) => {

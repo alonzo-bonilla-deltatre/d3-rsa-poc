@@ -58,7 +58,10 @@ export const getMenuStructure = async (path: string, token: string = ''): Promis
       },
     })
     .then((response) => {
-      logger.log(`Retrieved MENU STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}`, LoggerLevel.debug);
+      logger.log(
+        `Retrieved MENU STRUCTURE data from PAGE BUILDER FRONTEND API ${apiUrl}. ${JSON.stringify(response.data)}`,
+        LoggerLevel.debug
+      );
       return response.data;
     })
     .catch((response) => {
