@@ -1,5 +1,5 @@
-import { DistributionEntity } from '@/models/types/dapi';
-import { GrandPrixFields } from '@/models/types/dapi.customEntityFields';
+import { DistributionEntity } from '@/models/types/forge';
+import { GrandPrixFields } from '@/models/types/forge.customEntityFields';
 
 export const orderedItems = (items: DistributionEntity[]) => {
   return items.sort(

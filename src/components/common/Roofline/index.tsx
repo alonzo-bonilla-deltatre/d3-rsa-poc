@@ -1,4 +1,4 @@
-import { Tag } from '@/models/types/dapi';
+import { Tag } from '@/models/types/forge';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { nanoid } from 'nanoid';
 import GadAsset from '@/components/common/GadAsset';

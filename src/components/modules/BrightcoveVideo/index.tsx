@@ -2,9 +2,9 @@ import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer';
 import ModuleTitle from '@/components/common/ModuleTitle';
 import SocialIcons from '@/components/common/SocialIcons';
 import { ComponentProps } from '@/models/types/components';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
-import { getEntity } from '@/services/dapiService';
+import { getEntity } from '@/services/forgeDistributionService';
 import { formatDate } from '@/utilities/dateFormatter';
 import logger from '@/utilities/logger';
 

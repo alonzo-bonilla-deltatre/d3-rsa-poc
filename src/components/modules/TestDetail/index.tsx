@@ -4,7 +4,7 @@ import Sponsored from '@/components/common/Sponsored';
 import { ComponentProps } from '@/models/types/components';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { LoggerLevel } from '@/models/types/logger';
-import { getEntity } from '@/services/dapiService';
+import { getEntity } from '@/services/forgeDistributionService';
 import { getAssetsByTag, getSingleAssetByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { IMAGE_PLACEHOLDER } from '@/utilities/consts';

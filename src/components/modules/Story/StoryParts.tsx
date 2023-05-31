@@ -1,5 +1,5 @@
 import { renderStoryPart } from '@/services/renderHandlers/renderStoryPart';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { StoryPart } from '@/models/types/storyPart';
 import { nanoid } from 'nanoid';
 

@@ -1,8 +1,7 @@
 'use client';
 
-import Picture from '@/components/common/Picture';
-import { DistributionEntity } from '@/models/types/dapi';
-import { AccessibleLink, GrandPrixFields } from '@/models/types/dapi.customEntityFields';
+import { DistributionEntity } from '@/models/types/forge';
+import { AccessibleLink, GrandPrixFields } from '@/models/types/forge.customEntityFields';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { getEventDayString, getEventMonthString } from '@/components/modules/Calendar/CalendarHelpers';

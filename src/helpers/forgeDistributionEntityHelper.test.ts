@@ -1,7 +1,7 @@
-import { DistributionEntity, Tag } from '@/models/types/dapi';
+import { DistributionEntity, Tag } from '@/models/types/forge';
 import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
-import { getEntitiesWithPlaceholder } from './distributionEntityListHelper';
+import { enrichEntitiesWithThumbnailPlaceholder } from './forgeDistributionEntityHelper';
 
 const fallbackImageAsset: ImageAsset = {
   title: 'no_image_available',
@@ -198,26 +198,26 @@ const mockedEntitiesWithIncompleteThumbnail: DistributionEntity[] = [
   },
 ];
 
-describe('getEntitiesWithPlaceholder function', () => {
+describe('enrichEntitiesWithThumbnailPlaceholder function', () => {
   it('should return an empty array if items are null', () => {
-    const entities = getEntitiesWithPlaceholder(null, mockedVariables);
+    const entities = enrichEntitiesWithThumbnailPlaceholder(null, mockedVariables);
     expect(entities).toStrictEqual([]);
   });
 
   it('should return an empty array if items are empty array', () => {
-    const result = getEntitiesWithPlaceholder([], mockedVariables);
+    const result = enrichEntitiesWithThumbnailPlaceholder([], mockedVariables);
     expect(result).toEqual([]);
   });
 
   it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property', () => {
-    const result = getEntitiesWithPlaceholder(mockedEntitiesWithIncompleteThumbnail, mockedVariables);
+    const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, mockedVariables);
     console.log('result = ' + JSON.stringify(result, undefined, 2));
     console.log('mockedEntities = ' + JSON.stringify(mockedEntities, undefined, 2));
     expect(result).toStrictEqual(mockedEntities);
   });
 
   it('should return the original entities are with a valid placeholder', () => {
-    const result = getEntitiesWithPlaceholder(mockedEntities, mockedVariables);
+    const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntities, mockedVariables);
     expect(result).toEqual(result);
   });
 });

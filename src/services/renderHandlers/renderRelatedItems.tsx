@@ -4,7 +4,7 @@ import logger from '@/utilities/logger';
 
 import renderEditorialRelatedItem from '@/components/relatedItems/EditorialEntity';
 import renderPromoRelatedItem from '@/components/relatedItems/PromoEntity';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 
 const relatedItemsList: Record<any, (item: DistributionEntity) => React.ReactElement> = {
   story: renderEditorialRelatedItem,

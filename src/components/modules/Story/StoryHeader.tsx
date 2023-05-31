@@ -1,7 +1,7 @@
 import Author from '@/components/common/Author';
 import Roofline from '@/components/common/Roofline';
 import Date from '@/components/common/Date';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import SocialIcons from '@/components/common/SocialIcons';
 import Picture from '@/components/common/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformations';

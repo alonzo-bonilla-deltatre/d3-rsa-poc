@@ -1,4 +1,4 @@
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { nanoid } from 'nanoid';
 import { StoryPart } from '@/models/types/storyPart';

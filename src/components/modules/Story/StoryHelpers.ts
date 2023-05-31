@@ -1,4 +1,4 @@
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
 import { Metadata } from 'next';
 

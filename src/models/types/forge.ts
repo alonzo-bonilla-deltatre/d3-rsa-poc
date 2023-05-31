@@ -1,5 +1,6 @@
 import { StoryPart } from '@/models/types/storyPart';
 import { ImageAsset } from '@/models/types/images';
+import { Variable } from '@/models/types/pageStructure';
 
 export type DistributionEntity = {
   type: string;
@@ -48,8 +49,13 @@ export type Tag = {
   externalSourceReference: Record<string, unknown>;
   fields: Record<string, unknown>;
 };
-export type QueryStringModuleProps = {
-  skip: number;
-  limit: number;
-  tags: string;
-};
+
+export type ForgeDistributionApiOption = {
+  hasThumbnailPlaceholder?: boolean;
+  hasLinkRules?: boolean;
+  hasLinkRulesForRelationsAndParts?: boolean;
+  skip?: number;
+  limit?: number;
+  tags?: string;
+  variables?: Variable[];
+} | null;

@@ -1,8 +1,8 @@
 import { ComponentProps } from '@/models/types/components';
-import { getAllEntities } from '@/services/dapiService';
-import { DistributionEntity, PagedResult } from '@/models/types/dapi';
+import { getAllEntities } from '@/services/forgeDistributionService';
+import { DistributionEntity, PagedResult } from '@/models/types/forge';
 import { nanoid } from 'nanoid';
-import { GrandPrixFields } from '@/models/types/dapi.customEntityFields';
+import { GrandPrixFields } from '@/models/types/forge.customEntityFields';
 import { isDateGreaterThanNow } from '@/utilities/dateComparer';
 import CalendarItemSmall from '@/components/modules/Calendar/CalendarItemSmall';
 import CalendarItemExpanded from '@/components/modules/Calendar/CalendarItemExpanded';
@@ -19,7 +19,7 @@ type ModuleProps = {
 
 const Calendar = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle } = data.properties as ModuleProps;
-  const grandPrixFetch = getAllEntities('poc-grand-prix', '$limit=5');
+  const grandPrixFetch = getAllEntities('poc-grand-prix', { limit: 5 });
   const clockAssetsFetch = getAssetsByTag('react-poc-calendar-seiko-watch');
 
   const [grandPrix, clockAssets] = await Promise.all([grandPrixFetch, clockAssetsFetch]);

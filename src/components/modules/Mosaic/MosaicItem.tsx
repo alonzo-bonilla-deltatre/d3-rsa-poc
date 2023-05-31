@@ -1,7 +1,7 @@
 'use client';
 
 import Picture from '@/components/common/Picture';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { ImageTransformations } from '@/models/types/images';
 import { formatDate } from '@/utilities/dateFormatter';
 import { nanoid } from 'nanoid';

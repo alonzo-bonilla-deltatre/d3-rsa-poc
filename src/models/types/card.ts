@@ -1,4 +1,4 @@
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 
 export type CardProps = {
   entity: DistributionEntity;

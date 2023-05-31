@@ -1,5 +1,5 @@
 import Card from '@/components/common/Card';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { nanoid } from 'nanoid';
 import React from 'react';
 

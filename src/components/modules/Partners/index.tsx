@@ -1,6 +1,6 @@
 import { ComponentProps } from '@/models/types/components';
-import { getSelection } from '@/services/dapiService';
-import { DistributionEntity } from '@/models/types/dapi';
+import { getSelection } from '@/services/forgeDistributionService';
+import { DistributionEntity } from '@/models/types/forge';
 import dynamic from 'next/dynamic';
 import { nanoid } from 'nanoid';
 import ModuleTitle from '@/components/common/ModuleTitle';

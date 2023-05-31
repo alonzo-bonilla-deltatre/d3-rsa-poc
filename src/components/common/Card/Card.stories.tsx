@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import { sampleStory } from '@/__mocks__/entities/story';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 import Card from '@/components/common/Card';
 import CardFullSquared from '@/components/common/cards/CardFullSquared';

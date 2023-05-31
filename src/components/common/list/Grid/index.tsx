@@ -1,7 +1,6 @@
-import ModuleTitle from '@/components/common/ModuleTitle';
 import Card from '@/components/common/Card';
 import { nanoid } from 'nanoid';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 
 type ModuleProps = {
   items: DistributionEntity[] | null;

@@ -2,7 +2,7 @@ import ModuleTitle from '@/components/common/ModuleTitle';
 import MosaicContainer from '@/components/modules/Mosaic/MosaicContainer';
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
-import { getAllEntities, getQueryString } from '@/services/dapiService';
+import { getAllEntities } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
@@ -23,9 +23,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const queryString = getQueryString({ skip, limit, tags });
-
-  const promoEntitiesFetch = getAllEntities(entityType, queryString);
+  const promoEntitiesFetch = getAllEntities(entityType, { skip, limit, tags });
 
   const [promos] = await Promise.all([promoEntitiesFetch]);
   const items = promos?.items;

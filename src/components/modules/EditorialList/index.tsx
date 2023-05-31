@@ -1,14 +1,13 @@
 import ModuleTitle from '@/components/common/ModuleTitle';
-import { getEntitiesWithPlaceholder } from '@/helpers/distributionEntityListHelper';
 import { ComponentProps } from '@/models/types/components';
-import { getEntityList, getFilteredItems } from '@/services/dapiService';
+import { getEntityList } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import GridList from '@/components/common/list/Grid';
 import { HeroSwiper } from '../Hero/HeroSwiper';
-import { nanoid } from 'nanoid';
 import MosaicContainer from '../Mosaic/MosaicContainer';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
+import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
 
 type ModuleProps = {
   moduleTitle: string;
@@ -51,18 +50,24 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const items = await getEntityList(selectionSlug, { skip, limit, tags }, entityType);
-  const entitiesWithPlaceholder = getEntitiesWithPlaceholder(items ?? [], data.variables);
+  const items = await getEntityList(selectionSlug, entityType, {
+    hasThumbnailPlaceholder: true,
+    hasLinkRules: true,
+    skip,
+    limit,
+    tags,
+    variables: data.variables,
+  });
 
   return (
-    entitiesWithPlaceholder?.length && (
+    items?.length && (
       <section className="mt-8">
         <ModuleTitle
           canRender={/true/.test(displayModuleTitle)}
           heading={headingLevel}
           text={moduleTitle}
         ></ModuleTitle>
-        {renderList(layout, entitiesWithPlaceholder)}
+        {renderList(layout, items)}
       </section>
     )
   );

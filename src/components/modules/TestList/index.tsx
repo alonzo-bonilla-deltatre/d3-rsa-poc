@@ -1,10 +1,10 @@
 import ModuleTitle from '@/components/common/ModuleTitle';
 import Picture from '@/components/common/Picture';
 import { ComponentProps } from '@/models/types/components';
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { LoggerLevel } from '@/models/types/logger';
-import { getAllEntities } from '@/services/dapiService';
+import { getAllEntities } from '@/services/forgeDistributionService';
 import { getAssetsByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
@@ -54,8 +54,7 @@ const TestList = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const queryString = getQueryString({ skip, limit, tags });
-  const promoEntitiesFetch = getAllEntities(entityType, queryString);
+  const promoEntitiesFetch = getAllEntities(entityType, { skip, limit, tags });
   const gadAssetsPlaceHolderFetch = getAssetsByTag(IMAGE_PLACEHOLDER);
 
   const [promos, gadThumbnailPlaceHolderAssets] = await Promise.all([promoEntitiesFetch, gadAssetsPlaceHolderFetch]);

@@ -1,7 +1,6 @@
 'use client';
 
-import { DistributionEntity } from '@/models/types/dapi';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { DistributionEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { nanoid } from 'nanoid';
 import Masonry from 'react-masonry-css';

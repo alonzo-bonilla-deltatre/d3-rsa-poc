@@ -2,8 +2,9 @@ import ModuleTitle from '@/components/common/ModuleTitle';
 import { HeroSwiper } from '@/components/modules/Hero/HeroSwiper';
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
-import { getFilteredItems, getSelection } from '@/services/dapiService';
+import { getSelection } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
+import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
 
 type ModuleProps = {
   moduleTitle: string;

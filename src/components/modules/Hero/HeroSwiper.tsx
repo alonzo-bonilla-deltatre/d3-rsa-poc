@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
 import 'swiper/swiper-bundle.css';
 
-import { DistributionEntity } from '@/models/types/dapi';
+import { DistributionEntity } from '@/models/types/forge';
 import { nanoid } from 'nanoid';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
 import { formatDate } from '@/utilities/dateFormatter';

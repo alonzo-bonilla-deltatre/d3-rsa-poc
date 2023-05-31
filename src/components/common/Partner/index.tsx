@@ -2,8 +2,8 @@ import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-import { DistributionEntity } from '@/models/types/dapi';
-import { PartnerFields } from '@/models/types/dapi.customEntityFields';
+import { DistributionEntity } from '@/models/types/forge';
+import { PartnerFields } from '@/models/types/forge.customEntityFields';
 import GadAsset from '@/components/common/GadAsset';
 
 type PartnerProps = {
