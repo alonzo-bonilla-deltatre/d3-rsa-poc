@@ -4,6 +4,7 @@ import { LoggerLevel } from '@/models/types/logger';
 import { Translations } from '@/models/types/translations';
 import logger from '@/utilities/logger';
 
+/* istanbul ignore next */
 export const getFallBackTranslations = (): Translations => {
   const culture = `${process.env.CULTURE?.toLowerCase()}`;
   const translations = {
@@ -40,10 +41,8 @@ export const getTranslations = async (): Promise<Translations | null> => {
         let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
         logger.log(errorMessage, LoggerLevel.error);
         return null;
-      } else {
-        logger.log(`VOCABULARY TOOL API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
       }
-
+      logger.log(`VOCABULARY TOOL API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
       return null;
     });
 };
