@@ -1,11 +1,8 @@
 import ModuleTitle from '@/components/common/ModuleTitle';
 import MosaicContainer from '@/components/modules/Mosaic/MosaicContainer';
 import { ComponentProps } from '@/models/types/components';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { LoggerLevel } from '@/models/types/logger';
 import { getAllEntities, getQueryString } from '@/services/dapiService';
-import { getAssetsByTag } from '@/services/gadService';
-import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
@@ -33,13 +30,6 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
   const [promos] = await Promise.all([promoEntitiesFetch]);
   const items = promos?.items;
 
-  const gadAssetsPlaceHolderFetch = getAssetsByTag(IMAGE_PLACEHOLDER);
-
-  const [gadThumbnailPlaceHolderAssets] = await Promise.all([gadAssetsPlaceHolderFetch]);
-  const thumbnailPlaceHolder: GraphicAssetsDashboardItem | null = gadThumbnailPlaceHolderAssets?.length
-    ? gadThumbnailPlaceHolderAssets[0]
-    : null;
-
   return items?.length ? (
     <>
       <section className="mt-8">
@@ -49,10 +39,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
           text={moduleTitle}
         ></ModuleTitle>
         <div className="flex px-8">
-          <MosaicContainer
-            items={items}
-            thumbnailPlaceHolder={thumbnailPlaceHolder}
-          ></MosaicContainer>
+          <MosaicContainer items={items}></MosaicContainer>
         </div>
       </section>
     </>

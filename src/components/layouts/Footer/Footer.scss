@@ -1,0 +1,13 @@
+﻿footer {
+  /* Delete if you remove simplecss */
+  background-color: var(--d3-theme-footer_background);
+
+  svg {
+    color: var(--d3-theme-footer_icons);
+  }
+  .site-footer__links {
+    a {
+      color: var(--d3-theme-footer_menu);
+    }
+  }
+}

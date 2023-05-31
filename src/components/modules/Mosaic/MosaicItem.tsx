@@ -2,41 +2,30 @@
 
 import Picture from '@/components/common/Picture';
 import { DistributionEntity } from '@/models/types/dapi';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { ImageTransformations } from '@/models/types/images';
 import { formatDate } from '@/utilities/dateFormatter';
 import { nanoid } from 'nanoid';
 
 type MosaicItemProps = {
   item: DistributionEntity;
-  thumbnailPlaceHolder: GraphicAssetsDashboardItem | null;
   transformation: ImageTransformations;
   hasTextOverlap: boolean;
 };
 
 const MosaicItem = ({ ...data }: MosaicItemProps) => {
-  const { item, thumbnailPlaceHolder, transformation, hasTextOverlap } = data as MosaicItemProps;
+  const { item, transformation, hasTextOverlap } = data as MosaicItemProps;
 
   return (
     <>
       {hasTextOverlap ? (
         <>
           <div className=" grid grid-cols-1">
-            {item.thumbnail ? (
+            {item.thumbnail && (
               <figure className="p-2 col-start-1 row-start-1">
                 <Picture
                   src={item.thumbnail.templateUrl}
                   transformations={transformation}
                   alt={item.thumbnail.title ?? ''}
-                  className="w-full h-full object-cover opacity-[.50]"
-                />
-              </figure>
-            ) : (
-              <figure className="p-2 col-start-1 row-start-1">
-                <Picture
-                  src={thumbnailPlaceHolder?.assetUrl ?? ''}
-                  transformations={transformation}
-                  alt={thumbnailPlaceHolder?.publicId ?? ''}
                   className="w-full h-full object-cover opacity-[.50]"
                 />
               </figure>
@@ -65,22 +54,13 @@ const MosaicItem = ({ ...data }: MosaicItemProps) => {
       ) : (
         <>
           {' '}
-          {item.thumbnail ? (
+          {item.thumbnail && (
             <figure className="p-2">
               <Picture
                 className="w-full h-full object-cover"
                 src={item.thumbnail.templateUrl}
                 transformations={transformation}
                 alt={item.thumbnail.title ?? ''}
-              />
-            </figure>
-          ) : (
-            <figure className="p-2">
-              <Picture
-                className="w-full h-full object-cover"
-                src={thumbnailPlaceHolder?.assetUrl ?? ''}
-                transformations={transformation}
-                alt={thumbnailPlaceHolder?.publicId ?? ''}
               />
             </figure>
           )}

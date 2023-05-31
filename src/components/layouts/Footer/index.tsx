@@ -10,6 +10,7 @@ import './Footer.css';
 
 // @ts-ignore
 const SocialIcons = dynamic(() => import('@/components/common/SocialIcons'));
+import '@/components/layouts/Footer/Footer.scss';
 // @ts-ignore
 const LanguageSwitcher = dynamic(() => import('@/components/common/LanguageSwitcher'));
 
@@ -21,19 +22,21 @@ const Footer = ({ ...data }: ComponentProps) => {
   };
 
   return (
-    <footer className="w-full text-sm">
+    <footer className="site-footer w-full text-sm">
       {/* Fixed Slots */}
-      <div className="container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
-        <div className="flex py-6">
-          <SocialIcons {...socialIconsProps}></SocialIcons>
-        </div>
-
-        <div className="flex items-center text-[#BEBEBE] pb-6 md:pb-0">
-          <LanguageSwitcher />
+      <div className="site-footer__container container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
+        <div className="site-footer__logo"></div>
+        <div className="site-utility w-full flex flex-col md:flex-row md:justify-between px-4 mx-auto">
+          <div className="site-footer__utility-social flex py-6">
+            <SocialIcons {...socialIconsProps}></SocialIcons>
+          </div>
+          <div className="site-footer__utility-languages flex items-center text-[#BEBEBE] pb-6 md:pb-0">
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
-      <nav className="bg-[#141414]/0">
-        <div className="container mx-auto py-12 lg:text-center">
+      <nav className="site-footer__links">
+        <div className="site-footer__link-section container mx-auto py-12 lg:text-center">
           <div className="flex flex-col lg:flex-row uppercase justify-between">
             {/* Footer  */}
             {data &&
