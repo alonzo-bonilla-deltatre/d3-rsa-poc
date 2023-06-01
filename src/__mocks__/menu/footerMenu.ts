@@ -1,6 +1,8 @@
 //https://forge.integrations-lab-forge.deltatre.digital/deltatre.forge.vsm/api/menus/475183FD-CEBE-4C56-90E9-28895782CC29
 
-const footerMenu = {
+import { MenuStructureResponse } from '@/models/types/menu';
+
+const footerMenu: MenuStructureResponse = {
   data: {
     variables: [],
     items: [
@@ -12,7 +14,9 @@ const footerMenu = {
         target: 'target',
         tooltip: 'tooltip',
         visible: true,
-        icon: {},
+        icon: {
+          data: '',
+        },
         properties: {
           data: 'custom-prop',
         },
@@ -26,8 +30,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [
           {
             id: 'ss04e0423e-3da2-4c9c-88b9-a4d29089b329',
@@ -37,8 +45,12 @@ const footerMenu = {
             target: '',
             tooltip: '',
             visible: true,
-            icon: {},
-            properties: {},
+            icon: {
+              data: '',
+            },
+            properties: {
+              data: '',
+            },
             items: [],
           },
         ],
@@ -51,8 +63,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -63,8 +79,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -75,8 +95,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -87,8 +111,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -99,8 +127,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -111,8 +143,12 @@ const footerMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
     ],

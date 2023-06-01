@@ -7,10 +7,12 @@ const Markdown = dynamic(() => import('@/components/common/Markdown'));
 
 export const renderMarkdownStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
   data ? (
-    <Markdown
-      key={nanoid()}
-      markdownText={data.content?.toString()}
-    />
+    <div className="mx-20 mt-20 col-start-1">
+      <Markdown
+        key={nanoid()}
+        markdownText={data.content?.toString()}
+      />
+    </div>
   ) : (
     <></>
   );

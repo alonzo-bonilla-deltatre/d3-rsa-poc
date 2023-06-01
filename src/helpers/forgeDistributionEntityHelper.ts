@@ -32,6 +32,20 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
     if (!item?.thumbnail || !item?.thumbnail?.templateUrl || item?.thumbnail?.templateUrl === '') {
       item.thumbnail = fallbackImageAsset;
     }
+
+    item.relations?.forEach((relation) => {
+      if (!relation?.thumbnail || !relation?.thumbnail?.templateUrl || relation?.thumbnail?.templateUrl === '') {
+        relation.thumbnail = fallbackImageAsset;
+      }
+    });
+
+    item.parts?.forEach((part) => {
+      if (part.type != 'external' && part.type != 'markdown') {
+        if (!part?.thumbnail || !part?.thumbnail?.templateUrl || part?.thumbnail?.templateUrl === '') {
+          part.thumbnail = fallbackImageAsset;
+        }
+      }
+    });
   });
   return items || [];
 };
@@ -68,7 +82,7 @@ export const enrichDistributionEntitiesWithLinkRules = async (
       }
       if (entity.parts && entity.parts.length > 0) {
         entity.parts.forEach((part) => {
-          if (part.type != 'external') {
+          if (part.type != 'external' && part.type != 'markdown') {
             linkRulesRequest.push({
               id: createLinkRuleId(part),
               entity: part,

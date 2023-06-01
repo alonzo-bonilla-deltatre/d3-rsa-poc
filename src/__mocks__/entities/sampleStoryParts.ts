@@ -1,7 +1,8 @@
 import { StoryPart } from '@/models/types/storyPart';
+import { DistributionEntity } from '@/models/types/forge';
 
 //********** EMPTY ************/
-const emptyDistributionEntity = {
+const emptyDistributionEntity: DistributionEntity = {
   fields: {},
   createdBy: '',
   type: '',
@@ -20,31 +21,28 @@ const emptyDistributionEntity = {
   context: {
     _translationId: '',
     _entityId: '',
+    type: '',
     selfUrl: '',
     title: '',
     slug: '',
     neutralSlug: '',
+    externalSourceName: null,
     externalSourceReference: {},
     fields: {},
+    extraData: {},
   },
   featured: 0,
   thumbnail: {
     title: '',
     templateUrl: '',
-    thumbnailUrl: '',
     format: '',
-    overriddenFormats: {},
-    slug: '2',
-    selfUrl: '',
+    slug: '',
   },
   image: {
     title: '',
     templateUrl: '',
-    thumbnailUrl: '',
     format: '',
-    overriddenFormats: {},
     slug: '',
-    selfUrl: '',
   },
   parts: [],
   entityCode: '',

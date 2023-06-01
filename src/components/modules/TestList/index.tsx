@@ -54,7 +54,7 @@ const TestList = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const promoEntitiesFetch = getAllEntities(entityType, { skip, limit, tags });
+  const promoEntitiesFetch = getAllEntities(entityType, { skip, limit, tags, variables: data.variables });
   const gadAssetsPlaceHolderFetch = getAssetsByTag(IMAGE_PLACEHOLDER);
 
   const [promos, gadThumbnailPlaceHolderAssets] = await Promise.all([promoEntitiesFetch, gadAssetsPlaceHolderFetch]);

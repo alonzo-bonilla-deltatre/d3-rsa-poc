@@ -31,7 +31,11 @@ const Story = async ({ ...data }: ComponentProps) => {
     throw new Error(invalidSlugErrorMessage);
   }
 
-  const storyEntity = await getEntity('stories', props.slug, { hasLinkRulesForRelationsAndParts: true });
+  const storyEntity = await getEntity('stories', props.slug, {
+    hasLinkRulesForRelationsAndParts: true,
+    hasThumbnailPlaceholder: true,
+    variables: data.variables,
+  });
   if (storyEntity == null) {
     logger.log(`Cannot find story entity with slug ${props.slug} `, LoggerLevel.warning);
     notFound();

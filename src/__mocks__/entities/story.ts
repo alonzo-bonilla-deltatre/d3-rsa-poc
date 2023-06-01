@@ -1,34 +1,39 @@
-import { Tag } from '@/models/types/dapi';
+import { DistributionEntity, Tag } from '@/models/types/forge';
 
-const sampleContext = {
+const sampleContext: Tag = {
   _translationId: '2d9edf1c-6432-44f7-b065-c09ffacfb5dc',
   _entityId: 'f3cd7696-faa9-490e-841b-ee0c907df43e',
   selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/tags/supercars',
+  type: 'tag',
   title: 'supercars',
   slug: 'supercars',
   neutralSlug: 'supercars',
+  externalSourceName: null,
   externalSourceReference: {},
   fields: {},
-  type: 'tag',
+  extraData: null,
 };
 
 const sampleTags: Tag[] = [
   {
     slug: 'awards',
+    type: 'tag',
     _translationId: '9a220596-d930-4689-a28b-e6186ec76017',
     _entityId: '13d162ee-7a96-4f11-a40f-06a2ce5fc99f',
     selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/tags/awards',
     title: 'awards',
     neutralSlug: 'awards',
+    externalSourceName: null,
     externalSourceReference: {
       sourceId: 'taxonomy-tag-awards',
       sourceName: 'taxonomy',
     },
     fields: {},
+    extraData: null,
   },
 ];
 
-const sampleStory = {
+const sampleStory: DistributionEntity = {
   fields: {},
   createdBy: 'Mario Rossi',
   type: 'story',
@@ -50,22 +55,14 @@ const sampleStory = {
     title: 'GEN3_Supercars_Ford_Mustang_Chevrolet_Camaro_4',
     templateUrl:
       'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678118218/forgego-sandbox/lhmqewjgfmjddly5ii3s',
-    thumbnailUrl:
-      'https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/v1678118218/forgego-sandbox/lhmqewjgfmjddly5ii3s',
     format: 'webp',
-    overriddenFormats: {},
     slug: 'gen3-supercars-ford-mustang-chevrolet-camaro-4',
-    selfUrl:
-      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/23-gotm-march-16x9-x3983',
   },
   image: {
     title: '',
     templateUrl: '',
-    thumbnailUrl: '',
     format: '',
-    overriddenFormats: {},
     slug: '',
-    selfUrl: '',
   },
   parts: [],
   entityCode: 'story',

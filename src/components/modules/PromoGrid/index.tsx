@@ -20,7 +20,7 @@ const PromoGrid = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags, selectionSlug } =
     data.properties as ModuleProps;
 
-  const items = await getEntityList(selectionSlug, 'promos', { skip, limit, tags });
+  const items = await getEntityList(selectionSlug, 'promos', { skip, limit, tags, variables: data.variables });
 
   return items?.length ? (
     <section className="mt-8">

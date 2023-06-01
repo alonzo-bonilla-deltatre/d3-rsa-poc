@@ -19,7 +19,7 @@ type ModuleProps = {
 
 const Calendar = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle } = data.properties as ModuleProps;
-  const grandPrixFetch = getAllEntities('poc-grand-prix', { limit: 5 });
+  const grandPrixFetch = getAllEntities('poc-grand-prix', { limit: 5, variables: data.variables });
   const clockAssetsFetch = getAssetsByTag('react-poc-calendar-seiko-watch');
 
   const [grandPrix, clockAssets] = await Promise.all([grandPrixFetch, clockAssetsFetch]);

@@ -1,6 +1,8 @@
 //https://forge.integrations-lab-forge.deltatre.digital/deltatre.forge.vsm/api/menus/475183FD-CEBE-4C56-90E9-28895782CC29
 
-const sampleMenu = {
+import { MenuStructureResponse } from '@/models/types/menu';
+
+const sampleMenu: MenuStructureResponse = {
   data: {
     variables: [],
     items: [
@@ -12,8 +14,12 @@ const sampleMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -24,8 +30,12 @@ const sampleMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -36,8 +46,12 @@ const sampleMenu = {
         target: '',
         tooltip: '',
         visible: true,
-        icon: {},
-        properties: {},
+        icon: {
+          data: '',
+        },
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -46,9 +60,11 @@ const sampleMenu = {
         tag: 'contact',
         link: 'link',
         target: 'target',
-        toolTip: 'toolTip',
+        tooltip: 'tooltip',
         visible: true,
-        icon: {},
+        icon: {
+          data: '',
+        },
         properties: {
           data: 'custom-prop',
         },

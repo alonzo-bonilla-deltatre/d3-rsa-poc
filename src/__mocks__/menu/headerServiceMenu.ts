@@ -1,5 +1,7 @@
 //https://forge.integrations-lab-forge.deltatre.digital/deltatre.forge.vsm/api/menus/D4B968B9-E094-45FB-ADED-9C6DC90E4946
-const headerServiceMenu = {
+import { MenuStructureResponse } from '@/models/types/menu';
+
+const headerServiceMenu: MenuStructureResponse = {
   data: {
     variables: [],
     items: [
@@ -14,7 +16,9 @@ const headerServiceMenu = {
         icon: {
           data: '/icons/header_ticket.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -28,7 +32,9 @@ const headerServiceMenu = {
         icon: {
           data: '/icons/header_shop.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -42,7 +48,9 @@ const headerServiceMenu = {
         icon: {
           data: '/icons/header_search.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -56,7 +64,9 @@ const headerServiceMenu = {
         icon: {
           data: '/icons/header_login.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
     ],

@@ -20,7 +20,7 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
   const storyEntity = props.storyEntity;
   return (
     <>
-      <section className="w-full container mx-auto mt-40">
+      <section className="w-full container mx-auto">
         <div className="flex justify-between mx-20">
           <header className="w-full">
             <Roofline

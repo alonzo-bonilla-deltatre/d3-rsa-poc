@@ -33,5 +33,5 @@ export const renderStoryPart = (item: StoryPart): React.ReactElement => {
     return renderStoryPart({ ...item } as StoryPart);
   }
   logger.log(`Cannot render STORY PART ${storyPartType}`, LoggerLevel.warning);
-  return <span key={nanoid()}>{`STORY PART TYPE: "${storyPartType}" NOT IMPLEMENTED`}</span>;
+  return <></>;
 };

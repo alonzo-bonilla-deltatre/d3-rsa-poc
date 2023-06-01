@@ -42,12 +42,15 @@ export type PagedResult = {
 export type Tag = {
   _translationId: string;
   _entityId: string;
+  type: string;
   selfUrl: string;
   title: string;
   slug: string;
   neutralSlug: string;
+  externalSourceName: string | null;
   externalSourceReference: Record<string, unknown>;
   fields: Record<string, unknown>;
+  extraData: any;
 };
 
 export type ForgeDistributionApiOption = {
@@ -57,5 +60,5 @@ export type ForgeDistributionApiOption = {
   skip?: number;
   limit?: number;
   tags?: string;
-  variables?: Variable[];
+  variables: Variable[];
 } | null;

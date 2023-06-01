@@ -23,7 +23,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
     return null;
   }
 
-  const promoEntitiesFetch = getAllEntities(entityType, { skip, limit, tags });
+  const promoEntitiesFetch = getAllEntities(entityType, { skip, limit, tags, variables: data.variables });
 
   const [promos] = await Promise.all([promoEntitiesFetch]);
   const items = promos?.items;

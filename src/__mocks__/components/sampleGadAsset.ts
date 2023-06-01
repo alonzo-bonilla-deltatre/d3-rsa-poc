@@ -1,4 +1,6 @@
-const sampleAsset = {
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+
+const sampleAsset: GraphicAssetsDashboardItem = {
   name: 'SC21_whjgmi',
   publicId: 'sandbox-integrations/react-poc/SC21_whjgmi',
   resourceType: 'image',

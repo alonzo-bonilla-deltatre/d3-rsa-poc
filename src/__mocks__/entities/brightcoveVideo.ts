@@ -1,6 +1,7 @@
 import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
+import { DistributionEntity } from '@/models/types/forge';
 
-const sampleBrightcoveVideo = {
+const sampleBrightcoveVideo: DistributionEntity = {
   ...emptyDistributionEntity,
   fields: {
     brightcoveAccountId: '5530036775001',
@@ -23,34 +24,29 @@ const sampleBrightcoveVideo = {
   context: {
     _translationId: '',
     _entityId: '',
+    type: '',
     selfUrl: '',
     title: '',
     slug: '',
     neutralSlug: '',
+    externalSourceName: null,
     externalSourceReference: {},
     fields: {},
+    extraData: {},
   },
   featured: 0,
   thumbnail: {
     title: '23_GOTM_March_16x9',
     templateUrl:
       'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/forgego-sandbox/hyqtbrhtvxjyg0iejqna',
-    thumbnailUrl:
-      'https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/forgego-sandbox/hyqtbrhtvxjyg0iejqna',
     format: 'jpg',
-    overriddenFormats: {},
     slug: '23-gotm-march-16x9-x3983',
-    selfUrl:
-      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/23-gotm-march-16x9-x3983',
   },
   image: {
     title: '',
     templateUrl: '',
-    thumbnailUrl: '',
     format: '',
-    overriddenFormats: {},
     slug: '',
-    selfUrl: '',
   },
   parts: [],
   entityCode: 'brightcovevideo',

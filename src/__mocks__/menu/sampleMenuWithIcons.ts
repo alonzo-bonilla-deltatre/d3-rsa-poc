@@ -1,6 +1,8 @@
 //https://forge.integrations-lab-forge.deltatre.digital/deltatre.forge.vsm/api/menus/475183FD-CEBE-4C56-90E9-28895782CC29
 
-const sampleMenuWithIcons = {
+import { MenuStructureResponse } from '@/models/types/menu';
+
+const sampleMenuWithIcons: MenuStructureResponse = {
   data: {
     variables: [],
     items: [
@@ -15,7 +17,9 @@ const sampleMenuWithIcons = {
         icon: {
           data: '/icons/header_ticket.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -29,7 +33,9 @@ const sampleMenuWithIcons = {
         icon: {
           data: '/icons/header_shop.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {
@@ -43,7 +49,9 @@ const sampleMenuWithIcons = {
         icon: {
           data: '/icons/header_search.svg',
         },
-        properties: {},
+        properties: {
+          data: '',
+        },
         items: [],
       },
       {

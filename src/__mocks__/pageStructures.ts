@@ -1,11 +1,13 @@
-const indexStructure = {
+import { PageStructureItemType, PageStructureResponse } from '@/models/types/pageStructure';
+
+const indexStructure: PageStructureResponse = {
   data: {
     structure: {
       key: {
         id: 'default',
         namespace: 'urn:forgegosandbox',
       },
-      type: 'template',
+      type: PageStructureItemType.template,
       properties: {},
       slots: ['main'],
       items: [
@@ -14,7 +16,7 @@ const indexStructure = {
             id: 'Promo',
             namespace: 'urn:online-common',
           },
-          type: 'module',
+          type: PageStructureItemType.module,
           properties: {
             title: 'Promo module title',
           },
@@ -25,7 +27,7 @@ const indexStructure = {
             id: 'Section',
             namespace: 'urn:online-common-xrc',
           },
-          type: 'layout',
+          type: PageStructureItemType.layout,
           properties: {
             templates: '4',
             sectionTitle: 'TITLE SECTION',
@@ -38,7 +40,7 @@ const indexStructure = {
                 id: 'Brightcove',
                 namespace: 'urn:online-common',
               },
-              type: 'module',
+              type: PageStructureItemType.module,
               properties: {
                 title: 'Brightcove first module title',
               },
@@ -49,7 +51,7 @@ const indexStructure = {
                 id: 'Brightcove',
                 namespace: 'urn:online-common',
               },
-              type: 'module',
+              type: PageStructureItemType.module,
               properties: {
                 title: 'Brightcove second module title',
               },
