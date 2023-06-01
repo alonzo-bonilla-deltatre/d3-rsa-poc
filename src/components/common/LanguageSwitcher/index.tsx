@@ -20,7 +20,7 @@ const LanguageSwitcher = ({ ...props }: LanguageSwitcherProps) => {
             return (
               <a
                 key={nanoid()}
-                href={new URL('/', item.originUrl).href}
+                href={new URL('/', item.url).href}
                 className={`${languageNavItemClasses} pr-4 last:pr-0 pl-0 last:pl-4 border-[#FFFFFF33] border-r last:border-r-0 transition duration-300 hover:text-[#fff]`}
               >
                 {translate(item.translation)}

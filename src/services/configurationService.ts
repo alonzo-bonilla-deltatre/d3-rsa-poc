@@ -1,22 +1,20 @@
 ﻿/* istanbul ignore file */
 import { FrontendConfiguration } from '@/models/types/frontendConfiguration';
 
-const environment = process.env.ENVIRONMENT as string;
+const dnsSubdomain = process.env.DNS_SUB_DOMAIN as string;
+const dnsDomainWithLangPlaceholder = process.env.DNS_DOMAIN_WITH_LANG_PLACEHOLDER as string;
+const langPlaceholder = '{lang}';
 
 const frontendConfiguration: FrontendConfiguration = {
   allSites: [
     {
       culture: 'en-GB',
-      environment: environment,
-      platform: 'default',
-      originUrl: 'https://react-fe-en-poc.integrations-lab-forge.deltatre.digital',
+      url: `https://${dnsDomainWithLangPlaceholder?.replace(langPlaceholder, 'en')}.${dnsSubdomain}`,
       translation: 'lang_en-gb',
     },
     {
       culture: 'fr-FR',
-      environment: environment,
-      platform: 'default',
-      originUrl: 'https://react-fe-fr-poc.integrations-lab-forge.deltatre.digital',
+      url: `https://${dnsDomainWithLangPlaceholder?.replace(langPlaceholder, 'fr')}.${dnsSubdomain}`,
       translation: 'lang_fr-fr',
     },
   ],

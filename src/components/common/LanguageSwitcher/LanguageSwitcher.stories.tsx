@@ -26,16 +26,12 @@ export const Default: Story = {
       allSites: [
         {
           culture: 'en-GB',
-          environment: 'sandbox',
-          platform: 'default',
-          originUrl: 'https://react-fe-en-poc.integrations-lab-forge.deltatre.digital',
+          url: 'https://react-fe-en-poc.integrations-lab-forge.deltatre.digital',
           translation: 'English',
         },
         {
           culture: 'fr-FR',
-          environment: 'sandbox',
-          platform: 'default',
-          originUrl: 'https://react-fe-fr-poc.integrations-lab-forge.deltatre.digital',
+          url: 'https://react-fe-fr-poc.integrations-lab-forge.deltatre.digital',
           translation: 'Francais',
         },
       ],

@@ -75,7 +75,7 @@ function getLanguages(languages: object, allSiteConfiguration: FrontendConfigura
 
   allSiteConfiguration.allSites.map((item: FrontendSiteConfiguration) => {
     const culture = `${item.culture}`;
-    const url = new URL('/', item.originUrl).href;
+    const url = new URL('/', item.url).href;
     const lang: Record<string, string> = {
       [culture]: url,
     };
