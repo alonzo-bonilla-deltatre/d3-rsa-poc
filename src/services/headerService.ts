@@ -1,10 +1,9 @@
+import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { Variable } from '@/models/types/pageStructure';
 import { getPageStructure } from '@/services/pageService';
 
 export const getHeaderStructure = async (variables: Variable[] | undefined, previewToken: string) => {
-  const headerVariableName = 'inc_header';
-  const headerSource: string =
-    (variables?.find((variable: Variable) => variable.key === headerVariableName)?.keyValue?.value as string) ?? '';
+  const headerSource: string = getDataVariable(variables, 'inc_header') ?? '';
 
   if (headerSource === null || !headerSource?.length) {
     return null;

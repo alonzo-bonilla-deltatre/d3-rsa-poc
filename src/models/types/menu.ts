@@ -22,6 +22,7 @@ export type MenuItem = {
   icon: MenuIcon;
   properties: MenuProperty;
   items: MenuItem[] | [];
+  isActive?: boolean | false;
 };
 
 export type MenuVariable = {

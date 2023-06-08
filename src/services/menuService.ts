@@ -11,36 +11,6 @@ const tokenPlaceholder = '{token}';
 const menuStructureApiUrl = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`;
 const menuStructureApiUrlWithToken = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}&token=${tokenPlaceholder}`;
 
-export const setValidItems = (items: MenuItem[], pagePath: string): object[] => {
-  let validMenuItems: object[] = [];
-  items.forEach((item) => {
-    let menuItemLink = item.link;
-    if (menuItemLink.endsWith('/')) {
-      menuItemLink += 'index';
-    }
-    const itemLinkParts = menuItemLink.split('/');
-    const pagePathParts = pagePath.split('/');
-    const itemLinkPartsLength = itemLinkParts.length;
-    const pagePathPartsLength = pagePathParts.length;
-    const indexCount = pagePathPartsLength > itemLinkPartsLength ? itemLinkPartsLength : pagePathPartsLength;
-    for (var i = 1; i < indexCount; i++) {
-      if (pagePathParts[i] !== itemLinkParts[i]) {
-        break;
-      }
-
-      validMenuItems.push({
-        key: item,
-        value: 1, //validMenuItems[item!] + 1
-      }); //      [menuitem] = validMenuItems[item] + 1;
-    }
-    // if (item.menuItems.length > 0) {
-    //   validMenuItems = validMenuItems.Concat(setValidItems(menuitem.MenuItems, baseUrlVariable)).ToDictionary(item => item.Key, item => item.Value);
-    // }
-  });
-
-  return validMenuItems;
-};
-
 export const getMenuStructure = async (path: string, token: string = ''): Promise<MenuStructureResponse | null> => {
   let apiUrl = '';
   if (token) {

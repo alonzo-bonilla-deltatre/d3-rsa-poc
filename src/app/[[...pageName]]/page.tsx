@@ -4,7 +4,7 @@ import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
 
 import { Metadata } from 'next';
-import { enrichPageMetadata, getPageData } from '../pageHelpers';
+import { enrichPageMetadata, enrichPageVariables, getPageData } from '../pageHelpers';
 import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {};
@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { pageName: string[]; i
     notFound();
   }
   const { structure, metadataItems, variables, seoData } = pageData;
-
+  enrichPageVariables(variables, { pagePath: path });
   enrichPageMetadata(metadata, seoData);
 
   return (

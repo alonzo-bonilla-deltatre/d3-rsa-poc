@@ -46,3 +46,20 @@ export const enrichPageMetadata = (metadata: Metadata | {}, seoData: NextMetadat
     });
   }
 };
+
+export const enrichPageVariables = (defaultVariables: Variable[], { ...params }): void => {
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      const variable: Variable = {
+        key,
+        type: 'string',
+        keyValue: {
+          value: params[key],
+          valueType: 'string',
+        },
+      };
+
+      defaultVariables.push(variable);
+    }
+  }
+};

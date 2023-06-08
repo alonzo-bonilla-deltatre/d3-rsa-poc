@@ -12,12 +12,11 @@ type MenuNavItemProps = {
 
 const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
   const { menuItem, navItemClasses, parentId, iconSize } = data as MenuNavItemProps;
-  //const router = usePathname();
   const parentid = parentId;
   const itemLink = menuItem.link ?? '#nolink';
-  const isActive = false; //router.pathname == itemLink;
-  //TODO isActive handler
-  const isActiveClass = isActive ? '-active' : '';
+  const isActive = menuItem.isActive;
+
+  const isActiveClass = isActive ? 'is-active' : '';
   const itemText = translate(menuItem.tag) ?? menuItem.text;
 
   const itemIcon = menuItem?.icon?.data ?? '';
