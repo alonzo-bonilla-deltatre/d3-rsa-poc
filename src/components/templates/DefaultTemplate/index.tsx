@@ -14,7 +14,10 @@ const DefaultTemplate = ({ ...props }: ComponentProps) => {
   const footerStructureItem = footerStructure?.structure;
 
   return (
-    <div className="overflow-hidden flex flex-col justify-between min-h-[100vh]">
+    <div
+      id="main-container"
+      className="overflow-hidden flex flex-col justify-between min-h-[100vh]"
+    >
       {/* Header */}
       {headerStructureItem && renderItem(headerStructureItem, props.variables, props.metadata, props.previewToken)}
       <main id="main">
