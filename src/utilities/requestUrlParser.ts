@@ -1,9 +1,7 @@
 export const requestUrlParser = {
   getPathName: (params: { pageName: string[] }): string => {
-    let path = '/index';
-    if (Object.hasOwn(params, 'pageName')) {
-      path = `/${params.pageName.join('/')}`;
-    }
-    return `${path}`;
+    const pageName = params.pageName || [];
+    const url = `/${pageName.join('/')}`;
+    return url === '/' ? '/index' : url;
   },
 };

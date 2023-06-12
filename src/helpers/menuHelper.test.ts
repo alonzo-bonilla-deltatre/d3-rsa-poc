@@ -1,5 +1,5 @@
 import { MenuItem } from '@/models/types/menu';
-import { setActiveMenuItem } from './menuHelpers';
+import { setActiveMenuItem } from './menuHelper';
 
 describe('setActiveMenuItem', () => {
   test('should set the isActive property of the matching menu item to true', () => {

@@ -1,6 +1,6 @@
 import MenuList from '@/components/common/Menu';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
-import { setActiveMenuItem } from '@/helpers/menuHelpers';
+import { setActiveMenuItem } from '@/helpers/menuHelper';
 import { ComponentProps } from '@/models/types/components';
 import { getMenuStructure } from '@/services/menuService';
 
