@@ -164,7 +164,7 @@ export const getQueryString = (skip: number, limit: number, tags: string) => {
   if (tags?.length && tags.includes(',')) {
     const tagSlugs = tags.split(',');
     tagSlugs.forEach((tag) => {
-      queryString.push(`$tags.slug=${tag}`);
+      queryString.push(`tags.slug=${tag}`);
     });
   }
   return queryString.join('&');
