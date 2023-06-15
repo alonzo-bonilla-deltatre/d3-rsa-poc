@@ -19,6 +19,10 @@ const nextConfig = {
         source: '/robots.txt',
         destination: '/api/robots',
       },
+      {
+        source: '/manifest.json',
+        destination: '/api/manifest',
+      },
     ];
   }
 }
