@@ -19,6 +19,7 @@ import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/Brightco
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderEditorialList from '@/components/modules/EditorialList/EditorialListWrapper';
 import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
+import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 
 import React from 'react';
 
@@ -47,6 +48,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   EditorialList: renderEditorialList,
   Menu: renderMenu,
   Promo: renderPromo,
+  SearchResults: renderSearchResults,
 };
 
 export const renderModule = (
