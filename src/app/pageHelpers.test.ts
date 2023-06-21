@@ -104,7 +104,7 @@ describe('enrichPageVariables', () => {
     const expectedVariables: Variable[] = [
       {
         key: 'pagePath',
-        type: 'string',
+        type: 'keyValue',
         keyValue: {
           value: '/index',
           valueType: 'string',
@@ -112,7 +112,7 @@ describe('enrichPageVariables', () => {
       },
       {
         key: 'advId',
-        type: 'string',
+        type: 'keyValue',
         keyValue: {
           value: '33647204-d890-48c8-9b4e-b589f9aecf98',
           valueType: 'string',

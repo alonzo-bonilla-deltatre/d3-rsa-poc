@@ -6,6 +6,7 @@ import { DistributionEntity } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import { formatDate } from '@/utilities/dateFormatter';
+import { parseFieldValue } from '@/utilities/fieldValueParser';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
@@ -33,11 +34,13 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
         <ModuleTitle
           canRender={/true/.test(properties.displayModuleTitle)}
           heading={properties.headingLevel}
-          text={properties.moduleTitle}
+          text={parseFieldValue(properties.moduleTitle, data.variables)}
         ></ModuleTitle>
         <div className="flex justify-between mx-20">
           <header className="w-full">
-            <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
+            {/false/.test(properties.displayModuleTitle) && (
+              <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
+            )}
             <div className="flex justify-between items-center mt-8">
               <div>
                 {description && <p className="mb-3">{description}</p>}

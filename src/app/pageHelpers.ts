@@ -52,7 +52,7 @@ export const enrichPageVariables = (defaultVariables: Variable[], { ...params })
     if (params.hasOwnProperty(key)) {
       const variable: Variable = {
         key,
-        type: 'string',
+        type: 'keyValue',
         keyValue: {
           value: params[key],
           valueType: 'string',

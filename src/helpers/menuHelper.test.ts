@@ -1,5 +1,6 @@
 import { MenuItem } from '@/models/types/menu';
-import { setActiveMenuItem } from './menuHelper';
+import { Variable } from '@/models/types/pageStructure';
+import { setActiveMenuItem, parseMenuItemFields } from './menuHelper';
 
 describe('setActiveMenuItem', () => {
   test('should set the isActive property of the matching menu item to true', () => {
@@ -228,5 +229,115 @@ describe('setActiveMenuItem', () => {
 
     // ASSERT
     expect(result).toEqual(menuItems);
+  });
+});
+
+describe('parseMenuItemFields', () => {
+  it('should return the original menu items if no string literal is found', () => {
+    // ARRANGE
+    const variables: Variable[] = [
+      {
+        key: 'slug',
+        type: 'keyValue',
+        keyValue: {
+          value: '49ers',
+          valueType: 'string',
+        },
+      },
+    ];
+
+    const menuItems: MenuItem[] = [
+      {
+        id: '1',
+        text: 'About',
+        tag: 'about',
+        link: '/about/',
+        target: '_self',
+        tooltip: 'Go to About',
+        visible: true,
+        icon: { data: 'about' },
+        properties: { data: '' },
+        isActive: false,
+        items: [
+          {
+            id: '1_1',
+            text: 'Company',
+            tag: 'company',
+            link: '/about/company',
+            target: '_self',
+            tooltip: 'Go to Company',
+            visible: true,
+            icon: { data: 'company' },
+            properties: { data: '' },
+            items: [],
+            isActive: false,
+          },
+        ],
+      },
+    ];
+
+    // ACT
+    const result = parseMenuItemFields(menuItems, variables);
+
+    // ASSERT
+    expect(result).toEqual(menuItems);
+  });
+
+  it('should edit the original menu items if string literals are found', () => {
+    // ARRANGE
+    const variables: Variable[] = [
+      {
+        key: 'slug',
+        type: 'keyValue',
+        keyValue: {
+          value: '49ers',
+          valueType: 'string',
+        },
+      },
+    ];
+
+    const menuItems: MenuItem[] = [
+      {
+        id: '1',
+        text: '${slug} About',
+        tag: '${slug}-about',
+        link: '/about/${slug}/',
+        target: '_self',
+        tooltip: 'Go to ${slug}',
+        visible: true,
+        icon: { data: 'about' },
+        properties: { data: '' },
+        isActive: false,
+        items: [
+          {
+            id: '1_1',
+            text: '${slug} Company',
+            tag: '${slug}-company',
+            link: '/about/${slug}/company',
+            target: '_self',
+            tooltip: 'Go to ${slug} Company',
+            visible: true,
+            icon: { data: 'company' },
+            properties: { data: '' },
+            items: [],
+            isActive: false,
+          },
+        ],
+      },
+    ];
+
+    // ACT
+    const result = parseMenuItemFields(menuItems, variables);
+
+    // ASSERT
+    expect(result[0].text).toBe('49ers About');
+    expect(result[0].link).toBe('/about/49ers/');
+    expect(result[0].tooltip).toBe('Go to 49ers');
+    expect(result[0].tag).toBe('49ers-about');
+
+    expect(result[0].items[0].text).toBe('49ers Company');
+    expect(result[0].items[0].link).toBe('/about/49ers/company');
+    expect(result[0].items[0].tooltip).toBe('Go to 49ers Company');
+    expect(result[0].items[0].tag).toBe('49ers-company');
   });
 });

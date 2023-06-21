@@ -1,4 +1,6 @@
 import { MenuItem } from '@/models/types/menu';
+import { Variable } from '@/models/types/pageStructure';
+import { parseFieldValue } from '@/utilities/fieldValueParser';
 
 /**
  * Set active menu given a page path
@@ -9,6 +11,26 @@ import { MenuItem } from '@/models/types/menu';
  **/
 export const setActiveMenuItem = (menuItems: MenuItem[], pagePath: string): MenuItem[] => {
   highlightMenuItems(menuItems, pagePath);
+  return menuItems;
+};
+
+/**
+ * Replace string templates used in the Menu Item fields with page variables
+ * @param menuItems a MenuItem[] array
+ * @param variables a Variable[] array containing all the page variables
+ * @returns MenuItem[] array with `link, text, tag, tooltip` properties pattern in case of pattern match
+ **/
+export const parseMenuItemFields = (menuItems: MenuItem[], variables: Variable[]): MenuItem[] => {
+  menuItems.forEach((item) => {
+    item.link = item.link && parseFieldValue(item.link, variables);
+    item.text = item.text && parseFieldValue(item.text, variables);
+    item.tag = item.tag && parseFieldValue(item.tag, variables);
+    item.tooltip = item.tooltip && parseFieldValue(item.tooltip, variables);
+
+    if (item.items?.length) {
+      return parseMenuItemFields(item.items, variables);
+    }
+  });
   return menuItems;
 };
 
