@@ -16,7 +16,9 @@ const config = {
     "!**/app/**",
     "!**/models/**",
     "!**/*Wrapper.{ts,tsx}",
-    "!**/*.stories.{ts,tsx,js,jsx}*"
+    "!**/*.tsx", // Components don't have tests
+    "!**/*.stories.{ts,tsx,js,jsx}*",
+    "!**/__mocks__/**"
   ],
   coverageReporters: ["lcov", "text"],
   coverageDirectory: "../coverage",

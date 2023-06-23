@@ -71,9 +71,7 @@ export const setPageMetadata = (metadataItems: MetadataItem[] | null): Metadata 
 };
 
 function getLanguages(languages: object, allSiteConfiguration: FrontendConfiguration) {
-  let lang: Record<string, string> = {};
-
-  allSiteConfiguration.allSites.map((item: FrontendSiteConfiguration) => {
+  allSiteConfiguration.allSites.forEach((item: FrontendSiteConfiguration) => {
     const culture = `${item.culture}`;
     const url = new URL('/', item.url).href;
     const lang: Record<string, string> = {
