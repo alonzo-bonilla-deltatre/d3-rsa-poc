@@ -17,7 +17,7 @@ const defaultClassName = 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 w-
 
 const Roofline = ({ ...props }: RooflineProps) => {
   const asset = props.asset;
-  return props.context && props.context?.title ? (
+  return props.context && props.context?.title && props.hide.toString() === 'false' ? (
     <div
       key={nanoid()}
       className={props.className ?? defaultClassName}

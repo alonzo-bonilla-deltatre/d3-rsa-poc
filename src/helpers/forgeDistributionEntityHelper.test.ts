@@ -95,6 +95,9 @@ const tag1: Tag = {
   neutralSlug: 'tag-1',
   externalSourceReference: {},
   fields: {},
+  type: '',
+  externalSourceName: null,
+  extraData: undefined,
 };
 
 const tag2: Tag = {
@@ -106,6 +109,9 @@ const tag2: Tag = {
   neutralSlug: 'tag-2',
   externalSourceReference: {},
   fields: {},
+  type: '',
+  externalSourceName: null,
+  extraData: undefined,
 };
 
 const mockedEntities: DistributionEntity[] = [

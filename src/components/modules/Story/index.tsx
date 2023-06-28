@@ -1,14 +1,13 @@
 import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
 import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
+import { overrideDefaultMetadata, overrideStoryMetadata, overrideVideoMetadata } from '@/helpers/metadataHelper';
 import { ComponentProps } from '@/models/types/components';
-import { DistributionEntity } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 import { notFound } from 'next/navigation';
 import { metadata as parentMetadata } from 'src/app/[[...pageName]]/page';
-import { overrideDefaultMetadata } from './StoryHelpers';
 
 type ModuleProps = {
   slug: string;
@@ -19,7 +18,6 @@ type ModuleProps = {
   hideTitle: boolean;
   hideSocial: boolean;
   hideRelatedItems: boolean;
-  entity?: DistributionEntity | null | undefined;
   preventSettingMetadata: boolean;
 };
 
@@ -40,10 +38,10 @@ const Story = async ({ ...data }: ComponentProps) => {
     logger.log(`Cannot find story entity with slug ${props.slug} `, LoggerLevel.warning);
     notFound();
   }
-
+  logger.log(`preventSettingMetadata ${props.preventSettingMetadata} `, LoggerLevel.info);
   // Override parent metadata
   if (props.preventSettingMetadata && props.preventSettingMetadata.toString() === 'false') {
-    overrideDefaultMetadata(parentMetadata, storyEntity);
+    overrideVideoMetadata(parentMetadata, storyEntity);
   }
 
   return (

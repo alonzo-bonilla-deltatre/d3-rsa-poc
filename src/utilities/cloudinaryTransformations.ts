@@ -57,6 +57,20 @@ export const transformations: Record<any, ImageTransformations> = {
     mobileWidth: 420,
     mobileHeight: 560,
   },
+  albumFeatured: {
+    mobile: 't_ratio16_9-size30',
+    tablet: 't_ratio16_9-size30',
+    desktop: 't_ratio16_9-size50',
+    mobileWidth: 1280,
+    mobileHeight: 720,
+  },
+  albumFeaturedThumbnail: {
+    mobile: 't_ratio1_1-size10',
+    tablet: 't_ratio1_1-size10',
+    desktop: 't_ratio1_1-size10',
+    mobileWidth: 208,
+    mobileHeight: 208,
+  },
 };
 
 export const getSrcWithTransformation = (src: string, transformation: string) => {

@@ -4,7 +4,7 @@ type AuthorProps = {
 };
 
 const Author = ({ ...props }: AuthorProps) => {
-  return props.author && !props.hide ? (
+  return props.hide.toString() === 'false' && props.author ? (
     <div className="mb-3 text-sm font-light text-[#BEBEBE]">{props.author}</div>
   ) : (
     <></>

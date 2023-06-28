@@ -7,7 +7,11 @@ type DateProps = {
 };
 
 const Date = ({ ...props }: DateProps) => {
-  return props.date ? <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(props.date)}</time> : <></>;
+  return props.hide.toString() === 'false' && props.date ? (
+    <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(props.date)}</time>
+  ) : (
+    <></>
+  );
 };
 
 export default Date;

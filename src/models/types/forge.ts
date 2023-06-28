@@ -26,6 +26,10 @@ export type DistributionEntity = {
   entityCode?: string;
   url?: string;
 };
+export type AlbumEntity = DistributionEntity & {
+  description: string;
+  elements: DistributionEntity[] | null;
+};
 
 export type PagedResult = {
   pagination: {

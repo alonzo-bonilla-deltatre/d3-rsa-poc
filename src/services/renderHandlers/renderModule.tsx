@@ -20,6 +20,7 @@ import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapp
 import renderEditorialList from '@/components/modules/EditorialList/EditorialListWrapper';
 import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
+import renderAlbum from '@/components/modules/Album/AlbumWrapper';
 
 import React from 'react';
 
@@ -49,6 +50,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Menu: renderMenu,
   Promo: renderPromo,
   SearchResults: renderSearchResults,
+  Album: renderAlbum,
 };
 
 export const renderModule = (
