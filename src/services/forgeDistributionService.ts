@@ -34,14 +34,7 @@ export const getEntity = async (
       return result && result.length > 0 ? result[0] : null;
     })
     .catch((response) => {
-      if (response && response.data) {
-        const error = response.data as ForgeApiError;
-        let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
-        logger.log(errorMessage, LoggerLevel.error);
-      } else {
-        logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
-      }
-
+      handleError(response);
       return null;
     });
 };
@@ -72,14 +65,7 @@ export const getAllEntities = async (
       return response.data;
     })
     .catch((response) => {
-      if (response && response.data) {
-        const error = response.data as ForgeApiError;
-        let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
-        logger.log(errorMessage, LoggerLevel.error);
-      } else {
-        logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
-      }
-
+      handleError(response);
       return null;
     });
 };
@@ -103,21 +89,14 @@ export const getSelection = async (
       return response.data;
     })
     .catch((response) => {
-      if (response && response.data) {
-        const error = response.data as ForgeApiError;
-        let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
-        logger.log(errorMessage, LoggerLevel.error);
-      } else {
-        logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
-      }
-
+      handleError(response);
       return null;
     });
 };
 
 export const getEntityList = async (
-  selectionSlug: string,
-  type: string,
+  selectionSlug: string | null,
+  type: string | null,
   options: ForgeDistributionApiOption = null
 ): Promise<DistributionEntity[] | null> => {
   if (selectionSlug) {
@@ -129,4 +108,14 @@ export const getEntityList = async (
     return entities?.items as DistributionEntity[];
   }
   return null;
+};
+
+const handleError = (response: any) => {
+  if (response?.data) {
+    const error = response.data as ForgeApiError;
+    let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
+    logger.log(errorMessage, LoggerLevel.error);
+  } else {
+    logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+  }
 };
