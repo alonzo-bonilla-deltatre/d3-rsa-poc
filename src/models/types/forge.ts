@@ -1,6 +1,6 @@
-import { StoryPart } from '@/models/types/storyPart';
 import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
+import { StoryPart } from '@/models/types/storyPart';
 
 export type DistributionEntity = {
   type: string;
@@ -9,7 +9,7 @@ export type DistributionEntity = {
   selfUrl: string;
   slug: string;
   title: string;
-  headline: string;
+  headline: string | null;
   tags: Tag[];
   relations: DistributionEntity[];
   references: { [key: string]: any };
@@ -18,9 +18,9 @@ export type DistributionEntity = {
   lastUpdatedBy: string;
   lastUpdatedDate: string;
   contentDate: string;
-  context: Tag;
+  context: Tag | null;
   featured: number;
-  thumbnail: ImageAsset;
+  thumbnail: ImageAsset | null;
   image?: ImageAsset;
   parts: StoryPart[];
   entityCode?: string;

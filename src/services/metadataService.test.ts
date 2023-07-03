@@ -168,8 +168,6 @@ describe('setPageMetadata function', () => {
     expect(result?.openGraph?.url).toBe('https://mywebsite-url');
     expect(result?.robots).toBe('robots text');
     expect(result?.metadataBase).toStrictEqual(new URL('https://mywebsite-url/'));
-    // expect(result?.other?['fb:pages'] : undefined).toReturn('fbpages');
-    // expect(result?.other).toReturn({'fb:pages':'fbpages'})
     expect(result?.alternates?.canonical).toBe('https://mywebsite-url');
   });
 });

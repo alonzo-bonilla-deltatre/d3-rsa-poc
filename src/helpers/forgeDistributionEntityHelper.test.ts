@@ -217,8 +217,6 @@ describe('enrichEntitiesWithThumbnailPlaceholder function', () => {
 
   it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property', () => {
     const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, mockedVariables);
-    console.log('result = ' + JSON.stringify(result, undefined, 2));
-    console.log('mockedEntities = ' + JSON.stringify(mockedEntities, undefined, 2));
     expect(result).toStrictEqual(mockedEntities);
   });
 

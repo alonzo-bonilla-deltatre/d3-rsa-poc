@@ -1,10 +1,10 @@
 import { ComponentProps } from '@/models/types/components';
+import { PageStructureData } from '@/models/types/pageStructure';
+import { getFooterStructure } from '@/services/footerService';
+import { getHeaderStructure } from '@/services/headerService';
 import { renderItem, renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
 import React, { use } from 'react';
-import { PageStructureData } from '@/models/types/pageStructure';
-import { getHeaderStructure } from '@/services/headerService';
-import { getFooterStructure } from '@/services/footerService';
 
 const DefaultTemplate = ({ ...props }: ComponentProps) => {
   const mainSlot = 'main';

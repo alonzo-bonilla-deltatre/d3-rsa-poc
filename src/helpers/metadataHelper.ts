@@ -12,12 +12,12 @@ import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 */
 export const overrideDefaultMetadata = (parentMetadata: Metadata, entity: DistributionEntity) => {
   const image: string = getSrcWithTransformation(
-    entity.thumbnail.templateUrl,
+    entity?.thumbnail?.templateUrl ?? null,
     transformations.thumbnailGridItem.desktop
   );
 
   const title: string = entity.title;
-  const description: string = entity.headline;
+  const description: string = entity.headline || '';
   const authors = entity.createdBy;
 
   const metadata: Metadata = {

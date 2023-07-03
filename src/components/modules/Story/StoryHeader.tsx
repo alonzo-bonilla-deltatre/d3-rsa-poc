@@ -1,9 +1,9 @@
 import Author from '@/components/common/Author';
-import Roofline from '@/components/common/Roofline';
 import Date from '@/components/common/Date';
-import { DistributionEntity } from '@/models/types/forge';
-import SocialIcons from '@/components/common/SocialIcons';
 import Picture from '@/components/common/Picture';
+import Roofline from '@/components/common/Roofline';
+import SocialIcons from '@/components/common/SocialIcons';
+import { DistributionEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
 type ModuleProps = {
@@ -63,12 +63,12 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
         </div>
       </section>
       <section className="w-full container mx-auto mt-20">
-        {storyEntity.thumbnail && (
+        {storyEntity?.thumbnail && (
           <div className="mt-8 col-start-1">
             <Picture
-              src={storyEntity.thumbnail.templateUrl}
+              src={storyEntity.thumbnail?.templateUrl}
               transformations={transformations.thumbnailDetail}
-              alt={storyEntity.thumbnail.title ?? ''}
+              alt={storyEntity.thumbnail?.title ?? ''}
               className="w-full h-full object-cover"
             />
           </div>

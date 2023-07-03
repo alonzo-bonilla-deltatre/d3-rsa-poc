@@ -21,11 +21,11 @@ import renderEditorialList from '@/components/modules/EditorialList/EditorialLis
 import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 import renderAlbum from '@/components/modules/Album/AlbumWrapper';
+import renderEvent from '@/components/modules/Event/EventWrapper';
 
 import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
-  PocPromo: renderPromo,
   PocAdv: renderAdv,
   PocPromoGrid: renderPromoGrid,
   PocHero: renderHero,
@@ -33,10 +33,6 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   PocTestDetail: renderTestDetail,
   PocTestList: renderTestList,
   PocTestMosaic: renderMosaicList,
-  PocMenu: renderMenu,
-  PocPartners: renderPartners,
-  PocBrightcoveVideo: renderBrightcoveVideo,
-  PocEditorialList: renderEditorialList,
 
   // products-demo modules
   HtmlContent: renderHtmlContent,
@@ -51,6 +47,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Promo: renderPromo,
   SearchResults: renderSearchResults,
   Album: renderAlbum,
+  Event: renderEvent,
 };
 
 export const renderModule = (

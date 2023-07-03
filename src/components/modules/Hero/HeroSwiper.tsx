@@ -7,13 +7,13 @@ import { Autoplay, Pagination } from 'swiper';
 import 'swiper/swiper-bundle.css';
 
 import { DistributionEntity } from '@/models/types/forge';
-import { nanoid } from 'nanoid';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
 import { formatDate } from '@/utilities/dateFormatter';
+import { nanoid } from 'nanoid';
 
-import './HeroSwiper.css';
-import Roofline from '@/components/common/Roofline';
 import Picture from '@/components/common/Picture';
+import Roofline from '@/components/common/Roofline';
+import './HeroSwiper.css';
 
 type ModuleProps = {
   slides: DistributionEntity[];
@@ -31,14 +31,14 @@ const customPagination = (slides: DistributionEntity[]) => ({
     if (!slides.length) {
       return '';
     }
-    const needPlaceholderImage = !slides[index] || !slides[index].thumbnail?.templateUrl;
+    const needPlaceholderImage = !slides[index]?.thumbnail?.templateUrl;
 
     console.log(index, 'needPlaceholderImage: ', slides[index]);
     if (needPlaceholderImage) {
       console.log('needPlaceholderImage: ', slides[index]);
     }
     const imageSrc = getSrcWithTransformation(
-      slides[index].thumbnail?.templateUrl,
+      slides[index]?.thumbnail?.templateUrl ?? null,
       transformations.heroThumbnail.mobile
     );
 
@@ -82,39 +82,38 @@ export const HeroSwiper = ({ ...data }: ModuleProps) => {
         }}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
       >
-        {data.slides &&
-          data.slides.map((slide) => (
-            <SwiperSlide key={nanoid()}>
-              <div className="grid grid-cols-1 max-h-[100vh] w-full overflow-hidden">
-                {slide.thumbnail && (
-                  <div className="col-start-1 row-start-1 bg-black">
-                    <Picture
-                      transformations={transformations.heroSwiper}
-                      className="w-full h-full object-cover opacity-[.50]"
-                      src={slide.thumbnail.templateUrl}
-                      alt={slide.title}
-                    />
-                  </div>
-                )}
-                <div className="mt-[35vh] ml-40 max-w-[500px] col-start-1 row-start-1 z-10">
-                  <header>
-                    <>
-                      <Roofline
-                        context={slide.context}
-                        hide={false}
-                      ></Roofline>
-                      {/* <CardTitle title={slide.title} heading="h1" hide={false}></CardTitle> */}
-                      <h3 className="font-bold text-5xl uppercase mt-4">{slide.title}</h3>
-                      {/* <CardDate date={slide.contentDate} hide={false}></CardDate> */}
-                      {!data.hideDate && (
-                        <time className="mt-3 font-light text-[#BEBEBE]">{formatDate(slide.contentDate)}</time>
-                      )}
-                    </>
-                  </header>
+        {data?.slides.map((slide) => (
+          <SwiperSlide key={nanoid()}>
+            <div className="grid grid-cols-1 max-h-[100vh] w-full overflow-hidden">
+              {slide.thumbnail && (
+                <div className="col-start-1 row-start-1 bg-black">
+                  <Picture
+                    transformations={transformations.heroSwiper}
+                    className="w-full h-full object-cover opacity-[.50]"
+                    src={slide.thumbnail.templateUrl}
+                    alt={slide.title}
+                  />
                 </div>
+              )}
+              <div className="mt-[35vh] ml-40 max-w-[500px] col-start-1 row-start-1 z-10">
+                <header>
+                  <>
+                    <Roofline
+                      context={slide.context}
+                      hide={false}
+                    ></Roofline>
+                    {/* <CardTitle title={slide.title} heading="h1" hide={false}></CardTitle> */}
+                    <h3 className="font-bold text-5xl uppercase mt-4">{slide.title}</h3>
+                    {/* <CardDate date={slide.contentDate} hide={false}></CardDate> */}
+                    {!data.hideDate && (
+                      <time className="mt-3 font-light text-[#BEBEBE]">{formatDate(slide.contentDate)}</time>
+                    )}
+                  </>
+                </header>
               </div>
-            </SwiperSlide>
-          ))}
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

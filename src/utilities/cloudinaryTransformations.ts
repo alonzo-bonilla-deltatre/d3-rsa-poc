@@ -71,9 +71,37 @@ export const transformations: Record<any, ImageTransformations> = {
     mobileWidth: 208,
     mobileHeight: 208,
   },
+  promo: {
+    mobile: 't_ratio16_9-size20',
+    tablet: 't_ratio16_9-size20',
+    desktop: 't_ratio16_9-size40',
+    mobileWidth: 416,
+    mobileHeight: 234,
+  },
+  thumbSmall: {
+    mobile: 't_ratio4_3-size10',
+    tablet: 't_ratio4_3-size10',
+    desktop: 't_ratio4_3-size10',
+    mobileWidth: 208,
+    mobileHeight: 156,
+  },
+  thumbMedium: {
+    mobile: 't_ratio4_3-size20',
+    tablet: 't_ratio4_3-size20',
+    desktop: 't_ratio4_3-size20',
+    mobileWidth: 416,
+    mobileHeight: 312,
+  },
+  banner: {
+    mobile: 't_hero_banner_tablet',
+    tablet: 't_hero_banner_tablet',
+    desktop: 't_hero_banner_desktop',
+    mobileWidth: 1280,
+    mobileHeight: 272,
+  },
 };
 
-export const getSrcWithTransformation = (src: string, transformation: string) => {
+export const getSrcWithTransformation = (src: string | null, transformation: string) => {
   if (src) {
     const regex = /{formatInstructions}/;
     return src.replace(regex, transformation);

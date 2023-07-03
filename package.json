@@ -10,6 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --silent --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter",
+    "test-no-coverage": "jest -o --watch=true --coverage=false",
     "prepare": "husky install",
     "format": "prettier --write ."
   },

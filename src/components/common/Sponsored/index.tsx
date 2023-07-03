@@ -1,5 +1,5 @@
-import { translate } from '@/utilities/i18n';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
+import { translate } from '@/utilities/i18n';
 import Image from 'next/image';
 
 type SponsoredProps = {

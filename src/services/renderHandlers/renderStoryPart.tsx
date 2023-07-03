@@ -9,12 +9,14 @@ import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVi
 import renderOembedStoryPart from '@/components/storyParts/Oembed';
 import renderQuoteStoryPart from '@/components/storyParts/Quote';
 import renderTableStoryPart from '@/components/storyParts/Table';
+import renderEvent from '@/components/storyParts/Event';
 import { nanoid } from 'nanoid';
 
 const storyPartList: Record<any, (item: StoryPart) => React.ReactElement> = {
   markdown: renderMarkdownStoryPart,
   photo: renderPhotoStoryPart,
   'customentity.brightcovevideo': renderBrightcoveVideoStoryPart,
+  'customentity.event': renderEvent,
   'external.oembed': renderOembedStoryPart,
   'external.story-part-quote': renderQuoteStoryPart,
   'external.story-part-table': renderTableStoryPart,

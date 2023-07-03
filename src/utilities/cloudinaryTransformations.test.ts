@@ -1,5 +1,5 @@
-import { describe, expect, test } from '@jest/globals';
 import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
+import { describe, expect, test } from '@jest/globals';
 
 describe('getSrcWithTransformation', (): void => {
   const photoUrl = 'https://res.cloudinary.com/d3/image/upload/{formatInstructions}/dev/e2wmqxju9vnrl6po1jim';

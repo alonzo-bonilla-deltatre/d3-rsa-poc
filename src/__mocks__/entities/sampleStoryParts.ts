@@ -1,5 +1,6 @@
-import { StoryPart } from '@/models/types/storyPart';
 import { DistributionEntity } from '@/models/types/forge';
+import { EventEntity, EventFields } from '@/models/types/forge.customEntityFields';
+import { StoryPart } from '@/models/types/storyPart';
 
 //********** EMPTY ************/
 const emptyDistributionEntity: DistributionEntity = {
@@ -51,6 +52,76 @@ const emptyDistributionEntityStoryPart = {
   content: '',
   externalType: '',
   inputUrl: '',
+};
+const emptyField: EventFields = {
+  headline: '',
+  eventType: '',
+  headerColor: '',
+  dateFrom: '',
+  dateTo: '',
+  venue: '',
+  facebookProfile: '',
+  instagramProfile: '',
+  twitterProfile: '',
+  youtubeChannel: '',
+  twitchChannel: '',
+  description: '',
+  descriptionHtml: '',
+  mobileBackgroundEventImage: '',
+  backgroundEventImage: '',
+  mobileBackgroundEventImageAsset: null,
+  backgroundEventImageAsset: null,
+  eventLogo: '',
+  eventLogoAsset: null,
+  eventUrl: null,
+};
+
+const nullFields: EventFields = {
+  headline: null,
+  eventType: null,
+  headerColor: null,
+  venue: null,
+  facebookProfile: null,
+  instagramProfile: null,
+  twitterProfile: null,
+  youtubeChannel: null,
+  twitchChannel: null,
+  description: null,
+  mobileBackgroundEventImage: null,
+  backgroundEventImage: null,
+  mobileBackgroundEventImageAsset: null,
+  backgroundEventImageAsset: null,
+  eventLogo: null,
+  eventLogoAsset: null,
+  eventUrl: null,
+  dateFrom: '',
+  dateTo: '',
+  descriptionHtml: '',
+};
+
+const emptyDistributionEntityWithEmptyFields: EventEntity = {
+  ...emptyDistributionEntity,
+  fields: emptyField,
+  headline: '',
+  description: '',
+  descriptionHtml: '',
+  eventType: '',
+  dateFrom: '',
+  dateTo: '',
+  venue: '',
+  headerColor: '',
+  facebookProfile: '',
+  twitterProfile: '',
+  instagramProfile: '',
+  youtubeChannel: '',
+  twitchChannel: '',
+  mobileBackgroundEventImage: '',
+  backgroundEventImage: '',
+  mobileBackgroundEventImageAsset: null,
+  backgroundEventImageAsset: null,
+  eventLogo: '',
+  eventLogoAsset: null,
+  eventUrl: null,
 };
 
 //********** QUOTE ************/
@@ -190,9 +261,16 @@ const sampleBrightcoveVideoStoryPart: StoryPart = {
   ...partialBrightcoveVideoPart,
 };
 
+const emptyDistributionEntityWithNullFields: EventEntity = {
+  ...emptyDistributionEntity,
+  ...nullFields,
+};
+
 export {
   emptyDistributionEntity,
   emptyDistributionEntityStoryPart,
+  emptyDistributionEntityWithEmptyFields,
+  emptyDistributionEntityWithNullFields,
   sampleBrightcoveVideoStoryPart,
   sampleQuoteStoryPart,
   sampleYoutubeStoryPart,

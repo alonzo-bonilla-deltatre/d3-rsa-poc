@@ -1,23 +1,23 @@
-import { Tag } from '@/models/types/forge';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { nanoid } from 'nanoid';
 import GadAsset from '@/components/common/GadAsset';
 import SvgIcon from '@/components/common/SvgIcon';
+import { Tag } from '@/models/types/forge';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { transformations } from '@/utilities/cloudinaryTransformations';
+import { nanoid } from 'nanoid';
 
 type RooflineProps = {
-  context: Tag;
+  context: Tag | null;
   hide: boolean;
   className?: string;
-  icon?: React.ElementType | null | undefined;
-  asset?: GraphicAssetsDashboardItem | null | undefined;
+  icon?: React.ElementType | null;
+  asset?: GraphicAssetsDashboardItem | null;
 };
 
 const defaultClassName = 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 w-fit';
 
 const Roofline = ({ ...props }: RooflineProps) => {
   const asset = props.asset;
-  return props.context && props.context?.title && props.hide.toString() === 'false' ? (
+  return props?.context?.title && props.hide.toString() === 'false' ? (
     <div
       key={nanoid()}
       className={props.className ?? defaultClassName}
