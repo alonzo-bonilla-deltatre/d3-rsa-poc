@@ -32,7 +32,7 @@ export const translate = (key: string, type: TermType = TermType.standard): stri
   if (!key) {
     return key;
   }
-  const term = i18n.t(key.toLowerCase(), { returnObjects: true }) as Translation;
+  const term: Translation = i18n.t(key.toLowerCase(), { returnObjects: true });
   if (!term[type]) {
     logger.log(`TRANSLATION not found for this key: '${key}' and this type: '${type}'`, LoggerLevel.warning);
     return key;

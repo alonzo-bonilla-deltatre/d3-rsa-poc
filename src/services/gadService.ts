@@ -46,8 +46,7 @@ export const getPlaceholderAsset = async (
 
 export const getPlaceholderAssetUrl = async (placeHolderTag: string): Promise<string> => {
   try {
-    const tag = placeHolderTag ? placeHolderTag : IMAGE_PLACEHOLDER;
-    const asset = await getPlaceholderAsset(tag);
+    const asset = await getPlaceholderAsset(placeHolderTag);
     console.log('GAD API PLACEHOLDER Found:', asset?.assetUrl);
 
     return asset?.assetUrl ?? '';
@@ -73,8 +72,8 @@ export const getPlaceholderImage = async (placeHolderTag: string): Promise<Image
   return null;
 };
 
-export const gadAssetToImageAsset = (item: GraphicAssetsDashboardItem | null): ImageAsset | null => {
-  if (item && item.assetUrl) {
+const gadAssetToImageAsset = (item: GraphicAssetsDashboardItem | null): ImageAsset | null => {
+  if (item?.assetUrl) {
     return {
       title: item.name,
       templateUrl: item.assetUrl,

@@ -30,13 +30,12 @@ export const getTranslations = async (): Promise<Translations | null> => {
       );
       const translations: Translations = response.data;
 
-      const areTranslationsValid =
-        translations && translations.mainLanguage && translations.languages && translations.resources;
+      const areTranslationsValid = translations?.mainLanguage && translations?.languages && translations?.resources;
 
       return areTranslationsValid ? translations : null;
     })
     .catch((response) => {
-      if (response && response.data) {
+      if (response?.data) {
         const error = response.data as ApiResponseError;
         let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
         logger.log(errorMessage, LoggerLevel.error);

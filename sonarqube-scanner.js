@@ -1,5 +1,4 @@
 const sonarqubeScanner = require("sonarqube-scanner");
-
 const serverUrl = 'https://sqcorporate.deltatre.com/';
 const token = process.env.sonarlogin;
 
@@ -17,7 +16,6 @@ const exclusionsList = [
   '**/*.config.*',  
   '**/OWASPreports/**',
   '**/sonarqube-scanner.js',
-  '**/i18n.ts',
   '**/markdownHelper.ts',
 ];
 const exclusions = exclusionsList.join(',').trim();
