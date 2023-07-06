@@ -28,12 +28,12 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
               context={storyEntity.context}
               hide={props.hideRoofline}
             ></Roofline>
-            {props.hideTitle.toString() === 'false' && storyEntity.title && (
+            {props.hideTitle?.toString() === 'false' && storyEntity.title && (
               <h3 className="font-bold text-5xl uppercase">{storyEntity.title}</h3>
             )}
             <div className="flex justify-between items-center mt-8">
               <div>
-                {props.hideTitle.toString() === 'false' && storyEntity.headline && (
+                {props.hideTitle?.toString() === 'false' && storyEntity.headline && (
                   <p className="mb-3">{storyEntity.headline}</p>
                 )}
                 <Author
@@ -47,7 +47,7 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
               </div>
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>
-                  {props.hideSocial.toString() === 'false' && (
+                  {props.hideSocial?.toString() === 'false' && (
                     <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                       <SocialIcons
                         hide={false}

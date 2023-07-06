@@ -1,7 +1,7 @@
 import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
 import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
-import { overrideDefaultMetadata, overrideStoryMetadata, overrideVideoMetadata } from '@/helpers/metadataHelper';
+import { overrideVideoMetadata } from '@/helpers/metadataHelper';
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';

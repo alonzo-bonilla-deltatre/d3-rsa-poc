@@ -7,7 +7,7 @@ type DateProps = {
 };
 
 const Date = ({ ...props }: DateProps) => {
-  return props.hide.toString() === 'false' && props.date ? (
+  return props.hide?.toString() === 'false' && props.date ? (
     <time className="mb-3 text-sm font-light text-[#BEBEBE]">{formatDate(props.date)}</time>
   ) : (
     <></>
