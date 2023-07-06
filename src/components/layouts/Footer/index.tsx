@@ -1,16 +1,13 @@
 /* istanbul ignore file */
 
-import React from 'react';
-import dynamic from 'next/dynamic';
 import { ComponentProps } from '@/models/types/components';
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
-
+import dynamic from 'next/dynamic';
 import './Footer.css';
 
 // @ts-ignore
 const SocialIcons = dynamic(() => import('@/components/common/SocialIcons'));
-import '@/components/layouts/Footer/Footer.scss';
 // @ts-ignore
 const LanguageSwitcher = dynamic(() => import('@/components/common/LanguageSwitcher'));
 
@@ -27,10 +24,10 @@ const Footer = ({ ...data }: ComponentProps) => {
       <div className="site-footer__container container flex flex-col md:flex-row md:justify-between px-4 mx-auto py-4 md:py-12 border-b border-[#FFFFFF33]">
         <div className="site-footer__logo"></div>
         <div className="site-utility w-full flex flex-col md:flex-row md:justify-between px-4 mx-auto">
-          <div className="site-footer__utility-social flex py-6">
+          <div className="site-footer__utility-social flex py-6 justify-around">
             <SocialIcons {...socialIconsProps}></SocialIcons>
           </div>
-          <div className="site-footer__utility-languages flex items-center text-[#BEBEBE] pb-6 md:pb-0">
+          <div className="site-footer__utility-languages flex justify-around items-center text-[#BEBEBE] pb-6 md:pb-0">
             <LanguageSwitcher />
           </div>
         </div>
@@ -39,10 +36,9 @@ const Footer = ({ ...data }: ComponentProps) => {
         <div className="site-footer__link-section container mx-auto py-12 lg:text-center">
           <div className="flex flex-col lg:flex-row uppercase justify-between">
             {/* Footer  */}
-            {data &&
-              data.items?.map((item: StructureItem) =>
-                renderItem(item, data.variables, data.metadata, data.previewToken)
-              )}
+            {data?.items?.map((item: StructureItem) =>
+              renderItem(item, data.variables, data.metadata, data.previewToken)
+            )}
           </div>
         </div>
       </nav>
