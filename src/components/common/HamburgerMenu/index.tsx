@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 type MenuProps = {
-  structureItem: React.ReactElement<any, string | React.JSXElementConstructor<any>> | never[];
+  structureItem?: React.ReactElement<any, string | React.JSXElementConstructor<any>> | never[];
 };
 
 const HamburgerMenu = ({ ...data }: MenuProps) => {

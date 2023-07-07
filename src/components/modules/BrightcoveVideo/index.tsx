@@ -10,16 +10,16 @@ import { parseFieldValue } from '@/utilities/fieldValueParser';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
-  slug: string;
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  entity: DistributionEntity | null;
+  slug?: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  entity?: DistributionEntity | null;
 };
 
 const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
     logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
     return null;
   }
@@ -32,13 +32,13 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
     <>
       <section className="w-full container mx-auto mt-40">
         <ModuleTitle
-          canRender={/true/.test(properties.displayModuleTitle)}
-          heading={properties.headingLevel}
+          canRender={properties.displayModuleTitle?.toString() === 'true'}
+          heading={properties?.headingLevel}
           text={parseFieldValue(properties.moduleTitle, data.variables)}
         ></ModuleTitle>
         <div className="flex justify-between mx-20">
           <header className="w-full">
-            {/false/.test(properties.displayModuleTitle) && (
+            {properties.displayModuleTitle?.toString() === 'false' && (
               <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
             )}
             <div className="flex justify-between items-center mt-8">

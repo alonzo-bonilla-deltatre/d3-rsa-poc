@@ -7,7 +7,7 @@ import { transformations } from '@/utilities/cloudinaryTransformations';
 import { formatDate } from '@/utilities/dateFormatter';
 
 type EventProps = {
-  storyPart: StoryPart;
+  storyPart?: StoryPart;
 };
 
 const EventBanner = async ({ ...props }: EventProps) => {

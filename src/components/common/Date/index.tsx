@@ -1,9 +1,9 @@
 import { formatDate } from '@/utilities/dateFormatter';
 
 type DateProps = {
-  date: string;
+  date?: string;
   format?: string | null;
-  hide: boolean;
+  hide?: boolean;
 };
 
 const Date = ({ ...props }: DateProps) => {

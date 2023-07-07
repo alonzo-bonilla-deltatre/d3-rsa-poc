@@ -2,7 +2,7 @@ import ImgIcon from '@/components/common/ImgIcon';
 
 type CardIconProps = {
   entityCode?: string | '';
-  hide: boolean;
+  hide?: boolean;
 };
 
 const CardIcon = ({ ...props }: CardIconProps) => {

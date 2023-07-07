@@ -19,6 +19,7 @@ type Story = StoryObj<typeof Author>;
 export const Default: Story = {
   args: {
     author: 'Mario Rossi',
+    hide: false,
   },
   parameters: {
     layout: 'centered',

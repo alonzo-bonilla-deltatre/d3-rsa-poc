@@ -6,7 +6,7 @@ import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import logger from '@/utilities/logger';
 import axios from 'axios';
 
-export const getAssetsByTag = async (tag: string): Promise<GraphicAssetsDashboardItem[] | null> => {
+export const getAssetsByTag = async (tag: string = ''): Promise<GraphicAssetsDashboardItem[] | null> => {
   const apiUrl = `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=${tag}`;
   logger.log(`Getting Asset from GAD ${apiUrl}`, LoggerLevel.debug);
 
@@ -28,7 +28,7 @@ export const getAssetsByTag = async (tag: string): Promise<GraphicAssetsDashboar
       return null;
     });
 };
-export const getSingleAssetByTag = async (tag: string): Promise<GraphicAssetsDashboardItem | null> => {
+export const getSingleAssetByTag = async (tag: string = ''): Promise<GraphicAssetsDashboardItem | null> => {
   const gadAssets = await getAssetsByTag(tag);
   return firstAssetOrDefault(gadAssets);
 };

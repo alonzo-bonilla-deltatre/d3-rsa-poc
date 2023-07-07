@@ -9,12 +9,12 @@ import ModuleTitle from '@/components/common/ModuleTitle';
 const Partner = dynamic(() => import('@/components/common/Partner'));
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  hideDate: string;
-  selectionSlug: string;
-  limit: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  hideDate?: string;
+  selectionSlug?: string;
+  limit?: string;
 };
 
 const Partners = async ({ ...data }: ComponentProps) => {
@@ -28,7 +28,7 @@ const Partners = async ({ ...data }: ComponentProps) => {
   return (
     <section className="relative mx-60 mt-20 col-start-1">
       <ModuleTitle
-        canRender={/true/.test(displayModuleTitle)}
+        canRender={displayModuleTitle?.toString() === 'true'}
         heading="h3"
         text={moduleTitle}
       ></ModuleTitle>

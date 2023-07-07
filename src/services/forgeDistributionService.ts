@@ -71,7 +71,7 @@ export const getAllEntities = async (
 };
 
 export const getSelection = async (
-  slug: string,
+  slug: string = '',
   options: ForgeDistributionApiOption = null
 ): Promise<PagedResult | null> => {
   let apiUrl = distributionSelectionDetailUrl.replace(slugPlaceholder, slug);
@@ -95,7 +95,7 @@ export const getSelection = async (
 };
 
 export const getEntityList = async (
-  selectionSlug: string | null,
+  selectionSlug: string | null | undefined,
   type: string | null,
   options: ForgeDistributionApiOption = null
 ): Promise<DistributionEntity[] | null> => {

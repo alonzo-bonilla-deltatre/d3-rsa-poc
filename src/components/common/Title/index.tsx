@@ -1,7 +1,7 @@
 type CardTitleProps = {
-  title: string;
+  title?: string;
   heading?: string | null;
-  hide: boolean;
+  hide?: boolean;
 };
 
 const EditorialTitle = ({ ...props }: CardTitleProps) => {

@@ -3,12 +3,12 @@ import { translate } from '@/utilities/i18n';
 import Image from 'next/image';
 
 type SponsoredProps = {
-  hide: boolean;
-  name: string;
-  width: number;
-  height: number;
+  hide?: boolean;
+  name?: string;
+  width?: number;
+  height?: number;
   className?: string;
-  assetUrl: string;
+  assetUrl?: string;
 };
 
 const Sponsored = ({ ...props }: SponsoredProps) => {
@@ -21,7 +21,7 @@ const Sponsored = ({ ...props }: SponsoredProps) => {
         <Image
           className={props.className}
           src={desktopSrc}
-          alt={props.name}
+          alt={props.name ?? ''}
           width={props.width}
           height={props.height}
         />

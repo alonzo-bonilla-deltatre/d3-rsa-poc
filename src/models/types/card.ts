@@ -7,11 +7,11 @@ export type CardProps = {
 };
 
 export type CardOptions = {
-  hideIcon: boolean | false;
-  hideRoofline: boolean | false;
-  hideTitle: boolean | false;
-  hideDate: boolean | false;
-  hideAuthor: boolean | true;
-  hideCta: boolean | true;
-  className?: string | '';
+  hideIcon: boolean;
+  hideRoofline: boolean;
+  hideTitle: boolean;
+  hideDate: boolean;
+  hideAuthor: boolean;
+  hideCta: boolean;
+  className?: string;
 };

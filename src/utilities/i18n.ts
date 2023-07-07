@@ -28,7 +28,7 @@ export const initI18n = async (): Promise<any> => {
   }
 };
 
-export const translate = (key: string, type: TermType = TermType.standard): string => {
+export const translate = (key: string = '', type: TermType = TermType.standard): string => {
   if (!key) {
     return key;
   }

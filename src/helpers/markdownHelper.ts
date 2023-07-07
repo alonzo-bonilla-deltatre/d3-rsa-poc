@@ -9,7 +9,7 @@ type MarkdownObject = {
   subScripts: string[];
 };
 
-export const transform = async (text: string): Promise<string> => {
+export const transform = async (text: string = ''): Promise<string> => {
   if (!text) {
     return '';
   }

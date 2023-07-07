@@ -11,7 +11,10 @@ const tokenPlaceholder = '{token}';
 const menuStructureApiUrl = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`;
 const menuStructureApiUrlWithToken = `api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}&token=${tokenPlaceholder}`;
 
-export const getMenuStructure = async (path: string, token: string = ''): Promise<MenuStructureResponse | null> => {
+export const getMenuStructure = async (
+  path: string = '',
+  token: string = ''
+): Promise<MenuStructureResponse | null> => {
   let apiUrl = '';
   if (token) {
     apiUrl = menuStructureApiUrlWithToken.replace(pathPlaceholder, path).replace(tokenPlaceholder, token);

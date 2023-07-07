@@ -11,20 +11,20 @@ import { transformations } from '@/utilities/cloudinaryTransformations';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
-  slug: string;
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
+  slug?: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
 };
 
 const Promo = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
     logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
     return <div />;
   }
 
-  const promoEntity = await getEntity('promos', properties.slug);
+  const promoEntity = await getEntity('promos', properties?.slug);
 
   const cta1Url = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.url;
   const cta1Text = promoEntity && (promoEntity.fields as CustomPromoFields).callToAction1Link?.displayText;
@@ -39,7 +39,7 @@ const Promo = async ({ ...data }: ComponentProps) => {
     <>
       <section className="mt-8">
         <ModuleTitle
-          canRender={/true/.test(properties.displayModuleTitle)}
+          canRender={properties.displayModuleTitle?.toString() === 'true'}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
         ></ModuleTitle>

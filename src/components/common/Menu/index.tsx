@@ -3,8 +3,8 @@ import MenuNavItem from '@/components/common/MenuNavItem/MenuNavItem';
 import { nanoid } from 'nanoid';
 
 type MenuProps = {
-  menuItems: MenuItem[];
-  navItemClasses: string;
+  menuItems?: MenuItem[];
+  navItemClasses?: string;
 };
 
 const MenuList = ({ ...data }: MenuProps) => {

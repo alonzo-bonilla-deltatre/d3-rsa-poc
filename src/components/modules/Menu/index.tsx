@@ -7,7 +7,7 @@ import { getMenuStructure } from '@/services/menuService';
 import logger from '@/utilities/logger';
 
 type MenuModuleProps = {
-  path: string;
+  path?: string;
 };
 
 const Menu = async ({ ...data }: ComponentProps) => {

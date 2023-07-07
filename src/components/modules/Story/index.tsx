@@ -10,21 +10,21 @@ import { notFound } from 'next/navigation';
 import { metadata as parentMetadata } from 'src/app/[[...pageName]]/page';
 
 type ModuleProps = {
-  slug: string;
-  hideAuthor: boolean;
-  hideDate: boolean;
-  hideDescription: boolean;
-  hideRoofline: boolean;
-  hideTitle: boolean;
-  hideSocial: boolean;
-  hideRelatedItems: boolean;
-  preventSettingMetadata: boolean;
+  slug?: string;
+  hideAuthor?: boolean;
+  hideDate?: boolean;
+  hideDescription?: boolean;
+  hideRoofline?: boolean;
+  hideTitle?: boolean;
+  hideSocial?: boolean;
+  hideRelatedItems?: boolean;
+  preventSettingMetadata?: boolean;
 };
 
 const Story = async ({ ...data }: ComponentProps) => {
   const props = data.properties as ModuleProps;
   const invalidSlugErrorMessage = 'Cannot render Story module with empty slug';
-  if (!Object.hasOwn(props, 'slug') || !props.slug.length) {
+  if (!Object.hasOwn(props, 'slug') || !props.slug?.length) {
     logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
     throw new Error(invalidSlugErrorMessage);
   }
@@ -40,7 +40,7 @@ const Story = async ({ ...data }: ComponentProps) => {
   }
   logger.log(`preventSettingMetadata ${props.preventSettingMetadata} `, LoggerLevel.info);
   // Override parent metadata
-  if (props.preventSettingMetadata && props.preventSettingMetadata.toString() === 'false') {
+  if (props.preventSettingMetadata && props.preventSettingMetadata?.toString() === 'false') {
     overrideVideoMetadata(parentMetadata, storyEntity);
   }
 
@@ -53,7 +53,7 @@ const Story = async ({ ...data }: ComponentProps) => {
       <StoryParts storyEntity={storyEntity}></StoryParts>
       <RelatedItems
         relations={storyEntity.relations}
-        hide={props.hideRelatedItems}
+        hide={props.hideRelatedItems?.toString() === 'true'}
       ></RelatedItems>
     </>
   );

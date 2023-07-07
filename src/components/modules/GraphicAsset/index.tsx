@@ -6,12 +6,12 @@ import { ImageTransformations } from '@/models/types/images';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
 type ModuleProps = {
-  assetTag: string;
-  assetName: string;
-  assetLink: string;
-  assetWidth: number;
-  assetHeight: number;
-  transformation: string;
+  assetTag?: string;
+  assetName?: string;
+  assetLink?: string;
+  assetWidth?: number;
+  assetHeight?: number;
+  transformation?: string;
 };
 
 const GraphicAsset = async ({ ...data }: ComponentProps) => {

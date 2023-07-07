@@ -101,8 +101,8 @@ export const transformations: Record<any, ImageTransformations> = {
   },
 };
 
-export const getSrcWithTransformation = (src: string | null, transformation: string) => {
-  if (src) {
+export const getSrcWithTransformation = (src: string | null | undefined, transformation: string | undefined) => {
+  if (src && transformation) {
     const regex = /{formatInstructions}/;
     return src.replace(regex, transformation);
   }

@@ -11,20 +11,20 @@ import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
-  entityType: string;
-  slug: string;
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
+  entityType?: string;
+  slug?: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
 };
 
 const TestDetail = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, 'entityType') || !properties.entityType.length) {
+  if (!Object.hasOwn(properties, 'entityType') || !properties.entityType?.length) {
     logger.log('Cannot render TestDetail module with empty entityType', LoggerLevel.warning);
     return null;
   }
-  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
     logger.log('Cannot render TestDetail module with empty slug', LoggerLevel.warning);
     return null;
   }
@@ -47,7 +47,7 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
     <>
       <section className="mt-8">
         <ModuleTitle
-          canRender={/true/.test(properties.displayModuleTitle)}
+          canRender={properties.displayModuleTitle?.toString() === 'true'}
           heading={properties.headingLevel}
           text={properties.moduleTitle}
         ></ModuleTitle>

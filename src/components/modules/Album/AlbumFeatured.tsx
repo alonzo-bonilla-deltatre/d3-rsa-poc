@@ -7,18 +7,18 @@ import { transformations } from '@/utilities/cloudinaryTransformations';
 // @ts-ignore
 const AlbumHeader = dynamic(() => import('@/components/modules/Album/AlbumHeader'));
 type ModuleProps = {
-  albumEntity: AlbumEntity;
-  hideAuthor: boolean;
-  hideDate: boolean;
-  hideDescription: boolean;
-  hideRoofline: boolean;
-  hideTitle: boolean;
-  hideSocial: boolean;
+  albumEntity?: AlbumEntity;
+  hideAuthor?: boolean;
+  hideDate?: boolean;
+  hideDescription?: boolean;
+  hideRoofline?: boolean;
+  hideTitle?: boolean;
+  hideSocial?: boolean;
 };
 
 const AlbumFeatured = ({ ...props }: ModuleProps) => {
   const albumEntity = props.albumEntity;
-  const elements = albumEntity.elements;
+  const elements = albumEntity?.elements;
   return (
     <>
       <AlbumHeader

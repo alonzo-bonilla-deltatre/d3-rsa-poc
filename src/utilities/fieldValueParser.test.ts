@@ -2,6 +2,17 @@ import { Variable } from '@/models/types/pageStructure';
 import { parseFieldValue } from './fieldValueParser';
 
 describe('parseFieldValue', () => {
+  it('should return the empty value if variables are undefined', () => {
+    // ARRANGE
+    const input = undefined;
+
+    // ACT
+    const result = parseFieldValue(input, []);
+
+    // ASSERT
+    expect(result).toBe('');
+  });
+
   it('should return the original value if variables are empty', () => {
     // ARRANGE
     const input = '${slug} - D3';

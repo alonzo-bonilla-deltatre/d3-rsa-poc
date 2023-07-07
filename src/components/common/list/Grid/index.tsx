@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { DistributionEntity } from '@/models/types/forge';
 
 type ModuleProps = {
-  items: DistributionEntity[] | null;
+  items?: DistributionEntity[] | null;
 };
 
 const GridList = ({ ...props }: ModuleProps) => {

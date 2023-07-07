@@ -9,17 +9,17 @@ import dynamic from 'next/dynamic';
 const EventDetail = dynamic(() => import('@/components/common/events/EventDetail'));
 
 type ModuleProps = {
-  slug: string;
+  slug?: string;
 };
 
 const Event = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, 'slug') || !properties.slug.length) {
+  if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
     logger.log('Cannot render Event module with empty slug', LoggerLevel.warning);
     return <div />;
   }
 
-  const eventEntity = await getEntity('events', properties.slug);
+  const eventEntity = await getEntity('events', properties?.slug);
   const eventEnriched = eventEntity ? await getEventEntity(eventEntity) : null;
 
   return eventEntity ? <EventDetail entity={eventEnriched}></EventDetail> : <div />;

@@ -7,9 +7,9 @@ import { PartnerFields } from '@/models/types/forge.customEntityFields';
 import GadAsset from '@/components/common/GadAsset';
 
 type PartnerProps = {
-  entity: DistributionEntity;
-  width: number;
-  height: number;
+  entity?: DistributionEntity;
+  width?: number;
+  height?: number;
 };
 
 const Partner = async ({ ...props }: PartnerProps) => {

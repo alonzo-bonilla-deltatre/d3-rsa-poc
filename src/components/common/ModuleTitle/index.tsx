@@ -3,9 +3,9 @@ import Image from 'next/image';
 import ImgIcon from '@/components/common/ImgIcon';
 
 type TitleProps = {
-  canRender: boolean;
-  heading: string;
-  text: string;
+  canRender?: boolean;
+  heading?: string;
+  text?: string;
 };
 
 const ModuleTitle = ({ ...props }: TitleProps) => {

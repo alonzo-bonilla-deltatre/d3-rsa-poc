@@ -6,19 +6,19 @@ import { getAllEntities } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  entityType: string;
-  skip: number;
-  limit: number;
-  tags: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  entityType?: string;
+  skip?: number;
+  limit?: number;
+  tags?: string;
 };
 
 const Mosaic = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, entityType, skip, limit, tags } =
     data.properties as ModuleProps;
-  if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
+  if (!Object.hasOwn(data.properties, 'entityType') || !entityType?.length) {
     logger.log('Cannot render TestMosaicList module with empty entityType', LoggerLevel.warning);
     return null;
   }
@@ -32,7 +32,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
     <>
       <section className="mt-8">
         <ModuleTitle
-          canRender={/true/.test(displayModuleTitle)}
+          canRender={displayModuleTitle?.toString() === 'true'}
           heading={headingLevel}
           text={moduleTitle}
         ></ModuleTitle>

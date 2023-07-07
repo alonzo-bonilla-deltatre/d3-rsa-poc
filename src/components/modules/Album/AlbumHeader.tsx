@@ -6,13 +6,13 @@ import SocialIcons from '@/components/common/SocialIcons';
 import { transform } from '@/helpers/markdownHelper';
 
 type ModuleProps = {
-  entity: AlbumEntity;
-  hideAuthor: boolean;
-  hideDate: boolean;
-  hideDescription: boolean;
-  hideRoofline: boolean;
-  hideTitle: boolean;
-  hideSocial: boolean;
+  entity?: AlbumEntity;
+  hideAuthor?: boolean;
+  hideDate?: boolean;
+  hideDescription?: boolean;
+  hideRoofline?: boolean;
+  hideTitle?: boolean;
+  hideSocial?: boolean;
 };
 const AlbumHeader = async ({ ...props }: ModuleProps) => {
   const albumEntity = props.entity;
@@ -27,15 +27,15 @@ const AlbumHeader = async ({ ...props }: ModuleProps) => {
             context={albumEntity.context}
             hide={props.hideRoofline}
           ></Roofline>
-          {props.hideTitle.toString() === 'false' && albumEntity.title && (
+          {props.hideTitle?.toString() === 'false' && albumEntity.title && (
             <h3 className="font-bold text-5xl uppercase">{albumEntity.title}</h3>
           )}
           <div className="flex justify-between items-center mt-8">
             <div>
-              {props.hideTitle.toString() === 'false' && albumEntity.headline && (
+              {props.hideTitle?.toString() === 'false' && albumEntity.headline && (
                 <p className="mb-3">{albumEntity.headline}</p>
               )}
-              {props.hideDescription.toString() === 'false' && albumEntity.description && (
+              {props.hideDescription?.toString() === 'false' && albumEntity.description && (
                 <p
                   className="mt-8"
                   dangerouslySetInnerHTML={{ __html: descriptionHtml }}
@@ -52,7 +52,7 @@ const AlbumHeader = async ({ ...props }: ModuleProps) => {
             </div>
             <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
               <div>
-                {props.hideSocial.toString() === 'false' && (
+                {props.hideSocial?.toString() === 'false' && (
                   <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                     <SocialIcons
                       hide={false}

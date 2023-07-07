@@ -4,12 +4,12 @@ import YouTubeOembed from '@/components/common/Oembed/YouTubeOembed';
 import HtmlOembed from '@/components/common/Oembed/HtmlOembed';
 
 type OembedProps = {
-  entity: StoryPart;
+  entity?: StoryPart;
 };
 
 const Oembed = ({ ...props }: OembedProps) => {
   const { entity } = props as OembedProps;
-  const content = entity.content as any;
+  const content = entity?.content as any;
   let src = undefined;
   let isYouTubeOembed = false;
 
@@ -18,16 +18,16 @@ const Oembed = ({ ...props }: OembedProps) => {
     isYouTubeOembed = true;
   }
 
-  return (
-    entity && (
-      <>
-        {isYouTubeOembed && src ? (
-          <YouTubeOembed src={src}></YouTubeOembed>
-        ) : (
-          <HtmlOembed html={content['html']}></HtmlOembed>
-        )}
-      </>
-    )
+  return entity ? (
+    <>
+      {isYouTubeOembed && src ? (
+        <YouTubeOembed src={src}></YouTubeOembed>
+      ) : (
+        <HtmlOembed html={content['html']}></HtmlOembed>
+      )}
+    </>
+  ) : (
+    <></>
   );
 };
 

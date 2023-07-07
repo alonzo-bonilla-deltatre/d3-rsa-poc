@@ -1,7 +1,7 @@
 import { ComponentProps } from '@/models/types/components';
 
 type ModuleProps = {
-  content: string;
+  content?: string;
 };
 
 const HtmlContent = ({ ...data }: ComponentProps) => {
@@ -10,7 +10,7 @@ const HtmlContent = ({ ...data }: ComponentProps) => {
   return (
     <div
       className="htmlcontent-code w-full"
-      dangerouslySetInnerHTML={{ __html: content }}
+      dangerouslySetInnerHTML={{ __html: content ?? '' }}
     />
   );
 };

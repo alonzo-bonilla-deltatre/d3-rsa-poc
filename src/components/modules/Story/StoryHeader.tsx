@@ -7,14 +7,14 @@ import { DistributionEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
 type ModuleProps = {
-  storyEntity: DistributionEntity;
-  hideAuthor: boolean;
-  hideDate: boolean;
-  hideDescription: boolean;
-  hideRoofline: boolean;
-  hideTitle: boolean;
-  hideSocial: boolean;
-  hideRelatedItems: boolean;
+  storyEntity?: DistributionEntity;
+  hideAuthor?: boolean;
+  hideDate?: boolean;
+  hideDescription?: boolean;
+  hideRoofline?: boolean;
+  hideTitle?: boolean;
+  hideSocial?: boolean;
+  hideRelatedItems?: boolean;
 };
 const StoryHeader = ({ ...props }: ModuleProps) => {
   const storyEntity = props.storyEntity;
@@ -25,23 +25,23 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
           <header className="w-full">
             <Roofline
               className={'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2'}
-              context={storyEntity.context}
+              context={storyEntity?.context}
               hide={props.hideRoofline}
             ></Roofline>
-            {props.hideTitle?.toString() === 'false' && storyEntity.title && (
+            {props.hideTitle?.toString() === 'false' && storyEntity?.title && (
               <h3 className="font-bold text-5xl uppercase">{storyEntity.title}</h3>
             )}
             <div className="flex justify-between items-center mt-8">
               <div>
-                {props.hideTitle?.toString() === 'false' && storyEntity.headline && (
+                {props.hideTitle?.toString() === 'false' && storyEntity?.headline && (
                   <p className="mb-3">{storyEntity.headline}</p>
                 )}
                 <Author
-                  author={storyEntity.createdBy}
+                  author={storyEntity?.createdBy}
                   hide={props.hideAuthor}
                 ></Author>
                 <Date
-                  date={storyEntity.contentDate}
+                  date={storyEntity?.contentDate}
                   hide={props.hideDate}
                 ></Date>
               </div>

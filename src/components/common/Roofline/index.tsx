@@ -6,8 +6,8 @@ import { transformations } from '@/utilities/cloudinaryTransformations';
 import { nanoid } from 'nanoid';
 
 type RooflineProps = {
-  context: Tag | null;
-  hide: boolean;
+  context?: Tag | null;
+  hide?: boolean;
   className?: string;
   icon?: React.ElementType | null;
   asset?: GraphicAssetsDashboardItem | null;
@@ -17,7 +17,7 @@ const defaultClassName = 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 w-
 
 const Roofline = ({ ...props }: RooflineProps) => {
   const asset = props.asset;
-  return props?.context?.title && props.hide.toString() === 'false' ? (
+  return props?.context?.title && props.hide?.toString() === 'false' ? (
     <div
       key={nanoid()}
       className={props.className ?? defaultClassName}

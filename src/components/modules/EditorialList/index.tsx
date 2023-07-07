@@ -10,18 +10,18 @@ import { DistributionEntity } from '@/models/types/forge';
 import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  skip: number;
-  limit: number;
-  tags: string;
-  entityType: string;
-  selectionSlug: string;
-  layout: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  skip?: number;
+  limit?: number;
+  tags?: string;
+  entityType?: string;
+  selectionSlug?: string;
+  layout?: string;
 };
 
-const renderList = (layout: string, items: DistributionEntity[] | null) => {
+const renderList = (layout: string | undefined, items: DistributionEntity[] | null) => {
   switch (layout) {
     case 'hero':
       return (
@@ -45,7 +45,7 @@ const renderList = (layout: string, items: DistributionEntity[] | null) => {
 const EditorialList = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, skip, limit, tags, selectionSlug, entityType, layout } =
     data.properties as ModuleProps;
-  if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
+  if (!Object.hasOwn(data.properties, 'entityType') || !entityType?.length) {
     logger.log('Cannot render TestList module with empty entityType', LoggerLevel.warning);
     return null;
   }
@@ -63,7 +63,7 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
     items?.length && (
       <section className="mt-8">
         <ModuleTitle
-          canRender={/true/.test(displayModuleTitle)}
+          canRender={displayModuleTitle?.toString() === 'true'}
           heading={headingLevel}
           text={moduleTitle}
         ></ModuleTitle>

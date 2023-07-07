@@ -7,13 +7,13 @@ import React from 'react';
 import Card from '@/components/common/Card';
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  skip: number;
-  limit: number;
-  tags: string;
-  selectionSlug: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  skip?: number;
+  limit?: number;
+  tags?: string;
+  selectionSlug?: string;
 };
 
 const PromoGrid = async ({ ...data }: ComponentProps) => {
@@ -25,7 +25,7 @@ const PromoGrid = async ({ ...data }: ComponentProps) => {
   return items?.length ? (
     <section className="mt-8">
       <ModuleTitle
-        canRender={/true/.test(displayModuleTitle)}
+        canRender={displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>

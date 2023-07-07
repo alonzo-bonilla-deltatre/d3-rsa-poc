@@ -7,19 +7,19 @@ import logger from '@/utilities/logger';
 import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  hideDate: string;
-  selectionSlug: string;
-  limit: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  hideDate?: string;
+  selectionSlug?: string;
+  limit?: string;
 };
 
 const Hero = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, hideDate, selectionSlug, limit } =
     data.properties as ModuleProps;
   const defaultItemLimit = 5;
-  let itemLimit = parseInt(limit);
+  let itemLimit = parseInt(limit ?? '');
   if (itemLimit <= 0) {
     itemLimit = defaultItemLimit;
   }
@@ -35,13 +35,13 @@ const Hero = async ({ ...data }: ComponentProps) => {
   return items && items.length > 0 ? (
     <>
       <ModuleTitle
-        canRender={/true/.test(displayModuleTitle)}
+        canRender={displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>
       <HeroSwiper
         slides={getFilteredItems(items, Number(itemLimit))}
-        hideDate={/true/.test(hideDate)}
+        hideDate={hideDate?.toString() === 'true'}
       />
     </>
   ) : (

@@ -2,7 +2,7 @@ import { transform } from '@/helpers/markdownHelper';
 import './Markdown.scss';
 
 type MarkdownProps = {
-  markdownText: string;
+  markdownText?: string;
 };
 
 const Markdown = async ({ ...props }: MarkdownProps) => {

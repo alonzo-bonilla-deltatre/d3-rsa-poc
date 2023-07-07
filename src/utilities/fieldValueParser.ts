@@ -7,11 +7,14 @@ import { Variable } from '@/models/types/pageStructure';
  * @param variables the Variable[] array
  * @returns The input values with the placeholders value replaced with the variables value if found, or the original input value
  */
-export const parseFieldValue = (value: string, variables: Variable[]): string => {
+export const parseFieldValue = (value: string | undefined, variables: Variable[]): string => {
+  if (!value) {
+    return '';
+  }
   if (!variables?.length) {
     return value;
   }
-  return value.replace(/\$\{\s*(.*?)\s*\}/g, (match, key) => {
+  return value?.replace(/\$\{\s*(.*?)\s*\}/g, (match, key) => {
     const matchingData = getDataVariable(variables, key);
     return matchingData ? matchingData : match;
   });

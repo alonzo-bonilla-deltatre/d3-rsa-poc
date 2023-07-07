@@ -2,17 +2,15 @@ import { transformations } from '@/utilities/cloudinaryTransformations';
 import GadAsset from '@/components/common/GadAsset';
 
 type LogoProps = {
-  width: number;
-  height: number;
-  alt: string;
-  className: string;
-  link: string;
-  assetUrl: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+  className?: string;
+  link?: string;
+  assetUrl?: string;
 };
 
 const Logo = ({ ...props }: LogoProps) => {
-  const height = props.height ? props.height : props.width ? props.width : 50;
-
   return props.assetUrl ? (
     <div
       className="flex items-center"

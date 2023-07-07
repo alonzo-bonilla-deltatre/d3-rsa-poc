@@ -12,9 +12,9 @@ import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import ModuleTitle from '@/components/common/ModuleTitle';
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
 };
 
 const Calendar = async ({ ...data }: ComponentProps) => {
@@ -31,12 +31,13 @@ const Calendar = async ({ ...data }: ComponentProps) => {
 
   let firstItemExpandedRendered = false;
 
-  const marginTopCalendarContainer = /true/.test(displayModuleTitle) && moduleTitle ? 'mt-[140px]' : 'mt-[200px]';
+  const marginTopCalendarContainer =
+    displayModuleTitle?.toString() === 'true' && moduleTitle ? 'mt-[140px]' : 'mt-[200px]';
 
   return (
     <div className="container mx-auto border-b border-[#FFFFFF33]">
       <ModuleTitle
-        canRender={/true/.test(displayModuleTitle)}
+        canRender={displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>

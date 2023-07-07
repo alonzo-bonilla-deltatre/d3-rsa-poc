@@ -12,7 +12,7 @@ const headerStyles = {
 } as const;
 
 type EventProps = {
-  entity: EventEntity | null;
+  entity?: EventEntity | null;
 };
 
 const EventDetail = ({ ...props }: EventProps) => {

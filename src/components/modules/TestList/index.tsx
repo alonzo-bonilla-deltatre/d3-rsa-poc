@@ -13,13 +13,13 @@ import logger from '@/utilities/logger';
 import { nanoid } from 'nanoid';
 
 type ModuleProps = {
-  moduleTitle: string;
-  headingLevel: string;
-  displayModuleTitle: string;
-  entityType: string;
-  skip: number;
-  limit: number;
-  tags: string;
+  moduleTitle?: string;
+  headingLevel?: string;
+  displayModuleTitle?: string;
+  entityType?: string;
+  skip?: number;
+  limit?: number;
+  tags?: string;
 };
 
 type QueryStringModuleProps = {
@@ -28,28 +28,10 @@ type QueryStringModuleProps = {
   tags: string;
 };
 
-const getQueryString = ({ skip, limit, tags }: QueryStringModuleProps) => {
-  // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
-  let queryString: string[] = [];
-  if (skip) {
-    queryString.push(`$skip=${skip}`);
-  }
-  if (limit) {
-    queryString.push(`$limit=${limit}`);
-  }
-  if (tags?.length && tags.includes(',')) {
-    const tagSlugs = tags.split(',');
-    tagSlugs.forEach((tag) => {
-      queryString.push(`$tags.slug=${tag}`);
-    });
-  }
-  return queryString.join('&');
-};
-
 const TestList = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, entityType, skip, limit, tags } =
     data.properties as ModuleProps;
-  if (!Object.hasOwn(data.properties, 'entityType') || !entityType.length) {
+  if (!Object.hasOwn(data.properties, 'entityType') || !entityType?.length) {
     logger.log('Cannot render TestList module with empty entityType', LoggerLevel.warning);
     return null;
   }
@@ -67,7 +49,7 @@ const TestList = async ({ ...data }: ComponentProps) => {
   return items?.length ? (
     <section className="mt-8">
       <ModuleTitle
-        canRender={/true/.test(displayModuleTitle)}
+        canRender={displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>

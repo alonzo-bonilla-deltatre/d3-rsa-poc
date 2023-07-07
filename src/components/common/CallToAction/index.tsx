@@ -1,12 +1,12 @@
 import ImgIcon from '@/components/common/ImgIcon';
 
 type CallToActionProps = {
-  url: string;
-  text: string | null;
-  isExternal: boolean;
+  url?: string;
+  text?: string | null;
+  isExternal?: boolean;
   style?: string;
   icon?: string;
-  hide: boolean;
+  hide?: boolean;
 };
 
 const CallToAction = ({ ...props }: CallToActionProps) => {

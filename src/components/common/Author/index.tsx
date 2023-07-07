@@ -1,6 +1,6 @@
 type AuthorProps = {
-  author: string;
-  hide: boolean;
+  author?: string;
+  hide?: boolean;
 };
 
 const Author = ({ ...props }: AuthorProps) => {
