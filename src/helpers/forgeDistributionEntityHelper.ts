@@ -3,7 +3,7 @@ import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
 import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import { getDataVariable } from './dataVariableHelper';
-import { LinkRuleRequest } from '@/models/types/linkRule';
+import { LinkRuleRequest, LinkRuleResponse } from '@/models/types/linkRule';
 import { StoryPart } from '@/models/types/storyPart';
 import { getLinkRules } from '@/services/linkRuleService';
 
@@ -54,83 +54,90 @@ export const enrichDistributionEntitiesWithLinkRules = async (
   forgeEntities: DistributionEntity[],
   withRelationsAndParts: boolean = false
 ): Promise<DistributionEntity[]> => {
-  const linkRulesRequest: LinkRuleRequest[] = [];
-
-  if (!forgeEntities || forgeEntities.length == 0) {
+  if (!forgeEntities?.length) {
     return forgeEntities;
   }
 
-  forgeEntities.forEach((entity: DistributionEntity) => {
-    linkRulesRequest.push({
-      id: createLinkRuleId(entity),
-      entity: entity,
-      entityType: entity.entityCode ? entity.entityCode : entity.type,
-      culture: culture,
-      environment: environment,
-    } as LinkRuleRequest);
-    if (withRelationsAndParts) {
-      if (entity.relations && entity.relations.length > 0) {
-        entity.relations.forEach((relation) => {
-          linkRulesRequest.push({
-            id: createLinkRuleId(relation),
-            entity: relation,
-            entityType: relation.entityCode ? relation.entityCode : relation.type,
-            culture: culture,
-            environment: environment,
-          } as LinkRuleRequest);
-        });
-      }
-      if (entity.parts && entity.parts.length > 0) {
-        entity.parts.forEach((part) => {
-          if (part.type != 'external' && part.type != 'markdown') {
-            linkRulesRequest.push({
-              id: createLinkRuleId(part),
-              entity: part,
-              entityType: part.entityCode ? part.entityCode : part.type,
-              culture: culture,
-              environment: environment,
-            } as LinkRuleRequest);
-          }
-        });
-      }
-    }
-  });
-
+  const linkRulesRequest = buildLinkRulesRequest(forgeEntities, withRelationsAndParts);
   const linkRules = await getLinkRules(linkRulesRequest);
 
-  if (!linkRules || !linkRules.data || linkRules.data.length == 0) {
+  if (!linkRules?.data?.length) {
     return forgeEntities;
   }
 
-  forgeEntities.forEach((entity) => {
-    const linkRule = linkRules?.data.find((l) => l.id === createLinkRuleId(entity));
-    if (linkRule) {
-      entity.url = linkRule.url;
-    }
+  return updateEntityURLs(forgeEntities, linkRules);
+};
+
+const buildLinkRulesRequest = (entities: DistributionEntity[], withRelationsAndParts: boolean): LinkRuleRequest[] => {
+  const linkRulesRequest: LinkRuleRequest[] = [];
+
+  for (const entity of entities) {
+    addLinkRuleRequest(entity, linkRulesRequest);
 
     if (withRelationsAndParts) {
-      if (entity.relations && entity.relations.length > 0) {
-        entity.relations.forEach((relation) => {
-          const linkRule = linkRules?.data.find((l) => l.id === createLinkRuleId(relation));
-          if (linkRule) {
-            relation.url = linkRule.url;
-          }
-        });
-      }
-      if (entity.parts && entity.parts.length > 0) {
-        entity.parts.forEach((part) => {
-          if (entity.type != 'external' && entity.type != 'markdown') {
-            const linkRule = linkRules?.data.find((l) => l.id === createLinkRuleId(part));
-            if (linkRule) {
-              part.url = linkRule.url;
-            }
-          }
-        });
+      const relations = entity.relations?.filter(
+        (relation) => relation.type !== 'external' && relation.type !== 'markdown'
+      );
+      addLinkRulesForEntities(relations, linkRulesRequest);
+
+      const parts = entity.parts?.filter((part) => part.type !== 'external' && part.type !== 'markdown');
+      addLinkRulesForEntities(parts, linkRulesRequest);
+    }
+  }
+
+  return linkRulesRequest;
+};
+
+const addLinkRuleRequest = (entity: DistributionEntity, linkRulesRequest: LinkRuleRequest[]) => {
+  linkRulesRequest.push({
+    id: createLinkRuleId(entity),
+    entity,
+    entityType: getEntityType(entity),
+    /* @ts-ignore */
+    culture,
+    /* @ts-ignore */
+    environment,
+  });
+};
+
+const getEntityType = (entity: DistributionEntity): string => entity.entityCode ?? entity.type;
+
+const addLinkRulesForEntities = (entities: DistributionEntity[] | undefined, linkRulesRequest: LinkRuleRequest[]) => {
+  if (!entities || entities.length === 0) {
+    return;
+  }
+
+  for (const entity of entities) {
+    addLinkRuleRequest(entity, linkRulesRequest);
+  }
+};
+
+const updateEntityURLs = (entities: DistributionEntity[], linkRules: LinkRuleResponse): DistributionEntity[] => {
+  for (const entity of entities) {
+    updateEntityURL(entity, linkRules);
+
+    if (!entity.relations || entity.relations.length === 0) {
+      continue;
+    }
+
+    for (const relation of entity.relations) {
+      updateEntityURL(relation, linkRules);
+    }
+
+    const parts = entity.parts?.filter((part) => part.type !== 'external' && part.type !== 'markdown');
+    if (parts) {
+      for (const part of parts) {
+        updateEntityURL(part, linkRules);
       }
     }
-  });
+  }
 
-  return forgeEntities;
+  return entities;
+};
+
+const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse) => {
+  const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
+  entity.url = linkRule?.url ?? entity.url;
 };
 
 export const enrichDistributionEntities = async (

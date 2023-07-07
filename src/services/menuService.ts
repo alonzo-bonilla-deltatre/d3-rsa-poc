@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MenuItem, MenuStructureResponse } from '@/models/types/menu';
+import { MenuStructureResponse } from '@/models/types/menu';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { PageBuilderFrontendApiError } from '@/models/types/errors';
@@ -38,18 +38,16 @@ export const getMenuStructure = async (
       return response.data;
     })
     .catch((response) => {
-      if (response && response.data) {
+      if (response?.data) {
         const error = response.data as PageBuilderFrontendApiError;
         let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
         if (error.detail) {
           errorMessage = errorMessage + ` - Error Detail: ${error.detail}`;
         }
         logger.log(errorMessage, LoggerLevel.error);
-        return null;
       } else {
-        logger.log(`PAGE BUILDER FRONTEND API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+        logger.log(`PAGE BUILDER FRONTEND API Error: ${response?.message} - ${response?.stack}`, LoggerLevel.error);
       }
-
       return null;
     });
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApiResponseError, ForgeApiError } from '@/models/types/errors';
+import { ApiResponseError } from '@/models/types/errors';
 import { LoggerLevel } from '@/models/types/logger';
 import { Translations } from '@/models/types/translations';
 import logger from '@/utilities/logger';
@@ -39,9 +39,8 @@ export const getTranslations = async (): Promise<Translations | null> => {
         const error = response.data as ApiResponseError;
         let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
         logger.log(errorMessage, LoggerLevel.error);
-        return null;
       }
-      logger.log(`VOCABULARY TOOL API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+      logger.log(`VOCABULARY TOOL API Error: ${response?.message} - ${response?.stack}`, LoggerLevel.error);
       return null;
     });
 };
