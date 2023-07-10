@@ -1,11 +1,11 @@
-import { CardProps } from '@/models/types/card';
-import Title from '@/components/common/Title';
-import Date from '@/components/common/Date';
 import Author from '@/components/common/Author';
-import Roofline from '@/components/common/Roofline';
-import CardIcon from '@/components/common/CardIcon';
-import Picture from '@/components/common/Picture';
 import { getContainerClassName, getImageTransformation, getInfoClassName } from '@/components/common/Card/CardHelpers';
+import CardIcon from '@/components/common/CardIcon';
+import Date from '@/components/common/Date';
+import Roofline from '@/components/common/Roofline';
+import Title from '@/components/common/Title';
+import { CardProps } from '@/models/types/card';
+import Picture from '../Picture';
 
 const Card = ({ ...props }: CardProps) => {
   const entity = props.entity;
@@ -13,7 +13,8 @@ const Card = ({ ...props }: CardProps) => {
   const layout = props.layout ?? 'default'; // default, fullimage, fullimage-portrait
   const cardClassName = `${getContainerClassName(layout)} ${options.className}`;
   const cardInfoClassName = getInfoClassName(layout);
-  const entityImage = entity.thumbnail;
+
+  const entityImage = entity.image ?? entity.thumbnail;
 
   return (
     entity && (
@@ -33,7 +34,6 @@ const Card = ({ ...props }: CardProps) => {
                 />
               </figure>
             )}
-
             <div className={cardInfoClassName}>
               <>
                 <CardIcon

@@ -1,6 +1,6 @@
-import { translate } from '@/utilities/i18n';
-import { MenuItem } from '@/models/types/menu';
 import ImgIcon from '@/components/common/ImgIcon';
+import { MenuItem } from '@/models/types/menu';
+import { translate } from '@/utilities/i18n';
 import './MenuNavItem.scss';
 
 type MenuNavItemProps = {
@@ -27,6 +27,7 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
     ...(itemText ? { text: itemText } : undefined),
     ...(itemText ? { alt: itemText } : undefined),
     ...(itemText ? { 'aria-label': itemText } : undefined),
+    ...(menuItem?.tag ? { 'data-tag': menuItem.tag } : undefined),
   };
   const classNames = navItemClasses + isActiveClass;
   const hasIcon = itemIcon && iconSize;

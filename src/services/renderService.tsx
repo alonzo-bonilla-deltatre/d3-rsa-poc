@@ -1,9 +1,9 @@
 import { Metadata, PageStructureItemType, StructureItem, Variable } from '@/models/types/pageStructure';
+import { nanoid } from 'nanoid';
 import React, { JSXElementConstructor, ReactElement } from 'react';
 import { renderLayout } from './renderHandlers/renderLayout';
 import { renderModule } from './renderHandlers/renderModule';
 import { renderTemplate } from './renderHandlers/renderTemplate';
-import { nanoid } from 'nanoid';
 
 export const renderItem = (
   item: StructureItem,
@@ -14,6 +14,7 @@ export const renderItem = (
   if (!item) {
     return renderEmptyPage();
   }
+
   if (item.type === PageStructureItemType.template) {
     return renderTemplate(item, variables, metadata, previewToken);
   }

@@ -7,11 +7,16 @@ const nextConfig = {
     isrMemoryCacheSize: 0,
   },
   images: {
-    domains: [
-      "via.placeholder.com",
-      "images.unsplash.com",
-      "res.cloudinary.com"
-    ]
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+    ],
   },
   async rewrites() {
     return [

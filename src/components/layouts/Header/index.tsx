@@ -1,11 +1,11 @@
 /* istanbul ignore file */
-
 import { ComponentProps } from '@/models/types/components';
 import { renderItem, renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
 import { use } from 'react';
-
 import HamburgerMenu from '@/components/common/HamburgerMenu';
+import SearchBarOverlay from '@/components/common/SearchBarOverlay';
+import { getSearchPath } from '@/components/modules/SearchResults/SearchResultsHelper';
 import { PageStructureData } from '@/models/types/pageStructure';
 import { getHamburgerStructure } from '@/services/hamburgerService';
 import './Header.css';
@@ -42,6 +42,7 @@ const Header = ({ ...data }: ComponentProps) => {
             {renderItemsInSlot(data.items, serviceNavigation, data.variables, data.metadata, data.previewToken)}
           </div>
         </div>
+        <SearchBarOverlay redirectPath={getSearchPath(data.variables)} />
         <div className="container px-4 mx-auto">
           <div
             className="w-full flex items-center"

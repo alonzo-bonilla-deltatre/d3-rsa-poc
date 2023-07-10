@@ -1,33 +1,31 @@
-import { renderItem } from '@/services/renderService';
-import { requestUrlParser } from '@/utilities/requestUrlParser';
-import { initI18n } from '@/utilities/i18n';
 import ThemingVariables from '@/components/common/ThemingVariables';
+import { renderItem } from '@/services/renderService';
+import { initI18n } from '@/utilities/i18n';
+import { requestUrlParser } from '@/utilities/requestUrlParser';
 
-import { Metadata } from 'next';
 import { enrichPageMetadata, enrichPageVariables, getPageData } from '@/app/pageHelpers';
-import { notFound } from 'next/navigation';
 import { AzureSearchOption } from '@/models/types/azureSearch';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {};
 
-/* SSG revalidate time */
-export const revalidate = 60;
-
-/* SSG process */
-export async function generateStaticParams() {
-  return [];
-}
-
-export default async function Page({ params }: { params: { pageName: string[] } }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { pageName: string[] };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   await initI18n();
   const path = requestUrlParser.getPathName(params);
-  const previewToken = ''; // The token is empty outside of the "preview" route
   const azureSearchOption = {
-    q: '',
-    page: 0,
-    facetType: '',
-    facetValue: '',
+    q: searchParams?.q?.toString() ?? '',
+    page: parseInt(searchParams?.page?.toString() ?? '0'),
+    facetType: searchParams?.facetType?.toString() ?? '',
+    facetValue: searchParams?.facetValue?.toString() ?? '',
   } as AzureSearchOption;
+  const previewToken = ''; // The token is empty outside of the "preview" route
   const pageData = await getPageData(path, previewToken);
   if (!pageData) {
     notFound();

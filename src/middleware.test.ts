@@ -34,6 +34,21 @@ describe('middleware', () => {
 
     // ASSERT
     expect(redirectSpy).toHaveBeenCalledTimes(1);
-    expect(redirectSpy).toHaveBeenCalledWith(new URL(`/preview/${token}/test/react-poc/`, req.url));
+    expect(redirectSpy).toHaveBeenCalledWith(new URL(`/preview/${token}/test/react-poc/?token=${token}`, req.url));
+  });
+
+  it('should redirect to the search if the q query param is set', async () => {
+    // ARRANGE
+    const q = 'test-search';
+    const path = 'test/react-poc';
+    const req = new NextRequest(new Request(`http://localhost:3000/${path}`), {});
+    req.nextUrl.searchParams.set('q', q);
+
+    // ACT
+    await middleware(req);
+
+    // ASSERT
+    expect(redirectSpy).toHaveBeenCalledTimes(1);
+    expect(redirectSpy).toHaveBeenCalledWith(new URL(`/search/${path}?q=${q}`, req.url));
   });
 });

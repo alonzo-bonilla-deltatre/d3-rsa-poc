@@ -17,6 +17,7 @@ const exclusionsList = [
   '**/OWASPreports/**',
   '**/sonarqube-scanner.js',
   '**/markdownHelper.ts',
+  '**/azureCognitiveSearchService.ts'
 ];
 const exclusions = exclusionsList.join(',').trim();
 const testInclusions = '**/*.test.ts';

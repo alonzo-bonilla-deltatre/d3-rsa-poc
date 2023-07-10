@@ -1,0 +1,30 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/blocks';
+
+import * as SearchBarStories from './SearchBar.stories';
+
+<Meta of={SearchBarStories} />
+
+# SearchBar
+
+Use the _SearchBar_ component to show a visual bar to look fon anything. An HTML element (e.g.: button) with
+data-tag=search is required to trigger the toggle onto the SearchBar
+
+### Default
+
+The default version with black background and nothing related to results
+
+<Canvas of={SearchBarStories.Default} />
+
+### LightTheme
+
+The version to be used once the user hits Enter or clicks on the search icon; as its default has a white background
+
+<Canvas of={SearchBarStories.LightTheme} />
+
+### AfterSearch
+
+The version to be used once the user hits Enter or clicks on the search icon; as its default has a white background
+
+<Canvas of={SearchBarStories.AfterSearch} />
+
+<Controls />

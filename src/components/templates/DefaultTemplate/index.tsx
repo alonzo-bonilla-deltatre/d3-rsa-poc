@@ -20,7 +20,10 @@ const DefaultTemplate = ({ ...props }: ComponentProps) => {
     >
       {/* Header */}
       {headerStructureItem && renderItem(headerStructureItem, props.variables, props.metadata, props.previewToken)}
-      <main id="main">
+      <main
+        id="main"
+        className="grow"
+      >
         {renderItemsInSlot(props.items, mainSlot, props.variables, props.metadata, props.previewToken)}
       </main>
       {/* Footer */}

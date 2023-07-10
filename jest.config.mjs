@@ -33,7 +33,6 @@ const config = {
   reporters: ["default"],
   setupFiles: ['./__mocks__/jest-setup.js'],
   testMatch: ['**/*.test.{ts,tsx}'],
-  testEnvironment: 'jest-environment-jsdom',
   transformIgnorePatterns: ["/node_modules/"],
   transform: {},
   testEnvironment: "jsdom"
