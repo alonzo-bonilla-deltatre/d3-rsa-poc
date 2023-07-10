@@ -24,7 +24,7 @@ const HamburgerMenu = ({ ...data }: MenuProps) => {
       <button
         aria-label="Extra content menu"
         aria-expanded={isOpen}
-        className="group mx-4 space-y-2 z-20"
+        className="group mx-4 space-y-2 z-20 mb-4"
         onClick={toggleMenu}
       >
         <span

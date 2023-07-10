@@ -25,8 +25,8 @@ const Menu = async ({ ...data }: ComponentProps) => {
 
   return (
     <>
-      <div className="container mx-auto my-4 lg:text-center text-[#BEBEBE]">
-        <div className="flex flex-col lg:flex-row uppercase items-center justify-between">
+      <div className="container mx-auto my-2 lg:my-4 lg:text-center text-[#BEBEBE]">
+        <div className="flex flex-row uppercase items-center justify-center flex-wrap lg:justify-between">
           <MenuList
             menuItems={menuItems}
             navItemClasses={''}

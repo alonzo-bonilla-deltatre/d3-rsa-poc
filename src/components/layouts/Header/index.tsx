@@ -1,14 +1,14 @@
 /* istanbul ignore file */
 
-import React, { use } from 'react';
 import { ComponentProps } from '@/models/types/components';
 import { renderItem, renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
+import { use } from 'react';
 
-import './Header.css';
+import HamburgerMenu from '@/components/common/HamburgerMenu';
 import { PageStructureData } from '@/models/types/pageStructure';
 import { getHamburgerStructure } from '@/services/hamburgerService';
-import HamburgerMenu from '@/components/common/HamburgerMenu';
+import './Header.css';
 
 const logo: string = 'logo';
 const primaryNavigation: string = 'primaryNavigation';
@@ -26,7 +26,7 @@ const Header = ({ ...data }: ComponentProps) => {
   return (
     <header className="w-full z-10 bg-gradient-to-b from-black to-transparent">
       <nav className="my-4">
-        <div className="container px-4 mx-auto flex items-center justify-between">
+        <div className="container px-4 mx-auto flex flex-wrap justify-center md:items-center md:justify-between">
           <HamburgerMenu structureItem={hamburgerElement}></HamburgerMenu>
           <div
             className="flex items-center"
