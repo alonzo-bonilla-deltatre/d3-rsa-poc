@@ -14,7 +14,8 @@ export const parseFieldValue = (value: string | undefined, variables: Variable[]
   if (!variables?.length) {
     return value;
   }
-  return value?.replace(/\$\{\s*(.*?)\s*\}/g, (match, key) => {
+  return value.replace(/\$\{\s*([^{}\s]*)\s*\}/g, (match, key) => {
+
     const matchingData = getDataVariable(variables, key);
     return matchingData ? matchingData : match;
   });

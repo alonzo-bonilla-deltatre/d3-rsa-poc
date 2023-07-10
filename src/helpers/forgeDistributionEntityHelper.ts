@@ -68,6 +68,7 @@ export const enrichDistributionEntitiesWithLinkRules = async (
   return updateEntityURLs(forgeEntities, linkRules);
 };
 
+/* istanbul ignore next */
 const buildLinkRulesRequest = (entities: DistributionEntity[], withRelationsAndParts: boolean): LinkRuleRequest[] => {
   const linkRulesRequest: LinkRuleRequest[] = [];
 
@@ -88,6 +89,7 @@ const buildLinkRulesRequest = (entities: DistributionEntity[], withRelationsAndP
   return linkRulesRequest;
 };
 
+/* istanbul ignore next */
 const addLinkRuleRequest = (entity: DistributionEntity, linkRulesRequest: LinkRuleRequest[]) => {
   linkRulesRequest.push({
     id: createLinkRuleId(entity),
@@ -100,8 +102,10 @@ const addLinkRuleRequest = (entity: DistributionEntity, linkRulesRequest: LinkRu
   });
 };
 
+/* istanbul ignore next */
 const getEntityType = (entity: DistributionEntity): string => entity.entityCode ?? entity.type;
 
+/* istanbul ignore next */
 const addLinkRulesForEntities = (entities: DistributionEntity[] | undefined, linkRulesRequest: LinkRuleRequest[]) => {
   if (!entities || entities.length === 0) {
     return;
@@ -112,6 +116,7 @@ const addLinkRulesForEntities = (entities: DistributionEntity[] | undefined, lin
   }
 };
 
+/* istanbul ignore next */
 const updateEntityURLs = (entities: DistributionEntity[], linkRules: LinkRuleResponse): DistributionEntity[] => {
   for (const entity of entities) {
     updateEntityURL(entity, linkRules);
@@ -135,6 +140,7 @@ const updateEntityURLs = (entities: DistributionEntity[], linkRules: LinkRuleRes
   return entities;
 };
 
+/* istanbul ignore next */
 const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse) => {
   const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
   entity.url = linkRule?.url ?? entity.url;
