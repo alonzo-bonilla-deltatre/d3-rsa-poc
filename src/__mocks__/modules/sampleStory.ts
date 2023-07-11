@@ -11,6 +11,7 @@ import { sampleTableStoryPart1 } from '@/__mocks__/entities/sampleTableStoryPart
 const sampleStory2 = {
   ...emptyDistributionEntity,
   type: 'story',
+  id: '9b8c8008-ce91-42b9-908e-8a9cbe06701a',
   _translationId: '9b8c8008-ce91-42b9-908e-8a9cbe06701a',
   _entityId: '71046099-fc69-46e6-b1fc-5d09a670b329',
   selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/stories/afl-stadium-upgrade',
@@ -41,6 +42,7 @@ const sampleStory2 = {
 
 const sampleStory = {
   type: 'story',
+  id: '5f8c5508-2495-482f-b02a-dcdfce610740',
   _translationId: '5f8c5508-2495-482f-b02a-dcdfce610740',
   _entityId: '32e14194-c069-46d7-a307-63b8bb2c8922',
   selfUrl:
