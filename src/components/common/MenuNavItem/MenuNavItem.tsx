@@ -17,7 +17,7 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
   const isActive = menuItem?.isActive?.toString() === 'true';
 
   const isActiveClass = isActive ? 'is-active' : '';
-  const itemText = translate(menuItem?.tag) ?? menuItem?.text;
+  const itemText = menuItem?.tag ? translate(menuItem?.tag) : menuItem?.text;
 
   const itemIcon = menuItem?.icon?.data ?? '';
   const additionalAttributes = {
