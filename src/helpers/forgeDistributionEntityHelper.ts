@@ -195,6 +195,6 @@ export const getFilteredItems = (items: DistributionEntity[] | null | undefined,
 
 export const createLinkRuleId = (forgeEntity: DistributionEntity | StoryPart): string => {
   return forgeEntity.entityCode
-    ? `${forgeEntity._entityId}-${forgeEntity.type}-${forgeEntity.entityCode}`
-    : `${forgeEntity._entityId}-${forgeEntity.type}`;
+    ? `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}-${forgeEntity.entityCode}`
+    : `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}`;
 };

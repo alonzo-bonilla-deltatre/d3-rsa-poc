@@ -3,6 +3,7 @@ import { Variable } from '@/models/types/pageStructure';
 import { StoryPart } from '@/models/types/storyPart';
 
 export type DistributionEntity = {
+  id: string;
   type: string;
   _translationId: string;
   _entityId: string;
