@@ -8,6 +8,7 @@ import {
   getPaginationPrevUrl,
   getPaginationUrl,
   getSearchPath,
+  getTotalCount,
 } from '@/components/modules/SearchResults/SearchResultsHelper';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { AzureSearchOption, SearchResult } from '@/models/types/azureSearch';
@@ -16,7 +17,6 @@ import { DistributionEntity } from '@/models/types/forge';
 import { search } from '@/services/azureCognitiveSearchService';
 import { translate } from '@/utilities/i18n';
 import { nanoid } from 'nanoid';
-import Link from 'next/link';
 
 type ModuleProps = {
   limit?: string;
@@ -34,14 +34,7 @@ const SearchResults = async ({ ...data }: ComponentProps) => {
   azureSearchOption.limit = parseInt(limit ?? defaultLimit);
   azureSearchOption.keyPagesLimit = parseInt(keyPagesLimit ?? defaultLimit);
 
-  const searchResult = await search(
-    azureSearchOption.q,
-    azureSearchOption.page,
-    azureSearchOption.limit,
-    azureSearchOption.keyPagesLimit,
-    azureSearchOption.facetType,
-    azureSearchOption.facetValue
-  );
+  const searchResult = await search(azureSearchOption, data.variables);
 
   const types = searchResult.forgeEntities.items.map((item: SearchResult) => item.type);
   const items = createSearchResultItems(azureSearchOption.facetValue, searchResult);
@@ -56,6 +49,8 @@ const SearchResults = async ({ ...data }: ComponentProps) => {
   const nextUrl = getPaginationNextUrl(searchResult, items, azureSearchOption, paginationUrl);
   const prevUrl = getPaginationPrevUrl(azureSearchOption, paginationUrl);
 
+  const totalCount = getTotalCount(azureSearchOption, searchResult);
+
   return (
     <div className="container px-4 mx-auto">
       <SearchBar
@@ -63,7 +58,7 @@ const SearchResults = async ({ ...data }: ComponentProps) => {
         inputValue={azureSearchOption.q}
         show
         showResultsCount
-        resultsCount={searchResult.totalCount ?? '0'}
+        resultsCount={totalCount}
         redirectPath={searchPath}
       />
       <ul className="mb-2 flex list-none">

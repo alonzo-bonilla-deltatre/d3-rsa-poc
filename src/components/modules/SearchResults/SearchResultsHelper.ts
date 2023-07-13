@@ -56,3 +56,15 @@ export const getPaginationNextUrl = (
 export const getPaginationPrevUrl = (azureSearchOption: AzureSearchOption, paginationUrl: string) => {
   return azureSearchOption.page > 0 ? `${paginationUrl}&page=${azureSearchOption.page - 1}` : '';
 };
+
+export const getTotalCount = (azureSearchOption: AzureSearchOption, searchResult: AzureSearchResult) => {
+  let totalCount = 0;
+  if (azureSearchOption.facetType && azureSearchOption.facetValue) {
+    totalCount =
+      searchResult.forgeEntities.items.find((item) => item.type === azureSearchOption.facetValue)?.count ?? 0;
+    totalCount += searchResult.keyPages.count;
+  } else {
+    totalCount = searchResult.totalCount;
+  }
+  return totalCount;
+};

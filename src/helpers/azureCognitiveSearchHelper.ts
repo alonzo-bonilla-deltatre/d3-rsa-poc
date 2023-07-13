@@ -1,7 +1,11 @@
 ﻿import { SearchIterator } from '@azure/search-documents';
 import { AzureKeyPagesIndexEntity, AzureSearchGroupOption, AzureSearchResult } from '@/models/types/azureSearch';
 import { DistributionEntity } from '@/models/types/forge';
-import { enrichDistributionEntitiesWithLinkRules } from '@/helpers/forgeDistributionEntityHelper';
+import {
+  enrichDistributionEntitiesWithLinkRules,
+  enrichEntitiesWithThumbnailPlaceholder,
+} from '@/helpers/forgeDistributionEntityHelper';
+import { Variable } from '@/models/types/pageStructure';
 
 const groupTypes = {
   items: [
@@ -115,9 +119,13 @@ export const processKeyPagesDocuments = async (
   }
 };
 
-export const enrichSearchResultsWithDistributionEntities = async (items: any[]): Promise<void> => {
+export const enrichSearchResultsWithDistributionEntities = async (
+  items: any[],
+  variables: Variable[]
+): Promise<void> => {
   for (const item of items) {
     item.documents = await enrichDistributionEntitiesWithLinkRules(item.documents, true);
+    item.documents = enrichEntitiesWithThumbnailPlaceholder(item.documents, variables);
   }
 };
 

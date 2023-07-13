@@ -1,5 +1,5 @@
 ﻿/* istanbul ignore file */
-import { AzureSearchResult } from '@/models/types/azureSearch';
+import { AzureSearchOption, AzureSearchResult } from '@/models/types/azureSearch';
 import {
   groupSearchResultsByEntityType,
   createFilter,
@@ -12,14 +12,11 @@ import {
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { AzureKeyCredential, SearchClient } from '@azure/search-documents';
+import { Variable } from '@/models/types/pageStructure';
 
 export const search = async (
-  q: string,
-  page: number = 0,
-  limit: number = 25,
-  keyPagesLimit: number = 25,
-  facetType: string = '',
-  facetValue: string = ''
+  azureSearchOption: AzureSearchOption,
+  variables: Variable[]
 ): Promise<AzureSearchResult> => {
   let azureSearchResult: AzureSearchResult = {
     totalCount: 0,
@@ -46,9 +43,9 @@ export const search = async (
         new AzureKeyCredential(process.env.AZURE_COGNITIVE_SEARCH_KEY ?? '')
       );
     }
-    const filter = createFilter(facetType, facetValue);
+    const filter = createFilter(azureSearchOption.facetType, azureSearchOption.facetValue);
 
-    const searchResults = await client.search(q, {
+    const searchResults = await client.search(azureSearchOption.q, {
       queryType: 'full',
       searchMode: 'all',
       facets: ['type', 'entityCode'],
@@ -61,16 +58,16 @@ export const search = async (
       return azureSearchResult;
     }
 
-    if (page < 0) {
-      page = 0;
+    if (azureSearchOption.page < 0) {
+      azureSearchOption.page = 0;
     }
 
     azureSearchResult.forgeEntities.count = searchResults.count ?? 0;
 
     processFacets(searchResults.facets, azureSearchResult.forgeEntities.items);
 
-    if (keyPagesClient && !facetType && !facetValue) {
-      let keyPages = await keyPagesClient.search(q, {
+    if (keyPagesClient && !azureSearchOption.facetType && !azureSearchOption.facetValue) {
+      let keyPages = await keyPagesClient.search(azureSearchOption.q, {
         queryType: 'full',
         searchMode: 'all',
         filter: `Culture eq '${process.env.CULTURE}'`,
@@ -80,30 +77,30 @@ export const search = async (
       });
       azureSearchResult.keyPages.count = keyPages.count ?? 0;
 
-      keyPages = await keyPagesClient.search(q, {
+      keyPages = await keyPagesClient.search(azureSearchOption.q, {
         queryType: 'full',
         searchMode: 'all',
         filter: `Culture eq '${process.env.CULTURE}'`,
-        skip: calculateSkip(page, keyPagesLimit),
-        top: keyPagesLimit,
+        skip: calculateSkip(azureSearchOption.page, azureSearchOption.keyPagesLimit),
+        top: azureSearchOption.keyPagesLimit,
         includeTotalCount: true,
       });
       await processKeyPagesDocuments(keyPages.results, azureSearchResult.keyPages.items);
     }
 
-    const searchResultsWithDocuments = await client.search(q, {
+    const searchResultsWithDocuments = await client.search(azureSearchOption.q, {
       queryType: 'full',
       searchMode: 'all',
       facets: ['type', 'entityCode'],
       filter,
-      skip: calculateSkip(page, limit),
-      top: limit,
+      skip: calculateSkip(azureSearchOption.page, azureSearchOption.limit),
+      top: azureSearchOption.limit,
       includeTotalCount: true,
     });
 
     await processDocuments(searchResultsWithDocuments.results, azureSearchResult.forgeEntities.items);
 
-    await enrichSearchResultsWithDistributionEntities(azureSearchResult.forgeEntities.items);
+    await enrichSearchResultsWithDistributionEntities(azureSearchResult.forgeEntities.items, variables);
 
     groupSearchResultsByEntityType(azureSearchResult);
 

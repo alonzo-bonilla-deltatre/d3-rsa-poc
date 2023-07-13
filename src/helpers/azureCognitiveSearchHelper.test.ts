@@ -8,10 +8,15 @@ import {
   processFacets,
   processKeyPagesDocuments,
 } from './azureCognitiveSearchHelper';
-import { enrichDistributionEntitiesWithLinkRules } from './forgeDistributionEntityHelper';
+import {
+  enrichDistributionEntitiesWithLinkRules,
+  enrichEntitiesWithThumbnailPlaceholder,
+} from './forgeDistributionEntityHelper';
+import { Variable } from '@/models/types/pageStructure';
 
 jest.mock('@/helpers/forgeDistributionEntityHelper', () => ({
   enrichDistributionEntitiesWithLinkRules: jest.fn(),
+  enrichEntitiesWithThumbnailPlaceholder: jest.fn(),
 }));
 
 describe('groupSearchResultsByEntityType', () => {
@@ -559,16 +564,89 @@ describe('enrichSearchResultsWithDistributionEntities', () => {
       { id: '1', title: 'Document 1' },
       { id: '2', title: 'Document 2' },
     ];
+    const mockedVariables: Variable[] = [
+      {
+        type: 'keyValue',
+        key: 'inc_header',
+        keyValue: {
+          value: '~/test/react-poc/library/_header',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'inc_footer',
+        keyValue: {
+          value: '~/test/react-poc/library/_footer',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'image_placeholder',
+        keyValue: {
+          value:
+            'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/sandbox-integrations/react-poc/d3-placeholder_d8r7kc',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'sitename',
+        keyValue: {
+          value: 'FORGE GO',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'inc_amp_header',
+        keyValue: {
+          value: '~/_libraries/_ampheader',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'user_profile',
+        keyValue: {
+          value: '/account/profile/overview',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'hello',
+        keyValue: {
+          value: 'val in english parent',
+          valueType: 'string',
+        },
+      },
+      {
+        type: 'keyValue',
+        key: 'inc_hamburger',
+        keyValue: {
+          value: '~/test/react-poc/library/_hamburgher',
+          valueType: 'string',
+        },
+      },
+    ];
     const items = [
-      { type: 'photo', documents: [...mockDocuments] },
-      { type: 'video', documents: [...mockDocuments] },
+      { type: 'photo', documents: mockDocuments },
+      { type: 'video', documents: mockDocuments },
     ];
 
+    (enrichDistributionEntitiesWithLinkRules as jest.Mock).mockReturnValueOnce(mockDocuments);
+    (enrichDistributionEntitiesWithLinkRules as jest.Mock).mockReturnValueOnce(mockDocuments);
+
     // ACT
-    await enrichSearchResultsWithDistributionEntities(items);
+    await enrichSearchResultsWithDistributionEntities(items, mockedVariables);
 
     // ASSERT
     expect(enrichDistributionEntitiesWithLinkRules).toHaveBeenCalledTimes(2);
     expect(enrichDistributionEntitiesWithLinkRules).toHaveBeenCalledWith(mockDocuments, true);
+
+    expect(enrichEntitiesWithThumbnailPlaceholder).toHaveBeenCalledTimes(2);
+    expect(enrichEntitiesWithThumbnailPlaceholder).toHaveBeenCalledWith(mockDocuments, mockedVariables);
   });
 });

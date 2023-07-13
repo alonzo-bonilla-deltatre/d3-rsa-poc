@@ -5,6 +5,7 @@
   getPaginationPrevUrl,
   getPaginationUrl,
   getSearchPath,
+  getTotalCount,
 } from '@/components/modules/SearchResults/SearchResultsHelper';
 import { AzureSearchOption, AzureSearchResult } from '@/models/types/azureSearch';
 import { describe, expect, test } from '@jest/globals';
@@ -602,5 +603,163 @@ describe('getPaginationPrevUrl', () => {
 
     // ASSERT
     expect(result).toBe(``);
+  });
+});
+
+describe('getTotalCount', () => {
+  test('should return all total count if facetType and facetValue is not set', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 2,
+      forgeEntities: {
+        count: 1,
+        items: [
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
+            type: 'photo',
+          },
+        ],
+      },
+      keyPages: {
+        count: 1,
+        items: [
+          {
+            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
+            Title: 'volleyballworld.com',
+            Summary: 'The official Volleyball World website',
+            Image:
+              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Schema_Keywords: [],
+            Schema_Abstract: [],
+            Schema_Text: [],
+            Schema_Image: [],
+            Original_Meta_Title: 'volleyballworld.com',
+            Original_Meta_Summary: 'The official Volleyball World website',
+            LastIndex: '2023-06-27T11:15:38.75Z',
+            Url: 'https://en.volleyballworld.com/',
+            Culture: 'en-GB',
+            Tags: ['volley'],
+          },
+        ],
+      },
+    };
+    const azureSearchOption = {} as AzureSearchOption;
+
+    // ACT
+    const result = getTotalCount(azureSearchOption, azureSearchResult);
+
+    // ASSERT
+    expect(result).toBe(2);
+  });
+
+  test('should return specific total count if facetType and facetValue is set', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 3,
+      forgeEntities: {
+        count: 1,
+        items: [
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
+            type: 'photo',
+          },
+
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Story 1' }],
+            type: 'story',
+          },
+        ],
+      },
+      keyPages: {
+        count: 1,
+        items: [
+          {
+            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
+            Title: 'volleyballworld.com',
+            Summary: 'The official Volleyball World website',
+            Image:
+              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Schema_Keywords: [],
+            Schema_Abstract: [],
+            Schema_Text: [],
+            Schema_Image: [],
+            Original_Meta_Title: 'volleyballworld.com',
+            Original_Meta_Summary: 'The official Volleyball World website',
+            LastIndex: '2023-06-27T11:15:38.75Z',
+            Url: 'https://en.volleyballworld.com/',
+            Culture: 'en-GB',
+            Tags: ['volley'],
+          },
+        ],
+      },
+    };
+    const azureSearchOption = {
+      facetType: 'type',
+      facetValue: 'photo',
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getTotalCount(azureSearchOption, azureSearchResult);
+
+    // ASSERT
+    expect(result).toBe(2);
+  });
+
+  test('should return specific total count if facetType and facetValue is set', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 3,
+      forgeEntities: {
+        count: 1,
+        items: [
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
+            type: 'photo',
+          },
+
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Story 1' }],
+            type: 'story',
+          },
+        ],
+      },
+      keyPages: {
+        count: 1,
+        items: [
+          {
+            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
+            Title: 'volleyballworld.com',
+            Summary: 'The official Volleyball World website',
+            Image:
+              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Schema_Keywords: [],
+            Schema_Abstract: [],
+            Schema_Text: [],
+            Schema_Image: [],
+            Original_Meta_Title: 'volleyballworld.com',
+            Original_Meta_Summary: 'The official Volleyball World website',
+            LastIndex: '2023-06-27T11:15:38.75Z',
+            Url: 'https://en.volleyballworld.com/',
+            Culture: 'en-GB',
+            Tags: ['volley'],
+          },
+        ],
+      },
+    };
+    const azureSearchOption = {
+      facetType: 'type',
+      facetValue: 'photo',
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getTotalCount(azureSearchOption, azureSearchResult);
+
+    // ASSERT
+    expect(result).toBe(2);
   });
 });
