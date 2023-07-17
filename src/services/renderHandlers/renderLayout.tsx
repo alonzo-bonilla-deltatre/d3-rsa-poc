@@ -4,14 +4,21 @@ import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 import logger from '@/utilities/logger';
 
+import renderFooter from '@/components/layouts/Footer/FooterWrapper';
+import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';
+import renderHeader from '@/components/layouts/Header/HeaderWrapper';
 import renderSection from '@/components/layouts/Section';
 import renderTwoColumns from '@/components/layouts/TwoColumns/TwoColumnsWrapper';
-import renderHeader from '@/components/layouts/Header/HeaderWrapper';
-import renderFooter from '@/components/layouts/Footer/FooterWrapper';
 
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   Section: renderSection,
   TwoColumns: renderTwoColumns,
+  Columns66: renderDynamicGrid('6-6'),
+  Columns93: renderDynamicGrid('9-3'),
+  Columns39: renderDynamicGrid('3-9'),
+  Columns3333: renderDynamicGrid('3-3-3-3'),
+  Columns444: renderDynamicGrid('4-4-4'),
+  Columns363: renderDynamicGrid('3-6-3'),
   Header: renderHeader,
   Footer: renderFooter,
 };

@@ -17,7 +17,7 @@ export const getAssetsByTag = async (tag: string = ''): Promise<GraphicAssetsDas
       return response.data;
     })
     .catch((response) => {
-      if (response && response.data) {
+      if (response?.data) {
         const error = response.data as ApiResponseError;
         let errorMessage = `GAD API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
         logger.log(errorMessage, LoggerLevel.error);
