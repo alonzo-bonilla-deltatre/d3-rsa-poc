@@ -22,7 +22,10 @@ export const getAssetsByTag = async (tag: string = ''): Promise<GraphicAssetsDas
         let errorMessage = `GAD API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
         logger.log(errorMessage, LoggerLevel.error);
       } else {
-        logger.log(`GAD API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+        logger.log(
+          `GAD API Error: ${response.message} - ${JSON.stringify(response?.stack)}. URL: ${apiUrl}`,
+          LoggerLevel.error
+        );
       }
 
       return null;

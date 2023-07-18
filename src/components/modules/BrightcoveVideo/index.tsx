@@ -32,13 +32,15 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
     <>
       <section className="w-full container mx-auto mt-40">
         <ModuleTitle
-          canRender={properties.displayModuleTitle?.toString() === 'true'}
+          canRender={
+            properties.displayModuleTitle !== undefined && properties.displayModuleTitle?.toString() === 'true'
+          }
           heading={properties?.headingLevel}
           text={parseFieldValue(properties.moduleTitle, data.variables)}
         ></ModuleTitle>
         <div className="flex justify-between mx-20">
           <header className="w-full">
-            {properties.displayModuleTitle?.toString() === 'false' && (
+            {(properties.displayModuleTitle === undefined || properties.displayModuleTitle?.toString() === 'false') && (
               <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
             )}
             <div className="flex justify-between items-center mt-8">

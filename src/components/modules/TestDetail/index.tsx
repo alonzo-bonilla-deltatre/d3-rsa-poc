@@ -47,7 +47,9 @@ const TestDetail = async ({ ...data }: ComponentProps) => {
     <>
       <section className="mt-8">
         <ModuleTitle
-          canRender={properties.displayModuleTitle?.toString() === 'true'}
+          canRender={
+            properties.displayModuleTitle !== undefined && properties.displayModuleTitle?.toString() === 'true'
+          }
           heading={properties.headingLevel}
           text={properties.moduleTitle}
         ></ModuleTitle>

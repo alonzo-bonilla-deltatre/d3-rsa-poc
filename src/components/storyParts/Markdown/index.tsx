@@ -10,7 +10,7 @@ export const renderMarkdownStoryPart = ({ ...data }: StoryPart): React.ReactElem
     <div className="mx-20 mt-20 col-start-1">
       <Markdown
         key={nanoid()}
-        markdownText={data.content?.toString()}
+        markdownText={data.content?.toString() ?? ''}
       />
     </div>
   ) : (

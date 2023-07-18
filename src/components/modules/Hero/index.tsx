@@ -19,7 +19,7 @@ const Hero = async ({ ...data }: ComponentProps) => {
   const { moduleTitle, headingLevel, displayModuleTitle, hideDate, selectionSlug, limit } =
     data.properties as ModuleProps;
   const defaultItemLimit = 5;
-  let itemLimit = parseInt(limit ?? '');
+  let itemLimit = parseInt(limit ?? defaultItemLimit.toString());
   if (itemLimit <= 0) {
     itemLimit = defaultItemLimit;
   }
@@ -35,13 +35,13 @@ const Hero = async ({ ...data }: ComponentProps) => {
   return items && items.length > 0 ? (
     <>
       <ModuleTitle
-        canRender={displayModuleTitle?.toString() === 'true'}
+        canRender={displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>
       <HeroSwiper
         slides={getFilteredItems(items, Number(itemLimit))}
-        hideDate={hideDate?.toString() === 'true'}
+        hideDate={hideDate !== undefined && hideDate?.toString() === 'true'}
       />
     </>
   ) : (

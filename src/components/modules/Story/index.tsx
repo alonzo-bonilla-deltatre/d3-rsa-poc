@@ -40,7 +40,7 @@ const Story = async ({ ...data }: ComponentProps) => {
   }
   logger.log(`preventSettingMetadata ${props.preventSettingMetadata} `, LoggerLevel.info);
   // Override parent metadata
-  if (props.preventSettingMetadata && props.preventSettingMetadata?.toString() === 'false') {
+  if (props.preventSettingMetadata === undefined || props.preventSettingMetadata?.toString() === 'false') {
     overrideVideoMetadata(parentMetadata, storyEntity);
   }
 

@@ -47,7 +47,7 @@ const SearchBarOverlay = ({
       const searchBtn = document.querySelector('[data-tag=search]') as HTMLButtonElement;
       if (searchBtn) {
         searchBtn.setAttribute('role', 'button');
-        searchBtn.setAttribute('aria-expanded', isOpen.toString());
+        searchBtn.setAttribute('aria-expanded', isOpen?.toString());
         searchBtn.addEventListener('click', handleSearchClick);
       }
     };

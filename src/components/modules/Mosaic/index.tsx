@@ -32,7 +32,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
     <>
       <section className="mt-8">
         <ModuleTitle
-          canRender={displayModuleTitle?.toString() === 'true'}
+          canRender={displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true'}
           heading={headingLevel}
           text={moduleTitle}
         ></ModuleTitle>

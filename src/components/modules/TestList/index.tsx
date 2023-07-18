@@ -49,7 +49,7 @@ const TestList = async ({ ...data }: ComponentProps) => {
   return items?.length ? (
     <section className="mt-8">
       <ModuleTitle
-        canRender={displayModuleTitle?.toString() === 'true'}
+        canRender={displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>

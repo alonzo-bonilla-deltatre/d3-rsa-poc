@@ -21,12 +21,12 @@ type ModuleProps = {
   layout?: string;
 };
 
-const renderList = (layout: string | undefined, items: DistributionEntity[] | null) => {
+const renderList = (layout: string | undefined, items: DistributionEntity[] | null, limit: number | undefined) => {
   switch (layout) {
     case 'hero':
       return (
         <HeroSwiper
-          slides={getFilteredItems(items, Number(5))}
+          slides={getFilteredItems(items, Number(limit ?? 5))}
           hideDate={true}
         />
       );
@@ -63,11 +63,11 @@ const EditorialList = async ({ ...data }: ComponentProps) => {
     items?.length && (
       <section className="mt-8">
         <ModuleTitle
-          canRender={displayModuleTitle?.toString() === 'true'}
+          canRender={displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true'}
           heading={headingLevel}
           text={moduleTitle}
         ></ModuleTitle>
-        {renderList(layout, items)}
+        {renderList(layout, items, limit)}
       </section>
     )
   );

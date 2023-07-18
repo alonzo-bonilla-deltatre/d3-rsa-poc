@@ -31,7 +31,10 @@ export const getLinkRules = async (body: LinkRuleRequest[]): Promise<LinkRuleRes
         }
         logger.log(errorMessage, LoggerLevel.error);
       } else {
-        logger.log(`PAGE BUILDER FRONTEND API Error: ${response?.message} - ${response.stack}`, LoggerLevel.error);
+        logger.log(
+          `PAGE BUILDER FRONTEND API Error: ${response?.message} - ${JSON.stringify(response?.stack)}. URL: ${apiUrl}`,
+          LoggerLevel.error
+        );
       }
       return null;
     });

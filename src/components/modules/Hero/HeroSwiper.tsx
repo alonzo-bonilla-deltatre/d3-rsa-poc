@@ -58,8 +58,8 @@ const customPagination = (slides: DistributionEntity[]) => ({
 
 const onAutoplayTimeLeft = (swiper: any, time: number, progress: number) => {
   const activeBullet = swiper.pagination.bullets[swiper.activeIndex];
-  const activeProgressbar = activeBullet.querySelector('.c-hero-swiper__progress-bar-percent');
-  activeProgressbar.style.width = `${100 - progress * 100}%`;
+  const activeProgressbar = activeBullet?.querySelector('.c-hero-swiper__progress-bar-percent');
+  if (activeProgressbar) activeProgressbar.style.width = `${100 - progress * 100}%`;
 };
 
 export const HeroSwiper = ({ ...data }: ModuleProps) => {

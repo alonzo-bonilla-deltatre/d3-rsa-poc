@@ -37,7 +37,7 @@ const Album = async ({ ...data }: ComponentProps) => {
     notFound();
   }
   // Override parent metadata
-  if (props.preventSettingMetadata && props.preventSettingMetadata?.toString() === 'false') {
+  if (props.preventSettingMetadata === undefined || props.preventSettingMetadata?.toString() === 'false') {
     overrideAlbumMetadata(parentMetadata, albumEntity);
   }
 

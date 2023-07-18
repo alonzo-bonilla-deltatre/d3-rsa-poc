@@ -37,13 +37,16 @@ export const getPageStructure = async (path: string, token: string = ''): Promis
     .catch((response) => {
       if (response?.data) {
         const error = response.data as PageBuilderFrontendApiError;
-        let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}`;
+        let errorMessage = `PAGE BUILDER FRONTEND API Error status: ${response.status} - ${response.statusText} - Error message: ${error.title}. URL: ${apiUrl}`;
         if (error.detail) {
           errorMessage = errorMessage + ` - Error Detail: ${error.detail}`;
         }
         logger.log(errorMessage, LoggerLevel.error);
       } else {
-        logger.log(`PAGE BUILDER FRONTEND API Error: ${response?.message} - ${response?.stack}`, LoggerLevel.error);
+        logger.log(
+          `PAGE BUILDER FRONTEND API Error: ${response?.message} - ${JSON.stringify(response?.stack)}. URL: ${apiUrl}`,
+          LoggerLevel.error
+        );
       }
       return null;
     });

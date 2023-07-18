@@ -40,7 +40,10 @@ export const getTranslations = async (): Promise<Translations | null> => {
         let errorMessage = `VOCABULARY TOOL API Error status: ${response.status} - ${response.statusText} - Error message: ${error.error.message}`;
         logger.log(errorMessage, LoggerLevel.error);
       }
-      logger.log(`VOCABULARY TOOL API Error: ${response?.message} - ${response?.stack}`, LoggerLevel.error);
+      logger.log(
+        `VOCABULARY TOOL API Error: ${response?.message} - ${JSON.stringify(response?.stack)}. URL: ${apiUrl}`,
+        LoggerLevel.error
+      );
       return null;
     });
 };

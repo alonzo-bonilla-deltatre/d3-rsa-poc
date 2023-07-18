@@ -34,7 +34,7 @@ export const getEntity = async (
       return result && result.length > 0 ? result[0] : null;
     })
     .catch((response) => {
-      handleError(response);
+      handleError(apiUrl, response);
       return null;
     });
 };
@@ -65,7 +65,7 @@ export const getAllEntities = async (
       return response.data;
     })
     .catch((response) => {
-      handleError(response);
+      handleError(apiUrl, response);
       return null;
     });
 };
@@ -89,7 +89,7 @@ export const getSelection = async (
       return response.data;
     })
     .catch((response) => {
-      handleError(response);
+      handleError(apiUrl, response);
       return null;
     });
 };
@@ -110,12 +110,15 @@ export const getEntityList = async (
   return null;
 };
 
-const handleError = (response: any) => {
+const handleError = (apiUrl: string, response: any) => {
   if (response?.data) {
     const error = response.data as ForgeApiError;
     let errorMessage = `FORGE DISTRIBUTION API Error status: ${response.status} - ${response.statusText} - Error message: ${error?.title}`;
     logger.log(errorMessage, LoggerLevel.error);
   } else {
-    logger.log(`FORGE DISTRIBUTION API Error: ${response.message} - ${response.stack}`, LoggerLevel.error);
+    logger.log(
+      `FORGE DISTRIBUTION API Error: ${response.message} - ${JSON.stringify(response?.stack)}. URL: ${apiUrl}`,
+      LoggerLevel.error
+    );
   }
 };

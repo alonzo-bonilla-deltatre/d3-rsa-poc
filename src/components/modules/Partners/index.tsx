@@ -28,7 +28,7 @@ const Partners = async ({ ...data }: ComponentProps) => {
   return (
     <section className="relative mx-60 mt-20 col-start-1">
       <ModuleTitle
-        canRender={displayModuleTitle?.toString() === 'true'}
+        canRender={displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true'}
         heading="h3"
         text={moduleTitle}
       ></ModuleTitle>

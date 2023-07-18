@@ -32,12 +32,14 @@ const Calendar = async ({ ...data }: ComponentProps) => {
   let firstItemExpandedRendered = false;
 
   const marginTopCalendarContainer =
-    displayModuleTitle?.toString() === 'true' && moduleTitle ? 'mt-[140px]' : 'mt-[200px]';
+    displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true' && moduleTitle
+      ? 'mt-[140px]'
+      : 'mt-[200px]';
 
   return (
     <div className="container mx-auto border-b border-[#FFFFFF33]">
       <ModuleTitle
-        canRender={displayModuleTitle?.toString() === 'true'}
+        canRender={displayModuleTitle !== undefined && displayModuleTitle?.toString() === 'true'}
         heading={headingLevel}
         text={moduleTitle}
       ></ModuleTitle>
