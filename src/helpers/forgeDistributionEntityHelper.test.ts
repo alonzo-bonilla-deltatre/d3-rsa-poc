@@ -116,6 +116,7 @@ const tag2: Tag = {
 
 const mockedEntities: DistributionEntity[] = [
   {
+    id: 'entity-1',
     type: 'entity',
     _translationId: 'entity-1',
     _entityId: 'entity-1',
@@ -137,6 +138,7 @@ const mockedEntities: DistributionEntity[] = [
     parts: [],
   },
   {
+    id: 'entity-2',
     type: 'entity',
     _translationId: 'entity-2',
     _entityId: 'entity-2',
@@ -161,6 +163,7 @@ const mockedEntities: DistributionEntity[] = [
 
 const mockedEntitiesWithIncompleteThumbnail: DistributionEntity[] = [
   {
+    id: 'entity-1',
     type: 'entity',
     _translationId: 'entity-1',
     _entityId: 'entity-1',
@@ -182,6 +185,7 @@ const mockedEntitiesWithIncompleteThumbnail: DistributionEntity[] = [
     parts: [],
   },
   {
+    id: 'entity-2',
     type: 'entity',
     _translationId: 'entity-2',
     _entityId: 'entity-2',

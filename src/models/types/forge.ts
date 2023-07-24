@@ -1,6 +1,7 @@
 import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
 import { StoryPart } from '@/models/types/storyPart';
+import { LinkRuleVariation } from '@/models/types/linkRule';
 
 export type DistributionEntity = {
   id: string;
@@ -26,7 +27,9 @@ export type DistributionEntity = {
   parts: StoryPart[];
   entityCode?: string;
   url?: string;
+  [key: string]: any;
 };
+
 export type AlbumEntity = DistributionEntity & {
   description: string;
   elements: DistributionEntity[] | null;
@@ -66,4 +69,5 @@ export type ForgeDistributionApiOption = {
   limit?: number;
   tags?: string;
   variables: Variable[];
+  linkRuleVariations?: LinkRuleVariation[];
 } | null;

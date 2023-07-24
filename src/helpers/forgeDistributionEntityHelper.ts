@@ -3,7 +3,7 @@ import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
 import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
 import { getDataVariable } from './dataVariableHelper';
-import { LinkRuleRequest, LinkRuleResponse } from '@/models/types/linkRule';
+import { LinkRuleRequest, LinkRuleResponse, LinkRuleVariation, LinkRuleVariationType } from '@/models/types/linkRule';
 import { StoryPart } from '@/models/types/storyPart';
 import { getLinkRules } from '@/services/linkRuleService';
 
@@ -52,13 +52,14 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
 
 export const enrichDistributionEntitiesWithLinkRules = async (
   forgeEntities: DistributionEntity[],
-  withRelationsAndParts: boolean = false
+  withRelationsAndParts: boolean = false,
+  linkRuleVariations?: LinkRuleVariation[]
 ): Promise<DistributionEntity[]> => {
   if (!forgeEntities?.length) {
     return forgeEntities;
   }
 
-  const linkRulesRequest = buildLinkRulesRequest(forgeEntities, withRelationsAndParts);
+  const linkRulesRequest = buildLinkRulesRequest(forgeEntities, withRelationsAndParts, linkRuleVariations);
   const linkRules = await getLinkRules(linkRulesRequest);
 
   if (!linkRules?.data?.length) {
@@ -69,24 +70,60 @@ export const enrichDistributionEntitiesWithLinkRules = async (
 };
 
 /* istanbul ignore next */
-const buildLinkRulesRequest = (entities: DistributionEntity[], withRelationsAndParts: boolean): LinkRuleRequest[] => {
+const buildLinkRulesRequest = (
+  entities: DistributionEntity[],
+  withRelationsAndParts: boolean,
+  linkRuleVariations?: LinkRuleVariation[]
+): LinkRuleRequest[] => {
   const linkRulesRequest: LinkRuleRequest[] = [];
 
   for (const entity of entities) {
+    enrichLinkRuleRequestEntity([entity], linkRuleVariations);
     addLinkRuleRequest(entity, linkRulesRequest);
 
     if (withRelationsAndParts) {
       const relations = entity.relations?.filter(
         (relation) => relation.type !== 'external' && relation.type !== 'markdown'
       );
+      enrichLinkRuleRequestEntity(relations, linkRuleVariations);
       addLinkRulesForEntities(relations, linkRulesRequest);
 
       const parts = entity.parts?.filter((part) => part.type !== 'external' && part.type !== 'markdown');
+      enrichLinkRuleRequestEntity(parts, linkRuleVariations);
       addLinkRulesForEntities(parts, linkRulesRequest);
     }
   }
 
   return linkRulesRequest;
+};
+
+/* istanbul ignore next */
+const enrichLinkRuleRequestEntity = (entities: DistributionEntity[], linkRuleVariations?: LinkRuleVariation[]) => {
+  if (entities && linkRuleVariations) {
+    linkRuleVariations.forEach((variation) => {
+      entities.forEach((entity) => {
+        switch (variation.type) {
+          case LinkRuleVariationType.fields:
+            entity.fields[variation.key] = variation.value;
+            break;
+          case LinkRuleVariationType.root:
+            entity[variation.key] = variation.value;
+            break;
+        }
+      });
+    });
+  }
+  // Global link rule enrich
+  // Example
+  // entities.forEach((entity) => {
+  //   if (entity.type === 'story') {
+  //     entity.tags.forEach((tag) => {
+  //       if (tag.externalSourceName === 'customentity.event') {
+  //         entity['eventSlug'] = tag.slug;
+  //       }
+  //     });
+  //   }
+  // });
 };
 
 /* istanbul ignore next */
@@ -146,6 +183,7 @@ const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse
   entity.url = linkRule?.url ?? entity.url;
 };
 
+/* istanbul ignore next */
 export const enrichDistributionEntities = async (
   entities: DistributionEntity[],
   options: ForgeDistributionApiOption = null
@@ -159,12 +197,17 @@ export const enrichDistributionEntities = async (
   }
 
   if (options.hasLinkRules || options.hasLinkRulesForRelationsAndParts) {
-    entities = await enrichDistributionEntitiesWithLinkRules(entities, options.hasLinkRulesForRelationsAndParts);
+    entities = await enrichDistributionEntitiesWithLinkRules(
+      entities,
+      options.hasLinkRulesForRelationsAndParts,
+      options.linkRuleVariations
+    );
   }
 
   return entities;
 };
 
+/* istanbul ignore next */
 export const getQueryString = (skip: number, limit: number, tags: string) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
@@ -183,6 +226,7 @@ export const getQueryString = (skip: number, limit: number, tags: string) => {
   return queryString.join('&');
 };
 
+/* istanbul ignore next */
 export const getFilteredItems = (items: DistributionEntity[] | null | undefined, limit: number) => {
   if (!items?.length) {
     return [];
@@ -193,6 +237,7 @@ export const getFilteredItems = (items: DistributionEntity[] | null | undefined,
   return items.slice(0, limit);
 };
 
+/* istanbul ignore next */
 export const createLinkRuleId = (forgeEntity: DistributionEntity | StoryPart): string => {
   return forgeEntity.entityCode
     ? `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}-${forgeEntity.entityCode}`

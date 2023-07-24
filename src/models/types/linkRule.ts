@@ -22,3 +22,14 @@ export type LinkRuleRequest = {
   culture: string;
   environment: string;
 };
+
+export type LinkRuleVariation = {
+  key: string;
+  value: string;
+  type: LinkRuleVariationType;
+};
+
+export enum LinkRuleVariationType {
+  fields = 'fields',
+  root = 'root',
+}
