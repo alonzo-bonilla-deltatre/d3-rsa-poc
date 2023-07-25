@@ -15,6 +15,14 @@ export function middleware(request: NextRequest) {
     const redirectUrl = `/search/${pathName}`.replace('//', '/').concat(`${request.nextUrl.search}`);
     return NextResponse.rewrite(new URL(redirectUrl, request.url));
   }
+  if (request.nextUrl.searchParams.has('appview') || request.nextUrl.searchParams.has('appView')) {
+    const appView = request.nextUrl.searchParams.get('appview') ?? request.nextUrl.searchParams.get('appView');
+    if (appView?.toLowerCase() === 'true') {
+      const pathName = request.nextUrl.pathname;
+      const redirectUrl = `/appView/${appView}/${pathName}`.replace('//', '/').concat(`${request.nextUrl.search}`);
+      return NextResponse.rewrite(new URL(redirectUrl, request.url));
+    }
+  }
   return NextResponse.next();
 }
 

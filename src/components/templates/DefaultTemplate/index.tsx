@@ -5,6 +5,7 @@ import { getHeaderStructure } from '@/services/headerService';
 import { renderItem, renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
 import React, { use } from 'react';
+import { getAppViewVariable } from '@/helpers/dataVariableHelper';
 
 const DefaultTemplate = ({ ...props }: ComponentProps) => {
   const mainSlot = 'main';
@@ -12,6 +13,7 @@ const DefaultTemplate = ({ ...props }: ComponentProps) => {
   const headerStructureItem = headerStructure?.structure;
   const footerStructure = use(getFooterStructure(props.variables, props.previewToken)) as PageStructureData;
   const footerStructureItem = footerStructure?.structure;
+  const appView = getAppViewVariable(props.variables);
 
   return (
     <div
@@ -19,7 +21,9 @@ const DefaultTemplate = ({ ...props }: ComponentProps) => {
       className="overflow-hidden flex flex-col justify-between min-h-[100vh]"
     >
       {/* Header */}
-      {headerStructureItem && renderItem(headerStructureItem, props.variables, props.metadata, props.previewToken)}
+      {headerStructureItem &&
+        !appView &&
+        renderItem(headerStructureItem, props.variables, props.metadata, props.previewToken)}
       <main
         id="main"
         className="grow"
@@ -27,7 +31,9 @@ const DefaultTemplate = ({ ...props }: ComponentProps) => {
         {renderItemsInSlot(props.items, mainSlot, props.variables, props.metadata, props.previewToken)}
       </main>
       {/* Footer */}
-      {footerStructureItem && renderItem(footerStructureItem, props.variables, props.metadata, props.previewToken)}
+      {footerStructureItem &&
+        !appView &&
+        renderItem(footerStructureItem, props.variables, props.metadata, props.previewToken)}
     </div>
   );
 };

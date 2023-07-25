@@ -1,5 +1,5 @@
 import { Variable } from '@/models/types/pageStructure';
-import { getDataVariable } from './dataVariableHelper';
+import { getAppViewVariable, getBooleanVariable, getDataVariable } from './dataVariableHelper';
 
 describe('getDataVariable function', () => {
   const variables: Variable[] = [
@@ -38,5 +38,172 @@ describe('getDataVariable function', () => {
     const undefinedVariables: Variable[] | undefined = undefined;
     const result = getDataVariable(undefinedVariables, variableToLook);
     expect(result).toEqual('');
+  });
+});
+
+describe('getAppViewVariable function', () => {
+  const variables: Variable[] = [
+    {
+      key: 'true-variable',
+      type: 'true-variable',
+      keyValue: {
+        value: 'true',
+        valueType: 'trueType',
+      },
+    },
+    {
+      key: 'false-variable',
+      type: 'false-variable',
+      keyValue: {
+        value: 'false',
+        valueType: 'falseType',
+      },
+    },
+  ];
+
+  it('should return false if variables is undefined', () => {
+    const variableToLook = '';
+    const undefinedVariables: Variable[] | undefined = undefined;
+    const result = getAppViewVariable(undefinedVariables, variableToLook);
+    expect(result).toEqual(false);
+  });
+
+  it('should return true if variables is set true', () => {
+    const variableToLook = 'true-variable';
+    const result = getAppViewVariable(variables, variableToLook);
+    expect(result).toEqual(true);
+  });
+
+  it('should return false if variables is set false', () => {
+    const variableToLook = 'false-variable';
+    const result = getAppViewVariable(variables, variableToLook);
+    expect(result).toEqual(false);
+  });
+
+  it('should return true of the default variable if is set to true and variableToLook is not set', () => {
+    const customVariables = [
+      ...variables,
+      {
+        key: 'appView',
+        type: 'appView',
+        keyValue: {
+          value: 'true',
+          valueType: 'boolean',
+        },
+      },
+    ];
+    const result = getAppViewVariable(customVariables);
+    expect(result).toEqual(true);
+  });
+
+  it('should return false of the default variable if is set to true and variableToLook is empty', () => {
+    const variableToLook = '';
+    const result = getAppViewVariable(variables, variableToLook);
+    expect(result).toEqual(false);
+  });
+
+  it('should return true of the default variable if is set to true', () => {
+    const variableToLook = 'appView';
+    const customVariables = [
+      ...variables,
+      {
+        key: 'appView',
+        type: 'appView',
+        keyValue: {
+          value: 'true',
+          valueType: 'boolean',
+        },
+      },
+    ];
+    const result = getAppViewVariable(customVariables, variableToLook);
+    expect(result).toEqual(true);
+  });
+
+  it('should return false of the default variable if is set to false', () => {
+    const variableToLook = 'appView';
+    const customVariables = [
+      ...variables,
+      {
+        key: 'appView',
+        type: 'appView',
+        keyValue: {
+          value: 'false',
+          valueType: 'boolean',
+        },
+      },
+    ];
+    const result = getAppViewVariable(customVariables, variableToLook);
+    expect(result).toEqual(false);
+  });
+
+  it('should return false of the default variable if is set but is not a boolean value', () => {
+    const variableToLook = 'appView';
+    const customVariables = [
+      ...variables,
+      {
+        key: 'appView',
+        type: 'appView',
+        keyValue: {
+          value: 'xxx',
+          valueType: 'boolean',
+        },
+      },
+    ];
+    const result = getAppViewVariable(customVariables, variableToLook);
+    expect(result).toEqual(false);
+  });
+});
+
+describe('getBooleanVariable function', () => {
+  const variables: Variable[] = [
+    {
+      key: 'true-variable',
+      type: 'true-variable',
+      keyValue: {
+        value: 'true',
+        valueType: 'trueType',
+      },
+    },
+    {
+      key: 'false-variable',
+      type: 'false-variable',
+      keyValue: {
+        value: 'false',
+        valueType: 'falseType',
+      },
+    },
+    {
+      key: 'xxx-variable',
+      type: 'xxx-variable',
+      keyValue: {
+        value: 'xxx',
+        valueType: 'xxxType',
+      },
+    },
+  ];
+
+  it('should return false if variables is undefined', () => {
+    const variableToLook = '';
+    const undefinedVariables: Variable[] | undefined = undefined;
+    const result = getBooleanVariable(undefinedVariables, variableToLook);
+    expect(result).toEqual(false);
+  });
+
+  it('should return true if variables is set true', () => {
+    const variableToLook = 'true-variable';
+    const result = getBooleanVariable(variables, variableToLook);
+    expect(result).toEqual(true);
+  });
+
+  it('should return false if variables is set false', () => {
+    const variableToLook = 'false-variable';
+    const result = getBooleanVariable(variables, variableToLook);
+    expect(result).toEqual(false);
+  });
+
+  it('should return false of the default variable if is set but is not a boolean value', () => {
+    const variableToLook = 'xxx-variable';
+    const result = getBooleanVariable(variables, variableToLook);
+    expect(result).toEqual(false);
   });
 });
