@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Mosaic = dynamic(() => import('@/components/modules/Mosaic'));
+const Mosaic = dynamic(() => import('@/components/modules/Mosaic/Mosaic'));
 
 const MosaicListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Mosaic {...data} />;

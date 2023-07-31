@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Header = dynamic(() => import('@/components/layouts/Header'));
+const Header = dynamic(() => import('@/components/layouts/Header/Header'));
 
 const HeaderWrapper = ({ ...data }: ComponentProps) => <Header {...data} />;
 

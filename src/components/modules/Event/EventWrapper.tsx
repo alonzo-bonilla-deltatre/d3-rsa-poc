@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Event = dynamic(() => import('@/components/modules/Event/index'));
+const Event = dynamic(() => import('@/components/modules/Event/Event'));
 
 const EventWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Event {...data} />;

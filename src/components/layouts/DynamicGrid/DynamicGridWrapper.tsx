@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { ComponentProps } from '@/models/types/components';
 
 // @ts-ignore
-const DynamicGrid = dynamic(() => import('@/components/layouts/DynamicGrid'));
+const DynamicGrid = dynamic(() => import('@/components/layouts/DynamicGrid/DynamicGrid'));
 
 const renderHOC = (gridTemplate: string = '6-6') => {
   const render = ({ ...data }: ComponentProps) => {

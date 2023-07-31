@@ -1,4 +1,4 @@
-import SearchBarOverlay from '@/components/common/SearchBarOverlay';
+import SearchBarOverlay from '@/components/common/SearchBarOverlay/SearchBarOverlay';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 import type { Meta, StoryObj } from '@storybook/react';
 

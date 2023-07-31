@@ -10,7 +10,7 @@ import { Metadata } from 'next';
 import { renderItem } from '@/services/renderService';
 import { requestUrlParser } from '@/utilities/requestUrlParser';
 import { initI18n } from '@/utilities/i18n';
-import ThemingVariables from '@/components/common/ThemingVariables';
+import ThemingVariables from '@/components/common/ThemingVariables/ThemingVariables';
 import { enrichPageMetadata, enrichPageVariables, getPageData } from '@/app/pageHelpers';
 import { notFound } from 'next/navigation';
 import { AzureSearchOption } from '@/models/types/azureSearch';

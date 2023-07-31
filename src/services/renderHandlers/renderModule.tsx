@@ -5,12 +5,7 @@ import { ComponentProps } from '@/models/types/components';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 /**/
 import renderPromo from '@/components/modules/Promo/PromoWrapper';
-import renderAdv from '@/components/modules/Adv/AdvWrapper';
-import renderPromoGrid from '@/components/modules/PromoGrid/PromoGridWrapper';
 import renderHero from '@/components/modules/Hero/HeroWrapper';
-import renderCalendar from '@/components/modules/Calendar/CalendarWrapper';
-import renderTestDetail from '@/components/modules/TestDetail/TestDetailWrapper';
-import renderTestList from '@/components/modules/TestList/TestListWrapper';
 import renderMosaicList from '@/components/modules/Mosaic/MosaicWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
@@ -26,15 +21,6 @@ import renderEvent from '@/components/modules/Event/EventWrapper';
 import React from 'react';
 
 const componentList: Record<any, (props: ComponentProps) => React.ReactElement> = {
-  PocAdv: renderAdv,
-  PocPromoGrid: renderPromoGrid,
-  PocHero: renderHero,
-  PocCalendar: renderCalendar,
-  PocTestDetail: renderTestDetail,
-  PocTestList: renderTestList,
-  PocTestMosaic: renderMosaicList,
-
-  // products-demo modules
   HtmlContent: renderHtmlContent,
   GraphicAsset: renderGraphicAsset,
   Hero: renderHero,

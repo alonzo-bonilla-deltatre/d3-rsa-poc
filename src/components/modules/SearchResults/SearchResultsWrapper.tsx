@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const SearchResults = dynamic(() => import('@/components/modules/SearchResults/index'));
+const SearchResults = dynamic(() => import('@/components/modules/SearchResults/SearchResults'));
 
 const SearchResultsWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <SearchResults {...data} />;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CallToAction from '@/components/common/CallToAction';
+import CallToAction from '@/components/common/CallToAction/CallToAction';
 
 const meta: Meta<typeof CallToAction> = {
   title: 'UiComponents/CallToAction',

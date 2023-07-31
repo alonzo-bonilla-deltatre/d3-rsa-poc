@@ -1,4 +1,4 @@
-﻿import Oembed from '@/components/common/Oembed';
+﻿import Oembed from '@/components/common/Oembed/Oembed';
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
 

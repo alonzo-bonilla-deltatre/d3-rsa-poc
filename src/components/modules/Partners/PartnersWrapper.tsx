@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Partners = dynamic(() => import('@/components/modules/Partners/index'));
+const Partners = dynamic(() => import('@/components/modules/Partners/Partners'));
 
 const PartnersWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Partners {...data} />;

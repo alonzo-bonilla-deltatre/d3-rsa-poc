@@ -2,7 +2,7 @@ import { ComponentProps } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Menu = dynamic(() => import('@/components/modules/Menu/index'));
+const Menu = dynamic(() => import('@/components/modules/Menu/Menu'));
 
 const MenuWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Menu {...data} />;

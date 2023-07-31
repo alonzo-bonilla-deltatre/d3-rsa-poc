@@ -1,7 +1,7 @@
 /* instanbul ignore file */
 
 'use client';
-import CallToAction from '@/components/common/CallToAction';
+import CallToAction from '@/components/common/CallToAction/CallToAction';
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   return (

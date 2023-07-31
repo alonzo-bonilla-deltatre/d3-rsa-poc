@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import HtmlContent from '@/components/modules/HtmlContent';
+import HtmlContent from '@/components/modules/HtmlContent/HtmlContent';
 import { sampleHtmlContent } from '@/__mocks__/modules/sampleHtmlContent';
 import { PageStructureItemType } from '@/models/types/pageStructure';
 

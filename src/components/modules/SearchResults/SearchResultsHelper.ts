@@ -20,7 +20,7 @@ export const createSearchResultItems = (facetValue: string, searchResult: AzureS
   return items;
 };
 
-export const getSearchPath = (variables: Variable[]) => {
+export const getSearchPath = (variables: Variable[] | undefined) => {
   let searchPath = getDataVariable(variables, 'search_path');
   // fallback based on "pagePath" var
   if (!searchPath) {
@@ -45,7 +45,6 @@ export const getPaginationNextUrl = (
   paginationUrl: string
 ) => {
   const page = azureSearchOption.page > 0 ? azureSearchOption.page + 1 : 1;
-  console.log('PAGE: ', page);
   return (searchResult.keyPages.items.length &&
     searchResult.keyPages.items.length === azureSearchOption.keyPagesLimit) ||
     (items.length && items.length === azureSearchOption.limit)

@@ -3,15 +3,12 @@ import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 import logger from '@/utilities/logger';
-/* */
-import renderDefaultTemplate from '@/components/templates/DefaultTemplate';
-import renderNoTemplate from '@/components/templates/NoTemplate';
+import renderDefault from '@/components/templates/Default/Default';
+import renderNoTemplate from '@/components/templates/NoTemplate/NoTemplate';
 
 const templateList: Record<any, (props: ComponentProps) => React.ReactElement> = {
-  PocDefault: renderDefaultTemplate,
   'No Template': renderNoTemplate,
-  // products-demo templates
-  Default: renderDefaultTemplate,
+  Default: renderDefault,
 };
 
 export const renderTemplate = (

@@ -15,8 +15,10 @@ export const getDataVariable = (variables: Variable[] | undefined, variableToLoo
  * @param variableToLook the variable to look for, default value 'appView'
  * @returns the variable boolean value, if found true, or false if is empty string or not boolean value
  */
-export const getAppViewVariable = (variables: Variable[] | undefined, variableToLook: string = 'appView'): boolean =>
-  getBooleanVariable(variables, variableToLook);
+export const getAppViewVariable = (
+  variables: Variable[] | undefined,
+  variableToLook: string = 'appView'
+): boolean | undefined => getBooleanVariable(variables, variableToLook);
 
 /**
  * Get variable's value from Components' props
@@ -24,5 +26,11 @@ export const getAppViewVariable = (variables: Variable[] | undefined, variableTo
  * @param variableToLook the variable to look for
  * @returns the variable boolean value, if found true, or false if is empty string or not boolean value
  */
-export const getBooleanVariable = (variables: Variable[] | undefined, variableToLook: string): boolean =>
-  variables?.find((variable: Variable) => variable.key === variableToLook)?.keyValue?.value?.toLowerCase() === 'true';
+export const getBooleanVariable = (variables: Variable[] | undefined, variableToLook: string): boolean | undefined => {
+  if (!variables?.some((variable: Variable) => variable.key === variableToLook)) {
+    return undefined;
+  }
+  return (
+    variables?.find((variable: Variable) => variable.key === variableToLook)?.keyValue?.value?.toLowerCase() === 'true'
+  );
+};

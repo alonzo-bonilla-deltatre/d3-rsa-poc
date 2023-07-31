@@ -1,7 +1,8 @@
-import ImgIcon from '@/components/common/ImgIcon';
+import ImgIcon from '@/components/common/ImgIcon/ImgIcon';
 import { MenuItem } from '@/models/types/menu';
 import { translate } from '@/utilities/i18n';
-import './MenuNavItem.scss';
+import '@/components/common/MenuNavItem/MenuNavItem.scss';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type MenuNavItemProps = {
   menuItem?: MenuItem;
@@ -14,7 +15,7 @@ const MenuNavItem = ({ ...data }: MenuNavItemProps) => {
   const { menuItem, navItemClasses, parentId, iconSize } = data as MenuNavItemProps;
   const parentid = parentId;
   const itemLink = menuItem?.link ?? '#nolink';
-  const isActive = menuItem?.isActive?.toString() === 'true';
+  const isActive = getBooleanProperty(menuItem?.isActive);
 
   const isActiveClass = isActive ? 'is-active' : '';
   const itemText = menuItem?.tag ? translate(menuItem?.tag) : menuItem?.text;

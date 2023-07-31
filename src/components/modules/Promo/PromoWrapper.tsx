@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Promo = dynamic(() => import('@/components/modules/Promo/index'));
+const Promo = dynamic(() => import('@/components/modules/Promo/Promo'));
 
 const PromoWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Promo {...data} />;

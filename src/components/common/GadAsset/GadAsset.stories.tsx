@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 
-import GadAsset from '@/components/common/GadAsset';
+import GadAsset from '@/components/common/GadAsset/GadAsset';
 import { sampleLogoWithFormat } from '@/__mocks__/components/sampleLogos';
 
 const meta: Meta<typeof GadAsset> = {

@@ -68,6 +68,6 @@ export type ForgeDistributionApiOption = {
   skip?: number;
   limit?: number;
   tags?: string;
-  variables: Variable[];
+  variables?: Variable[];
   linkRuleVariations?: LinkRuleVariation[];
 } | null;

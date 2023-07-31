@@ -1,4 +1,4 @@
-import Overlay from '@/components/common/Overlay';
+import Overlay from '@/components/common/Overlay/Overlay';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 import type { Meta, StoryObj } from '@storybook/react';
 

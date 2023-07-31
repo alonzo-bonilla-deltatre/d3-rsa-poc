@@ -2,7 +2,7 @@ import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { Variable } from '@/models/types/pageStructure';
 import { getPageStructure } from '@/services/pageService';
 
-export const getHeaderStructure = async (variables: Variable[] | undefined, previewToken: string) => {
+export const getHeaderStructure = async (variables: Variable[] | undefined, previewToken: string | undefined) => {
   const headerSource: string = getDataVariable(variables, 'inc_header') ?? '';
 
   if (headerSource === null || !headerSource?.length) {

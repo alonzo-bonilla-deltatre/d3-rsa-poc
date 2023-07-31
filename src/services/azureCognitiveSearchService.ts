@@ -16,7 +16,7 @@ import { Variable } from '@/models/types/pageStructure';
 
 export const search = async (
   azureSearchOption: AzureSearchOption,
-  variables: Variable[]
+  variables?: Variable[]
 ): Promise<AzureSearchResult> => {
   let azureSearchResult: AzureSearchResult = {
     totalCount: 0,

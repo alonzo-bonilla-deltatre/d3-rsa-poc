@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Hero = dynamic(() => import('@/components/modules/Hero/index'));
+const Hero = dynamic(() => import('@/components/modules/Hero/Hero'));
 
 const HeroWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Hero {...data} />;

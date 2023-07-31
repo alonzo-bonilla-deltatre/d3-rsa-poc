@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Header from '@/components/layouts/Header';
+import Header from '@/components/layouts/Header/Header';
 import { sampleHeader } from '@/__mocks__/layouts/sampleHeader';
 import { PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
 

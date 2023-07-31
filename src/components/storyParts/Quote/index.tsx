@@ -1,4 +1,4 @@
-﻿import Quote from '@/components/common/Quote';
+﻿import Quote from '@/components/common/Quote/Quote';
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
 

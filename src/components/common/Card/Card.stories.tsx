@@ -3,10 +3,9 @@ import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import { sampleStory } from '@/__mocks__/entities/story';
 import { DistributionEntity } from '@/models/types/forge';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
-import Card from '@/components/common/Card';
-import CardFullSquared from '@/components/common/cards/CardFullSquared';
-import CardFullPortrait from '@/components/common/cards/CardFullPortrait';
-import CardDefault from '@/components/common/cards/CardDefault';
+import Card from '@/components/common/Card/Card';
+import { CardDefault, CardFullPortrait, CardFullSquared } from '@/components/common/cards';
+
 const meta: Meta<typeof Card> = {
   title: 'UiComponents/Card',
   component: Card,

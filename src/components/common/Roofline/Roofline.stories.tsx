@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ArrowRight from '@/components/icons/ArrowRight';
-import Roofline from '@/components/common/Roofline';
+import ArrowRight from '@/components/icons/ArrowRight/ArrowRight';
+import Roofline from '@/components/common/Roofline/Roofline';
 import { sampleContext } from '@/__mocks__/entities/story';
 import { sampleAssetSquared } from '@/__mocks__/components/sampleGadAsset';
 

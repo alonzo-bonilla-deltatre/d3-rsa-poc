@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const EditorialList = dynamic(() => import('@/components/modules/EditorialList/index'));
+const EditorialList = dynamic(() => import('@/components/modules/EditorialList/EditorialList'));
 
 const EditorialListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <EditorialList {...data} />;

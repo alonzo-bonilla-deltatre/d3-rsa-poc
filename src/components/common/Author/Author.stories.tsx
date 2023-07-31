@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Author from '@/components/common/Author';
+import Author from '@/components/common/Author/Author';
 
 const meta: Meta<typeof Author> = {
   title: 'UiComponents/Author',

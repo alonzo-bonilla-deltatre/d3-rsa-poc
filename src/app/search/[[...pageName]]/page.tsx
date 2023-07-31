@@ -1,4 +1,4 @@
-import ThemingVariables from '@/components/common/ThemingVariables';
+import ThemingVariables from '@/components/common/ThemingVariables/ThemingVariables';
 import { renderItem } from '@/services/renderService';
 import { initI18n } from '@/utilities/i18n';
 import { requestUrlParser } from '@/utilities/requestUrlParser';

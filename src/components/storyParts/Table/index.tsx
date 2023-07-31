@@ -1,4 +1,4 @@
-﻿import Table from '@/components/common/Table';
+﻿import Table from '@/components/common/Table/Table';
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
 

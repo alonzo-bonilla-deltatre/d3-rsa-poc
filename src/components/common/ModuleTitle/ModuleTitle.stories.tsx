@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ModuleTitle from '@/components/common/ModuleTitle';
+import ModuleTitle from '@/components/common/ModuleTitle/ModuleTitle';
 
 const meta: Meta<typeof ModuleTitle> = {
   title: 'UiComponents/ModuleTitle',

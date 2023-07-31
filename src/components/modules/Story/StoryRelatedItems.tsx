@@ -1,4 +1,4 @@
-import Title from '@/components/common/Title';
+import Title from '@/components/common/Title/Title';
 import { DistributionEntity } from '@/models/types/forge';
 import { renderRelatedItem } from '@/services/renderHandlers/renderRelatedItems';
 

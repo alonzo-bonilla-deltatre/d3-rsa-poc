@@ -11,11 +11,10 @@ const config = {
   rootDir: './src',
   collectCoverage: true,
   collectCoverageFrom: [
-    "**/*.{ts,tsx}",
+    "**/*.ts",
     "!**/coverage/**",
     "!**/app/**",
     "!**/models/**",
-    "!**/*Wrapper.{ts,tsx}",
     "!**/*.tsx", // Components don't have tests
     "!**/*.stories.{ts,tsx,js,jsx}*",
     "!**/__mocks__/**"

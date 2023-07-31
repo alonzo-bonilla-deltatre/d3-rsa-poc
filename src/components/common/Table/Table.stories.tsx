@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Table from '@/components/common/Table';
+import Table from '@/components/common/Table/Table';
 import {
   sampleTableStoryPart1,
   sampleTableStoryPart2,

@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Story = dynamic(() => import('@/components/modules/Story/index'));
+const Story = dynamic(() => import('@/components/modules/Story/Story'));
 
 const StoryWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Story {...data} />;

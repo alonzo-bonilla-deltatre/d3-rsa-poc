@@ -1,4 +1,4 @@
-import Card from '@/components/common/Card';
+import Card from '@/components/common/Card/Card';
 import { DistributionEntity } from '@/models/types/forge';
 import { nanoid } from 'nanoid';
 import React from 'react';

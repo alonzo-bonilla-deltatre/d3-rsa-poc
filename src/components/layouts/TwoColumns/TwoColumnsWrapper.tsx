@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const TwoColumns = dynamic(() => import('@/components/layouts/TwoColumns'));
+const TwoColumns = dynamic(() => import('@/components/layouts/TwoColumns/TwoColumns'));
 
 const TwoColumnsWrapper = ({ ...data }: ComponentProps) => <TwoColumns {...data} />;
 

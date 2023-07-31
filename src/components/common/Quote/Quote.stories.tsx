@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Quote from '@/components/common/Quote';
+import Quote from '@/components/common/Quote/Quote';
 import { sampleQuoteStoryPart } from '@/__mocks__/entities/sampleStoryParts';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 

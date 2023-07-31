@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const Album = dynamic(() => import('@/components/modules/Album/index'));
+const Album = dynamic(() => import('@/components/modules/Album/Album'));
 
 const AlbumWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <Album {...data} />;

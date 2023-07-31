@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const GraphicAsset = dynamic(() => import('@/components/modules/GraphicAsset'));
+const GraphicAsset = dynamic(() => import('@/components/modules/GraphicAsset/GraphicAsset'));
 
 const GraphicAssetWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
   return <GraphicAsset {...data} />;

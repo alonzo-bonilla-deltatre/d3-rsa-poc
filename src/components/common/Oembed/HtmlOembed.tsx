@@ -1,3 +1,5 @@
+import HtmlContent from '@/components/common/HtmlContent/HtmlContent';
+
 type OembedProps = {
   html: string;
 };
@@ -8,9 +10,9 @@ const HtmlOembed = ({ ...props }: OembedProps) => {
   return html ? (
     <>
       <div className="grid grid-cols-1 relative overflow-hidden w-full">
-        <div
-          className="w-full mx-auto flex flex-col items-center"
-          dangerouslySetInnerHTML={{ __html: html }}
+        <HtmlContent
+          content={html}
+          classNames={'mx-auto flex flex-col items-center'}
         />
       </div>
     </>

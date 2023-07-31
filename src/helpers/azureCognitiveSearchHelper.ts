@@ -121,7 +121,7 @@ export const processKeyPagesDocuments = async (
 
 export const enrichSearchResultsWithDistributionEntities = async (
   items: any[],
-  variables: Variable[]
+  variables?: Variable[]
 ): Promise<void> => {
   for (const item of items) {
     item.documents = await enrichDistributionEntitiesWithLinkRules(item.documents, true);

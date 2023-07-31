@@ -20,7 +20,7 @@ export const setActiveMenuItem = (menuItems: MenuItem[], pagePath: string): Menu
  * @param variables a Variable[] array containing all the page variables
  * @returns MenuItem[] array with `link, text, tag, tooltip` properties pattern in case of pattern match
  **/
-export const parseMenuItemFields = (menuItems: MenuItem[], variables: Variable[]): MenuItem[] => {
+export const parseMenuItemFields = (menuItems: MenuItem[], variables: Variable[] | undefined): MenuItem[] => {
   menuItems.forEach((item) => {
     item.link = item.link && parseFieldValue(item.link, variables);
     item.text = item.text && parseFieldValue(item.text, variables);

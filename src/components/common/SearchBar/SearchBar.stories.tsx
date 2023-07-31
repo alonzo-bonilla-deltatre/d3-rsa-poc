@@ -1,4 +1,4 @@
-import SearchBar from '@/components/common/SearchBar';
+import SearchBar from '@/components/common/SearchBar/SearchBar';
 import { withBaseDecorator } from '@/stories/storybookDecorators';
 import type { Meta, StoryObj } from '@storybook/react';
 

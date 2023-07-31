@@ -11,9 +11,9 @@ import { getSrcWithTransformation, transformations } from '@/utilities/cloudinar
 import { formatDate } from '@/utilities/dateFormatter';
 import { nanoid } from 'nanoid';
 
-import Picture from '@/components/common/Picture';
-import Roofline from '@/components/common/Roofline';
-import './HeroSwiper.css';
+import Picture from '@/components/common/Picture/Picture';
+import Roofline from '@/components/common/Roofline/Roofline';
+import '@/components/modules/Hero/HeroSwiper.css';
 
 type ModuleProps = {
   slides: DistributionEntity[];

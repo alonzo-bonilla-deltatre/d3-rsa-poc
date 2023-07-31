@@ -10,7 +10,6 @@ const exclusionsList = [
   '**/app/**',  
   '**/models/**',  
   '**/*.tsx',  
-  '**/index.tsx',  
   '**/*.stories.*',  
   '**/*.test.ts',  
   '**/*.config.*',  

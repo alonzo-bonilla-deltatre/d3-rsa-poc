@@ -61,11 +61,11 @@ describe('getAppViewVariable function', () => {
     },
   ];
 
-  it('should return false if variables is undefined', () => {
+  it('should return undefined if variables is undefined', () => {
     const variableToLook = '';
     const undefinedVariables: Variable[] | undefined = undefined;
     const result = getAppViewVariable(undefinedVariables, variableToLook);
-    expect(result).toEqual(false);
+    expect(result).toEqual(undefined);
   });
 
   it('should return true if variables is set true', () => {
@@ -96,10 +96,10 @@ describe('getAppViewVariable function', () => {
     expect(result).toEqual(true);
   });
 
-  it('should return false of the default variable if is set to true and variableToLook is empty', () => {
+  it('should return undefined of the default variable if is set to true and variableToLook is empty', () => {
     const variableToLook = '';
     const result = getAppViewVariable(variables, variableToLook);
-    expect(result).toEqual(false);
+    expect(result).toEqual(undefined);
   });
 
   it('should return true of the default variable if is set to true', () => {
@@ -186,7 +186,7 @@ describe('getBooleanVariable function', () => {
     const variableToLook = '';
     const undefinedVariables: Variable[] | undefined = undefined;
     const result = getBooleanVariable(undefinedVariables, variableToLook);
-    expect(result).toEqual(false);
+    expect(result).toEqual(undefined);
   });
 
   it('should return true if variables is set true', () => {
@@ -201,9 +201,15 @@ describe('getBooleanVariable function', () => {
     expect(result).toEqual(false);
   });
 
-  it('should return false of the default variable if is set but is not a boolean value', () => {
+  it('should return false of the specific variable if is set but is not a boolean value', () => {
     const variableToLook = 'xxx-variable';
     const result = getBooleanVariable(variables, variableToLook);
     expect(result).toEqual(false);
+  });
+
+  it('should return undefined of the default variable if is set but is not a boolean value', () => {
+    const variableToLook = 'undefined';
+    const result = getBooleanVariable(variables, variableToLook);
+    expect(result).toEqual(undefined);
   });
 });

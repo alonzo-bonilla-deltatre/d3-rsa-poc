@@ -2,7 +2,7 @@ import { DistributionEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
 import { nanoid } from 'nanoid';
 import { StoryPart } from '@/models/types/storyPart';
-import Picture from '@/components/common/Picture';
+import Picture from '@/components/common/Picture/Picture';
 
 type PhotoPartProps = {
   image: DistributionEntity;

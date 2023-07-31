@@ -1,7 +1,7 @@
-import { PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
+import { PageStructureItemType } from '@/models/types/pageStructure';
 import { getGenericItems } from '@/__mocks__/layouts/sampleDynamicGrid';
 import type { Meta, StoryObj } from '@storybook/react';
-import DynamicGrid, { DynamicGridProps } from '@/components/layouts/DynamicGrid';
+import DynamicGrid, { DynamicGridProps } from '@/components/layouts/DynamicGrid/DynamicGrid';
 
 const meta: Meta<typeof DynamicGrid> = {
   title: 'Layouts/DynamicGrid',

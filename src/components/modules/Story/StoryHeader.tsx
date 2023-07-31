@@ -1,13 +1,14 @@
-import Author from '@/components/common/Author';
-import Date from '@/components/common/Date';
-import Picture from '@/components/common/Picture';
-import Roofline from '@/components/common/Roofline';
-import SocialIcons from '@/components/common/SocialIcons';
+import Author from '@/components/common/Author/Author';
+import Date from '@/components/common/Date/Date';
+import Picture from '@/components/common/Picture/Picture';
+import Roofline from '@/components/common/Roofline/Roofline';
+import SocialIcons from '@/components/common/SocialIcons/SocialIcons';
 import { DistributionEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
+import { Variable } from '@/models/types/pageStructure';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
-  storyEntity?: DistributionEntity;
   hideAuthor?: boolean;
   hideDate?: boolean;
   hideDescription?: boolean;
@@ -15,9 +16,11 @@ type ModuleProps = {
   hideTitle?: boolean;
   hideSocial?: boolean;
   hideRelatedItems?: boolean;
+  variables?: Variable[];
+  storyEntity: DistributionEntity;
 };
+
 const StoryHeader = ({ ...props }: ModuleProps) => {
-  const storyEntity = props.storyEntity;
   return (
     <>
       <section className="w-full container mx-auto">
@@ -25,28 +28,29 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
           <header className="w-full">
             <Roofline
               className={'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2'}
-              context={storyEntity?.context}
-              hide={props.hideRoofline}
+              context={props.storyEntity?.context}
+              hide={getBooleanProperty(props.hideRoofline)}
             ></Roofline>
-            {(props.hideTitle === undefined || props.hideTitle?.toString() === 'false') && storyEntity?.title && (
-              <h3 className="font-bold text-5xl uppercase">{storyEntity.title}</h3>
+            {!getBooleanProperty(props.hideTitle) && props.storyEntity?.title && (
+              <h3 className="font-bold text-5xl uppercase">{props.storyEntity.title}</h3>
             )}
             <div className="flex justify-between items-center mt-8">
               <div>
-                {(props.hideTitle === undefined || props.hideTitle?.toString() === 'false') &&
-                  storyEntity?.headline && <p className="mb-3">{storyEntity.headline}</p>}
+                {!getBooleanProperty(props.hideTitle) && props.storyEntity?.headline && (
+                  <p className="mb-3">{props.storyEntity.headline}</p>
+                )}
                 <Author
-                  author={storyEntity?.createdBy}
-                  hide={props.hideAuthor}
+                  author={props.storyEntity?.createdBy}
+                  hide={getBooleanProperty(props.hideAuthor)}
                 ></Author>
                 <Date
-                  date={storyEntity?.contentDate}
-                  hide={props.hideDate}
+                  date={props.storyEntity?.contentDate}
+                  hide={getBooleanProperty(props.hideDate)}
                 ></Date>
               </div>
               <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                 <div>
-                  {(props.hideSocial === undefined || props.hideSocial?.toString() === 'false') && (
+                  {!getBooleanProperty(props.hideSocial) && (
                     <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
                       <SocialIcons
                         hide={false}
@@ -62,12 +66,12 @@ const StoryHeader = ({ ...props }: ModuleProps) => {
         </div>
       </section>
       <section className="w-full container mx-auto mt-20">
-        {storyEntity?.thumbnail && (
+        {props.storyEntity?.thumbnail && (
           <div className="mt-8 col-start-1">
             <Picture
-              src={storyEntity.thumbnail?.templateUrl}
+              src={props.storyEntity.thumbnail?.templateUrl}
               transformations={transformations.thumbnailDetail}
-              alt={storyEntity.thumbnail?.title ?? ''}
+              alt={props.storyEntity.thumbnail?.title ?? ''}
               className="w-full h-full object-cover"
             />
           </div>

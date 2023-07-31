@@ -1,6 +1,6 @@
 /* instanbul ignore file */
 
-import CallToAction from '@/components/common/CallToAction';
+import CallToAction from '@/components/common/CallToAction/CallToAction';
 
 export default function NotFound() {
   return (

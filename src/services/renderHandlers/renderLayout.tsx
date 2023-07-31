@@ -7,7 +7,7 @@ import logger from '@/utilities/logger';
 import renderFooter from '@/components/layouts/Footer/FooterWrapper';
 import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';
 import renderHeader from '@/components/layouts/Header/HeaderWrapper';
-import renderSection from '@/components/layouts/Section';
+import renderSection from '@/components/layouts/Section/Section';
 import renderTwoColumns from '@/components/layouts/TwoColumns/TwoColumnsWrapper';
 
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {

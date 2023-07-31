@@ -1,7 +1,7 @@
 import { renderItem } from '@/services/renderService';
 import { requestUrlParser } from '@/utilities/requestUrlParser';
 import { initI18n } from '@/utilities/i18n';
-import ThemingVariables from '@/components/common/ThemingVariables';
+import ThemingVariables from '@/components/common/ThemingVariables/ThemingVariables';
 
 import { Metadata } from 'next';
 import { enrichPageMetadata, enrichPageVariables, getPageData } from '@/app/pageHelpers';

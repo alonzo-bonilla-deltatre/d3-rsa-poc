@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Sponsored from '@/components/common/Sponsored';
+import Sponsored from '@/components/common/Sponsored/Sponsored';
 import { sampleLogoSquared } from '@/__mocks__/components/sampleLogos';
 
 const meta: Meta<typeof Sponsored> = {

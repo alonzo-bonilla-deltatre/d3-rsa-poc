@@ -6,7 +6,7 @@ export type ComponentProps = {
   slot: string;
   slots?: string[];
   items?: StructureItem[];
-  variables: Variable[];
-  metadata: Metadata[];
-  previewToken: string;
+  variables?: Variable[];
+  metadata?: Metadata[];
+  previewToken?: string;
 };

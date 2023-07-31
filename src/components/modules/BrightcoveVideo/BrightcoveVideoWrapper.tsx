@@ -4,7 +4,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 
 // @ts-ignore
-const BrightcoveVideo = dynamic(() => import('@/components/modules/BrightcoveVideo/index'));
+const BrightcoveVideo = dynamic(() => import('@/components/modules/BrightcoveVideo/BrightcoveVideo'));
 
 const BrightcoveVideoWrapper = ({ ...props }: ComponentProps): React.ReactElement => {
   return <BrightcoveVideo {...props} />;

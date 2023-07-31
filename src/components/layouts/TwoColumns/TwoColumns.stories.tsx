@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TwoColumns from '@/components/layouts/TwoColumns';
+import TwoColumns from '@/components/layouts/TwoColumns/TwoColumns';
 import { sampleTwoColumns } from '@/__mocks__/layouts/sampleTwoColumns';
 import { PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
 
