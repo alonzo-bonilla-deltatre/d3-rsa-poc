@@ -3,8 +3,8 @@ import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 import logger from '@/utilities/logger';
-import renderDefault from '@/components/templates/Default/Default';
-import renderNoTemplate from '@/components/templates/NoTemplate/NoTemplate';
+import renderDefault from '@/components/templates/Default/DefaultWrapper';
+import renderNoTemplate from '@/components/templates/NoTemplate/NoTemplateWrapper';
 
 const templateList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   'No Template': renderNoTemplate,

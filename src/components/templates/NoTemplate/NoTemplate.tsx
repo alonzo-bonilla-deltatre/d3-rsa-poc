@@ -1,7 +1,6 @@
 import { ComponentProps } from '@/models/types/components';
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
-import { nanoid } from 'nanoid';
 
 const NoTemplate = ({ ...data }: ComponentProps) => {
   return (
@@ -16,14 +15,4 @@ const NoTemplate = ({ ...data }: ComponentProps) => {
   );
 };
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <NoTemplate
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
-
-export default render;
+export default NoTemplate;

@@ -3,7 +3,6 @@ import { PageStructureData } from '@/models/types/pageStructure';
 import { getFooterStructure } from '@/services/footerService';
 import { getHeaderStructure } from '@/services/headerService';
 import { renderItem, renderItemsInSlot } from '@/services/renderService';
-import { nanoid } from 'nanoid';
 import React, { use } from 'react';
 import { getAppViewVariable } from '@/helpers/dataVariableHelper';
 
@@ -38,14 +37,4 @@ const Default = ({ ...props }: ComponentProps) => {
   );
 };
 
-const render = ({ ...props }: ComponentProps): React.ReactElement =>
-  props ? (
-    <Default
-      key={nanoid()}
-      {...props}
-    />
-  ) : (
-    <></>
-  );
-
-export default render;
+export default Default;

@@ -15,14 +15,4 @@ const Section = ({ ...data }: ComponentProps) => {
   );
 };
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <Section
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
-
-export default render;
+export default Section;
