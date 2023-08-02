@@ -5,32 +5,47 @@
 /* Delete if you remove simplecss */
 @layer base {
   h1 {
-    @apply text-4xl;
+    @apply text-5xl font-bold;
+    margin-bottom: 2rem;
   }
 
   h2 {
-    @apply text-3xl;
+    @apply text-4xl;
+    margin-bottom: 2rem;
   }
 
   h3 {
-    @apply text-2xl;
+    @apply text-3xl;
+    margin-bottom: 2rem;
   }
 
   h4 {
-    @apply text-xl;
+    @apply text-2xl;
+    margin-bottom: 2rem;
   }
 
-  h5,
+  h5 {
+    @apply text-xl;
+    margin-bottom: 2rem;
+  }
+
   h6 {
     @apply text-lg;
+    margin-bottom: 2rem;
   }
 
   ul {
     @apply list-disc list-outside;
+    margin-bottom: 1rem;
   }
 
   ol {
     @apply list-decimal list-outside;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
   }
 }
 

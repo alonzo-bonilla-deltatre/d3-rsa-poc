@@ -17,6 +17,8 @@ import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWr
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 import renderAlbum from '@/components/modules/Album/AlbumWrapper';
 import renderEvent from '@/components/modules/Event/EventWrapper';
+import renderText from '@/components/modules/Text/TextWrapper';
+import renderImage from '@/components/modules/Image/ImageWrapper';
 
 import React from 'react';
 
@@ -34,6 +36,8 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   SearchResults: renderSearchResults,
   Album: renderAlbum,
   Event: renderEvent,
+  Text: renderText,
+  Image: renderImage,
 };
 
 export const renderModule = (

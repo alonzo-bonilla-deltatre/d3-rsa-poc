@@ -4,15 +4,18 @@ import HtmlContent from '@/components/common/HtmlContent/HtmlContent';
 
 type MarkdownProps = {
   markdownText?: string;
+
+  classNames?: string;
 };
 
 const Markdown = async ({ ...props }: MarkdownProps) => {
-  const html = await transform(props.markdownText);
+  const { markdownText, classNames } = props;
+  const html = await transform(markdownText);
   return props.markdownText ? (
     <>
       <HtmlContent
         content={html}
-        classNames={'c-markdown-story-part text-white prose lg:prose-xl'}
+        classNames={classNames ? classNames : ''}
       />
     </>
   ) : (
