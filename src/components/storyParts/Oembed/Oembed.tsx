@@ -1,8 +1,8 @@
-﻿import Oembed from '@/components/common/Oembed/Oembed';
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
+import Oembed from '@/components/common/Oembed/Oembed';
 
-const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
+const OembedStoryPart = ({ ...data }: StoryPart) =>
   data ? (
     <div className="mx-20 mt-20 col-start-1">
       <Oembed entity={data} />
@@ -11,4 +11,4 @@ const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
     <></>
   );
 
-export default renderStoryPart;
+export default OembedStoryPart;

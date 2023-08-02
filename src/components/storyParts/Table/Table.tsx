@@ -1,8 +1,8 @@
-﻿import Table from '@/components/common/Table/Table';
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
+import Table from '@/components/common/Table/Table';
 
-const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
+const TableStoryPart = ({ ...data }: StoryPart) =>
   data ? (
     <div className="mx-20 mt-20 col-start-1">
       <Table entity={data} />
@@ -11,4 +11,4 @@ const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
     <></>
   );
 
-export default renderStoryPart;
+export default TableStoryPart;

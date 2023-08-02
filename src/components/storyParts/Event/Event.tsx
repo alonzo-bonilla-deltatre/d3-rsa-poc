@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 // @ts-ignore
 const EventBanner = dynamic(() => import('@/components/common/events/EventBanner/EventBanner'));
 
-const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
-  data ? <EventBanner storyPart={data}></EventBanner> : <></>;
+const Event = ({ ...data }: StoryPart) => (data ? <EventBanner storyPart={data}></EventBanner> : <></>);
 
-export default renderStoryPart;
+export default Event;

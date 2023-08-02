@@ -1,8 +1,8 @@
-﻿import Quote from '@/components/common/Quote/Quote';
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
+import Quote from '@/components/common/Quote/Quote';
 
-const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
+const QuoteStoryPart = ({ ...data }: StoryPart) =>
   data ? (
     <div className="mx-20 mt-20 col-start-1">
       <Quote entity={data} />
@@ -11,4 +11,4 @@ const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
     <></>
   );
 
-export default renderStoryPart;
+export default QuoteStoryPart;

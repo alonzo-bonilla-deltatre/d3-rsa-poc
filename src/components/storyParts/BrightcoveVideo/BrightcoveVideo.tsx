@@ -2,7 +2,7 @@ import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer/Bri
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
 
-const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
+const BrightcoveVideo = ({ ...data }: StoryPart) =>
   data ? (
     <div className="mx-20 mt-20 col-start-1">
       <BrightcoveVideoPlayer
@@ -14,4 +14,4 @@ const renderStoryPart = ({ ...data }: StoryPart): React.ReactElement =>
     <></>
   );
 
-export default renderStoryPart;
+export default BrightcoveVideo;

@@ -3,20 +3,19 @@ import { LoggerLevel } from '@/models/types/logger';
 import logger from '@/utilities/logger';
 import { StoryPart } from '@/models/types/storyPart';
 /* */
-import { renderMarkdownStoryPart } from '@/components/storyParts/Markdown';
-import { renderPhotoStoryPart } from '@/components/storyParts/PhotoPart';
-import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVideo';
-import renderOembedStoryPart from '@/components/storyParts/Oembed';
-import renderQuoteStoryPart from '@/components/storyParts/Quote';
-import renderTableStoryPart from '@/components/storyParts/Table';
-import renderEvent from '@/components/storyParts/Event';
-import { nanoid } from 'nanoid';
+import renderMarkdownStoryPart from '@/components/storyParts/Markdown/MarkdownWrapper';
+import renderPhotoStoryPart from '@/components/storyParts/Photo/PhotoWrapper';
+import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVideo/BrightcoveVideoWrapper';
+import renderOembedStoryPart from '@/components/storyParts/Oembed/OembedWrapper';
+import renderQuoteStoryPart from '@/components/storyParts/Quote/QuoteWrapper';
+import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
+import renderEventStoryPart from '@/components/storyParts/Event/EventWrapper';
 
 const storyPartList: Record<any, (item: StoryPart) => React.ReactElement> = {
   markdown: renderMarkdownStoryPart,
   photo: renderPhotoStoryPart,
   'customentity.brightcovevideo': renderBrightcoveVideoStoryPart,
-  'customentity.event': renderEvent,
+  'customentity.event': renderEventStoryPart,
   'external.oembed': renderOembedStoryPart,
   'external.story-part-quote': renderQuoteStoryPart,
   'external.story-part-table': renderTableStoryPart,
