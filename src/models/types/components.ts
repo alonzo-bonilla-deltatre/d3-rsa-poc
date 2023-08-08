@@ -10,3 +10,16 @@ export type ComponentProps = {
   metadata?: Metadata[];
   previewToken?: string;
 };
+
+export type HeaderTitleProps = {
+  headerTitle?: string;
+  headerTitleHeadingLevel?: string;
+  hideHeaderTitle?: boolean;
+  ctaTitle?: string;
+  ctaLink?: string;
+};
+
+export type LayoutProps = {
+  removeSectionHtmlTag?: boolean;
+  isFullScreen?: boolean;
+} & HeaderTitleProps;

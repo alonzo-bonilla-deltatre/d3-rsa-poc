@@ -8,11 +8,9 @@ import renderFooter from '@/components/layouts/Footer/FooterWrapper';
 import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';
 import renderHeader from '@/components/layouts/Header/HeaderWrapper';
 import renderSection from '@/components/layouts/Section/SectionWrapper';
-import renderTwoColumns from '@/components/layouts/TwoColumns/TwoColumnsWrapper';
 
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   Section: renderSection,
-  TwoColumns: renderTwoColumns,
   Columns66: renderDynamicGrid('6-6'),
   Columns93: renderDynamicGrid('9-3'),
   Columns39: renderDynamicGrid('3-9'),
