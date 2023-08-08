@@ -1,4 +1,4 @@
-import { AccessibleLink, EventEntity, EventFields } from '@/models/types/dapi.customEntityFields';
+import { AccessibleLink, EventEntity, EventFields } from '@/models/types/forge.customEntityFields';
 import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
 import { sampleAsset } from '@/__mocks__/components/sampleGadAsset';
 
@@ -23,13 +23,13 @@ const sampleEventFields: EventFields = {
   twitterProfile: 'twitterProfile',
   youtubeChannel: 'youtubeChannel',
   headerColor: '#FF0000',
-  url: sampleLink,
   descriptionHtml: '',
   instagramProfile: '',
   twitchChannel: '',
   mobileBackgroundEventImageAsset: sampleAsset,
   backgroundEventImageAsset: sampleAsset,
   eventLogoAsset: sampleAsset,
+  eventUrl: sampleLink,
 };
 
 const sampleEvent: EventEntity = {

@@ -4,6 +4,7 @@ import { StoryPart } from '@/models/types/storyPart';
 
 //********** EMPTY ************/
 const emptyDistributionEntity: DistributionEntity = {
+  id: '',
   fields: {},
   createdBy: '',
   type: '',

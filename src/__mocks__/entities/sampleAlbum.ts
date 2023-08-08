@@ -30,6 +30,7 @@ const samplePhoto: DistributionEntity = {
 };
 
 const sampleAlbum: AlbumEntity = {
+  id: 'd2ffd20f-0c27-41fb-b33e-b872cb46a641',
   fields: {},
   createdBy: 'Mario Rossi',
   type: 'album',
@@ -63,6 +64,7 @@ const sampleAlbum: AlbumEntity = {
   parts: [],
   elements: [samplePhoto, samplePhoto, samplePhoto],
   entityCode: 'album',
+  description: 'description',
 };
 
 export { sampleAlbum };

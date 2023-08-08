@@ -6,6 +6,8 @@ import axios from 'axios';
 import { enrichDistributionEntities, getQueryString } from '@/helpers/forgeDistributionEntityHelper';
 
 const culture = process.env.CULTURE;
+const dapiUrl = process.env.FORGE_DISTRIBUTION_API_BASE_URL;
+
 const slugPlaceholder = '{slug}';
 const entityCodePlaceholder = '{entityCode}';
 const distributionDetailUrl = `v2/content/${culture}/${entityCodePlaceholder}/${slugPlaceholder}`;
@@ -18,7 +20,7 @@ export const getEntity = async (
   options: ForgeDistributionApiOption = null
 ): Promise<DistributionEntity | null> => {
   let apiUrl = distributionDetailUrl.replace(entityCodePlaceholder, entityCode).replace(slugPlaceholder, slug);
-  apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+  apiUrl = new URL(apiUrl, dapiUrl).href;
   logger.log(`Getting ${entityCode} entity slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}`, LoggerLevel.debug);
 
   return await axios
@@ -49,7 +51,7 @@ export const getAllEntities = async (
   const queryParameters = getQueryString(skip, limit, tags);
   const queryString = queryParameters.length ? `?${queryParameters}` : '';
   let apiUrl = distributionListUrl.replace(entityCodePlaceholder, entityCode) + queryString;
-  apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+  apiUrl = new URL(apiUrl, dapiUrl).href;
   logger.log(`Getting ${entityCode} entity list data from FORGE DISTRIBUTION API ${apiUrl}`, LoggerLevel.debug);
 
   return await axios
@@ -75,7 +77,7 @@ export const getSelection = async (
   options: ForgeDistributionApiOption = null
 ): Promise<PagedResult | null> => {
   let apiUrl = distributionSelectionDetailUrl.replace(slugPlaceholder, slug);
-  apiUrl = new URL(apiUrl, process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
+  apiUrl = new URL(apiUrl, dapiUrl).href;
   logger.log(`Getting selection slug:${slug} data from FORGE DISTRIBUTION API ${apiUrl}`, LoggerLevel.debug);
 
   return await axios

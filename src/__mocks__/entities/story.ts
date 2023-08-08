@@ -34,6 +34,7 @@ const sampleTags: Tag[] = [
 ];
 
 const sampleStory: DistributionEntity = {
+  id: '63b4c7d9-c86e-4c39-8033-1a335f87e2ad',
   fields: {},
   createdBy: 'Mario Rossi',
   type: 'story',

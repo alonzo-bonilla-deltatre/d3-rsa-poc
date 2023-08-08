@@ -19,6 +19,7 @@ import renderAlbum from '@/components/modules/Album/AlbumWrapper';
 import renderEvent from '@/components/modules/Event/EventWrapper';
 import renderText from '@/components/modules/Text/TextWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
+import renderLiveBlogging from '@/components/modules/LiveBlogging/LiveBloggingWrapper';
 
 import React from 'react';
 
@@ -38,6 +39,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Event: renderEvent,
   Text: renderText,
   Image: renderImage,
+  LiveBlogging: renderLiveBlogging,
 };
 
 export const renderModule = (

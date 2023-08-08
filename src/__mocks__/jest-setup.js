@@ -9,3 +9,4 @@ process.env.PAGE_BUILDER_FRONTEND_API_SECRET = 'FrontendApi key=intkey';
 process.env.VOCABULARY_TOOL_API_BASE_URL = 'https://vocabulary-tool-api.deltatre.digital';
 process.env.VOCABULARY_TOOL_VOC_CODE = '_default';
 process.env.THEMING_SUFFIX_NAME = 'poc';
+process.env.LIVE_BLOGGING_DAPI_BASE_URL = 'https://liveblogging.integrations-lab-forge.deltatre.digital';
