@@ -1,0 +1,17 @@
+header > nav a {
+  color: unset;
+  margin: 0;
+}
+
+header > nav a:visited {
+  color: unset;
+}
+
+header > nav a.is-active {
+  color: var(--accent);
+}
+
+header > nav a:hover {
+  border-color: rgba(0, 0, 0, 0);
+  color: var(--accent);
+}

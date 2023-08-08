@@ -7,6 +7,7 @@ import logger from '@/utilities/logger';
 import renderFooter from '@/components/layouts/Footer/FooterWrapper';
 import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';
 import renderHeader from '@/components/layouts/Header/HeaderWrapper';
+import renderHeaderTransparent from '@/components/layouts/HeaderTransparent/HeaderTransparentWrapper';
 import renderSection from '@/components/layouts/Section/SectionWrapper';
 
 const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
@@ -18,6 +19,7 @@ const layoutList: Record<any, (props: ComponentProps) => React.ReactElement> = {
   Columns444: renderDynamicGrid('4-4-4'),
   Columns363: renderDynamicGrid('3-6-3'),
   Header: renderHeader,
+  HeaderTransparent: renderHeaderTransparent,
   Footer: renderFooter,
 };
 
