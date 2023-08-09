@@ -1,5 +1,6 @@
 import { DistributionEntity } from '@/models/types/forge';
 import { StoryPart } from '@/models/types/storyPart';
+import { LiveBloggingBlogEntity } from '@/models/types/liveblogging';
 
 export type LinkRuleResponse = {
   data: LinkRuleData[];
@@ -17,7 +18,7 @@ export type LinkRuleData = {
 
 export type LinkRuleRequest = {
   id: string;
-  entity: DistributionEntity | StoryPart;
+  entity: DistributionEntity | StoryPart | LiveBloggingBlogEntity;
   entityType: string;
   culture: string;
   environment: string;

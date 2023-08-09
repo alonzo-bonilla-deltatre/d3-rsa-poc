@@ -16,7 +16,7 @@ const environment = process.env.ENVIRONMENT;
  * @param variables the variables from were to extract the placeholder image asset from
  * @returns the items enreached with the fallback image where needed
  */
-export const enrichEntitiesWithThumbnailPlaceholder = (
+const enrichEntitiesWithThumbnailPlaceholder = (
   items: DistributionEntity[] | null,
   variables?: Variable[] | undefined
 ) => {
@@ -50,7 +50,8 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
   return items || [];
 };
 
-export const enrichDistributionEntitiesWithLinkRules = async (
+/* istanbul ignore next */
+const enrichDistributionEntitiesWithLinkRules = async (
   forgeEntities: DistributionEntity[],
   withRelationsAndParts: boolean = false,
   linkRuleVariations?: LinkRuleVariation[]
@@ -184,18 +185,16 @@ const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse
 };
 
 /* istanbul ignore next */
-export const enrichDistributionEntities = async (
+const enrichDistributionEntities = async (
   entities: DistributionEntity[],
   options: ForgeDistributionApiOption = null
 ): Promise<DistributionEntity[]> => {
   if (!options) {
     return entities;
   }
-
   if (options.hasThumbnailPlaceholder) {
     entities = enrichEntitiesWithThumbnailPlaceholder(entities, options.variables);
   }
-
   if (options.hasLinkRules || options.hasLinkRulesForRelationsAndParts) {
     entities = await enrichDistributionEntitiesWithLinkRules(
       entities,
@@ -203,12 +202,11 @@ export const enrichDistributionEntities = async (
       options.linkRuleVariations
     );
   }
-
   return entities;
 };
 
 /* istanbul ignore next */
-export const getQueryString = (skip: number, limit: number, tags: string) => {
+const getQueryString = (skip: number, limit: number, tags: string) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
   if (skip) {
@@ -227,7 +225,7 @@ export const getQueryString = (skip: number, limit: number, tags: string) => {
 };
 
 /* istanbul ignore next */
-export const getFilteredItems = (items: DistributionEntity[] | null | undefined, limit: number) => {
+const getFilteredItems = (items: DistributionEntity[] | null | undefined, limit: number) => {
   if (!items?.length) {
     return [];
   }
@@ -238,8 +236,17 @@ export const getFilteredItems = (items: DistributionEntity[] | null | undefined,
 };
 
 /* istanbul ignore next */
-export const createLinkRuleId = (forgeEntity: DistributionEntity | StoryPart): string => {
+const createLinkRuleId = (forgeEntity: DistributionEntity | StoryPart): string => {
   return forgeEntity.entityCode
     ? `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}-${forgeEntity.entityCode}`
     : `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}`;
+};
+
+export {
+  enrichEntitiesWithThumbnailPlaceholder,
+  enrichDistributionEntitiesWithLinkRules,
+  enrichDistributionEntities,
+  getQueryString,
+  getFilteredItems,
+  createLinkRuleId,
 };

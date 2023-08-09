@@ -1,9 +1,10 @@
 import Card from '@/components/common/Card/Card';
 import { nanoid } from 'nanoid';
 import { DistributionEntity } from '@/models/types/forge';
+import { LiveBloggingBlogEntity } from '@/models/types/liveblogging';
 
 type ModuleProps = {
-  items?: DistributionEntity[] | null;
+  items?: DistributionEntity[] | LiveBloggingBlogEntity[] | null;
 };
 
 const Grid = ({ ...props }: ModuleProps) => {

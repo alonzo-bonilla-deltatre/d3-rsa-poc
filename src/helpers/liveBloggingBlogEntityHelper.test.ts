@@ -1,7 +1,12 @@
-import { DistributionEntity, Tag } from '@/models/types/forge';
-import { ImageAsset } from '@/models/types/images';
+import {
+  KeyMomentAction,
+  LiveBloggingBlogEntity,
+  LiveBloggingTagEntity,
+  PaginationType,
+} from '@/models/types/liveblogging';
 import { Variable } from '@/models/types/pageStructure';
-import { enrichEntitiesWithThumbnailPlaceholder } from './forgeDistributionEntityHelper';
+import { enrichEntitiesWithThumbnailPlaceholder } from './liveBloggingBlogEntityHelper';
+import { ImageAsset } from '@/models/types/images';
 
 const fallbackImageAsset: ImageAsset = {
   title: 'no_image_available',
@@ -86,89 +91,127 @@ const mockedVariables: Variable[] = [
   },
 ];
 
-const tag1: Tag = {
-  _translationId: 'tag-1',
-  _entityId: 'tag-1',
-  selfUrl: 'https://example.com/tags/tag-1',
-  title: 'Tag 1',
+const tag1: LiveBloggingTagEntity = {
+  id: 'tag-1',
+  label: 'Tag 1',
   slug: 'tag-1',
-  neutralSlug: 'tag-1',
-  externalSourceReference: {},
-  fields: {},
-  type: '',
-  externalSourceName: null,
-  extraData: undefined,
+  extradata: {},
 };
 
-const tag2: Tag = {
-  _translationId: 'tag-2',
-  _entityId: 'tag-2',
-  selfUrl: 'https://example.com/tags/tag-2',
-  title: 'Tag 2',
+const tag2: LiveBloggingTagEntity = {
+  id: 'tag-2',
+  label: 'Tag 2',
   slug: 'tag-2',
-  neutralSlug: 'tag-2',
-  externalSourceReference: {},
-  fields: {},
-  type: '',
-  externalSourceName: null,
-  extraData: undefined,
+  extradata: {},
 };
 
-const mockedEntities: DistributionEntity[] = [
+const mockedEntities: LiveBloggingBlogEntity[] = [
   {
-    id: 'entity-1',
-    type: 'entity',
-    _translationId: 'entity-1',
-    _entityId: 'entity-1',
-    selfUrl: 'https://example.com/entities/entity-1',
-    slug: 'entity-1',
-    title: 'Entity 1',
-    headline: 'Headline 1',
+    title: 'sample blog 1',
+    slug: 'sample-blog-1',
+    description: 'this is a sample blog',
     tags: [tag1, tag2],
-    relations: [],
-    references: {},
-    fields: {},
-    createdBy: 'user-1',
-    lastUpdatedBy: 'user-1',
-    lastUpdatedDate: '2023-05-24',
-    contentDate: '2023-05-24',
-    context: tag1,
-    featured: 0,
-    thumbnail: fallbackImageAsset,
-    parts: [],
+    language: 'en-GB',
+    dateFrom: '',
+    dateTo: '',
+    lastUpdateDate: '2022-01-11T14:15:24.126Z',
+    timeZone: {
+      offset: 'UTC+01:00DST',
+    },
+    coverImage: fallbackImageAsset,
+    totalPosts: 17,
+    presentation: {
+      keyMomentsVisible: true,
+      showBlogDefinition: true,
+      showTimezoneSwitch: true,
+      paginationType: PaginationType.InfiniteScroll,
+      keyMomentAction: KeyMomentAction.ScrollToPost,
+      postSharing: {
+        enabled: true,
+        destinations: {
+          link: true,
+          twitter: true,
+          facebook: true,
+          santas: true,
+        },
+      },
+    },
+    monetization: {
+      targeting: {
+        position: 'inline',
+        size: 'leaderboard',
+        type: 'blog',
+        env: 'integration',
+        culture: 'en-GB',
+        slug: 'sample-blog',
+      },
+      enableCompanionAd: false,
+    },
+    oembed: {
+      templateUrl: 'https://liveblogging.integrations-lab-forge.deltatre.digital/oembed?url={url}',
+    },
+    event: null,
+    widgetConfig: null,
+    url: '',
   },
   {
-    id: 'entity-2',
-    type: 'entity',
-    _translationId: 'entity-2',
-    _entityId: 'entity-2',
-    selfUrl: 'https://example.com/entities/entity-2',
-    slug: 'entity-2',
-    title: 'Entity 2',
-    headline: 'Headline 2',
-    tags: [tag2],
-    relations: [],
-    references: {},
-    fields: {},
-    createdBy: 'user-2',
-    lastUpdatedBy: 'user-2',
-    lastUpdatedDate: '2023-05-24',
-    contentDate: '2023-05-24',
-    context: tag2,
-    featured: 0,
-    thumbnail: fallbackImageAsset,
-    parts: [],
+    title: 'sample blog 2',
+    slug: 'sample-blog-2',
+    description: 'this is a sample blog',
+    tags: [tag1, tag2],
+    language: 'en-GB',
+    dateFrom: '',
+    dateTo: '',
+    lastUpdateDate: '2022-01-11T14:15:24.126Z',
+    timeZone: {
+      offset: 'UTC+01:00DST',
+    },
+    coverImage: fallbackImageAsset,
+    totalPosts: 17,
+    presentation: {
+      keyMomentsVisible: true,
+      showBlogDefinition: true,
+      showTimezoneSwitch: true,
+      paginationType: PaginationType.InfiniteScroll,
+      keyMomentAction: KeyMomentAction.ScrollToPost,
+      postSharing: {
+        enabled: true,
+        destinations: {
+          link: true,
+          twitter: true,
+          facebook: true,
+          santas: true,
+        },
+      },
+    },
+    monetization: {
+      targeting: {
+        position: 'inline',
+        size: 'leaderboard',
+        type: 'blog',
+        env: 'integration',
+        culture: 'en-GB',
+        slug: 'sample-blog',
+      },
+      enableCompanionAd: false,
+    },
+    oembed: {
+      templateUrl: 'https://liveblogging.integrations-lab-forge.deltatre.digital/oembed?url={url}',
+    },
+    event: null,
+    widgetConfig: null,
+    url: '',
   },
 ];
 
 const mockedEntitiesWithIncompleteThumbnail = [
   {
     ...mockedEntities[0],
-    thumbnail: fallbackImageAssetWithoutTemplateUrl,
+    coverImage: fallbackImageAssetWithoutTemplateUrl,
   },
   {
     ...mockedEntities[1],
-    thumbnail: fallbackImageAssetWithoutTemplateUrl,
+    coverImage: fallbackImageAssetWithoutTemplateUrl,
   },
 ];
 

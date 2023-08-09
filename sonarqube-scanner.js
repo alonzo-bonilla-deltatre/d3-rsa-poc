@@ -17,7 +17,7 @@ const exclusionsList = [
   '**/sonarqube-scanner.js',
   '**/markdownHelper.ts',
   '**/azureCognitiveSearchService.ts',
-  '**/azureCognitiveSearchService.ts'
+  '**/liveBloggingDistributionEntityHelper.ts'
 ];
 const exclusions = exclusionsList.join(',').trim();
 const testInclusions = '**/*.test.ts';

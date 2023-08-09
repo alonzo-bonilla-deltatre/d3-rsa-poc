@@ -7,6 +7,7 @@ import {
   PaginationType,
   PostType,
 } from '@/models/types/liveblogging';
+import { ImageAsset } from '@/models/types/images';
 
 const sampleBlogWidgetConfig: LiveBloggingWidgetConfig = {
   slug: 'sample-blog',
@@ -73,6 +74,7 @@ const sampleBlog: LiveBloggingBlogEntity = {
   },
   event: null,
   widgetConfig: sampleBlogWidgetConfig,
+  url: '',
 };
 
 const samplePost: LiveBloggingPostEntity = {
@@ -101,4 +103,6 @@ const samplePost: LiveBloggingPostEntity = {
   timestamp: '2022-01-11T14:15:24.126Z',
 };
 
-export { sampleBlog, samplePost };
+const sampleBlogs: LiveBloggingBlogEntity[] = [sampleBlog];
+
+export { sampleBlog, samplePost, sampleBlogs };

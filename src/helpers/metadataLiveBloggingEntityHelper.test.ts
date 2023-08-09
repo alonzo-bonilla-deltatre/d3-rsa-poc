@@ -1,4 +1,4 @@
-import { sampleStory as storyEntityMock } from '@/__mocks__/entities/story';
+import { sampleStory as sampleBlogMock } from '@/__mocks__/entities/story';
 import { overrideLiveBloggingMetadata, overrideDefaultMetadata } from './metadataLiveBloggingEntityHelper';
 import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
 import { Metadata } from 'next';
@@ -63,6 +63,64 @@ describe('overrideDefaultMetadata', () => {
     expect(result?.twitter?.title).toBe(bolg.title);
     expect(result?.twitter?.description).toBe(bolg.description);
     expect(result?.twitter?.images).toBe(imageUrl);
+  });
+
+  it('should return enriched metadata with title empty if request title is not set', () => {
+    // ARRANGE
+    const sampleBlogWithoutThumbnail = Object.assign({ ...sampleBlog, title: undefined });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, sampleBlogWithoutThumbnail);
+
+    // ASSERT
+    expect(result?.title).toBe('');
+    expect(result?.twitter?.title).toBe('');
+  });
+
+  it('should return enriched metadata with description empty if request description is not set', () => {
+    // ARRANGE
+    const sampleBlogWithoutThumbnail = Object.assign({ ...sampleBlog, description: undefined });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, sampleBlogWithoutThumbnail);
+
+    // ASSERT
+    expect(result?.description).toBe('');
+    expect(result?.twitter?.description).toBe('');
+  });
+
+  it('should return enriched metadata with coverImage empty if request coverImage is equals null', () => {
+    // ARRANGE
+    (getSrcWithTransformation as jest.Mock).mockReturnValue('');
+    const sampleBlogWithoutThumbnail = Object.assign({ ...sampleBlog, coverImage: null });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, sampleBlogWithoutThumbnail);
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      tags?: null | string | Array<string>;
+    };
+    expect(og.images).toEqual([{ url: '' }]);
+    expect(result?.twitter?.images).toBe('');
+  });
+
+  it('should return enriched metadata with tags empty if request tags is equals null', () => {
+    // ARRANGE
+    const sampleBlogWithoutTags = Object.assign({ ...sampleBlog, tags: null });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, sampleBlogWithoutTags);
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      tags?: null | string | Array<string>;
+    };
+    expect(og.tags).toEqual(null);
   });
 });
 describe('overrideLiveBloggingMetadata', () => {

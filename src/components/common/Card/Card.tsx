@@ -14,7 +14,7 @@ const Card = ({ ...props }: CardProps) => {
   const cardClassName = `${getContainerClassName(layout)} ${options.className}`;
   const cardInfoClassName = getInfoClassName(layout);
 
-  const entityImage = entity.image ?? entity.thumbnail;
+  const entityImage = entity.image ? entity.image : entity.thumbnail ? entity.thumbnail : entity.coverImage;
 
   return (
     entity && (

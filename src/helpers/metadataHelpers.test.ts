@@ -70,6 +70,52 @@ describe('overrideDefaultMetadata', () => {
     expect(result?.twitter?.description).toBe(storyEntity.headline);
     expect(result?.twitter?.images).toBe(imageUrl);
   });
+
+  it('should return enriched metadata with description empty if request headline is not set', () => {
+    // ARRANGE
+    const storyEntityWithoutThumbnail = Object.assign({ ...storyEntity, headline: undefined });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutThumbnail);
+
+    // ASSERT
+    expect(result?.description).toBe('');
+    expect(result?.twitter?.description).toBe('');
+  });
+
+  it('should return enriched metadata with thumbnail empty if request thumbnail is equals null', () => {
+    // ARRANGE
+    (getSrcWithTransformation as jest.Mock).mockReturnValue('');
+    const storyEntityWithoutThumbnail = Object.assign({ ...storyEntity, thumbnail: null });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutThumbnail);
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      tags?: null | string | Array<string>;
+    };
+    expect(og.images).toEqual([{ url: '' }]);
+    expect(result?.twitter?.images).toBe('');
+  });
+
+  it('should return enriched metadata with tags empty if request tags is equals null', () => {
+    // ARRANGE
+    const storyEntityWithoutTags = Object.assign({ ...storyEntity, tags: null });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutTags);
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      tags?: null | string | Array<string>;
+    };
+    expect(og.tags).toEqual(null);
+  });
 });
 describe('overrideAlbumMetadata', () => {
   const parentMetadata: Metadata = {

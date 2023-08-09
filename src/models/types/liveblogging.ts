@@ -1,4 +1,7 @@
-﻿export type LiveBloggingBlogEntity = {
+﻿import { Variable } from '@/models/types/pageStructure';
+import { LinkRuleVariation } from '@/models/types/linkRule';
+
+export type LiveBloggingBlogEntity = {
   slug: string;
   title: string;
   description: string;
@@ -15,6 +18,8 @@
   oembed: BlogOembed | null;
   event: BlogEventInfo | null;
   widgetConfig: LiveBloggingWidgetConfig | null;
+  url: string;
+  [key: string]: any;
 };
 
 export type LiveBloggingTagEntity = {
@@ -112,3 +117,13 @@ export type LiveBloggingWidgetConfig = {
   showKeyMoments: boolean;
   blogDefinitionComponent?: unknown;
 };
+
+export type LiveBloggingDistributionApiOption = {
+  hasThumbnailPlaceholder?: boolean;
+  hasLinkRules?: boolean;
+  skip?: number;
+  limit?: number;
+  tags?: string;
+  variables?: Variable[];
+  linkRuleVariations?: LinkRuleVariation[];
+} | null;

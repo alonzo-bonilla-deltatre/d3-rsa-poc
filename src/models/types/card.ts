@@ -1,7 +1,8 @@
 import { DistributionEntity } from '@/models/types/forge';
+import { LiveBloggingBlogEntity } from '@/models/types/liveblogging';
 
 export type CardProps = {
-  entity: DistributionEntity;
+  entity: DistributionEntity | LiveBloggingBlogEntity;
   options: CardOptions;
   layout?: string | null;
 };

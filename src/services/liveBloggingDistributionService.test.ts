@@ -1,11 +1,11 @@
-import { sampleBlog, samplePost } from '@/__mocks__/entities/sampleLiveblogging';
+import { sampleBlog, sampleBlogs, samplePost } from '@/__mocks__/entities/sampleLiveblogging';
 import axios from 'axios';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
-import { ForgeApiError } from '@/models/types/errors';
-import { getBlogEntity, getBlogPosts } from './liveBloggingDistributionService';
+import { getBlogEntity, getBlogPosts, getBlogs } from './liveBloggingDistributionService';
 import { addLiveBloggingWidgetConfig } from '@/helpers/liveBloggingDistributionEntityHelper';
-import { ForgeDistributionApiOption } from '@/models/types/forge';
+import { enrichDistributionEntities } from '@/helpers/liveBloggingBlogEntityHelper';
+import { LiveBloggingDistributionApiOption } from '@/models/types/liveblogging';
 
 jest.mock('axios');
 jest.mock('@/utilities/logger');
@@ -14,6 +14,13 @@ jest.mock('@/helpers/liveBloggingDistributionEntityHelper', () => {
   return {
     ...actual,
     addLiveBloggingWidgetConfig: jest.fn(),
+  };
+});
+jest.mock('@/helpers/liveBloggingBlogEntityHelper', () => {
+  const actual = jest.requireActual('@/helpers/liveBloggingBlogEntityHelper');
+  return {
+    ...actual,
+    enrichDistributionEntities: jest.fn(),
   };
 });
 
@@ -70,7 +77,7 @@ describe('liveBloggingDistributionService', () => {
         data: {
           status: 401,
           title: 'unauthorized',
-        } as ForgeApiError,
+        },
       });
 
       // ACT
@@ -79,7 +86,7 @@ describe('liveBloggingDistributionService', () => {
       // ASSERT
       expect(mockLogger).toHaveBeenNthCalledWith(
         2,
-        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error status:'),
+        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error'),
         LoggerLevel.error
       );
 
@@ -90,7 +97,7 @@ describe('liveBloggingDistributionService', () => {
   describe('getBlogPosts', () => {
     it('should retrieve and enrich entity data successfully with skip e limit', async () => {
       // ARRANGE
-      const queryOptions: ForgeDistributionApiOption = {
+      const queryOptions: LiveBloggingDistributionApiOption = {
         limit: 1,
         skip: 1,
         variables: [],
@@ -115,32 +122,6 @@ describe('liveBloggingDistributionService', () => {
     });
 
     it('should retrieve and enrich entity data successfully without options', async () => {
-      // ARRANGE
-      const queryOptions: ForgeDistributionApiOption = {
-        limit: 0,
-        skip: 0,
-        variables: [],
-      };
-      mockAxiosGet.mockResolvedValueOnce({ data: samplePost });
-
-      // ACT
-      await getBlogPosts('sample-blog', true, queryOptions);
-
-      // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs/sample-blog/Posts'
-      );
-
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
-        samplePost,
-        'https://liveblogging.integrations-lab-forge.deltatre.digital',
-        'en-GB',
-        'sample-blog',
-        true
-      );
-    });
-
-    it('should retrieve and enrich entity data successfully', async () => {
       // ARRANGE
       mockAxiosGet.mockResolvedValueOnce({ data: samplePost });
 
@@ -184,7 +165,7 @@ describe('liveBloggingDistributionService', () => {
         data: {
           status: 401,
           title: 'unauthorized',
-        } as ForgeApiError,
+        },
       });
 
       // ACT
@@ -193,11 +174,87 @@ describe('liveBloggingDistributionService', () => {
       // ASSERT
       expect(mockLogger).toHaveBeenNthCalledWith(
         2,
-        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error status:'),
+        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error'),
         LoggerLevel.error
       );
 
       expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
+    });
+  });
+
+  describe('getBlogs', () => {
+    it('should retrieve and enrich entity data successfully with skip e limit', async () => {
+      // ARRANGE
+      const queryOptions: LiveBloggingDistributionApiOption = {
+        limit: 1,
+        skip: 1,
+        variables: [],
+      };
+      mockAxiosGet.mockResolvedValueOnce({ data: { items: sampleBlogs } });
+
+      // ACT
+      await getBlogs(queryOptions);
+
+      // ASSERT
+      expect(mockAxiosGet).toHaveBeenCalledWith(
+        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs?$skip=1&$limit=1'
+      );
+
+      expect(enrichDistributionEntities).toHaveBeenCalledWith(sampleBlogs, queryOptions);
+    });
+
+    it('should retrieve and enrich entity data successfully without options', async () => {
+      // ARRANGE
+      mockAxiosGet.mockResolvedValueOnce({ data: { items: sampleBlogs } });
+
+      // ACT
+      await getBlogs();
+
+      // ASSERT
+      expect(mockAxiosGet).toHaveBeenCalledWith(
+        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs'
+      );
+
+      expect(enrichDistributionEntities).toHaveBeenCalledWith(sampleBlogs, null);
+    });
+
+    it('should handle error responses with no data', async () => {
+      // ARRANGE
+      mockAxiosGet.mockRejectedValueOnce({ message: 'unauthorized' });
+
+      // ACT
+      await getBlogs();
+
+      // ASSERT
+      expect(mockLogger).toHaveBeenLastCalledWith(
+        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error: unauthorized'),
+        LoggerLevel.error
+      );
+
+      expect(enrichDistributionEntities).toBeCalledTimes(0);
+    });
+
+    it('should handle error responses with data', async () => {
+      // ARRANGE
+      mockAxiosGet.mockRejectedValueOnce({
+        message: 'unauthorized',
+        data: {
+          status: 401,
+          title: 'unauthorized',
+        },
+      });
+
+      // ACT
+      await getBlogs();
+
+      // ASSERT
+      expect(mockLogger).toHaveBeenNthCalledWith(
+        2,
+        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error'),
+        LoggerLevel.error
+      );
+
+      expect(enrichDistributionEntities).toBeCalledTimes(0);
     });
   });
 });
