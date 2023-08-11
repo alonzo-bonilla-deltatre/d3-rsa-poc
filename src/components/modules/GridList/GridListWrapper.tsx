@@ -3,15 +3,15 @@ import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 
 // @ts-ignore
-const EditorialList = dynamic(() => import('@/components/modules/EditorialList/EditorialList'));
+const GridList = dynamic(() => import('@/components/modules/GridList/GridList'));
 
-const EditorialListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <EditorialList {...data} />;
+const GridListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
+  return <GridList {...data} />;
 };
 
 const render = ({ ...data }: ComponentProps): React.ReactElement =>
   data ? (
-    <EditorialListWrapper
+    <GridListWrapper
       key={nanoid()}
       {...data}
     />

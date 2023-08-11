@@ -1,32 +1,23 @@
-import ModuleTitle from '@/components/common/ModuleTitle/ModuleTitle';
 import { HeroSwiper } from '@/components/modules/Hero/HeroSwiper';
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getSelection } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
-import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
-  moduleTitle?: string;
-  headingLevel?: string;
-  displayModuleTitle?: boolean;
-  hideDate?: boolean;
   selectionSlug?: string;
+  skip?: number;
   limit?: number;
 };
 
 const Hero = async ({ ...data }: ComponentProps) => {
-  const { moduleTitle, headingLevel, displayModuleTitle, hideDate, selectionSlug, limit } =
-    data.properties as ModuleProps;
+  const { selectionSlug, skip, limit } = data.properties as ModuleProps;
   const defaultItemLimit = 5;
-  let itemLimit = getNumberProperty(limit, defaultItemLimit);
-  if (itemLimit <= 0) {
-    itemLimit = defaultItemLimit;
-  }
-
   if (!selectionSlug) {
-    logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
+    const invalidSlugErrorMessage = 'Cannot render Hero module with empty slug';
+    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
     return <div />;
   }
 
@@ -34,17 +25,14 @@ const Hero = async ({ ...data }: ComponentProps) => {
   const items = selection?.items;
 
   return items && items.length > 0 ? (
-    <>
-      <ModuleTitle
-        canRender={getBooleanProperty(displayModuleTitle)}
-        heading={headingLevel}
-        text={moduleTitle}
-      ></ModuleTitle>
-      <HeroSwiper
-        slides={getFilteredItems(items, Number(itemLimit))}
-        hideDate={getBooleanProperty(hideDate)}
-      />
-    </>
+    <HeroSwiper
+      slides={getFilteredItems(
+        items,
+        getNumberProperty(skip, defaultItemLimit),
+        getNumberProperty(limit, defaultItemLimit)
+      )}
+      hideDate={false}
+    />
   ) : (
     <div />
   );

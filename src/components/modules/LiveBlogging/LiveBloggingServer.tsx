@@ -17,8 +17,9 @@ type ModuleProps = {
 const LiveBloggingServer = async ({ ...data }: ComponentProps) => {
   const props = data.properties as ModuleProps;
   if (!Object.hasOwn(props, 'slug') || !props.slug?.length) {
-    logger.log('Cannot render Blog module with empty slug', LoggerLevel.warning);
-    return <div />;
+    const invalidSlugErrorMessage = 'Cannot render Blog module with empty slug';
+    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
+    throw new Error(invalidSlugErrorMessage);
   }
   const showKeyMoment = props.hideKeyMoments === undefined || props.hideKeyMoments?.toString() === 'false';
   const blogEntity = await getBlogEntity(props.slug, showKeyMoment ?? false);

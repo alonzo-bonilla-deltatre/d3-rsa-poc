@@ -12,7 +12,7 @@ import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
-import renderEditorialList from '@/components/modules/EditorialList/EditorialListWrapper';
+import renderGridList from '@/components/modules/GridList/GridListWrapper';
 import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 import renderAlbum from '@/components/modules/Album/AlbumWrapper';
@@ -32,7 +32,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Partners: renderPartners,
   BrightcoveVideo: renderBrightcoveVideo,
   Mosaic: renderMosaicList,
-  EditorialList: renderEditorialList,
+  GridList: renderGridList,
   Menu: renderMenu,
   Promo: renderPromo,
   SearchResults: renderSearchResults,

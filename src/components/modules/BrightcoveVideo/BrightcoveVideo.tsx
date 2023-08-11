@@ -1,12 +1,9 @@
 import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
-import ModuleTitle from '@/components/common/ModuleTitle/ModuleTitle';
 import SocialIcons from '@/components/common/SocialIcons/SocialIcons';
 import { ComponentProps } from '@/models/types/components';
-import { DistributionEntity } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import { formatDate } from '@/utilities/dateFormatter';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
 import logger from '@/utilities/logger';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { overrideVideoMetadata } from '@/helpers/metadataHelper';
@@ -15,18 +12,15 @@ import { notFound } from 'next/navigation';
 
 type ModuleProps = {
   slug?: string;
-  moduleTitle?: string;
-  headingLevel?: string;
-  displayModuleTitle?: boolean;
-  entity?: DistributionEntity | null;
   preventSettingMetadata?: boolean;
 };
 
 const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
   if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
-    logger.log('Cannot render CustomPromo module with empty slug', LoggerLevel.warning);
-    return null;
+    const invalidSlugErrorMessage = 'Cannot render BrightcoveVideo module with empty slug';
+    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
+    throw new Error(invalidSlugErrorMessage);
   }
 
   const entity = await getEntity('brightcovevideos', properties.slug);
@@ -46,16 +40,9 @@ const BrightcoveVideo = async ({ ...data }: ComponentProps) => {
   return entity ? (
     <>
       <section className="w-full container mx-auto mt-40">
-        <ModuleTitle
-          canRender={getBooleanProperty(properties.displayModuleTitle)}
-          heading={properties?.headingLevel}
-          text={parseFieldValue(properties.moduleTitle, data.variables)}
-        ></ModuleTitle>
         <div className="flex justify-between mx-20">
           <header className="w-full">
-            {!getBooleanProperty(properties.displayModuleTitle) && (
-              <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
-            )}
+            <h3 className="font-bold text-5xl uppercase">{entity.title}</h3>
             <div className="flex justify-between items-center mt-8">
               <div>
                 {description && <p className="mb-3">{description}</p>}

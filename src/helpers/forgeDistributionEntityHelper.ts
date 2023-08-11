@@ -215,7 +215,7 @@ const getQueryString = (skip: number, limit: number, tags: string) => {
   if (limit) {
     queryString.push(`$limit=${limit}`);
   }
-  if (tags?.length && tags.includes(',')) {
+  if (tags) {
     const tagSlugs = tags.split(',');
     tagSlugs.forEach((tag) => {
       queryString.push(`tags.slug=${tag}`);
@@ -225,14 +225,14 @@ const getQueryString = (skip: number, limit: number, tags: string) => {
 };
 
 /* istanbul ignore next */
-const getFilteredItems = (items: DistributionEntity[] | null | undefined, limit: number) => {
+const getFilteredItems = (items: DistributionEntity[] | null | undefined, skip: number, limit: number) => {
   if (!items?.length) {
     return [];
   }
-  if (limit === 0) {
+  if (skip === 0 || limit === 0) {
     return items;
   }
-  return items.slice(0, limit);
+  return items.slice(skip, limit);
 };
 
 /* istanbul ignore next */

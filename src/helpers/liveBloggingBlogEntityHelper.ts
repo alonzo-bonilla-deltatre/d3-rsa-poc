@@ -142,7 +142,7 @@ const getQueryString = (skip: number, limit: number, tags: string) => {
   if (limit) {
     queryString.push(`$limit=${limit}`);
   }
-  if (tags?.length && tags.includes(',')) {
+  if (tags) {
     const tagSlugs = tags.split(',');
     tagSlugs.forEach((tag) => {
       queryString.push(`tags.slug=${tag}`);

@@ -1,8 +1,8 @@
-import MasonryMosaic from '@/components/common/MasonryMosaic/MasonryMosaic';
 import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
-import { LoggerLevel } from '@/models/types/logger';
 import { getEntityList } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
+import GridListComponent from '@/components/common/list/Grid/Grid';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
 
 type ModuleProps = {
@@ -11,7 +11,7 @@ type ModuleProps = {
   selectionSlug?: string;
 } & HeaderTitleProps;
 
-const Mosaic = async ({ ...data }: ComponentProps) => {
+const GridList = async ({ ...data }: ComponentProps) => {
   const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, ctaTitle, ctaLink, skip, limit, selectionSlug } =
     data.properties as ModuleProps;
   if (!Object.hasOwn(data.properties, 'selectionSlug') || !selectionSlug?.length) {
@@ -28,9 +28,9 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
     variables: data.variables,
   });
 
-  return items?.length ? (
-    <>
-      <section className="mt-8">
+  return (
+    items?.length && (
+      <>
         <HeaderTitle
           headerTitle={headerTitle}
           headerTitleHeadingLevel={headerTitleHeadingLevel}
@@ -38,11 +38,9 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
           ctaTitle={ctaTitle}
           ctaLink={ctaLink}
         ></HeaderTitle>
-        <MasonryMosaic items={items}></MasonryMosaic>
-      </section>
-    </>
-  ) : (
-    <div />
+        <GridListComponent items={items} />
+      </>
+    )
   );
 };
-export default Mosaic;
+export default GridList;

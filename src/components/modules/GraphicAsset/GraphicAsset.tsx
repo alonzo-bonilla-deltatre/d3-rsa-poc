@@ -4,6 +4,8 @@ import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import GadAsset from '@/components/common/GadAsset/GadAsset';
 import { ImageTransformations } from '@/models/types/images';
 import { transformations } from '@/utilities/cloudinaryTransformations';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
 
 type ModuleProps = {
   assetTag?: string;
@@ -22,7 +24,9 @@ const GraphicAsset = async ({ ...data }: ComponentProps) => {
   const asset = (await getSingleAssetByTag(assetTag)) as GraphicAssetsDashboardItem;
   const imageTransformation = transformations[namedTransformation] as ImageTransformations;
   const link = assetLink ?? '#nolink';
-
+  if (!asset) {
+    logger.log(`Cannot find GraphicAsset entity with tag ${assetTag} `, LoggerLevel.warning);
+  }
   return asset?.assetUrl ? (
     <>
       <a href={link}>

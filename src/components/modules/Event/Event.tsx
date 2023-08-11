@@ -10,6 +10,7 @@ const EventDetail = dynamic(() => import('@/components/common/events/EventDetail
 
 type ModuleProps = {
   slug?: string;
+  preventSettingMetadata?: boolean;
 };
 
 const Event = async ({ ...data }: ComponentProps) => {
@@ -22,6 +23,6 @@ const Event = async ({ ...data }: ComponentProps) => {
   const eventEntity = await getEntity('events', properties?.slug);
   const eventEnriched = eventEntity ? await getEventEntity(eventEntity) : null;
 
-  return eventEntity ? <EventDetail entity={eventEnriched}></EventDetail> : <div />;
+  return eventEnriched ? <EventDetail entity={eventEnriched}></EventDetail> : <div />;
 };
 export default Event;

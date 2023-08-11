@@ -11,14 +11,14 @@ import Picture from '@/components/common/Picture/Picture';
 type ModuleProps = {
   slug?: string;
   ratio?: string;
-  assetWidth?: number;
-  assetHeight?: number;
+  size?: string;
 };
 
 const Image = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
   if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
-    logger.log('Cannot render Image module with empty slug', LoggerLevel.warning);
+    const invalidSlugErrorMessage = 'Cannot render Image module with empty slug';
+    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
     return <div />;
   }
 

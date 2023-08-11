@@ -11,12 +11,6 @@ import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
   slug?: string;
-  hideAuthor?: boolean;
-  hideDate?: boolean;
-  hideDescription?: boolean;
-  hideRoofline?: boolean;
-  hideTitle?: boolean;
-  hideSocial?: boolean;
   preventSettingMetadata?: boolean;
 };
 
