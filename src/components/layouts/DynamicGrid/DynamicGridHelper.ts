@@ -10,11 +10,11 @@ export const getGridContainerCssClasses = (columns: string = '6-6') => {
     case '3-6-3':
     case '3-9':
     case '9-3':
-      return classes + ' lg:grid-cols-4 gap-4';
+      return classes + ' lg:grid-cols-4';
     case '6-6':
-      return classes + ' lg:grid-cols-2 gap-4';
+      return classes + ' lg:grid-cols-2';
     case '4-4-4':
-      return classes + ' lg:grid-cols-3 gap-4';
+      return classes + ' lg:grid-cols-3';
     default:
       return classes;
   }
