@@ -28,8 +28,8 @@ const AlbumFeatured = ({ ...props }: ModuleProps) => {
         entity={albumEntity}
         {...props}
       ></AlbumHeader>
-      <section className="w-full container mx-auto mt-20">
-        <div className="grid gap-4 mx-20 mt-20 col-start-1">
+      <section className="w-full container mx-auto">
+        <div className="grid gap-4 mx-20 col-start-1">
           {elements && firstElement && firstElement?.image && (
             <figure className="flex mx-auto">
               <Picture

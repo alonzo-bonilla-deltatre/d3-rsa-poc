@@ -229,7 +229,7 @@ const getFilteredItems = (items: DistributionEntity[] | null | undefined, skip: 
   if (!items?.length) {
     return [];
   }
-  if (skip === 0 || limit === 0) {
+  if (skip === 0 && limit === 0) {
     return items;
   }
   return items.slice(skip, limit);

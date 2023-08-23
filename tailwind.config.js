@@ -10,5 +10,6 @@ module.exports = {
       },
     },
   },
+  safelist: ['items-start', 'items-center', 'items-end'],
   plugins: [],
 }

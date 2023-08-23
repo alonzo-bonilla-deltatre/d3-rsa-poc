@@ -26,11 +26,7 @@ const Hero = async ({ ...data }: ComponentProps) => {
 
   return items && items.length > 0 ? (
     <HeroSwiper
-      slides={getFilteredItems(
-        items,
-        getNumberProperty(skip, defaultItemLimit),
-        getNumberProperty(limit, defaultItemLimit)
-      )}
+      slides={getFilteredItems(items, getNumberProperty(skip, 0), getNumberProperty(limit, defaultItemLimit))}
       hideDate={false}
     />
   ) : (

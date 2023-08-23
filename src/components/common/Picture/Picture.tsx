@@ -38,6 +38,12 @@ const Picture = ({ ...props }: PictureProps) => {
         alt={props.alt ?? ''}
         className={`max-w-none ${props.className ?? ''}`}
         src={mobileSrc}
+        sizes="100vw"
+        style={{
+          width: '100%',
+          height: 'auto',
+        }}
+        loading={'lazy'}
       />
     </picture>
   ) : null;
