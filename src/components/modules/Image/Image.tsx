@@ -4,9 +4,9 @@ import { getEntity } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { transformations, getLinkCssClass, getImageContainerCssClass } from '@/components/modules/Image/ImageHelper';
-import Image from 'next/image';
-import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
+import { getImageContainerCssClass, getLinkCssClass, transformations } from '@/components/modules/Image/ImageHelper';
+import ImageView from '@/components/modules/Image/ImageView';
+import React from 'react';
 
 type ModuleProps = {
   slug?: string;
@@ -15,7 +15,7 @@ type ModuleProps = {
   alignment?: string;
 };
 
-const ImageBlock = async ({ ...data }: ComponentProps) => {
+const Image = async ({ ...data }: ComponentProps) => {
   const properties = data.properties as ModuleProps;
   if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
     const invalidSlugErrorMessage = 'Cannot render Image module with empty slug';
@@ -25,37 +25,26 @@ const ImageBlock = async ({ ...data }: ComponentProps) => {
 
   const imageEntity = await getEntity('page-builder-gad-asset', properties?.slug);
   const asset = (await getSingleAssetByTag(imageEntity?.fields.tag?.toString())) as GraphicAssetsDashboardItem;
-  const imageTransformation = transformations[`${properties.ratio}_${properties.size}`];
+  const imageTransformation =
+    transformations[
+      `${properties.ratio ? properties.ratio : 'landscape'}_${properties.size ? properties.size : 'large'}`
+    ];
   const link = imageEntity?.fields.clickThroughUrl?.toString() ?? '#nolink';
   const caption = imageEntity?.fields.caption?.toString() ?? '';
 
   return imageEntity && asset && imageTransformation ? (
-    <a
-      href={link}
-      className={getLinkCssClass(properties.alignment)}
-    >
-      <figure
-        className={`col-start-1 row-start-1 grid-element relative ${getImageContainerCssClass(properties.alignment)}`}
-      >
-        <Image
-          width={imageTransformation.mobileWidth}
-          height={imageTransformation.mobileHeight}
-          alt={imageEntity?.fields.altText?.toString() ?? imageEntity.title}
-          className={`w-full h-full object-cover`}
-          src={getSrcWithTransformation(asset.assetUrl, imageTransformation.desktop)}
-          sizes="100vw"
-          style={{
-            width: `${imageTransformation.mobileWidth}px`,
-            height: 'auto',
-          }}
-          loading={'lazy'}
-        />
-      </figure>
-      {caption && <p className="mt-8 mb-3">{caption}</p>}
-    </a>
+    <ImageView
+      link={link}
+      linkCssClass={getLinkCssClass(properties.alignment)}
+      imageContainerCssClass={getImageContainerCssClass(properties.alignment)}
+      imageTransformation={imageTransformation}
+      imageEntity={imageEntity}
+      asset={asset}
+      caption={caption}
+    />
   ) : (
     <div />
   );
 };
 
-export default ImageBlock;
+export default Image;

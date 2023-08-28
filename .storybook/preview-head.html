@@ -50,4 +50,10 @@
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
     }
+    #storybook-docs input[type=checkbox]:checked, #storybook-docs input[type=radio]:checked {
+      background-color: unset;
+    }
+    #storybook-docs input[type=checkbox]:checked::after , #storybook-docs input[type=radio]:checked::after{
+      content: unset;
+    }
 </style>
