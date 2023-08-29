@@ -21,6 +21,7 @@ import renderText from '@/components/modules/Text/TextWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
 import renderLiveBlogging from '@/components/modules/LiveBlogging/LiveBloggingWrapper';
 import renderLiveBloggingGridList from '@/components/modules/LiveBloggingGridList/LiveBloggingGridListWrapper';
+import renderFocusOn from '@/components/modules/FocusOn/FocusOnWrapper';
 
 import React from 'react';
 
@@ -42,6 +43,7 @@ const componentList: Record<any, (props: ComponentProps) => React.ReactElement> 
   Image: renderImage,
   LiveBlogging: renderLiveBlogging,
   LiveBloggingGridList: renderLiveBloggingGridList,
+  FocusOn: renderFocusOn,
 };
 
 export const renderModule = (

@@ -134,6 +134,20 @@ export const transformations: Record<any, ImageTransformations> = {
     mobileWidth: 100,
     mobileHeight: 100,
   },
+  focusOnBackground: {
+    mobile: 't_ratio3_4-size40',
+    tablet: 't_ratio4_3-size40',
+    desktop: 't_ratio21_9-size60',
+    mobileWidth: 208,
+    mobileHeight: 117,
+  },
+  focusOnPhoto: {
+    mobile: 't_ratio16_9-size20',
+    tablet: 't_ratio16_9-size40',
+    desktop: 't_ratio16_9-size50',
+    mobileWidth: 416,
+    mobileHeight: 234,
+  },
 };
 
 export const getSrcWithTransformation = (src: string | null | undefined, transformation: string | undefined) => {

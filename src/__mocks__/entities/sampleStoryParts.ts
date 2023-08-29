@@ -125,6 +125,26 @@ const emptyDistributionEntityWithEmptyFields: EventEntity = {
   eventUrl: null,
 };
 
+//********** PHOTO ************/
+const partialPhotoPart = {
+  type: 'photo',
+  image: {
+    title: 'EscapeToTurin',
+    templateUrl:
+      'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/forgego-sandbox/wco38tqzfgkzqbmtoefm',
+    format: 'webp',
+    slug: 'escape-slug',
+  },
+  externalType: 'story-part-photo',
+  inputUrl: '',
+};
+
+const samplePhotoStoryPart: StoryPart = {
+  ...emptyDistributionEntity,
+  ...emptyDistributionEntityStoryPart,
+  ...partialPhotoPart,
+};
+
 //********** QUOTE ************/
 const partialQuotePart = {
   type: 'external',
@@ -277,4 +297,5 @@ export {
   sampleYoutubeStoryPart,
   sampleTwitterStoryPart,
   sampleInstagramStoryPart,
+  samplePhotoStoryPart,
 };

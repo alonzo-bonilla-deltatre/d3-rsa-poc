@@ -1,4 +1,6 @@
 import { DistributionEntity, Tag } from '@/models/types/forge';
+import { ImageAsset } from '@/models/types/images';
+import { samplePhotoStoryPart } from './sampleStoryParts';
 
 const sampleContext: Tag = {
   _translationId: '2d9edf1c-6432-44f7-b065-c09ffacfb5dc',
@@ -32,6 +34,13 @@ const sampleTags: Tag[] = [
     extraData: null,
   },
 ];
+const sampleThumbnail: ImageAsset = {
+  title: 'GEN3_Supercars_Ford_Mustang_Chevrolet_Camaro_4',
+  templateUrl:
+    'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678118218/forgego-sandbox/lhmqewjgfmjddly5ii3s',
+  format: 'webp',
+  slug: 'gen3-supercars-ford-mustang-chevrolet-camaro-4',
+};
 
 const sampleStory: DistributionEntity = {
   id: '63b4c7d9-c86e-4c39-8033-1a335f87e2ad',
@@ -44,6 +53,10 @@ const sampleStory: DistributionEntity = {
   slug: 'full-wwe-extreme-rules-results',
   title: 'Full WWE Extreme Rules results',
   headline: 'Lorem ipsum dolor',
+  summary:
+    'Former Scotland captain Kyle Coetzer has Fannounced his retirement from T20I cricket.\n' +
+    'Coetzer recently stepped down from captaincy after an ICC Cricket World Cup League 2 tri-series match against the UAE, with Richie Berrington taking over from the 38-year-old.\n' +
+    "Coetzer, the ICC Men's Associate Cricketer of the Decade, has now",
   tags: sampleTags,
   relations: [],
   references: {},
@@ -52,21 +65,20 @@ const sampleStory: DistributionEntity = {
   contentDate: '2022-10-21T14:41:27Z',
   context: sampleContext,
   featured: 0,
-  thumbnail: {
-    title: 'GEN3_Supercars_Ford_Mustang_Chevrolet_Camaro_4',
-    templateUrl:
-      'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/v1678118218/forgego-sandbox/lhmqewjgfmjddly5ii3s',
-    format: 'webp',
-    slug: 'gen3-supercars-ford-mustang-chevrolet-camaro-4',
-  },
+  thumbnail: sampleThumbnail,
   image: {
     title: '',
     templateUrl: '',
     format: '',
     slug: '',
   },
-  parts: [],
+  parts: [samplePhotoStoryPart],
   entityCode: 'story',
 };
 
-export { sampleStory, sampleContext, sampleTags };
+const sampleStoryWithPhotoPart: DistributionEntity = {
+  ...sampleStory,
+  ...samplePhotoStoryPart,
+};
+
+export { sampleStory, sampleStoryWithPhotoPart, sampleContext, sampleTags };

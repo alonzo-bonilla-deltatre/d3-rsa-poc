@@ -20,24 +20,25 @@ const Picture = ({ ...props }: PictureProps) => {
 
   return canRender ? (
     <picture>
-      {props.transformations?.desktop && (
+      {props.transformations?.mobile && (
         <source
-          srcSet={desktopSrc}
-          media="(min-width: 64em)"
+          srcSet={mobileSrc}
+          media="(max-width: 40em)"
         ></source>
       )}
       {props.transformations?.tablet && (
         <source
           srcSet={tabletSrc}
-          media="(min-width: 40em)"
+          media="(max-width: 64em)"
         ></source>
       )}
+
       <Image
         width={mobileWidth}
         height={mobileHeight}
         alt={props.alt ?? ''}
         className={`max-w-none ${props.className ?? ''}`}
-        src={mobileSrc}
+        src={desktopSrc}
         sizes="100vw"
         style={{
           width: '100%',
