@@ -6,6 +6,7 @@ import { getEntity } from '@/services/forgeDistributionService';
 import { notFound } from 'next/navigation';
 import FocusOnView from './FocusOnView';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
   slug?: string;
@@ -36,7 +37,7 @@ const FocusOn = async ({ ...data }: ComponentProps) => {
           <HeaderTitle
             headerTitle={headerTitle}
             headerTitleHeadingLevel={headerTitleHeadingLevel}
-            hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+            hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
           ></HeaderTitle>
         </div>
 

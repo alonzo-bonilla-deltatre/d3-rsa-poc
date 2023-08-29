@@ -2,14 +2,14 @@ import { ComponentProps, HeaderTitleProps, LayoutProps } from '@/models/types/co
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 const Section = ({ ...data }: ComponentProps) => {
   const { removeSectionHtmlTag, isFullScreen } = data.properties as LayoutProps;
-  const sectionContainerCssClass = isFullScreen?.toString() === 'true' ? 'w-full' : 'container w-full mx-auto';
+  const sectionContainerCssClass = getBooleanProperty(isFullScreen) ? 'w-full' : 'container w-full mx-auto';
   const SectionContainer = `${
-    removeSectionHtmlTag?.toString() === 'true' ? 'div' : 'section'
+    getBooleanProperty(removeSectionHtmlTag) ? 'div' : 'section'
   }` as keyof JSX.IntrinsicElements;
-
   return <SectionContainer className={sectionContainerCssClass}>{renderSectionComponent(data)}</SectionContainer>;
 };
 
@@ -21,7 +21,7 @@ function renderSectionComponent(data: ComponentProps) {
       <HeaderTitle
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}
-        hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
         ctaTitle={ctaTitle}
         ctaLink={ctaLink}
       ></HeaderTitle>

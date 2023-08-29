@@ -4,6 +4,7 @@ import { LoggerLevel } from '@/models/types/logger';
 import { getEntityList } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
   skip?: number;
@@ -34,7 +35,7 @@ const Mosaic = async ({ ...data }: ComponentProps) => {
         <HeaderTitle
           headerTitle={headerTitle}
           headerTitleHeadingLevel={headerTitleHeadingLevel}
-          hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+          hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
           ctaTitle={ctaTitle}
           ctaLink={ctaLink}
         ></HeaderTitle>

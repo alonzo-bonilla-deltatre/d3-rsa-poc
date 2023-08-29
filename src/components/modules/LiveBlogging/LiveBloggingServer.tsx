@@ -7,6 +7,7 @@ import { LoggerLevel } from '@/models/types/logger';
 import { getBlogEntity } from '@/services/liveBloggingDistributionService';
 import { notFound } from 'next/navigation';
 import LiveBloggingClient from '@/components/modules/LiveBlogging/LiveBloggingClient';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
   slug?: string;
@@ -21,7 +22,7 @@ const LiveBloggingServer = async ({ ...data }: ComponentProps) => {
     logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
     throw new Error(invalidSlugErrorMessage);
   }
-  const showKeyMoment = props.hideKeyMoments === undefined || props.hideKeyMoments?.toString() === 'false';
+  const showKeyMoment = getBooleanProperty(props.hideKeyMoments);
   const blogEntity = await getBlogEntity(props.slug, showKeyMoment ?? false);
   if (blogEntity == null) {
     logger.log(`Cannot find Blog entity with slug ${props.slug} `, LoggerLevel.warning);
@@ -29,7 +30,7 @@ const LiveBloggingServer = async ({ ...data }: ComponentProps) => {
   }
 
   // Override parent metadata
-  if (props.preventSettingMetadata?.toString() === 'false' || props.preventSettingMetadata === undefined) {
+  if (getBooleanProperty(props.preventSettingMetadata)) {
     overrideLiveBloggingMetadata(parentMetadata, blogEntity);
   }
 

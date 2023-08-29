@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 // @ts-ignore
 const Partner = dynamic(() => import('@/components/common/Partner/Partner'));
@@ -31,7 +32,7 @@ const Partners = async ({ ...data }: ComponentProps) => {
       <HeaderTitle
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}
-        hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
         ctaTitle={ctaTitle}
         ctaLink={ctaLink}
       ></HeaderTitle>

@@ -1,6 +1,6 @@
 import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
 import GridList from '@/components/common/list/Grid/Grid';
-import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { getBlogs } from '@/services/liveBloggingDistributionService';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
 import { getFilteredItems } from '@/helpers/liveBloggingBlogEntityHelper';
@@ -33,7 +33,7 @@ const LiveBloggingGridList = async ({ ...data }: ComponentProps) => {
         <HeaderTitle
           headerTitle={headerTitle}
           headerTitleHeadingLevel={headerTitleHeadingLevel}
-          hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+          hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
           ctaTitle={ctaTitle}
           ctaLink={ctaLink}
         ></HeaderTitle>

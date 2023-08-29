@@ -3,6 +3,7 @@ import { renderItemsInSlot } from '@/services/renderService';
 import { nanoid } from 'nanoid';
 import { getGridChildrenCssClasses, getGridContainerCssClasses } from './DynamicGridHelper';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 export type DynamicGridProps = {
   gridTemplate: string;
@@ -11,11 +12,10 @@ export type DynamicGridProps = {
 
 const DynamicGrid = ({ ...data }: DynamicGridProps) => {
   const { removeSectionHtmlTag, isFullScreen } = data.componentProps.properties as LayoutProps;
-  const dynamicGridContainerCssClass = isFullScreen?.toString() === 'true' ? 'w-full' : 'container w-full mx-auto';
+  const dynamicGridContainerCssClass = getBooleanProperty(isFullScreen) ? 'w-full' : 'container w-full mx-auto';
   const DynamicGridContainer = `${
-    removeSectionHtmlTag?.toString() === 'true' ? 'div' : 'section'
+    getBooleanProperty(removeSectionHtmlTag) ? 'div' : 'section'
   }` as keyof JSX.IntrinsicElements;
-
   return (
     <DynamicGridContainer className={dynamicGridContainerCssClass}>
       {renderDynamicGridComponent(data)}
@@ -34,7 +34,7 @@ function renderDynamicGridComponent(data: DynamicGridProps) {
       <HeaderTitle
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}
-        hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
         ctaTitle={ctaTitle}
         ctaLink={ctaLink}
       ></HeaderTitle>

@@ -4,6 +4,7 @@ import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import GridListComponent from '@/components/common/list/Grid/Grid';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type ModuleProps = {
   skip?: number;
@@ -34,7 +35,7 @@ const GridList = async ({ ...data }: ComponentProps) => {
         <HeaderTitle
           headerTitle={headerTitle}
           headerTitleHeadingLevel={headerTitleHeadingLevel}
-          hideHeaderTitle={hideHeaderTitle?.toString() === 'true'}
+          hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
           ctaTitle={ctaTitle}
           ctaLink={ctaLink}
         ></HeaderTitle>
