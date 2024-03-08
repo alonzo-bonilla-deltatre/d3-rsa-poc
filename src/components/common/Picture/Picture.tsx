@@ -6,8 +6,11 @@ import Image, { getImageProps } from 'next/image';
 type PictureProps = {
   src: string;
   alt: string;
-  transformations: ImageTransformations;
+  transformations?: ImageTransformations;
   className?: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
   priority?: boolean;
   imageStyle?: CSSProperties;
 };
@@ -17,15 +20,31 @@ const Picture = ({
   className,
   alt,
   transformations,
+  width,
+  height,
+  sizes,
   priority,
-  imageStyle = {
-    width: '100%',
-    height: 'auto',
-    aspectRatio: `${transformations.mobile.width} / ${transformations.mobile.height}`,
-  },
+  imageStyle,
 }: PictureProps) => {
-  if (!transformations || !src) {
+  if (!src) {
     return null;
+  }
+
+  if (!transformations) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        className={className}
+        style={imageStyle}
+        sizes={sizes}
+        priority={priority}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+      />
+    );
   }
 
   const desktopSrc = getSrcWithTransformation(src, transformations?.desktop.transformation);
@@ -36,16 +55,16 @@ const Picture = ({
 
   const common = {
     alt: alt,
-    width: transformations.mobile.width,
-    height: transformations.mobile.height,
+    width: width ?? transformations.mobile.width,
+    height: height ?? transformations.mobile.height,
   };
 
   const {
     props: { srcSet: srcSetMobile },
   } = getImageProps({
     ...common,
-    width: transformations.mobile.width,
-    height: transformations.mobile.height,
+    width: width ?? transformations.mobile.width,
+    height: height ?? transformations.mobile.height,
     src: mobileSrc,
   });
 
@@ -53,8 +72,8 @@ const Picture = ({
     props: { srcSet: srcSetTablet },
   } = getImageProps({
     ...common,
-    width: transformations.tablet.width,
-    height: transformations.tablet.height,
+    width: width ?? transformations.tablet.width,
+    height: height ?? transformations.tablet.height,
     src: tabletSrc,
   });
 
@@ -62,26 +81,26 @@ const Picture = ({
     props: { srcSet: srcSetDesktop },
   } = getImageProps({
     ...common,
-    width: transformations?.desktop.width || transformations?.mobile.width,
-    height: transformations?.desktop.height || transformations?.mobile.height,
+    width: width ?? transformations?.desktop.width,
+    height: height ?? transformations?.desktop.height,
     src: desktopSrc,
   });
 
-  const mobileWidth = transformations?.mobile.width;
-  const mobileHeight = transformations?.mobile.height;
+  const mobileWidth = width ?? transformations?.mobile.width;
+  const mobileHeight = height ?? transformations?.mobile.height;
 
   return (
     <picture>
       <source
-        srcSet={srcSetDesktop}
+        srcSet={srcSetDesktop ?? desktopSrc}
         media="(min-width: 1024px)"
       ></source>
       <source
-        srcSet={srcSetTablet}
+        srcSet={srcSetTablet ?? tabletSrc}
         media="(min-width: 768px)"
       ></source>
       <source
-        srcSet={srcSetMobile}
+        srcSet={srcSetMobile ?? mobileSrc}
         media="(min-width: 640px)"
       ></source>
 
@@ -89,9 +108,10 @@ const Picture = ({
         src={mobileSrc}
         width={mobileWidth}
         height={mobileHeight}
-        alt={alt ?? ''}
-        className={`max-w-none ${className ?? ''}`}
+        alt={alt}
+        className={className}
         style={imageStyle}
+        sizes={sizes}
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}

@@ -1,7 +1,6 @@
 import Picture from '@/components/common/Picture/Picture';
 import { DistributionEntity, Tag as TagEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-import Image from 'next/image';
 import Tag from '@/components/common/Tag/Tag';
 import { TagType } from '@/models/types/components/common/tag';
 
@@ -39,13 +38,13 @@ const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
         </figure>
       ) : (
         <figure className="cutter-story">
-          <Image
+          <Picture
             width={defaultThumbnail.width}
             height={defaultThumbnail.height}
             alt="adv"
             className={`w-full h-full object-cover bg-black`}
             src={defaultThumbnail.url}
-            style={{
+            imageStyle={{
               width: '100%',
               height: 'auto',
               maxHeight: 'calc(100vh - 180px)',

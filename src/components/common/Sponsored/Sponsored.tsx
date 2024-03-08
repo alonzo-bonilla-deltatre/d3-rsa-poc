@@ -1,7 +1,7 @@
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
 import TranslateLabel from '@/components/common/TranslatedLabel/TranslatedLabel';
-import Image from 'next/image';
+import Picture from '@/components/common/Picture/Picture';
 
 type SponsoredProps = {
   hide?: boolean;
@@ -23,10 +23,10 @@ const Sponsored = ({ className, name, hide, width, height, assetUrl }: Sponsored
       <span className="d3-ty-tag-small text-white uppercase">
         <TranslateLabel translationTermKey={'sponsored-by'} />
       </span>
-      <Image
+      <Picture
         className={className}
         src={desktopSrc}
-        alt={name ?? ''}
+        alt={name ?? 'sponsor'}
         width={width}
         height={height}
       />

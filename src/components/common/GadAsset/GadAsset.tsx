@@ -1,7 +1,7 @@
 import { ImageTransformations } from '@/models/types/images';
 import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
-import Image from 'next/image';
 import { CSSProperties } from 'react';
+import Picture from '@/components/common/Picture/Picture';
 
 type GadAssetProps = {
   src: string;
@@ -22,14 +22,14 @@ const GadAsset = ({ src, width, height, title, transformations, className, image
   }
 
   return (
-    <Image
+    <Picture
       src={desktopSrc}
-      alt={title ?? ''}
+      alt={title ?? 'image'}
       width={width}
       height={height}
-      className={`max-w-none w-full h-full object-contain ${className ? className : ''} `}
-      loading={'lazy'}
-      style={imageStyle}
+      className={className}
+      priority={false}
+      imageStyle={imageStyle}
     />
   );
 };
