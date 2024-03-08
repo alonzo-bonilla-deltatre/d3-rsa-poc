@@ -2,7 +2,7 @@ import { sampleBlog, sampleBlogs, samplePost } from '@/__mocks__/entities/sample
 import axios from 'axios';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
-import { getBlogEntity, getBlogPosts, getBlogs } from './liveBloggingDistributionService';
+import { getBlogEntity, getBlogPosts, getBlogs } from '@/services/liveBloggingDistributionService';
 import { addLiveBloggingWidgetConfig } from '@/helpers/liveBloggingDistributionEntityHelper';
 import { enrichDistributionEntities } from '@/helpers/liveBloggingBlogEntityHelper';
 import { LiveBloggingDistributionApiOption } from '@/models/types/liveblogging';
@@ -92,6 +92,23 @@ describe('liveBloggingDistributionService', () => {
 
       expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
     });
+
+    it('should return null in case of exception for empty url and return null', async () => {
+      // ARRANGE
+      const apiUrl = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
+
+      // ACT
+      const result = await getBlogEntity('sample-blog', true);
+
+      // ASSERT
+      expect(result).toBeNull();
+      expect(logger.log as jest.Mock).toHaveBeenCalledWith(
+        expect.stringMatching('LIVEBLOGGING DISTRIBUTION API Error'),
+        LoggerLevel.error
+      );
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = apiUrl;
+    });
   });
 
   describe('getBlogPosts', () => {
@@ -180,6 +197,23 @@ describe('liveBloggingDistributionService', () => {
 
       expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
     });
+
+    it('should return null in case of exception for empty url and return null', async () => {
+      // ARRANGE
+      const apiUrl = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
+
+      // ACT
+      const result = await getBlogPosts('sample-blog', true, null);
+
+      // ASSERT
+      expect(result).toBeNull();
+      expect(logger.log as jest.Mock).toHaveBeenCalledWith(
+        expect.stringMatching('LIVEBLOGGING DISTRIBUTION API Error'),
+        LoggerLevel.error
+      );
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = apiUrl;
+    });
   });
 
   describe('getBlogs', () => {
@@ -255,6 +289,23 @@ describe('liveBloggingDistributionService', () => {
       );
 
       expect(enrichDistributionEntities).toBeCalledTimes(0);
+    });
+
+    it('should return null in case of exception for empty url and return null', async () => {
+      // ARRANGE
+      const apiUrl = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
+
+      // ACT
+      const result = await getBlogs();
+
+      // ASSERT
+      expect(result).toBeNull();
+      expect(logger.log as jest.Mock).toHaveBeenCalledWith(
+        expect.stringMatching('LIVEBLOGGING DISTRIBUTION API Error'),
+        LoggerLevel.error
+      );
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = apiUrl;
     });
   });
 });

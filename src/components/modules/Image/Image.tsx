@@ -1,49 +1,71 @@
-import { ComponentProps } from '@/models/types/components';
-import { LoggerLevel } from '@/models/types/logger';
-import { getEntity } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
-import { getSingleAssetByTag } from '@/services/gadService';
-import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { getImageContainerCssClass, getLinkCssClass, transformations } from '@/components/modules/Image/ImageHelper';
+import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import { containerCssSize, getImageContainerCssClass, getLinkCssClass } from '@/components/modules/Image/ImageHelper';
 import ImageView from '@/components/modules/Image/ImageView';
-import React from 'react';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
+import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
+import { GraphicAssetsDashboardItem } from '@/models/types/gad';
+import { getEntity } from '@/services/forgeDistributionService';
+import { getSingleAssetByTag } from '@/services/gadService';
+import { ForgeDapiEntityCode } from '@/models/types/forge';
+import { transformations } from '@/utilities/cloudinaryTransformations';
+import { ImageTransformationName } from '@/models/types/images';
 
-type ModuleProps = {
+type ImageProps = {
   slug?: string;
   ratio?: string;
   size?: string;
   alignment?: string;
-};
+} & EditorialModuleProps;
 
-const Image = async ({ ...data }: ComponentProps) => {
-  const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
-    const invalidSlugErrorMessage = 'Cannot render Image module with empty slug';
-    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
-    return <div />;
-  }
+const Image = async ({ data }: { data: ComponentProps }) => {
+  const { isFullWidth, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, slug, ratio, size, alignment, isDark } =
+    data.properties as ImageProps;
 
-  const imageEntity = await getEntity('page-builder-gad-asset', properties?.slug);
+  if (moduleIsNotValid(data, ['slug'])) return null;
+
+  const imageEntity = await getEntity(ForgeDapiEntityCode.pageBuilderGadAssets, slug, {
+    variables: data.variables,
+  });
   const asset = (await getSingleAssetByTag(imageEntity?.fields.tag?.toString())) as GraphicAssetsDashboardItem;
-  const imageTransformation =
-    transformations[
-      `${properties.ratio ? properties.ratio : 'landscape'}_${properties.size ? properties.size : 'large'}`
-    ];
+  const ratio_size = `${ratio ? ratio : 'landscape'}_${size ? size : 'large'}`;
+  const transformationValue = `${'image_' + ratio_size}` as unknown as ImageTransformationName;
+  const transformationKey = Object.keys(ImageTransformationName).find(
+    (key) => ImageTransformationName[key as keyof typeof ImageTransformationName] === transformationValue
+  );
+
+  let imageTransformation = transformations[transformationValue as ImageTransformationName];
+  // if (transformationKey !== undefined) {
+  //   imageTransformation = transformations[transformationKey as ImageTransformationName];
+  // }
+
   const link = imageEntity?.fields.clickThroughUrl?.toString() ?? '#nolink';
   const caption = imageEntity?.fields.caption?.toString() ?? '';
 
-  return imageEntity && asset && imageTransformation ? (
-    <ImageView
-      link={link}
-      linkCssClass={getLinkCssClass(properties.alignment)}
-      imageContainerCssClass={getImageContainerCssClass(properties.alignment)}
-      imageTransformation={imageTransformation}
-      imageEntity={imageEntity}
-      asset={asset}
-      caption={caption}
+  if (!imageEntity || !asset || !imageTransformation) return null;
+
+  return (
+    <SectionWithHeader
+      data={{
+        headerTitle: headerTitle,
+        headerTitleHeadingLevel: headerTitleHeadingLevel,
+        hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
+        hasFullWidthHeader: isFullWidth,
+        hasFullWidthContent: isFullWidth,
+        sectionClassName: `d3-image ${isFullWidth ? '-full-width' : ''} ${getDarkClass(isDark)}`,
+        children: (
+          <ImageView
+            link={link}
+            linkCssClass={`${getLinkCssClass(alignment)}`}
+            imageContainerCssClass={`${getImageContainerCssClass(alignment)} ${containerCssSize[ratio_size]}`}
+            imageTransformation={imageTransformation}
+            imageEntity={imageEntity}
+            asset={asset}
+            caption={caption}
+          />
+        ),
+      }}
     />
-  ) : (
-    <div />
   );
 };
 

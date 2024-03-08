@@ -12,17 +12,9 @@ export default meta;
 type Story = StoryObj<typeof SearchBarOverlay>;
 
 export const Default: Story = {
-  args: {
-    show: true,
-    lightTheme: false,
-  },
   parameters: {
     layout: 'padded',
   },
   decorators: [withBaseDecorator],
-  render: (args) => (
-    <>
-      <SearchBarOverlay {...args} />
-    </>
-  ),
+  render: (args) => <SearchBarOverlay {...args} />,
 };

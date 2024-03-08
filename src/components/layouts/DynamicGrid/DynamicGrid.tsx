@@ -1,56 +1,51 @@
+import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import { getGridChildrenCssClasses } from '@/components/layouts/DynamicGrid/DynamicGridHelper';
+import { getBooleanProperty, getDarkClass, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, HeaderTitleProps, LayoutProps } from '@/models/types/components';
 import { renderItemsInSlot } from '@/services/renderService';
-import { nanoid } from 'nanoid';
-import { getGridChildrenCssClasses, getGridContainerCssClasses } from './DynamicGridHelper';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
-import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { parseFieldValue } from '@/utilities/fieldValueParser';
 
 export type DynamicGridProps = {
   gridTemplate: string;
   componentProps: ComponentProps;
 };
 
-const DynamicGrid = ({ ...data }: DynamicGridProps) => {
-  const { removeSectionHtmlTag, isFullScreen } = data.componentProps.properties as LayoutProps;
-  const dynamicGridContainerCssClass = getBooleanProperty(isFullScreen) ? 'w-full' : 'container w-full mx-auto';
-  const DynamicGridContainer = `${
-    getBooleanProperty(removeSectionHtmlTag) ? 'div' : 'section'
-  }` as keyof JSX.IntrinsicElements;
+const DynamicGrid = ({ gridTemplate, componentProps }: DynamicGridProps) => {
+  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, ctaTitle, ctaLink } =
+    componentProps.properties as HeaderTitleProps;
+  const { isFullWidth, isDark } = componentProps.properties as LayoutProps;
+  const { items, variables, metadata, previewToken } = componentProps;
+  const childrenClasses: string[] = getGridChildrenCssClasses(gridTemplate);
+  const slotsLength: number = gridTemplate.split('-').length;
+  if (getHideLayout(componentProps)) {
+    return null;
+  }
   return (
-    <DynamicGridContainer className={dynamicGridContainerCssClass}>
-      {renderDynamicGridComponent(data)}
-    </DynamicGridContainer>
+    <SectionWithHeader
+      data={{
+        headerTitle: headerTitle,
+        headerTitleHeadingLevel: headerTitleHeadingLevel,
+        hideHeaderTitle: hideHeaderTitle,
+        ctaLink: parseFieldValue(ctaLink, componentProps.variables),
+        ctaTitle: ctaTitle,
+        hasFullWidthHeader: isFullWidth,
+        hasFullWidthContent: isFullWidth,
+        sectionClassName: `d3-section-layout ${isFullWidth ? '-full-width' : ''} ${getDarkClass(isDark)} ${getBooleanProperty(isDark) ? 'bg-component-layout-dynamic-grid-background-dark' : ''}`,
+        children: (
+          <div className="d3-grid-container grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-4 lg:gap-y-6 text-component-layout-dynamic-grid-text-light dark:text-component-layout-dynamic-grid-text-dark">
+            {[...Array(slotsLength)].map((_, index: number) => (
+              <div
+                className={`col-span-1 ${childrenClasses[index]}`}
+                key={index}
+              >
+                {renderItemsInSlot(items, 'col' + (index + 1), variables, metadata, previewToken)}
+              </div>
+            ))}
+          </div>
+        ),
+      }}
+    />
   );
 };
-
-function renderDynamicGridComponent(data: DynamicGridProps) {
-  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, ctaTitle, ctaLink } = data.componentProps
-    .properties as HeaderTitleProps;
-  const { items, variables, metadata, previewToken } = data.componentProps;
-  const classes: string[] = getGridChildrenCssClasses(data.gridTemplate);
-  const slotsLength: number = data.gridTemplate.split('-').length;
-  return (
-    <>
-      <HeaderTitle
-        headerTitle={headerTitle}
-        headerTitleHeadingLevel={headerTitleHeadingLevel}
-        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
-        ctaTitle={ctaTitle}
-        ctaLink={ctaLink}
-      ></HeaderTitle>
-      <div className={getGridContainerCssClasses(data.gridTemplate)}>
-        {[...Array(slotsLength)].map((_, i: number) => (
-          <div
-            key={`col${i + 1}_${nanoid()}`}
-            id={`col${i + 1}_${nanoid()}`}
-            className={classes[i]}
-          >
-            {renderItemsInSlot(items, 'col' + (i + 1), variables, metadata, previewToken)}
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
 
 export default DynamicGrid;

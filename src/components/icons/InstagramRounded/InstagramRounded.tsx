@@ -1,6 +1,6 @@
-﻿import React from 'react';
+﻿import React, { SVGProps } from 'react';
 
-const InstagramRounded = (props: any) => {
+const InstagramRounded = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       viewBox="0 0 35 34"
@@ -12,7 +12,7 @@ const InstagramRounded = (props: any) => {
         cy="17"
         r="16.3"
         fill="black"
-        fillOpacity="0.2"
+        fillOpacity="0"
         stroke="currentColor"
         strokeWidth="1.4"
       />

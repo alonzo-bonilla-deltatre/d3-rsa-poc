@@ -1,0 +1,17 @@
+.hero {
+  :global {
+    .hero {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 'media' 'bottom';
+
+      &__image,
+      &__main {
+        grid-area: media;
+      }
+
+      &__list {
+        grid-area: bottom;
+      }
+    }
+  }
+}

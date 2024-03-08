@@ -22,10 +22,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "/icons/*": ["./public/icons/*"]
+      "/icons/*": ["./public/icons/*"],
+      "react": ["./node_modules/@types/react"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/common/CallToAction/CallToAction.mdx", ".storybook/storybookDecorators.tsx", "src/__mocks__/footer-layout.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "types": ["react/next"]
 }

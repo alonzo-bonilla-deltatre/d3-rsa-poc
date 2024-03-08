@@ -1,9 +1,9 @@
-import { AlbumEntity, DistributionEntity, Tag } from '@/models/types/forge';
+import { AlbumEntity, DistributionEntity, ForgeEntityCode, ForgeEntityType, Tag } from '@/models/types/forge';
 import { emptyDistributionEntity } from './sampleStoryParts';
 import { sampleContext, sampleTags } from './story';
 const samplePhoto: DistributionEntity = {
   ...emptyDistributionEntity,
-  type: 'photo',
+  type: ForgeEntityType.photo,
   _translationId: '7c1c8452-6092-48f9-a6f8-8d2b0d86c5cf',
   _entityId: 'a740c843-a2a2-4a76-94dc-59d0a05ac6fc',
   selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/photos/virinhv2b3nkturg0toi',
@@ -33,7 +33,7 @@ const sampleAlbum: AlbumEntity = {
   id: 'd2ffd20f-0c27-41fb-b33e-b872cb46a641',
   fields: {},
   createdBy: 'Mario Rossi',
-  type: 'album',
+  type: ForgeEntityType.album,
   _translationId: '63b4c7d9-c86e-4c39-8033-1a335f87e2ad',
   _entityId: 'd2ffd20f-0c27-41fb-b33e-b872cb46a641',
   selfUrl: '',
@@ -63,7 +63,7 @@ const sampleAlbum: AlbumEntity = {
   },
   parts: [],
   elements: [samplePhoto, samplePhoto, samplePhoto],
-  entityCode: 'album',
+  entityCode: ForgeEntityCode.album,
   description: 'description',
 };
 

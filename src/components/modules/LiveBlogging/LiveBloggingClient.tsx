@@ -6,25 +6,24 @@ import { LiveBloggingBlogEntity } from '@/models/types/liveblogging';
 import '@/components/modules/LiveBlogging/LiveBloggingWidget.css';
 import '@/components/modules/LiveBlogging/LiveBlogging.css';
 
-type ModuleProps = {
+type LiveBloggingClientProps = {
   blogEntity: LiveBloggingBlogEntity | null;
-  hideKeyMoments?: boolean;
   blogBaseUrl?: string;
 };
 
-const LiveBloggingClient = ({ ...props }: ModuleProps) => {
-  const jsAssetUrl = new URL('widget/static/js/liveblog.main.js', props.blogBaseUrl).href;
+const LiveBloggingClient = ({ blogEntity, blogBaseUrl }: LiveBloggingClientProps) => {
+  if (!blogEntity) return null;
 
-  return props.blogEntity ? (
+  const jsAssetUrl = new URL('widget/static/js/liveblog.main.js', blogBaseUrl).href;
+
+  return (
     <>
       <Script src={jsAssetUrl} />
       <div
         className="liveblog-embed"
-        data-config={JSON.stringify(props.blogEntity.widgetConfig)}
+        data-config={JSON.stringify(blogEntity.widgetConfig)}
       />
     </>
-  ) : (
-    <></>
   );
 };
 export default LiveBloggingClient;

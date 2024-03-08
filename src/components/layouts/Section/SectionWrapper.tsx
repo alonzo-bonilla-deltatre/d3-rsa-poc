@@ -1,20 +1,20 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Section = dynamic(() => import('@/components/layouts/Section/Section'));
 
-const SectionWrapper = ({ ...data }: ComponentProps) => <Section {...data} />;
+const SectionWrapper = ({ data }: { data: ComponentProps }) => <Section data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => {
+  if (!data) {
+    return null;
+  }
+  return (
     <SectionWrapper
       key={nanoid()}
-      {...data}
+      data={data}
     />
-  ) : (
-    <></>
   );
+};
 
 export default render;

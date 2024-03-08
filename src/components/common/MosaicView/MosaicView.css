@@ -1,0 +1,49 @@
+/* These style changes overwrite the default design of Fancybox modal */
+
+.fancybox__container .fancybox__backdrop {
+  background-color: rgba(15, 15, 15, 0.9);
+}
+
+.fancybox__container .fancybox__content .fancybox-image {
+  height: auto;
+  max-height: 360px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.fancybox__container .fancybox__footer {
+  height: 30%;
+  padding: 40px 16px 0 16px;
+  background-color: transparent;
+}
+
+.f-button {
+  background-color: transparent;
+  width: 62px;
+  height: 62px;
+}
+
+.f-button:hover:not([disabled]),
+.f-button:hover {
+  background-color: transparent;
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .fancybox__container .fancybox__content .fancybox-image {
+    padding-top: 30px;
+    height: 800px;
+    max-height: 800px;
+  }
+
+  .fancybox__container .fancybox__caption {
+    width: 60%;
+    text-align: center;
+    padding: 16px 50px 20px 50px;
+    height: 20px;
+  }
+
+  .fancybox__container .fancybox__footer {
+    height: auto;
+  }
+}

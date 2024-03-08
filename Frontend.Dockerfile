@@ -1,10 +1,12 @@
-FROM node:18-buster AS deps
+FROM node:20-slim AS deps
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./
-RUN yarn install --pure-lockfile
+COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
-FROM node:18-buster AS builder
+RUN yarn set version berry && \
+    yarn install
+
+FROM node:20-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
@@ -21,14 +23,14 @@ ARG RepositoryName
 ARG CollectionUri
 ARG sonarprojectkey
 ARG sonarlogin
+ARG version
 
 RUN yarn test
 RUN yarn sonar
 
-ARG yarnBuildCommand
-RUN $yarnBuildCommand
+RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
 
-FROM node:18-buster AS runner
+FROM node:20-slim AS runner
 WORKDIR /app
 
 COPY --from=builder /app/next.config.js ./

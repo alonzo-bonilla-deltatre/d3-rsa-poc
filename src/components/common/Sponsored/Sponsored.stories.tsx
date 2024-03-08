@@ -13,11 +13,7 @@ export default meta;
 type Story = StoryObj<typeof Sponsored>;
 
 export const Default: Story = {
-  render: (args) => (
-    <>
-      <Sponsored {...args}></Sponsored>
-    </>
-  ),
+  render: (args) => <Sponsored {...args}></Sponsored>,
   args: {
     hide: false,
     className: '',

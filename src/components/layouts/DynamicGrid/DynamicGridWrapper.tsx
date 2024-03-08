@@ -1,16 +1,15 @@
-/* istanbul ignore file */
 import dynamic from 'next/dynamic';
 import { ComponentProps } from '@/models/types/components';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const DynamicGrid = dynamic(() => import('@/components/layouts/DynamicGrid/DynamicGrid'));
 
 const renderHOC = (gridTemplate: string = '6-6') => {
-  const render = ({ ...data }: ComponentProps) => {
+  const render = ({ data }: { data: ComponentProps }) => {
     return (
       <DynamicGrid
         gridTemplate={gridTemplate}
         componentProps={data}
+        key={nanoid()}
       />
     );
   };

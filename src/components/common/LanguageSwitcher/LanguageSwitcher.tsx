@@ -1,34 +1,53 @@
 import { FrontendConfiguration, FrontendSiteConfiguration } from '@/models/types/frontendConfiguration';
-import { nanoid } from 'nanoid';
 import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
-import { translate } from '@/utilities/i18n';
-
-const languageNavItemClasses = 'text-sm font-light text-[#BEBEBE]';
+import { translate } from '@/services/translationService';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type LanguageSwitcherProps = {
+  isDark?: boolean;
   allSiteConfiguration?: FrontendConfiguration;
+  languageNavItemCssClasses?: string;
+  languageContainerNavItemCssClasses?: string;
+  languageContainerCssClasses?: string;
+  languageSeparatorCssClasses?: string;
+  hasLanguageSeparator?: boolean;
 };
 
-const LanguageSwitcher = ({ ...props }: LanguageSwitcherProps) => {
-  const allSiteConfiguration = props.allSiteConfiguration ?? getFrontendAllSiteConfiguration();
+const LanguageSwitcher = ({
+  isDark,
+  allSiteConfiguration,
+  languageNavItemCssClasses = `text-sm font-normal transition duration-300 hover:text-component-common-language-switcher-hover  ${getBooleanProperty(isDark) ? 'text-component-common-language-switcher-text-dark' : 'text-component-common-language-switcher-text-light'}`,
+  languageContainerNavItemCssClasses = 'w-fit inline-flex gap-2',
+  languageContainerCssClasses = 'overflow-auto inline-flex gap-2',
+  languageSeparatorCssClasses = 'border-l border-l-text-component-common-language-switcher-separator rotate-[17deg]',
+  hasLanguageSeparator,
+}: LanguageSwitcherProps) => {
+  allSiteConfiguration = allSiteConfiguration ?? getFrontendAllSiteConfiguration();
+  const navItemCssClasses = languageNavItemCssClasses ?? languageNavItemCssClasses;
+  const containerNavItemCssClasses = languageContainerNavItemCssClasses ?? languageContainerNavItemCssClasses;
 
   return (
-    <>
-      <div>
-        {allSiteConfiguration &&
-          allSiteConfiguration.allSites.map((item: FrontendSiteConfiguration) => {
+    <div className={languageContainerCssClasses}>
+      {allSiteConfiguration &&
+        allSiteConfiguration.allSites.map(
+          (item: FrontendSiteConfiguration, index: number, array: FrontendSiteConfiguration[]) => {
             return (
-              <a
-                key={nanoid()}
-                href={new URL('/', item.url).href}
-                className={`${languageNavItemClasses} pr-4 last:pr-0 pl-0 last:pl-4 border-[#FFFFFF33] border-r last:border-r-0 transition duration-300 hover:text-[#fff]`}
+              <div
+                key={index}
+                className={containerNavItemCssClasses}
               >
-                {translate(item.translation)}
-              </a>
+                <a
+                  href={new URL('/', item.url).href}
+                  className={navItemCssClasses}
+                >
+                  {translate(item.translation)}
+                </a>
+                {index + 1 !== array.length && hasLanguageSeparator && <div className={languageSeparatorCssClasses} />}
+              </div>
             );
-          })}
-      </div>
-    </>
+          }
+        )}
+    </div>
   );
 };
 

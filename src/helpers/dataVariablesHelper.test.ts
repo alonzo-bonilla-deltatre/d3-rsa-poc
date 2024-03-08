@@ -1,5 +1,11 @@
 import { Variable } from '@/models/types/pageStructure';
-import { getAppViewVariable, getBooleanVariable, getDataVariable } from './dataVariableHelper';
+import {
+  convertStringToBoolean,
+  createDataVariable,
+  getAppViewVariable,
+  getBooleanVariable,
+  getDataVariable,
+} from './dataVariableHelper';
 
 describe('getDataVariable function', () => {
   const variables: Variable[] = [
@@ -211,5 +217,36 @@ describe('getBooleanVariable function', () => {
     const variableToLook = 'undefined';
     const result = getBooleanVariable(variables, variableToLook);
     expect(result).toEqual(undefined);
+  });
+});
+describe('createDataVariable function', () => {
+  const key = 'key';
+  const value = 'value';
+  const valueType = 'valueType';
+  const type = 'type';
+
+  it('should create a Variable object with the params passed to the function', () => {
+    const result = createDataVariable(key, value);
+    expect(result).toEqual({ key, keyValue: { value, valueType: '' }, type: '' });
+  });
+
+  it('should create a Variable object even with the optional params passed to the function', () => {
+    const result = createDataVariable(key, value, valueType, type);
+    expect(result).toEqual({ key, keyValue: { value, valueType }, type });
+  });
+});
+
+describe('convertStringToBoolean function', () => {
+  it('should return false if input is an empty string', () => {
+    const result = convertStringToBoolean('');
+    expect(result).toEqual(false);
+  });
+  it('should return true if the input is a string with "true" as value', () => {
+    const result = convertStringToBoolean('true');
+    expect(result).toEqual(true);
+  });
+  it('should return false if the input is a string with "false" as value', () => {
+    const result = convertStringToBoolean('false');
+    expect(result).toEqual(false);
   });
 });

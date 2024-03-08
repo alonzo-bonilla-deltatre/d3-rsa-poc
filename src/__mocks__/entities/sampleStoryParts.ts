@@ -1,4 +1,4 @@
-import { DistributionEntity } from '@/models/types/forge';
+import { DistributionEntity, ForgeEntityCode, ForgeEntityType, ForgeExternalEntityType } from '@/models/types/forge';
 import { EventEntity, EventFields } from '@/models/types/forge.customEntityFields';
 import { StoryPart } from '@/models/types/storyPart';
 
@@ -7,7 +7,7 @@ const emptyDistributionEntity: DistributionEntity = {
   id: '',
   fields: {},
   createdBy: '',
-  type: '',
+  type: ForgeEntityType.customEntity,
   _translationId: '',
   _entityId: '',
   selfUrl: '',
@@ -47,11 +47,11 @@ const emptyDistributionEntity: DistributionEntity = {
     slug: '',
   },
   parts: [],
-  entityCode: '',
+  entityCode: ForgeEntityCode.story,
 };
 const emptyDistributionEntityStoryPart = {
   content: '',
-  externalType: '',
+  externalType: ForgeExternalEntityType.storyPartPhoto,
   inputUrl: '',
 };
 const emptyField: EventFields = {
@@ -78,8 +78,7 @@ const emptyField: EventFields = {
 };
 
 const nullFields: EventFields = {
-  headline: null,
-  eventType: null,
+  eventType: ForgeEntityCode.event,
   headerColor: null,
   venue: null,
   facebookProfile: null,
@@ -87,7 +86,6 @@ const nullFields: EventFields = {
   twitterProfile: null,
   youtubeChannel: null,
   twitchChannel: null,
-  description: null,
   mobileBackgroundEventImage: null,
   backgroundEventImage: null,
   mobileBackgroundEventImageAsset: null,
@@ -127,7 +125,7 @@ const emptyDistributionEntityWithEmptyFields: EventEntity = {
 
 //********** PHOTO ************/
 const partialPhotoPart = {
-  type: 'photo',
+  type: ForgeEntityCode.photo,
   image: {
     title: 'EscapeToTurin',
     templateUrl:
@@ -135,7 +133,7 @@ const partialPhotoPart = {
     format: 'webp',
     slug: 'escape-slug',
   },
-  externalType: 'story-part-photo',
+  externalType: ForgeExternalEntityType.storyPartPhoto,
   inputUrl: '',
 };
 
@@ -147,12 +145,12 @@ const samplePhotoStoryPart: StoryPart = {
 
 //********** QUOTE ************/
 const partialQuotePart = {
-  type: 'external',
+  type: ForgeEntityType.external,
   content: {
     quote: 'I’ve failed over and over again in my life. And that is why I succeed.',
     author: 'Michael Jordan',
   },
-  externalType: 'story-part-quote',
+  externalType: ForgeExternalEntityType.storyPartQuote,
   inputUrl: '',
 };
 
@@ -164,7 +162,7 @@ const sampleQuoteStoryPart: StoryPart = {
 
 //********** YOUTUBE ************/
 const partialYouTubePart = {
-  type: 'external',
+  type: ForgeEntityType.external,
   content: {
     title: 'Gilles Mas introduces deltatre at SportsInnovation 2018 in Düsseldorf',
     author_name: 'Deltatre',
@@ -180,7 +178,7 @@ const partialYouTubePart = {
     thumbnail_url: 'https://i.ytimg.com/vi/PIerxfLKQl8/hqdefault.jpg',
     html: '<iframe width="480" height="270" src="https://www.youtube.com/embed/PIerxfLKQl8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Gilles Mas introduces deltatre at SportsInnovation 2018 in Düsseldorf"></iframe>',
   },
-  externalType: 'oembed',
+  externalType: ForgeExternalEntityType.oembed,
   inputUrl: 'https://www.youtube.com/watch?v=PIerxfLKQl8&t=2s',
 };
 
@@ -192,7 +190,7 @@ const sampleYoutubeStoryPart: StoryPart = {
 
 //********** TWITTER ************/
 const partialTwitterPart = {
-  type: 'external',
+  type: ForgeEntityType.external,
   content: {
     url: 'https://twitter.com/NYCFC/status/1643361966713450497',
     author_name: 'New York City Football Club',
@@ -205,7 +203,7 @@ const partialTwitterPart = {
     html: '<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Building a Fortress 🧱</p>&mdash; New York City Football Club (@NYCFC) <a href="https://twitter.com/NYCFC/status/1643361966713450497?ref_src=twsrc%5Etfw">April 4, 2023</a></blockquote>\n<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>\n',
     cache_age: '3153600000',
   },
-  externalType: 'oembed',
+  externalType: ForgeExternalEntityType.oembed,
   inputUrl: 'https://twitter.com/NYCFC/status/1643361966713450497?s=20',
 };
 
@@ -217,7 +215,7 @@ const sampleTwitterStoryPart: StoryPart = {
 
 //********** INSTAGRAM ************/
 const partialInstagramPart = {
-  type: 'external',
+  type: ForgeEntityType.external,
   content: {
     author_name: 'deltatreofficial',
     type: 'rich',
@@ -231,7 +229,7 @@ const partialInstagramPart = {
     thumbnail_width: 480,
     thumbnail_height: 360,
   },
-  externalType: 'oembed',
+  externalType: ForgeExternalEntityType.oembed,
   inputUrl: 'https://www.instagram.com/p/CU5LIkxtYwm/',
 };
 
@@ -243,7 +241,7 @@ const sampleInstagramStoryPart: StoryPart = {
 
 //********** BRIGHTCOVE ************/
 const partialBrightcoveVideoPart = {
-  type: 'customentity',
+  type: ForgeEntityType.customEntity,
   _translationId: '59b6e3f1-dad3-4f87-9043-25c582cd7b4d',
   _entityId: '35cd864c-41df-45cf-949d-fd556e0b65be',
   selfUrl:
@@ -255,7 +253,7 @@ const partialBrightcoveVideoPart = {
     brightcoveAccountId: '5530036775001',
     brightcoveId: '6323538882112',
   },
-  entityCode: 'brightcovevideo',
+  entityCode: ForgeEntityCode.brightcoveVideo,
   thumbnail: {
     title: '23_GOTM_March_16x9',
     templateUrl:

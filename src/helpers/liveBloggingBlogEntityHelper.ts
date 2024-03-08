@@ -16,28 +16,39 @@ const environment = process.env.ENVIRONMENT;
  * @param variables the variables from were to extract the placeholder image asset from
  * @returns the items enreached with the fallback image where needed
  */
-const enrichEntitiesWithThumbnailPlaceholder = (
+export const enrichEntitiesWithThumbnailPlaceholder = (
   items: LiveBloggingBlogEntity[] | null,
   variables?: Variable[] | undefined
 ) => {
   const imagePlaceholderUrl = getDataVariable(variables, IMAGE_PLACEHOLDER);
   const fallbackImageAsset: ImageAsset = {
     title: 'no_image_available',
-    templateUrl: imagePlaceholderUrl ?? '',
+    templateUrl: imagePlaceholderUrl,
     format: '',
     slug: 'no_image_available',
   };
 
   items?.forEach((item) => {
-    if (!item?.coverImage || !item?.coverImage?.templateUrl || item?.coverImage?.templateUrl === '') {
+    if (!item?.coverImage || item?.coverImage?.templateUrl === '') {
       item.coverImage = fallbackImageAsset;
     }
   });
-  return items || [];
+  return items ?? [];
 };
 
-/* istanbul ignore next */
-const enrichDistributionEntitiesWithLinkRules = async (
+/**
+ * Enriches the given entities with link rules.
+ *
+ * This function builds a request for link rules based on the given entities and whether relations and parts should be included.
+ * It then fetches the link rules based on this request.
+ * If any link rules are returned, it updates the URLs of the entities based on these link rules.
+ *
+ * @async
+ * @param {LiveBloggingBlogEntity[]} entities - The entities to be enriched.
+ * @param {LinkRuleVariation[]} [linkRuleVariations] - The link rule variations to use for enrichment.
+ * @returns {Promise<LiveBloggingBlogEntity[]>} The enriched entities.
+ */
+export const enrichDistributionEntitiesWithLinkRules = /* istanbul ignore next */ async (
   entities: LiveBloggingBlogEntity[],
   linkRuleVariations?: LinkRuleVariation[]
 ): Promise<LiveBloggingBlogEntity[]> => {
@@ -55,65 +66,15 @@ const enrichDistributionEntitiesWithLinkRules = async (
   return updateEntityURLs(entities, linkRules);
 };
 
-/* istanbul ignore next */
-const buildLinkRulesRequest = (
-  entities: LiveBloggingBlogEntity[],
-  linkRuleVariations?: LinkRuleVariation[]
-): LinkRuleRequest[] => {
-  const linkRulesRequest: LinkRuleRequest[] = [];
-
-  for (const entity of entities) {
-    enrichLinkRuleRequestEntity([entity], linkRuleVariations);
-    addLinkRuleRequest(entity, linkRulesRequest);
-  }
-
-  return linkRulesRequest;
-};
-
-/* istanbul ignore next */
-const enrichLinkRuleRequestEntity = (entities: LiveBloggingBlogEntity[], linkRuleVariations?: LinkRuleVariation[]) => {
-  if (entities && linkRuleVariations) {
-    linkRuleVariations.forEach((variation) => {
-      entities.forEach((entity) => {
-        entity[variation.key] = variation.value;
-      });
-    });
-  }
-};
-
-/* istanbul ignore next */
-const addLinkRuleRequest = (entity: LiveBloggingBlogEntity, linkRulesRequest: LinkRuleRequest[]) => {
-  linkRulesRequest.push({
-    id: createLinkRuleId(entity),
-    entity,
-    entityType: 'blog',
-    /* @ts-ignore */
-    culture,
-    /* @ts-ignore */
-    environment,
-  });
-};
-
-/* istanbul ignore next */
-const updateEntityURLs = (
-  entities: LiveBloggingBlogEntity[],
-  linkRules: LinkRuleResponse
-): LiveBloggingBlogEntity[] => {
-  for (const entity of entities) {
-    updateEntityURL(entity, linkRules);
-  }
-
-  return entities;
-};
-
-/* istanbul ignore next */
-const updateEntityURL = (entity: LiveBloggingBlogEntity, linkRules: LinkRuleResponse) => {
-  const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
-  entity.url = linkRule?.url ?? entity.url;
-};
-
-/* istanbul ignore next */
-const enrichDistributionEntities = async (
+/**
+ * Enriches the given entities with link rules, thumbnail placeholders, and other options.
+ *
+ * @async
+ * @param {LiveBloggingBlogEntity[]} entities - The entities to be enriched.
+ * @param {LiveBloggingDistributionApiOption} [options=null] - The options for enrichment.
+ * @returns {Promise<LiveBloggingBlogEntity[]>} The enriched entities.
+ */
+export const enrichDistributionEntities = /* istanbul ignore next */ async (
   entities: LiveBloggingBlogEntity[],
   options: LiveBloggingDistributionApiOption = null
 ): Promise<LiveBloggingBlogEntity[]> => {
@@ -132,8 +93,15 @@ const enrichDistributionEntities = async (
   return entities;
 };
 
-/* istanbul ignore next */
-const getQueryString = (skip: number, limit: number, tags: string) => {
+/**
+ * Returns the query string for the API based on the given skip, limit, and tags.
+ *
+ * @param {number} skip - The number of items to skip.
+ * @param {number} limit - The maximum number of items to return.
+ * @param {string} tags - The tags to include in the query.
+ * @returns {string} The query string for the API.
+ */
+export const getQueryString = /* istanbul ignore next */ (skip: number, limit: number, tags: string) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
   if (skip) {
@@ -143,7 +111,7 @@ const getQueryString = (skip: number, limit: number, tags: string) => {
     queryString.push(`$limit=${limit}`);
   }
   if (tags) {
-    const tagSlugs = tags.split(',');
+    const tagSlugs = tags?.split(',');
     tagSlugs.forEach((tag) => {
       queryString.push(`tags.slug=${tag}`);
     });
@@ -151,8 +119,19 @@ const getQueryString = (skip: number, limit: number, tags: string) => {
   return queryString.join('&');
 };
 
-/* istanbul ignore next */
-const getFilteredItems = (items: LiveBloggingBlogEntity[] | null | undefined, skip: number, limit: number) => {
+/**
+ * Returns the filtered items based on the given skip and limit values.
+ *
+ * @param {LiveBloggingBlogEntity[] | null | undefined} items - The items to be filtered.
+ * @param {number} skip - The number of items to skip.
+ * @param {number} limit - The maximum number of items to return.
+ * @returns {LiveBloggingBlogEntity[]} The filtered items.
+ */
+export const getFilteredItems = /* istanbul ignore next */ (
+  items: LiveBloggingBlogEntity[] | null | undefined,
+  skip: number,
+  limit: number
+) => {
   if (!items?.length) {
     return [];
   }
@@ -162,16 +141,119 @@ const getFilteredItems = (items: LiveBloggingBlogEntity[] | null | undefined, sk
   return items.slice(skip, limit);
 };
 
-/* istanbul ignore next */
-const createLinkRuleId = (entity: LiveBloggingBlogEntity | StoryPart): string => {
+/**
+ * Returns the link rule ID for a given entity.
+ *
+ * @param {LiveBloggingBlogEntity | StoryPart} entity - The entity for which to return the link rule ID.
+ * @returns {string} The link rule ID for the given entity.
+ */
+export const createLinkRuleId = /* istanbul ignore next */ (entity: LiveBloggingBlogEntity | StoryPart): string => {
   return entity.slug;
 };
 
-export {
-  enrichEntitiesWithThumbnailPlaceholder,
-  enrichDistributionEntitiesWithLinkRules,
-  enrichDistributionEntities,
-  getQueryString,
-  getFilteredItems,
-  createLinkRuleId,
+/**
+ * Builds a request for link rules based on the given entities and link rule variations.
+ *
+ * This function iterates over each entity in the provided array, enriches the link rule request entity based on the given link rule variations,
+ * and adds a link rule request for the entity to the link rule requests array.
+ *
+ * @param {LiveBloggingBlogEntity[]} entities - The entities to be included in the link rule request.
+ * @param {LinkRuleVariation[]} [linkRuleVariations] - The link rule variations to use for enrichment.
+ * @returns {LinkRuleRequest[]} The built link rule requests.
+ */
+const buildLinkRulesRequest = /* istanbul ignore next */ (
+  entities: LiveBloggingBlogEntity[],
+  linkRuleVariations?: LinkRuleVariation[]
+): LinkRuleRequest[] => {
+  const linkRulesRequest: LinkRuleRequest[] = [];
+
+  for (const entity of entities) {
+    enrichLinkRuleRequestEntity([entity], linkRuleVariations);
+    addLinkRuleRequest(entity, linkRulesRequest);
+  }
+
+  return linkRulesRequest;
+};
+
+/**
+ * Enriches the given entities with link rule variations.
+ *
+ * This function iterates over each entity and each link rule variation.
+ * For each entity, it adds a property with the key of the link rule variation and a value of the link rule variation value.
+ *
+ * @param {LiveBloggingBlogEntity[]} entities - The entities to be enriched.
+ * @param {LinkRuleVariation[] | undefined} linkRuleVariations - The link rule variations to use for enrichment.
+ */
+const enrichLinkRuleRequestEntity = /* istanbul ignore next */ (
+  entities: LiveBloggingBlogEntity[],
+  linkRuleVariations?: LinkRuleVariation[]
+) => {
+  if (entities && linkRuleVariations) {
+    linkRuleVariations.forEach((variation) => {
+      entities.forEach((entity) => {
+        entity[variation.key] = variation.value;
+      });
+    });
+  }
+};
+
+/**
+ * Adds a link rule request for a given entity to the provided array of link rule requests.
+ *
+ * This function creates a link rule request for the given entity, which includes the entity's ID, the entity itself,
+ * the entity's type, and the current culture and environment. The created link rule request is then added to the
+ * provided array of link rule requests.
+ *
+ * @param {LiveBloggingBlogEntity} entity - The entity for which to create a link rule request.
+ * @param {LinkRuleRequest[]} linkRulesRequest - The array of link rule requests to which to add the created link rule request.
+ */
+const addLinkRuleRequest = /* istanbul ignore next */ (
+  entity: LiveBloggingBlogEntity,
+  linkRulesRequest: LinkRuleRequest[]
+) => {
+  linkRulesRequest.push({
+    id: createLinkRuleId(entity),
+    entity,
+    entityType: 'blog',
+    /* @ts-ignore */
+    culture,
+    /* @ts-ignore */
+    environment,
+  });
+};
+
+/**
+ * Updates the URLs of the given entities based on the provided link rules.
+ *
+ * This function iterates over each entity in the provided array and updates its URL based on the corresponding link rule.
+ * If a link rule for an entity is not found, the entity's URL is not updated.
+ *
+ * @param {LiveBloggingBlogEntity[]} entities - The entities whose URLs are to be updated.
+ * @param {LinkRuleResponse} linkRules - The link rules to use for updating the URLs.
+ * @returns {LiveBloggingBlogEntity[]} The entities with updated URLs.
+ */
+const updateEntityURLs = /* istanbul ignore next */ (
+  entities: LiveBloggingBlogEntity[],
+  linkRules: LinkRuleResponse
+): LiveBloggingBlogEntity[] => {
+  for (const entity of entities) {
+    updateEntityURL(entity, linkRules);
+  }
+
+  return entities;
+};
+
+/**
+ * Updates the URL of the given entity based on the provided link rules.
+ *
+ * This function finds the link rule for the given entity in the provided link rules.
+ * If a link rule is found, it updates the entity's URL with the URL from the link rule.
+ * If a link rule is not found, the entity's URL is not updated.
+ *
+ * @param {LiveBloggingBlogEntity} entity - The entity whose URL is to be updated.
+ * @param {LinkRuleResponse} linkRules - The link rules to use for updating the URL.
+ */
+const updateEntityURL = /* istanbul ignore next */ (entity: LiveBloggingBlogEntity, linkRules: LinkRuleResponse) => {
+  const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
+  entity.url = linkRule?.url ?? entity.url;
 };

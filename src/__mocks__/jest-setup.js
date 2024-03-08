@@ -1,4 +1,5 @@
-/* instanbul ignore file */
+/* istanbul ignore file */
+process.env.NODE_ENV = 'production';
 process.env.REVALIDATE_TOKEN = 'test_token';
 process.env.CULTURE = 'en-GB';
 process.env.ENVIRONMENT = 'dev';
@@ -10,3 +11,6 @@ process.env.VOCABULARY_TOOL_API_BASE_URL = 'https://vocabulary-tool-api.deltatre
 process.env.VOCABULARY_TOOL_VOC_CODE = '_default';
 process.env.THEMING_SUFFIX_NAME = 'poc';
 process.env.LIVE_BLOGGING_DAPI_BASE_URL = 'https://liveblogging.integrations-lab-forge.deltatre.digital';
+process.env.VIDEO_SETTINGS_BASE_URL = 'https://divafe-icc-dev.akamaized.net/diva5/settings';
+process.env.RECAPTCHA_SITE_KEY = '123456';
+process.env.RECAPTCHA_SECRET_KEY = '123456';

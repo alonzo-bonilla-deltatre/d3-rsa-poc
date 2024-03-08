@@ -1,22 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Promo = dynamic(() => import('@/components/modules/Promo/Promo'));
 
-const PromoWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <Promo {...data} />;
-};
+const PromoWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <Promo data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <PromoWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <PromoWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

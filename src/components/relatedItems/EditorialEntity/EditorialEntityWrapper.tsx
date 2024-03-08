@@ -1,19 +1,17 @@
-import { nanoid } from 'nanoid';
 import { DistributionEntity } from '@/models/types/forge';
 import EditorialEntity from '@/components/relatedItems/EditorialEntity/EditorialEntity';
+import { ReturnComponentRender } from '@/models/types/components';
+import { nanoid } from 'nanoid';
 
-const EditorialEntityWrapper = ({ ...data }: DistributionEntity): React.ReactElement => {
-  return <EditorialEntity {...data} />;
-};
+const EditorialEntityWrapper = ({ data }: { data: DistributionEntity }): ReturnComponentRender => (
+  <EditorialEntity data={data} />
+);
 
-const render = ({ ...data }: DistributionEntity): React.ReactElement =>
-  data ? (
-    <EditorialEntityWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ ...data }: DistributionEntity): ReturnComponentRender => (
+  <EditorialEntityWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

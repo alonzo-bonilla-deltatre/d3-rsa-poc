@@ -62,48 +62,46 @@ export const Link: Story = {
 };
 
 export const All: Story = {
-  render: (args) => (
-    <>
-      <ul className="list-none flex space-x-5">
-        <li>
-          <CallToAction
-            url={'#nolink'}
-            text={'Default'}
-            isExternal={false}
-            style={'default'}
-            hide={false}
-          ></CallToAction>
-        </li>
+  render: () => (
+    <ul className="list-none flex space-x-5">
+      <li>
+        <CallToAction
+          url={'#nolink'}
+          text={'Default'}
+          isExternal={false}
+          style={'primary'}
+          hide={false}
+        ></CallToAction>
+      </li>
 
-        <li>
-          <CallToAction
-            url={'#nolink'}
-            text={'Reverse'}
-            isExternal={false}
-            style={'reverse'}
-            hide={false}
-          ></CallToAction>
-        </li>
-        <li>
-          <CallToAction
-            url={'#nolink'}
-            text={'Outline'}
-            isExternal={false}
-            style={'outline'}
-            hide={false}
-          ></CallToAction>
-        </li>
-        <li>
-          <CallToAction
-            url={'#nolink'}
-            text={'Link'}
-            isExternal={false}
-            style={'link'}
-            hide={false}
-          ></CallToAction>
-        </li>
-      </ul>
-    </>
+      <li>
+        <CallToAction
+          url={'#nolink'}
+          text={'secondary'}
+          isExternal={false}
+          style={'secondary'}
+          hide={false}
+        ></CallToAction>
+      </li>
+      <li>
+        <CallToAction
+          url={'#nolink'}
+          text={'Outline'}
+          isExternal={false}
+          style={'primary-outlined'}
+          hide={false}
+        ></CallToAction>
+      </li>
+      <li>
+        <CallToAction
+          url={'#nolink'}
+          text={'Link'}
+          isExternal={false}
+          style={'default'}
+          hide={false}
+        ></CallToAction>
+      </li>
+    </ul>
   ),
   parameters: {
     layout: 'centered',

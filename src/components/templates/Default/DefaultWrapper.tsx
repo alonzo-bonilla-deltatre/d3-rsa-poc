@@ -1,20 +1,23 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ThemeProvider } from '@/app/theme-provider';
+import { getDarkTheme } from '@/helpers/pageComponentPropertyHelper';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
 const Default = dynamic(() => import('@/components/templates/Default/Default'));
 
-const DefaultWrapper = ({ ...data }: ComponentProps) => <Default {...data} />;
+const DefaultWrapper = ({ data }: { data: ComponentProps }) => <Default data={data} />;
 
-const render = ({ ...props }: ComponentProps): React.ReactElement =>
-  props ? (
-    <DefaultWrapper
-      key={nanoid()}
-      {...props}
-    />
-  ) : (
-    <></>
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => {
+  if (!data) {
+    return null;
+  }
+  return (
+    <ThemeProvider
+      attribute="class"
+      forcedTheme={getDarkTheme(!!data.properties?.isDark)}
+    >
+      <DefaultWrapper data={data} />
+    </ThemeProvider>
   );
+};
 
 export default render;

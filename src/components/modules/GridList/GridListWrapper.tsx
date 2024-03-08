@@ -1,22 +1,14 @@
-import { ComponentProps } from '@/models/types/components';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
+import GridList from '@/components/modules/GridList/GridList';
 import { nanoid } from 'nanoid';
-import dynamic from 'next/dynamic';
 
-// @ts-ignore
-const GridList = dynamic(() => import('@/components/modules/GridList/GridList'));
+const GridListWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <GridList data={data} />;
 
-const GridListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <GridList {...data} />;
-};
-
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <GridListWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <GridListWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

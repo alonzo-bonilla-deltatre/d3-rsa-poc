@@ -1,13 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Menu = dynamic(() => import('@/components/modules/Menu/Menu'));
 
-const MenuWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <Menu {...data} />;
-};
+const MenuWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <Menu data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement => (data ? <MenuWrapper {...data} /> : <></>);
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <MenuWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

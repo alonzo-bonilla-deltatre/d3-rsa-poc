@@ -8,9 +8,10 @@ import {
 import { sampleBrightcoveVideo } from '@/__mocks__/entities/brightcoveVideo';
 import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
 import { sampleTableStoryPart1 } from '@/__mocks__/entities/sampleTableStoryParts';
+import { ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
 const sampleStory2 = {
   ...emptyDistributionEntity,
-  type: 'story',
+  type: ForgeEntityType.story,
   id: '9b8c8008-ce91-42b9-908e-8a9cbe06701a',
   _translationId: '9b8c8008-ce91-42b9-908e-8a9cbe06701a',
   _entityId: '71046099-fc69-46e6-b1fc-5d09a670b329',
@@ -41,7 +42,7 @@ const sampleStory2 = {
 };
 
 const sampleStory = {
-  type: 'story',
+  type: ForgeEntityType.story,
   id: '5f8c5508-2495-482f-b02a-dcdfce610740',
   _translationId: '5f8c5508-2495-482f-b02a-dcdfce610740',
   _entityId: '32e14194-c069-46d7-a307-63b8bb2c8922',
@@ -60,7 +61,7 @@ const sampleStory = {
   context: {
     _translationId: '6fe98ed3-deba-4e52-9cc9-a51914e52fb4',
     _entityId: '9548e3bf-24c2-47a4-926e-e279d02ca0a3',
-    type: 'tag',
+    type: ForgeEntityCode.tag,
     selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/tags/game-recap',
     title: 'GAME RECAP',
     slug: 'game-recap',

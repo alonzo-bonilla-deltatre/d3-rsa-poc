@@ -1,0 +1,8 @@
+@layer component {
+  body {
+    @apply bg-body text-light-text;
+  }
+  .dark body {
+    @apply text-dark-text bg-dark-body bg-dark-body-image;
+  }
+}

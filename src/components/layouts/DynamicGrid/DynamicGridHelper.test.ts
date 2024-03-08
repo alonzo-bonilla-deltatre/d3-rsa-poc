@@ -1,31 +1,28 @@
-import { getGridChildrenCssClasses, getGridContainerCssClasses } from './DynamicGridHelper';
+import { getGridChildrenCssClasses } from '@/components/layouts/DynamicGrid/DynamicGridHelper';
 
-describe('getGridContainerCssClasses', () => {
-  it('should return the right classes', () => {
-    expect(getGridContainerCssClasses()).toStrictEqual('grid grid-cols-1 lg:grid-cols-2');
-
-    expect(getGridContainerCssClasses('6-6')).toStrictEqual('grid grid-cols-1 lg:grid-cols-2');
-
-    expect(getGridContainerCssClasses('4-4-4')).toStrictEqual('grid grid-cols-1 lg:grid-cols-3');
-
-    expect(getGridContainerCssClasses('9-3')).toStrictEqual('grid grid-cols-1 lg:grid-cols-4');
-
-    expect(getGridContainerCssClasses('3-6-3')).toStrictEqual('grid grid-cols-1 lg:grid-cols-4');
-
-    expect(getGridContainerCssClasses('3-3-3-3')).toStrictEqual('grid grid-cols-1 lg:grid-cols-4');
-  });
-});
-
-describe('getGridContainerCssClasses', () => {
+describe('getGridChildrenCssClasses', () => {
   it('should return the expected array', () => {
-    expect(getGridChildrenCssClasses('3-6-3')).toEqual(['', ' col-span-2 ', '']);
+    expect(getGridChildrenCssClasses('3-3-3-3')).toEqual([
+      'lg:col-span-3',
+      'lg:col-span-3',
+      'lg:col-span-3',
+      'lg:col-span-3',
+    ]);
 
-    expect(getGridChildrenCssClasses('3-9')).toEqual(['', ' col-span-3 ']);
+    expect(getGridChildrenCssClasses('3-6-3')).toEqual(['lg:col-span-3', 'lg:col-span-6', 'lg:col-span-3']);
 
-    expect(getGridChildrenCssClasses('9-3')).toEqual([' col-span-3 ', '']);
+    expect(getGridChildrenCssClasses('2-8-2')).toEqual(['lg:col-span-2', 'lg:col-span-8', 'lg:col-span-2']);
 
-    expect(getGridChildrenCssClasses('')).toEqual([' col-span-1 ']);
+    expect(getGridChildrenCssClasses('6-6')).toEqual(['lg:col-span-6', 'lg:col-span-6']);
 
-    expect(getGridChildrenCssClasses('xxxxxxx')).toEqual([' col-span-1 ']);
+    expect(getGridChildrenCssClasses('4-4-4')).toEqual(['lg:col-span-4', 'lg:col-span-4', 'lg:col-span-4']);
+
+    expect(getGridChildrenCssClasses('3-9')).toEqual(['lg:col-span-3', 'lg:col-span-9']);
+
+    expect(getGridChildrenCssClasses('9-3')).toEqual(['lg:col-span-9', 'lg:col-span-3']);
+
+    expect(getGridChildrenCssClasses('')).toEqual(['lg:col-span-12']);
+
+    expect(getGridChildrenCssClasses('xxxxxxx')).toEqual(['lg:col-span-12']);
   });
 });

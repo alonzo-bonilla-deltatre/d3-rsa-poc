@@ -1,0 +1,19 @@
+/*
+// ============================================
+// COLORS
+// from palette in Figma
+// ============================================
+
+// --------------------------------------------
+// NAMED COLORS
+// https://css-tricks.com/what-do-you-name-color-variables/
+// (do not use them inside styles, use semantic colors instead)
+// -------------------------------------------- */
+@layer base {
+  :root,
+  ::backdrop {
+    --color-component_module_hero_static_title: var(--color-white);
+    --color-component_module_hero_static_roofline: var(--color-primary-500);
+    --color-component_module_hero_static_date: var(--color-white);
+  }
+}

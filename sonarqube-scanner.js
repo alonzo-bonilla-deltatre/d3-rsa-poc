@@ -15,14 +15,21 @@ const exclusionsList = [
   '**/*.config.*',  
   '**/OWASPreports/**',
   '**/sonarqube-scanner.js',
-  '**/markdownHelper.ts',
-  '**/azureCognitiveSearchService.ts',
-  '**/liveBloggingDistributionEntityHelper.ts'
+  '**/helpers/customForgeDistributionEntityHelper.ts',
+  '**/helpers/liveBloggingDistributionEntityHelper.ts',
+  '**/helpers/markdownHelper.ts',
+  '**/services/azureCognitiveSearchService.ts',
+  '**/services/siteMetadataService.ts',
+  '**/services/configurationService.ts',
+  '**/utilities/consts.ts',
+  '**/utilities/publicEnvVariables.ts',
+  '**/utilities/featureFlags.ts'
 ];
 const exclusions = exclusionsList.join(',').trim();
 const testInclusions = '**/*.test.ts';
 
 const pullrequestOptions = {
+  "sonar.login": token,
   "sonar.host.url": "https://sqcorporate.deltatre.com/",
   "sonar.projectVersion": process.env.version,
   "sonar.projectKey": process.env.sonarprojectkey,
@@ -43,6 +50,7 @@ const pullrequestOptions = {
 };
 
 const manualBuildOptions = {
+  "sonar.login": token,
   "sonar.host.url": "https://sqcorporate.deltatre.com/",
   "sonar.projectVersion": process.env.version,
   "sonar.projectKey": process.env.sonarprojectkey,

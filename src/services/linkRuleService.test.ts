@@ -5,6 +5,7 @@ import { LoggerLevel } from '@/models/types/logger';
 import { linkRules } from '@/__mocks__/linkRule';
 import { LinkRuleRequest } from '@/models/types/linkRule';
 import { sampleStory } from '@/__mocks__/modules/sampleStory';
+import { ForgeEntityCode } from '@/models/types/forge';
 
 const culture = process.env.CULTURE;
 const environment = process.env.ENVIRONMENT;
@@ -16,7 +17,7 @@ const body = [
   {
     id: 'qa-story-10',
     entity: sampleStory,
-    entityType: 'story',
+    entityType: ForgeEntityCode.story,
     environment: environment,
     culture: culture,
   },
@@ -88,5 +89,22 @@ describe('getLinkRules', () => {
     // ASSERT
     expect(result).toBeNull();
     expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringMatching(errorMessage), LoggerLevel.error);
+  });
+
+  it('should return null in case of exception for empty url and return null', async () => {
+    // ASSERT
+    const apiUrl = process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
+    process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = undefined;
+
+    // ACT
+    const result = await getLinkRules(body);
+
+    // ASSERT
+    expect(result).toBeNull();
+    expect(logger.log as jest.Mock).toHaveBeenCalledWith(
+      expect.stringMatching('PAGE BUILDER FRONTEND API Error'),
+      LoggerLevel.error
+    );
+    process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = apiUrl;
   });
 });

@@ -1,89 +1,52 @@
 ﻿import {
   createSearchResultItems,
-  getLink,
-  getPaginationNextUrl,
-  getPaginationPrevUrl,
-  getPaginationUrl,
+  getPaginationNextPage,
+  getPaginationPrevPage,
+  getPaginationNextKeyPagesPage,
+  getPaginationPrevKeyPagesPage,
   getSearchPath,
   getTotalCount,
 } from '@/components/modules/SearchResults/SearchResultsHelper';
-import { AzureSearchOption, AzureSearchResult } from '@/models/types/azureSearch';
+import { AzureSearchForgeEntitiesResult, AzureSearchOption, AzureSearchResult } from '@/models/types/azureSearch';
 import { describe, expect, test } from '@jest/globals';
+import { ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
 
 describe('createSearchResultItems', () => {
   test('should not alter original array and returns array with all entities without facetValue', () => {
     // ARRANGE
-    const azureSearchResult: AzureSearchResult = {
-      totalCount: 9,
-      forgeEntities: {
-        count: 7,
-        items: [
-          {
-            count: 2,
-            documents: [
-              { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
-              { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
-            ],
-            type: 'photo',
-          },
-          {
-            count: 2,
-            documents: [
-              { id: 'da2bced1-062f-47ac-aa12-5403a264d639', title: 'Brightcove Video 1' },
-              { id: 'c89683fd-915b-4a11-bb0a-00a6699f10ae', title: 'Brightcove Video 2' },
-            ],
-            type: 'brightcovevideo',
-          },
-          {
-            count: 2,
-            documents: [
-              { id: 'e5e3fda7-f802-4188-87f1-ce7824ffc7b6', title: 'Youtubevideo Video 1' },
-              { id: 'c2c8bb39-41ec-4d97-be89-c2b987be08af', title: 'Youtubevideo Video 2' },
-            ],
-            type: 'youtubevideo',
-          },
-          { count: 1, documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }], type: 'album' },
-        ],
-      },
-      keyPages: {
-        count: 2,
-        items: [
-          {
-            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
-            Title: 'volleyballworld.com',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
-            Schema_Keywords: [],
-            Schema_Abstract: [],
-            Schema_Text: [],
-            Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2023-06-27T11:15:38.75Z',
-            Url: 'https://en.volleyballworld.com/',
-            Culture: 'en-GB',
-            Tags: ['volley'],
-          },
-          {
-            Id: '64a6dd61-857e-4886-ae05-b5229b130e39',
-            Title: 'Volleyball',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://images.volleyballworld.com/image/upload/f_png/assets/backgrounds/Branded_Bg_-_Libero_Magenta_2_-_1920',
-            Schema_Keywords: [],
-            Schema_Abstract: [],
-            Schema_Text: [],
-            Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2022-01-13T15:20:01.675Z',
-            Url: 'https://en.volleyballworld.com/',
-            Culture: 'en-GB',
-            Tags: ['volley', 'volleyball', 'federation'],
-          },
-        ],
-      },
+    const azureSearchResult: AzureSearchForgeEntitiesResult = {
+      count: 7,
+      items: [
+        {
+          count: 2,
+          documents: [
+            { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
+            { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
+          ],
+          type: ForgeEntityType.photo,
+        },
+        {
+          count: 2,
+          documents: [
+            { id: 'da2bced1-062f-47ac-aa12-5403a264d639', title: 'Brightcove Video 1' },
+            { id: 'c89683fd-915b-4a11-bb0a-00a6699f10ae', title: 'Brightcove Video 2' },
+          ],
+          type: 'brightcovevideo',
+        },
+        {
+          count: 2,
+          documents: [
+            { id: 'e5e3fda7-f802-4188-87f1-ce7824ffc7b6', title: 'Youtubevideo Video 1' },
+            { id: 'c2c8bb39-41ec-4d97-be89-c2b987be08af', title: 'Youtubevideo Video 2' },
+          ],
+          type: 'youtubevideo',
+        },
+        {
+          count: 1,
+          documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }],
+          type: ForgeEntityCode.album,
+        },
+      ],
     };
 
     // ACT
@@ -95,81 +58,43 @@ describe('createSearchResultItems', () => {
 
   test('should not alter original array and returns array with all entities filtered with facetValue equals photo', () => {
     // ARRANGE
-    const azureSearchResult: AzureSearchResult = {
-      totalCount: 9,
-      forgeEntities: {
-        count: 7,
-        items: [
-          {
-            count: 2,
-            documents: [
-              { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
-              { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
-            ],
-            type: 'photo',
-          },
-          {
-            count: 2,
-            documents: [
-              { id: 'da2bced1-062f-47ac-aa12-5403a264d639', title: 'Brightcove Video 1' },
-              { id: 'c89683fd-915b-4a11-bb0a-00a6699f10ae', title: 'Brightcove Video 2' },
-            ],
-            type: 'brightcovevideo',
-          },
-          {
-            count: 2,
-            documents: [
-              { id: 'e5e3fda7-f802-4188-87f1-ce7824ffc7b6', title: 'Youtubevideo Video 1' },
-              { id: 'c2c8bb39-41ec-4d97-be89-c2b987be08af', title: 'Youtubevideo Video 2' },
-            ],
-            type: 'youtubevideo',
-          },
-          { count: 1, documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }], type: 'album' },
-        ],
-      },
-      keyPages: {
-        count: 2,
-        items: [
-          {
-            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
-            Title: 'volleyballworld.com',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
-            Schema_Keywords: [],
-            Schema_Abstract: [],
-            Schema_Text: [],
-            Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2023-06-27T11:15:38.75Z',
-            Url: 'https://en.volleyballworld.com/',
-            Culture: 'en-GB',
-            Tags: ['volley'],
-          },
-          {
-            Id: '64a6dd61-857e-4886-ae05-b5229b130e39',
-            Title: 'Volleyball',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://images.volleyballworld.com/image/upload/f_png/assets/backgrounds/Branded_Bg_-_Libero_Magenta_2_-_1920',
-            Schema_Keywords: [],
-            Schema_Abstract: [],
-            Schema_Text: [],
-            Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2022-01-13T15:20:01.675Z',
-            Url: 'https://en.volleyballworld.com/',
-            Culture: 'en-GB',
-            Tags: ['volley', 'volleyball', 'federation'],
-          },
-        ],
-      },
+    const azureSearchResult: AzureSearchForgeEntitiesResult = {
+      count: 7,
+      items: [
+        {
+          count: 2,
+          documents: [
+            { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
+            { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
+          ],
+          type: ForgeEntityType.photo,
+        },
+        {
+          count: 2,
+          documents: [
+            { id: 'da2bced1-062f-47ac-aa12-5403a264d639', title: 'Brightcove Video 1' },
+            { id: 'c89683fd-915b-4a11-bb0a-00a6699f10ae', title: 'Brightcove Video 2' },
+          ],
+          type: ForgeEntityCode.brightcoveVideo,
+        },
+        {
+          count: 2,
+          documents: [
+            { id: 'e5e3fda7-f802-4188-87f1-ce7824ffc7b6', title: 'Youtubevideo Video 1' },
+            { id: 'c2c8bb39-41ec-4d97-be89-c2b987be08af', title: 'Youtubevideo Video 2' },
+          ],
+          type: ForgeEntityCode.youTubeVideo,
+        },
+        {
+          count: 1,
+          documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }],
+          type: ForgeEntityCode.album,
+        },
+      ],
     };
 
     // ACT
-    const result = createSearchResultItems('photo', azureSearchResult);
+    const result = createSearchResultItems(ForgeEntityType.photo, azureSearchResult);
 
     // ASSERT
     expect(result.length).toBe(2);
@@ -177,61 +102,19 @@ describe('createSearchResultItems', () => {
 
   test('should not alter original array and returns array with all entities filtered with facetValue equals photo and return empty array if we have this type without documents', () => {
     // ARRANGE
-    const azureSearchResult: AzureSearchResult = {
-      totalCount: 4,
-      forgeEntities: {
-        count: 2,
-        items: [
-          {
-            count: 2,
-            documents: [],
-            type: 'photo',
-          },
-        ],
-      },
-      keyPages: {
-        count: 2,
-        items: [
-          {
-            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
-            Title: 'volleyballworld.com',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
-            Schema_Keywords: [],
-            Schema_Abstract: [],
-            Schema_Text: [],
-            Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2023-06-27T11:15:38.75Z',
-            Url: 'https://en.volleyballworld.com/',
-            Culture: 'en-GB',
-            Tags: ['volley'],
-          },
-          {
-            Id: '64a6dd61-857e-4886-ae05-b5229b130e39',
-            Title: 'Volleyball',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://images.volleyballworld.com/image/upload/f_png/assets/backgrounds/Branded_Bg_-_Libero_Magenta_2_-_1920',
-            Schema_Keywords: [],
-            Schema_Abstract: [],
-            Schema_Text: [],
-            Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2022-01-13T15:20:01.675Z',
-            Url: 'https://en.volleyballworld.com/',
-            Culture: 'en-GB',
-            Tags: ['volley', 'volleyball', 'federation'],
-          },
-        ],
-      },
+    const azureSearchResult: AzureSearchForgeEntitiesResult = {
+      count: 2,
+      items: [
+        {
+          count: 2,
+          documents: [],
+          type: ForgeEntityType.photo,
+        },
+      ],
     };
 
     // ACT
-    const result = createSearchResultItems('photo', azureSearchResult);
+    const result = createSearchResultItems(ForgeEntityType.photo, azureSearchResult);
 
     // ASSERT
     expect(result.length).toBe(0);
@@ -384,68 +267,9 @@ describe('searchPath', () => {
   });
 });
 
-describe('getLink', () => {
-  test('should return all query parameters empty if the props are empty without facetType and facetValue', () => {
-    // ARRANGE
-    const path = '';
-
-    // ACT
-    const result = getLink(path, '', '', '');
-
-    // ASSERT
-    expect(result).toBe(`${path}?q=`);
-  });
-
-  test('should return all query parameters if the props have value', () => {
-    // ARRANGE
-    const path = 'search';
-
-    // ACT
-    const result = getLink(path, 'test', 'facetType', 'facetValue');
-
-    // ASSERT
-    expect(result).toBe(`${path}?q=test&facetType=facetType&facetValue=facetValue`);
-  });
-});
-
-describe('getPaginationUrl', () => {
-  test('should return all query parameters empty if the props are empty', () => {
-    // ARRANGE
-    const path = '';
-    const azureSearchOption = {} as AzureSearchOption;
-
-    // ACT
-    const result = getPaginationUrl(path, azureSearchOption);
-
-    // ASSERT
-    expect(result).toBe(
-      `${path}?q=${azureSearchOption.q}&facetType=${azureSearchOption.facetType}&facetValue=${azureSearchOption.facetValue}`
-    );
-  });
-
-  test('should return all query parameters if the props have value', () => {
-    // ARRANGE
-    const path = 'search';
-    const azureSearchOption = {
-      q: 'test',
-      facetType: 'type',
-      facetValue: 'photo',
-    } as AzureSearchOption;
-
-    // ACT
-    const result = getPaginationUrl(path, azureSearchOption);
-
-    // ASSERT
-    expect(result).toBe(
-      `${path}?q=${azureSearchOption.q}&facetType=${azureSearchOption.facetType}&facetValue=${azureSearchOption.facetValue}`
-    );
-  });
-});
-
-describe('getPaginationNextUrl', () => {
+describe('getPaginationNextPage', () => {
   test('should return pagination url with page query parameter updated if the forge entities result count is equals to the azure search option top', () => {
     // ARRANGE
-    const paginationUrl = '';
     const azureSearchResult: AzureSearchResult = {
       totalCount: 2,
       forgeEntities: {
@@ -457,7 +281,7 @@ describe('getPaginationNextUrl', () => {
               { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
               { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
             ],
-            type: 'photo',
+            type: ForgeEntityType.photo,
           },
         ],
       },
@@ -477,15 +301,14 @@ describe('getPaginationNextUrl', () => {
     } as AzureSearchOption;
 
     // ACT
-    const result = getPaginationNextUrl(azureSearchResult, items, azureSearchOption, paginationUrl);
+    const result = getPaginationNextPage(azureSearchOption, items, azureSearchResult.totalCount);
 
     // ASSERT
-    expect(result).toBe(`${paginationUrl}&page=${azureSearchOption.page + 1}`);
+    expect(result).toBe(azureSearchOption.page + 1);
   });
 
   test('should return pagination url with page query parameter updated if the key pages result count is equals to the azure search option top', () => {
     // ARRANGE
-    const paginationUrl = '';
     const azureSearchResult: AzureSearchResult = {
       totalCount: 2,
       forgeEntities: {
@@ -497,7 +320,7 @@ describe('getPaginationNextUrl', () => {
               { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
               { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
             ],
-            type: 'photo',
+            type: ForgeEntityType.photo,
           },
         ],
       },
@@ -517,15 +340,14 @@ describe('getPaginationNextUrl', () => {
     } as AzureSearchOption;
 
     // ACT
-    const result = getPaginationNextUrl(azureSearchResult, items, azureSearchOption, paginationUrl);
+    const result = getPaginationNextPage(azureSearchOption, items, azureSearchResult.totalCount);
 
     // ASSERT
-    expect(result).toBe(`${paginationUrl}&page=${azureSearchOption.page + 1}`);
+    expect(result).toBe(azureSearchOption.page + 1);
   });
 
-  test('should return pagination url with empty page query parameter if the forge entities result or key pages result is less to the azure search option top', () => {
+  test('should return page 0 with page 0 query parameter if the forge entities result or key pages result is less to the azure search option top', () => {
     // ARRANGE
-    const paginationUrl = '';
     const azureSearchResult: AzureSearchResult = {
       totalCount: 2,
       forgeEntities: {
@@ -534,7 +356,7 @@ describe('getPaginationNextUrl', () => {
           {
             count: 2,
             documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
-            type: 'photo',
+            type: ForgeEntityType.photo,
           },
         ],
       },
@@ -569,40 +391,220 @@ describe('getPaginationNextUrl', () => {
     } as AzureSearchOption;
 
     // ACT
-    const result = getPaginationNextUrl(azureSearchResult, items, azureSearchOption, paginationUrl);
+    const result = getPaginationNextPage(azureSearchOption, items, azureSearchResult.totalCount);
 
     // ASSERT
-    expect(result).toBe(``);
+    expect(result).toBe(0);
   });
 });
 
-describe('getPaginationPrevUrl', () => {
-  test('should return pagination url with page query parameter updated if the result count is equals to the azure search option top', () => {
+describe('getPaginationPrevPage', () => {
+  test('should return page 0 with page query parameter set to 1', () => {
     // ARRANGE
-    const paginationUrl = '';
     const azureSearchOption = {
       page: 1,
     } as AzureSearchOption;
 
     // ACT
-    const result = getPaginationPrevUrl(azureSearchOption, paginationUrl);
+    const result = getPaginationPrevPage(azureSearchOption);
 
     // ASSERT
-    expect(result).toBe(`${paginationUrl}&page=${azureSearchOption.page - 1}`);
+    expect(result).toBe(0);
   });
 
-  test('should return pagination url with empty page query parameter if the result count is less to the azure search option top', () => {
+  test('should return page -1 with page query parameter set to 0', () => {
     // ARRANGE
-    const paginationUrl = '';
     const azureSearchOption = {
       page: 0,
     } as AzureSearchOption;
 
     // ACT
-    const result = getPaginationPrevUrl(azureSearchOption, paginationUrl);
+    const result = getPaginationPrevPage(azureSearchOption);
 
     // ASSERT
-    expect(result).toBe(``);
+    expect(result).toBe(-1);
+  });
+
+  test('should return page -1 with page query parameter set to -1', () => {
+    // ARRANGE
+    const azureSearchOption = {
+      page: -1,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationPrevPage(azureSearchOption);
+
+    // ASSERT
+    expect(result).toBe(-1);
+  });
+});
+
+describe('getPaginationNextKeyPagesPage', () => {
+  test('should return pagination url with page query parameter updated if the forge entities result count is equals to the azure search option top', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 2,
+      forgeEntities: {
+        count: 2,
+        items: [
+          {
+            count: 2,
+            documents: [
+              { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
+              { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
+            ],
+            type: ForgeEntityType.photo,
+          },
+        ],
+      },
+      keyPages: {
+        count: 0,
+        items: [],
+      },
+    };
+    const items = [
+      { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
+      { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
+    ] as any[];
+    const azureSearchOption = {
+      keyPagesPage: 1,
+      keyPagesLimit: 2,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationNextKeyPagesPage(azureSearchOption, items, azureSearchResult.totalCount);
+
+    // ASSERT
+    expect(result).toBe(azureSearchOption.keyPagesPage + 1);
+  });
+
+  test('should return pagination url with page query parameter updated if the key pages result count is equals to the azure search option top', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 2,
+      forgeEntities: {
+        count: 2,
+        items: [
+          {
+            count: 2,
+            documents: [
+              { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
+              { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
+            ],
+            type: ForgeEntityType.photo,
+          },
+        ],
+      },
+      keyPages: {
+        count: 0,
+        items: [],
+      },
+    };
+    const items = [
+      { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
+      { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
+    ] as any[];
+    const azureSearchOption = {
+      keyPagesPage: 1,
+      keyPagesLimit: 2,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationNextKeyPagesPage(azureSearchOption, items, azureSearchResult.totalCount);
+
+    // ASSERT
+    expect(result).toBe(azureSearchOption.keyPagesPage + 1);
+  });
+
+  test('should return page 0 with page 0 query parameter if the forge entities result or key pages result is less to the azure search option top', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 2,
+      forgeEntities: {
+        count: 2,
+        items: [
+          {
+            count: 2,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
+            type: ForgeEntityType.photo,
+          },
+        ],
+      },
+      keyPages: {
+        count: 0,
+        items: [
+          {
+            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
+            Title: 'volleyballworld.com',
+            Summary: 'The official Volleyball World website',
+            Image:
+              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Schema_Keywords: [],
+            Schema_Abstract: [],
+            Schema_Text: [],
+            Schema_Image: [],
+            Original_Meta_Title: 'volleyballworld.com',
+            Original_Meta_Summary: 'The official Volleyball World website',
+            LastIndex: '2023-06-27T11:15:38.75Z',
+            Url: 'https://en.volleyballworld.com/',
+            Culture: 'en-GB',
+            Tags: ['volley'],
+          },
+        ],
+      },
+    };
+    const items = [{ id: '515c4c05-ba54-4228-9ca2-86be80793501', title: 'volleyballworld.com' }] as any[];
+    const azureSearchOption = {
+      keyPagesPage: 0,
+      keyPagesLimit: 2,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationNextKeyPagesPage(azureSearchOption, items, azureSearchResult.totalCount);
+
+    // ASSERT
+    expect(result).toBe(0);
+  });
+});
+
+describe('getPaginationPrevKeyPagesPage', () => {
+  test('should return page 0 with page query parameter set to 1', () => {
+    // ARRANGE
+    const azureSearchOption = {
+      keyPagesPage: 1,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationPrevKeyPagesPage(azureSearchOption);
+
+    // ASSERT
+    expect(result).toBe(0);
+  });
+
+  test('should return page -1 with page query parameter set to 0', () => {
+    // ARRANGE
+    const azureSearchOption = {
+      keyPagesPage: 0,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationPrevKeyPagesPage(azureSearchOption);
+
+    // ASSERT
+    expect(result).toBe(-1);
+  });
+
+  test('should return page -1 with page query parameter set to -1', () => {
+    // ARRANGE
+    const azureSearchOption = {
+      keyPagesPage: -1,
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getPaginationPrevKeyPagesPage(azureSearchOption);
+
+    // ASSERT
+    expect(result).toBe(-1);
   });
 });
 
@@ -617,7 +619,7 @@ describe('getTotalCount', () => {
           {
             count: 1,
             documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
-            type: 'photo',
+            type: ForgeEntityType.photo,
           },
         ],
       },
@@ -663,13 +665,13 @@ describe('getTotalCount', () => {
           {
             count: 1,
             documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
-            type: 'photo',
+            type: ForgeEntityType.photo,
           },
 
           {
             count: 1,
             documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Story 1' }],
-            type: 'story',
+            type: ForgeEntityType.story,
           },
         ],
       },
@@ -698,7 +700,7 @@ describe('getTotalCount', () => {
     };
     const azureSearchOption = {
       facetType: 'type',
-      facetValue: 'photo',
+      facetValue: ForgeEntityType.photo,
     } as AzureSearchOption;
 
     // ACT
@@ -718,13 +720,13 @@ describe('getTotalCount', () => {
           {
             count: 1,
             documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
-            type: 'photo',
+            type: ForgeEntityType.photo,
           },
 
           {
             count: 1,
             documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Story 1' }],
-            type: 'story',
+            type: ForgeEntityType.story,
           },
         ],
       },
@@ -753,7 +755,7 @@ describe('getTotalCount', () => {
     };
     const azureSearchOption = {
       facetType: 'type',
-      facetValue: 'photo',
+      facetValue: ForgeEntityType.photo,
     } as AzureSearchOption;
 
     // ACT
@@ -761,5 +763,85 @@ describe('getTotalCount', () => {
 
     // ASSERT
     expect(result).toBe(2);
+  });
+
+  test('should return specific total count if facetType and facetValue is set but not match', () => {
+    // ARRANGE
+    const azureSearchResult: AzureSearchResult = {
+      totalCount: 3,
+      forgeEntities: {
+        count: 1,
+        items: [
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' }],
+            type: ForgeEntityType.photo,
+          },
+
+          {
+            count: 1,
+            documents: [{ id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Story 1' }],
+            type: ForgeEntityType.story,
+          },
+        ],
+      },
+      keyPages: {
+        count: 1,
+        items: [
+          {
+            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
+            Title: 'volleyballworld.com',
+            Summary: 'The official Volleyball World website',
+            Image:
+              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Schema_Keywords: [],
+            Schema_Abstract: [],
+            Schema_Text: [],
+            Schema_Image: [],
+            Original_Meta_Title: 'volleyballworld.com',
+            Original_Meta_Summary: 'The official Volleyball World website',
+            LastIndex: '2023-06-27T11:15:38.75Z',
+            Url: 'https://en.volleyballworld.com/',
+            Culture: 'en-GB',
+            Tags: ['volley'],
+          },
+        ],
+      },
+    };
+    const azureSearchOption = {
+      facetType: 'type',
+      facetValue: 'video',
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getTotalCount(azureSearchOption, azureSearchResult);
+
+    // ASSERT
+    expect(result).toBe(1);
+  });
+
+  test('should return 0 if facetType and facetValue is not set', () => {
+    // ARRANGE
+    const azureSearchOption = {} as AzureSearchOption;
+
+    // ACT
+    const result = getTotalCount(azureSearchOption, undefined);
+
+    // ASSERT
+    expect(result).toBe(0);
+  });
+
+  test('should return 0 if searchResult is undefined', () => {
+    // ARRANGE
+    const azureSearchOption = {
+      facetType: 'type',
+      facetValue: 'video',
+    } as AzureSearchOption;
+
+    // ACT
+    const result = getTotalCount(azureSearchOption, undefined);
+
+    // ASSERT
+    expect(result).toBe(0);
   });
 });

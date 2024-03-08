@@ -1,36 +1,26 @@
 import { HeroSwiper } from '@/components/modules/Hero/HeroSwiper';
-import { ComponentProps } from '@/models/types/components';
-import { LoggerLevel } from '@/models/types/logger';
+import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { getSelection } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
 import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
 import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
 
-type ModuleProps = {
-  selectionSlug?: string;
-  skip?: number;
-  limit?: number;
-};
+const Hero = async ({ data }: { data: ComponentProps }) => {
+  const { selectionSlug, skip, limit } = data.properties as EditorialModuleProps;
 
-const Hero = async ({ ...data }: ComponentProps) => {
-  const { selectionSlug, skip, limit } = data.properties as ModuleProps;
-  const defaultItemLimit = 5;
-  if (!selectionSlug) {
-    const invalidSlugErrorMessage = 'Cannot render Hero module with empty slug';
-    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
-    return <div />;
-  }
+  if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
-  const selection = await getSelection(selectionSlug);
+  const maxItemLimit = 6;
+  let itemsLimit = getNumberProperty(limit, maxItemLimit);
+  itemsLimit = itemsLimit <= maxItemLimit ? itemsLimit : maxItemLimit;
+
+  const selection = await getSelection(selectionSlug, {
+    hasLinkRules: true,
+  });
   const items = selection?.items;
 
-  return items && items.length > 0 ? (
-    <HeroSwiper
-      slides={getFilteredItems(items, getNumberProperty(skip, 0), getNumberProperty(limit, defaultItemLimit))}
-      hideDate={false}
-    />
-  ) : (
-    <div />
-  );
+  if (!items?.length) return null;
+
+  return <HeroSwiper slides={getFilteredItems(items, getNumberProperty(skip, 0), itemsLimit)} />;
 };
 export default Hero;

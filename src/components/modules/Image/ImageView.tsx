@@ -1,10 +1,9 @@
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import Image from 'next/image';
-import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
 import { ImageTransformations } from '@/models/types/images';
 import { DistributionEntity } from '@/models/types/forge';
+import Picture from '@/components/common/Picture/Picture';
 
-type ModuleProps = {
+type ImageViewProps = {
   link?: string;
   linkCssClass?: string;
   imageContainerCssClass?: string;
@@ -14,31 +13,32 @@ type ModuleProps = {
   caption?: string;
 };
 
-const ImageView = ({ ...props }: ModuleProps) => {
-  return props.imageEntity && props.asset && props.imageTransformation ? (
+const ImageView = ({
+  imageEntity,
+  imageTransformation,
+  imageContainerCssClass,
+  linkCssClass,
+  link,
+  asset,
+  caption,
+}: ImageViewProps) => {
+  if (!imageEntity || !asset || !imageTransformation) return null;
+
+  return (
     <a
-      href={props.link ?? ''}
-      className={props.linkCssClass ?? ''}
+      href={link ?? ''}
+      className={`${linkCssClass ? linkCssClass + ' hover:text-current' : ' hover:text-current'}`}
     >
-      <figure className={`col-start-1 row-start-1 grid-element relative ${props.imageContainerCssClass ?? ''}`}>
-        <Image
-          width={props.imageTransformation.mobileWidth}
-          height={props.imageTransformation.mobileHeight}
-          alt={props.imageEntity?.fields.altText?.toString() ?? props.imageEntity.title}
+      <figure className={`col-start-1 row-start-1 grid-element relative ${imageContainerCssClass ?? ''}`}>
+        <Picture
+          alt={imageEntity?.fields.altText?.toString() ?? imageEntity.title}
+          src={asset.assetUrl}
+          transformations={imageTransformation}
           className={`w-full h-full object-cover`}
-          src={getSrcWithTransformation(props.asset.assetUrl, props.imageTransformation.desktop)}
-          sizes="100vw"
-          style={{
-            width: `${props.imageTransformation.mobileWidth}px`,
-            height: 'auto',
-          }}
-          loading={'lazy'}
         />
       </figure>
-      {props.caption && <p className="mt-8 mb-3">{props.caption}</p>}
+      {caption && <p className="mt-8 mb-3">{caption}</p>}
     </a>
-  ) : (
-    <div />
   );
 };
 

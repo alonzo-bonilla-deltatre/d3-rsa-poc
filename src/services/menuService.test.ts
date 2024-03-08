@@ -18,6 +18,24 @@ describe('getMenuStructure', () => {
     jest.clearAllMocks();
   });
 
+  it('should call the default API URL', async () => {
+    // ASSERT
+    (axios.get as jest.Mock).mockResolvedValue({});
+
+    // ACT
+    await getMenuStructure();
+
+    // ASSERT
+    expect(axios.get as jest.Mock).toHaveBeenCalledWith(
+      `${process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL}/api/v1/Menu?path=&culture=${culture}&environment=${environment}`,
+      {
+        headers: {
+          Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET,
+        },
+      }
+    );
+  });
+
   it('should call the right API URL without token', async () => {
     // ASSERT
     (axios.get as jest.Mock).mockResolvedValue({});
@@ -28,6 +46,23 @@ describe('getMenuStructure', () => {
     // ASSERT
     expect(axios.get as jest.Mock).toHaveBeenCalledWith(
       `${process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL}/api/v1/Menu?path=${pathPlaceholder}&culture=${culture}&environment=${environment}`,
+      {
+        headers: {
+          Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET,
+        },
+      }
+    );
+  });
+  it('should call the right API URL without token and path', async () => {
+    // ASSERT
+    (axios.get as jest.Mock).mockResolvedValue({});
+
+    // ACT
+    await getMenuStructure('');
+
+    // ASSERT
+    expect(axios.get as jest.Mock).toHaveBeenCalledWith(
+      `${process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL}/api/v1/Menu?path=&culture=${culture}&environment=${environment}`,
       {
         headers: {
           Authorization: process.env.PAGE_BUILDER_FRONTEND_API_SECRET,
@@ -86,7 +121,8 @@ describe('getMenuStructure', () => {
       status: 401,
       statusText: 'Unauthorized',
       data: {
-        error: { message: errorMessage },
+        message: errorMessage,
+        detail: 'More details',
       },
     });
 
@@ -96,5 +132,23 @@ describe('getMenuStructure', () => {
     // ASSERT
     expect(result).toBeNull();
     expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringMatching(errorMessage), LoggerLevel.error);
+    expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringContaining('More details'), LoggerLevel.error);
+  });
+
+  it('should return null in case of exception for empty url and return null', async () => {
+    // ASSERT
+    const apiUrl = process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
+    process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = undefined;
+
+    // ACT
+    const result = await getMenuStructure(pathPlaceholder);
+
+    // ASSERT
+    expect(result).toBeNull();
+    expect(logger.log as jest.Mock).toHaveBeenCalledWith(
+      expect.stringMatching('PAGE BUILDER FRONTEND API Error'),
+      LoggerLevel.error
+    );
+    process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = apiUrl;
   });
 });

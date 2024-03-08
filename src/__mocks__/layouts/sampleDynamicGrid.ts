@@ -1,5 +1,4 @@
-const genericDivContent = (number: number) =>
-  `<div class="font-bold uppercase px-8 py-6 bg-[#EE3123]">col${number}</div>`;
+const genericDivContent = (number: number) => `<div class="font-bold uppercase px-8 py-6 bg-accent">col${number}</div>`;
 
 /**
  * Returns dummy StructureItem[] items

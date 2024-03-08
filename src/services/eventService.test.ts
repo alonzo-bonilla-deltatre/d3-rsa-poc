@@ -8,6 +8,7 @@ import {
   emptyDistributionEntityWithEmptyFields,
   emptyDistributionEntityWithNullFields,
 } from '@/__mocks__/entities/sampleStoryParts';
+import { ForgeEntityCode } from '@/models/types/forge';
 
 jest.mock('@/helpers/markdownHelper', () => ({
   transform: jest.fn(),
@@ -33,8 +34,7 @@ describe('getEventEntity function', () => {
   it('returns empty entity if initial entity is empty', async (): Promise<void> => {
     // ARRANGE
     (transform as jest.Mock).mockResolvedValueOnce('');
-    const entity = emptyDistributionEntityWithEmptyFields;
-    (getEntity as jest.Mock).mockResolvedValueOnce(entity);
+    (getEntity as jest.Mock).mockResolvedValueOnce(emptyDistributionEntityWithEmptyFields);
     (getSingleAssetByTag as jest.Mock).mockResolvedValue(null);
     // ACT
     const eventEntity = await getEventEntity(emptyDistributionEntityWithEmptyFields);
@@ -64,8 +64,7 @@ describe('getEventEntity function', () => {
   it('returns filled entity if initial entity is not empty', async (): Promise<void> => {
     // ARRANGE
     (transform as jest.Mock).mockResolvedValueOnce('');
-    const entity = sampleEvent;
-    (getEntity as jest.Mock).mockResolvedValueOnce(entity);
+    (getEntity as jest.Mock).mockResolvedValueOnce(sampleEvent);
     (getSingleAssetByTag as jest.Mock).mockResolvedValue(sampleAsset);
     // ACT
     const eventEntity = await getEventEntity(sampleEvent);
@@ -96,14 +95,12 @@ describe('getEventEntity function', () => {
 it('returns entity with null properties if initial entity has null properties', async (): Promise<void> => {
   // ARRANGE
   (transform as jest.Mock).mockResolvedValueOnce('');
-  const entity = emptyDistributionEntityWithNullFields;
-  (getEntity as jest.Mock).mockResolvedValueOnce(entity);
+  (getEntity as jest.Mock).mockResolvedValueOnce(emptyDistributionEntityWithNullFields);
   (getSingleAssetByTag as jest.Mock).mockResolvedValue(null);
   // ACT
   const eventEntity = await getEventEntity(emptyDistributionEntityWithNullFields);
   // ASSERT
-  expect(eventEntity.headline).toBeNull();
-  expect(eventEntity.eventType).toBeNull();
+  expect(eventEntity.eventType).toBe(ForgeEntityCode.event);
   expect(eventEntity.headerColor).toBeNull();
   expect(eventEntity.dateFrom).toBe('');
   expect(eventEntity.dateTo).toBe('');
@@ -114,7 +111,6 @@ it('returns entity with null properties if initial entity has null properties', 
   expect(eventEntity.twitterProfile).toBeNull();
   expect(eventEntity.youtubeChannel).toBeNull();
   expect(eventEntity.twitchChannel).toBeNull();
-  expect(eventEntity.description).toBeNull();
   expect(eventEntity.descriptionHtml).toBe('');
   expect(eventEntity.mobileBackgroundEventImage).toBeNull();
   expect(eventEntity.mobileBackgroundEventImageAsset).toBeNull();

@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+﻿import type { Meta, StoryObj } from '@storybook/react';
 
 import Menu from '@/components/common/MenuList/MenuList';
+import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
 import { sampleMenu } from '@/__mocks__/menu/sampleMenu';
 import { sampleMenuWithIcons } from '@/__mocks__/menu/sampleMenuWithIcons';
-import { headerServiceMenu } from '@/__mocks__/menu/headerServiceMenu';
 
 import { MenuStructureResponse } from '@/models/types/menu';
 
@@ -21,24 +21,20 @@ type Story = StoryObj<typeof Menu>;
 
 export const Basic: Story = {
   render: (args) => (
-    <>
-      <div className="container mx-20 py-12 lg:text-center">
-        <div className="flex flex-col lg:flex-row uppercase justify-between">
-          <Menu {...args}></Menu>
-        </div>
+    <div className="container mx-20 py-12 lg:text-center">
+      <div className="flex flex-col lg:flex-row uppercase justify-between">
+        <Menu {...args}></Menu>
       </div>
-    </>
+    </div>
   ),
   args: {
     menuItems: menuDataBasic.data.items,
-    navItemClasses: 'default',
   },
 };
 
 export const OnlyIcons: Story = {
   args: {
     menuItems: menuDataIcons.data.items,
-    navItemClasses: 'default',
   },
 };
 export const WithIcons: Story = {
@@ -50,6 +46,5 @@ export const WithIcons: Story = {
   ),
   args: {
     menuItems: menuDataWithIcons.data.items,
-    navItemClasses: 'default',
   },
 };

@@ -1,0 +1,13 @@
+@import 'components/colors.css';
+@import 'components/common/common-header-colors.css';
+@import 'components/common/header-title-colors.css';
+@import 'components/common/language-switcher-colors.css';
+@import 'components/common/text-colors.css';
+@import 'components/layouts/cta-list-colors.css';
+@import 'components/layouts/dynamic-grid-colors.css';
+@import 'components/layouts/hamburger-colors.css';
+@import 'components/layouts/section-colors.css';
+@import 'components/layouts/footer-colors.css';
+@import 'components/modules/hero-colors.css';
+@import 'components/modules/hero-static-colors.css';
+@import 'components/modules/menu-colors.css';

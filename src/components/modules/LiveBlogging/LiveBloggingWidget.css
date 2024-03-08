@@ -2337,7 +2337,10 @@
   color: #fff;
   padding: 5px 16px;
   border-radius: 28px;
-  box-shadow: 0 0 6px 0 rgba(33, 36, 83, 0.12), 0 6px 6px 0 rgba(33, 36, 83, 0.24), 0 0 12px 0 rgba(0, 0, 0, 0.12),
+  box-shadow:
+    0 0 6px 0 rgba(33, 36, 83, 0.12),
+    0 6px 6px 0 rgba(33, 36, 83, 0.24),
+    0 0 12px 0 rgba(0, 0, 0, 0.12),
     0 12px 12px 0 rgba(0, 0, 0, 0.24);
 }
 

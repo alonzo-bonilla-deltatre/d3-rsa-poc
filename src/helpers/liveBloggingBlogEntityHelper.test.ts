@@ -226,8 +226,18 @@ describe('enrichEntitiesWithThumbnailPlaceholder function', () => {
     expect(result).toEqual([]);
   });
 
+  it('should return an empty array if items are empty array with empty variables', () => {
+    const result = enrichEntitiesWithThumbnailPlaceholder([], []);
+    expect(result).toEqual([]);
+  });
+
   it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property', () => {
     const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, mockedVariables);
+    expect(result).toStrictEqual(mockedEntities);
+  });
+
+  it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property with empty variables', () => {
+    const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, []);
     expect(result).toStrictEqual(mockedEntities);
   });
 

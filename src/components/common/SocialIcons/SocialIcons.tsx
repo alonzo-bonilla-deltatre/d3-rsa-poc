@@ -1,5 +1,5 @@
-import SvgIcon from '@/components/common/SvgIcon/SvgIcon';
-import { FacebookRounded, InstagramRounded, TwitterRounded, YouTubeRounded } from '@/components/icons';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { renderSvgIcon } from '@/components/icons';
 
 export type SocialIconsProps = {
   hide?: boolean;
@@ -7,32 +7,16 @@ export type SocialIconsProps = {
   className?: string | '';
 };
 
-const SocialIcons = ({ ...props }: SocialIconsProps) => {
-  return !props.hide ? (
+const SocialIcons = ({ className, size, hide }: SocialIconsProps) => {
+  hide = getBooleanProperty(hide);
+  if (hide) return null;
+  return (
     <>
-      <SvgIcon
-        className={props.className}
-        size={props.size}
-        icon={FacebookRounded}
-      ></SvgIcon>
-      <SvgIcon
-        className={props.className}
-        size={props.size}
-        icon={YouTubeRounded}
-      ></SvgIcon>
-      <SvgIcon
-        className={props.className}
-        size={props.size}
-        icon={InstagramRounded}
-      ></SvgIcon>
-      <SvgIcon
-        className={props.className}
-        size={props.size}
-        icon={TwitterRounded}
-      ></SvgIcon>
+      {renderSvgIcon('FacebookRounded', { className: className, width: size, height: size })}
+      {renderSvgIcon('YouTubeRounded', { className: className, width: size, height: size })}
+      {renderSvgIcon('InstagramRounded', { className: className, width: size, height: size })}
+      {renderSvgIcon('TwitterRounded', { className: className, width: size, height: size })}
     </>
-  ) : (
-    <></>
   );
 };
 

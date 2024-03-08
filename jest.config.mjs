@@ -22,11 +22,13 @@ const config = {
   coverageReporters: ["lcov", "text"],
   coverageDirectory: "../coverage",
   moduleNameMapper: {
+    '^@/app/(.*)$': '<rootDir>/app/$1',
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/helpers/(.*)$': '<rootDir>/helpers/$1',
     '^@/models/(.*)$': '<rootDir>/models/$1',
     '^@/services/(.*)$': '<rootDir>/services/$1',
     '^@/utilities/(.*)$': '<rootDir>/utilities/$1',
+    'remark-parse': '../node_modules/remark-parse/index.js',
   },
   resetMocks: true,
   reporters: ["default"],
@@ -34,7 +36,7 @@ const config = {
   testMatch: ['**/*.test.{ts,tsx}'],
   transformIgnorePatterns: ["/node_modules/"],
   transform: {},
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

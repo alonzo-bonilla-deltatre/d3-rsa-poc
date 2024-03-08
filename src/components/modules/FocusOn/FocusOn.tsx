@@ -1,49 +1,52 @@
 import React from 'react';
 import logger from '@/utilities/logger';
-import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
+import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import { notFound } from 'next/navigation';
 import FocusOnView from './FocusOnView';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
-import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import { ForgeDapiEntityCode } from '@/models/types/forge';
 
-type ModuleProps = {
+type FocusOnProps = {
   slug?: string;
-} & HeaderTitleProps;
+} & ModuleProps;
 
-const FocusOn = async ({ ...data }: ComponentProps) => {
-  const props = data.properties as ModuleProps;
-  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle } = props as ModuleProps;
-  const invalidSlugErrorMessage = 'Cannot render FocusOn module with empty slug';
-  if (!Object.hasOwn(props, 'slug') || !props.slug?.length) {
-    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
-    throw new Error(invalidSlugErrorMessage);
-  }
+const FocusOn = async ({ data }: { data: ComponentProps }) => {
+  const { slug, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, isDark } = data.properties as FocusOnProps;
 
-  const storyEntity = await getEntity('stories', props.slug, {
+  if (moduleIsNotValid(data, ['slug'])) return null;
+
+  const storyEntity = await getEntity(ForgeDapiEntityCode.stories, slug, {
     hasLinkRules: true,
     variables: data.variables,
   });
   if (storyEntity == null) {
-    logger.log(`Cannot find story entity with slug ${props.slug} `, LoggerLevel.warning);
+    logger.log(`Cannot find story entity with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
+  const hasFullWidthHeader = true;
+  const hasFullWidthContent = true;
 
   return (
-    <>
-      <section className="mb-32 p-0">
-        <div className="container mx-auto px-4">
-          <HeaderTitle
-            headerTitle={headerTitle}
-            headerTitleHeadingLevel={headerTitleHeadingLevel}
-            hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
-          ></HeaderTitle>
-        </div>
-
-        <FocusOnView storyEntity={storyEntity} />
-      </section>
-    </>
+    <section className={`d3-section`}>
+      <div className={`d3-section__header px-4 ${!hasFullWidthHeader ? 'container' : ''}`}>
+        <HeaderTitle
+          className="d3-section__header-title"
+          headerTitle={headerTitle}
+          headerTitleHeadingLevel={headerTitleHeadingLevel}
+          hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
+        ></HeaderTitle>
+      </div>
+      <div className={`d3-section__content ${!hasFullWidthContent ? 'container' : ''}`}>
+        <FocusOnView
+          storyEntity={storyEntity}
+          darkClassName={getDarkClass(isDark)}
+        />
+      </div>
+    </section>
   );
 };
 

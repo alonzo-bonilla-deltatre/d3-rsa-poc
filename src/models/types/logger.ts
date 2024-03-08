@@ -23,8 +23,5 @@ export function isLoggerEnabledByLevel(loggerLevel: LoggerLevel, loggerTypeLevel
   ) {
     return true;
   }
-  if (loggerLevel === LoggerLevel.error && loggerTypeLevel === LoggerLevel.error) {
-    return true;
-  }
-  return false;
+  return loggerLevel === LoggerLevel.error && loggerTypeLevel === LoggerLevel.error;
 }

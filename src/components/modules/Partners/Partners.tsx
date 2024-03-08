@@ -1,55 +1,68 @@
-import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
+import Partner from '@/components/common/Partner/Partner';
+import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import { MenuSources } from '@/components/modules/Menu/Menu';
+import { getDataVariable } from '@/helpers/dataVariableHelper';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
+import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { getSelection } from '@/services/forgeDistributionService';
+import { getSiteUrl } from '@/services/configurationService';
 import { DistributionEntity } from '@/models/types/forge';
-import dynamic from 'next/dynamic';
-import { nanoid } from 'nanoid';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
-import logger from '@/utilities/logger';
-import { LoggerLevel } from '@/models/types/logger';
-import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
-// @ts-ignore
-const Partner = dynamic(() => import('@/components/common/Partner/Partner'));
+const Partners = async ({ data }: { data: ComponentProps }) => {
+  const { headerTitle, hideHeaderTitle, selectionSlug, headerTitleHeadingLevel, isFullWidth, isDark } =
+    data.properties as EditorialModuleProps;
 
-type ModuleProps = {
-  selectionSlug?: string;
-} & HeaderTitleProps;
+  if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
-const Partners = async ({ ...data }: ComponentProps) => {
-  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, ctaTitle, ctaLink, selectionSlug } =
-    data.properties as ModuleProps;
-  if (!Object.hasOwn(data.properties, 'selectionSlug') || !selectionSlug?.length) {
-    const invalidSlugErrorMessage = 'Cannot render Partners module with empty selectionSlug';
-    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
-    throw new Error(invalidSlugErrorMessage);
-  }
+  const baseUrl = process.env.BASE_URL || (await getSiteUrl());
+
   const selectionFetch = getSelection(selectionSlug);
   const [selection] = await Promise.all([selectionFetch]);
   const items = selection?.items;
 
-  return (
-    <>
-      <HeaderTitle
-        headerTitle={headerTitle}
-        headerTitleHeadingLevel={headerTitleHeadingLevel}
-        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
-        ctaTitle={ctaTitle}
-        ctaLink={ctaLink}
-      ></HeaderTitle>
-      <div className="grid grid-flow-row-dense lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-        {items &&
-          items.map((entity: DistributionEntity) => {
-            return (
-              <Partner
-                key={nanoid()}
-                entity={entity}
-                width={100}
-                height={50}
-              ></Partner>
-            );
-          })}
-      </div>
-    </>
+  if (!items?.length) return null;
+
+  const direction = getDataVariable(data.variables, 'direction') || '';
+  const source = getDataVariable(data.variables, 'source') || '';
+
+  const partners = (
+    <div
+      className={`flex flex-row justify-center ${
+        direction === 'vertical' ? 'flex-col items-center' : ' '
+      } flex-wrap gap-4`}
+    >
+      {items.map((entity: DistributionEntity) => {
+        return (
+          <Partner
+            key={entity.id ?? entity._translationId}
+            entity={entity}
+            direction={direction}
+            baseUrl={baseUrl}
+            width={200}
+            height={50}
+          />
+        );
+      })}
+    </div>
+  );
+
+  return source === MenuSources.footer ? (
+    partners
+  ) : (
+    <SectionWithHeader
+      data={{
+        headerTitle: headerTitle,
+        headerTitleHeadingLevel: headerTitleHeadingLevel,
+        hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
+        hasFullWidthHeader: isFullWidth,
+        hasFullWidthContent: isFullWidth,
+        sectionClassName: `d3-partners ${isFullWidth ? '-full-width' : ''} ${getDarkClass(isDark)}`,
+        headerTitleAlignment: 'center',
+        children: partners,
+      }}
+    />
   );
 };
+
 export default Partners;

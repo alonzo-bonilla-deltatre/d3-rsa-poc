@@ -2,18 +2,24 @@ import { renderStoryPart } from '@/services/renderHandlers/renderStoryPart';
 import { DistributionEntity } from '@/models/types/forge';
 import { StoryPart } from '@/models/types/storyPart';
 
-type ModuleProps = {
+type StoryPartsProps = {
   storyEntity: DistributionEntity;
 };
 
-const StoryParts = ({ ...props }: ModuleProps) => {
-  const storyEntity = props.storyEntity;
+const StoryParts = ({ storyEntity }: StoryPartsProps) => {
   return (
-    <section className="w-full container mx-auto mt-20">
-      {storyEntity.parts.map((part: StoryPart) => {
-        return <>{renderStoryPart(part)}</>;
+    <div className="mb-8 lg:mb-10">
+      {storyEntity.parts.map((part: StoryPart, index: number) => {
+        return (
+          <div
+            key={index}
+            className="story__part mb-8 lg:mb-10"
+          >
+            {renderStoryPart(part)}
+          </div>
+        );
       })}
-    </section>
+    </div>
   );
 };
 

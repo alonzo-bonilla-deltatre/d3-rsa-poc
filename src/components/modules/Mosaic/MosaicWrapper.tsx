@@ -1,22 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Mosaic = dynamic(() => import('@/components/modules/Mosaic/Mosaic'));
 
-const MosaicListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <Mosaic {...data} />;
-};
+const MosaicListWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <Mosaic data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <MosaicListWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <MosaicListWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

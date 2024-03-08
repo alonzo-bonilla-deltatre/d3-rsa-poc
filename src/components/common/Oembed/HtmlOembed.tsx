@@ -4,20 +4,16 @@ type OembedProps = {
   html: string;
 };
 
-const HtmlOembed = ({ ...props }: OembedProps) => {
-  const { html } = props as OembedProps;
+const HtmlOembed = ({ html }: OembedProps) => {
+  if (!html) return null;
 
-  return html ? (
-    <>
-      <div className="grid grid-cols-1 relative overflow-hidden w-full">
-        <HtmlContent
-          content={html}
-          classNames={'mx-auto flex flex-col items-center'}
-        />
-      </div>
-    </>
-  ) : (
-    <></>
+  return (
+    <div className="grid grid-cols-1 relative overflow-hidden w-full">
+      <HtmlContent
+        content={html}
+        className={'mx-auto flex flex-col items-center'}
+      />
+    </div>
   );
 };
 

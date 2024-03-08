@@ -30,150 +30,73 @@ export default meta;
 type Story = StoryObj<typeof Image>;
 
 export const SquareExtraSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraSmallLeft}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...squareExtraSmallLeft}></ImageView>,
 };
 
 export const SquareSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareSmallLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareSmallLeft}></ImageView>,
 };
 
 export const SquareMediumLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareMediumLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareMediumLeft}></ImageView>,
 };
 
 export const SquareLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareLargeLeft}></ImageView>,
 };
 
 export const SquareExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareExtraLargeLeft}></ImageView>,
 };
 
 export const SquareExtraExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareExtraExtraLargeLeft}></ImageView>,
 };
 
 export const SquareExtraSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareExtraSmallCenter}></ImageView>,
 };
 
 export const SquareSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareSmallCenter}></ImageView>,
 };
 
 export const SquareMediumCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareMediumCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareMediumCenter}></ImageView>,
 };
 
 export const SquareLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareLargeCenter}></ImageView>,
 };
 
 export const SquareExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareExtraLargeCenter}></ImageView>,
 };
 
 export const SquareExtraExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareExtraExtraLargeCenter}></ImageView>,
 };
 
 export const SquareExtraSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareExtraSmallRight}></ImageView>,
 };
 
 export const SquareSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...squareSmallRight}></ImageView>,
 };
 
 export const SquareMediumRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareMediumRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...squareMediumRight}></ImageView>,
 };
 
 export const SquareLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...squareLargeRight}></ImageView>,
 };
 
 export const SquareExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...squareExtraLargeRight}></ImageView>,
 };
 
 export const SquareExtraExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...squareExtraExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...squareExtraExtraLargeRight}></ImageView>,
 };

@@ -1,6 +1,8 @@
+import { afterEach, describe, expect, it } from '@jest/globals';
 import { AzureSearchResult } from '@/models/types/azureSearch';
 import { SearchIterator } from '@azure/search-documents';
 import {
+  calculateSkip,
   createFilter,
   enrichSearchResultsWithDistributionEntities,
   groupSearchResultsByEntityType,
@@ -13,6 +15,7 @@ import {
   enrichEntitiesWithThumbnailPlaceholder,
 } from './forgeDistributionEntityHelper';
 import { Variable } from '@/models/types/pageStructure';
+import { ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
 
 jest.mock('@/helpers/forgeDistributionEntityHelper', () => ({
   enrichDistributionEntitiesWithLinkRules: jest.fn(),
@@ -33,9 +36,13 @@ describe('groupSearchResultsByEntityType', () => {
               { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
               { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
             ],
-            type: 'photo',
+            type: ForgeEntityCode.photo,
           },
-          { count: 1, documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }], type: 'album' },
+          {
+            count: 1,
+            documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }],
+            type: ForgeEntityCode.album,
+          },
         ],
       },
       keyPages: {
@@ -84,8 +91,8 @@ describe('groupSearchResultsByEntityType', () => {
 
     // ASSERT
     expect(azureSearchResult.forgeEntities.items.length).toBe(2);
-    expect(azureSearchResult.forgeEntities.items[0].type).toBe('photo');
-    expect(azureSearchResult.forgeEntities.items[1].type).toBe('album');
+    expect(azureSearchResult.forgeEntities.items[0].type).toBe(ForgeEntityCode.photo);
+    expect(azureSearchResult.forgeEntities.items[1].type).toBe(ForgeEntityCode.album);
   });
 
   it('should alter original array if results contain video types but documents are empty', () => {
@@ -101,10 +108,14 @@ describe('groupSearchResultsByEntityType', () => {
               { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
               { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
             ],
-            type: 'photo',
+            type: ForgeEntityCode.photo,
           },
           { count: 1, documents: [], type: 'brightcovevideo' },
-          { count: 1, documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }], type: 'album' },
+          {
+            count: 1,
+            documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }],
+            type: ForgeEntityCode.album,
+          },
         ],
       },
       keyPages: {
@@ -169,7 +180,7 @@ describe('groupSearchResultsByEntityType', () => {
               { id: 'd78eacab-cac7-4b86-9f09-179f454d26ad', title: 'Photo 1' },
               { id: '19b3123b-8c91-42d5-881e-fa8556e2d1f9', title: 'Photo 2' },
             ],
-            type: 'photo',
+            type: ForgeEntityCode.photo,
           },
           {
             count: 2,
@@ -177,7 +188,7 @@ describe('groupSearchResultsByEntityType', () => {
               { id: 'da2bced1-062f-47ac-aa12-5403a264d639', title: 'Brightcove Video 1' },
               { id: 'c89683fd-915b-4a11-bb0a-00a6699f10ae', title: 'Brightcove Video 2' },
             ],
-            type: 'brightcovevideo',
+            type: ForgeEntityCode.brightcoveVideo,
           },
           {
             count: 2,
@@ -185,9 +196,13 @@ describe('groupSearchResultsByEntityType', () => {
               { id: 'e5e3fda7-f802-4188-87f1-ce7824ffc7b6', title: 'Youtubevideo Video 1' },
               { id: 'c2c8bb39-41ec-4d97-be89-c2b987be08af', title: 'Youtubevideo Video 2' },
             ],
-            type: 'youtubevideo',
+            type: ForgeEntityCode.youTubeVideo,
           },
-          { count: 1, documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }], type: 'album' },
+          {
+            count: 1,
+            documents: [{ id: '4d7ae40b-1acd-427d-9c52-d8656f67d612', title: 'Album 1' }],
+            type: ForgeEntityCode.album,
+          },
         ],
       },
       keyPages: {
@@ -240,8 +255,12 @@ describe('groupSearchResultsByEntityType', () => {
     expect(azureSearchResult.forgeEntities.items.some((item) => item.type === 'video')).toBeTruthy();
     expect(azureSearchResult.forgeEntities.items.find((item) => item.type === 'video')?.count).toBe(4);
 
-    expect(azureSearchResult.forgeEntities.items.some((item) => item.type === 'brightcovevideo')).toBeFalsy();
-    expect(azureSearchResult.forgeEntities.items.some((item) => item.type === 'youtubevideo')).toBeFalsy();
+    expect(
+      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.brightcoveVideo)
+    ).toBeFalsy();
+    expect(
+      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.youTubeVideo)
+    ).toBeFalsy();
   });
 });
 
@@ -259,7 +278,7 @@ describe('createFilter', () => {
   });
 
   it('should create the filter string correctly', () => {
-    expect(createFilter('type', 'photo')).toEqual("type eq 'photo'");
+    expect(createFilter('type', ForgeEntityCode.photo)).toEqual("type eq 'photo'");
   });
 });
 
@@ -268,9 +287,9 @@ describe('processFacets', () => {
     // ARRANGE
     const facets = {
       type: [
-        { value: 'photo', count: 2 },
+        { value: ForgeEntityCode.photo, count: 2 },
         { value: 'video', count: 3 },
-        { value: 'customentity', count: 1 },
+        { value: ForgeEntityType.customEntity, count: 1 },
       ],
     };
     const items: any[] = [];
@@ -280,7 +299,7 @@ describe('processFacets', () => {
 
     // ASSERT
     expect(items.length).toBe(2);
-    expect(items[0]).toEqual({ count: 2, type: 'photo', documents: [] });
+    expect(items[0]).toEqual({ count: 2, type: ForgeEntityType.photo, documents: [] });
     expect(items[1]).toEqual({ count: 3, type: 'video', documents: [] });
   });
 
@@ -306,7 +325,7 @@ describe('processFacets', () => {
   it('should not add items to the "items" array for customentity type facet value', () => {
     // ARRANGE
     const facets = {
-      type: [{ value: 'customentity', count: 1 }],
+      type: [{ value: ForgeEntityType.customEntity, count: 1 }],
     };
     const items: any[] = [];
 
@@ -348,7 +367,7 @@ describe('processDocuments', () => {
       // @ts-ignore
       async *[Symbol.asyncIterator]() {
         yield {
-          document: { type: 'story', entityCode: null },
+          document: { type: ForgeEntityCode.story, entityCode: null },
         };
         yield {
           document: { type: 'custom', entityCode: 'video' },
@@ -356,9 +375,9 @@ describe('processDocuments', () => {
       },
     };
     const items = [
-      { count: 0, type: 'story', documents: [] },
+      { count: 0, type: ForgeEntityCode.story, documents: [] },
       { count: 0, type: 'custom', documents: [] },
-      { count: 0, type: 'album', documents: [] },
+      { count: 0, type: ForgeEntityCode.album, documents: [] },
     ];
 
     // ACT
@@ -366,7 +385,7 @@ describe('processDocuments', () => {
 
     // ASSERT
     expect(items[0].documents.length).toBe(1);
-    expect(items[0].documents[0]).toEqual({ type: 'story', entityCode: null });
+    expect(items[0].documents[0]).toEqual({ type: ForgeEntityCode.story, entityCode: null });
 
     expect(items[1].documents.length).toBe(1);
     expect(items[1].documents[0]).toEqual({ type: 'custom', entityCode: 'video' });
@@ -380,17 +399,21 @@ describe('processDocuments', () => {
       // @ts-ignore
       async *[Symbol.asyncIterator]() {
         yield {
-          document: { type: 'photo', entityCode: 'foo' },
+          document: { type: ForgeEntityCode.photo, entityCode: 'foo' },
         };
         yield {
           document: { type: 'video', entityCode: 'bar' },
         };
+        yield {
+          document: { type: 'x', entityCode: ForgeEntityCode.event },
+        };
       },
     };
     const items = [
-      { count: 0, type: 'story', documents: [] },
+      { count: 0, type: ForgeEntityCode.story, documents: [] },
       { count: 0, type: 'custom', documents: [] },
       { count: 0, type: 'video', documents: [] },
+      { count: 0, type: ForgeEntityCode.event, documents: [] },
     ];
 
     // ACT
@@ -401,6 +424,8 @@ describe('processDocuments', () => {
     expect(items[1].documents.length).toBe(0);
     expect(items[2].documents.length).toBe(1);
     expect(items[2].documents[0]).toEqual({ type: 'video', entityCode: 'bar' });
+    expect(items[3].documents.length).toBe(1);
+    expect(items[3].documents[0]).toEqual({ type: 'x', entityCode: ForgeEntityCode.event });
   });
 
   it('should handle empty search results', async () => {
@@ -412,7 +437,7 @@ describe('processDocuments', () => {
       },
     };
     const items = [
-      { count: 0, type: 'story', documents: [] },
+      { count: 0, type: ForgeEntityCode.story, documents: [] },
       { count: 0, type: 'custom', documents: [] },
       { count: 0, type: 'video', documents: [] },
     ];
@@ -475,9 +500,10 @@ describe('processFacets', () => {
     // ARRANGE
     const facets: any = {
       type: [
-        { value: 'photo', count: 2 },
-        { value: 'album', count: 1 },
-        { value: 'customentity', count: 3 }, // Excluded from adding items
+        { value: ForgeEntityCode.photo, count: 2 },
+        { value: ForgeEntityCode.album, count: 1 },
+        { value: ForgeEntityType.customEntity, count: 3 }, // Excluded from adding items
+        { value: 'video', count: null },
       ],
     };
     const items: any[] = [];
@@ -486,9 +512,10 @@ describe('processFacets', () => {
     processFacets(facets, items);
 
     // ASSERT
-    expect(items.length).toBe(2);
-    expect(items).toContainEqual({ count: 2, type: 'photo', documents: [] });
-    expect(items).toContainEqual({ count: 1, type: 'album', documents: [] });
+    expect(items.length).toBe(3);
+    expect(items).toContainEqual({ count: 2, type: ForgeEntityCode.photo, documents: [] });
+    expect(items).toContainEqual({ count: 1, type: ForgeEntityCode.album, documents: [] });
+    expect(items).toContainEqual({ count: 0, type: 'video', documents: [] });
   });
 
   it('should add items to the items array based on entityCode facet', () => {
@@ -496,7 +523,8 @@ describe('processFacets', () => {
     const facets: any = {
       entityCode: [
         { value: 'video', count: 2 },
-        { value: 'promo', count: 3 },
+        { value: ForgeEntityCode.promo, count: 3 },
+        { value: ForgeEntityCode.event, count: null },
       ],
     };
     const items: any[] = [];
@@ -505,9 +533,10 @@ describe('processFacets', () => {
     processFacets(facets, items);
 
     // ASSERT
-    expect(items.length).toBe(2);
+    expect(items.length).toBe(3);
     expect(items).toContainEqual({ count: 2, type: 'video', documents: [] });
-    expect(items).toContainEqual({ count: 3, type: 'promo', documents: [] });
+    expect(items).toContainEqual({ count: 3, type: ForgeEntityCode.promo, documents: [] });
+    expect(items).toContainEqual({ count: 0, type: ForgeEntityCode.event, documents: [] });
   });
 
   it('should not add any items if facets are empty', () => {
@@ -537,7 +566,7 @@ describe('processFacets', () => {
   it('should handle undefined items array', () => {
     // ARRANGE
     const facets: any = {
-      type: [{ value: 'photo', count: 2 }],
+      type: [{ value: ForgeEntityCode.photo, count: 2 }],
     };
     const items: any[] = [];
 
@@ -546,7 +575,7 @@ describe('processFacets', () => {
 
     // ASSERT
     expect(items.length).toBe(1);
-    expect(items[0].type).toBe('photo');
+    expect(items[0].type).toBe(ForgeEntityCode.photo);
     expect(items[0].count).toBe(2);
     expect(items[0].documents).toEqual([]);
   });
@@ -632,7 +661,7 @@ describe('enrichSearchResultsWithDistributionEntities', () => {
       },
     ];
     const items = [
-      { type: 'photo', documents: mockDocuments },
+      { type: ForgeEntityCode.photo, documents: mockDocuments },
       { type: 'video', documents: mockDocuments },
     ];
 
@@ -648,5 +677,26 @@ describe('enrichSearchResultsWithDistributionEntities', () => {
 
     expect(enrichEntitiesWithThumbnailPlaceholder).toHaveBeenCalledTimes(2);
     expect(enrichEntitiesWithThumbnailPlaceholder).toHaveBeenCalledWith(mockDocuments, mockedVariables);
+  });
+});
+
+describe('calculateSkip', () => {
+  it('should return 0 if limit is 0', () => {
+    // ACT
+    const result = calculateSkip(1, 0);
+    // ASSERT
+    expect(result).toBe(0);
+  });
+  it('should return 0 if page is 0', () => {
+    // ACT
+    const result = calculateSkip(0, 5);
+    // ASSERT
+    expect(result).toBe(0);
+  });
+  it('should return 10 if page is 2', () => {
+    // ACT
+    const result = calculateSkip(2, 5);
+    // ASSERT
+    expect(result).toBe(10);
   });
 });

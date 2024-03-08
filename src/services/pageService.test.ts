@@ -3,6 +3,7 @@ import { getPageStructure } from '@/services/pageService';
 import logger from '@/utilities/logger';
 import { LoggerLevel } from '@/models/types/logger';
 import { indexStructure } from '@/__mocks__/pageStructures';
+import { getAllTranslations } from '@/services/translationService';
 
 const culture = process.env.CULTURE;
 const environment = process.env.ENVIRONMENT;
@@ -85,12 +86,28 @@ describe('getPageStructure', () => {
       status: 401,
       statusText: 'Unauthorized',
       data: {
-        error: { message: errorMessage },
+        message: errorMessage,
+        detail: 'More details',
       },
+    });
+    // ACT
+    const result = await getPageStructure(pathPlaceholder);
+
+    // ASSERT
+    expect(result).toBeNull();
+    expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringMatching(errorMessage), LoggerLevel.error);
+    expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringContaining('More details'), LoggerLevel.error);
+  });
+
+  it('should return null in case of exception and log the response', async () => {
+    // ASSERT
+    const errorMessage = 'PAGE BUILDER FRONTEND API Error:';
+    (axios.get as jest.Mock).mockImplementation(() => {
+      throw new Error();
     });
 
     // ACT
-    const result = await getPageStructure(pathPlaceholder);
+    const result = await getPageStructure('');
 
     // ASSERT
     expect(result).toBeNull();

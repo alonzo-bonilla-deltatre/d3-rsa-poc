@@ -1,51 +1,16 @@
-//  ██████╗ ██████╗ ███████╗██╗   ██╗██╗███████╗██╗    ██╗
-//  ██╔══██╗██╔══██╗██╔════╝██║   ██║██║██╔════╝██║    ██║
-//  ██████╔╝██████╔╝█████╗  ██║   ██║██║█████╗  ██║ █╗ ██║
-//  ██╔═══╝ ██╔══██╗██╔══╝  ╚██╗ ██╔╝██║██╔══╝  ██║███╗██║
-//  ██║     ██║  ██║███████╗ ╚████╔╝ ██║███████╗╚███╔███╔╝
-//  ╚═╝     ╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝
-//  This page will be used in Page preview only
-
 import { Metadata } from 'next';
-import { renderItem } from '@/services/renderService';
-import { requestUrlParser } from '@/utilities/requestUrlParser';
-import { initI18n } from '@/utilities/i18n';
-import ThemingVariables from '@/components/common/ThemingVariables/ThemingVariables';
-import { enrichPageMetadata, enrichPageVariables, getPageData } from '@/app/pageHelpers';
-import { notFound } from 'next/navigation';
-import { AzureSearchOption } from '@/models/types/azureSearch';
-
-export const metadata: Metadata = {};
+import { generatePageMetadata } from '@/app/pageHelpers';
+import { ReturnComponentRender } from '@/models/types/components';
+import { renderPage } from '@/services/renderHandlers/renderPage';
 
 export default async function Page({
   params,
-  searchParams,
 }: {
-  params: { token: string; pageName: string[] };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
-  await initI18n();
-  const { token } = params;
-  const path = requestUrlParser.getPathName(params);
-  const azureSearchOption = {
-    q: searchParams?.q?.toString() ?? '',
-    page: parseInt(searchParams?.page?.toString() ?? '0'),
-    facetType: searchParams?.facetType?.toString() ?? '',
-    facetValue: searchParams?.facetValue?.toString() ?? '',
-  } as AzureSearchOption;
-  const pageData = await getPageData(path, token);
-  if (!pageData) {
-    notFound();
-  }
+  params: { pageName: string[]; q?: string; token?: string; appView?: string };
+}): Promise<ReturnComponentRender> {
+  return await renderPage(params);
+}
 
-  const { structure, metadataItems, variables, seoData } = pageData;
-  enrichPageVariables(variables, { pagePath: path, azureSearchOption: JSON.stringify(azureSearchOption, null, 2) });
-  enrichPageMetadata(metadata, seoData);
-
-  return (
-    <>
-      <ThemingVariables metadata={metadataItems} />
-      {structure && renderItem(structure, variables, metadataItems, token)}
-    </>
-  );
+export async function generateMetadata({ params }: { params: { pageName: string[] } }): Promise<Metadata> {
+  return await generatePageMetadata(params);
 }

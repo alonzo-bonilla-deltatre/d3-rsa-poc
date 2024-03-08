@@ -1,6 +1,6 @@
-﻿import React from 'react';
+﻿import React, { SVGProps } from 'react';
 
-const HamburgerMenuTwoRow = (props: any) => {
+const HamburgerMenuTwoRow = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       viewBox="0 0 44 44"

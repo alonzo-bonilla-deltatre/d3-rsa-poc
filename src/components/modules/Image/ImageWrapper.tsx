@@ -1,22 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const ImageComponent = dynamic(() => import('@/components/modules/Image/Image'));
 
-const ImageWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <ImageComponent {...data} />;
-};
+const ImageWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <ImageComponent data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <ImageWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <ImageWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

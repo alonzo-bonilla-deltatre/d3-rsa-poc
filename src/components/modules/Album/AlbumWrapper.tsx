@@ -1,22 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Album = dynamic(() => import('@/components/modules/Album/Album'));
 
-const AlbumWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <Album {...data} />;
-};
+const AlbumWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <Album data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <AlbumWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <AlbumWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

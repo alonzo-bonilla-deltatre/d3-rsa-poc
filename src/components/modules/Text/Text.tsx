@@ -1,30 +1,33 @@
-import { ComponentProps } from '@/models/types/components';
+import { ComponentProps, EditorialModuleProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import logger from '@/utilities/logger';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { notFound } from 'next/navigation';
+import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import { ForgeDapiEntityCode } from '@/models/types/forge';
 
-// @ts-ignore
 const Markdown = dynamic(() => import('@/components/common/Markdown/Markdown'));
 
-type ModuleProps = {
+type TextProps = {
   slug?: string;
   textAlignment?: string;
-};
+} & EditorialModuleProps;
 
-const Text = async ({ ...data }: ComponentProps) => {
-  const properties = data.properties as ModuleProps;
-  if (!Object.hasOwn(properties, 'slug') || !properties.slug?.length) {
-    const invalidSlugErrorMessage = 'Cannot render Text module with empty slug';
-    logger.log(invalidSlugErrorMessage, LoggerLevel.warning);
-    return <div />;
-  }
+const Text = async ({ data }: { data: ComponentProps }) => {
+  const { isFullWidth, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, slug, textAlignment, isDark } =
+    data.properties as TextProps;
 
-  const textEntity = await getEntity('page-builder-text-editor', properties?.slug);
-  if (textEntity == null) {
-    logger.log(`Cannot find Text entity with slug ${properties.slug} `, LoggerLevel.warning);
+  if (moduleIsNotValid(data, ['slug'])) return null;
+
+  const textEntity = await getEntity(ForgeDapiEntityCode.pageBuilderTextEditors, slug, {
+    variables: data.variables,
+  });
+  if (!textEntity) {
+    logger.log(`Cannot find Text entity with slug ${slug} `, LoggerLevel.warning);
+    return null;
   }
 
   const textAlignmentCssClassVariants: Record<string, string> = {
@@ -34,13 +37,23 @@ const Text = async ({ ...data }: ComponentProps) => {
     justify: 'text-justify',
   };
 
-  return textEntity ? (
-    <Markdown
-      markdownText={textEntity?.fields.body?.toString() ?? ''}
-      classNames={`${textAlignmentCssClassVariants[properties.textAlignment ? properties.textAlignment : 'left']}`}
+  return (
+    <SectionWithHeader
+      data={{
+        headerTitle: headerTitle,
+        headerTitleHeadingLevel: headerTitleHeadingLevel,
+        hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
+        hasFullWidthHeader: isFullWidth,
+        hasFullWidthContent: isFullWidth,
+        sectionClassName: `d3-text-block ${isFullWidth ? '-full-width' : ''} ${getDarkClass(isDark)}`,
+        children: (
+          <Markdown
+            markdownText={textEntity?.fields.body?.toString() ?? ''}
+            classNames={`${textAlignmentCssClassVariants[textAlignment ? textAlignment : 'left']}`}
+          />
+        ),
+      }}
     />
-  ) : (
-    <div />
   );
 };
 

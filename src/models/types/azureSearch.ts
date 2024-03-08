@@ -16,6 +16,7 @@ export type AzureSearchOption = SearchOptions<never> & {
   q: string;
   page: number;
   limit: number;
+  keyPagesPage: number;
   keyPagesLimit: number;
   facetType: string;
   facetValue: string;

@@ -1,17 +1,12 @@
 import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
 import { StoryPart } from '@/models/types/storyPart';
-import React from 'react';
 
-const BrightcoveVideo = ({ ...data }: StoryPart) =>
-  data ? (
-    <div className="mx-20 mt-20 col-start-1">
-      <BrightcoveVideoPlayer
-        entity={data}
-        isStoryPart={true}
-      />
-    </div>
-  ) : (
-    <></>
-  );
+const BrightcoveVideo = ({ data }: { data: StoryPart }) => (
+  <BrightcoveVideoPlayer
+    entity={data}
+    isStoryPart={true}
+    containerCss={'grid grid-cols-1 relative overflow-hidden w-full pt-[56.25%] rounded-md'}
+  />
+);
 
 export default BrightcoveVideo;

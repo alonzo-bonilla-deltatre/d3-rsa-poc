@@ -1,26 +1,25 @@
-import Card from '@/components/common/Card/Card';
+import Card from '@/components/common/cards/Card/Card';
+import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { CardLayout, CardOptions, CardType } from '@/models/types/card';
 import { DistributionEntity } from '@/models/types/forge';
-import { nanoid } from 'nanoid';
-import React from 'react';
 
-const Promo = ({ ...data }: DistributionEntity) =>
-  data ? (
+const Promo = ({ data }: { data: DistributionEntity }) => {
+  if (!data) return null;
+  const cardOptions = {
+    hideAuthor: true,
+  } as CardOptions;
+  const cardType = CardType.Media;
+  const cardLayout = CardLayout.Landscape;
+  const cardDesign = getCardSettings(cardType, cardOptions, cardLayout);
+
+  return (
     <Card
-      key={nanoid()}
-      entity={data}
-      options={{
-        hideIcon: true,
-        hideRoofline: false,
-        hideTitle: false,
-        hideDate: true,
-        hideAuthor: true,
-        hideCta: false,
-        className: '',
+      data={{
+        entity: data,
+        cardDesign: cardDesign,
       }}
-      layout={'fullimage'}
-    ></Card>
-  ) : (
-    <></>
+    />
   );
+};
 
 export default Promo;

@@ -1,0 +1,18 @@
+/*
+// ============================================
+// COLORS
+// from palette in Figma
+// ============================================
+
+// --------------------------------------------
+// NAMED COLORS
+// https://css-tricks.com/what-do-you-name-color-variables/
+// (do not use them inside styles, use semantic colors instead)
+// -------------------------------------------- */
+@layer base {
+  :root,
+  ::backdrop {
+    --color-component_common_header_title_light: var(--color-black);
+    --color-component_common_header_title_dark: var(--color-white);
+  }
+}

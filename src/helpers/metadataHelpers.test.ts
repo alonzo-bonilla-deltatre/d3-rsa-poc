@@ -2,13 +2,15 @@ import { sampleStory as storyEntityMock } from '@/__mocks__/entities/story';
 import {
   overrideAlbumMetadata,
   overrideDefaultMetadata,
+  overrideLiveBloggingMetadata,
   overrideStoryMetadata,
   overrideVideoMetadata,
-} from './metadataHelper';
+} from '@/helpers/metadataHelper';
 import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
 import { Metadata } from 'next';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { sampleAlbum } from '@/__mocks__/entities/sampleAlbum';
+import { sampleBlog } from '@/__mocks__/entities/sampleLiveblogging';
 
 jest.mock('@/utilities/cloudinaryTransformations', () => {
   const originalModule = jest.requireActual('@/utilities/cloudinaryTransformations');
@@ -62,10 +64,10 @@ describe('overrideDefaultMetadata', () => {
     };
     expect(result?.title).toBe(storyEntity.title);
     expect(result?.description).toBe(storyEntity.headline);
-    expect(result?.authors).toEqual([{ name: storyEntity.createdBy }]);
+    expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('article');
     expect(og.images).toEqual([{ url: imageUrl }]);
-    expect(og.tags).toEqual(storyEntity.tags?.map((t) => t.title) ?? null);
+    expect(og.tags).toEqual(storyEntity.tags?.map((t) => t.title)?.join(','));
     expect(result?.twitter?.title).toBe(storyEntity.title);
     expect(result?.twitter?.description).toBe(storyEntity.headline);
     expect(result?.twitter?.images).toBe(imageUrl);
@@ -101,7 +103,7 @@ describe('overrideDefaultMetadata', () => {
     expect(result?.twitter?.images).toBe('');
   });
 
-  it('should return enriched metadata with tags empty if request tags is equals null', () => {
+  it('should return enriched metadata with tags empty if request tags is equals undefined', () => {
     // ARRANGE
     const storyEntityWithoutTags = Object.assign({ ...storyEntity, tags: null });
 
@@ -114,7 +116,7 @@ describe('overrideDefaultMetadata', () => {
       type: 'article';
       tags?: null | string | Array<string>;
     };
-    expect(og.tags).toEqual(null);
+    expect(og.tags).toEqual(undefined);
   });
 });
 describe('overrideAlbumMetadata', () => {
@@ -148,7 +150,7 @@ describe('overrideAlbumMetadata', () => {
     };
     expect(result?.title).toBe(entity.title);
     expect(result?.description).toBe(entity.headline);
-    expect(result?.authors).toEqual([{ name: entity.createdBy }]);
+    expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('article');
     expect(result?.twitter?.title).toBe(entity.title);
     expect(result?.twitter?.description).toBe(entity.headline);
@@ -185,7 +187,7 @@ describe('overrideStoryMetadata', () => {
     };
     expect(result?.title).toBe(storyEntity.title);
     expect(result?.description).toBe(storyEntity.headline);
-    expect(result?.authors).toEqual([{ name: storyEntity.createdBy }]);
+    expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('article');
     expect(og.publishedTime).toBe(storyEntity.contentDate);
     expect(og.modifiedTime).toBe(storyEntity.lastUpdatedDate);
@@ -225,9 +227,80 @@ describe('overrideVideoMetadata', () => {
     };
     expect(result?.title).toBe(entity.title);
     expect(result?.description).toBe(entity.headline);
-    expect(result?.authors).toEqual([{ name: entity.createdBy }]);
+    expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('video.other');
     expect(result?.twitter?.title).toBe(entity.title);
     expect(result?.twitter?.description).toBe(entity.headline);
+  });
+});
+
+describe('overrideLiveBloggingMetadata', () => {
+  const parentMetadata: Metadata = {
+    title: 'Homepage',
+    description: 'Demo site',
+  };
+  const bolg = Object.assign({}, sampleBlog);
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('should exist', () => {
+    expect(overrideLiveBloggingMetadata).not.toBeNull();
+  });
+
+  it('should return enriched metadata of an LiveBlog', () => {
+    // ARRANGE
+
+    // ACT
+    const result = overrideLiveBloggingMetadata(parentMetadata, sampleBlog);
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      publishedTime?: string;
+      modifiedTime?: string;
+      authors?: null | string | URL | Array<string | URL>;
+    };
+    expect(result?.title).toBe(bolg.title);
+    expect(result?.description).toBe(bolg.description);
+    expect(og.type).toBe('article');
+    expect(og.title).toBe(bolg.title);
+    expect(og.description).toBe(bolg.description);
+    if ('tags' in og) {
+      expect(og.tags).toEqual(sampleBlog.tags?.map((t) => t.label)?.join(','));
+    }
+    expect(result?.twitter?.title).toBe(bolg.title);
+    expect(result?.twitter?.description).toBe(bolg.description);
+  });
+
+  it('should return enriched metadata of an LiveBlog with empty value', () => {
+    // ARRANGE
+
+    // ACT
+    const result = overrideLiveBloggingMetadata(parentMetadata, {
+      ...sampleBlog,
+      description: undefined,
+      tags: [{ slug: 'tag1', id: 'tag1', extradata: {} }],
+    });
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      publishedTime?: string;
+      modifiedTime?: string;
+      authors?: null | string | URL | Array<string | URL>;
+    };
+    expect(result?.title).toBe(bolg.title);
+    expect(result?.description).toBe('');
+    expect(og.type).toBe('article');
+    expect(og.description).toBe('');
+    if ('tags' in og) {
+      expect(og.tags).toBe('');
+    }
+    expect(result?.twitter?.title).toBe(bolg.title);
+    expect(result?.twitter?.description).toBe('');
   });
 });

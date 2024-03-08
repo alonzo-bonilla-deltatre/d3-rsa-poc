@@ -1,3 +1,5 @@
+import { ForgeMetadataCategoryType, ForgeMetadataKeyType } from '@/models/types/forge';
+
 export type PageStructureResponse = {
   data: PageStructureData;
 
@@ -11,12 +13,12 @@ export type PageStructureData = {
   variables: Variable[];
   metadata: Metadata[];
 };
-
+export type PageStructureItemKey = {
+  id: string;
+  namespace: string;
+};
 export type StructureItem = {
-  key: {
-    id: string;
-    namespace: string;
-  };
+  key: PageStructureItemKey;
   type: PageStructureItemType;
   properties: Record<string, unknown>;
   slot?: string;
@@ -36,8 +38,8 @@ export type KeyValue = {
 };
 
 export type Metadata = {
-  category: string;
-  key: string;
+  category: ForgeMetadataCategoryType;
+  key: ForgeMetadataKeyType;
   value: string;
   type: string;
 };

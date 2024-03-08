@@ -1,8 +1,8 @@
 import { getPageStructure } from '@/services/pageService';
 import { setPageMetadata } from '@/services/metadataService';
-import { indexStructure } from '../__mocks__/pageStructures';
+import { indexStructure } from '@/__mocks__/pageStructures';
 import { Metadata } from 'next';
-import { enrichPageMetadata, enrichPageVariables, getPageData } from './pageHelpers';
+import { enrichPageMetadata, enrichPageVariables, getPageData } from '@/app/pageHelpers';
 import { Variable } from '@/models/types/pageStructure';
 
 jest.mock('@/services/metadataService', () => ({
@@ -26,7 +26,7 @@ describe('getPageData', () => {
     await getPageData('/index', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
 
     // ASSERT
-    expect(setPageMetadata).not.toHaveBeenCalled();
+    expect(await setPageMetadata).not.toHaveBeenCalled();
   });
 
   it('should fetch page data successfully', async () => {
@@ -43,8 +43,8 @@ describe('getPageData', () => {
     const result = await getPageData('/index', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
 
     // ASSERT
-    expect(setPageMetadata).toHaveBeenCalledTimes(1);
-    expect(setPageMetadata).toHaveBeenCalledWith(indexStructure.data.metadata);
+    expect(await setPageMetadata).toHaveBeenCalledTimes(1);
+    expect(await setPageMetadata).toHaveBeenCalledWith(indexStructure.data.metadata);
 
     expect(result?.structure).toBe(indexStructure.data.structure);
     expect(result?.metadataItems).toBe(indexStructure.data.metadata);

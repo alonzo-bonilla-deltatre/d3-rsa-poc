@@ -1,4 +1,7 @@
-﻿const defaultLinkCssClass = 'flex flex-col items-start';
+﻿import { ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
+import { defaultCloudinaryTransformations } from '@/utilities/defaultCloudinaryTransformations';
+
+const defaultLinkCssClass = 'flex flex-col items-start';
 export const leftLinkCssClass = 'flex flex-col items-start';
 export const centerLinkCssClass = 'flex flex-col items-center';
 export const rightLinkCssClass = 'flex flex-col items-end';
@@ -13,15 +16,13 @@ export const defaultView = {
   linkCssClass: defaultLinkCssClass,
   imageContainerCssClass: defaultImageContainerCssClass,
   imageTransformation: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 1920,
-    mobileHeight: 1080,
+    mobile: defaultCloudinaryTransformations.ratio16_9_size60,
+    tablet: defaultCloudinaryTransformations.ratio16_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
   },
   imageEntity: {
     id: '01ca7e18-2ff3-4c1b-bfa8-642474879944',
-    type: 'customentity',
+    type: ForgeEntityType.customEntity,
     _translationId: '18227c8b-548c-49c8-8214-9f1d35b5c124',
     _entityId: '01ca7e18-2ff3-4c1b-bfa8-642474879944',
     selfUrl:
@@ -42,7 +43,7 @@ export const defaultView = {
     lastUpdatedDate: '2022-10-28T09:13:17.998Z',
     contentDate: '2022-10-28T09:10:01.495Z',
     featured: 0,
-    entityCode: 'page-builder-gad-asset',
+    entityCode: ForgeEntityCode.pageBuilderGadAsset,
     _listAvailability: 0,
     image: {
       title: '',

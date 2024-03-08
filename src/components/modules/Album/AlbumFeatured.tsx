@@ -1,67 +1,72 @@
-import { nanoid } from 'nanoid';
-import dynamic from 'next/dynamic';
+'use client';
 import { AlbumEntity, DistributionEntity } from '@/models/types/forge';
 import Picture from '@/components/common/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformations';
+import AlbumHeader from '@/components/modules/Album/AlbumHeader';
+// Import Swiper React components and styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+// import required modules
+import 'swiper/swiper-bundle.css';
+import { getSiteDirection } from '@/utilities/direction';
+import { useEnvVars } from '@/hooks/useEnvVars';
 
-// @ts-ignore
-const AlbumHeader = dynamic(() => import('@/components/modules/Album/AlbumHeader'));
-
-type ModuleProps = {
+type AlbumFeaturedProps = {
   albumEntity?: AlbumEntity;
-  hideAuthor?: boolean;
-  hideDate?: boolean;
-  hideDescription?: boolean;
-  hideRoofline?: boolean;
-  hideTitle?: boolean;
-  hideSocial?: boolean;
+  headerTitle?: string;
+  headerTitleHeadingLevel?: string;
+  hideHeaderTitle?: boolean;
+  className?: string;
 };
 
-const AlbumFeatured = ({ ...props }: ModuleProps) => {
-  const albumEntity = props.albumEntity;
-  const elements = albumEntity?.elements;
-  const firstElement = elements?.slice(0, 1)[0];
-  const firstRow = elements?.slice(1, 6);
+const AlbumFeatured = ({
+  albumEntity,
+  headerTitle,
+  headerTitleHeadingLevel,
+  hideHeaderTitle,
+  className,
+}: AlbumFeaturedProps) => {
+  const { LANGUAGE } = useEnvVars();
   return (
-    <>
+    <div className={`section-row-full ${className} relative`}>
       <AlbumHeader
-        entity={albumEntity}
-        {...props}
+        headerTitle={headerTitle}
+        headerTitleHeadingLevel={headerTitleHeadingLevel}
+        hideHeaderTitle={hideHeaderTitle}
       ></AlbumHeader>
-      <section className="w-full container mx-auto">
-        <div className="grid gap-4 mx-20 col-start-1">
-          {elements && firstElement && firstElement?.image && (
-            <figure className="flex mx-auto">
-              <Picture
-                key={nanoid()}
-                src={firstElement?.image.templateUrl}
-                className="h-auto max-w-full rounded-lg"
-                transformations={transformations.albumFeatured}
-                alt={firstElement?.title}
-              />
-            </figure>
-          )}
-          <div className="grid grid-cols-5 gap-4">
-            {elements &&
-              firstRow?.map((entity: DistributionEntity) => {
-                return (
-                  entity.image && (
-                    <figure className="flex mx-auto">
-                      <Picture
-                        key={nanoid()}
-                        src={entity.image.templateUrl}
-                        className="h-auto max-w-full rounded-lg"
-                        transformations={transformations.albumFeaturedThumbnail}
-                        alt={entity.title}
-                      />
-                    </figure>
-                  )
-                );
-              })}
-          </div>
-        </div>
-      </section>
-    </>
+      <Swiper
+        dir={getSiteDirection(LANGUAGE)}
+        spaceBetween={20}
+        modules={[Navigation, Pagination]}
+        pagination={{
+          el: '.carousel__pagination',
+          //@ts-ignore
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '"></span>';
+          },
+        }}
+        style={{
+          maxWidth: '2048px',
+        }}
+        loop={true}
+        slidesPerView={'auto'}
+      >
+        {albumEntity?.elements?.map((slide: DistributionEntity, index: number) => (
+          <SwiperSlide
+            key={index}
+            className={'max-w-[400px] lg:max-w-[600px]'}
+          >
+            <Picture
+              src={slide.image?.templateUrl ?? ''}
+              alt={slide.title}
+              transformations={transformations.thumbnail_square_detail}
+              className={'w-full h-full object-cover rounded-md'}
+            ></Picture>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <div className="mt-5 lg:mt-10 container flex justify-center  carousel__pagination"></div>
+    </div>
   );
 };
 

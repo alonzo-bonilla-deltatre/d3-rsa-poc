@@ -4,7 +4,19 @@ import { getManifestJson } from '@/services/manifestService';
 import logger from '@/utilities/logger';
 import { ManifestResponse } from '@/models/types/manifest';
 
-const renderManifest = async (_req: NextApiRequest, res: NextApiResponse) => {
+/**
+ * Handler for the manifest API route.
+ *
+ * This handler processes requests to the manifest API route. It fetches the manifest JSON,
+ * sets the 'Content-Type' and 'Cache-Control' headers, and sends the JSON in the response.
+ *
+ * If the JSON is not fetched successfully, it logs an error and sends a 500 status code in the response.
+ *
+ * @async
+ * @param {NextApiRequest} req - The Next.js API request.
+ * @param {NextApiResponse} res - The Next.js API response.
+ */
+const renderManifest = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const manifestContent: ManifestResponse | null = await getManifestJson();
 

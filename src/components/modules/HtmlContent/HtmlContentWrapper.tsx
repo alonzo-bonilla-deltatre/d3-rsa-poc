@@ -1,19 +1,14 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import HtmlContent from '@/components/modules/HtmlContent/HtmlContent';
+import { nanoid } from 'nanoid';
 
-const HtmlContentWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <HtmlContent {...data} />;
-};
+const HtmlContentWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <HtmlContent data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <HtmlContentWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <HtmlContentWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

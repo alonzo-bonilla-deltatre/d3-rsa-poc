@@ -1,22 +1,17 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const LiveBloggingGridList = dynamic(() => import('@/components/modules/LiveBloggingGridList/LiveBloggingGridList'));
 
-const LiveBloggingGridListWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <LiveBloggingGridList {...data} />;
-};
+const LiveBloggingGridListWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <LiveBloggingGridList data={data} />
+);
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <LiveBloggingGridListWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <LiveBloggingGridListWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

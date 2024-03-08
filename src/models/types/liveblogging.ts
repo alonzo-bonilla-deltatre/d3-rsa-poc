@@ -4,7 +4,7 @@ import { LinkRuleVariation } from '@/models/types/linkRule';
 export type LiveBloggingBlogEntity = {
   slug: string;
   title: string;
-  description: string;
+  description?: string;
   tags: LiveBloggingTagEntity[];
   language: string;
   dateFrom: string;
@@ -25,8 +25,8 @@ export type LiveBloggingBlogEntity = {
 export type LiveBloggingTagEntity = {
   slug: string;
   id: string;
-  label: string;
-  extradata: object;
+  label?: string;
+  extradata?: object;
 };
 
 export type CoverImageDistribution = {

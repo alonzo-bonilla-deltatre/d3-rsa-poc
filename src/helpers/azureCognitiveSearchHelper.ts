@@ -1,12 +1,15 @@
-﻿import { SearchIterator } from '@azure/search-documents';
-import { AzureKeyPagesIndexEntity, AzureSearchGroupOption, AzureSearchResult } from '@/models/types/azureSearch';
-import { DistributionEntity } from '@/models/types/forge';
-import {
+﻿import {
   enrichDistributionEntitiesWithLinkRules,
   enrichEntitiesWithThumbnailPlaceholder,
 } from '@/helpers/forgeDistributionEntityHelper';
+import { AzureKeyPagesIndexEntity, AzureSearchGroupOption, AzureSearchResult } from '@/models/types/azureSearch';
+import { DistributionEntity, ForgeEntityType } from '@/models/types/forge';
 import { Variable } from '@/models/types/pageStructure';
+import { SearchIterator } from '@azure/search-documents';
 
+/**
+ * Group types for Azure Search.
+ */
 const groupTypes = {
   items: [
     {
@@ -16,6 +19,11 @@ const groupTypes = {
   ],
 } as AzureSearchGroupOption;
 
+/**
+ * Groups search results by entity type.
+ *
+ * @param {AzureSearchResult} azureSearchResult - The Azure search result to group.
+ */
 export const groupSearchResultsByEntityType = (azureSearchResult: AzureSearchResult) => {
   groupTypes.items.forEach((groupItem) => {
     const groups = {
@@ -47,6 +55,13 @@ export const groupSearchResultsByEntityType = (azureSearchResult: AzureSearchRes
   });
 };
 
+/**
+ * Creates a filter for Azure Search.
+ *
+ * @param {string} facetType - The facet type.
+ * @param {string} facetValue - The facet value.
+ * @returns {string} The filter string.
+ */
 export const createFilter = (facetType: string, facetValue: string): string => {
   let filter = '';
   if (facetType && facetValue) {
@@ -66,12 +81,18 @@ export const createFilter = (facetType: string, facetValue: string): string => {
   return filter;
 };
 
+/**
+ * Processes facets from Azure Search.
+ *
+ * @param {any} facets - The facets to process.
+ * @param {any[]} items - The items to add the processed facets to.
+ */
 export const processFacets = (facets: any, items: any[]): void => {
   if (facets && facets.hasOwnProperty('type')) {
     facets.type.forEach((facet: any) => {
-      if (facet.value !== 'customentity') {
+      if (facet.value !== ForgeEntityType.customEntity) {
         items.push({
-          count: facet.count ?? 0,
+          count: facet.count ? facet.count : 0,
           type: facet.value,
           documents: [],
         });
@@ -82,7 +103,7 @@ export const processFacets = (facets: any, items: any[]): void => {
   if (facets && facets.hasOwnProperty('entityCode')) {
     facets.entityCode.forEach((facet: any) => {
       items.push({
-        count: facet.count ?? 0,
+        count: facet.count ? facet.count : 0,
         type: facet.value,
         documents: [],
       });
@@ -90,8 +111,15 @@ export const processFacets = (facets: any, items: any[]): void => {
   }
 };
 
+/**
+ * Processes documents from Azure Search.
+ *
+ * @async
+ * @param {SearchIterator<object, string>} results - The search results to process.
+ * @param {any[] | undefined} items - The items to add the processed documents to.
+ */
 export const processDocuments = async (
-  results: SearchIterator<Pick<unknown, never>>,
+  results: SearchIterator<object, string>,
   items: any[] | undefined
 ): Promise<void> => {
   for await (const result of results) {
@@ -109,8 +137,15 @@ export const processDocuments = async (
   }
 };
 
+/**
+ * Processes key pages documents from Azure Search.
+ *
+ * @async
+ * @param {SearchIterator<object, string>} results - The search results to process.
+ * @param {any[] | undefined} items - The items to add the processed documents to.
+ */
 export const processKeyPagesDocuments = async (
-  results: SearchIterator<Pick<unknown, never>>,
+  results: SearchIterator<object, string>,
   items: any[] | undefined
 ): Promise<void> => {
   for await (const result of results) {
@@ -119,6 +154,13 @@ export const processKeyPagesDocuments = async (
   }
 };
 
+/**
+ * Enriches search results with distribution entities.
+ *
+ * @async
+ * @param {any[]} items - The items to enrich.
+ * @param {Variable[] | undefined} variables - The variables to use for enrichment.
+ */
 export const enrichSearchResultsWithDistributionEntities = async (
   items: any[],
   variables?: Variable[]
@@ -129,6 +171,13 @@ export const enrichSearchResultsWithDistributionEntities = async (
   }
 };
 
+/**
+ * Calculates the number of items to skip for pagination.
+ *
+ * @param {number} page - The current page number.
+ * @param {number} limit - The number of items per page.
+ * @returns {number} The number of items to skip.
+ */
 export const calculateSkip = (page: number, limit: number): number => {
   return limit > 0 ? limit * page : 0;
 };

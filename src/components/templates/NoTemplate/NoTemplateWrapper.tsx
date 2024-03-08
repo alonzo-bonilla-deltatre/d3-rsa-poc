@@ -1,20 +1,9 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
 const NoTemplate = dynamic(() => import('@/components/templates/NoTemplate/NoTemplate'));
 
-const NoTemplateWrapper = ({ ...data }: ComponentProps) => <NoTemplate {...data} />;
+const NoTemplateWrapper = ({ data }: { data: ComponentProps }) => <NoTemplate data={data} />;
 
-const render = ({ ...props }: ComponentProps): React.ReactElement =>
-  props ? (
-    <NoTemplateWrapper
-      key={nanoid()}
-      {...props}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => <NoTemplateWrapper data={data} />;
 
 export default render;

@@ -1,0 +1,212 @@
+.card {
+  @apply relative lg:gap-2;
+}
+
+.card a:hover {
+  color: currentColor;
+}
+
+.card figure {
+  overflow: hidden;
+}
+
+.card__info--outer {
+  @apply flex flex-col gap-2 pt-2 lg:w-5/6 text-grey-900 dark:text-white;
+}
+
+.card__info--outer .card__info-summary {
+  @apply text-grey-500 dark:text-grey-100;
+}
+
+.card__info-date {
+  @apply text-black dark:text-white;
+}
+.card__info--inner .card__info-date {
+  @apply text-white;
+}
+
+.card__info--inner {
+  @apply flex flex-col gap-2 items-start absolute bottom-0 left-0 w-full h-full p-3 xl:p-6 justify-end bg-gradient-to-t from-black to-transparent text-white;
+}
+
+.card__container {
+  @apply relative text-white box-border overflow-hidden bg-cover bg-no-repeat;
+}
+
+.card__container.premium {
+  @apply border-4 border-gold;
+}
+
+.card__container.freemium {
+  @apply border-4 border-white;
+}
+
+.card__container.promo {
+  @apply border-4 border-accent rounded-lg;
+}
+
+.card__container.promo img,
+.card__container.freemium img,
+.card__container.premium img {
+  @apply rounded-sm;
+}
+
+.card__container.event {
+  @apply pt-40;
+}
+
+.card__info-title.shop {
+  @apply font-medium tracking-tight;
+}
+
+.card__chip {
+  @apply absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10;
+}
+
+.card__chip span {
+  @apply uppercase;
+}
+
+.card__chip--premium {
+  @apply card__chip top-2 lg:top-3 right-2 lg:right-3 text-grey-900 bg-gold;
+}
+
+.card__chip--freemium {
+  @apply card__chip top-2 lg:top-3 right-2 lg:right-3 text-grey-900 bg-white;
+}
+
+.card__chip--sponsored-by {
+  @apply card__chip top-2 lg:top-3 right-2 lg:right-3 text-grey-900 bg-white flex flex-row items-center;
+}
+
+.card__chip--promo {
+  @apply card__chip bottom-2 lg:bottom-3 left-2 lg:left-3 text-white bg-accent;
+}
+
+.card__chip--ticket {
+  @apply card__chip text-black bg-white z-10;
+}
+
+.card__chip--eventicon {
+  @apply card__chip top-2 lg:top-3 right-2 lg:right-3 py-4 text-white bg-grey-500;
+}
+
+.card__container img.flag {
+  @apply rounded-full;
+}
+
+.card__icon {
+  @apply absolute bottom-2 lg:bottom-4 left-2 lg:left-4 text-white;
+}
+
+.portrait-full .card__icon,
+.landscape-full .card__icon,
+.squared-sm-full .card__icon {
+  @apply top-2 lg:top-4;
+}
+
+.card--player {
+  @apply font-heading;
+}
+
+.card__number {
+  @apply absolute top-1 left-5;
+}
+
+.card--player .card__info--inner {
+  @apply to-grey-900;
+}
+
+/* event list */
+.card__featDate {
+  @apply absolute top-0 left-2 lg:left-4 bg-[url('/assets/event-date.png')] w-[64px] h-[82px] z-10;
+}
+
+.card__mask {
+  @apply absolute top-0 left-0 rounded-lg bg-[url('/assets/event-mask.png')] bg-bottom w-full h-[234px] px-6 pt-24 z-10;
+}
+
+.card__info-title.event {
+  @apply text-white mt-1 lg:mt-3 font-heading text-[44px] leading-[36px] font-normal uppercase mb-2;
+}
+
+.event .card__info-summary {
+  @apply text-grey-100;
+}
+
+.card__buttonDate {
+  @apply flex flex-col justify-items-center;
+}
+
+.card__buttonDate .day {
+  @apply font-heading text-4.5xl text-center;
+}
+
+.card__buttonDate .month {
+  @apply font-heading text-1.5xl uppercase text-center -mt-1;
+}
+
+.swiper-pagination--event {
+  @apply hidden md:flex flex-row items-center justify-center gap-2;
+}
+
+.event_pagination__item {
+  @apply flex flex-col items-center px-6 relative;
+}
+
+.event_pagination__item .day {
+  @apply font-heading text-[80px] leading-[64px] text-grey-500 dark:text-grey-100 text-center w-full;
+}
+
+.event_pagination__item .month {
+  @apply font-heading text-[30px] text-grey-400 dark:text-grey-200 uppercase text-center -mt-1 w-full;
+}
+
+.event_pagination__item .event_pagination__bar {
+  @apply w-[90%] h-[3px] bg-grey-200;
+}
+
+.event_pagination__item.is-active .day,
+.event_pagination__item.is-active .month {
+  @apply transition duration-300 ease-in text-grey-500 dark:text-white;
+}
+
+.event_pagination__item.is-active .event_pagination__bar {
+  @apply transition duration-300 ease-in w-full h-[6px] bg-accent;
+}
+
+.event_pagination__divider {
+  @apply absolute top-6 right-0 h-[80px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-white to-transparent opacity-20;
+}
+
+.event_pagination__item:last-child .event_pagination__divider {
+  @apply hidden;
+}
+
+.swiper-container--watermark {
+  @apply hidden lg:block absolute top-0 left-1/2 transform -translate-x-1/2
+    font-heading text-[1060px] leading-[1028px] text-grey-500 uppercase  opacity-20;
+}
+
+.promo-buttons ul {
+  @apply list-none flex flex-col md:flex-row md:space-x-5 text-center;
+}
+.promo-buttons--card {
+  @apply absolute bottom-1 w-full;
+}
+.promo-buttons--card ul {
+  @apply list-none flex flex-col space-y-1 text-center mb-0;
+}
+
+.cutter-bottom {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 93.3%, 0% 100%);
+  background-color: theme(colors.white);
+}
+.cutter-right {
+  clip-path: polygon(0% 0%, 100% 0%, 94.7% 100%, 0% 100%);
+  background-color: theme(colors.white);
+}
+.cutter-story {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 90% 100%, 90% 85%, 0% 70%);
+  background-color: theme(colors.white);
+}

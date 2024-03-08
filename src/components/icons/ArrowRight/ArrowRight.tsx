@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-const ArrowRight = (props: any) => {
+const ArrowRight = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       viewBox="0 0 20 20"

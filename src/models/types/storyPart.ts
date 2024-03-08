@@ -1,9 +1,9 @@
-import { DistributionEntity } from '@/models/types/forge';
+import { AlbumEntity, ForgeExternalEntityType } from '@/models/types/forge';
 
-export type StoryPart = DistributionEntity & DistributionEntityStoryPart;
+export type StoryPart = AlbumEntity & DistributionEntityStoryPart;
 
 type DistributionEntityStoryPart = {
   content: any;
-  externalType: string;
+  externalType: ForgeExternalEntityType;
   inputUrl: string;
 };

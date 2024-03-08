@@ -2,21 +2,17 @@ type YouTubeOembedProps = {
   src: string;
 };
 
-const YouTubeOembed = ({ ...props }: YouTubeOembedProps) => {
-  const { src } = props as YouTubeOembedProps;
+const YouTubeOembed = ({ src }: YouTubeOembedProps) => {
+  if (!src) return null;
 
-  return src ? (
-    <>
-      <div className="grid grid-cols-1 relative overflow-hidden w-full pt-[56.25%]">
-        <iframe
-          allowFullScreen
-          src={src}
-          className="w-full h-full absolute"
-        />
-      </div>
-    </>
-  ) : (
-    <></>
+  return (
+    <div className="grid grid-cols-1 relative overflow-hidden w-full">
+      <iframe
+        allowFullScreen
+        src={src}
+        className="w-full h-full aspect-video"
+      />
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ export const Default: Story = {
   args: {
     context: sampleContext,
     hide: false,
-    className: 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 w-fit px-4 rounded',
+    className: 'uppercase mr-2 font-bold text-base bg-accent p-1 w-fit px-4 rounded',
   },
 };
 
@@ -25,16 +25,7 @@ export const WithIcon: Story = {
   args: {
     context: sampleContext,
     hide: false,
-    className: 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 py-1 px-4 rounded inline-flex items-center',
+    className: 'uppercase mr-2 font-bold text-base bg-accent p-1 py-1 px-4 rounded inline-flex items-center',
     icon: ArrowRight,
-  },
-};
-
-export const WithAsset: Story = {
-  args: {
-    context: sampleContext,
-    hide: false,
-    className: 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-1 py-1 px-4 rounded inline-flex items-center',
-    asset: sampleAssetSquared,
   },
 };

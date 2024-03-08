@@ -55,7 +55,8 @@ export const Default: Story = {
     menuItem: sampleMenuItem,
     navItemClasses: 'Call to Action',
     parentId: 'default',
-    iconSize: 30,
+    iconWidth: 30,
+    iconHeight: 30,
   },
   parameters: {
     layout: 'padded',
@@ -67,7 +68,8 @@ export const WithIcon: Story = {
     menuItem: sampleMenuItem,
     navItemClasses: 'Call to Action',
     parentId: 'default',
-    iconSize: 30,
+    iconWidth: 30,
+    iconHeight: 30,
   },
   parameters: {
     layout: 'padded',

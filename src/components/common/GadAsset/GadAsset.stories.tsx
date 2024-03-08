@@ -17,10 +17,10 @@ export default meta;
 type Story = StoryObj<typeof GadAsset>;
 
 export const Default: Story = {
-  render: (args) => <>{<GadAsset {...args}></GadAsset>}</>,
+  render: (args) => <GadAsset {...args}></GadAsset>,
   args: {
-    className: 'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit',
-    transformations: transformations.logos,
+    className: 'uppercase mr-2 font-bold text-base bg-accent p-2 w-fit',
+    transformations: transformations.best_assets,
     width: sampleLogoWithFormat.width,
     height: sampleLogoWithFormat.height,
     title: sampleLogoWithFormat.alt,

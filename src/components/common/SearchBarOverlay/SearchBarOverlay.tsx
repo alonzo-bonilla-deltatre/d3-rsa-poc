@@ -6,31 +6,22 @@ import SearchBar from '@/components/common/SearchBar/SearchBar';
 
 type SearchBarOverlayProps = {
   additionalOverlayClasses?: string;
-  additionalWrpperClasses?: string;
+  additionalWrapperClasses?: string;
   additionalSearchBarClasses?: string;
   inputTitle?: string;
   inputValue?: string;
-  lightTheme?: boolean;
   redirectPath?: string;
-  resultsCount?: number;
-  show?: boolean;
-  showResultsCount?: boolean;
-  widthCssClass?: string;
 };
 
 const SearchBarOverlay = ({
   additionalOverlayClasses = '',
-  additionalWrpperClasses = '',
+  additionalWrapperClasses = '',
   additionalSearchBarClasses = '',
   inputTitle = 'insert your text here',
   inputValue = '',
-  lightTheme = false,
   redirectPath = '/search',
-  resultsCount = 0,
-  show = false,
-  showResultsCount = false,
 }: SearchBarOverlayProps) => {
-  const [isOpen, setIsOpen] = useState(show);
+  const [isOpen, setIsOpen] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,22 +33,19 @@ const SearchBarOverlay = ({
         inputRef.current?.focus();
       });
     };
-    const initializeSearchButton = () => {
-      // find the "search" icon on the menu and attach to it an event so when clicked it toggles the search bar
-      const searchBtn = document.querySelector('[data-tag=search]') as HTMLButtonElement;
-      if (searchBtn) {
-        searchBtn.setAttribute('role', 'button');
-        searchBtn.setAttribute('aria-expanded', isOpen?.toString());
-        searchBtn.addEventListener('click', handleSearchClick);
-      }
-    };
-    document.addEventListener('DOMContentLoaded', initializeSearchButton);
+    // find the "search" icon on the menu and attach to it an event so when clicked it toggles the search bar
+    const searchBtn = document.querySelector('[data-tag=search]') as HTMLButtonElement;
+    if (searchBtn) {
+      searchBtn.setAttribute('role', 'button');
+      searchBtn.setAttribute('aria-expanded', isOpen?.toString());
+      searchBtn.addEventListener('click', handleSearchClick);
+    }
   }, [isOpen]);
 
   return (
     <div
       id="search-bar-overlay"
-      className={additionalWrpperClasses}
+      className={additionalWrapperClasses}
     >
       {isOpen && (
         <Overlay
@@ -65,14 +53,10 @@ const SearchBarOverlay = ({
           additionalClasses={additionalOverlayClasses}
         >
           <SearchBar
-            show
             redirectPath={redirectPath}
-            additionalClasses={'align-start ' + additionalSearchBarClasses}
+            additionalClasses={'align-start bg-black' + additionalSearchBarClasses}
             inputTitle={inputTitle}
             inputValue={inputValue}
-            lightTheme={lightTheme}
-            resultsCount={resultsCount}
-            showResultsCount={showResultsCount}
           />
         </Overlay>
       )}

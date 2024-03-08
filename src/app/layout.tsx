@@ -1,24 +1,69 @@
-import { Poppins } from 'next/font/google';
-import './globals.css';
+import '@/styles/globals.css';
+import '@/styles/components/common/cards/tailwind-cards.css';
+
+import { getSiteTranslations } from '@/helpers/translationHelper';
+import { TranslationProvider } from '@/context/translationContext';
+import { Metadata } from 'next';
+import { generatePageMetadata } from '@/app/pageHelpers';
+import { EnvVarsProvider } from '@/context/envVarsContexts';
+import { publicEnvVariables } from '@/utilities/publicEnvVariables';
+import { Barlow, Barlow_Condensed, Karantina } from 'next/font/google';
+import { getSiteDirection } from '@/utilities/direction';
+import { FeatureFlagsProvider } from '@/context/featureFlagsContext';
+import { featureFlags } from '@/utilities/featureFlags';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Favicon from '@/components/common/Favicon/Favicon';
+import { ReactNode } from 'react';
 
 // If loading a variable font, you don"t need to specify the font weight
-const webFont = Poppins({
-  variable: '--font-poppins',
-  weight: ['300', '500', '700'],
+const content = Barlow({
+  variable: '--font-content',
+  weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
+  fallback: ['sans-serif'],
+});
+const navigation = Barlow_Condensed({
+  variable: '--font-navigation',
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['sans-serif'],
+});
+const heading = Karantina({
+  variable: '--font-heading',
+  weight: ['300', '400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['sans-serif'],
 });
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const translations = await getSiteTranslations();
+  const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
   return (
     <html
       lang={process.env.LANGUAGE ?? 'en'}
-      className={webFont.variable}
+      className={`${content.variable} ${navigation.variable} ${heading.variable}`}
+      dir={getSiteDirection(process.env.LANGUAGE ?? '')}
     >
-      <head />
-      <body>{children}</body>
+      <head>
+        <Favicon />
+      </head>
+      <body suppressHydrationWarning={true}>
+        <TranslationProvider translations={translations}>
+          <EnvVarsProvider envVars={publicEnvVariables}>
+            <FeatureFlagsProvider featureFlags={featureFlags}>{children}</FeatureFlagsProvider>
+          </EnvVarsProvider>
+        </TranslationProvider>
+      </body>
+      {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId} />}
     </html>
   );
 };
 
 export default RootLayout;
+
+export async function generateMetadata({ params }: { params: { pageName: string[] } }): Promise<Metadata> {
+  return await generatePageMetadata({ pageName: [] }); // force empty string to get metadata from index for error page
+}

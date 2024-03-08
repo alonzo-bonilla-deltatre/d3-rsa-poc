@@ -1,34 +1,58 @@
-import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+'use client';
+
+import TranslateLabel from '@/components/common/TranslatedLabel/TranslatedLabel';
+import {
+  getBooleanProperty,
+  getHeadingTag,
+  getHeadingTagNumber,
+  getStringProperty,
+} from '@/helpers/pageComponentPropertyHelper';
+import useTranslate from '@/hooks/useTranslate';
 import { HeaderTitleProps } from '@/models/types/components';
+import CallToAction from '@/components/common/CallToAction/CallToAction';
 
-type HeaderTitleComponentProps = {} & HeaderTitleProps;
+const HeaderTitle = ({
+  headerTitle,
+  headerTitleHeadingLevel,
+  hideHeaderTitle,
+  ctaTitle,
+  ctaLink,
+  className,
+  typographyClassName,
+  noTranslation,
+  sponsorBy,
+  textAlignment,
+  description,
+}: HeaderTitleProps) => {
+  const HeadingTag = getHeadingTag(headerTitleHeadingLevel, 'h2') as keyof JSX.IntrinsicElements;
+  const translate = useTranslate();
+  const typographyHeadingClassName = typographyClassName
+    ? typographyClassName
+    : `d3-ty-heading-${getHeadingTagNumber(headerTitleHeadingLevel)}`;
+  const headingClassName = `${typographyHeadingClassName} text-component-common-header-title-light dark:text-component-common-header-title-dark`;
 
-const HeaderTitle = ({ ...props }: HeaderTitleComponentProps) => {
-  const HeadingTag = `${
-    props.headerTitleHeadingLevel ? props.headerTitleHeadingLevel.toLowerCase() : 'h2'
-  }` as keyof JSX.IntrinsicElements;
-  return props.headerTitle ? (
+  if (!headerTitle) {
+    return null;
+  }
+  noTranslation = getBooleanProperty(noTranslation);
+  return (
     <div
-      className={`${
-        getBooleanProperty(props.hideHeaderTitle)
-          ? 'flex justify-end items-center'
-          : 'flex justify-between items-center'
-      }`}
+      className={`${getStringProperty(className)} flex items-center justify-between gap-2 lg:gap-6 text-component-common-header-title-light dark:text-component-common-header-title-dark`}
     >
-      <HeadingTag className={`${getBooleanProperty(props.hideHeaderTitle) ? 'hidden' : 'flex'}`}>
-        {props.headerTitle}
+      <HeadingTag className={`${getBooleanProperty(hideHeaderTitle) ? 'hidden' : headingClassName} `}>
+        {noTranslation ? headerTitle : <TranslateLabel translationTermKey={headerTitle} />}
       </HeadingTag>
-      {props.ctaLink && props.ctaTitle && (
-        <a
-          href={props.ctaLink}
-          title={props.ctaTitle}
-        >
-          {props.ctaTitle}
-        </a>
+      {ctaLink && ctaTitle && (
+        <CallToAction
+          url={ctaLink}
+          text={translate(ctaTitle)}
+          isExternal={false}
+          style="primary"
+          hide={false}
+          className="ml-auto lg:ml-0"
+        />
       )}
     </div>
-  ) : (
-    <></>
   );
 };
 

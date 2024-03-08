@@ -34,3 +34,27 @@ export const getBooleanVariable = (variables: Variable[] | undefined, variableTo
     variables?.find((variable: Variable) => variable.key === variableToLook)?.keyValue?.value?.toLowerCase() === 'true'
   );
 };
+/**
+ * Get variable's value from Components' props
+ * @param key the key of the Variable object
+ * @param value the value of the Variable object
+ * @param valueType the valueType of the Variable object
+ * @param type the type of the Variable object
+ * @returns the variable object with the key and value passed as params
+ */
+export const createDataVariable = (key: string, value: string, valueType?: string, type?: string): Variable => {
+  return {
+    key: key,
+    keyValue: { value, valueType: valueType ?? '' },
+    type: type ?? '',
+  };
+};
+
+/**
+ * Get boolean value from a string input
+ * @param input the input to be converted
+ * @returns true only if input is a string contains "true" value, false otherwise
+ */
+export function convertStringToBoolean(input: string): boolean {
+  return input?.toLowerCase() === 'true';
+}

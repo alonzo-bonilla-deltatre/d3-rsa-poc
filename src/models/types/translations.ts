@@ -1,9 +1,11 @@
-import { Resource } from 'i18next';
-
 export type Translations = {
   mainLanguage: string;
   languages: string[];
-  resources: Resource;
+  resources: Record<string, Resource>;
+};
+
+export type Resource = {
+  translation: Record<string, Translation>;
 };
 
 export type Translation = {

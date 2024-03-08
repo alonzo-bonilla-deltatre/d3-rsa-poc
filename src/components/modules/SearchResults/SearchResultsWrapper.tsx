@@ -1,22 +1,17 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const SearchResults = dynamic(() => import('@/components/modules/SearchResults/SearchResults'));
 
-const SearchResultsWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <SearchResults {...data} />;
-};
+const SearchResultsWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <SearchResults data={data} />
+);
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <SearchResultsWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <SearchResultsWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

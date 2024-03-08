@@ -1,0 +1,52 @@
+.form {
+  @apply relative lg:gap-2 py-1 text-body-small lg:text-body-small-lg;
+  &__field {
+    @apply mt-6 mb-2;
+  }
+  label {
+    @apply font-navigation text-caption lg:text-caption-lg uppercase;
+  }
+  input,
+  textarea,
+  select {
+    @apply rounded-md bg-greyscale-white border border-greyscale-dark text-greyscale-dark text-sm focus:ring-gold focus:border-gold focus:bg-greyscale-white block w-full p-2.5;
+  }
+  input[type='checkbox'],
+  input[type='radio'] {
+    @apply w-4 h-4;
+  }
+  input[type='checkbox'] {
+    @apply text-greyscale-dark bg-greyscale-pale border-greyscale-dark rounded focus:ring-gold focus:ring-2;
+  }
+  input[type='checkbox']:checked,
+  input[type='radio']:checked {
+    @apply bg-gold;
+  }
+  input[type='checkbox']:checked::after {
+    @apply left-2;
+  }
+  input[type='radio']:checked::after {
+    @apply left-[0.35rem];
+  }
+  input[type='file'] {
+    @apply font-content text-body-small lg:text-body-small-lg transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] 
+        file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit
+         file:bg-greyscale-pale file:px-3 file:py-[0.32rem] file:text-greyscale-grey file:transition 
+         file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] 
+         file:[margin-inline-end:0.75rem] hover:file:bg-greyscale-light 
+         file:uppercase file:font-navigation;
+  }
+
+  &.-validating input:invalid {
+    @apply bg-error-light outline outline-1 outline-error-dark;
+  }
+  .invalid-message {
+    @apply d3-ty-body-small hidden flex-row gap-2 text-error-dark pt-1;
+  }
+  &.-validating input:invalid + .invalid-message {
+    @apply flex;
+  }
+  &.-validating input:invalid + div .invalid-message {
+    @apply flex;
+  }
+}

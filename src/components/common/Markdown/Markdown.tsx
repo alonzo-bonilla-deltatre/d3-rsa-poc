@@ -1,25 +1,25 @@
-import { transform } from '@/helpers/markdownHelper';
-import '@/components/common/Markdown/Markdown.scss';
 import HtmlContent from '@/components/common/HtmlContent/HtmlContent';
+import { transform } from '@/helpers/markdownHelper';
 
 type MarkdownProps = {
   markdownText?: string;
-
+  containerClassName?: string;
   classNames?: string;
 };
 
-const Markdown = async ({ ...props }: MarkdownProps) => {
-  const { markdownText, classNames } = props;
+const Markdown = async ({ markdownText, classNames, containerClassName }: MarkdownProps) => {
+  if (!markdownText) return null;
   const html = await transform(markdownText);
-  return props.markdownText ? (
-    <>
+  if (!html) return null;
+
+  return (
+    <div className={`d3-markdown ${containerClassName ? containerClassName : ''}`}>
       <HtmlContent
         content={html}
-        classNames={classNames ? classNames : ''}
+        className={classNames ? classNames : ''}
+        fromMarkdown
       />
-    </>
-  ) : (
-    <></>
+    </div>
   );
 };
 

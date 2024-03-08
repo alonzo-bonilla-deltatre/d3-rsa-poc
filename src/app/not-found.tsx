@@ -1,5 +1,3 @@
-/* instanbul ignore file */
-
 import CallToAction from '@/components/common/CallToAction/CallToAction';
 
 export default function NotFound() {
@@ -14,7 +12,7 @@ export default function NotFound() {
           text={'Back to homepage'}
           isExternal={false}
           hide={false}
-          style={'default'}
+          style={'primary'}
         ></CallToAction>
       </div>
     </section>

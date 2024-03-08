@@ -5,6 +5,8 @@ import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
 import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
 import StoryWrapper from '@/components/modules/Story/StoryWrapper';
+import { CardLayout, CardType } from '@/models/types/card';
+import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
 
 const meta: Meta<typeof StoryWrapper> = {
   title: 'Modules/Story',
@@ -15,30 +17,22 @@ const meta: Meta<typeof StoryWrapper> = {
 
 export default meta;
 type Story = StoryObj<typeof Story>;
+const cardType = CardType.SmallestNews;
+const cardLayout = CardLayout.SquaredSmallHorizontal;
+const cardDesign = getCardSettings(cardType, null, cardLayout);
 
 export const Default: Story = {
-  render: (args) => (
+  render: () => (
     <>
-      <StoryHeader
-        hideRelatedItems={false}
-        hideAuthor={false}
-        hideDate={false}
-        hideDescription={false}
-        hideRoofline={false}
-        hideTitle={false}
-        hideSocial={false}
-        storyEntity={sampleStory}
-        variables={[]}
-        {...args}
-      ></StoryHeader>
+      <StoryHeader storyEntity={sampleStory}></StoryHeader>
       <StoryParts storyEntity={sampleStory}></StoryParts>
       <RelatedItems
         relations={sampleStory.relations}
         hide={false}
+        cardDesign={cardDesign}
       ></RelatedItems>
     </>
   ),
-  args: {},
   parameters: {
     layout: 'centered',
   },

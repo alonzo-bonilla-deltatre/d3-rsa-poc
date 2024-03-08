@@ -1,0 +1,20 @@
+/*
+// ============================================
+// COLORS
+// from palette in Figma
+// ============================================
+
+// --------------------------------------------
+// NAMED COLORS
+// https://css-tricks.com/what-do-you-name-color-variables/
+// (do not use them inside styles, use semantic colors instead)
+// -------------------------------------------- */
+@layer base {
+  :root,
+  ::backdrop {
+    --color-component_module_hero_title: var(--color-white);
+    --color-component_module_hero_pagination_border: var(--color-primary-500);
+    --color-component_module_hero_progress_bar_color: var(--color-primary-500);
+    --color-component_module_hero_progress_bar_background: var(--color-grey-100);
+  }
+}

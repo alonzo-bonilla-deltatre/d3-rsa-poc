@@ -16,11 +16,7 @@ export default meta;
 type Story = StoryObj<typeof LanguageSwitcher>;
 
 export const Default: Story = {
-  render: (args) => (
-    <>
-      <LanguageSwitcher {...args}></LanguageSwitcher>
-    </>
-  ),
+  render: (args) => <LanguageSwitcher {...args}></LanguageSwitcher>,
   args: {
     allSiteConfiguration: {
       allSites: [

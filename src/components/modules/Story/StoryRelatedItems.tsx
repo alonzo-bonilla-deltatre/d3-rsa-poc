@@ -1,28 +1,26 @@
-import Title from '@/components/common/Title/Title';
+import renderCard from '@/components/common/cards/Card/CardWrapper';
+import { CardDesign, CardProps } from '@/models/types/card';
 import { DistributionEntity } from '@/models/types/forge';
-import { renderRelatedItem } from '@/services/renderHandlers/renderRelatedItems';
 
-type ModuleProps = {
+type RelatedItemsProps = {
   relations: any[];
-  hide: boolean;
+  hide?: boolean;
+  cardDesign: CardDesign;
 };
 
-const RelatedItems = ({ ...props }: ModuleProps) => {
-  return !props.hide && props.relations && props.relations.length > 0 ? (
-    <section className="w-full container mx-auto mt-40">
-      <Title
-        title={'related-items'}
-        heading={'h3'}
-        hide={false}
-      ></Title>
-      <div className="grid grid-cols-4 gap-4 px-8">
-        {props.relations.map((relItem: DistributionEntity) => {
-          return renderRelatedItem(relItem);
-        })}
-      </div>
-    </section>
-  ) : (
-    <div />
+const RelatedItems = ({ cardDesign, relations, hide }: RelatedItemsProps) => {
+  if (hide || !relations) return null;
+
+  return (
+    <>
+      {relations.map((relItem: DistributionEntity, index: number) => {
+        const cardProps = {
+          entity: relItem,
+          cardDesign: cardDesign,
+        } as CardProps;
+        return <div key={index}>{renderCard(cardProps)}</div>;
+      })}
+    </>
   );
 };
 

@@ -2,6 +2,8 @@ import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 
 interface IIconProps extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   size?: number;
+  width?: number;
+  height?: number;
   icon: React.ElementType;
 }
 
@@ -10,12 +12,11 @@ type SvgExtraProps = {
   height: string;
 };
 
-const SvgIcon: React.FC<IIconProps> = (props) => {
-  const { size, icon, ...svgProps } = props;
+const SvgIcon = ({ width = 24, height = 24, icon, size, ...svgProps }: IIconProps) => {
   // default
-  let svgExtraProps: SvgExtraProps = {
-    width: '24px',
-    height: '24px',
+  const svgExtraProps = {
+    width: `${width}px`,
+    height: `${height}px`,
   };
 
   if (size !== undefined) {

@@ -1,13 +1,22 @@
-import { ComponentProps } from '@/models/types/components';
+import { ComponentProps, ModuleProps } from '@/models/types/components';
 import HtmlContentComponent from '@/components/common/HtmlContent/HtmlContent';
+import { getDarkClass, getHideModule } from '@/helpers/pageComponentPropertyHelper';
 
-type ModuleProps = {
+type HtmlContentProps = {
   content?: string;
+} & ModuleProps;
+
+const HtmlContent = ({ data }: { data: ComponentProps }) => {
+  const { content, isDark } = data.properties as HtmlContentProps;
+
+  if (getHideModule(data)) return null;
+
+  return (
+    <HtmlContentComponent
+      content={content}
+      className={getDarkClass(isDark)}
+    />
+  );
 };
 
-const HtmlContent = ({ ...data }: ComponentProps) => {
-  const { content } = data.properties as ModuleProps;
-
-  return <HtmlContentComponent content={content} />;
-};
 export default HtmlContent;

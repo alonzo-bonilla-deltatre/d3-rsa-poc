@@ -1,29 +1,37 @@
 import { ImageTransformations } from '@/models/types/images';
 import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
 import Image from 'next/image';
+import { CSSProperties } from 'react';
 
 type GadAssetProps = {
-  src?: string | '';
-  width?: number;
-  height?: number;
-  title?: string;
-  transformations?: ImageTransformations;
+  src: string;
+  width: number;
+  height: number;
+  title: string;
+  transformations: ImageTransformations;
   className?: string;
+  imageStyle?: CSSProperties;
 };
 
-const GadAsset = ({ ...props }: GadAssetProps) => {
-  const canRender = props.transformations;
-  const desktopSrc = getSrcWithTransformation(props.src, props.transformations?.desktop);
+const GadAsset = ({ src, width, height, title, transformations, className, imageStyle }: GadAssetProps) => {
+  const canRender = transformations;
+  const desktopSrc = getSrcWithTransformation(src, transformations?.desktop.transformation);
 
-  return canRender ? (
+  if (!canRender) {
+    return null;
+  }
+
+  return (
     <Image
-      className={props.className}
       src={desktopSrc}
-      alt={props.title ?? ''}
-      width={props.width}
-      height={props.height}
+      alt={title ?? ''}
+      width={width}
+      height={height}
+      className={`max-w-none w-full h-full object-contain ${className ? className : ''} `}
+      loading={'lazy'}
+      style={imageStyle}
     />
-  ) : null;
+  );
 };
 
 export default GadAsset;

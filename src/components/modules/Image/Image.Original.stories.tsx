@@ -30,150 +30,73 @@ export default meta;
 type Story = StoryObj<typeof Image>;
 
 export const OriginalExtraSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraSmallLeft}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...originalExtraSmallLeft}></ImageView>,
 };
 
 export const OriginalSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalSmallLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalSmallLeft}></ImageView>,
 };
 
 export const OriginalMediumLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalMediumLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalMediumLeft}></ImageView>,
 };
 
 export const OriginalLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalLargeLeft}></ImageView>,
 };
 
 export const OriginalExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalExtraLargeLeft}></ImageView>,
 };
 
 export const OriginalExtraExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalExtraExtraLargeLeft}></ImageView>,
 };
 
 export const OriginalExtraSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalExtraSmallCenter}></ImageView>,
 };
 
 export const OriginalSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalSmallCenter}></ImageView>,
 };
 
 export const OriginalMediumCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalMediumCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalMediumCenter}></ImageView>,
 };
 
 export const OriginalLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalLargeCenter}></ImageView>,
 };
 
 export const OriginalExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalExtraLargeCenter}></ImageView>,
 };
 
 export const OriginalExtraExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalExtraExtraLargeCenter}></ImageView>,
 };
 
 export const OriginalExtraSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalExtraSmallRight}></ImageView>,
 };
 
 export const OriginalSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...originalSmallRight}></ImageView>,
 };
 
 export const OriginalMediumRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalMediumRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...originalMediumRight}></ImageView>,
 };
 
 export const OriginalLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...originalLargeRight}></ImageView>,
 };
 
 export const OriginalExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...originalExtraLargeRight}></ImageView>,
 };
 
 export const OriginalExtraExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...originalExtraExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...originalExtraExtraLargeRight}></ImageView>,
 };

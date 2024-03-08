@@ -1,0 +1,43 @@
+/*
+==================================================================================================
+TAILWIND
+(with Build-time imports https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports)
+==================================================================================================
+*/
+
+/*
+BASE
+This is the first Tailwind CSS layer. It basically holds Preflight:
+ - https://tailwindcss.com/docs/preflight
+ - https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css
+ */
+@import 'tailwindcss/base';
+
+/*
+COMPONENTS
+This is a tiny layer that only includes the container class.
+*/
+@import 'tailwindcss/components';
+
+/*
+UTILITIES
+Here resides almost all of the classes you use to style your HTML.
+*/
+@import 'tailwindcss/utilities';
+
+/*
+==================================================================================================
+PARTIALS
+==================================================================================================
+*/
+
+/* BASE */
+@import 'base/variables/colors.css';
+@import 'base/base.css';
+@import 'base/typography.css';
+
+/* COMPONENTS */
+@import 'components/base.css';
+@import 'components/section.css';
+@import 'components/secondary-nav.css';
+@import 'components/form.css';

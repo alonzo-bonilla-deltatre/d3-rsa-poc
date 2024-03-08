@@ -1,4 +1,4 @@
-import { DistributionEntity, Tag } from '@/models/types/forge';
+import { DistributionEntity, ForgeEntityCode, ForgeEntityType, Tag } from '@/models/types/forge';
 import { ImageAsset } from '@/models/types/images';
 import { samplePhotoStoryPart } from './sampleStoryParts';
 
@@ -6,7 +6,7 @@ const sampleContext: Tag = {
   _translationId: '2d9edf1c-6432-44f7-b065-c09ffacfb5dc',
   _entityId: 'f3cd7696-faa9-490e-841b-ee0c907df43e',
   selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/tags/supercars',
-  type: 'tag',
+  type: ForgeEntityType.tag,
   title: 'supercars',
   slug: 'supercars',
   neutralSlug: 'supercars',
@@ -19,7 +19,7 @@ const sampleContext: Tag = {
 const sampleTags: Tag[] = [
   {
     slug: 'awards',
-    type: 'tag',
+    type: ForgeEntityType.tag,
     _translationId: '9a220596-d930-4689-a28b-e6186ec76017',
     _entityId: '13d162ee-7a96-4f11-a40f-06a2ce5fc99f',
     selfUrl: 'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/tags/awards',
@@ -46,7 +46,7 @@ const sampleStory: DistributionEntity = {
   id: '63b4c7d9-c86e-4c39-8033-1a335f87e2ad',
   fields: {},
   createdBy: 'Mario Rossi',
-  type: 'story',
+  type: ForgeEntityType.story,
   _translationId: '63b4c7d9-c86e-4c39-8033-1a335f87e2ad',
   _entityId: 'd2ffd20f-0c27-41fb-b33e-b872cb46a641',
   selfUrl: '',
@@ -73,7 +73,7 @@ const sampleStory: DistributionEntity = {
     slug: '',
   },
   parts: [samplePhotoStoryPart],
-  entityCode: 'story',
+  entityCode: ForgeEntityCode.story,
 };
 
 const sampleStoryWithPhotoPart: DistributionEntity = {
@@ -81,4 +81,4 @@ const sampleStoryWithPhotoPart: DistributionEntity = {
   ...samplePhotoStoryPart,
 };
 
-export { sampleStory, sampleStoryWithPhotoPart, sampleContext, sampleTags };
+export { sampleStory, sampleStoryWithPhotoPart, sampleContext, sampleTags, sampleThumbnail };

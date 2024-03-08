@@ -1,0 +1,16 @@
+.accordion {
+  --d3-accordion-rotate-deg: 0;
+  [open] {
+    --d3-accordion-rotate-deg: 90deg;
+  }
+  :global {
+    ::-webkit-details-marker {
+      display: none;
+    }
+    summary {
+      .accordion__icon {
+        transform: rotate(var(--d3-accordion-rotate-deg));
+      }
+    }
+  }
+}

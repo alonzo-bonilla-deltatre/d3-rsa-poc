@@ -1,4 +1,5 @@
 import { PageStructureItemType, PageStructureResponse } from '@/models/types/pageStructure';
+import { ForgeMetadataCategoryType, ForgeSEOMetadataKey } from '@/models/types/forge';
 
 const indexStructure: PageStructureResponse = {
   data: {
@@ -81,14 +82,14 @@ const indexStructure: PageStructureResponse = {
     ],
     metadata: [
       {
-        category: 'seo',
-        key: 'title',
+        category: ForgeMetadataCategoryType.seo,
+        key: ForgeSEOMetadataKey.title,
         value: 'Deltatre Frontend Rendering Engine',
         type: 'string',
       },
       {
-        category: 'seo',
-        key: 'description',
+        category: ForgeMetadataCategoryType.seo,
+        key: ForgeSEOMetadataKey.description,
         value: 'POC for the new frontend rendering engine',
         type: 'string',
       },

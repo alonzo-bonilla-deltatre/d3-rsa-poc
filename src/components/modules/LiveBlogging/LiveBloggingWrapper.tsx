@@ -1,23 +1,16 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 import React from 'react';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const LiveBloggingServer = dynamic(() => import('@/components/modules/LiveBlogging/LiveBloggingServer'));
 
-const LiveBloggingWrapper = ({ ...data }: ComponentProps) => {
-  return <LiveBloggingServer {...data} />;
-};
+const LiveBloggingWrapper = ({ data }: { data: ComponentProps }) => <LiveBloggingServer data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <LiveBloggingWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <LiveBloggingWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

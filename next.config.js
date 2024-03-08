@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
-  experimental: {
-    // Defaults to 50MB
-    isrMemoryCacheSize: 0,
-  },
+  cacheHandler: require.resolve('./cache-handler.js'),
+  cacheMaxMemorySize: 0, // disable default in-memory caching
   images: {
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 768, 1024, 1280, 1920, 2048, 3840],
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: "https",
@@ -27,8 +28,29 @@ const nextConfig = {
         source: '/manifest.json',
         destination: '/api/manifest',
       },
+      {
+        source: '/healthz/live',
+        destination: '/api/healthz/live',
+      },
+      {
+        source: '/healthz/ready',
+        destination: '/api/healthz/ready',
+      },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemaps/sitemap',
+      },
+      {
+        source: '/sitemap-index.xml',
+        destination: '/api/sitemaps/sitemap-index',
+      },
+      {
+        source: '/sitemap-:sitemapName.xml',
+        destination: '/api/sitemaps/sitemap-entity?sitemapName=:sitemapName',
+      },
     ];
-  }
+  },
+  generateBuildId: async () => process.env.VERSION ?? `build-${new Date().getTime()}`,
 }
 
 module.exports = nextConfig

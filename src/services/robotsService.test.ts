@@ -1,5 +1,6 @@
 import { getRobotsTxt } from '@/services/robotsService';
 import { getPageStructure } from './pageService';
+import { ForgeMetadataCategoryType, ForgeRobotsMetadataKey } from '@/models/types/forge';
 
 jest.mock('./pageService', () => ({
   getPageStructure: jest.fn(),
@@ -28,18 +29,18 @@ describe('getRobotsTxt', () => {
       data: {
         metadata: [
           {
-            category: 'seo',
-            key: 'sitemaps',
+            category: ForgeMetadataCategoryType.robots,
+            key: ForgeRobotsMetadataKey.sitemaps,
             value: 'https://example.com/sitemap.xml|https://example.com/sitemap2.xml',
           },
           {
-            category: 'seo',
-            key: 'allows',
+            category: ForgeMetadataCategoryType.robots,
+            key: ForgeRobotsMetadataKey.allows,
             value: '/allowed-path|/allowed-path2',
           },
           {
-            category: 'seo',
-            key: 'disallows',
+            category: ForgeMetadataCategoryType.robots,
+            key: ForgeRobotsMetadataKey.disallows,
             value: '/disallowed-path|/disallowed-path2',
           },
         ],
@@ -58,6 +59,43 @@ describe('getRobotsTxt', () => {
     expect(result).toContain('Disallow: /disallowed-path2');
     expect(result).toContain('Sitemap: https://example.com/sitemap.xml');
     expect(result).toContain('Sitemap: https://example.com/sitemap2.xml');
+
+    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+  });
+
+  it('should return the correct robots.txt content when getPageStructure has undefined values', async () => {
+    // ARRANGE
+    const pageStructure = {
+      data: {
+        metadata: [
+          {
+            category: ForgeMetadataCategoryType.robots,
+            key: ForgeRobotsMetadataKey.sitemaps,
+            value: undefined,
+          },
+          {
+            category: ForgeMetadataCategoryType.robots,
+            key: ForgeRobotsMetadataKey.allows,
+            value: undefined,
+          },
+          {
+            category: ForgeMetadataCategoryType.robots,
+            key: ForgeRobotsMetadataKey.disallows,
+            value: undefined,
+          },
+        ],
+      },
+    };
+    (getPageStructure as jest.Mock).mockResolvedValueOnce(pageStructure);
+
+    // ACT
+    const result = await getRobotsTxt();
+
+    // ASSERT
+    expect(result).toContain('User-agent: *');
+    expect(result).not.toContain('Allow:');
+    expect(result).not.toContain('Disallow:');
+    expect(result).not.toContain('Sitemap:');
 
     expect(getPageStructure).toHaveBeenCalledWith('~/', '');
   });

@@ -30,150 +30,73 @@ export default meta;
 type Story = StoryObj<typeof Image>;
 
 export const HeroExtraSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraSmallLeft}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...heroExtraSmallLeft}></ImageView>,
 };
 
 export const HeroSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroSmallLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroSmallLeft}></ImageView>,
 };
 
 export const HeroMediumLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroMediumLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroMediumLeft}></ImageView>,
 };
 
 export const HeroLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroLargeLeft}></ImageView>,
 };
 
 export const HeroExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroExtraLargeLeft}></ImageView>,
 };
 
 export const HeroExtraExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroExtraExtraLargeLeft}></ImageView>,
 };
 
 export const HeroExtraSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroExtraSmallCenter}></ImageView>,
 };
 
 export const HeroSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroSmallCenter}></ImageView>,
 };
 
 export const HeroMediumCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroMediumCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroMediumCenter}></ImageView>,
 };
 
 export const HeroLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroLargeCenter}></ImageView>,
 };
 
 export const HeroExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroExtraLargeCenter}></ImageView>,
 };
 
 export const HeroExtraExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroExtraExtraLargeCenter}></ImageView>,
 };
 
 export const HeroExtraSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroExtraSmallRight}></ImageView>,
 };
 
 export const HeroSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...heroSmallRight}></ImageView>,
 };
 
 export const HeroMediumRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroMediumRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...heroMediumRight}></ImageView>,
 };
 
 export const HeroLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...heroLargeRight}></ImageView>,
 };
 
 export const HeroExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...heroExtraLargeRight}></ImageView>,
 };
 
 export const HeroExtraExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...heroExtraExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...heroExtraExtraLargeRight}></ImageView>,
 };

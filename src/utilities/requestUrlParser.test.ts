@@ -1,7 +1,18 @@
-import { requestUrlParser } from './requestUrlParser';
+import { requestUrlParser } from '@/utilities/requestUrlParser';
 
 describe('requestUrlParser', () => {
   describe('getPathName', () => {
+    it('should return "/index" when params is empty', () => {
+      // ARRANGE
+      const params = {};
+
+      // ACT
+      const result = requestUrlParser.getPathName(params);
+
+      // ASSERT
+      expect(result).toBe('/index');
+    });
+
     it('should return "/index" when params.pageName is an empty array', () => {
       // ARRANGE
       const params = { pageName: [] };

@@ -1,35 +1,26 @@
 import { StoryPart } from '@/models/types/storyPart';
-import Title from '@/components/common/Title/Title';
 import HtmlContent from '@/components/common/HtmlContent/HtmlContent';
+import '@/components/common/Table/table.css';
 
 type TableProps = {
   entity?: StoryPart;
 };
 
-const Table = ({ ...props }: TableProps) => {
-  const { entity } = props as TableProps;
-  const content = entity?.content as any;
+const Table = ({ entity }: TableProps) => {
+  if (!entity) return null;
+  const content = entity?.content;
   const title = content['title'];
   const body = content['body'];
-
-  return entity ? (
-    <>
-      <div className="grid grid-cols-1 relative overflow-hidden w-full">
-        <Title
-          title={title}
-          heading={'h3'}
-          hide={false}
+  return (
+    <div className="grid grid-cols-1 relative overflow-hidden w-full">
+      {title && <div className={'d3-ty-heading-6 font-bold mb-4'}>{title}</div>}
+      {body && (
+        <HtmlContent
+          content={body}
+          className={'d3-table mx-auto'}
         />
-        {body && (
-          <HtmlContent
-            content={body}
-            classNames={'mx-auto'}
-          />
-        )}
-      </div>
-    </>
-  ) : (
-    <></>
+      )}
+    </div>
   );
 };
 

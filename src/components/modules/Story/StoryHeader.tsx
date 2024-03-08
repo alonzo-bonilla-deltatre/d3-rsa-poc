@@ -1,83 +1,85 @@
-import Author from '@/components/common/Author/Author';
-import Date from '@/components/common/Date/Date';
 import Picture from '@/components/common/Picture/Picture';
-import Roofline from '@/components/common/Roofline/Roofline';
-import SocialIcons from '@/components/common/SocialIcons/SocialIcons';
-import { DistributionEntity } from '@/models/types/forge';
+import { DistributionEntity, Tag as TagEntity } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformations';
-import { Variable } from '@/models/types/pageStructure';
-import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import Image from 'next/image';
+import Tag from '@/components/common/Tag/Tag';
+import { TagType } from '@/models/types/components/common/tag';
 
-type ModuleProps = {
-  hideAuthor?: boolean;
-  hideDate?: boolean;
-  hideDescription?: boolean;
-  hideRoofline?: boolean;
-  hideTitle?: boolean;
-  hideSocial?: boolean;
-  hideRelatedItems?: boolean;
-  variables?: Variable[];
+type StoryHeaderProps = {
   storyEntity: DistributionEntity;
 };
 
-const StoryHeader = ({ ...props }: ModuleProps) => {
+type StoryHeaderDefaultImage = {
+  width: number;
+  height: number;
+  url: string;
+};
+
+const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
+  const defaultThumbnail = {
+    width: 300,
+    height: 250,
+    url: '/assets/default-thumbnail.jpg',
+  } as StoryHeaderDefaultImage;
+
   return (
-    <>
-      <section className="w-full container mx-auto">
-        <div className="flex justify-between mx-20">
-          <header className="w-full">
-            <Roofline
-              className={'uppercase mr-2 font-bold text-base bg-[#EE3123] p-2 w-fit mb-2'}
-              context={props.storyEntity?.context}
-              hide={getBooleanProperty(props.hideRoofline)}
-            ></Roofline>
-            {!getBooleanProperty(props.hideTitle) && props.storyEntity?.title && (
-              <h3 className="font-bold text-5xl uppercase">{props.storyEntity.title}</h3>
-            )}
-            <div className="flex justify-between items-center mt-8">
-              <div>
-                {!getBooleanProperty(props.hideTitle) && props.storyEntity?.headline && (
-                  <p className="mb-3">{props.storyEntity.headline}</p>
-                )}
-                <Author
-                  author={props.storyEntity?.createdBy}
-                  hide={getBooleanProperty(props.hideAuthor)}
-                ></Author>
-                <Date
-                  date={props.storyEntity?.contentDate}
-                  hide={getBooleanProperty(props.hideDate)}
-                ></Date>
-              </div>
-              <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                <div>
-                  {!getBooleanProperty(props.hideSocial) && (
-                    <div className="flex flex-row items-end col-start-10 row-start-10 mt-8">
-                      <SocialIcons
-                        hide={false}
-                        size={50}
-                        className={'mr-4 cursor-pointer hover:text-[#EE3123] transition duration-300'}
-                      ></SocialIcons>
-                    </div>
-                  )}
+    <div className="container-full relative">
+      {storyEntity?.thumbnail?.templateUrl ? (
+        <figure className="cutter-story max-h-[calc(100vh - 180px)]">
+          <Picture
+            src={storyEntity.thumbnail?.templateUrl}
+            transformations={transformations.story_header_background}
+            alt={storyEntity.thumbnail?.title ?? ''}
+            className="w-full h-full object-cover"
+            imageStyle={{
+              width: '100%',
+              height: 'auto',
+            }}
+          />
+        </figure>
+      ) : (
+        <figure className="cutter-story">
+          <Image
+            width={defaultThumbnail.width}
+            height={defaultThumbnail.height}
+            alt="adv"
+            className={`w-full h-full object-cover bg-black`}
+            src={defaultThumbnail.url}
+            style={{
+              width: '100%',
+              height: 'auto',
+              maxHeight: 'calc(100vh - 180px)',
+            }}
+            priority={true}
+          />
+        </figure>
+      )}
+      {storyEntity.tags && storyEntity.tags.length > 0 && (
+        <div className="lg:absolute bottom-0 right-0 w-full">
+          <div className="relative container">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 lg:max-w-full mx-auto">
+              {storyEntity?.relations && storyEntity?.relations.length > 0 && <div className="col-span-3" />}
+              <div
+                className={`${
+                  storyEntity?.relations && storyEntity?.relations.length > 0 ? 'col-span-9' : 'col-start-3 col-end-11'
+                }`}
+              >
+                <div className="bg-white ml-[-128px] pl-[128px] mr-[-100vw] pr-[100vw] pt-2 lg:pt-6">
+                  {storyEntity.tags.map((tag: TagEntity, index: number) => (
+                    <Tag
+                      key={index}
+                      text={tag.title}
+                      style={TagType.Outline}
+                      className="mb-2 lg:mb-6"
+                    />
+                  ))}
                 </div>
               </div>
             </div>
-          </header>
-        </div>
-      </section>
-      <section className="w-full container mx-auto mt-20">
-        {props.storyEntity?.thumbnail && (
-          <div className="mt-8 col-start-1">
-            <Picture
-              src={props.storyEntity.thumbnail?.templateUrl}
-              transformations={transformations.thumbnailDetail}
-              alt={props.storyEntity.thumbnail?.title ?? ''}
-              className="w-full h-full object-cover"
-            />
           </div>
-        )}
-      </section>
-    </>
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -1,23 +1,18 @@
-import { ComponentProps } from '@/models/types/components';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { nanoid } from 'nanoid';
-
-// @ts-ignore
 const BrightcoveVideo = dynamic(() => import('@/components/modules/BrightcoveVideo/BrightcoveVideo'));
 
-const BrightcoveVideoWrapper = ({ ...props }: ComponentProps): React.ReactElement => {
-  return <BrightcoveVideo {...props} />;
-};
+const BrightcoveVideoWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <BrightcoveVideo data={data} />
+);
 
-const render = ({ ...props }: ComponentProps): React.ReactElement =>
-  props ? (
-    <BrightcoveVideoWrapper
-      key={nanoid()}
-      {...props}
-    />
-  ) : (
-    <div />
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <BrightcoveVideoWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

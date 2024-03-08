@@ -1,5 +1,5 @@
 import { Variable } from '@/models/types/pageStructure';
-import { parseFieldValue } from './fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParser';
 
 describe('parseFieldValue', () => {
   it('should return the empty value if variables are undefined', () => {

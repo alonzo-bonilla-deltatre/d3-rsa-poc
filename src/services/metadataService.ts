@@ -1,17 +1,63 @@
 import { Metadata as MetadataItem } from '@/models/types/pageStructure';
-import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
-
-import { FrontendConfiguration, FrontendSiteConfiguration } from '@/models/types/frontendConfiguration';
-
+import { getSiteUrl } from '@/services/configurationService';
 import { Twitter } from 'next/dist/lib/metadata/types/twitter-types';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
+import { translate } from '@/services/translationService';
+import {
+  ForgeMetadataCategoryType,
+  ForgeMetadataKeyType,
+  ForgeSEOMetadataKey,
+  ForgeSocialsMetadataKey,
+} from '@/models/types/forge';
 
-export function getMetadata(metadata: MetadataItem[] | null, category: string, key: string) {
+/**
+ * Function to get a group of metadata items with the specified category.
+ * It filters the provided metadata items by category and returns the filtered items.
+ *
+ * @param {MetadataItem[] | null} metadata - The metadata items to filter.
+ * @param {ForgeMetadataCategoryType} category - The category to filter by.
+ * @returns {MetadataItem[]} - The filtered metadata items.
+ */
+export function getMetadataGroup(metadata: MetadataItem[] | null, category: ForgeMetadataCategoryType) {
+  const categoryMetadata: MetadataItem[] = [];
+  metadata?.forEach((item) => {
+    if (item.category === category) {
+      categoryMetadata.push(item);
+    }
+  });
+  return categoryMetadata;
+}
+
+/**
+ * Function to get a metadata item with the specified category and key.
+ * It finds the first metadata item with the specified category and key and returns it.
+ *
+ * @param {MetadataItem[] | null} metadata - The metadata items to search.
+ * @param {ForgeMetadataCategoryType} category - The category to search for.
+ * @param {ForgeMetadataKeyType} key - The key to search for.
+ * @returns {MetadataItem | null} - The found metadata item or `null` if no item was found.
+ */
+export function getMetadata(
+  metadata: MetadataItem[] | null,
+  category: ForgeMetadataCategoryType,
+  key: ForgeMetadataKeyType
+) {
   return metadata ? metadata.find((item) => item.category === category && item.key === key) : null;
 }
 
-export const setPageMetadata = (metadataItems: MetadataItem[] | null): Metadata | null => {
+/**
+ * Function to set the page metadata.
+ * It creates a `Metadata` object with default values and sets its properties based on the provided metadata items.
+ * It translates the values of the metadata items and gets the site URL.
+ * It also creates `Twitter` and `OpenGraph` objects and sets their properties based on the metadata items.
+ * If the metadata items include Facebook pages or app ID, it adds them to the `other` property of the `Metadata` object.
+ * The `Metadata` object is returned.
+ *
+ * @param {MetadataItem[] | null} metadataItems - The metadata items to use.
+ * @returns {Promise<Metadata | null>} - The page metadata or `null` if no metadata items were provided.
+ */
+export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Promise<Metadata | null> => {
   if (!metadataItems) {
     return null;
   }
@@ -20,26 +66,32 @@ export const setPageMetadata = (metadataItems: MetadataItem[] | null): Metadata 
 
   const getValueOrDefault = (
     items: MetadataItem[] | null,
-    category: string,
-    key: string,
+    category: ForgeMetadataCategoryType,
+    key: ForgeMetadataKeyType,
     defaultValue: string = ''
   ) => {
     const metadataItem = getMetadata(items, category, key);
     return metadataItem?.value ?? defaultValue;
   };
 
-  const title = getValueOrDefault(metadataItems, 'seo', 'title');
-  const description = getValueOrDefault(metadataItems, 'seo', 'description');
-  const siteName = getValueOrDefault(metadataItems, 'seo', 'sitename');
-  const siteUrl = getValueOrDefault(metadataItems, 'config', 'vanityUrl');
-  const robots = getValueOrDefault(metadataItems, 'seo', 'robots', 'noodp');
-  const image = getValueOrDefault(metadataItems, 'seo', 'image');
-  const twitteraccount = getValueOrDefault(metadataItems, 'socials', 'twitterid');
-  const fbpages = getValueOrDefault(metadataItems, 'socials', 'fbpages');
-  const fbappid = getValueOrDefault(metadataItems, 'socials', 'fbappid');
+  const title = translate(getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.title));
+  const description = translate(
+    getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.description)
+  );
+  const siteName = translate(
+    getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.siteName)
+  );
+  const siteUrl = await getSiteUrl();
+  const robots = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.robots, 'noodp');
+  const image = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.image);
+  const twitteraccount = getValueOrDefault(
+    metadataItems,
+    ForgeMetadataCategoryType.socials,
+    ForgeSocialsMetadataKey.twitterid
+  );
+  const fbpages = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fbpages);
+  const fbappid = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fbappid);
   const cultureCode = process.env.CULTURE;
-  const canonicalUrl = siteUrl;
-  const allSiteConfiguration = getFrontendAllSiteConfiguration();
 
   const getTwitterData = (): Twitter => {
     return {
@@ -60,7 +112,6 @@ export const setPageMetadata = (metadataItems: MetadataItem[] | null): Metadata 
       siteName,
       images: image,
       locale: cultureCode,
-      url: canonicalUrl,
     };
   };
 
@@ -76,26 +127,7 @@ export const setPageMetadata = (metadataItems: MetadataItem[] | null): Metadata 
     'fb:appid': fbappid,
   };
 
-  seoData.other = fbpages.trim().length > 0 && fbappid.trim().length > 0 ? fbcodes : undefined;
-  seoData.metadataBase = canonicalUrl.trim().length ? new URL(canonicalUrl) : null;
-
-  const languages = {};
-  seoData.alternates = {
-    canonical: canonicalUrl,
-    languages: getLanguages(languages, allSiteConfiguration),
-  };
+  seoData.other = fbpages ? fbcodes : undefined;
 
   return seoData;
 };
-
-function getLanguages(languages: object, allSiteConfiguration: FrontendConfiguration) {
-  allSiteConfiguration.allSites.forEach((item: FrontendSiteConfiguration) => {
-    const culture = `${item.culture}`;
-    const url = new URL('/', item.url).href;
-    const lang: Record<string, string> = {
-      [culture]: url,
-    };
-    Object.assign(languages, lang);
-  });
-  return languages;
-}

@@ -11,9 +11,5 @@ export default meta;
 type Story = StoryObj<typeof Image>;
 
 export const Default: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...defaultView}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...defaultView}></ImageView>,
 };

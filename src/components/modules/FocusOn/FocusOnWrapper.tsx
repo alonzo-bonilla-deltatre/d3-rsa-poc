@@ -1,13 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const FocusOn = dynamic(() => import('@/components/modules/FocusOn/FocusOn'));
 
-const FocusOnWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <FocusOn {...data} />;
-};
+const FocusOnWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <FocusOn data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement => (data ? <FocusOnWrapper {...data} /> : <></>);
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <FocusOnWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

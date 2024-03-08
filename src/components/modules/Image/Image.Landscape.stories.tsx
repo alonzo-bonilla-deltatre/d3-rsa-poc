@@ -30,150 +30,73 @@ export default meta;
 type Story = StoryObj<typeof Image>;
 
 export const LandscapeExtraSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraSmallLeft}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...landscapeExtraSmallLeft}></ImageView>,
 };
 
 export const LandscapeSmallLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeSmallLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeSmallLeft}></ImageView>,
 };
 
 export const LandscapeMediumLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeMediumLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeMediumLeft}></ImageView>,
 };
 
 export const LandscapeLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeLargeLeft}></ImageView>,
 };
 
 export const LandscapeExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeExtraLargeLeft}></ImageView>,
 };
 
 export const LandscapeExtraExtraLargeLeft: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraExtraLargeLeft}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeExtraExtraLargeLeft}></ImageView>,
 };
 
 export const LandscapeExtraSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeExtraSmallCenter}></ImageView>,
 };
 
 export const LandscapeSmallCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeSmallCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeSmallCenter}></ImageView>,
 };
 
 export const LandscapeMediumCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeMediumCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeMediumCenter}></ImageView>,
 };
 
 export const LandscapeLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeLargeCenter}></ImageView>,
 };
 
 export const LandscapeExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeExtraLargeCenter}></ImageView>,
 };
 
 export const LandscapeExtraExtraLargeCenter: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraExtraLargeCenter}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeExtraExtraLargeCenter}></ImageView>,
 };
 
 export const LandscapeExtraSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeExtraSmallRight}></ImageView>,
 };
 
 export const LandscapeSmallRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeSmallRight}></ImageView>
-    </>
-  ),
+  render: () => <ImageView {...landscapeSmallRight}></ImageView>,
 };
 
 export const LandscapeMediumRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeMediumRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...landscapeMediumRight}></ImageView>,
 };
 
 export const LandscapeLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...landscapeLargeRight}></ImageView>,
 };
 
 export const LandscapeExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...landscapeExtraLargeRight}></ImageView>,
 };
 
 export const LandscapeExtraExtraLargeRight: Story = {
-  render: (args) => (
-    <>
-      <ImageView {...landscapeExtraExtraLargeRight}></ImageView>
-    </>
-  ),
-  args: {},
+  render: () => <ImageView {...landscapeExtraExtraLargeRight}></ImageView>,
 };

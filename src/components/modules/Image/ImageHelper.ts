@@ -1,220 +1,4 @@
-import { ImageTransformations } from '@/models/types/images';
-
-/* istanbul ignore next */
-const transformations: Record<any, ImageTransformations> = {
-  square_extraSmall: {
-    mobile: 't_ratio1_1-size60',
-    tablet: 't_ratio1_1-size60',
-    desktop: 't_ratio1_1-size60',
-    mobileWidth: 208,
-    mobileHeight: 208,
-  },
-  square_small: {
-    mobile: 't_ratio1_1-size60',
-    tablet: 't_ratio1_1-size60',
-    desktop: 't_ratio1_1-size60',
-    mobileWidth: 416,
-    mobileHeight: 416,
-  },
-  square_medium: {
-    mobile: 't_ratio1_1-size60',
-    tablet: 't_ratio1_1-size60',
-    desktop: 't_ratio1_1-size60',
-    mobileWidth: 624,
-    mobileHeight: 624,
-  },
-  square_large: {
-    mobile: 't_ratio1_1-size60',
-    tablet: 't_ratio1_1-size60',
-    desktop: 't_ratio1_1-size60',
-    mobileWidth: 832,
-    mobileHeight: 832,
-  },
-  square_extraLarge: {
-    mobile: 't_ratio1_1-size60',
-    tablet: 't_ratio1_1-size60',
-    desktop: 't_ratio1_1-size60',
-    mobileWidth: 1280,
-    mobileHeight: 1280,
-  },
-  square_extraExtraLarge: {
-    mobile: 't_ratio1_1-size60',
-    tablet: 't_ratio1_1-size60',
-    desktop: 't_ratio1_1-size60',
-    mobileWidth: 1920,
-    mobileHeight: 1920,
-  },
-  portrait_extraSmall: {
-    mobile: 't_ratio3_4-size60',
-    tablet: 't_ratio3_4-size60',
-    desktop: 't_ratio3_4-size60',
-    mobileWidth: 210,
-    mobileHeight: 280,
-  },
-  portrait_small: {
-    mobile: 't_ratio3_4-size60',
-    tablet: 't_ratio3_4-size60',
-    desktop: 't_ratio3_4-size60',
-    mobileWidth: 420,
-    mobileHeight: 560,
-  },
-  portrait_medium: {
-    mobile: 't_ratio3_4-size60',
-    tablet: 't_ratio3_4-size60',
-    desktop: 't_ratio3_4-size60',
-    mobileWidth: 624,
-    mobileHeight: 832,
-  },
-  portrait_large: {
-    mobile: 't_ratio3_4-size60',
-    tablet: 't_ratio3_4-size60',
-    desktop: 't_ratio3_4-size60',
-    mobileWidth: 840,
-    mobileHeight: 1120,
-  },
-  portrait_extraLarge: {
-    mobile: 't_ratio3_4-size60',
-    tablet: 't_ratio3_4-size60',
-    desktop: 't_ratio3_4-size60',
-    mobileWidth: 1260,
-    mobileHeight: 1680,
-  },
-  portrait_extraExtraLarge: {
-    mobile: 't_ratio3_4-size60',
-    tablet: 't_ratio3_4-size60',
-    desktop: 't_ratio3_4-size60',
-    mobileWidth: 1920,
-    mobileHeight: 2560,
-  },
-  landscape_extraSmall: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 208,
-    mobileHeight: 117,
-  },
-  landscape_small: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 416,
-    mobileHeight: 234,
-  },
-  landscape_medium: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 624,
-    mobileHeight: 351,
-  },
-  landscape_large: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 832,
-    mobileHeight: 468,
-  },
-  landscape_extraLarge: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 1280,
-    mobileHeight: 720,
-  },
-  landscape_extraExtraLarge: {
-    mobile: 't_ratio16_9-size60',
-    tablet: 't_ratio16_9-size60',
-    desktop: 't_ratio16_9-size60',
-    mobileWidth: 1920,
-    mobileHeight: 1080,
-  },
-  hero_extraSmall: {
-    mobile: 't_ratio21_9-size60',
-    tablet: 't_ratio21_9-size60',
-    desktop: 't_ratio21_9-size60',
-    mobileWidth: 210,
-    mobileHeight: 90,
-  },
-  hero_small: {
-    mobile: 't_ratio21_9-size60',
-    tablet: 't_ratio21_9-size60',
-    desktop: 't_ratio21_9-size60',
-    mobileWidth: 420,
-    mobileHeight: 180,
-  },
-  hero_medium: {
-    mobile: 't_ratio21_9-size60',
-    tablet: 't_ratio21_9-size60',
-    desktop: 't_ratio21_9-size60',
-    mobileWidth: 630,
-    mobileHeight: 270,
-  },
-  hero_large: {
-    mobile: 't_ratio21_9-size60',
-    tablet: 't_ratio21_9-size60',
-    desktop: 't_ratio21_9-size60',
-    mobileWidth: 840,
-    mobileHeight: 360,
-  },
-  hero_extraLarge: {
-    mobile: 't_ratio21_9-size60',
-    tablet: 't_ratio21_9-size60',
-    desktop: 't_ratio21_9-size60',
-    mobileWidth: 1281,
-    mobileHeight: 549,
-  },
-  hero_extraExtraLarge: {
-    mobile: 't_ratio21_9-size60',
-    tablet: 't_ratio21_9-size60',
-    desktop: 't_ratio21_9-size60',
-    mobileWidth: 1932,
-    mobileHeight: 828,
-  },
-  original_extraSmall: {
-    mobile: 't_q-best',
-    tablet: 't_q-best',
-    desktop: 't_q-best',
-    mobileWidth: 208,
-    mobileHeight: 117,
-  },
-  original_small: {
-    mobile: 't_q-best',
-    tablet: 't_q-best',
-    desktop: 't_q-best',
-    mobileWidth: 416,
-    mobileHeight: 234,
-  },
-  original_medium: {
-    mobile: 't_q-best',
-    tablet: 't_q-best',
-    desktop: 't_q-best',
-    mobileWidth: 624,
-    mobileHeight: 351,
-  },
-  original_large: {
-    mobile: 't_q-best',
-    tablet: 't_q-best',
-    desktop: 't_q-best',
-    mobileWidth: 832,
-    mobileHeight: 468,
-  },
-  original_extraLarge: {
-    mobile: 't_q-best',
-    tablet: 't_q-best',
-    desktop: 't_q-best',
-    mobileWidth: 1280,
-    mobileHeight: 720,
-  },
-  original_extraExtraLarge: {
-    mobile: 't_q-best',
-    tablet: 't_q-best',
-    desktop: 't_q-best',
-    mobileWidth: 1920,
-    mobileHeight: 1080,
-  },
-};
-
-const getLinkCssClass = (alignment?: string): string | undefined => {
+export const getLinkCssClass = (alignment?: string): string => {
   let result = 'flex flex-col items-';
   switch (alignment?.toLowerCase()) {
     case 'left':
@@ -233,7 +17,7 @@ const getLinkCssClass = (alignment?: string): string | undefined => {
   return result;
 };
 
-const getImageContainerCssClass = (alignment?: string): string | undefined => {
+export const getImageContainerCssClass = (alignment?: string): string => {
   let result = 'flex justify-';
   switch (alignment?.toLowerCase()) {
     case 'left':
@@ -252,4 +36,29 @@ const getImageContainerCssClass = (alignment?: string): string | undefined => {
   return result;
 };
 
-export { transformations, getLinkCssClass, getImageContainerCssClass };
+export const containerCssSize: Record<string, string> = {
+  square_extraSmall: 'max-w-[208px] max-h-[208px]',
+  square_small: 'max-w-[416px] max-h-[416px]',
+  square_medium: 'max-w-[624px] max-h-[624px]',
+  square_large: 'max-w-[832px] max-h-[832px]',
+  square_extraLarge: 'max-w-[1280px] max-h-[1280px]',
+  square_extraExtraLarge: 'max-w-[1920px] max-h-[1920px]',
+  portrait_extraSmall: 'max-w-[210px] max-h-[280px]',
+  portrait_small: 'max-w-[420px] max-h-[560px]',
+  portrait_medium: 'max-w-[624px] max-h-[832px]',
+  portrait_large: 'max-w-[840px] max-h-[1120px]',
+  portrait_extraLarge: 'max-w-[1260px] max-h-[1680px]',
+  portrait_extraExtraLarge: 'max-w-[1920px] max-h-[2560px]',
+  landscape_extraSmall: 'max-w-[280px] max-h-[117px]',
+  landscape_small: 'max-w-[416px] max-h-[234px]',
+  landscape_medium: 'max-w-[624px] max-h-[351px]',
+  landscape_large: 'max-w-[832px] max-h-[468px]',
+  landscape_extraLarge: 'max-w-[1280px] max-h-[720px]',
+  landscape_extraExtraLarge: 'max-w-[1920px] max-h-[1080px]',
+  hero_extraSmall: 'max-w-[210px] max-h-[90px]',
+  hero_small: 'max-w-[420px] max-h-[180px]',
+  hero_medium: 'max-w-[630px] max-h-[270px]',
+  hero_large: 'max-w-[840px] max-h-[360px]',
+  hero_extraLarge: 'max-w-[1281px] max-h-[549px]',
+  hero_extraExtraLarge: 'max-w-[1932px] max-h-[828px]',
+};

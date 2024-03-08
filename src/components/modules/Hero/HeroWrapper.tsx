@@ -1,22 +1,15 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Hero = dynamic(() => import('@/components/modules/Hero/Hero'));
 
-const HeroWrapper = ({ ...data }: ComponentProps): React.ReactElement => {
-  return <Hero {...data} />;
-};
+const HeroWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <Hero data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
-    <HeroWrapper
-      key={nanoid()}
-      {...data}
-    />
-  ) : (
-    <></>
-  );
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
+  <HeroWrapper
+    key={nanoid()}
+    data={data}
+  />
+);
 
 export default render;

@@ -14,15 +14,13 @@ export default meta;
 type Story = StoryObj<typeof HtmlContent>;
 
 export const Default: Story = {
-  render: (args) => (
-    <>
-      <HtmlContent {...args}></HtmlContent>
-    </>
-  ),
+  render: (args) => <HtmlContent {...args}></HtmlContent>,
   args: {
-    type: PageStructureItemType.layout,
-    properties: sampleHtmlContent.properties as Record<string, unknown>,
-    slot: '',
+    data: {
+      type: PageStructureItemType.layout,
+      properties: sampleHtmlContent.properties as Record<string, unknown>,
+      slot: '',
+    },
   },
   parameters: {
     layout: 'centered',

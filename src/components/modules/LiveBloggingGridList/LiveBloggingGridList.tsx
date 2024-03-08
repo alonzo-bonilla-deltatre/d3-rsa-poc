@@ -4,16 +4,18 @@ import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPr
 import { getBlogs } from '@/services/liveBloggingDistributionService';
 import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
 import { getFilteredItems } from '@/helpers/liveBloggingBlogEntityHelper';
+import { CardLayout, CardType } from '@/models/types/card';
+import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
 
-type ModuleProps = {
+type LiveBloggingGridListProps = {
   skip?: number;
   limit?: number;
   tags?: string;
 } & HeaderTitleProps;
 
-const LiveBloggingGridList = async ({ ...data }: ComponentProps) => {
+const LiveBloggingGridList = async ({ data }: { data: ComponentProps }) => {
   const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, ctaTitle, ctaLink, skip, limit, tags } =
-    data.properties as ModuleProps;
+    data.properties as LiveBloggingGridListProps;
 
   const items = getFilteredItems(
     await getBlogs({
@@ -25,21 +27,27 @@ const LiveBloggingGridList = async ({ ...data }: ComponentProps) => {
     getNumberProperty(skip),
     getNumberProperty(limit)
   );
+  const cardType = CardType.Media;
+  const cardLayout = CardLayout.Portrait;
+  const cardDesign = getCardSettings(cardType, null, cardLayout);
+
+  if (!items?.length) return null;
 
   return (
-    items &&
-    items.length > 0 && (
-      <>
-        <HeaderTitle
-          headerTitle={headerTitle}
-          headerTitleHeadingLevel={headerTitleHeadingLevel}
-          hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
-          ctaTitle={ctaTitle}
-          ctaLink={ctaLink}
-        ></HeaderTitle>
-        <GridList items={items} />
-      </>
-    )
+    <>
+      <HeaderTitle
+        headerTitle={headerTitle}
+        headerTitleHeadingLevel={headerTitleHeadingLevel}
+        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
+        ctaTitle={ctaTitle}
+        ctaLink={ctaLink}
+      ></HeaderTitle>
+      <GridList
+        items={items}
+        itemsPerRow={3}
+        cardDesign={cardDesign}
+      />
+    </>
   );
 };
 export default LiveBloggingGridList;

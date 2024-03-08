@@ -1,5 +1,6 @@
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
-import { translate } from '@/utilities/i18n';
+import TranslateLabel from '@/components/common/TranslatedLabel/TranslatedLabel';
 import Image from 'next/image';
 
 type SponsoredProps = {
@@ -11,24 +12,25 @@ type SponsoredProps = {
   assetUrl?: string;
 };
 
-const Sponsored = ({ ...props }: SponsoredProps) => {
-  const desktopSrc = getSrcWithTransformation(props.assetUrl, transformations.logos.desktop);
+const Sponsored = ({ className, name, hide, width, height, assetUrl }: SponsoredProps) => {
+  const desktopSrc = getSrcWithTransformation(assetUrl, transformations.best_assets.desktop.transformation);
+  hide = getBooleanProperty(hide);
 
-  return !props.hide && props.assetUrl ? (
-    <>
-      <div className=" col-start-10 row-start-10 uppercase mr-2 font-bold text-base bg-white border-2 p-1 py-1 px-4 rounded-full inline-flex items-center">
-        <span className="text-s text-black uppercase">{translate('sponsored-by')}</span>
-        <Image
-          className={props.className}
-          src={desktopSrc}
-          alt={props.name ?? ''}
-          width={props.width}
-          height={props.height}
-        />
-      </div>
-    </>
-  ) : (
-    <></>
+  if (hide || !desktopSrc) return null;
+
+  return (
+    <div className=" uppercase bg-transparent border-2 p-1 py-1 px-4 rounded-full inline-flex items-center">
+      <span className="d3-ty-tag-small text-white uppercase">
+        <TranslateLabel translationTermKey={'sponsored-by'} />
+      </span>
+      <Image
+        className={className}
+        src={desktopSrc}
+        alt={name ?? ''}
+        width={width}
+        height={height}
+      />
+    </div>
   );
 };
 

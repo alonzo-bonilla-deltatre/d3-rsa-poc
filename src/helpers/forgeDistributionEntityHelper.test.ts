@@ -164,11 +164,83 @@ const mockedEntities: DistributionEntity[] = [
 const mockedEntitiesWithIncompleteThumbnail = [
   {
     ...mockedEntities[0],
-    thumbnail: fallbackImageAssetWithoutTemplateUrl,
+    thumbnail: null,
   },
   {
     ...mockedEntities[1],
-    thumbnail: fallbackImageAssetWithoutTemplateUrl,
+    thumbnail: {
+      ...fallbackImageAssetWithoutTemplateUrl,
+    },
+  },
+];
+
+const mockedEntitiesWithIncompleteThumbnailInRelations = [
+  {
+    ...mockedEntities[0],
+    relations: [
+      {
+        ...mockedEntities[0],
+        thumbnail: null,
+      },
+    ],
+  },
+  {
+    ...mockedEntities[1],
+    relations: [
+      {
+        ...mockedEntities[1],
+        thumbnail: fallbackImageAssetWithoutTemplateUrl,
+      },
+    ],
+  },
+];
+
+const mockedEntitiesWithIncompleteThumbnailInPartsField = [
+  {
+    ...mockedEntities[0],
+    parts: [
+      {
+        ...mockedEntities[0],
+        thumbnail: null,
+        content: '',
+        inputUrl: '',
+        externalType: '',
+        entityCode: '',
+        url: '',
+        image: fallbackImageAssetWithoutTemplateUrl,
+        description: '',
+        elements: null,
+      },
+    ],
+  },
+  {
+    ...mockedEntities[1],
+    parts: [
+      {
+        ...mockedEntities[1],
+        thumbnail: fallbackImageAssetWithoutTemplateUrl,
+        content: '',
+        inputUrl: '',
+        externalType: '',
+        entityCode: '',
+        url: '',
+        image: fallbackImageAssetWithoutTemplateUrl,
+        description: '',
+        elements: null,
+      },
+      {
+        ...mockedEntities[1],
+        thumbnail: fallbackImageAsset,
+        content: '',
+        inputUrl: '',
+        externalType: '',
+        entityCode: '',
+        url: '',
+        image: fallbackImageAssetWithoutTemplateUrl,
+        description: '',
+        elements: null,
+      },
+    ],
   },
 ];
 
@@ -188,8 +260,29 @@ describe('enrichEntitiesWithThumbnailPlaceholder function', () => {
     expect(result).toStrictEqual(mockedEntities);
   });
 
+  it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property with empty variables', () => {
+    const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, []);
+    expect(result).toStrictEqual(mockedEntities);
+  });
+
   it('should return the original entities are with a valid placeholder', () => {
     const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntities, mockedVariables);
+    expect(result).toEqual(result);
+  });
+
+  it('should return the original entities are with a valid placeholder in relations', () => {
+    const result = enrichEntitiesWithThumbnailPlaceholder(
+      mockedEntitiesWithIncompleteThumbnailInRelations,
+      mockedVariables
+    );
+    expect(result).toEqual(result);
+  });
+
+  it('should return the original entities are with a valid placeholder in parts field', () => {
+    const result = enrichEntitiesWithThumbnailPlaceholder(
+      mockedEntitiesWithIncompleteThumbnailInPartsField,
+      mockedVariables
+    );
     expect(result).toEqual(result);
   });
 });

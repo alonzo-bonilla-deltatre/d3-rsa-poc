@@ -1,22 +1,20 @@
-import { ComponentProps } from '@/models/types/components';
-import { nanoid } from 'nanoid';
+import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
-
-// @ts-ignore
+import { nanoid } from 'nanoid';
 const Footer = dynamic(() => import('@/components/layouts/Footer/Footer'));
 
-const FooterWrapper = ({ ...data }: ComponentProps) => {
-  return <Footer {...data} />;
-};
+const FooterWrapper = ({ data }: { data: ComponentProps }) => <Footer data={data} />;
 
-const render = ({ ...data }: ComponentProps): React.ReactElement =>
-  data ? (
+const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => {
+  if (!data) {
+    return null;
+  }
+  return (
     <FooterWrapper
       key={nanoid()}
-      {...data}
+      data={data}
     />
-  ) : (
-    <></>
   );
+};
 
 export default render;

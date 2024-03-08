@@ -4,7 +4,6 @@ import {
   getAssetsByTag,
   getImageOrPlaceholder,
   getPlaceholderAsset,
-  getPlaceholderAssetUrl,
   getPlaceholderImage,
   getSingleAssetByTag,
 } from '@/services/gadService';
@@ -13,8 +12,9 @@ import { LoggerLevel } from '@/models/types/logger';
 import { sampleAsset } from '@/__mocks__/components/sampleGadAsset';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
+import { ForgeEntityCode } from '@/models/types/forge';
 
-const tag = 'tag';
+const tag = ForgeEntityCode.tag;
 
 jest.mock('axios');
 jest.mock('@/utilities/logger');
@@ -26,6 +26,31 @@ describe('gadService', () => {
   });
 
   describe('getAssetsByTag', () => {
+    it('should call with empty value and return null', async () => {
+      // ASSERT
+      (axios.get as jest.Mock).mockResolvedValue({});
+
+      // ACT
+      const result = await getAssetsByTag('');
+
+      // ASSERT
+      expect(result).toBeNull();
+    });
+
+    it('should return null in case of exception for empty url and return null', async () => {
+      // ASSERT
+      const apiUrl = process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL;
+      process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL = undefined;
+
+      // ACT
+      const result = await getAssetsByTag('test');
+
+      // ASSERT
+      expect(result).toBeNull();
+      expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringMatching('GAD API Error'), LoggerLevel.error);
+      process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL = apiUrl;
+    });
+
     it('should call the right API URL', async () => {
       // ASSERT
       (axios.get as jest.Mock).mockResolvedValue({});
@@ -115,7 +140,26 @@ describe('gadService', () => {
         assetOriginalCdnUrl: 'https://example.com/item2-original-cdn.png',
       },
     ];
+    it('should call with default value', async () => {
+      // ARRANGE
+      (axios.get as jest.Mock).mockResolvedValue({ data: gadAssetsResponse });
 
+      // ACT
+      const result = await getSingleAssetByTag();
+
+      // ASSERT
+      expect(result).toBe(null);
+    });
+    it('should return null if tag is empty', async () => {
+      // ARRANGE
+      (axios.get as jest.Mock).mockResolvedValue({ data: gadAssetsResponse });
+
+      // ACT
+      const result = await getSingleAssetByTag('');
+
+      // ASSERT
+      expect(result).toBe(null);
+    });
     it('should call getAssetsByTag', async () => {
       // ARRANGE
       (axios.get as jest.Mock).mockResolvedValue({ data: gadAssetsResponse });
@@ -209,6 +253,18 @@ describe('gadService', () => {
   });
 
   describe('getPlaceholderAsset', () => {
+    it('should get the placeholder image with a default IMAGE_PLACEHOLDER tag without parameter', async () => {
+      // ARRANGE
+      (axios.get as jest.Mock).mockResolvedValue({ data: {} });
+
+      // ACT
+      await getPlaceholderAsset();
+
+      // ASSERT
+      expect(axios.get as jest.Mock).toHaveBeenCalledWith(
+        `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=${IMAGE_PLACEHOLDER}`
+      );
+    });
     it('should get the placeholder image with a default IMAGE_PLACEHOLDER tag', async () => {
       // ARRANGE
       (axios.get as jest.Mock).mockResolvedValue({ data: {} });
@@ -233,94 +289,6 @@ describe('gadService', () => {
       expect(axios.get as jest.Mock).toHaveBeenCalledWith(
         `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=custom_image_placeholder`
       );
-    });
-  });
-
-  describe('getPlaceholderAssetUrl', () => {
-    it('should return an empty placeholder url if asset is not returned', async () => {
-      // ARRANGE
-      (axios.get as jest.Mock).mockResolvedValue({ data: [] });
-
-      // ACT
-      const result = await getPlaceholderAssetUrl('placeholder');
-
-      // ASSERT
-      expect(result).toBe('');
-    });
-
-    it('should return an empty placeholder url if asset is returned without assetUrl', async () => {
-      // ARRANGE
-      (axios.get as jest.Mock).mockResolvedValue({
-        data: [
-          {
-            name: 'Item 2',
-            publicId: 'public-id-2',
-            resourceType: 'image',
-            type: 'asset',
-            format: 'png',
-          },
-        ],
-      });
-
-      // ACT
-      const result = await getPlaceholderAssetUrl('placeholder');
-
-      // ASSERT
-      expect(result).toBe('');
-    });
-
-    it('should return an empty placeholder url in case of error', async () => {
-      // ARRANGE
-      (axios.get as jest.Mock).mockRejectedValue({
-        message: 'Internal server error',
-      });
-
-      // ACT
-      const result = await getPlaceholderAssetUrl('placeholder');
-
-      // ASSERT
-      expect(result).toBe('');
-      expect(logger.log as jest.Mock).toHaveBeenCalledTimes(2);
-    });
-
-    it('should return an the placeholder url if asset is returned with assetUrl', async () => {
-      // ARRANGE
-      (axios.get as jest.Mock).mockResolvedValue({
-        data: [
-          {
-            name: 'Item 1',
-            publicId: 'public-id-1',
-            resourceType: 'image',
-            type: 'asset',
-            format: 'jpg',
-            tags: ['tag1', 'tag2'],
-            tagsInString: 'tag1, tag2',
-            created: '2023-06-30',
-            uploaded: '2023-06-30',
-            width: 800,
-            height: 600,
-            length: 1024,
-            assetUrl: 'https://example.com/item1.jpg',
-            assetThumbnailUrl: 'https://example.com/item1-thumbnail.jpg',
-            assetOriginalUrl: 'https://example.com/item1-original.jpg',
-            assetOriginalCdnUrl: 'https://example.com/item1-original-cdn.jpg',
-            version: 'v1',
-            imageMetadata: null,
-            context: null,
-            imageAnalysis: null,
-            path: 'path/to/item1.jpg',
-            pathWithFormat: 'path/to/item1.jpg.jpg',
-            templatedPath: 'path/to/item1-{format}.jpg',
-            templatedPathWithFormat: 'path/to/item1-jpg.jpg',
-          },
-        ],
-      });
-
-      // ACT
-      const result = await getPlaceholderAssetUrl('placeholder');
-
-      // ASSERT
-      expect(result).toBe('https://example.com/item1.jpg');
     });
   });
 
