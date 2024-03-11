@@ -1,7 +1,6 @@
 ﻿'use client';
 
 import React, { useEffect, useState } from 'react';
-import '@/components/common/HamburgerDrawer/HamburgerDrawer.scss';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { renderSvgIcon } from '@/components/icons';
 
@@ -27,8 +26,10 @@ const HamburgerDrawer = ({ children, isDark, isDarkHeader }: DrawerProps) => {
     };
   }, []);
 
-  const drawerClassname = `drawer-wrapper flex transform transition-transform duration-300 ease-in-out ${getBooleanProperty(isDark) ? 'bg-component-layout-hamburger-background-dark component-layout-hamburger-text-dark' : 'bg-component-layout-hamburger-background-light component-layout-hamburger-text-light'} ${
-    isOpen ? 'drawer-open translate-x-0' : '-translate-x-full rtl:translate-x-full'
+  const drawerClassname = `drawer-wrapper flex transform transition-transform duration-300 ease-in-out top-0 ltr:left-0 rtl-right-0 w-full md:w-[360px] lg:w-[464px] h-full fixed overflow-hidden ${getBooleanProperty(isDark) ? 'bg-component-layout-hamburger-background-dark component-layout-hamburger-text-dark' : 'bg-component-layout-hamburger-background-light component-layout-hamburger-text-light'} ${
+    isOpen
+      ? 'drawer-open ltr:translate-x-0 rtl:transform-none ltr:left-0 rtl:right-0'
+      : 'ltr:-translate-x-[100vw] rtl:translate-x-[100vw]'
   }
 `;
 
@@ -36,7 +37,7 @@ const HamburgerDrawer = ({ children, isDark, isDarkHeader }: DrawerProps) => {
     <div className={`flex z-50`}>
       {isOpen && (
         <div
-          className="cover-screen"
+          className="cover-screen left-0 top-0 right-0 bottom-0 fixed bg-black/60"
           onClick={() => setOpen(false)}
           aria-hidden="true"
         ></div>
