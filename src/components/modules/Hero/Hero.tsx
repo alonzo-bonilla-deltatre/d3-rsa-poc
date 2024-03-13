@@ -16,11 +16,13 @@ const Hero = async ({ data }: { data: ComponentProps }) => {
 
   const selection = await getSelection(selectionSlug, {
     hasLinkRules: true,
+    skip: skip,
+    limit: itemsLimit,
   });
   const items = selection?.items;
 
   if (!items?.length) return null;
 
-  return <HeroSwiper slides={getFilteredItems(items, getNumberProperty(skip, 0), itemsLimit)} />;
+  return <HeroSwiper slides={items} />;
 };
 export default Hero;

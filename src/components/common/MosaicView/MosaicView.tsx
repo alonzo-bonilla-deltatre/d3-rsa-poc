@@ -93,7 +93,7 @@ const MosaicView = ({ items }: MosaicViewProps) => {
             <a
               href={getSrcWithTransformation(image?.src, transformations.fancy_box_detail.desktop.transformation)}
               data-fancybox="gallery"
-              data-caption={items[index].fields.description || items[index].title}
+              data-caption={items[index]?.fields?.description || items[index].title}
               onClick={handleGalleryShow}
               data-title={items[index].title}
               data-height="100%"

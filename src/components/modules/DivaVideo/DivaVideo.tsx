@@ -28,7 +28,7 @@ const DivaVideo = async ({ data }: { data: ComponentProps }) => {
     logger.log(`Cannot find album divavideos with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
-  const description = videoEntity?.fields['description'] as string;
+  const description = videoEntity?.fields?.description ?? '';
 
   return (
     <SectionWithHeader

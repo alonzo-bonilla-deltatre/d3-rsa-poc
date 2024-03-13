@@ -14,3 +14,4 @@ process.env.LIVE_BLOGGING_DAPI_BASE_URL = 'https://liveblogging.integrations-lab
 process.env.VIDEO_SETTINGS_BASE_URL = 'https://divafe-icc-dev.akamaized.net/diva5/settings';
 process.env.RECAPTCHA_SITE_KEY = '123456';
 process.env.RECAPTCHA_SECRET_KEY = '123456';
+process.env.KEEP_LINK_RULES_LOCAL = 'false';

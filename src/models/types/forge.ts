@@ -13,10 +13,10 @@ export type DistributionEntity = {
   title: string;
   headline?: string;
   description?: string;
-  tags: Tag[];
-  relations: DistributionEntity[];
-  references: { [key: string]: DistributionEntity[] };
-  fields: Record<string, any>;
+  tags?: Tag[];
+  relations?: DistributionEntity[];
+  references?: { [key: string]: DistributionEntity[] };
+  fields?: Record<string, any>;
   createdBy: string;
   lastUpdatedBy: string;
   lastUpdatedDate: string;
@@ -25,7 +25,7 @@ export type DistributionEntity = {
   featured: number;
   thumbnail: ImageAsset | null;
   image?: ImageAsset;
-  parts: StoryPart[];
+  parts?: StoryPart[];
   entityCode?: ForgeEntityCode;
   url?: string;
   [key: string]: any;
@@ -66,20 +66,53 @@ export type Tag = {
   extraData: any;
 };
 
-export type ForgeDistributionApiOption = {
-  hasThumbnailPlaceholder?: boolean;
-  hasLinkRules?: boolean;
-  hasLinkRulesForRelationsAndParts?: boolean;
-  hasReferencesFieldsInList?: boolean;
-  hasGadAssetsFields?: boolean;
-  hasPagination?: boolean;
+export type ForgeDistributionApiOption =
+  | ({
+      hasThumbnailPlaceholder?: boolean;
+      hasLinkRules?: boolean;
+      hasLinkRulesForRelationsAndParts?: boolean;
+      hasReferencesFieldsInList?: boolean;
+      hasGadAssetsFields?: boolean;
+      hasPagination?: boolean;
+      variables?: Variable[];
+      linkRuleVariations?: LinkRuleVariation[];
+    } & ForgeDistributionApiQueryStringOption)
+  | null;
+
+export type ForgeDistributionApiQueryStringOption = {
   skip?: number;
   limit?: number;
   page?: number;
   tags?: string;
-  variables?: Variable[];
-  linkRuleVariations?: LinkRuleVariation[];
+  fields?: Record<string, unknown>;
+  extraData?: Record<string, unknown>;
+  sort?: SortOptions;
+  range?: RangeOption;
+  context?: string;
+  listAvailability?: ListAvailabilityOption;
 } | null;
+
+export type SortOptions = {
+  prop?: string;
+  field?: string;
+  order?: SortOrder;
+};
+
+export type RangeOption = {
+  field: string;
+  startDate?: string;
+  endDate?: string;
+};
+
+export enum ListAvailabilityOption {
+  public = 0,
+  unlisted = 1,
+}
+
+export enum SortOrder {
+  ASC = 'asc',
+  DESC = 'desc',
+}
 
 export enum ForgeMetadataCategoryType {
   seo = 'seo',

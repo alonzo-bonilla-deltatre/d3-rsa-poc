@@ -9,7 +9,7 @@ type StoryPartsProps = {
 const StoryParts = ({ storyEntity }: StoryPartsProps) => {
   return (
     <div className="mb-8 lg:mb-10">
-      {storyEntity.parts.map((part: StoryPart, index: number) => {
+      {storyEntity?.parts?.map((part: StoryPart, index: number) => {
         return (
           <div
             key={index}

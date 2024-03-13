@@ -31,7 +31,7 @@ const ImageView = ({
     >
       <figure className={`col-start-1 row-start-1 grid-element relative ${imageContainerCssClass ?? ''}`}>
         <Picture
-          alt={imageEntity?.fields.altText?.toString() ?? imageEntity.title}
+          alt={imageEntity?.fields?.altText?.toString() ?? imageEntity.title}
           src={asset.assetUrl}
           transformations={imageTransformation}
           className={`w-full h-full object-cover`}

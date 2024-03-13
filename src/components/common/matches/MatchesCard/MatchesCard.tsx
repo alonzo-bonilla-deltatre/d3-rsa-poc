@@ -159,7 +159,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                   >
                     {entity?.references?.teamAway &&
                     entity?.references?.teamAway.length > 0 &&
-                    entity?.references?.teamAway[0].fields.name
+                    entity?.references?.teamAway[0].fields?.name
                       ? entity?.references?.teamAway[0]?.fields?.name
                       : ''}
                   </div>

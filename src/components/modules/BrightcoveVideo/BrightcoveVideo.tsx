@@ -28,7 +28,7 @@ const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
     logger.log(`Cannot find album brightcovevideos with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
-  const description = entity?.fields['description'] as string;
+  const description = entity?.fields?.description ?? '';
 
   return (
     <SectionWithHeader

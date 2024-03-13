@@ -31,8 +31,10 @@ const HeroStatic = async ({ data }: { data: ComponentProps }) => {
   const selection = await getSelection(selectionSlug, {
     hasLinkRules: true,
     variables: data.variables,
+    skip: skip,
+    limit: itemsLimit,
   });
-  const items = getFilteredItems(selection?.items, getNumberProperty(skip, 0), itemsLimit);
+  const items = selection?.items;
 
   if (!items?.length) {
     return null;

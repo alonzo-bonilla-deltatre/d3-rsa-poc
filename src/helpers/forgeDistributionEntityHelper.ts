@@ -1,4 +1,12 @@
-import { DistributionEntity, ForgeDistributionApiOption, ForgeEntityType } from '@/models/types/forge';
+import {
+  DistributionEntity,
+  ForgeDistributionApiOption,
+  ForgeDistributionApiQueryStringOption,
+  ForgeEntityType,
+  ListAvailabilityOption,
+  RangeOption,
+  SortOptions,
+} from '@/models/types/forge';
 import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
 import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
@@ -12,6 +20,8 @@ import {
   customEnrichLinkRuleRequestEntity,
 } from '@/helpers/customForgeDistributionEntityHelper';
 import { getPageNumber } from '@/components/common/list/Pagination/PaginationHelper';
+import logger from '@/utilities/logger';
+import { LoggerLevel } from '@/models/types/logger';
 
 const culture = process.env.CULTURE;
 const environment = process.env.ENVIRONMENT;
@@ -54,7 +64,10 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
  * @param {DistributionEntity} item - The entity whose relations are to be enriched.
  * @param {ImageAsset} fallbackImageAsset - The fallback image asset to be used.
  */
-const enrichEntitiesWithThumbnailPlaceholderRelations = (item: DistributionEntity, fallbackImageAsset: ImageAsset) => {
+export const enrichEntitiesWithThumbnailPlaceholderRelations = (
+  item: DistributionEntity,
+  fallbackImageAsset: ImageAsset
+) => {
   item.relations?.forEach((relation) => {
     if (!relation?.thumbnail || relation?.thumbnail?.templateUrl === '') {
       relation.thumbnail = fallbackImageAsset;
@@ -70,7 +83,10 @@ const enrichEntitiesWithThumbnailPlaceholderRelations = (item: DistributionEntit
  * @param {DistributionEntity} item - The entity whose parts are to be enriched.
  * @param {ImageAsset} fallbackImageAsset - The fallback image asset to be used.
  */
-const enrichEntitiesWithThumbnailPlaceholderParts = (item: DistributionEntity, fallbackImageAsset: ImageAsset) => {
+export const enrichEntitiesWithThumbnailPlaceholderParts = (
+  item: DistributionEntity,
+  fallbackImageAsset: ImageAsset
+) => {
   item.parts?.forEach((part) => {
     if (part.type != ForgeEntityType.external && part.type != ForgeEntityType.markdown) {
       if (!part?.thumbnail || !part?.thumbnail?.templateUrl || part?.thumbnail?.templateUrl === '') {
@@ -93,7 +109,7 @@ const enrichEntitiesWithThumbnailPlaceholderParts = (item: DistributionEntity, f
  * @param {LinkRuleVariation[]} [linkRuleVariations] - The link rule variations to use for enrichment.
  * @returns {Promise<DistributionEntity[]>} The enriched entities.
  */
-export const enrichDistributionEntitiesWithLinkRules = /* istanbul ignore next */ async (
+export const enrichDistributionEntitiesWithLinkRules = async (
   forgeEntities: DistributionEntity[],
   withRelationsAndParts: boolean = false,
   linkRuleVariations?: LinkRuleVariation[]
@@ -125,7 +141,7 @@ export const enrichDistributionEntitiesWithLinkRules = /* istanbul ignore next *
  * @param {LinkRuleVariation[]} [linkRuleVariations] - The link rule variations to use for enrichment.
  * @returns {LinkRuleRequest[]} The built link rule requests.
  */
-const buildLinkRulesRequest = /* istanbul ignore next */ (
+export const buildLinkRulesRequest = (
   entities: DistributionEntity[],
   withRelationsAndParts: boolean,
   linkRuleVariations?: LinkRuleVariation[]
@@ -137,9 +153,10 @@ const buildLinkRulesRequest = /* istanbul ignore next */ (
     addLinkRuleRequest(entity, linkRulesRequest);
 
     if (withRelationsAndParts) {
-      const relations = entity.relations?.filter(
-        (relation) => relation.type !== ForgeEntityType.external && relation.type !== ForgeEntityType.markdown
-      );
+      const relations =
+        entity?.relations?.filter(
+          (relation) => relation.type !== ForgeEntityType.external && relation.type !== ForgeEntityType.markdown
+        ) ?? [];
       enrichLinkRuleRequestEntity(relations, linkRuleVariations);
       addLinkRulesForEntities(relations, linkRulesRequest);
 
@@ -167,7 +184,7 @@ const buildLinkRulesRequest = /* istanbul ignore next */ (
  * @param {DistributionEntity[]} entities - The entities to be enriched.
  * @param {LinkRuleVariation[]} [linkRuleVariations] - The link rule variations to use for enrichment.
  */
-const enrichLinkRuleRequestEntity = /* istanbul ignore next */ (
+export const enrichLinkRuleRequestEntity = (
   entities: DistributionEntity[],
   linkRuleVariations?: LinkRuleVariation[]
 ) => {
@@ -176,6 +193,7 @@ const enrichLinkRuleRequestEntity = /* istanbul ignore next */ (
       entities.forEach((entity) => {
         switch (variation.type) {
           case LinkRuleVariationType.fields:
+            if (!entity.fields) break;
             entity.fields[variation.key] = variation.value;
             break;
           case LinkRuleVariationType.root:
@@ -199,10 +217,7 @@ const enrichLinkRuleRequestEntity = /* istanbul ignore next */ (
  * @param {DistributionEntity} entity - The entity for which to create a link rule request.
  * @param {LinkRuleRequest[]} linkRulesRequest - The array of link rule requests to which to add the created link rule request.
  */
-const addLinkRuleRequest = /* istanbul ignore next */ (
-  entity: DistributionEntity,
-  linkRulesRequest: LinkRuleRequest[]
-) => {
+export const addLinkRuleRequest = (entity: DistributionEntity, linkRulesRequest: LinkRuleRequest[]) => {
   linkRulesRequest.push({
     id: createLinkRuleId(entity),
     entity,
@@ -221,8 +236,7 @@ const addLinkRuleRequest = /* istanbul ignore next */ (
  * @param {DistributionEntity} entity - The entity whose type or code is to be returned.
  * @returns {string} The entity code or type of the given entity, or an empty string if neither exist.
  */
-const getEntityType = /* istanbul ignore next */ (entity: DistributionEntity): string =>
-  entity.entityCode ?? entity.type ?? '';
+export const getEntityType = (entity: DistributionEntity): string => entity.entityCode ?? entity.type ?? '';
 
 /**
  * Adds a link rule request for each entity in the provided array to the provided array of link rule requests.
@@ -233,7 +247,7 @@ const getEntityType = /* istanbul ignore next */ (entity: DistributionEntity): s
  * @param {DistributionEntity[] | undefined} entities - The entities for which to create link rule requests.
  * @param {LinkRuleRequest[]} linkRulesRequest - The array of link rule requests to which to add the created link rule requests.
  */
-const addLinkRulesForEntities = /* istanbul ignore next */ (
+export const addLinkRulesForEntities = (
   entities: DistributionEntity[] | undefined,
   linkRulesRequest: LinkRuleRequest[]
 ) => {
@@ -257,22 +271,15 @@ const addLinkRulesForEntities = /* istanbul ignore next */ (
  * @param {LinkRuleResponse} linkRules - The link rules to use for updating the URLs.
  * @returns {DistributionEntity[]} The entities with updated URLs.
  */
-const updateEntityURLs = /* istanbul ignore next */ (
-  entities: DistributionEntity[],
-  linkRules: LinkRuleResponse
-): DistributionEntity[] => {
+export const updateEntityURLs = (entities: DistributionEntity[], linkRules: LinkRuleResponse): DistributionEntity[] => {
   for (const entity of entities) {
     updateEntityURL(entity, linkRules);
 
-    if (!entity.relations || entity.relations.length === 0) {
-      continue;
-    }
-
-    for (const relation of entity.relations) {
+    for (const relation of entity?.relations ?? []) {
       updateEntityURL(relation, linkRules);
     }
 
-    const parts = entity.parts?.filter(
+    const parts = entity?.parts?.filter(
       (part) => part.type !== ForgeEntityType.external && part.type !== ForgeEntityType.markdown
     );
     if (parts) {
@@ -297,16 +304,20 @@ const updateEntityURLs = /* istanbul ignore next */ (
  * @param {DistributionEntity} entity - The entity whose URL is to be updated.
  * @param {LinkRuleResponse} linkRules - The link rules to use for updating the URL.
  */
-const updateEntityURL = /* istanbul ignore next */ (entity: DistributionEntity, linkRules: LinkRuleResponse) => {
+export const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse) => {
   const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
   entity.url = linkRule?.url ?? entity.url;
 
   if (entity.url && entity.url !== '#nolink' && process.env.KEEP_LINK_RULES_LOCAL === 'true') {
-    const url = new URL(entity.url);
-    url.hostname = process.env.LINK_RULES_LOCAL_HOSTNAME ?? 'localhost';
-    url.port = process.env.LINK_RULES_LOCAL_PORT ?? '3000';
-    url.protocol = process.env.LINK_RULES_LOCAL_PROTOCOL ?? 'http';
-    entity.url = url.toString();
+    try {
+      const url = new URL(entity.url);
+      url.hostname = process.env.LINK_RULES_LOCAL_HOSTNAME ?? 'localhost';
+      url.port = process.env.LINK_RULES_LOCAL_PORT ?? '3000';
+      url.protocol = process.env.LINK_RULES_LOCAL_PROTOCOL ?? 'http';
+      entity.url = url.toString();
+    } catch (error) {
+      logger.log('Error updating link rule URL', LoggerLevel.error);
+    }
   }
 };
 
@@ -325,7 +336,7 @@ const updateEntityURL = /* istanbul ignore next */ (entity: DistributionEntity, 
  * @param {ForgeDistributionApiOption} [options=null] - The options for the enrichment.
  * @returns {Promise<DistributionEntity[]>} The enriched entities.
  */
-export const enrichDistributionEntities = /* istanbul ignore next */ async (
+export const enrichDistributionEntities = async (
   entities: DistributionEntity[],
   options: ForgeDistributionApiOption = null
 ): Promise<DistributionEntity[]> => {
@@ -357,13 +368,164 @@ export const enrichDistributionEntities = /* istanbul ignore next */ async (
  * @param {ForgeDistributionApiOption} options - The options for the Forge Distribution API.
  * @returns {string} The query string for the API.
  */
-export const getAPIQueryString = /* istanbul ignore next */ (options: ForgeDistributionApiOption) => {
+export const getAPIQueryString = (options: ForgeDistributionApiOption) => {
   const skip = options?.skip ?? 0;
   const limit = options?.limit ?? 0;
   const tags = options?.tags ?? '';
+  const context = options?.context ?? '';
   const page = getPageNumber(options?.hasPagination, options?.page);
-  const queryParameters = getQueryString(skip, limit, tags, page);
+  const queryParameters = getQueryString({
+    skip,
+    limit,
+    page,
+    tags,
+    context,
+    fields: options?.fields,
+    extraData: options?.extraData,
+    sort: options?.sort,
+    range: options?.range,
+    listAvailability: options?.listAvailability,
+  });
   return queryParameters.length ? `?${queryParameters}` : '';
+};
+
+/**
+ * Constructs a sorting parameter for the API query string based on the provided sort options.
+ * If no sort options are provided, the function returns undefined.
+ * The constructed sorting parameter is in the format "$sort=prop:order" or "$sort=fields.field:order".
+ *
+ * @param {SortOptions} [sort] - The sort options to construct the parameter from.
+ * @returns {string | undefined} The constructed sorting parameter for the query string, or undefined if no sort options are provided.
+ *
+ * @example
+ * // returns "$sort=contentDate:asc"
+ * getSortParams({ prop: 'contentDate', order: 'asc' });
+ *
+ * @example
+ * // returns "$sort=fields.scheduledStartTime:asc"
+ * getSortParams({ field: 'scheduledStartTime', order: 'asc' });
+ */
+export const getSortParams = (sort?: SortOptions) => {
+  if (!sort) {
+    return undefined;
+  }
+  const sortOrder = sort.order ? `:${sort.order}` : '';
+  if (sort.prop) {
+    return `$sort=${sort.prop}${sortOrder}`;
+  }
+  if (sort.field) {
+    return `$sort=fields.${sort.field}${sortOrder}`;
+  }
+};
+
+/**
+ * Constructs a range parameter for the API query string based on the provided range.
+ * If no range is provided, or if the range does not have a start date and an end date, the function returns undefined.
+ * The constructed range parameter is in the format "field=$range(startDate,endDate)".
+ *
+ * @param {RangeOption} [range] - The range to construct the parameter from.
+ * @returns {string | undefined} The constructed range parameter for the query string, or undefined if no range is provided or if the range does not have a start date and an end date.
+ *
+ * @example
+ * // returns "fieldFoo=$range(2023-10-16,2024-01-167)"
+ * getRangeParams({ field: "fieldFoo", startDate: "2023-10-16", endDate: "2024-01-167" });
+ */
+export const getRangeParams = (range?: RangeOption) => {
+  if (!range || (!range.startDate && !range.endDate)) {
+    return undefined;
+  }
+  return `${range.field}=$range(${range.startDate ?? ''},${range.endDate ?? ''})`;
+};
+
+/**
+ * Constructs a list availability parameter for the API query string based on the provided list availability.
+ * If no list availability is provided, the function returns undefined.
+ * The constructed list availability parameter is in the format "_listAvailability=listAvailability".
+ *
+ * @param {ListAvailabilityOption} [listAvailability] - The list availability to construct the parameter from.
+ * @returns {string | undefined} The constructed list availability parameter for the query string, or undefined if no list availability is provided.
+ *
+ * @example
+ * // returns "_listAvailability=available"
+ * getListAvailabilityParams("available");
+ */
+export const getListAvailabilityParams = (listAvailability?: ListAvailabilityOption) => {
+  if (listAvailability === undefined) {
+    return undefined;
+  }
+
+  return `_listAvailability=${listAvailability}`;
+};
+
+/**
+ * Constructs generic parameters for the API query string based on the provided key and extra data.
+ * If no key or extra data is provided, the function returns undefined.
+ * The function constructs a parameter for each key-value pair in the extra data, with the key prefixed by the provided generic key.
+ *
+ * @param {string} genericKey - The key to prefix each parameter with.
+ * @param {Record<string, unknown> | null} [extraData=null] - The extra data to construct parameters from.
+ * @returns {string[] | undefined} An array of constructed parameters for the query string, or undefined if no key or extra data is provided.
+ *
+ * @example
+ * // returns ["fields.videoStatus=Live"]
+ * getGenericParams("fields", { videoStatus: "Live" });
+ */
+export const getGenericParams = (genericKey: string, extraData?: Record<string, unknown>) => {
+  if (!extraData || !genericKey) {
+    return undefined;
+  }
+
+  const queryParameters: string[] = [];
+  for (const key in extraData) {
+    if (extraData.hasOwnProperty(key)) {
+      queryParameters.push(`${genericKey}.${key}=${extraData[key]}`);
+    }
+  }
+  return queryParameters;
+};
+
+/**
+ * Constructs a tags parameter for the API query string based on the provided tags.
+ * If no tags are provided, the function returns undefined.
+ * If multiple tags are provided, separated by commas, the function constructs a tags parameter for each tag.
+ *
+ * @param {string} [tags] - A comma-separated list of tags to filter by.
+ * @returns {string[] | undefined} An array of constructed tags parameters for the query string, or undefined if no tags are provided.
+ *
+ * @example
+ * // returns ["tags.slug=supercars", "tags.slug=test"]
+ * getTagsParam("supercars,test");
+ */
+export const getTagsParam = (tags?: string) => {
+  if (!tags || tags.length === 0) {
+    return undefined;
+  }
+  const queryParameters = [];
+
+  if (tags.includes(',')) {
+    const tagSlugs = tags.split(',');
+    tagSlugs.forEach((tag) => {
+      queryParameters.push(`tags.slug=${tag}`);
+    });
+  } else {
+    queryParameters.push(`tags.slug=${tags}`);
+  }
+  return queryParameters;
+};
+
+/**
+ * Constructs a context parameter for the API query string based on the provided context.
+ * If no context is provided, the function returns undefined.
+ *
+ * @param {string} [context] - The context to filter by.
+ * @returns {string | undefined} The constructed context parameter for the query string, or undefined if no context is provided.
+ */
+export const getContextParam = (context?: string) => {
+  if (!context) {
+    return undefined;
+  }
+
+  return `context.slug=${context}`;
 };
 
 /**
@@ -371,30 +533,58 @@ export const getAPIQueryString = /* istanbul ignore next */ (options: ForgeDistr
  * The query string can include parameters for skipping a number of items, limiting the number of items returned, and filtering by tags.
  * The function also calculates the number of items to skip based on the current page number and the limit.
  *
- * @param {number} skip - The initial number of items to skip.
- * @param {number} limit - The maximum number of items to return.
- * @param {string} tags - A comma-separated list of tags to filter by.
- * @param {number} page - The current page number.
+ * @param {ForgeDistributionApiQueryStringOption} forgeDistributionApiQueryStringOption - An object containing the following properties:
+ * @param {number} forgeDistributionApiQueryStringOption.skip - The initial number of items to skip.
+ * @param {number} forgeDistributionApiQueryStringOption.limit - The maximum number of items to return.
+ * @param {string} forgeDistributionApiQueryStringOption.tags - A comma-separated list of tags to filter by.
+ * @param {number} forgeDistributionApiQueryStringOption.page - The current page number.
+ * @param {string} forgeDistributionApiQueryStringOption.context - The context to filter by.
+ * @param {Record<string, unknown>} forgeDistributionApiQueryStringOption.fields - The fields to filter by.
+ * @param {Record<string, unknown>} forgeDistributionApiQueryStringOption.extraData - The extra data to filter by.
+ * @param {SortOptions} forgeDistributionApiQueryStringOption.sort - The sorting options.
+ * @param {RangeOption} forgeDistributionApiQueryStringOption.range - The range options for filtering.
+ * @param {ListAvailabilityOption} forgeDistributionApiQueryStringOption.listAvailability - The list availability options for filtering.
  * @returns {string} The constructed query string.
+ *
+ * @example
+ * // returns "$skip=0&$limit=10&tags.slug=supercars&tags.slug=test"
+ * getQueryString({ skip: 0, limit: 10, tags: "supercars,test", page: 1 });
  */
-const getQueryString = /* istanbul ignore next */ (skip: number, limit: number, tags: string, page: number) => {
+export const getQueryString = (forgeDistributionApiQueryStringOption: ForgeDistributionApiQueryStringOption) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
-  if (page > 1) {
-    skip = (page - 1) * limit;
+  if (forgeDistributionApiQueryStringOption?.page && forgeDistributionApiQueryStringOption.page > 1) {
+    const limit = forgeDistributionApiQueryStringOption?.limit ?? 0;
+    forgeDistributionApiQueryStringOption.skip = (forgeDistributionApiQueryStringOption.page - 1) * limit;
   }
-  if (skip) {
-    queryString.push(`$skip=${skip}`);
+  if (forgeDistributionApiQueryStringOption?.skip) {
+    queryString.push(`$skip=${forgeDistributionApiQueryStringOption.skip}`);
   }
-  if (limit) {
-    queryString.push(`$limit=${limit}`);
+  if (forgeDistributionApiQueryStringOption?.limit) {
+    queryString.push(`$limit=${forgeDistributionApiQueryStringOption.limit}`);
   }
-  if (tags) {
-    const tagSlugs = tags?.split(',');
-    tagSlugs.forEach((tag) => {
-      queryString.push(`tags.slug=${tag}`);
-    });
-  }
+
+  const tagsParam = getTagsParam(forgeDistributionApiQueryStringOption?.tags);
+  if (tagsParam) queryString = queryString.concat(tagsParam);
+
+  const contextParam = getContextParam(forgeDistributionApiQueryStringOption?.context);
+  if (contextParam) queryString = queryString.concat(contextParam);
+
+  const fieldsOption = getGenericParams('fields', forgeDistributionApiQueryStringOption?.fields);
+  if (fieldsOption) queryString = queryString.concat(fieldsOption);
+
+  const extraDataParam = getGenericParams('tags.extraData', forgeDistributionApiQueryStringOption?.extraData);
+  if (extraDataParam) queryString = queryString.concat(extraDataParam);
+
+  const sortParam = getSortParams(forgeDistributionApiQueryStringOption?.sort ?? { prop: 'contentDate' });
+  if (sortParam) queryString.push(sortParam);
+
+  const rangeParam = getRangeParams(forgeDistributionApiQueryStringOption?.range);
+  if (rangeParam) queryString.push(rangeParam);
+
+  const listAvailabilityParam = getListAvailabilityParams(forgeDistributionApiQueryStringOption?.listAvailability);
+  if (listAvailabilityParam) queryString.push(listAvailabilityParam);
+
   return queryString.join('&');
 };
 
@@ -405,18 +595,14 @@ const getQueryString = /* istanbul ignore next */ (skip: number, limit: number, 
  * @param {number} limit - The maximum number of items to return.
  * @returns {DistributionEntity[]} The filtered items.
  */
-export const getFilteredItems = /* istanbul ignore next */ (
-  items: DistributionEntity[] | null | undefined,
-  skip: number,
-  limit: number
-) => {
+export const getFilteredItems = (items: DistributionEntity[] | null | undefined, skip: number, limit: number) => {
   if (!items?.length) {
     return [];
   }
   if (skip === 0 && limit === 0) {
     return items;
   }
-  return items.slice(skip, limit);
+  return items.slice(skip, limit + skip);
 };
 
 /**
@@ -424,7 +610,7 @@ export const getFilteredItems = /* istanbul ignore next */ (
  * @param {DistributionEntity | StoryPart} forgeEntity - The Forge entity to create a link rule ID for.
  * @returns {string} The link rule ID.
  */
-const createLinkRuleId = /* istanbul ignore next */ (forgeEntity: DistributionEntity | StoryPart): string => {
+export const createLinkRuleId = (forgeEntity: DistributionEntity | StoryPart): string => {
   return forgeEntity.entityCode
     ? `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}-${forgeEntity.entityCode}`
     : `${forgeEntity.id ?? forgeEntity._entityId}-${forgeEntity.type}`;
@@ -436,7 +622,7 @@ const createLinkRuleId = /* istanbul ignore next */ (forgeEntity: DistributionEn
  * @param {DistributionEntity[]} entities - The entities to enrich.
  * @returns {Promise<DistributionEntity[]>} The enriched entities.
  */
-const enrichEntitiesWithGadAssetsFields = /* istanbul ignore next */ async (
+export const enrichEntitiesWithGadAssetsFields = async (
   entities: DistributionEntity[]
 ): Promise<DistributionEntity[]> => {
   await customEnrichEntitiesWithGadAssetsFields(entities);
@@ -449,7 +635,7 @@ const enrichEntitiesWithGadAssetsFields = /* istanbul ignore next */ async (
  * @param {DistributionEntity[]} entities - The entities to enrich.
  * @returns {Promise<DistributionEntity[]>} The enriched entities.
  */
-const enrichEntitiesWithReferencesFields = /* istanbul ignore next */ async (
+export const enrichEntitiesWithReferencesFields = async (
   entities: DistributionEntity[]
 ): Promise<DistributionEntity[]> => {
   return customEnrichEntitiesWithReferencesFields(entities);

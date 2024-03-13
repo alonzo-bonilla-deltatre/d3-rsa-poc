@@ -25,7 +25,7 @@ const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,
         hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
-        featuredDescription: featuredDescription?.fields.body,
+        featuredDescription: featuredDescription?.fields?.body,
         featuredSponsor: featuredSponsor,
         children: <MatchesList variables={data.variables}></MatchesList>,
       }}

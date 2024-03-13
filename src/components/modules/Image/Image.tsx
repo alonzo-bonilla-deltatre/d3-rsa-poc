@@ -27,7 +27,7 @@ const Image = async ({ data }: { data: ComponentProps }) => {
   const imageEntity = await getEntity(ForgeDapiEntityCode.pageBuilderGadAssets, slug, {
     variables: data.variables,
   });
-  const asset = (await getSingleAssetByTag(imageEntity?.fields.tag?.toString())) as GraphicAssetsDashboardItem;
+  const asset = (await getSingleAssetByTag(imageEntity?.fields?.tag?.toString())) as GraphicAssetsDashboardItem;
   const ratio_size = `${ratio ? ratio : 'landscape'}_${size ? size : 'large'}`;
   const transformationValue = `${'image_' + ratio_size}` as unknown as ImageTransformationName;
   const transformationKey = Object.keys(ImageTransformationName).find(
@@ -39,8 +39,8 @@ const Image = async ({ data }: { data: ComponentProps }) => {
   //   imageTransformation = transformations[transformationKey as ImageTransformationName];
   // }
 
-  const link = imageEntity?.fields.clickThroughUrl?.toString() ?? '#nolink';
-  const caption = imageEntity?.fields.caption?.toString() ?? '';
+  const link = imageEntity?.fields?.clickThroughUrl?.toString() ?? '#nolink';
+  const caption = imageEntity?.fields?.caption?.toString() ?? '';
 
   if (!imageEntity || !asset || !imageTransformation) return null;
 

@@ -31,7 +31,7 @@ const customPagination = (slides: DistributionEntity[]) => ({
     }
     const alt = slides[index].thumbnail?.title ? 'image: ' + slides[index].thumbnail?.title : 'image';
     const src = getSrcWithTransformation(
-      slides[index]?.thumbnail?.templateUrl ?? null,
+      slides[index]?.thumbnail?.templateUrl ?? slides[index]?.image?.templateUrl ?? '',
       transformations.hero_swiper_pagination_item.mobile.transformation
     );
     const width = transformations.hero_swiper_pagination_item.mobile.width;
@@ -92,7 +92,7 @@ export const HeroSwiper = ({ slides }: HeroSwiperProps) => {
                     <Picture
                       transformations={transformations.hero_swiper_main_item}
                       className="w-full h-full object-cover opacity-[.50]"
-                      src={slide.thumbnail.templateUrl}
+                      src={slide.image?.templateUrl ?? slide.thumbnail?.templateUrl ?? ''}
                       alt={slide.title}
                       imageStyle={{
                         width: '100vw',

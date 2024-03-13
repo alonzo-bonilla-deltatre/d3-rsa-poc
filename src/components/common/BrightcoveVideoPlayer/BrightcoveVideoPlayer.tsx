@@ -11,7 +11,11 @@ const BrightcoveVideoPlayer = ({ entity, isStoryPart, containerCss }: Brightcove
   if (!entity) return null;
 
   containerCss = getStringProperty(containerCss, 'grid grid-cols-1 relative overflow-hidden w-full pt-[56.25%]');
-  const oembedUrl = `https://players.brightcove.net/${entity?.fields['brightcoveAccountId']}/default_default/index.html?videoId=${entity?.fields['brightcoveId']}`;
+  const brightcoveAccountId = entity?.fields?.brightcoveAccountId ?? '';
+  const brightcoveId = entity?.fields?.brightcoveId ?? '';
+  const oembedUrl = `https://players.brightcove.net/${brightcoveAccountId}/default_default/index.html?videoId=${brightcoveId}`;
+
+  if (!brightcoveAccountId || !brightcoveId) return null;
 
   return (
     <>

@@ -61,7 +61,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const cardDesign = getCardSettings(cardType, cardOptions, cardLayout);
 
   const description = storyEntity?.fields?.description ? storyEntity?.fields?.description : storyEntity?.headline;
-  const relatedArticles = storyEntity?.relations?.filter((entity) => entity.type === ForgeEntityType.story);
+  const relatedArticles = storyEntity?.relations?.filter((entity) => entity.type === ForgeEntityType.story) ?? [];
 
   return (
     <article>

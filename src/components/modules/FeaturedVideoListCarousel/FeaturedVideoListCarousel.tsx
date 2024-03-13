@@ -66,7 +66,7 @@ const FeaturedVideoListCarousel = async ({ data }: { data: ComponentProps }) => 
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,
         hideHeaderTitle: hideHeaderTitle,
-        featuredDescription: featuredDescription?.fields.body,
+        featuredDescription: featuredDescription?.fields?.body,
         featuredSponsor: featuredSponsor,
         hasPagination: hasPagination,
         hasNavigation: hasNavigation,

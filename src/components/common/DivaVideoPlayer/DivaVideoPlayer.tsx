@@ -21,7 +21,7 @@ type DivaVideoPlayerProps = {
 const DivaVideoPlayer = ({ videoEntity }: DivaVideoPlayerProps) => {
   const envVars = useEnvVars();
   let divaAPI: DivaApiType;
-  const videoId = videoEntity.fields.videoId;
+  const videoId = videoEntity?.fields?.videoId;
   const videoType = getVideoType(videoEntity);
   const videoSettingsUrl = envVars.VIDEO_SETTINGS_BASE_URL || '';
   const settingUrl = getSettingUrl(videoType, videoSettingsUrl);

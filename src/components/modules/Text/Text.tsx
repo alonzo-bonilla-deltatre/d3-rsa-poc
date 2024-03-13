@@ -48,7 +48,7 @@ const Text = async ({ data }: { data: ComponentProps }) => {
         sectionClassName: `d3-text-block ${isFullWidth ? '-full-width' : ''} ${getDarkClass(isDark)}`,
         children: (
           <Markdown
-            markdownText={textEntity?.fields.body?.toString() ?? ''}
+            markdownText={textEntity?.fields?.body?.toString() ?? ''}
             classNames={`${textAlignmentCssClassVariants[textAlignment ? textAlignment : 'left']}`}
           />
         ),

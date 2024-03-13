@@ -21,7 +21,7 @@ export const customEnrichLinkRuleRequestEntity = (
       if (entity.type === ForgeEntityType.customEntity && entity.entityCode === ForgeEntityCode.event) {
         entity['eventslug'] = entity.slug;
       } else {
-        entity.tags.forEach((tag) => {
+        entity.tags?.forEach((tag) => {
           if (tag.externalSourceName === `${ForgeEntityType.customEntity}.${ForgeEntityCode.event}`) {
             entity['eventslug'] = tag.slug;
           }
@@ -111,7 +111,7 @@ export const customEnrichAlbumListWithElementCount = async (
  * @param {DistributionEntity} entity - The entity to enrich.
  */
 const customEnrichEntitiesWithGadAssetsFieldsForPlayers = async (entity: DistributionEntity) => {
-  if (entity.entityCode === ForgeEntityCode.player && entity.fields.playerNationalityFlag) {
+  if (entity.entityCode === ForgeEntityCode.player && entity?.fields?.playerNationalityFlag) {
     entity.fields.playerNationalityFlag = await getSingleAssetByTag(entity.fields.playerNationalityFlag);
   }
 };
@@ -132,7 +132,9 @@ const customEnrichEntitiesWithReferencesFieldsForMatches = async (
   if (
     tempEntity?.references &&
     tempEntity?.references?.teamHome?.length > 0 &&
-    tempEntity?.references?.teamAway?.length > 0
+    tempEntity.references.teamHome[0]?.fields?.teamLogo &&
+    tempEntity?.references?.teamAway?.length > 0 &&
+    tempEntity.references.teamAway[0]?.fields?.teamLogo
   ) {
     tempEntity.references.teamHome[0].fields.teamLogo = tempEntity?.references?.teamHome[0].fields?.teamLogo
       ? await getSingleAssetByTag(tempEntity?.references?.teamHome[0].fields?.teamLogo)
@@ -157,7 +159,11 @@ const customEnrichEntitiesWithReferencesFieldsForStories = async (
   entity: DistributionEntity
 ): Promise<DistributionEntity> => {
   tempEntity = await getEntity(ForgeDapiEntityCode.stories, entity.slug);
-  if (tempEntity?.references && tempEntity?.references?.sponsoredBy?.length > 0) {
+  if (
+    tempEntity?.references &&
+    tempEntity?.references?.sponsoredBy?.length > 0 &&
+    tempEntity.references.sponsoredBy[0]?.fields?.partnerLogo
+  ) {
     tempEntity.references.sponsoredBy[0].fields.partnerLogo = tempEntity?.references?.sponsoredBy[0].fields?.partnerLogo
       ? await getSingleAssetByTag(tempEntity?.references?.sponsoredBy[0].fields?.partnerLogo)
       : null;

@@ -54,7 +54,7 @@ const FeaturedMixedList = async ({ data }: { data: ComponentProps }) => {
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,
         hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
-        featuredDescription: featuredDescription?.fields.body,
+        featuredDescription: featuredDescription?.fields?.body,
         featuredSponsor: featuredSponsor,
         sectionClassName: getDarkClass(isDark),
         children: <MixedSquared items={items} />,

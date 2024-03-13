@@ -98,7 +98,7 @@ const EnhancedTitle = async ({ data }: { data: ComponentProps }) => {
     const imageEntity = await getEntity(ForgeDapiEntityCode.pageBuilderGadAssets, assetSlug, {
       variables: data.variables,
     });
-    const asset = (await getSingleAssetByTag(imageEntity?.fields.tag?.toString())) as GraphicAssetsDashboardItem;
+    const asset = (await getSingleAssetByTag(imageEntity?.fields?.tag?.toString())) as GraphicAssetsDashboardItem;
     background = setGadAssetBackground(asset, imageTransformation, size);
     sectionWithHeader.hasBackground = true;
     sectionWithHeader.sectionClassName = `${getDarkClass(isDark)} ${headerSizeClasses}`;
