@@ -7,6 +7,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     deviceSizes: [640, 768, 1024, 1280, 1920, 2048, 3840],
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 0, // https://nextjs.org/docs/app/api-reference/components/image#minimumcachettl
     // unoptimized: true, // Disable Next.js image cache (avoid storing images in /_next/image?url=)
     remotePatterns: [
       {
