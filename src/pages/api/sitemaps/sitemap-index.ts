@@ -1,6 +1,6 @@
 import { LoggerLevel } from '@/models/types/logger';
 import { getSitemapIndexXml } from '@/services/sitemapService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 /**

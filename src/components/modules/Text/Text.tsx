@@ -1,15 +1,15 @@
-import { ComponentProps, EditorialModuleProps, ModuleProps } from '@/models/types/components';
+import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 
-const Markdown = dynamic(() => import('@/components/common/Markdown/Markdown'));
+const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
 type TextProps = {
   slug?: string;

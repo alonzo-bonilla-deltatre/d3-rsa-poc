@@ -1,14 +1,14 @@
 'use client';
 
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { DistributionEntity, PagedResult } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
 import { fetcher } from '@/services/fetcherService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import useSWRInfinite from 'swr/infinite';
 import AlbumListView from './AlbumListView';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 
 const AlbumList = ({ data }: { data: ComponentProps }) => {

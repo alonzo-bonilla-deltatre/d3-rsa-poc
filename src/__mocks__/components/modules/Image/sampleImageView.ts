@@ -1,5 +1,5 @@
 ﻿import { ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
-import { defaultCloudinaryTransformations } from '@/utilities/defaultCloudinaryTransformations';
+import { defaultCloudinaryTransformations } from '@/utilities/defaultCloudinaryTransformationsUtility';
 
 const defaultLinkCssClass = 'flex flex-col items-start';
 export const leftLinkCssClass = 'flex flex-col items-start';

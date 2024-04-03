@@ -1,11 +1,11 @@
 import { DistributionEntity, ForgeDapiEntityCode, ForgeDistributionApiOption, PagedResult } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 import { enrichDistributionEntities, getAPIQueryString } from '@/helpers/forgeDistributionEntityHelper';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 import { handleApiError } from '@/helpers/apiHelper';
-import { enrichPagination } from '@/components/common/list/Pagination/PaginationHelper';
+import { enrichPagination } from '@/components/commons/list/Pagination/PaginationHelper';
 
 // The culture of the site, retrieved from environment variables
 const culture = process.env.CULTURE;

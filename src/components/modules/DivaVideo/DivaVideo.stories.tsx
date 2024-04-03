@@ -1,5 +1,5 @@
 ﻿import { sampleVideoEntity as videoEntity } from '@/__mocks__/entities/sampleDivaVideo';
-import DivaVideoPlayer from '@/components/common/DivaVideoPlayer/DivaVideoPlayer';
+import DivaVideoPlayer from '@/components/commons/DivaVideoPlayer/DivaVideoPlayer';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof DivaVideoPlayer> = {

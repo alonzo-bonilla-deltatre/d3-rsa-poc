@@ -1,4 +1,4 @@
-import { DESKTOP_BREAKPOINT } from '@/utilities/consts';
+import { DESKTOP_BREAKPOINT } from '@/utilities/constsUtility';
 import { RefObject, useEffect, useState } from 'react';
 
 /**

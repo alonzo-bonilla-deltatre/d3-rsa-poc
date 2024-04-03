@@ -1,5 +1,5 @@
-import { SectionWithHeaderProps } from '@/components/common/SectionWithHeader/SectionWithHeader';
-import { WrapperWithBackgroundProps } from '@/components/common/WrapperWithBackground/WrapperWithBackground';
+import { SectionWithHeaderProps } from '@/components/commons/SectionWithHeader/SectionWithHeader';
+import { WrapperWithBackgroundProps } from '@/components/commons/WrapperWithBackground/WrapperWithBackground';
 import EnhancedTitleView from '@/components/modules/EnhancedTitle/EnhancedTitleView';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { parseMenuItemFields, setActiveMenuItem } from '@/helpers/menuHelper';
@@ -11,9 +11,9 @@ import { MenuItem } from '@/models/types/menu';
 import { getEntity } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { getMenuStructure } from '@/services/menuService';
-import { transformations } from '@/utilities/cloudinaryTransformations';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
-import logger from '@/utilities/logger';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
+import logger from '@/utilities/loggerUtility';
 import { notFound } from 'next/navigation';
 import {
   getGadAssetBgSizeClasses,

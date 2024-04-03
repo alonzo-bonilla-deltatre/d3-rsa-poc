@@ -1,4 +1,4 @@
-import CommonHeader from '@/components/common/CommonHeader/CommonHeader';
+import CommonHeader from '@/components/commons/CommonHeader/CommonHeader';
 import { getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps } from '@/models/types/components';
 

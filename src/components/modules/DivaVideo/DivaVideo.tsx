@@ -1,14 +1,14 @@
 ﻿import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { notFound } from 'next/navigation';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
-import { formatDate } from '@/utilities/dateFormatter';
+import { formatDate } from '@/helpers/dateHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
-import DivaVideoPlayer from '@/components/common/DivaVideoPlayer/DivaVideoPlayer';
+import DivaVideoPlayer from '@/components/commons/DivaVideoPlayer/DivaVideoPlayer';
 
 type DivaVideoProps = {
   slug?: string;

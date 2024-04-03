@@ -1,9 +1,8 @@
-import axios, { AxiosError, AxiosRequestHeaders } from 'axios';
+import axios from 'axios';
 import { getPageStructure } from '@/services/pageService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { indexStructure } from '@/__mocks__/pageStructures';
-import { getAllTranslations } from '@/services/translationService';
 
 const culture = process.env.CULTURE;
 const environment = process.env.ENVIRONMENT;
@@ -11,7 +10,7 @@ const pathPlaceholder = 'path';
 const tokenPlaceholder = 'token';
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 
 describe('getPageStructure', () => {
   afterEach(() => {

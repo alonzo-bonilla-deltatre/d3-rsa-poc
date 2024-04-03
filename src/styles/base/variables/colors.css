@@ -1,8 +1,8 @@
 @import 'components/colors.css';
-@import 'components/common/common-header-colors.css';
-@import 'components/common/header-title-colors.css';
-@import 'components/common/language-switcher-colors.css';
-@import 'components/common/text-colors.css';
+@import 'components/commons/common-header-colors.css';
+@import 'components/commons/header-title-colors.css';
+@import 'components/commons/language-switcher-colors.css';
+@import 'components/commons/text-colors.css';
 @import 'components/layouts/cta-list-colors.css';
 @import 'components/layouts/dynamic-grid-colors.css';
 @import 'components/layouts/hamburger-colors.css';

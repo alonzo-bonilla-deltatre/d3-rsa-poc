@@ -1,7 +1,7 @@
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
 import React from 'react';
-import { translate } from '@/services/translationService';
+import { translate } from '@/helpers/translationHelper';
 
 type EventListHeaderProps = {
   headerTitle?: string;

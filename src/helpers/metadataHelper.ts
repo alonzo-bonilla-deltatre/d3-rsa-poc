@@ -1,5 +1,5 @@
 ﻿import { DistributionEntity, Tag } from '@/models/types/forge';
-import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
+import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { Metadata } from 'next';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { LiveBloggingBlogEntity, LiveBloggingTagEntity } from '@/models/types/liveblogging';

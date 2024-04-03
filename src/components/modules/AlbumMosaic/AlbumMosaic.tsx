@@ -1,11 +1,11 @@
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
-import MosaicView from '@/components/common/MosaicView/MosaicView';
+import logger from '@/utilities/loggerUtility';
+import MosaicView from '@/components/commons/MosaicView/MosaicView';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 

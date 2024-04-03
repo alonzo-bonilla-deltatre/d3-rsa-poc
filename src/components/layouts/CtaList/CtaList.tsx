@@ -1,6 +1,6 @@
 import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { hasItemsInSlot, renderItemsInSlot } from '@/services/renderService';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { getBooleanProperty, getDarkClass, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 
 const CtaList = ({ data }: { data: ComponentProps }) => {

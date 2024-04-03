@@ -1,5 +1,4 @@
-﻿import { transformations } from '@/components/modules/Image/ImageHelper';
-import {
+﻿import {
   centerImageContainerCssClass,
   centerLinkCssClass,
   defaultView,
@@ -8,114 +7,115 @@ import {
   rightImageContainerCssClass,
   rightLinkCssClass,
 } from '@/__mocks__/components/modules/Image/sampleImageView';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 
 export const heroExtraSmallLeft = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraSmall,
+  imageTransformation: transformations.image_hero_extraSmall,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const heroSmallLeft = {
   ...defaultView,
-  imageTransformation: transformations.hero_small,
+  imageTransformation: transformations.image_hero_small,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const heroMediumLeft = {
   ...defaultView,
-  imageTransformation: transformations.hero_medium,
+  imageTransformation: transformations.image_hero_medium,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const heroLargeLeft = {
   ...defaultView,
-  imageTransformation: transformations.hero_large,
+  imageTransformation: transformations.image_hero_large,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const heroExtraLargeLeft = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraLarge,
+  imageTransformation: transformations.image_hero_extraLarge,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const heroExtraExtraLargeLeft = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraExtraLarge,
+  imageTransformation: transformations.image_hero_extraExtraLarge,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 
 export const heroExtraSmallCenter = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraSmall,
+  imageTransformation: transformations.image_hero_extraSmall,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const heroSmallCenter = {
   ...defaultView,
-  imageTransformation: transformations.hero_small,
+  imageTransformation: transformations.image_hero_small,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const heroMediumCenter = {
   ...defaultView,
-  imageTransformation: transformations.hero_medium,
+  imageTransformation: transformations.image_hero_medium,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const heroLargeCenter = {
   ...defaultView,
-  imageTransformation: transformations.hero_large,
+  imageTransformation: transformations.image_hero_large,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const heroExtraLargeCenter = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraLarge,
+  imageTransformation: transformations.image_hero_extraLarge,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const heroExtraExtraLargeCenter = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraExtraLarge,
+  imageTransformation: transformations.image_hero_extraExtraLarge,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 
 export const heroExtraSmallRight = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraSmall,
+  imageTransformation: transformations.image_hero_extraSmall,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const heroSmallRight = {
   ...defaultView,
-  imageTransformation: transformations.hero_small,
+  imageTransformation: transformations.image_hero_small,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const heroMediumRight = {
   ...defaultView,
-  imageTransformation: transformations.hero_medium,
+  imageTransformation: transformations.image_hero_medium,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const heroLargeRight = {
   ...defaultView,
-  imageTransformation: transformations.hero_large,
+  imageTransformation: transformations.image_hero_large,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const heroExtraLargeRight = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraLarge,
+  imageTransformation: transformations.image_hero_extraLarge,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const heroExtraExtraLargeRight = {
   ...defaultView,
-  imageTransformation: transformations.hero_extraExtraLarge,
+  imageTransformation: transformations.image_hero_extraExtraLarge,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };

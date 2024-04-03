@@ -1,14 +1,14 @@
 'use client';
 import { AlbumEntity, DistributionEntity } from '@/models/types/forge';
-import Picture from '@/components/common/Picture/Picture';
-import { transformations } from '@/utilities/cloudinaryTransformations';
+import Picture from '@/components/commons/Picture/Picture';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import AlbumHeader from '@/components/modules/Album/AlbumHeader';
 // Import Swiper React components and styles
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 // import required modules
 import 'swiper/swiper-bundle.css';
-import { getSiteDirection } from '@/utilities/direction';
+import { getSiteDirection } from '@/helpers/pageHelper';
 import { useEnvVars } from '@/hooks/useEnvVars';
 
 type AlbumFeaturedProps = {

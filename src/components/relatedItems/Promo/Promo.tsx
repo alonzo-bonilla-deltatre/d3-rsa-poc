@@ -1,5 +1,5 @@
-import Card from '@/components/common/cards/Card/Card';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import Card from '@/components/commons/cards/Card/Card';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 import { CardLayout, CardOptions, CardType } from '@/models/types/card';
 import { DistributionEntity } from '@/models/types/forge';
 

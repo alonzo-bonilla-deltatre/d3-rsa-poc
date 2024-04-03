@@ -1,5 +1,5 @@
-﻿import AccordionComponent from '@/components/common/Accordion/Accordion';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+﻿import AccordionComponent from '@/components/commons/Accordion/Accordion';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';

@@ -1,6 +1,6 @@
-import MenuList from '@/components/common/MenuList/MenuList';
-import SectionWithHeader, { SectionWithHeaderProps } from '@/components/common/SectionWithHeader/SectionWithHeader';
-import { WrapperWithBackgroundProps } from '@/components/common/WrapperWithBackground/WrapperWithBackground';
+import MenuList from '@/components/commons/MenuList/MenuList';
+import SectionWithHeader, { SectionWithHeaderProps } from '@/components/commons/SectionWithHeader/SectionWithHeader';
+import { WrapperWithBackgroundProps } from '@/components/commons/WrapperWithBackground/WrapperWithBackground';
 import { MenuSources } from '@/components/modules/Menu/Menu';
 import { ModuleProps } from '@/models/types/components';
 import { MenuItem } from '@/models/types/menu';

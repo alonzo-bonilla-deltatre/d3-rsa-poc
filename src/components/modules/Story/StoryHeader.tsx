@@ -1,8 +1,8 @@
-import Picture from '@/components/common/Picture/Picture';
+import Picture from '@/components/commons/Picture/Picture';
 import { DistributionEntity, Tag as TagEntity } from '@/models/types/forge';
-import { transformations } from '@/utilities/cloudinaryTransformations';
-import Tag from '@/components/common/Tag/Tag';
-import { TagType } from '@/models/types/components/common/tag';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
+import Tag from '@/components/commons/Tag/Tag';
+import { TagType } from '@/models/types/components/commons/tag';
 
 type StoryHeaderProps = {
   storyEntity: DistributionEntity;

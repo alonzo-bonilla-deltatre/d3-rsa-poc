@@ -1,6 +1,6 @@
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { getHideModule } from './pageComponentPropertyHelper';
 
 /**

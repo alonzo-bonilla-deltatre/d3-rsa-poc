@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LoggerLevel } from '@/models/types/logger';
 import { PageStructureResponse } from '@/models/types/pageStructure';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { handleApiError } from '@/helpers/apiHelper';
 
 // The culture of the site, retrieved from environment variables

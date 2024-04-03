@@ -1,10 +1,9 @@
 import { ComponentProps } from '@/models/types/components';
 import { PageStructureData } from '@/models/types/pageStructure';
-import { getFooterStructure } from '@/services/footerService';
-import { getHeaderStructure } from '@/services/headerService';
 import { renderItemsInSlot } from '@/services/renderService';
 import React, { use } from 'react';
 import { getAppViewVariable } from '@/helpers/dataVariableHelper';
+import { getPageStructureFromVariablePath } from '@/helpers/pageHelper';
 
 enum DefaultTemplateSlots {
   header = 'header',
@@ -13,12 +12,16 @@ enum DefaultTemplateSlots {
 }
 
 const Default = ({ data }: { data: ComponentProps }) => {
-  const headerStructure = use(getHeaderStructure(data.variables, data.previewToken)) as PageStructureData;
+  const headerStructure = use(
+    getPageStructureFromVariablePath('inc_header', data.variables, data.previewToken)
+  ) as PageStructureData;
   const headerStructureItem = headerStructure?.structure;
   headerStructureItem?.items?.forEach((item) => {
     item.slot = DefaultTemplateSlots.header;
   });
-  const footerStructure = use(getFooterStructure(data.variables, data.previewToken)) as PageStructureData;
+  const footerStructure = use(
+    getPageStructureFromVariablePath('inc_footer', data.variables, data.previewToken)
+  ) as PageStructureData;
   const footerStructureItem = footerStructure?.structure;
   footerStructureItem?.items?.forEach((item) => {
     item.slot = DefaultTemplateSlots.footer;

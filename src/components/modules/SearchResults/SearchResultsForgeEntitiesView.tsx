@@ -8,14 +8,14 @@ import {
 } from '@/components/modules/SearchResults/SearchResultsHelper';
 import { AzureSearchOption } from '@/models/types/azureSearch';
 import { CardLayout, CardOptions } from '@/models/types/card';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
-import GridComponent from '@/components/common/list/Grid/Grid';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
+import GridComponent from '@/components/commons/list/Grid/Grid';
 import { useCallback, useEffect, useState } from 'react';
 import { azureSearchForgeEntities } from '@/app/actions/azureSearch';
 import { Variable } from '@/models/types/pageStructure';
 import SearchPagination from '@/components/modules/SearchResults/SearchPagination';
 import { DistributionEntity } from '@/models/types/forge';
-import Loader from '@/components/common/Loader/Loader';
+import Loader from '@/components/commons/Loader/Loader';
 
 type SearchResultViewProps = {
   cardLayout?: string;

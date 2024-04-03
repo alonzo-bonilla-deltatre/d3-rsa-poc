@@ -1,5 +1,5 @@
-import Partner from '@/components/common/Partner/Partner';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import Partner from '@/components/commons/Partner/Partner';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { MenuSources } from '@/components/modules/Menu/Menu';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';

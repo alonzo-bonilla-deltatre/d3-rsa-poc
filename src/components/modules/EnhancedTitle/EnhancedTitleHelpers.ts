@@ -1,8 +1,8 @@
-import { WrapperWithBackgroundProps } from '@/components/common/WrapperWithBackground/WrapperWithBackground';
+import { WrapperWithBackgroundProps } from '@/components/commons/WrapperWithBackground/WrapperWithBackground';
 import { DistributionEntity } from '@/models/types/forge';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { ImageTransformations } from '@/models/types/images';
-import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
+import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformationsUtility';
 
 export const getGradientClasses = (contentAlignment: string | undefined): string => {
   const alignmentClassName: Record<string, string> = {

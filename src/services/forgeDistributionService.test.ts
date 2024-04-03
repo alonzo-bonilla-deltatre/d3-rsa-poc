@@ -6,13 +6,13 @@ import {
   SortOrder,
 } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 import { getAllEntities, getEntity, getEntityList, getSelection } from './forgeDistributionService';
 import { enrichDistributionEntities as actualEnrichDistributionEntities } from '@/helpers/forgeDistributionEntityHelper';
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 jest.mock('@/helpers/forgeDistributionEntityHelper', () => ({
   ...jest.requireActual('@/helpers/forgeDistributionEntityHelper'),
   enrichDistributionEntities: jest.fn(),

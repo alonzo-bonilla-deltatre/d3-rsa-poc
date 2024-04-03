@@ -216,7 +216,7 @@ describe('getMetadataGroup function', () => {
   });
 
   it('should return the correct metadata group for a specific category', async () => {
-    // ASSERT
+    // ARRANGE
     const pageStructure = {
       data: {
         metadata: [

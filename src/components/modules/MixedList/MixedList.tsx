@@ -1,5 +1,5 @@
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
-import MixedGridComponent from '@/components/common/list/Mixed/Mixed';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
+import MixedGridComponent from '@/components/commons/list/Mixed/Mixed';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { getBooleanProperty, getDarkClass, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';

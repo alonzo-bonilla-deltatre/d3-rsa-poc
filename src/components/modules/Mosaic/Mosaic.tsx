@@ -1,7 +1,7 @@
-import MosaicView from '@/components/common/MosaicView/MosaicView';
+import MosaicView from '@/components/commons/MosaicView/MosaicView';
 import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
 import { getEntityList } from '@/services/forgeDistributionService';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { DistributionEntity } from '@/models/types/forge';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';

@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { LoggerLevel } from '@/models/types/logger';
-import { TermType, Translations } from '@/models/types/translations';
-import logger from '@/utilities/logger';
+import { Translations } from '@/models/types/translations';
+import logger from '@/utilities/loggerUtility';
 import { handleApiError } from '@/helpers/apiHelper';
-import { translate as translateHelper } from '@/helpers/translationHelper';
 
 // Base URL for the Vocabulary Tool API
 const dapiUrl = process.env.VOCABULARY_TOOL_API_BASE_URL;
@@ -43,16 +42,4 @@ export const getAllTranslations = async (): Promise<Translations | null> => {
   } catch (e) {
     return handleApiError(e, apiName);
   }
-};
-
-/**
- * Translates a given key using the `translateHelper` function.
- * Calls the `translateHelper` function with the provided `key` and `type` and returns the result.
- *
- * @param {string} key - The key to be translated. Defaults to an empty string.
- * @param {TermType} type - The type of term to be translated. Defaults to `TermType.standard`.
- * @returns {string} The translated string.
- */
-export const translate = (key: string = '', type: TermType = TermType.standard): string => {
-  return translateHelper(key, type);
 };

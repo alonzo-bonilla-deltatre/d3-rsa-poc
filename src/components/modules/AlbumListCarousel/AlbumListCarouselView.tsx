@@ -1,7 +1,7 @@
 'use client';
 
-import CarouselAlbum from '@/components/common/list/Carousel/CarouselAlbum';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import CarouselAlbum from '@/components/commons/list/Carousel/CarouselAlbum';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { CardDesign } from '@/models/types/card';
 import { CarouselProps, ModuleProps } from '@/models/types/components';

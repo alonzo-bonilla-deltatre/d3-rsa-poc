@@ -1,11 +1,11 @@
-import { Document as DocumentComponent } from '@/components/common/Document/Document';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import { Document as DocumentComponent } from '@/components/commons/Document/Document';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { DistributionEntity, PagedResult } from '@/models/types/forge';
 import { getEntityList } from '@/services/forgeDistributionService';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 const DocumentList = async ({ data }: { data: ComponentProps }) => {
   const {

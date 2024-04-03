@@ -27,7 +27,7 @@
     --color-gold: #dabf5d;
     --color-light-text: #000;
     --color-dark-text: #fff;
-    --component_common_body_background: #fff;
-    --component_common_dark_body_background: #141414;
+    --component_commons_body_background: #fff;
+    --component_commons_dark_body_background: #141414;
   }
 }

@@ -1,11 +1,10 @@
-import PromoButtons from '@/components/common/cards/PromoCard/PromoButtons';
-import Picture from '@/components/common/Picture/Picture';
-import Sponsored from '@/components/common/Sponsored/Sponsored';
-import { CardLayout } from '@/models/types/card';
+import PromoButtons from '@/components/commons/cards/PromoCard/PromoButtons';
+import Picture from '@/components/commons/Picture/Picture';
+import Sponsored from '@/components/commons/Sponsored/Sponsored';
 import { DistributionEntity } from '@/models/types/forge';
 import { CustomPromoFields } from '@/models/types/forge.customEntityFields';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { transformations } from '@/utilities/cloudinaryTransformations';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 
 type PromoViewProps = {
   entity: DistributionEntity;

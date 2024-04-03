@@ -9,8 +9,8 @@ import { CardDesign } from '@/models/types/card';
 import { useCallback, useEffect, useState } from 'react';
 import { azureSearchKeyPages } from '@/app/actions/azureSearch';
 import SearchPagination from '@/components/modules/SearchResults/SearchPagination';
-import Loader from '@/components/common/Loader/Loader';
-import GridComponent from '@/components/common/list/Grid/Grid';
+import Loader from '@/components/commons/Loader/Loader';
+import GridComponent from '@/components/commons/list/Grid/Grid';
 import { DistributionEntity } from '@/models/types/forge';
 
 type SearchResultViewProps = {

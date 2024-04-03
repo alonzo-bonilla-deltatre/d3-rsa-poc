@@ -1,12 +1,12 @@
-import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import BrightcoveVideoPlayer from '@/components/commons/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import { formatDate } from '@/utilities/dateFormatter';
-import logger from '@/utilities/logger';
+import { formatDate } from '@/helpers/dateHelper';
+import logger from '@/utilities/loggerUtility';
 import { notFound } from 'next/navigation';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 

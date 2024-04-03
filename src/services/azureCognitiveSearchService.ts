@@ -14,7 +14,7 @@ import {
   enrichSearchResultsWithDistributionEntities,
   processKeyPagesDocuments,
 } from '@/helpers/azureCognitiveSearchHelper';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { AzureKeyCredential, SearchClient } from '@azure/search-documents';
 import { Variable } from '@/models/types/pageStructure';

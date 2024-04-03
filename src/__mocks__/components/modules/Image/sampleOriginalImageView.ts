@@ -1,5 +1,4 @@
-﻿import { transformations } from '@/components/modules/Image/ImageHelper';
-import {
+﻿import {
   centerImageContainerCssClass,
   centerLinkCssClass,
   defaultView,
@@ -8,114 +7,115 @@ import {
   rightImageContainerCssClass,
   rightLinkCssClass,
 } from '@/__mocks__/components/modules/Image/sampleImageView';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 
 export const originalExtraSmallLeft = {
   ...defaultView,
-  imageTransformation: transformations.original_extraSmall,
+  imageTransformation: transformations.image_original_extraSmall,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const originalSmallLeft = {
   ...defaultView,
-  imageTransformation: transformations.original_small,
+  imageTransformation: transformations.image_original_small,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const originalMediumLeft = {
   ...defaultView,
-  imageTransformation: transformations.original_medium,
+  imageTransformation: transformations.image_original_medium,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const originalLargeLeft = {
   ...defaultView,
-  imageTransformation: transformations.original_large,
+  imageTransformation: transformations.image_original_large,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const originalExtraLargeLeft = {
   ...defaultView,
-  imageTransformation: transformations.original_extraLarge,
+  imageTransformation: transformations.image_original_extraLarge,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 export const originalExtraExtraLargeLeft = {
   ...defaultView,
-  imageTransformation: transformations.original_extraExtraLarge,
+  imageTransformation: transformations.image_original_extraExtraLarge,
   linkCssClass: leftLinkCssClass,
   imageContainerCssClass: leftImageContainerCssClass,
 };
 
 export const originalExtraSmallCenter = {
   ...defaultView,
-  imageTransformation: transformations.original_extraSmall,
+  imageTransformation: transformations.image_original_extraSmall,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const originalSmallCenter = {
   ...defaultView,
-  imageTransformation: transformations.original_small,
+  imageTransformation: transformations.image_original_small,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const originalMediumCenter = {
   ...defaultView,
-  imageTransformation: transformations.original_medium,
+  imageTransformation: transformations.image_original_medium,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const originalLargeCenter = {
   ...defaultView,
-  imageTransformation: transformations.original_large,
+  imageTransformation: transformations.image_original_large,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const originalExtraLargeCenter = {
   ...defaultView,
-  imageTransformation: transformations.original_extraLarge,
+  imageTransformation: transformations.image_original_extraLarge,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 export const originalExtraExtraLargeCenter = {
   ...defaultView,
-  imageTransformation: transformations.original_extraExtraLarge,
+  imageTransformation: transformations.image_original_extraExtraLarge,
   linkCssClass: centerLinkCssClass,
   imageContainerCssClass: centerImageContainerCssClass,
 };
 
 export const originalExtraSmallRight = {
   ...defaultView,
-  imageTransformation: transformations.original_extraSmall,
+  imageTransformation: transformations.image_original_extraSmall,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const originalSmallRight = {
   ...defaultView,
-  imageTransformation: transformations.original_small,
+  imageTransformation: transformations.image_original_small,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const originalMediumRight = {
   ...defaultView,
-  imageTransformation: transformations.original_medium,
+  imageTransformation: transformations.image_original_medium,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const originalLargeRight = {
   ...defaultView,
-  imageTransformation: transformations.original_large,
+  imageTransformation: transformations.image_original_large,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const originalExtraLargeRight = {
   ...defaultView,
-  imageTransformation: transformations.original_extraLarge,
+  imageTransformation: transformations.image_original_extraLarge,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };
 export const originalExtraExtraLargeRight = {
   ...defaultView,
-  imageTransformation: transformations.original_extraExtraLarge,
+  imageTransformation: transformations.image_original_extraExtraLarge,
   linkCssClass: rightLinkCssClass,
   imageContainerCssClass: rightImageContainerCssClass,
 };

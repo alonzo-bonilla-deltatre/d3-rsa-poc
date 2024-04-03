@@ -1,5 +1,4 @@
 ﻿import { sampleAlbumList } from '@/__mocks__/modules/sampleAlbumList';
-import { ForgeApiError } from '@/models/types/errors';
 import handler from '@/pages/api/dapi/selection/[selectionSlug]';
 import { getSelection } from '@/services/forgeDistributionService';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -52,7 +51,7 @@ describe('DAPI getSelectionEntity handler', () => {
       data: {
         status: 500,
         title: 'Exception',
-      } as ForgeApiError,
+      },
     });
 
     // ACT

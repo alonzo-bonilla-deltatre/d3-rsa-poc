@@ -1,10 +1,10 @@
 import { ComponentProps } from '@/models/types/components';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import GadAsset from '@/components/common/GadAsset/GadAsset';
+import GadAsset from '@/components/commons/GadAsset/GadAsset';
 import { ImageTransformationName, ImageTransformations } from '@/models/types/images';
-import { transformations } from '@/utilities/cloudinaryTransformations';
-import logger from '@/utilities/logger';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 
 type GraphicAssetProps = {

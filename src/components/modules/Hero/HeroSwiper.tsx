@@ -8,11 +8,11 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 
 import { DistributionEntity } from '@/models/types/forge';
-import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformations';
-import Picture from '@/components/common/Picture/Picture';
+import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
+import Picture from '@/components/commons/Picture/Picture';
 import '@/components/modules/Hero/tailwind-hero.css';
 import { useEnvVars } from '@/hooks/useEnvVars';
-import { getSiteDirection } from '@/utilities/direction';
+import { getSiteDirection } from '@/helpers/pageHelper';
 
 type HeroSwiperProps = {
   slides: DistributionEntity[];

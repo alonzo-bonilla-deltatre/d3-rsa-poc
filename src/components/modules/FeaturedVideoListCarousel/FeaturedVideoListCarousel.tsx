@@ -5,7 +5,7 @@ import FeaturedCarouselView from '@/components/modules/FeaturedCarousel/Featured
 import { getDarkClass, getNumberProperty, getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { CardLayout, CardType } from '@/models/types/card';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 
 type FeaturedVideoListCarouselProps = EditorialModuleProps & CarouselProps;

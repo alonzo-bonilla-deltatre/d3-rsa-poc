@@ -1,6 +1,6 @@
 import { SitemapItem } from '@/models/types/siteStructure';
 import { EntityCodeOptions, SchemaConfig } from '@/models/types/sitemap';
-import { formatDate } from '@/utilities/dateFormatter';
+import { formatDate } from '@/helpers/dateHelper';
 
 const removeDisallowItems = (items: SitemapItem[], disallowedValues: string[]): SitemapItem[] => {
   return items.filter((item) => !disallowedValues.some((disallowedValue) => item.url.value.includes(disallowedValue)));

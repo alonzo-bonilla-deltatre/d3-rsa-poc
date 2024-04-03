@@ -1,4 +1,4 @@
-﻿import { FeatureFlagsContext } from '@/context/featureFlagsContext';
+﻿import { FeatureFlagsContext } from '@/contexts/featureFlagsContext';
 import { useContext } from 'react';
 
 /**

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { MenuStructureResponse } from '@/models/types/menu';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { handleApiError } from '@/helpers/apiHelper';
 

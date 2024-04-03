@@ -2,7 +2,6 @@
 import handler from '@/pages/api/dapi/[entityCode]/[slug]';
 import { sampleStory } from '@/__mocks__/modules/sampleStory';
 import { getEntity } from '@/services/forgeDistributionService';
-import { ForgeApiError } from '@/models/types/errors';
 import { ForgeEntityCode } from '@/models/types/forge';
 
 jest.mock('@/services/forgeDistributionService', () => ({
@@ -55,7 +54,7 @@ describe('DAPI getEntity handler', () => {
       data: {
         status: 500,
         title: 'Exception',
-      } as ForgeApiError,
+      },
     });
 
     // ACT

@@ -1,8 +1,8 @@
 import { ComponentProps, ModuleProps } from '@/models/types/components';
-import CallToAction from '@/components/common/CallToAction/CallToAction';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
 import { getHideModule } from '@/helpers/pageComponentPropertyHelper';
-import { translate } from '@/services/translationService';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { translate } from '@/helpers/translationHelper';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 type CtaProps = {
   ctaStyle?: string;

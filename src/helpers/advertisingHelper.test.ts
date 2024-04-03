@@ -1,12 +1,11 @@
-﻿import logger from '@/utilities/logger';
+﻿import logger from '@/utilities/loggerUtility';
 import { getAdSizesFromString } from './advertisingHelper';
 import { LoggerLevel } from '@/models/types/logger';
 import { describe, expect, it } from '@jest/globals';
 
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 
 describe('getAdSizesFromString', () => {
-  // @ts-ignore
   const mockLogger = logger.log as jest.Mock;
 
   it('should return an array of two numbers when provided with a valid size string', () => {

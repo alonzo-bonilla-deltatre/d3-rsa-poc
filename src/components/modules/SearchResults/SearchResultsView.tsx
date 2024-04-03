@@ -1,16 +1,16 @@
 'use client';
 
-import SearchBar from '@/components/common/SearchBar/SearchBar';
+import SearchBar from '@/components/commons/SearchBar/SearchBar';
 import { getTotalCount } from '@/components/modules/SearchResults/SearchResultsHelper';
 import { AzureSearchOption, AzureSearchResult, SearchResult } from '@/models/types/azureSearch';
 import { CardLayout, CardOptions, CardType } from '@/models/types/card';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 import { useCallback, useEffect, useState } from 'react';
 import { azureSearch } from '@/app/actions/azureSearch';
 import { Variable } from '@/models/types/pageStructure';
 import SearchResultsForgeEntitiesView from '@/components/modules/SearchResults/SearchResultsForgeEntitiesView';
 import SearchResultsKeyPagesView from '@/components/modules/SearchResults/SearchResultsKeyPagesView';
-import Loader from '@/components/common/Loader/Loader';
+import Loader from '@/components/commons/Loader/Loader';
 import SearchResultsEmptyView from '@/components/modules/SearchResults/SearchResultsEmptyView';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 

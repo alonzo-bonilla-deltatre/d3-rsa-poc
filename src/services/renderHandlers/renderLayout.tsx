@@ -1,7 +1,7 @@
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 
 import renderFooter from '@/components/layouts/Footer/FooterWrapper';
 import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';

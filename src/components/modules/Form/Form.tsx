@@ -1,4 +1,4 @@
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import FormView from '@/components/modules/Form/FormView';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';

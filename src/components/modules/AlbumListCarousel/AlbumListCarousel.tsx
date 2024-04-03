@@ -1,4 +1,4 @@
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 import AlbumListCarouselView from '@/components/modules/AlbumListCarousel/AlbumListCarouselView';
 import { customEnrichAlbumListWithElementCount } from '@/helpers/customForgeDistributionEntityHelper';
 import { getDarkClass, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
@@ -7,9 +7,8 @@ import { NavButtonSize } from '@/models/types/carousel';
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { DistributionEntity } from '@/models/types/forge';
 import { getEntityList } from '@/services/forgeDistributionService';
-
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 const AlbumListCarousel = async ({ data }: { data: ComponentProps }) => {
   const {

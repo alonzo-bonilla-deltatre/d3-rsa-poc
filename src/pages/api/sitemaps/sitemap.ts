@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSiteStructureXml } from '@/services/sitemapService';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 
 /**
  * Handler for the sitemap API route.

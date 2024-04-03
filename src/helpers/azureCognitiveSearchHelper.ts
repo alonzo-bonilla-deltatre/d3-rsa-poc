@@ -146,7 +146,7 @@ export const processDocuments = async (
  */
 export const processKeyPagesDocuments = async (
   results: SearchIterator<object, string>,
-  items: any[] | undefined
+  items?: unknown[]
 ): Promise<void> => {
   for await (const result of results) {
     const document = result.document as AzureKeyPagesIndexEntity;

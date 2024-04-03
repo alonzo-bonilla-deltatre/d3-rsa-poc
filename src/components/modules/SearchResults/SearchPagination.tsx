@@ -1,7 +1,7 @@
 'use client';
 
 import { AzureSearchOption } from '@/models/types/azureSearch';
-import CallToAction from '@/components/common/CallToAction/CallToAction';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
 import { Dispatch, SetStateAction } from 'react';
 import useTranslate from '@/hooks/useTranslate';
 

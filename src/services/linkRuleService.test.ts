@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getLinkRules } from '@/services/linkRuleService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { linkRules } from '@/__mocks__/linkRule';
 import { LinkRuleRequest } from '@/models/types/linkRule';
@@ -11,7 +11,7 @@ const culture = process.env.CULTURE;
 const environment = process.env.ENVIRONMENT;
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 
 const body = [
   {
@@ -30,7 +30,7 @@ describe('getLinkRules', () => {
   });
 
   it('should call the right API URL', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.post as jest.Mock).mockResolvedValue({});
 
     // ACT
@@ -49,7 +49,7 @@ describe('getLinkRules', () => {
   });
 
   it('should return link rules if request body object contains all the required properties', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.post as jest.Mock).mockRejectedValueOnce(linkRules);
 
     // ACT
@@ -62,7 +62,7 @@ describe('getLinkRules', () => {
   });
 
   it('should return null in case of exception', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.post as jest.Mock).mockRejectedValueOnce({});
 
     // ACT
@@ -73,7 +73,7 @@ describe('getLinkRules', () => {
   });
 
   it('should return null in case of exception and log the response data if available', async () => {
-    // ASSERT
+    // ARRANGE
     const errorMessage = 'Unauthorized';
     (axios.post as jest.Mock).mockRejectedValueOnce({
       status: 401,
@@ -92,7 +92,7 @@ describe('getLinkRules', () => {
   });
 
   it('should return null in case of exception for empty url and return null', async () => {
-    // ASSERT
+    // ARRANGE
     const apiUrl = process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
     process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = undefined;
 

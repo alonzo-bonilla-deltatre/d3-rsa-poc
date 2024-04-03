@@ -1,7 +1,7 @@
 ﻿import React, { useContext } from 'react';
-import { TranslationContext } from '@/context/translationContext';
+import { TranslationContext } from '@/contexts/translationContext';
 import { TermType, Translation } from '@/models/types/translations';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 
 /**

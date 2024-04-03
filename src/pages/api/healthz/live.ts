@@ -1,4 +1,4 @@
-import { getPageData } from '@/app/pageHelpers';
+import { getPageData } from '@/helpers/pageHelper';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 /**

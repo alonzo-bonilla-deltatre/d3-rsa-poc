@@ -1,6 +1,6 @@
-import CallToAction from '@/components/common/CallToAction/CallToAction';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
-import renderCard from '@/components/common/cards/Card/CardWrapper';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
+import renderCard from '@/components/commons/cards/Card/CardWrapper';
 import { CardLayout, CardProps, CardType } from '@/models/types/card';
 import { DistributionEntity } from '@/models/types/forge';
 

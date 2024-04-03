@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { getRobotsTxt } from '@/services/robotsService';
 

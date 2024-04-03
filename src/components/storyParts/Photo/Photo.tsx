@@ -1,6 +1,6 @@
 import React from 'react';
-import Picture from '@/components/common/Picture/Picture';
-import { transformations } from '@/utilities/cloudinaryTransformations';
+import Picture from '@/components/commons/Picture/Picture';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ImageAsset } from '@/models/types/images';
 

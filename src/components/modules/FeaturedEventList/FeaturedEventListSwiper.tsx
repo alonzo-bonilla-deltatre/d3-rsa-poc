@@ -8,11 +8,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { DistributionEntity } from '@/models/types/forge';
 import React from 'react';
-import renderCard from '@/components/common/cards/Card/CardWrapper';
+import renderCard from '@/components/commons/cards/Card/CardWrapper';
 import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
-import { formatDate } from '@/utilities/dateFormatter';
+import { formatDate } from '@/helpers/dateHelper';
 import { CardDesign, CardProps } from '@/models/types/card';
-import { getSiteDirection } from '@/utilities/direction';
+import { getSiteDirection } from '@/helpers/pageHelper';
 import { useEnvVars } from '@/hooks/useEnvVars';
 
 type FeaturedEventListSwiperProps = {

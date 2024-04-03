@@ -1,9 +1,9 @@
 ﻿import { NextApiRequest, NextApiResponse } from 'next';
-import { getPageData } from '@/app/pageHelpers';
+import { getPageData } from '@/helpers/pageHelper';
 import healthCheck, { HealthzStatus } from '@/pages/api/healthz/live';
 import { indexStructure } from '@/__mocks__/pageStructures';
 
-jest.mock('@/app/pageHelpers', () => ({
+jest.mock('@/helpers/pageHelper', () => ({
   getPageData: jest.fn(),
 }));
 

@@ -1,5 +1,5 @@
 ﻿import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 
 /**
  * Converts a string representing ad sizes into an array of numbers.

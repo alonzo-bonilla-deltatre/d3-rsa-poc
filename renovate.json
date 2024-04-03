@@ -1,4 +1,0 @@
-{
-  "baseBranches": ["master", "develop"],
-  "enabledManagers": ["yarn", "dockerfile"]
-}

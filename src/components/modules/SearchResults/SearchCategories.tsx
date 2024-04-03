@@ -1,6 +1,6 @@
 'use client';
 
-import TranslatedLabel from '@/components/common/TranslatedLabel/TranslatedLabel';
+import TranslatedLabel from '@/components/commons/TranslatedLabel/TranslatedLabel';
 import { AzureSearchOption } from '@/models/types/azureSearch';
 import { Dispatch, SetStateAction, useState } from 'react';
 import useTranslate from '@/hooks/useTranslate';

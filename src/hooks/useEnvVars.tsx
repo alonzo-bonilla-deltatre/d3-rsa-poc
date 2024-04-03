@@ -1,4 +1,4 @@
-﻿import { EnvVarContext } from '@/context/envVarsContexts';
+﻿import { EnvVarContext } from '@/contexts/envVarsContexts';
 import { useContext } from 'react';
 
 /**

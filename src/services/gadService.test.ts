@@ -7,17 +7,17 @@ import {
   getPlaceholderImage,
   getSingleAssetByTag,
 } from '@/services/gadService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { sampleAsset } from '@/__mocks__/components/sampleGadAsset';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
+import { IMAGE_PLACEHOLDER } from '@/utilities/constsUtility';
 import { ForgeEntityCode } from '@/models/types/forge';
 
 const tag = ForgeEntityCode.tag;
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 
 describe('gadService', () => {
   afterEach(() => {
@@ -27,7 +27,7 @@ describe('gadService', () => {
 
   describe('getAssetsByTag', () => {
     it('should call with empty value and return null', async () => {
-      // ASSERT
+      // ARRANGE
       (axios.get as jest.Mock).mockResolvedValue({});
 
       // ACT
@@ -38,7 +38,7 @@ describe('gadService', () => {
     });
 
     it('should return null in case of exception for empty url and return null', async () => {
-      // ASSERT
+      // ARRANGE
       const apiUrl = process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL;
       process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL = undefined;
 
@@ -52,7 +52,7 @@ describe('gadService', () => {
     });
 
     it('should call the right API URL', async () => {
-      // ASSERT
+      // ARRANGE
       (axios.get as jest.Mock).mockResolvedValue({});
 
       // ACT
@@ -65,7 +65,7 @@ describe('gadService', () => {
     });
 
     it('should return gad image array with first item if tag is present', async () => {
-      // ASSERT
+      // ARRANGE
       (axios.get as jest.Mock).mockResolvedValue(sampleAsset);
 
       // ACT
@@ -80,7 +80,7 @@ describe('gadService', () => {
     });
 
     it('should return null in case of exception', async () => {
-      // ASSERT
+      // ARRANGE
       (axios.get as jest.Mock).mockRejectedValueOnce({});
 
       // ACT
@@ -91,7 +91,7 @@ describe('gadService', () => {
     });
 
     it('should return null in case of exception and log the response data if available', async () => {
-      // ASSERT
+      // ARRANGE
       const errorMessage = 'Unauthorized';
       (axios.get as jest.Mock).mockRejectedValueOnce({
         status: 401,
@@ -111,6 +111,7 @@ describe('gadService', () => {
   });
 
   describe('getSingleAssetByTag', () => {
+    // ARRANGE
     const gadAssetsResponse = [
       {
         name: 'Item 1',
@@ -171,8 +172,6 @@ describe('gadService', () => {
       expect(axios.get as jest.Mock).toHaveBeenCalledWith(
         `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=tag1`
       );
-
-      // ASSERT
       expect(result?.assetThumbnailUrl).toBe('https://example.com/item1-thumbnail.jpg');
     });
   });
@@ -189,7 +188,7 @@ describe('gadService', () => {
     });
 
     it('should return the first item if assets are valid', () => {
-      // ACT
+      // ARRANGE
       const mockResponse: GraphicAssetsDashboardItem[] = [
         {
           name: 'Item 1',
@@ -245,6 +244,7 @@ describe('gadService', () => {
         },
       ];
 
+      // ACT
       const result = firstAssetOrDefault(mockResponse);
 
       // ASSERT
@@ -308,7 +308,6 @@ describe('gadService', () => {
       // ACT
       await getImageOrPlaceholder(image, 'placeholder_tag');
 
-      // ASSERT
       // ASSERT
       expect(axios.get as jest.Mock).toHaveBeenCalledWith(
         `${process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL}/api/assets/tag?tags=placeholder_tag`

@@ -1,4 +1,4 @@
-import BrightcoveVideoPlayer from '@/components/common/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
+import BrightcoveVideoPlayer from '@/components/commons/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
 import { StoryPart } from '@/models/types/storyPart';
 
 const BrightcoveVideo = ({ data }: { data: StoryPart }) => (

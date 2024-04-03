@@ -1,9 +1,9 @@
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { getBooleanProperty, getDarkClass, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 const Section = ({ data }: { data: ComponentProps }) => {
   const {

@@ -2,7 +2,7 @@ import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { AlbumEntity, ForgeDapiEntityCode } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { notFound } from 'next/navigation';
 import AlbumFeatured from '@/components/modules/Album/AlbumFeatured';
 import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';

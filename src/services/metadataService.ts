@@ -3,7 +3,7 @@ import { getSiteUrl } from '@/services/configurationService';
 import { Twitter } from 'next/dist/lib/metadata/types/twitter-types';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
-import { translate } from '@/services/translationService';
+import { translate } from '@/helpers/translationHelper';
 import {
   ForgeMetadataCategoryType,
   ForgeMetadataKeyType,

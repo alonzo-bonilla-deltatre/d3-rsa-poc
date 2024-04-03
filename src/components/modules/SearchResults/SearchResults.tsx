@@ -3,7 +3,7 @@ import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { AzureSearchOption } from '@/models/types/azureSearch';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { getDarkClass, getHideModule, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import SearchResultView from '@/components/modules/SearchResults/SearchResultsView';
 
 type SearchResultsProps = {

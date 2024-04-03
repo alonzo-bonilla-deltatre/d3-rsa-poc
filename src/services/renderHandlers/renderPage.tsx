@@ -1,11 +1,11 @@
 ﻿import { ReturnComponentRender } from '@/models/types/components';
-import { requestUrlParser } from '@/utilities/requestUrlParser';
+import { requestUrlParser } from '@/utilities/requestUrlParserUtility';
 import { AzureSearchOption } from '@/models/types/azureSearch';
 import { notFound } from 'next/navigation';
-import ThemingVariables from '@/components/common/ThemingVariables/ThemingVariables';
+import ThemingVariables from '@/components/commons/ThemingVariables/ThemingVariables';
 import { renderItem } from '@/services/renderService';
-import AppViewLinksHandler from '@/components/common/AppViewLinksHandler/AppViewLinksHandler';
-import { enrichPageVariables, getPageData } from '@/app/pageHelpers';
+import AppViewLinksHandler from '@/components/commons/AppViewLinksHandler/AppViewLinksHandler';
+import { enrichPageVariables, getPageData } from '@/helpers/pageHelper';
 
 /**
  * Renders a page based on the provided parameters.

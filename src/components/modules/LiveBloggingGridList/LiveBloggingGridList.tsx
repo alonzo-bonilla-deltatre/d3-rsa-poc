@@ -1,11 +1,11 @@
 import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
-import GridList from '@/components/common/list/Grid/Grid';
+import GridList from '@/components/commons/list/Grid/Grid';
 import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { getBlogs } from '@/services/liveBloggingDistributionService';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
 import { getFilteredItems } from '@/helpers/liveBloggingBlogEntityHelper';
 import { CardLayout, CardType } from '@/models/types/card';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 
 type LiveBloggingGridListProps = {
   skip?: number;

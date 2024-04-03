@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { LoggerLevel } from '@/models/types/logger';
 import { getManifestJson } from '@/services/manifestService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { ManifestResponse } from '@/models/types/manifest';
 
 /**

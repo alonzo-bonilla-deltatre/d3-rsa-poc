@@ -2,7 +2,7 @@ import { getBooleanPropertyDefault, getStringProperty } from '@/helpers/pageComp
 import { DistributionEntity } from '@/models/types/forge';
 import { FormEntity, FormFields } from '@/models/types/forge.customEntityFields';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 
 /**

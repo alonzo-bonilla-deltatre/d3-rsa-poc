@@ -9,7 +9,7 @@ import {
   setGadAssetBackground,
   setPhotoBackground,
 } from './EnhancedTitleHelpers';
-import { transformations } from '@/utilities/cloudinaryTransformations';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
 import { DistributionEntity } from '@/models/types/forge';
 import { sampleAsset } from '@/__mocks__/components/sampleGadAsset';
@@ -94,6 +94,7 @@ describe('setDefaultBackground', (): void => {
 });
 describe('setPhotoBackground', (): void => {
   test('should return PhotoBackground', (): void => {
+    // ARRANGE
     const imageEntity: DistributionEntity = {
       ...emptyDistributionEntity,
       sampleThumbnail,
@@ -112,9 +113,8 @@ describe('setPhotoBackground', (): void => {
 });
 describe('setGadAssetBackground', (): void => {
   test('should return GadAssetBackground', (): void => {
-    const imageEntity = sampleAsset;
     // ACT
-    const result = setGadAssetBackground(imageEntity, transformations.enhanced_title_background, 'small');
+    const result = setGadAssetBackground(sampleAsset, transformations.enhanced_title_background, 'small');
     // ASSERT
     expect(result.size).toEqual(150);
     expect(result.additionalClasses).toEqual('bg-transparent');

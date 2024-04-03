@@ -1,12 +1,10 @@
 import React from 'react';
-import Picture from '@/components/common/Picture/Picture';
+import Picture from '@/components/commons/Picture/Picture';
 import { DistributionEntity, ForgeEntityType } from '@/models/types/forge';
-import { transformations } from '@/utilities/cloudinaryTransformations';
-import { translate } from '@/services/translationService';
-import Roofline from '@/components/common/Roofline/Roofline';
-import CallToAction from '@/components/common/CallToAction/CallToAction';
-import { ModuleProps } from '@/models/types/components';
-import { getDarkClass } from '@/helpers/pageComponentPropertyHelper';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
+import { translate } from '@/helpers/translationHelper';
+import Roofline from '@/components/commons/Roofline/Roofline';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
 
 type FocusOnViewProps = {
   storyEntity?: DistributionEntity;

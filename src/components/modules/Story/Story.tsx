@@ -1,5 +1,5 @@
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
-import SocialShare from '@/components/common/SocialShare/SocialShare';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
+import SocialShare from '@/components/commons/SocialShare/SocialShare';
 import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
 import RelatedItems from '@/components/modules/Story/StoryRelatedItems';
@@ -9,9 +9,9 @@ import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import { getMetadata } from '@/services/metadataService';
-import { translate } from '@/services/translationService';
-import { formatDate } from '@/utilities/dateFormatter';
-import logger from '@/utilities/logger';
+import { translate } from '@/helpers/translationHelper';
+import { formatDate } from '@/helpers/dateHelper';
+import logger from '@/utilities/loggerUtility';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import {
@@ -20,7 +20,7 @@ import {
   ForgeMetadataCategoryType,
   ForgeSocialsMetadataKey,
 } from '@/models/types/forge';
-const Markdown = dynamic(() => import('@/components/common/Markdown/Markdown'));
+const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
 type StoryProps = {
   slug?: string;

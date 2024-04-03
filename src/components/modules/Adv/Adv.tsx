@@ -1,5 +1,5 @@
 import { ComponentProps } from '@/models/types/components';
-import { Adv as AdvComponent } from '@/components/common/Adv/Adv';
+import { Adv as AdvComponent } from '@/components/commons/Adv/Adv';
 
 type AdvProps = {
   type: string;

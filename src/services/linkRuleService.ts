@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LinkRuleRequest, LinkRuleResponse } from '@/models/types/linkRule';
 import { handleApiError } from '@/helpers/apiHelper';
 

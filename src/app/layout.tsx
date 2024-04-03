@@ -1,18 +1,17 @@
 import '@/styles/globals.css';
-import '@/styles/components/common/cards/tailwind-cards.css';
+import '@/styles/components/commons/cards/tailwind-cards.css';
 
 import { getSiteTranslations } from '@/helpers/translationHelper';
-import { TranslationProvider } from '@/context/translationContext';
+import { TranslationProvider } from '@/contexts/translationContext';
 import { Metadata } from 'next';
-import { generatePageMetadata } from '@/app/pageHelpers';
-import { EnvVarsProvider } from '@/context/envVarsContexts';
-import { publicEnvVariables } from '@/utilities/publicEnvVariables';
+import { generatePageMetadata, getSiteDirection } from '@/helpers/pageHelper';
+import { EnvVarsProvider } from '@/contexts/envVarsContexts';
+import { publicEnvVariables } from '@/utilities/publicEnvVariablesUtility';
 import { Barlow, Barlow_Condensed, Karantina } from 'next/font/google';
-import { getSiteDirection } from '@/utilities/direction';
-import { FeatureFlagsProvider } from '@/context/featureFlagsContext';
-import { featureFlags } from '@/utilities/featureFlags';
+import { FeatureFlagsProvider } from '@/contexts/featureFlagsContext';
+import { featureFlags } from '@/utilities/featureFlagsUtility';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import Favicon from '@/components/common/Favicon/Favicon';
+import Favicon from '@/components/commons/Favicon/Favicon';
 import { ReactNode } from 'react';
 
 // If loading a variable font, you don"t need to specify the font weight

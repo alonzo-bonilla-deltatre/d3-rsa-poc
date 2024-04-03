@@ -1,4 +1,4 @@
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { containerCssSize, getImageContainerCssClass, getLinkCssClass } from '@/components/modules/Image/ImageHelper';
 import ImageView from '@/components/modules/Image/ImageView';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
@@ -8,7 +8,7 @@ import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { getEntity } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
-import { transformations } from '@/utilities/cloudinaryTransformations';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { ImageTransformationName } from '@/models/types/images';
 
 type ImageProps = {

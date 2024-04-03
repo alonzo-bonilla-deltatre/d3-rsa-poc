@@ -1,12 +1,12 @@
 import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { hasItemsInSlot, renderItemsInSlot } from '@/services/renderService';
 import dynamic from 'next/dynamic';
-import { translate } from '@/services/translationService';
+import { translate } from '@/helpers/translationHelper';
 import { getBooleanProperty, getDarkClass, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { Variable } from '@/models/types/pageStructure';
 import { createDataVariable } from '@/helpers/dataVariableHelper';
 import { MenuSources } from '@/components/modules/Menu/Menu';
-const SocialIcons = dynamic(() => import('@/components/common/SocialIcons/SocialIcons'));
+const SocialIcons = dynamic(() => import('@/components/commons/SocialIcons/SocialIcons'));
 
 enum FooterLayoutSlots {
   logo = 'logo',

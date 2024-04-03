@@ -1,7 +1,7 @@
 import { ForgeDistributionApiOption, PagedResult } from '@/models/types/forge';
 import { LoggerLevel } from '@/models/types/logger';
 import { getSelection } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 /**

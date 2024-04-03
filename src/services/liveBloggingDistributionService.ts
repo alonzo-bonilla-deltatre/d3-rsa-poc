@@ -1,5 +1,5 @@
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 import { LiveBloggingBlogEntity, LiveBloggingDistributionApiOption } from '@/models/types/liveblogging';
 import { addLiveBloggingWidgetConfig } from '@/helpers/liveBloggingDistributionEntityHelper';

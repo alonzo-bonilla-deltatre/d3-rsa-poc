@@ -1,19 +1,18 @@
-import CallToAction from '@/components/common/CallToAction/CallToAction';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
-import renderCard from '@/components/common/cards/Card/CardWrapper';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
-import Picture from '@/components/common/Picture/Picture';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
+import renderCard from '@/components/commons/cards/Card/CardWrapper';
+import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
+import Picture from '@/components/commons/Picture/Picture';
 import styles from '@/components/modules/HeroStatic/HeroStatic.module.scss';
-import { getFilteredItems } from '@/helpers/forgeDistributionEntityHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { CardLayout, CardProps, CardType } from '@/models/types/card';
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { getSelection } from '@/services/forgeDistributionService';
-import { translate } from '@/services/translationService';
-import { transformations } from '@/utilities/cloudinaryTransformations';
-import { formatDate } from '@/utilities/dateFormatter';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { translate } from '@/helpers/translationHelper';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
+import { formatDate } from '@/helpers/dateHelper';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 import { DistributionEntity } from '@/models/types/forge';
 
 const HeroStatic = async ({ data }: { data: ComponentProps }) => {

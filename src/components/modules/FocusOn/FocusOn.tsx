@@ -1,11 +1,11 @@
 import React from 'react';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import { notFound } from 'next/navigation';
 import FocusOnView from './FocusOnView';
-import HeaderTitle from '@/components/common/HeaderTitle/HeaderTitle';
+import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
 import { getBooleanProperty, getDarkClass } from '@/helpers/pageComponentPropertyHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';

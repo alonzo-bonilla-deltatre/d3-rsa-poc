@@ -1,5 +1,5 @@
 'use client';
-import CallToAction from '@/components/common/CallToAction/CallToAction';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
 import useTranslate from '@/hooks/useTranslate';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {

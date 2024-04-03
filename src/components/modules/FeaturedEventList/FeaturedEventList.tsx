@@ -5,7 +5,7 @@ import { FeaturedEventListSwiper } from '@/components/modules/FeaturedEventList/
 import FeaturedEventListHeader from '@/components/modules/FeaturedEventList/FeaturedEventListHeader';
 import { DistributionEntity } from '@/models/types/forge';
 import { CardLayout, CardType } from '@/models/types/card';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 
 const EventList = async ({ data }: { data: ComponentProps }) => {

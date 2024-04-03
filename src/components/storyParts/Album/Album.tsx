@@ -1,5 +1,5 @@
 import { StoryPart } from '@/models/types/storyPart';
-import { Album as AlbumComponent } from '@/components/common/Album/Album';
+import { Album as AlbumComponent } from '@/components/commons/Album/Album';
 import { DistributionEntity, ForgeDapiEntityCode } from '@/models/types/forge';
 import { getEntity } from '@/services/forgeDistributionService';
 

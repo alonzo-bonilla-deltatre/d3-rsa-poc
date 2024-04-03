@@ -1,9 +1,6 @@
 import { ComponentProps } from '@/models/types/components';
-import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
-import logger from '@/utilities/logger';
-import { notFound } from 'next/navigation';
 import PromoView from './PromoView';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';

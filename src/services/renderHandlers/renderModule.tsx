@@ -1,4 +1,4 @@
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';

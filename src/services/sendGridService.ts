@@ -2,7 +2,7 @@
 import { validateField } from '@/helpers/formHelper';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { AttachmentJSON } from '@sendgrid/helpers/classes/attachment';
 import { MailDataRequired } from '@sendgrid/helpers/classes/mail';
 import sgMail from '@sendgrid/mail';

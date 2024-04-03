@@ -1,13 +1,13 @@
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { getEntity, getEntityList } from '@/services/forgeDistributionService';
-import GridComponent from '@/components/common/list/Grid/Grid';
+import GridComponent from '@/components/commons/list/Grid/Grid';
 import { getBooleanProperty, getDarkClass, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
-import FeaturedRow from '@/components/common/FeaturedRow/FeaturedRow';
+import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { CardLayout, CardType } from '@/models/types/card';
 import { DistributionEntity, ForgeDapiEntityCode } from '@/models/types/forge';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 
 type FeaturedGridListProps = {
   cardLayout?: string;

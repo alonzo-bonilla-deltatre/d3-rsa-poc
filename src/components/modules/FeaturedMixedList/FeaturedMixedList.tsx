@@ -1,12 +1,12 @@
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
 import { getEntity, getEntityList } from '@/services/forgeDistributionService';
-import MixedSquared from '@/components/common/list/Mixed/MixedSquared';
+import MixedSquared from '@/components/commons/list/Mixed/MixedSquared';
 import { getBooleanProperty, getDarkClass, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
-import FeaturedRow from '@/components/common/FeaturedRow/FeaturedRow';
+import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
 import { getSingleAssetByTag } from '@/services/gadService';
 import { ForgeDapiEntityCode, PagedResult } from '@/models/types/forge';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 const FeaturedMixedList = async ({ data }: { data: ComponentProps }) => {
   const {

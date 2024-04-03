@@ -1,4 +1,4 @@
-import CallToAction from '@/components/common/CallToAction/CallToAction';
+import CallToAction from '@/components/commons/CallToAction/CallToAction';
 
 export default function NotFound() {
   return (

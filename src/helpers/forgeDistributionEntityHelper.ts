@@ -9,7 +9,7 @@ import {
 } from '@/models/types/forge';
 import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
-import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
+import { IMAGE_PLACEHOLDER } from '@/utilities/constsUtility';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { LinkRuleRequest, LinkRuleResponse, LinkRuleVariation, LinkRuleVariationType } from '@/models/types/linkRule';
 import { StoryPart } from '@/models/types/storyPart';
@@ -19,8 +19,8 @@ import {
   customEnrichEntitiesWithReferencesFields,
   customEnrichLinkRuleRequestEntity,
 } from '@/helpers/customForgeDistributionEntityHelper';
-import { getPageNumber } from '@/components/common/list/Pagination/PaginationHelper';
-import logger from '@/utilities/logger';
+import { getPageNumber } from '@/components/commons/list/Pagination/PaginationHelper';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 
 const culture = process.env.CULTURE;

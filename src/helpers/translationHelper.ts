@@ -1,6 +1,6 @@
 import { LoggerLevel } from '@/models/types/logger';
 import { TermType, Translation } from '@/models/types/translations';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { getAllTranslations } from '@/services/translationService';
 
 // Cache for the site translations

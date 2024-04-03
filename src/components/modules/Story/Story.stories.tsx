@@ -6,7 +6,7 @@ import StoryHeader from '@/components/modules/Story/StoryHeader';
 import StoryParts from '@/components/modules/Story/StoryParts';
 import StoryWrapper from '@/components/modules/Story/StoryWrapper';
 import { CardLayout, CardType } from '@/models/types/card';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
 
 const meta: Meta<typeof StoryWrapper> = {
   title: 'Modules/Story',

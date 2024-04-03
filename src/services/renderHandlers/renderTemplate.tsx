@@ -1,7 +1,7 @@
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 
 import renderDefault from '@/components/templates/Default/DefaultWrapper';
 import renderNoTemplate from '@/components/templates/NoTemplate/NoTemplateWrapper';

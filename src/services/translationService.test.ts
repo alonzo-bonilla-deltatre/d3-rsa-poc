@@ -1,12 +1,10 @@
 import axios from 'axios';
-import { getAllTranslations, translate } from '@/services/translationService';
-import { translate as translateHelper } from '@/helpers/translationHelper';
-import logger from '@/utilities/logger';
+import { getAllTranslations } from '@/services/translationService';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
-import { TermType } from '@/models/types/translations';
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 jest.mock('@/helpers/translationHelper');
 
 describe('getAllTranslations', () => {
@@ -122,66 +120,5 @@ describe('getAllTranslations', () => {
     // ASSERT
     expect(result).toBeNull();
     expect(logger.log as jest.Mock).toHaveBeenCalledWith(expect.stringMatching(errorMessage), LoggerLevel.error);
-  });
-});
-
-describe('translate', () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-    jest.clearAllMocks();
-  });
-
-  it('should translate a given key', () => {
-    // ARRANGE
-    const mockKey = 'contact';
-    const mockType = TermType.standard;
-    const mockTranslation = 'Contact';
-    (translateHelper as jest.Mock).mockReturnValue(mockTranslation);
-
-    // ACT
-    const result = translate(mockKey, mockType);
-
-    // ASSERT
-    expect(result).toEqual(mockTranslation);
-    expect(translateHelper).toHaveBeenCalledWith(mockKey, mockType);
-  });
-
-  it('should return an empty string when key is not provided', () => {
-    // ARRANGE
-    const mockType = TermType.standard;
-    const mockTranslation = '';
-    (translateHelper as jest.Mock).mockReturnValue(mockTranslation);
-
-    // ACT
-    const result = translate('', mockType);
-
-    // ASSERT
-    expect(result).toEqual(mockTranslation);
-    expect(translateHelper).toHaveBeenCalledWith('', mockType);
-  });
-
-  it('should translate a given key with default type when type is not provided', () => {
-    // ARRANGE
-    const mockKey = 'contact';
-    const mockTranslation = 'Contact';
-    (translateHelper as jest.Mock).mockReturnValue(mockTranslation);
-
-    // ACT
-    const result = translate(mockKey);
-
-    // ASSERT
-    expect(result).toEqual(mockTranslation);
-    expect(translateHelper).toHaveBeenCalledWith(mockKey, TermType.standard);
-  });
-
-  it('should return an empty string when key is not provided and default type when type is not provided', () => {
-    // ARRANGE
-    (translateHelper as jest.Mock).mockReturnValue('');
-
-    // ACT
-    const result = translate();
-
-    // ASSERT
-    expect(result).toEqual('');
   });
 });

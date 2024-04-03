@@ -1,6 +1,6 @@
 import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
-import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
+import { IMAGE_PLACEHOLDER } from '@/utilities/constsUtility';
 import { getDataVariable } from './dataVariableHelper';
 import { LinkRuleRequest, LinkRuleResponse, LinkRuleVariation } from '@/models/types/linkRule';
 import { StoryPart } from '@/models/types/storyPart';

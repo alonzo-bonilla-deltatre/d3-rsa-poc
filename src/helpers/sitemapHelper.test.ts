@@ -246,27 +246,36 @@ describe('SCHEMA_CONFIG', () => {
 
 describe('cleanString for XML', () => {
   it('should handle special characters', () => {
+    // ARRANGE
     const input = `BOULDER' & LEAD-"<TEST>"`;
     const expectedResult = 'BOULDER&apos; &amp; LEAD-&quot;&lt;TEST&gt;&quot;';
 
+    // ACT
     const cleanedString = cleanStringForXML(input);
 
+    // ASSERT
     expect(cleanedString).toBe(expectedResult);
   });
 
   it('should handle empty string', () => {
+    // ARRANGE
     const input = '';
+    // ACT
     const cleanedString = cleanStringForXML(input);
 
+    // ASSERT
     expect(cleanedString).toBe('');
   });
 
   it('should handle string without special characters', () => {
+    // ARRANGE
     const input = '/t';
     const expectedResult = '/t';
 
+    // ACT
     const cleanedString = cleanStringForXML(input);
 
+    // ASSERT
     expect(cleanedString).toBe(expectedResult);
   });
 });

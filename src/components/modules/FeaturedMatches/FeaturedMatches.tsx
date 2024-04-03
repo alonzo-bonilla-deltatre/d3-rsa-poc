@@ -1,11 +1,11 @@
 ﻿import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
 import { getEntity } from '@/services/forgeDistributionService';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
-import FeaturedRow from '@/components/common/FeaturedRow/FeaturedRow';
+import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
 import { getSingleAssetByTag } from '@/services/gadService';
 import dynamic from 'next/dynamic';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
-const MatchesList = dynamic(() => import('@/components/common/matches/MatchesList/MatchesList'));
+const MatchesList = dynamic(() => import('@/components/commons/matches/MatchesList/MatchesList'));
 
 const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
   const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy } =

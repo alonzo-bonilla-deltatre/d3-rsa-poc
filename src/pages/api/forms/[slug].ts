@@ -3,7 +3,7 @@ import { validateFilesServer } from '@/helpers/formHelper';
 import { LoggerLevel } from '@/models/types/logger';
 import { recaptchaValidation } from '@/services/formService';
 import { sendFormEmail } from '@/services/sendGridService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { Formidable } from 'formidable';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

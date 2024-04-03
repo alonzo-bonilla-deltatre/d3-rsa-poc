@@ -266,18 +266,21 @@ describe('groupSearchResultsByEntityType', () => {
 
 describe('createFilter', () => {
   it('should return an empty string if facetType or facetValue is not provided', () => {
+    // ASSERT
     expect(createFilter('', '')).toEqual('');
     expect(createFilter('type', '')).toEqual('');
     expect(createFilter('', 'value')).toEqual('');
   });
 
   it('should create the group filter string correctly', () => {
+    // ASSERT
     expect(createFilter('type', 'video')).toEqual(
       "type eq 'video' or type eq 'brightcovevideo' or type eq 'jwplayervideo' or type eq 'youtubevideo' or type eq 'vimeovideo' or type eq 'divavideo'"
     );
   });
 
   it('should create the filter string correctly', () => {
+    // ASSERT
     expect(createFilter('type', ForgeEntityCode.photo)).toEqual("type eq 'photo'");
   });
 });
@@ -466,7 +469,7 @@ describe('processKeyPagesDocuments', () => {
         };
       },
     };
-    const keyPages = new Array();
+    const keyPages: unknown[] = [];
 
     // ACT
     await processKeyPagesDocuments(results, keyPages);
@@ -485,7 +488,7 @@ describe('processKeyPagesDocuments', () => {
         // No results returned
       },
     };
-    const keyPages = new Array();
+    const keyPages: unknown[] = [];
 
     // ACT
     await processKeyPagesDocuments(results, keyPages);

@@ -68,7 +68,7 @@ describe('recaptchaValidation', () => {
   });
 
   it('should call the right API URL', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.post as jest.Mock).mockResolvedValue({ data: { success: true } });
 
     // ACT
@@ -81,7 +81,7 @@ describe('recaptchaValidation', () => {
   });
 
   it('should return true with no env locals', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.post as jest.Mock).mockResolvedValue({ data: { success: true } });
 
     process.env.RECAPTCHA_SITE_KEY = '';
@@ -95,10 +95,10 @@ describe('recaptchaValidation', () => {
   });
 
   it('should return throw error if success is false', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.post as jest.Mock).mockResolvedValue({ data: { success: false } });
 
-    // ASSERT
+    // ACT - ASSERT
     await expect(async () => {
       await recaptchaValidation('12345');
     }).rejects.toThrow();
@@ -108,7 +108,7 @@ describe('recaptchaValidation', () => {
     // ASSERT
     (axios.post as jest.Mock).mockRejectedValueOnce({});
 
-    // ASSERT
+    // ACT - ASSERT
     await expect(async () => {
       await recaptchaValidation('12345');
     }).rejects.toThrow();

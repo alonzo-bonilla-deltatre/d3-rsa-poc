@@ -1,5 +1,5 @@
 import { SchemaConfig } from '@/models/types/sitemap';
-import { formatDate } from '@/utilities/dateFormatter';
+import { formatDate } from '@/helpers/dateHelper';
 
 export const SCHEMA_CONFIG_MOCK: SchemaConfig = {
   article: {

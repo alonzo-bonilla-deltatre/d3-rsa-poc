@@ -1,5 +1,5 @@
 import { ComponentProps, ModuleProps } from '@/models/types/components';
-import HtmlContentComponent from '@/components/common/HtmlContent/HtmlContent';
+import HtmlContentComponent from '@/components/commons/HtmlContent/HtmlContent';
 import { getDarkClass, getHideModule } from '@/helpers/pageComponentPropertyHelper';
 
 type HtmlContentProps = {

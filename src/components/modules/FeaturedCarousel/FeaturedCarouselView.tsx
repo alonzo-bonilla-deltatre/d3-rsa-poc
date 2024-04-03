@@ -1,13 +1,13 @@
 ﻿'use client';
 
-import FeaturedRow from '@/components/common/FeaturedRow/FeaturedRow';
-import React, { RefObject } from 'react';
+import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
+import React from 'react';
 import { DistributionEntity } from '@/models/types/forge';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import CarouselComponent from '@/components/common/list/Carousel/Carousel';
+import CarouselComponent from '@/components/commons/list/Carousel/Carousel';
 import { CardDesign } from '@/models/types/card';
 import { getBooleanProperty, getStringProperty } from '@/helpers/pageComponentPropertyHelper';
-import { CarouselNavigationAside } from '@/components/common/list/Carousel/CarouselNavigationAside';
+import { CarouselNavigationAside } from '@/components/commons/list/Carousel/CarouselNavigationAside';
 import { HeaderTitleProps } from '@/models/types/components';
 import { SwiperRef } from 'swiper/react';
 import { useRef } from 'react';

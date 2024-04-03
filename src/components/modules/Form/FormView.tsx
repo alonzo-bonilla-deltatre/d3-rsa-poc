@@ -1,29 +1,29 @@
 'use client';
 
-import AlertMessage from '@/components/common/AlertMessage/AlertMessage';
-import FormDivider from '@/components/common/Form/FormDivider';
-import InputCheckbox from '@/components/common/Form/InputCheckbox';
-import InputDate from '@/components/common/Form/InputDate';
-import InputDropdown from '@/components/common/Form/InputDropdown';
-import InputEmail from '@/components/common/Form/InputEmail';
-import InputFile from '@/components/common/Form/InputFile';
-import InputPassword from '@/components/common/Form/InputPassword';
-import InputRadioButton from '@/components/common/Form/InputRadioButton';
-import InputTel from '@/components/common/Form/InputTel';
-import InputText from '@/components/common/Form/InputText';
-import InputTextArea from '@/components/common/Form/InputTextArea';
-import SubmitButton from '@/components/common/Form/SubmitButton';
-import Toast from '@/components/common/Toast/Toast';
+import AlertMessage from '@/components/commons/AlertMessage/AlertMessage';
+import FormDivider from '@/components/commons/Form/FormDivider';
+import InputCheckbox from '@/components/commons/Form/InputCheckbox';
+import InputDate from '@/components/commons/Form/InputDate';
+import InputDropdown from '@/components/commons/Form/InputDropdown';
+import InputEmail from '@/components/commons/Form/InputEmail';
+import InputFile from '@/components/commons/Form/InputFile';
+import InputPassword from '@/components/commons/Form/InputPassword';
+import InputRadioButton from '@/components/commons/Form/InputRadioButton';
+import InputTel from '@/components/commons/Form/InputTel';
+import InputText from '@/components/commons/Form/InputText';
+import InputTextArea from '@/components/commons/Form/InputTextArea';
+import SubmitButton from '@/components/commons/Form/SubmitButton';
+import Toast from '@/components/commons/Toast/Toast';
 import { validateField, validateFilesClient } from '@/helpers/formHelper';
 import { DistributionEntity } from '@/models/types/forge';
 import { FormEntity, FormFieldType, FormInputField } from '@/models/types/forge.customEntityFields';
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import React, { FormEvent, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-const Markdown = dynamic(() => import('@/components/common/Markdown/Markdown'));
+const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
 type FormViewProps = {
   entity: DistributionEntity;

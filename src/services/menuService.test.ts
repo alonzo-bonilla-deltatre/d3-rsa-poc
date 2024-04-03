@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getMenuStructure } from '@/services/menuService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { sampleMenu } from '@/__mocks__/menu/sampleMenu';
 
@@ -10,7 +10,7 @@ const pathPlaceholder = 'path';
 const tokenPlaceholder = 'token';
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 
 describe('getMenuStructure', () => {
   afterEach(() => {
@@ -19,7 +19,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should call the default API URL', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.get as jest.Mock).mockResolvedValue({});
 
     // ACT
@@ -37,7 +37,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should call the right API URL without token', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.get as jest.Mock).mockResolvedValue({});
 
     // ACT
@@ -54,7 +54,7 @@ describe('getMenuStructure', () => {
     );
   });
   it('should call the right API URL without token and path', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.get as jest.Mock).mockResolvedValue({});
 
     // ACT
@@ -72,7 +72,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should call the right API URL with token', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.get as jest.Mock).mockResolvedValue({});
 
     // ACT
@@ -90,7 +90,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should return menu structure if menu structure object contains all the required properties', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.get as jest.Mock).mockResolvedValue(sampleMenu);
 
     // ACT
@@ -104,7 +104,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should return null in case of exception', async () => {
-    // ASSERT
+    // ARRANGE
     (axios.get as jest.Mock).mockRejectedValueOnce({});
 
     // ACT
@@ -115,7 +115,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should return null in case of exception and log the response data if available', async () => {
-    // ASSERT
+    // ARRANGE
     const errorMessage = 'Unauthorized';
     (axios.get as jest.Mock).mockRejectedValueOnce({
       status: 401,
@@ -136,7 +136,7 @@ describe('getMenuStructure', () => {
   });
 
   it('should return null in case of exception for empty url and return null', async () => {
-    // ASSERT
+    // ARRANGE
     const apiUrl = process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
     process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = undefined;
 

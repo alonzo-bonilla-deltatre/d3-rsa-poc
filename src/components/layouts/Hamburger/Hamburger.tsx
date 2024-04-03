@@ -1,8 +1,8 @@
 import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { renderItemsInSlot } from '@/services/renderService';
-import HamburgerDrawer from '@/components/common/HamburgerDrawer/HamburgerDrawer';
-import LanguageSwitcher from '@/components/common/LanguageSwitcher/LanguageSwitcher';
-import SocialIcons from '@/components/common/SocialIcons/SocialIcons';
+import HamburgerDrawer from '@/components/commons/HamburgerDrawer/HamburgerDrawer';
+import LanguageSwitcher from '@/components/commons/LanguageSwitcher/LanguageSwitcher';
+import SocialIcons from '@/components/commons/SocialIcons/SocialIcons';
 import {
   getBooleanProperty,
   getBooleanPropertyFromString,

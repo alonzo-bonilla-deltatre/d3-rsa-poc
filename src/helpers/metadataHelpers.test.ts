@@ -6,14 +6,14 @@ import {
   overrideStoryMetadata,
   overrideVideoMetadata,
 } from '@/helpers/metadataHelper';
-import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformations';
+import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformationsUtility';
 import { Metadata } from 'next';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { sampleAlbum } from '@/__mocks__/entities/sampleAlbum';
 import { sampleBlog } from '@/__mocks__/entities/sampleLiveblogging';
 
-jest.mock('@/utilities/cloudinaryTransformations', () => {
-  const originalModule = jest.requireActual('@/utilities/cloudinaryTransformations');
+jest.mock('@/utilities/cloudinaryTransformationsUtility', () => {
+  const originalModule = jest.requireActual('@/utilities/cloudinaryTransformationsUtility');
 
   return {
     ...originalModule,
@@ -32,6 +32,11 @@ jest.mock('@/utilities/cloudinaryTransformations', () => {
 });
 
 describe('overrideDefaultMetadata', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // ARRANGE
   const parentMetadata: Metadata = {
     title: 'Homepage',
     description: 'Demo site',
@@ -41,11 +46,8 @@ describe('overrideDefaultMetadata', () => {
   const imageUrl =
     'https://res.cloudinary.com/forgephotos/image/private/w_250,h_250,c_thumb,g_auto,q_auto,f_jpg/v1678118218/forgego-sandbox/lhmqewjgfmjddly5ii3s';
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it('should exist', () => {
+    // ASSERT
     expect(overrideDefaultMetadata).not.toBeNull();
   });
 
@@ -120,17 +122,19 @@ describe('overrideDefaultMetadata', () => {
   });
 });
 describe('overrideAlbumMetadata', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // ARRANGE
   const parentMetadata: Metadata = {
     title: 'Homepage',
     description: 'Demo site',
   };
   const entity = Object.assign({}, sampleAlbum);
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it('should exist', () => {
+    // ASSERT
     expect(overrideAlbumMetadata).not.toBeNull();
   });
 
@@ -157,17 +161,19 @@ describe('overrideAlbumMetadata', () => {
   });
 });
 describe('overrideStoryMetadata', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // ARRANGE
   const parentMetadata: Metadata = {
     title: 'Homepage',
     description: 'Demo site',
   };
   const storyEntity = Object.assign({}, storyEntityMock);
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it('should exist', () => {
+    // ASSERT
     expect(overrideStoryMetadata).not.toBeNull();
   });
 
@@ -197,15 +203,16 @@ describe('overrideStoryMetadata', () => {
   });
 });
 describe('overrideVideoMetadata', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // ARRANGE
   const parentMetadata: Metadata = {
     title: 'Homepage',
     description: 'Demo site',
   };
   const entity = Object.assign({}, sampleAlbum);
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
 
   it('should exist', () => {
     expect(overrideVideoMetadata).not.toBeNull();
@@ -235,23 +242,23 @@ describe('overrideVideoMetadata', () => {
 });
 
 describe('overrideLiveBloggingMetadata', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // ARRANGE
   const parentMetadata: Metadata = {
     title: 'Homepage',
     description: 'Demo site',
   };
   const bolg = Object.assign({}, sampleBlog);
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it('should exist', () => {
+    // ASSERT
     expect(overrideLiveBloggingMetadata).not.toBeNull();
   });
 
   it('should return enriched metadata of an LiveBlog', () => {
-    // ARRANGE
-
     // ACT
     const result = overrideLiveBloggingMetadata(parentMetadata, sampleBlog);
 
@@ -276,8 +283,6 @@ describe('overrideLiveBloggingMetadata', () => {
   });
 
   it('should return enriched metadata of an LiveBlog with empty value', () => {
-    // ARRANGE
-
     // ACT
     const result = overrideLiveBloggingMetadata(parentMetadata, {
       ...sampleBlog,

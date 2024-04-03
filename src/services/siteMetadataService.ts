@@ -1,6 +1,6 @@
 ﻿/* istanbul ignore file */
 import { Metadata, PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
-import { enrichPageMetadata } from '@/app/pageHelpers';
+import { enrichPageMetadata } from '@/helpers/pageHelper';
 import { Metadata as NextMetadata } from 'next';
 import { getEntity } from '@/services/forgeDistributionService';
 import {

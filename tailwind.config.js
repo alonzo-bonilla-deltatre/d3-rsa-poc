@@ -310,9 +310,9 @@ module.exports = {
           white: 'var(--color-white)',
         },
         'body': 'var(--d3-theme-component_common_body_background_color, var(--color-component_common_body_background))',
-        'dark-body': 'var(--d3-theme-component_common_dark_body_background_color, var(--color-component_common_dark_body_background))',
-        'dark-text': 'var(--d3-theme-component_common_dark_text_color, var(--color-component_common_dark_text))',
-        'light-text': 'var(--d3-theme-component_common_light_text_color, var(--color-component_common_light_text))',
+        'dark-body': 'var(--d3-theme-component_commons_dark_body_background_color, var(--color-component_commons_dark_body_background))',
+        'dark-text': 'var(--d3-theme-component_commons_dark_text_color, var(--color-component_commons_dark_text))',
+        'light-text': 'var(--d3-theme-component_commons_light_text_color, var(--color-component_commons_light_text))',
         component: {
           layout: {
             footer: {
@@ -402,20 +402,20 @@ module.exports = {
               'enhanced-title': 'var(--d3-theme-component_module_menu_enhanced_title_color, var(--color-component_module_menu_enhanced_title))',
             }
           },
-          common: {
+          commons: {
             'common-header': {
               text: {
-                light: 'var(--d3-theme-component_common_common_header_text_light_color, var(--color-component_common_common_header_text_light))',
-                dark: 'var(--d3-theme-component_common_common_header_text_dark_color, var(--color-component_common_common_header_text_dark))',
+                light: 'var(--d3-theme-component_commons_common_header_text_light_color, var(--color-component_commons_common_header_text_light))',
+                dark: 'var(--d3-theme-component_commons_common_header_text_dark_color, var(--color-component_commons_common_header_text_dark))',
               },
               background: {
-                light: 'var(--d3-theme-component_common_common_header_background_light_color, var(--color-component_common_common_header_background_light))',
-                dark: 'var(--d3-theme-component_common_common_header_background_dark_color, var(--color-component_common_common_header_background_dark))',
+                light: 'var(--d3-theme-component_commons_common_header_background_light_color, var(--color-component_commons_common_header_background_light))',
+                dark: 'var(--d3-theme-component_commons_common_header_background_dark_color, var(--color-component_commons_common_header_background_dark))',
               },
             },
             'header-title': {
-              light: 'var(--d3-theme-component_common_header_title_light_color, var(--color-component_common_header_title_light))',
-              dark: 'var(--d3-theme-component_common_header_title_dark_color, var(--color-component_common_header_title_dark))',
+              light: 'var(--d3-theme-component_commons_header_title_light_color, var(--color-component_commons_header_title_light))',
+              dark: 'var(--d3-theme-component_commons_header_title_dark_color, var(--color-component_commons_header_title_dark))',
             },
             'language-switcher': {
               text: {

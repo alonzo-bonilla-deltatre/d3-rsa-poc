@@ -1,13 +1,13 @@
 ﻿'use client';
-import Picture from '@/components/common/Picture/Picture';
-import WithOverlayContent from '@/components/HOC/WithOverlayContent';
-import WithVideoModal, { WithVideoModalProps } from '@/components/HOC/WithVideoModal';
+import Picture from '@/components/commons/Picture/Picture';
+import WithOverlayContent from '@/components/HOCs/WithOverlayContent';
+import WithVideoModal, { WithVideoModalProps } from '@/components/HOCs/WithVideoModal';
 import Play from '@/components/icons/Play/Play';
 import { DivaVideoFields } from '@/models/types/forge.customEntityFields';
-import { transformations } from '@/utilities/cloudinaryTransformations';
+import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import useTranslate from '@/hooks/useTranslate';
 import { StoryPart } from '@/models/types/storyPart';
-import SvgIcon from '@/components/common/SvgIcon/SvgIcon';
+import SvgIcon from '@/components/commons/SvgIcon/SvgIcon';
 
 type VideoPartProps = {
   video: StoryPart;

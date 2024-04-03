@@ -1,11 +1,11 @@
-import MenuList from '@/components/common/MenuList/MenuList';
+import MenuList from '@/components/commons/MenuList/MenuList';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { parseMenuItemFields, setActiveMenuItem } from '@/helpers/menuHelper';
 import { getDarkClass, getHideModule } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getMenuStructure } from '@/services/menuService';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { getSiteUrl } from '@/services/configurationService';
 
 export enum MenuSources {

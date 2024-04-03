@@ -1,6 +1,6 @@
 import { StoryPart } from '@/models/types/storyPart';
 import React from 'react';
-import Table from '@/components/common/Table/Table';
+import Table from '@/components/commons/Table/Table';
 
 const TableStoryPart = ({ data }: { data: StoryPart }) => <Table entity={data} />;
 

@@ -1,6 +1,6 @@
 import { MenuItem } from '@/models/types/menu';
 import { Variable } from '@/models/types/pageStructure';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 /**
  * Sets the `isActive` property of the menu items based on the current page path.

@@ -8,6 +8,7 @@ import { Variable } from '@/models/types/pageStructure';
 import { enrichEntitiesWithThumbnailPlaceholder } from './liveBloggingBlogEntityHelper';
 import { ImageAsset } from '@/models/types/images';
 
+// ARRANGE
 const fallbackImageAsset: ImageAsset = {
   title: 'no_image_available',
   templateUrl:
@@ -217,32 +218,44 @@ const mockedEntitiesWithIncompleteThumbnail = [
 
 describe('enrichEntitiesWithThumbnailPlaceholder function', () => {
   it('should return an empty array if items are null', () => {
+    // ACT
     const entities = enrichEntitiesWithThumbnailPlaceholder(null, mockedVariables);
+    // ASSERT
     expect(entities).toStrictEqual([]);
   });
 
   it('should return an empty array if items are empty array', () => {
+    // ACT
     const result = enrichEntitiesWithThumbnailPlaceholder([], mockedVariables);
+    // ASSERT
     expect(result).toEqual([]);
   });
 
   it('should return an empty array if items are empty array with empty variables', () => {
+    // ACT
     const result = enrichEntitiesWithThumbnailPlaceholder([], []);
+    // ASSERT
     expect(result).toEqual([]);
   });
 
   it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property', () => {
+    // ACT
     const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, mockedVariables);
+    // ASSERT
     expect(result).toStrictEqual(mockedEntities);
   });
 
   it('should set fallbackImageAsset as thumbnail for entities with empty string as per thumbnail "templateUrl" property with empty variables', () => {
+    // ACT
     const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntitiesWithIncompleteThumbnail, []);
+    // ASSERT
     expect(result).toStrictEqual(mockedEntities);
   });
 
   it('should return the original entities are with a valid placeholder', () => {
+    // ACT
     const result = enrichEntitiesWithThumbnailPlaceholder(mockedEntities, mockedVariables);
+    // ASSERT
     expect(result).toEqual(result);
   });
 });

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { generatePageMetadata } from '@/app/pageHelpers';
+import { generatePageMetadata } from '@/helpers/pageHelper';
 import { ReturnComponentRender } from '@/models/types/components';
 import { renderPage } from '@/services/renderHandlers/renderPage';
 

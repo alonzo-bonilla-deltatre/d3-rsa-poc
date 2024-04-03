@@ -1,9 +1,9 @@
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
 import { getGridChildrenCssClasses } from '@/components/layouts/DynamicGrid/DynamicGridHelper';
 import { getBooleanProperty, getDarkClass, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, HeaderTitleProps, LayoutProps } from '@/models/types/components';
 import { renderItemsInSlot } from '@/services/renderService';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 
 export type DynamicGridProps = {
   gridTemplate: string;

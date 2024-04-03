@@ -1,23 +1,16 @@
 'use client';
 
 import { ComponentProps, EditorialModuleProps } from '@/models/types/components';
-import GridComponent from '@/components/common/list/Grid/Grid';
+import GridComponent from '@/components/commons/list/Grid/Grid';
 import { getDarkClass, getNumberProperty, getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { CardLayout, CardType } from '@/models/types/card';
-import {
-  DistributionEntity,
-  ForgeDapiEntityCode,
-  ForgeDistributionApiOption,
-  PagedResult,
-  Pagination,
-} from '@/models/types/forge';
-import { enrichPagination } from '@/components/common/list/Pagination/PaginationHelper';
+import { DistributionEntity, ForgeDapiEntityCode, ForgeDistributionApiOption, PagedResult } from '@/models/types/forge';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import { getCardSettings } from '@/components/common/cards/Card/CardHelpers';
-import SectionWithHeader from '@/components/common/SectionWithHeader/SectionWithHeader';
-import { parseFieldValue } from '@/utilities/fieldValueParser';
-import Loader from '@/components/common/Loader/Loader';
-import PaginationButtons from '@/components/common/list/Pagination/PaginationButtons';
+import { getCardSettings } from '@/components/commons/cards/Card/CardHelpers';
+import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
+import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
+import Loader from '@/components/commons/Loader/Loader';
+import PaginationButtons from '@/components/commons/list/Pagination/PaginationButtons';
 import { useCallback, useEffect, useState } from 'react';
 import { getForgeEntityList } from '@/app/actions/forge';
 

@@ -1,8 +1,8 @@
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { ImageAsset } from '@/models/types/images';
 import { LoggerLevel } from '@/models/types/logger';
-import { IMAGE_PLACEHOLDER } from '@/utilities/consts';
-import logger from '@/utilities/logger';
+import { IMAGE_PLACEHOLDER } from '@/utilities/constsUtility';
+import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 import { handleApiError } from '@/helpers/apiHelper';
 

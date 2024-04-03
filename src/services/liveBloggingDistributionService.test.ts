@@ -1,6 +1,6 @@
 import { sampleBlog, sampleBlogs, samplePost } from '@/__mocks__/entities/sampleLiveblogging';
 import axios from 'axios';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { getBlogEntity, getBlogPosts, getBlogs } from '@/services/liveBloggingDistributionService';
 import { addLiveBloggingWidgetConfig } from '@/helpers/liveBloggingDistributionEntityHelper';
@@ -8,7 +8,7 @@ import { enrichDistributionEntities } from '@/helpers/liveBloggingBlogEntityHelp
 import { LiveBloggingDistributionApiOption } from '@/models/types/liveblogging';
 
 jest.mock('axios');
-jest.mock('@/utilities/logger');
+jest.mock('@/utilities/loggerUtility');
 jest.mock('@/helpers/liveBloggingDistributionEntityHelper', () => {
   const actual = jest.requireActual('@/helpers/liveBloggingDistributionEntityHelper');
   return {

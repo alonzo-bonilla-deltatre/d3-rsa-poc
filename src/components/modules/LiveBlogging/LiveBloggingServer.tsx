@@ -1,6 +1,6 @@
 import { ComponentProps } from '@/models/types/components';
 import React from 'react';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { getBlogEntity } from '@/services/liveBloggingDistributionService';
 import { notFound } from 'next/navigation';

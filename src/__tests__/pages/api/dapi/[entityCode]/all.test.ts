@@ -1,5 +1,4 @@
 ﻿import { sampleStories } from '@/__mocks__/modules/sampleStories';
-import { ForgeApiError } from '@/models/types/errors';
 import handler from '@/pages/api/dapi/[entityCode]/all';
 import { getAllEntities } from '@/services/forgeDistributionService';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -74,7 +73,7 @@ describe('DAPI getAllEntities handler', () => {
       data: {
         status: 500,
         title: 'Exception',
-      } as ForgeApiError,
+      },
     });
 
     // ACT

@@ -1,4 +1,4 @@
-import renderCard from '@/components/common/cards/Card/CardWrapper';
+import renderCard from '@/components/commons/cards/Card/CardWrapper';
 import { CardDesign, CardProps } from '@/models/types/card';
 import { DistributionEntity } from '@/models/types/forge';
 

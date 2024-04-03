@@ -1,5 +1,5 @@
 import { LoggerLevel } from '@/models/types/logger';
-import logger from '@/utilities/logger';
+import logger from '@/utilities/loggerUtility';
 import { StoryPart } from '@/models/types/storyPart';
 import { ReturnComponentRender } from '@/models/types/components';
 import { ForgeEntityCode, ForgeEntityType, ForgeExternalEntityType } from '@/models/types/forge';
