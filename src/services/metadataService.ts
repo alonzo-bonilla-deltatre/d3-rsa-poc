@@ -90,7 +90,11 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
     ForgeSocialsMetadataKey.twitter_id
   );
   const fbPages = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fb_pages);
-  const fbAppId = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fb_app_id);
+  const fbAppId = getValueOrDefault(
+    metadataItems,
+    ForgeMetadataCategoryType.socials,
+    ForgeSocialsMetadataKey.fb_app_id
+  );
   const cultureCode = process.env.CULTURE;
 
   const getTwitterData = (): Twitter => {

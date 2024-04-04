@@ -59,7 +59,11 @@ describe('getManifestJson', () => {
         metadata: [
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.ios_store_url, value: undefined },
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.ios_app_id, value: undefined },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.android_play_store_url, value: undefined },
+          {
+            category: ForgeMetadataCategoryType.pwa,
+            key: ForgePwaMetadataKey.android_play_store_url,
+            value: undefined,
+          },
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.android_play_store_id, value: undefined },
         ],
       },
@@ -112,7 +116,11 @@ describe('getManifestJson', () => {
     const mockPageStructure = {
       data: {
         metadata: [
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.android_play_store_url, value: undefined },
+          {
+            category: ForgeMetadataCategoryType.pwa,
+            key: ForgePwaMetadataKey.android_play_store_url,
+            value: undefined,
+          },
           {
             category: ForgeMetadataCategoryType.pwa,
             key: ForgePwaMetadataKey.android_play_store_id,
