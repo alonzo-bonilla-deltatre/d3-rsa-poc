@@ -50,19 +50,19 @@ const getManifestContent = (metadata: Metadata[]): ManifestResponse => {
       case ForgePwaMetadataKey.name:
         manifestResponse.name = getValueOrDefault(item);
         break;
-      case ForgePwaMetadataKey.shortName:
+      case ForgePwaMetadataKey.short_name:
         manifestResponse.short_name = getValueOrDefault(item);
         break;
-      case ForgePwaMetadataKey.startUrl:
+      case ForgePwaMetadataKey.start_url:
         manifestResponse.start_url = getValueOrDefault(item, '/?utm_source=pwa');
         break;
       case ForgePwaMetadataKey.display:
         manifestResponse.display = getValueOrDefault(item, 'standalone');
         break;
-      case ForgePwaMetadataKey.backgroundColor:
+      case ForgePwaMetadataKey.background_color:
         manifestResponse.background_color = getValueOrDefault(item);
         break;
-      case ForgePwaMetadataKey.themeColor:
+      case ForgePwaMetadataKey.theme_color:
         manifestResponse.theme_color = getValueOrDefault(item);
         break;
       case ForgePwaMetadataKey.scope:
@@ -76,16 +76,16 @@ const getManifestContent = (metadata: Metadata[]): ManifestResponse => {
             type: 'svg',
           });
         break;
-      case ForgePwaMetadataKey.androidPlayStoreUrl:
+      case ForgePwaMetadataKey.android_play_store_url:
         androidApp.url = item.value || undefined;
         break;
-      case ForgePwaMetadataKey.androidPlayStoreId:
+      case ForgePwaMetadataKey.android_play_store_id:
         androidApp.id = item.value || undefined;
         break;
-      case ForgePwaMetadataKey.iosStoreUrl:
+      case ForgePwaMetadataKey.ios_store_url:
         iosApp.url = item.value || undefined;
         break;
-      case ForgePwaMetadataKey.iosAppId:
+      case ForgePwaMetadataKey.ios_app_id:
         iosApp.id = item.value || undefined;
         break;
     }

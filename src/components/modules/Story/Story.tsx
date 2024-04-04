@@ -34,7 +34,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const fbAppId = getMetadata(
     data.metadata || [],
     ForgeMetadataCategoryType.socials,
-    ForgeSocialsMetadataKey.fbappid
+    ForgeSocialsMetadataKey.fb_app_id
   )?.value;
 
   const storyEntity = await getEntity(ForgeDapiEntityCode.stories, props.slug, {

@@ -122,7 +122,7 @@ describe('setPageMetadata function', () => {
           },
           {
             category: ForgeMetadataCategoryType.seo,
-            key: ForgeSEOMetadataKey.siteName,
+            key: ForgeSEOMetadataKey.site_name,
             value: 'site-name',
             type: 'string',
           },
@@ -140,19 +140,19 @@ describe('setPageMetadata function', () => {
           },
           {
             category: ForgeMetadataCategoryType.socials,
-            key: ForgeSocialsMetadataKey.twitterid,
+            key: ForgeSocialsMetadataKey.twitter_id,
             value: 'Twitter Id',
             type: 'string',
           },
           {
             category: ForgeMetadataCategoryType.socials,
-            key: ForgeSocialsMetadataKey.fbappid,
+            key: ForgeSocialsMetadataKey.fb_app_id,
             value: '123456',
             type: 'string',
           },
           {
             category: ForgeMetadataCategoryType.socials,
-            key: ForgeSocialsMetadataKey.fbpages,
+            key: ForgeSocialsMetadataKey.fb_pages,
             value: 'fbpages',
             type: 'string',
           },
@@ -234,7 +234,7 @@ describe('getMetadataGroup function', () => {
           },
           {
             category: ForgeMetadataCategoryType.seo,
-            key: ForgeSEOMetadataKey.siteName,
+            key: ForgeSEOMetadataKey.site_name,
             value: 'site-name',
             type: 'string',
           },
@@ -252,19 +252,19 @@ describe('getMetadataGroup function', () => {
           },
           {
             category: ForgeMetadataCategoryType.socials,
-            key: ForgeSocialsMetadataKey.twitterid,
+            key: ForgeSocialsMetadataKey.twitter_id,
             value: 'Twitter Id',
             type: 'string',
           },
           {
             category: ForgeMetadataCategoryType.socials,
-            key: ForgeSocialsMetadataKey.fbappid,
+            key: ForgeSocialsMetadataKey.fb_app_id,
             value: '123456',
             type: 'string',
           },
           {
             category: ForgeMetadataCategoryType.socials,
-            key: ForgeSocialsMetadataKey.fbpages,
+            key: ForgeSocialsMetadataKey.fb_pages,
             value: 'fbpages',
             type: 'string',
           },

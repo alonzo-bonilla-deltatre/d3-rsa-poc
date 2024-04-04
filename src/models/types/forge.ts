@@ -134,7 +134,7 @@ export type ForgeMetadataKeyType =
   | ForgeRobotsMetadataKey;
 
 export enum ForgeSEOMetadataKey {
-  siteName = 'sitename',
+  site_name = 'site_name',
   description = 'description',
   image = 'image',
   robots = 'robots',
@@ -168,9 +168,9 @@ export enum ForgeSitemapsMetadataKey {
 }
 
 export enum ForgeSocialsMetadataKey {
-  fbappid = 'fbappid',
-  fbpages = 'fbpages',
-  twitterid = 'twitterid',
+  fb_app_id = 'fb_app_id',
+  fb_pages = 'fb_pages',
+  twitter_id = 'twitter_id',
 }
 
 export enum ForgeRobotsMetadataKey {
@@ -180,22 +180,22 @@ export enum ForgeRobotsMetadataKey {
 }
 
 export enum ForgeThemingMetadataKey {
-  colorPrimary = 'color-primary',
-  colorSecondary = 'color-secondary',
+  color_primary = 'color_primary',
+  color_secondary = 'color_secondary',
 }
 
 export enum ForgePwaMetadataKey {
-  iosStoreUrl = 'iosStoreUrl',
-  iosAppId = 'iosAppId',
-  androidPlayStoreUrl = 'androidPlayStoreUrl',
-  androidPlayStoreId = 'androidPlayStoreId',
+  ios_store_url = 'ios_store_url',
+  ios_app_id = 'ios_app_id',
+  android_play_store_url = 'android_play_store_url',
+  android_play_store_id = 'android_play_store_id',
   icon = 'icon',
   name = 'name',
-  shortName = 'shortName',
-  startUrl = 'startUrl',
+  short_name = 'short_name',
+  start_url = 'start_url',
   display = 'display',
-  backgroundColor = 'backgroundColor',
-  themeColor = 'themeColor',
+  background_color = 'background_color',
+  theme_color = 'theme_color',
   scope = 'scope',
 }
 

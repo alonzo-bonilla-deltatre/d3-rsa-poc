@@ -57,10 +57,10 @@ describe('getManifestJson', () => {
     const mockPageStructure = {
       data: {
         metadata: [
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.iosStoreUrl, value: undefined },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.iosAppId, value: undefined },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.androidPlayStoreUrl, value: undefined },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.androidPlayStoreId, value: undefined },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.ios_store_url, value: undefined },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.ios_app_id, value: undefined },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.android_play_store_url, value: undefined },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.android_play_store_id, value: undefined },
         ],
       },
     };
@@ -83,10 +83,10 @@ describe('getManifestJson', () => {
         metadata: [
           {
             category: ForgeMetadataCategoryType.pwa,
-            key: ForgePwaMetadataKey.iosStoreUrl,
+            key: ForgePwaMetadataKey.ios_store_url,
             value: 'https://itunes.apple.com/app/my-app/id123456789',
           },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.iosAppId, value: undefined },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.ios_app_id, value: undefined },
         ],
       },
     };
@@ -112,10 +112,10 @@ describe('getManifestJson', () => {
     const mockPageStructure = {
       data: {
         metadata: [
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.androidPlayStoreUrl, value: undefined },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.android_play_store_url, value: undefined },
           {
             category: ForgeMetadataCategoryType.pwa,
-            key: ForgePwaMetadataKey.androidPlayStoreId,
+            key: ForgePwaMetadataKey.android_play_store_id,
             value: 'com.example.app',
           },
         ],
@@ -162,29 +162,29 @@ describe('getManifestJson', () => {
       data: {
         metadata: [
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.name, value: 'My App' },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.shortName, value: 'My Short App' },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.startUrl, value: '/home' },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.short_name, value: 'My Short App' },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.start_url, value: '/home' },
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.display, value: 'standalone' },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.backgroundColor, value: '#ffffff' },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.themeColor, value: '#000000' },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.background_color, value: '#ffffff' },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.theme_color, value: '#000000' },
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.scope, value: '/' },
           { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.icon, value: '/path/to/icon.svg' },
           {
             category: ForgeMetadataCategoryType.pwa,
-            key: ForgePwaMetadataKey.androidPlayStoreUrl,
+            key: ForgePwaMetadataKey.android_play_store_url,
             value: 'https://play.google.com/store/apps/details?id=com.example.app',
           },
           {
             category: ForgeMetadataCategoryType.pwa,
-            key: ForgePwaMetadataKey.androidPlayStoreId,
+            key: ForgePwaMetadataKey.android_play_store_id,
             value: 'com.example.app',
           },
           {
             category: ForgeMetadataCategoryType.pwa,
-            key: ForgePwaMetadataKey.iosStoreUrl,
+            key: ForgePwaMetadataKey.ios_store_url,
             value: 'https://itunes.apple.com/app/my-app/id123456789',
           },
-          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.iosAppId, value: '123456789' },
+          { category: ForgeMetadataCategoryType.pwa, key: ForgePwaMetadataKey.ios_app_id, value: '123456789' },
         ],
       },
     };

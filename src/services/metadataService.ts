@@ -79,18 +79,18 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
     getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.description)
   );
   const siteName = translate(
-    getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.siteName)
+    getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.site_name)
   );
   const siteUrl = await getSiteUrl();
   const robots = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.robots, 'noodp');
   const image = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.image);
-  const twitteraccount = getValueOrDefault(
+  const twitterAccount = getValueOrDefault(
     metadataItems,
     ForgeMetadataCategoryType.socials,
-    ForgeSocialsMetadataKey.twitterid
+    ForgeSocialsMetadataKey.twitter_id
   );
-  const fbpages = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fbpages);
-  const fbappid = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fbappid);
+  const fbPages = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fb_pages);
+  const fbAppId = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.socials, ForgeSocialsMetadataKey.fb_app_id);
   const cultureCode = process.env.CULTURE;
 
   const getTwitterData = (): Twitter => {
@@ -98,8 +98,8 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
       title,
       description,
       card: 'summary_large_image',
-      site: twitteraccount,
-      creator: twitteraccount,
+      site: twitterAccount,
+      creator: twitterAccount,
       images: image,
     };
   };
@@ -122,12 +122,12 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
   seoData.openGraph = getOpenGraphData();
   seoData.twitter = getTwitterData();
 
-  const fbcodes = {
-    'fb:pages': fbpages,
-    'fb:appid': fbappid,
+  const fbCodes = {
+    'fb:pages': fbPages,
+    'fb:appid': fbAppId,
   };
 
-  seoData.other = fbpages ? fbcodes : undefined;
+  seoData.other = fbPages ? fbCodes : undefined;
 
   return seoData;
 };

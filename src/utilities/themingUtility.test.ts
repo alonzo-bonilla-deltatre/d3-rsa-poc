@@ -8,20 +8,20 @@ describe('renderThemingVariables', () => {
     const items = [
       {
         category: ForgeMetadataCategoryType.theming,
-        key: ForgeThemingMetadataKey.colorPrimary,
+        key: ForgeThemingMetadataKey.color_primary,
         value: '#ff0000',
         type: 'string',
       },
       {
         category: ForgeMetadataCategoryType.theming,
-        key: ForgeThemingMetadataKey.colorSecondary,
+        key: ForgeThemingMetadataKey.color_secondary,
         value: '#00ff00',
         type: 'string',
       },
       { category: ForgeMetadataCategoryType.seo, key: ForgeSEOMetadataKey.title, value: 'some-value', type: 'string' },
     ];
 
-    const expectedCSS = `:root{ --poc-theme-color-primary: #ff0000; --poc-theme-color-secondary: #00ff00; }`;
+    const expectedCSS = `:root{ --poc-theme-color_primary: #ff0000; --poc-theme-color_secondary: #00ff00; }`;
 
     // ACT
     const result = renderThemingVariables(items);
