@@ -3,9 +3,6 @@ import logger from '@/utilities/loggerUtility';
 import { DistributionEntity, ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
 import { ReturnComponentRender } from '@/models/types/components';
 
-import renderEditorialRelatedItem from '@/components/relatedItems/EditorialEntity/EditorialEntityWrapper';
-import renderPromoRelatedItem from '@/components/relatedItems/Promo/PromoWrapper';
-
 /**
  * Type definition for the keys of the `relatedItemsList` object.
  * It includes the `ForgeEntityType.story` and the `ForgeEntityCode` values for YouTube and Brightcove videos and promos.
@@ -19,10 +16,10 @@ type RelatedItemsKey =
  * Each function takes a `DistributionEntity` and returns a `ReturnComponentRender`.
  */
 const relatedItemsList: Record<RelatedItemsKey, (item: DistributionEntity) => ReturnComponentRender> = {
-  [ForgeEntityType.story]: renderEditorialRelatedItem,
-  [ForgeEntityCode.youTubeVideo]: renderEditorialRelatedItem,
-  [ForgeEntityCode.brightcoveVideo]: renderEditorialRelatedItem,
-  [ForgeEntityCode.promo]: renderPromoRelatedItem,
+  [ForgeEntityType.story]: () => null,
+  [ForgeEntityCode.youTubeVideo]: () => null,
+  [ForgeEntityCode.brightcoveVideo]: () => null,
+  [ForgeEntityCode.promo]: () => null,
 };
 
 /**

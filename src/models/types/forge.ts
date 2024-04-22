@@ -161,9 +161,9 @@ export enum ForgeLanguagesMetadataKey {
 
 export enum ForgeSitemapsMetadataKey {
   blacklist = 'blacklist',
-  sitemap_article_entitycode = 'sitemap_article_entitycode',
+  sitemap_article_entity_code = 'sitemap_article_entity_code',
   sitemap_article_schema = 'sitemap_article_schema',
-  sitemap_video_entitycode = 'sitemap_video_entitycode',
+  sitemap_video_entity_code = 'sitemap_video_entity_code',
   sitemap_video_schema = 'sitemap_video_schema',
 }
 

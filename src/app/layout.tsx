@@ -1,6 +1,4 @@
 import '@/styles/globals.css';
-import '@/styles/components/commons/cards/tailwind-cards.css';
-
 import { getSiteTranslations } from '@/helpers/translationHelper';
 import { TranslationProvider } from '@/contexts/translationContext';
 import { Metadata } from 'next';

@@ -5,7 +5,7 @@ export const mockPageStructureResponse = {
     metadata: [
       {
         category: ForgeMetadataCategoryType.sitemaps,
-        key: 'sitemap_article_entitycode',
+        key: 'sitemap_article_entity_code',
         value: 'articles',
       },
       {
@@ -15,7 +15,7 @@ export const mockPageStructureResponse = {
       },
       {
         category: ForgeMetadataCategoryType.sitemaps,
-        key: 'sitemap_testStory_entitycode',
+        key: 'sitemap_testStory_entity_code',
         value: 'stories',
       },
       {

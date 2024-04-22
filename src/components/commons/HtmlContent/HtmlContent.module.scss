@@ -1,0 +1,89 @@
+﻿.html_content {
+  @apply font-content text-[14px] leading-[18px] font-medium lg:text-[16px] lg:leading-[22px];
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul,
+  blockquote {
+    &:not(:last-child) {
+      @apply mb-4;
+    }
+  }
+
+  h1 {
+    @apply font-heading text-[60px] leading-[60px] font-normal -tracking-[1.2px] uppercase lg:text-[120px] lg:leading-[100px];
+  }
+
+  h2 {
+    @apply font-heading text-[50px] leading-[40px] font-normal uppercase lg:text-[100px] lg:leading-[86px];
+  }
+
+  h3 {
+    @apply font-heading text-[28px] leading-[40px] font-normal uppercase lg:text-[40px] lg:leading-[48px];
+  }
+
+  h4 {
+    @apply font-heading text-[40px] leading-[36px] font-normal uppercase lg:text-[44px] lg:leading-[40px];
+  }
+
+  h5 {
+    @apply font-heading text-[18px] leading-[18px] font-bold uppercase lg:text-[22px] lg:leading-[22px];
+  }
+
+  h6 {
+    @apply font-heading text-[14px] leading-[20px] font-bold uppercase lg:text-[20px] lg:leading-[28px];
+  }
+
+  li {
+    @apply ml-4;
+  }
+
+  ul {
+    > li {
+      @apply list-disc;
+    }
+  }
+
+  ol {
+    > li {
+      @apply list-decimal;
+    }
+  }
+
+  a {
+    @apply text-link underline;
+
+    &:hover,
+    &:focus-visible {
+      @apply text-link no-underline transition duration-300;
+    }
+  }
+
+  tr {
+    &:nth-child(even) {
+      @apply bg-grey-50;
+    }
+  }
+
+  th {
+    @apply py-4 px-6 bg-grey-900 text-white;
+  }
+
+  td {
+    @apply py-4 px-6;
+  }
+
+  :global {
+    iframe.instagram-media {
+      max-width: 100% !important;
+      width: 100% !important;
+      min-width: auto !important;
+    }
+  }
+}

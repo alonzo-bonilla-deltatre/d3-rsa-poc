@@ -5,10 +5,7 @@ import { renderItem } from '@/services/renderService';
 const NoTemplate = ({ data }: { data: ComponentProps }) => {
   if (!data) return null;
   return (
-    <div
-      id="main-container"
-      className="d3-o-template d3-o-template--no-template"
-    >
+    <div id="main-container">
       {data?.items?.map((item: StructureItem) => renderItem(item, data.variables, data.metadata, data.previewToken))}
     </div>
   );

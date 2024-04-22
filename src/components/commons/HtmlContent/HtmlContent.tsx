@@ -1,19 +1,16 @@
-﻿import '@/components/commons/HtmlContent/markdown.css';
+﻿import styles from '@/components/commons/HtmlContent/HtmlContent.module.scss';
 
 type HtmlContentProps = {
   content?: string;
   className?: string;
-  fromMarkdown?: boolean;
 };
 
-const HtmlContent = ({ content, className, fromMarkdown }: HtmlContentProps) => {
+const HtmlContent = ({ content, className }: HtmlContentProps) => {
   return (
-    <div className={`${!fromMarkdown ? 'd3-markdown w-full' : ''}`}>
-      <div
-        className={'htmlcontent-code w-full ' + (className ? className : '')}
-        dangerouslySetInnerHTML={{ __html: content ? content : '' }}
-      />
-    </div>
+    <div
+      className={`w-full ${styles.html_content} ${className ? className : ''}`}
+      dangerouslySetInnerHTML={{ __html: content ? content : '' }}
+    />
   );
 };
 export default HtmlContent;

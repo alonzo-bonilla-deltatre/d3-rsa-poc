@@ -3,15 +3,6 @@ import logger from '@/utilities/loggerUtility';
 import { StoryPart } from '@/models/types/storyPart';
 import { ReturnComponentRender } from '@/models/types/components';
 import { ForgeEntityCode, ForgeEntityType, ForgeExternalEntityType } from '@/models/types/forge';
-/* */
-import renderMarkdownStoryPart from '@/components/storyParts/Markdown/MarkdownWrapper';
-import renderPhotoStoryPart from '@/components/storyParts/Photo/PhotoWrapper';
-import renderAlbumStoryPart from '@/components/storyParts/Album/AlbumWrapper';
-import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVideo/BrightcoveVideoWrapper';
-import renderOembedStoryPart from '@/components/storyParts/Oembed/OembedWrapper';
-import renderQuoteStoryPart from '@/components/storyParts/Quote/QuoteWrapper';
-import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
-import renderDivaVideoStoryPart from '@/components/storyParts/DivaVideo/DivaVideoWrapper';
 
 /**
  * Type definition for the keys of the `storyPartList` object.
@@ -31,14 +22,14 @@ type StoryPartListKey =
  * Each function takes a `StoryPart` and returns a `ReturnComponentRender`.
  */
 const storyPartList: Record<StoryPartListKey, (item: StoryPart) => ReturnComponentRender> = {
-  [ForgeEntityType.markdown]: renderMarkdownStoryPart,
-  [ForgeEntityType.photo]: renderPhotoStoryPart,
-  [ForgeEntityType.album]: renderAlbumStoryPart,
-  [ForgeEntityCode.brightcoveVideo]: renderBrightcoveVideoStoryPart,
-  [ForgeEntityCode.divaVideo]: renderDivaVideoStoryPart,
-  [ForgeExternalEntityType.oembed]: renderOembedStoryPart,
-  [ForgeExternalEntityType.storyPartQuote]: renderQuoteStoryPart,
-  [ForgeExternalEntityType.storyPartTable]: renderTableStoryPart,
+  [ForgeEntityType.markdown]: () => null,
+  [ForgeEntityType.photo]: () => null,
+  [ForgeEntityType.album]: () => null,
+  [ForgeEntityCode.brightcoveVideo]: () => null,
+  [ForgeEntityCode.divaVideo]: () => null,
+  [ForgeExternalEntityType.oembed]: () => null,
+  [ForgeExternalEntityType.storyPartQuote]: () => null,
+  [ForgeExternalEntityType.storyPartTable]: () => null,
 };
 
 /**

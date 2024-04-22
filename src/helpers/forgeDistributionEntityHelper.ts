@@ -19,7 +19,7 @@ import {
   customEnrichEntitiesWithReferencesFields,
   customEnrichLinkRuleRequestEntity,
 } from '@/helpers/customForgeDistributionEntityHelper';
-import { getPageNumber } from '@/components/commons/list/Pagination/PaginationHelper';
+import { getPageNumber } from '@/helpers/paginationHelper';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 

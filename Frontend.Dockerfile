@@ -30,7 +30,7 @@ RUN yarn sonar
 
 RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
 
-FROM node:20-slim AS runner
+FROM node:20.12.2-alpine3.19 AS runner
 WORKDIR /app
 
 COPY --from=builder /app/next.config.js ./
@@ -38,6 +38,15 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/node_modules ./node_modules
+
+RUN adduser \
+  --disabled-password \
+  --home /app \
+  --gecos '' \
+  --uid 10001 \
+  app \
+  && chown -R app /app
+USER app
 
 EXPOSE 3000
 ENV PORT 3000

@@ -178,17 +178,17 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   thumbnail_wide_detail: {
     mobile: defaultCloudinaryTransformations.ratio21_9_size20,
     tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size40,
   },
   thumbnail_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
   },
   thumbnail_small_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
   },
   thumbnail_square_detail: {
     mobile: defaultCloudinaryTransformations.ratio1_1_size20,
@@ -204,96 +204,6 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
     mobile: defaultCloudinaryTransformations.ratio10_16_size10,
     tablet: defaultCloudinaryTransformations.ratio10_16_size20,
     desktop: defaultCloudinaryTransformations.ratio10_16_size20,
-  },
-  // Fancy box detail
-  fancy_box_detail: {
-    mobile: defaultCloudinaryTransformations.ratio16_9_size10_c_pad_b_none,
-    tablet: defaultCloudinaryTransformations.ratio16_9_size30_c_pad_b_none,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size50_c_pad_b_none,
-  },
-  // Module Story: header
-  story_header_background: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
-  },
-  // Module EnhancedTitle: background
-  enhanced_title_background: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
-  },
-  // Module EventBanner: background
-  event_banner_background: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
-  },
-  // Module Hero main item
-  hero_static_main_item: {
-    mobile: defaultCloudinaryTransformations.ratio10_16_size10,
-    tablet: defaultCloudinaryTransformations.ratio10_16_size20,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
-  },
-  // Module Hero main item
-  hero_swiper_main_item: {
-    mobile: defaultCloudinaryTransformations.ratio3_4_size60,
-    tablet: defaultCloudinaryTransformations.ratio1_1_size20,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
-  },
-  // Module Hero pagination item
-  hero_swiper_pagination_item: {
-    mobile: defaultCloudinaryTransformations.ratio16_9_size20,
-    tablet: defaultCloudinaryTransformations.ratio16_9_size20,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size20,
-  },
-  // Common Component Mosaic
-  mosaic_square: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio1_1_size40,
-    desktop: defaultCloudinaryTransformations.ratio1_1_size40,
-  },
-  mosaic_landscape: {
-    mobile: defaultCloudinaryTransformations.ratio3_4_size20,
-    tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
-  },
-  mosaic_landscape_square: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio1_1_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
-  },
-  mosaic_wide: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio1_1_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size40,
-  },
-  mosaic_portrait: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio1_1_size40,
-    desktop: defaultCloudinaryTransformations.ratio3_4_size40,
-  },
-  mosaic_portrait_wide: {
-    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio1_1_size40,
-    desktop: defaultCloudinaryTransformations.ratio10_16_size20,
-  }, // Module Promo: detail
-  promo_detail: {
-    mobile: defaultCloudinaryTransformations.ratio10_16_size20,
-    tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
-  },
-  // Module Focus on: background
-  focus_on_background: {
-    mobile: defaultCloudinaryTransformations.ratio3_4_size20,
-    tablet: defaultCloudinaryTransformations.ratio4_3_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
-  },
-  // Module Focus on: photo
-  focus_on_photo: {
-    mobile: defaultCloudinaryTransformations.ratio16_9_size20,
-    tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
   },
 };
 

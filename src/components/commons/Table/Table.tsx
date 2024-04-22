@@ -1,6 +1,5 @@
 import { StoryPart } from '@/models/types/storyPart';
 import HtmlContent from '@/components/commons/HtmlContent/HtmlContent';
-import '@/components/commons/Table/table.css';
 
 type TableProps = {
   entity?: StoryPart;

@@ -1,6 +1,6 @@
 'use client';
-import CallToAction from '@/components/commons/CallToAction/CallToAction';
 import useTranslate from '@/hooks/useTranslate';
+import Link from 'next/link';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   const translate = useTranslate();
@@ -14,13 +14,10 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
         >
           <ul className="list-none flex space-x-5">
             <li>
-              <CallToAction
-                url={'/'}
-                text={'Back to homepage'}
-                isExternal={false}
-                style={'primary'}
-                hide={false}
-              ></CallToAction>
+              <Link
+                href={'/'}
+                title={'Back to homepage'}
+              ></Link>
             </li>
             <li>
               <button

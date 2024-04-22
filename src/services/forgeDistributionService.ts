@@ -5,7 +5,7 @@ import axios from 'axios';
 import { enrichDistributionEntities, getAPIQueryString } from '@/helpers/forgeDistributionEntityHelper';
 import { parseFieldValue } from '@/utilities/fieldValueParserUtility';
 import { handleApiError } from '@/helpers/apiHelper';
-import { enrichPagination } from '@/components/commons/list/Pagination/PaginationHelper';
+import { enrichPagination } from '@/helpers/paginationHelper';
 
 // The culture of the site, retrieved from environment variables
 const culture = process.env.CULTURE;

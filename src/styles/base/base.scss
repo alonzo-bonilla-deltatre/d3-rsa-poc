@@ -1,0 +1,52 @@
+﻿@layer base {
+  html,
+  body {
+    /* https://www.terluinwebdesign.nl/en/css/position-sticky-not-working-try-overflow-clip-not-overflow-hidden/ */
+    overflow-x: clip;
+    @apply bg-white text-black;
+
+    @supports not (overflow: clip) {
+      /* overflow-x hidden also when page is dragged on ios < 16
+      https://stackoverflow.com/a/27612858/1498848 */
+      position: relative;
+      overflow-x: hidden;
+      width: 100%;
+      height: 100%; /* needed for position:sticky elements */
+    }
+  }
+
+  html {
+    @apply font-content;
+    overflow-y: scroll;
+    /* avoid layout shift when hiding scrollbar */
+    scroll-behavior: smooth;
+  }
+
+  /* clear the ‘X’ */
+  input[type='search'] {
+    /* Internet Explorer */
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    /* Chrome */
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+  }
+
+  /* avoid white background on iOS */
+  img {
+    transform: translate3d(0, 0, 0);
+  }
+
+  a {
+    color: currentColor;
+  }
+}

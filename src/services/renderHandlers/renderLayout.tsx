@@ -3,32 +3,32 @@ import { LoggerLevel } from '@/models/types/logger';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
 import logger from '@/utilities/loggerUtility';
 
-import renderFooter from '@/components/layouts/Footer/FooterWrapper';
-import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';
-import renderHeader from '@/components/layouts/Header/HeaderWrapper';
-import renderHeaderTransparent from '@/components/layouts/HeaderTransparent/HeaderTransparentWrapper';
-import Hamburger from '@/components/layouts/Hamburger/HamburgerWrapper';
-import renderSection from '@/components/layouts/Section/SectionWrapper';
-import renderCtaList from '@/components/layouts/CtaList/CtaListWrapper';
+// import renderFooter from '@/components/layouts/Footer/FooterWrapper';
+// import renderDynamicGrid from '@/components/layouts/DynamicGrid/DynamicGridWrapper';
+// import renderHeader from '@/components/layouts/Header/HeaderWrapper';
+// import renderHeaderTransparent from '@/components/layouts/HeaderTransparent/HeaderTransparentWrapper';
+// import Hamburger from '@/components/layouts/Hamburger/HamburgerWrapper';
+// import renderSection from '@/components/layouts/Section/SectionWrapper';
+// import renderCtaList from '@/components/layouts/CtaList/CtaListWrapper';
 
 /**
  * A list of layout components mapped to their respective render functions.
  * Each function takes an object with a `data` property of type `ComponentProps` and returns a `ReturnComponentRender`.
  */
 const layoutList: Record<any, (data: { data: ComponentProps }) => ReturnComponentRender> = {
-  Section: renderSection,
-  Columns66: renderDynamicGrid('6-6'),
-  Columns93: renderDynamicGrid('9-3'),
-  Columns39: renderDynamicGrid('3-9'),
-  Columns3333: renderDynamicGrid('3-3-3-3'),
-  Columns444: renderDynamicGrid('4-4-4'),
-  Columns363: renderDynamicGrid('3-6-3'),
-  Columns282: renderDynamicGrid('2-8-2'),
-  Header: renderHeader,
-  HeaderTransparent: renderHeaderTransparent,
-  Hamburger: Hamburger,
-  Footer: renderFooter,
-  CtaList: renderCtaList,
+  // Section: renderSection,
+  // Columns66: renderDynamicGrid('6-6'),
+  // Columns93: renderDynamicGrid('9-3'),
+  // Columns39: renderDynamicGrid('3-9'),
+  // Columns3333: renderDynamicGrid('3-3-3-3'),
+  // Columns444: renderDynamicGrid('4-4-4'),
+  // Columns363: renderDynamicGrid('3-6-3'),
+  // Columns282: renderDynamicGrid('2-8-2'),
+  // Header: renderHeader,
+  // HeaderTransparent: renderHeaderTransparent,
+  // Hamburger: Hamburger,
+  // Footer: renderFooter,
+  // CtaList: renderCtaList,
 };
 
 /**

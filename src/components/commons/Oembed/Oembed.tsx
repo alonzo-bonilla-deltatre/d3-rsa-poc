@@ -2,7 +2,6 @@ import { getSrcFromMarkup } from '@/helpers/storyPartsHelper';
 import { StoryPart } from '@/models/types/storyPart';
 import YouTubeOembed from '@/components/commons/Oembed/YouTubeOembed';
 import HtmlOembed from '@/components/commons/Oembed/HtmlOembed';
-import '@/components/commons/Oembed/Oenbed.scss';
 
 type OembedProps = {
   entity?: StoryPart;

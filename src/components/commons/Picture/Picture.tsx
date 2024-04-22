@@ -6,6 +6,7 @@ import Image, { getImageProps } from 'next/image';
 type PictureProps = {
   src: string;
   alt: string;
+  format?: string;
   transformations?: ImageTransformations;
   className?: string;
   width?: number;
@@ -17,9 +18,10 @@ type PictureProps = {
 
 const Picture = ({
   src,
-  className,
   alt,
+  format,
   transformations,
+  className,
   width,
   height,
   sizes,
@@ -29,6 +31,8 @@ const Picture = ({
   if (!src) {
     return null;
   }
+
+  const isUnoptimizedImage = format?.endsWith('gif');
 
   if (!transformations) {
     return (
@@ -43,6 +47,7 @@ const Picture = ({
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
+        unoptimized={isUnoptimizedImage}
       />
     );
   }
@@ -92,15 +97,15 @@ const Picture = ({
   return (
     <picture>
       <source
-        srcSet={srcSetDesktop ?? desktopSrc}
+        srcSet={!isUnoptimizedImage ? srcSetDesktop ?? desktopSrc : desktopSrc}
         media="(min-width: 1024px)"
       ></source>
       <source
-        srcSet={srcSetTablet ?? tabletSrc}
+        srcSet={!isUnoptimizedImage ? srcSetTablet ?? tabletSrc : tabletSrc}
         media="(min-width: 768px)"
       ></source>
       <source
-        srcSet={srcSetMobile ?? mobileSrc}
+        srcSet={!isUnoptimizedImage ? srcSetMobile ?? mobileSrc : mobileSrc}
         media="(min-width: 640px)"
       ></source>
 
@@ -115,6 +120,7 @@ const Picture = ({
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
+        unoptimized={isUnoptimizedImage}
       />
     </picture>
   );

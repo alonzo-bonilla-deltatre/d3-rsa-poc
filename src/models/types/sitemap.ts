@@ -2,7 +2,7 @@ import { DistributionEntity, ForgeDistributionApiOption } from '@/models/types/f
 
 export interface EntityConfig {
   name: string;
-  entitycode: string;
+  entity_code: string;
   schema: string;
 }
 

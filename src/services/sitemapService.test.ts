@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  getSitestructureData,
+  getSiteStructureData,
   getSiteStructureXml,
   getSitemapEntityXml,
   getSitemapIndexXml,
@@ -31,13 +31,13 @@ describe('Sitemap Services', () => {
     jest.clearAllMocks();
   });
 
-  describe('getSitestructureData', () => {
+  describe('getSiteStructureData', () => {
     it('should return null if getPageStructure returns null', async () => {
       // ARRANGE
       (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
       // ACT
-      const result = await getSitestructureData();
+      const result = await getSiteStructureData();
 
       // ASSERT
       expect(result).toBeNull();
@@ -49,7 +49,7 @@ describe('Sitemap Services', () => {
       (getPageStructure as jest.Mock).mockResolvedValueOnce(mockPageStructureResponse);
 
       // ACT
-      const result = await getSitestructureData();
+      const result = await getSiteStructureData();
 
       // ASSERT
       expect(result).toEqual(mockSitemapItems);
@@ -62,7 +62,7 @@ describe('Sitemap Services', () => {
           metadata: [
             {
               category: 'sitemaps',
-              key: 'sitemap_article_entitycode',
+              key: 'sitemap_article_entity_code',
               value: 'articles',
             },
             {
@@ -77,7 +77,7 @@ describe('Sitemap Services', () => {
       (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockApiResponse });
 
       // ACT
-      const result = await getSitestructureData();
+      const result = await getSiteStructureData();
 
       // ASSERT
       expect(result).toEqual(expect.any(Array));
@@ -85,8 +85,8 @@ describe('Sitemap Services', () => {
     });
   });
 
-  describe('getSitestructureXml', () => {
-    it('should return null if getSitestructureData returns null', async () => {
+  describe('getSiteStructureXml', () => {
+    it('should return null if getSiteStructureData returns null', async () => {
       // ARRANGE
       (axios.get as jest.Mock).mockResolvedValueOnce({ data: { data: { sitemap: [] } } });
       (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
@@ -98,7 +98,7 @@ describe('Sitemap Services', () => {
       expect(result).toBeNull();
     });
 
-    it('should return the correct XML string when getSitestructureData returns valid data', async () => {
+    it('should return the correct XML string when getSiteStructureData returns valid data', async () => {
       // ARRANGE
       (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockApiResponse });
       (getPageStructure as jest.Mock).mockResolvedValueOnce(mockPageStructureResponse);
@@ -186,7 +186,7 @@ describe('Sitemap Services', () => {
           metadata: [
             {
               category: 'sitemaps',
-              key: 'sitemap_dummy_entitycode',
+              key: 'sitemap_dummy_entity_code',
               value: 'articles',
             },
             {

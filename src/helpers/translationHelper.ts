@@ -51,7 +51,7 @@ export const translate = (key: string = '', type: TermType = TermType.standard):
   }
   const term: Translation | '' = siteTranslations?.[key?.toLowerCase()] ?? '';
   if (term === '' || !term[type]) {
-    logger.log(`TRANSLATION not found for this key: '${key}' and this type: '${type}'`, LoggerLevel.warning);
+    logger.log(`TRANSLATION not found for this key: '${key}' and this type: '${type}'`, LoggerLevel.debug); // Use debug avoiding DD useless logs
     return key;
   }
   return term[type];

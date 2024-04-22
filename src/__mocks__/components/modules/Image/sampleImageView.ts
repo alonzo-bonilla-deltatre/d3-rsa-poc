@@ -25,8 +25,7 @@ export const defaultView = {
     type: ForgeEntityType.customEntity,
     _translationId: '18227c8b-548c-49c8-8214-9f1d35b5c124',
     _entityId: '01ca7e18-2ff3-4c1b-bfa8-642474879944',
-    selfUrl:
-      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-gb/page-builder-gad-asset/my-new-image',
+    selfUrl: '',
     slug: 'my-new-image',
     title: 'My new image',
     tags: [],

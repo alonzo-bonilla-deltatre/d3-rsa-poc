@@ -27,7 +27,7 @@ const environment = process.env.ENVIRONMENT;
 const language = process.env.LANGUAGE;
 
 // The secret key for the Page Builder Frontend API, retrieved from environment variables
-const guishellApiSecret = process.env.PAGE_BUILDER_FRONTEND_API_SECRET;
+const pageBuilderApiSecret = process.env.PAGE_BUILDER_FRONTEND_API_SECRET;
 
 // The base URL of the Page Builder Frontend API, retrieved from environment variables
 const pageBuilderBaseUrl = process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
@@ -50,7 +50,7 @@ type SitemapProps = {
  *
  * @returns {Promise<SitemapItem[] | null>} - The site structure or `null` if an error occurred.
  */
-export async function getSitestructureData(): Promise<SitemapItem[] | null> {
+export async function getSiteStructureData(): Promise<SitemapItem[] | null> {
   try {
     const frontendBaseUrl = await getSiteUrl();
 
@@ -68,7 +68,7 @@ export async function getSitestructureData(): Promise<SitemapItem[] | null> {
     const { disallows } = getSiteMapProps(pageStructureResponse.data.metadata);
 
     const { data } = await axios.get<ApiResponse>(siteStructureApiUrl, {
-      headers: { Authorization: guishellApiSecret },
+      headers: { Authorization: pageBuilderApiSecret },
     });
 
     logger.log(
@@ -95,10 +95,10 @@ export async function getSitestructureData(): Promise<SitemapItem[] | null> {
  */
 export async function getSiteStructureXml(): Promise<string | null> {
   try {
-    const data: SitemapItem[] | null = await getSitestructureData();
+    const data: SitemapItem[] | null = await getSiteStructureData();
 
     if (!data?.length) {
-      throw new Error(`Error in getSitestructureXml. No data found`);
+      throw new Error(`Error in getSiteStructureXml. No data found`);
     }
 
     return xmlTemplate(
@@ -113,7 +113,7 @@ export async function getSiteStructureXml(): Promise<string | null> {
           </urlset>`
     );
   } catch (error) {
-    logger.log(`Error in getSitestructureXml: ${error}`, LoggerLevel.error);
+    logger.log(`Error in getSiteStructureXml: ${error}`, LoggerLevel.error);
     return null;
   }
 }
@@ -133,14 +133,14 @@ export async function getSitemapEntityXml(sitemapName: string): Promise<string |
   if (!entity) return null;
 
   const entityCodeOptions = ENTITY_OPTIONS[entity.name] ?? {};
-  const data = await getAllEntities(entity.entitycode as ForgeDapiEntityCode, {
+  const data = await getAllEntities(entity.entity_code as ForgeDapiEntityCode, {
     ...entityCodeOptions,
     hasLinkRules: true,
   });
 
   if (!data?.items) {
     logger.log(
-      `Error in getSitemapEntityXml. No data for entity code ${entity.entitycode} have been found`,
+      `Error in getSitemapEntityXml. No data for entity code ${entity.entity_code} have been found`,
       LoggerLevel.warning
     );
     return null;
@@ -211,12 +211,12 @@ export const getSiteMapEntitiesFromMetadata = async (): Promise<EntityConfig[]> 
   const cachedSitemapEntitiesData = pageStructure?.data.metadata
     .filter((item) => item.category === ForgeMetadataCategoryType.sitemaps && item.key.startsWith('sitemap_'))
     .reduce<EntityMap>((acc, item) => {
-      // Extract the sitemap entity name and if it's the entitycode or schema metadata
-      const [, entityName, entityType] = item.key.match(/sitemap_([^_]+)_(entitycode|schema)/) ?? [];
+      // Extract the sitemap entity name and if it's the entity_code or schema metadata
+      const [, entityName, entityType] = item.key.match(/sitemap_([^_]+)_(entity_code|schema)/) ?? [];
 
       if (entityName && entityType) {
-        const entity = acc[entityName] || { name: entityName, entitycode: '', schema: '' };
-        entity[entityType as 'entitycode' | 'schema'] = item.value;
+        const entity = acc[entityName] || { name: entityName, entity_code: '', schema: '' };
+        entity[entityType as 'entity_code' | 'schema'] = item.value;
         acc[entityName] = entity;
       }
 
@@ -225,7 +225,7 @@ export const getSiteMapEntitiesFromMetadata = async (): Promise<EntityConfig[]> 
 
   return cachedSitemapEntitiesData
     ? Object.values(cachedSitemapEntitiesData).filter(
-        (entity): entity is EntityConfig => !!(entity as EntityConfig).entitycode && !!(entity as EntityConfig).schema
+        (entity): entity is EntityConfig => !!(entity as EntityConfig).entity_code && !!(entity as EntityConfig).schema
       )
     : [];
 };

@@ -32,12 +32,5 @@ PARTIALS
 */
 
 /* BASE */
-@import 'base/variables/colors.css';
-@import 'base/base.css';
-@import 'base/typography.css';
-
-/* COMPONENTS */
-@import 'components/base.css';
-@import 'components/section.css';
-@import 'components/secondary-nav.css';
-@import 'components/form.css';
+@import 'base/variables/colors.scss';
+@import 'base/base.scss';
