@@ -48,6 +48,7 @@ const Picture = ({
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
         unoptimized={isUnoptimizedImage}
+        quality={100}
       />
     );
   }
@@ -62,6 +63,7 @@ const Picture = ({
     alt: alt,
     width: width ?? transformations.mobile.width,
     height: height ?? transformations.mobile.height,
+    quality: 100,
   };
 
   const {
@@ -121,6 +123,7 @@ const Picture = ({
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
         unoptimized={isUnoptimizedImage}
+        quality={100}
       />
     </picture>
   );
