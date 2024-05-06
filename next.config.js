@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  output: 'standalone',
   cacheHandler: require.resolve('./cache-handler.js'),
   cacheMaxMemorySize: 0, // disable default in-memory caching
   images: {
@@ -9,7 +9,13 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 0, // https://nextjs.org/docs/app/api-reference/components/image#minimumcachettl
     // unoptimized: true, // Disable Next.js image cache (avoid storing images in /_next/image?url=)
-    domains: ['res.cloudinary.com'], // Add your Cloudinary CDN domain and all other images provider domains
+    // Add your Cloudinary CDN domain and all other images provider domains
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
   },
   async rewrites() {
     return [
@@ -44,6 +50,6 @@ const nextConfig = {
     ];
   },
   generateBuildId: async () => process.env.VERSION ?? `build-${new Date().getTime()}`,
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
