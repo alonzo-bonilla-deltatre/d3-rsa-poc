@@ -9,16 +9,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 0, // https://nextjs.org/docs/app/api-reference/components/image#minimumcachettl
     // unoptimized: true, // Disable Next.js image cache (avoid storing images in /_next/image?url=)
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-      {
-        protocol: "http",
-        hostname: "**",
-      },
-    ],
+    domains: ['res.cloudinary.com'], // Add your Cloudinary CDN domain and all other images provider domains
   },
   async rewrites() {
     return [
