@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavButtonColor, NavButtonSize } from '@/models/types/carousel';
 import {
   Metadata,
   PageStructureItemKey,
@@ -47,17 +46,12 @@ export type ModuleProps = {
   hideModule?: boolean;
 } & HeaderTitleProps;
 
-export type CarouselProps = {
-  hideNavigation?: boolean;
-  hidePagination?: boolean;
-  navButtonSize?: NavButtonSize;
-  navButtonColor?: NavButtonColor;
-};
 export type EditorialProps = {
   selectionSlug?: string;
   skip?: number;
   limit?: number;
 };
+
 export type EditorialModuleProps = EditorialProps & ModuleProps;
 
 export type ReturnComponentRender = React.ReactElement | undefined | null;

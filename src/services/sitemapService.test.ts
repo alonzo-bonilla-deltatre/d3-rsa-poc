@@ -136,8 +136,8 @@ describe('Sitemap Services', () => {
       const result = await getSitemapEntityXml('article');
 
       // ASSERT
-      expect(result).toContain('<loc>http://example.com/sample-article</loc>');
-      expect(result).toContain('<loc>http://example.com/another-article</loc>');
+      expect(result).toContain('<loc>https://test.url.com/test-article</loc>');
+      expect(result).toContain('<loc>https://test.url.com/test-article</loc>');
     });
 
     it('should return null if getAllEntities returns null', async () => {
@@ -174,8 +174,8 @@ describe('Sitemap Services', () => {
       const result = await getSitemapEntityXml('testStory');
 
       // ASSERT
-      expect(result).toContain('<loc>http://example.com/sample-article</loc>');
-      expect(result).toContain('<loc>http://example.com/another-article</loc>');
+      expect(result).toContain('<loc>https://test.url.com/test-article</loc>');
+      expect(result).toContain('<loc>https://test.url.com/test-article-2</loc>');
     });
 
     it('should return null when entity have no schema available', async () => {

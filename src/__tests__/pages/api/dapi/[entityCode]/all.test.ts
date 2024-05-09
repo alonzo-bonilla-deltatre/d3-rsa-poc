@@ -1,4 +1,4 @@
-﻿import { sampleStories } from '@/__mocks__/modules/sampleStories';
+﻿import { sampleStory } from '@/__mocks__/entities/story';
 import handler from '@/pages/api/dapi/[entityCode]/all';
 import { getAllEntities } from '@/services/forgeDistributionService';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -27,7 +27,7 @@ describe('DAPI getAllEntities handler', () => {
 
   it('should return the appropriate JSON response', async () => {
     // ARRANGE
-    const entityListResponse = { data: sampleStories };
+    const entityListResponse = { data: sampleStory };
     mockReq.query = {
       entityCode: ForgeEntityCode.story,
       skip: '1',
@@ -46,7 +46,7 @@ describe('DAPI getAllEntities handler', () => {
 
   it('should return the appropriate JSON response', async () => {
     // ARRANGE
-    const entityListResponse = { sampleStories };
+    const entityListResponse = { sampleStory };
     mockReq.query = {
       entityCode: ForgeEntityCode.story,
     };

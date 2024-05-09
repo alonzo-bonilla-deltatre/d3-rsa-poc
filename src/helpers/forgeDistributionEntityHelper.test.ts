@@ -50,7 +50,7 @@ const mockLogger = logger.log as jest.Mock;
 const fallbackImageAsset: ImageAsset = {
   title: 'no_image_available',
   templateUrl:
-    'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/sandbox-integrations/react-poc/d3-placeholder_d8r7kc',
+    'https://test.url.com/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/d3-placeholder_d8r7kc',
   format: '',
   slug: 'no_image_available',
 };
@@ -65,7 +65,7 @@ const mockedVariables: Variable[] = [
     type: 'keyValue',
     key: 'inc_header',
     keyValue: {
-      value: '~/test/react-poc/library/_header',
+      value: '~/test/library/_header',
       valueType: 'string',
     },
   },
@@ -73,7 +73,7 @@ const mockedVariables: Variable[] = [
     type: 'keyValue',
     key: 'inc_footer',
     keyValue: {
-      value: '~/test/react-poc/library/_footer',
+      value: '~/test/library/_footer',
       valueType: 'string',
     },
   },
@@ -82,7 +82,7 @@ const mockedVariables: Variable[] = [
     key: 'image_placeholder',
     keyValue: {
       value:
-        'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/sandbox-integrations/react-poc/d3-placeholder_d8r7kc',
+        'https://test.url.com/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/d3-placeholder_d8r7kc',
       valueType: 'string',
     },
   },
@@ -122,7 +122,7 @@ const mockedVariables: Variable[] = [
     type: 'keyValue',
     key: 'inc_hamburger',
     keyValue: {
-      value: '~/test/react-poc/library/_hamburgher',
+      value: '~/test/library/_hamburgher',
       valueType: 'string',
     },
   },

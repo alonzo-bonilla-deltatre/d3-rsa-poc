@@ -44,6 +44,7 @@ export type PagedResult = {
   };
   items: DistributionEntity[];
 };
+
 export type Pagination = {
   nextUrl?: string;
   previousUrl?: string;

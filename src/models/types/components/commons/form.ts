@@ -1,4 +1,4 @@
-﻿import { FormInputField } from '@/models/types/forge.customEntityFields';
+﻿import { FormInputField } from '@/models/types/forgeCustomEntityFields';
 
 export type FieldProps = {
   field: FormInputField;

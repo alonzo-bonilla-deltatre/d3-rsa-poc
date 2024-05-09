@@ -1,82 +1,80 @@
-//https://forge.integrations-lab-forge.deltatre.digital/deltatre.forge.vsm/api/menus/475183FD-CEBE-4C56-90E9-28895782CC29
-
 import { MenuStructureResponse } from '@/models/types/menu';
 
-const sampleMenu: MenuStructureResponse = {
+const testMenu: MenuStructureResponse = {
   data: {
     variables: [],
     items: [
       {
-        id: '04e0423e-3da2-4c9c-88b9-a4d29089b329',
-        text: 'home',
-        tag: 'home',
-        link: '',
-        target: '',
-        tooltip: '',
+        id: 'test-id-1',
+        text: 'Test',
+        tag: 'test',
+        link: 'test-link',
+        target: 'test-target',
+        tooltip: 'test-tooltip',
         visible: true,
         icon: {
-          data: '',
+          data: 'test-data',
         },
         properties: {
-          data: '',
+          data: 'test-custom-prop',
         },
         items: [],
       },
       {
-        id: '04e0423e-3da2-4c9c-7777-a4d29089b329',
-        text: 'news',
-        tag: 'news',
-        link: '',
-        target: '',
-        tooltip: '',
+        id: 'test-id-2',
+        text: 'Test-2',
+        tag: 'test-2',
+        link: 'test-link-2',
+        target: 'test-target-2',
+        tooltip: 'test-tooltip-2',
         visible: true,
         icon: {
-          data: '',
+          data: 'test-data-2',
         },
         properties: {
-          data: '',
+          data: 'test-custom-prop-2',
         },
         items: [],
       },
       {
-        id: '04e0423e-3da2-4c9c-4444-a4d29089b329',
-        text: 'about-us',
-        tag: 'about-us',
-        link: '',
-        target: '',
-        tooltip: '',
+        id: 'test-id-3',
+        text: 'Test-3',
+        tag: 'test-3',
+        link: 'test-link-3',
+        target: 'test-target-3',
+        tooltip: 'test-tooltip-3',
         visible: true,
         icon: {
-          data: '',
+          data: 'test-data-3',
         },
         properties: {
-          data: '',
+          data: 'test-custom-prop-3',
         },
         items: [],
       },
       {
-        id: '13012066-b02f-4213-b00e-691804f438fc',
-        text: 'Contact',
-        tag: 'contact',
-        link: 'link',
-        target: 'target',
-        tooltip: 'tooltip',
+        id: 'test-id-4',
+        text: 'Test-4',
+        tag: 'test-4',
+        link: 'test-link-4',
+        target: 'test-target-4',
+        tooltip: 'test-tooltip-4',
         visible: true,
         icon: {
-          data: '',
+          data: 'test-data-4',
         },
         properties: {
-          data: 'custom-prop',
+          data: 'test-custom-prop-4',
         },
         items: [],
       },
     ],
-    name: '_sample-menu',
-    path: '~/_sample-menu',
+    name: 'test-menu',
+    path: '~/_test-menu',
   },
   meta: {
     version: '1.0',
   },
 };
 
-export { sampleMenu };
+export { testMenu };

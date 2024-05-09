@@ -4,7 +4,7 @@ import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { linkRules } from '@/__mocks__/linkRule';
 import { LinkRuleRequest } from '@/models/types/linkRule';
-import { sampleStory } from '@/__mocks__/modules/sampleStory';
+import { sampleStory } from '@/__mocks__/entities/story';
 import { ForgeEntityCode } from '@/models/types/forge';
 
 const culture = process.env.CULTURE;

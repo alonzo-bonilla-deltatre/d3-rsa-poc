@@ -109,7 +109,7 @@ describe('getSettingUrl', () => {
   it('should return url containing videoType', () => {
     // ARRANGE
     const videoType: VideoType = VideoType.vod;
-    const urlBase = 'https://divafe-icc-dev.akamaized.net/diva5/settings';
+    const urlBase = 'https://divafe.akamaized.net/diva5/settings';
     // ACT
     const url = getSettingUrl(videoType, urlBase);
     // ASSERT

@@ -1,6 +1,6 @@
 ﻿import { NextApiRequest, NextApiResponse } from 'next';
 import handler from '@/pages/api/dapi/[entityCode]/[slug]';
-import { sampleStory } from '@/__mocks__/modules/sampleStory';
+import { sampleStory } from '@/__mocks__/entities/story';
 import { getEntity } from '@/services/forgeDistributionService';
 import { ForgeEntityCode } from '@/models/types/forge';
 

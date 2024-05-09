@@ -1,4 +1,4 @@
-import { FormFieldType } from '@/models/types/forge.customEntityFields';
+import { FormFieldType } from '@/models/types/forgeCustomEntityFields';
 import { LoggerLevel } from '@/models/types/logger';
 import logger from '@/utilities/loggerUtility';
 import formidable from 'formidable';

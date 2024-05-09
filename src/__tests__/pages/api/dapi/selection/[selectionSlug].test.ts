@@ -1,4 +1,4 @@
-﻿import { sampleAlbumList } from '@/__mocks__/modules/sampleAlbumList';
+﻿import { sampleStory } from '@/__mocks__/entities/story';
 import handler from '@/pages/api/dapi/selection/[selectionSlug]';
 import { getSelection } from '@/services/forgeDistributionService';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -30,13 +30,13 @@ describe('DAPI getSelectionEntity handler', () => {
       selectionSlug: 'foo',
     };
 
-    (getSelection as jest.Mock).mockResolvedValueOnce(sampleAlbumList);
+    (getSelection as jest.Mock).mockResolvedValueOnce(sampleStory);
 
     // ACT
     await handler(mockReq, mockRes);
 
     // ASSERT
-    expect(mockRes.json).toHaveBeenCalledWith(sampleAlbumList);
+    expect(mockRes.json).toHaveBeenCalledWith(sampleStory);
     expect(mockRes.end).toHaveBeenCalled();
   });
 

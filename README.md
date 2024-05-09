@@ -38,14 +38,35 @@ Follow these steps to use the env variables locally:
 
 The content of this file should look like:
 ```bash
-CULTURE=en-GB
-ENVIRONMENT=sandbox
-FRONTEND_API_BASE_URL=https://react-fe-poc.integrations-lab-forge.deltatre.digital
-LANGUAGE=en
-VOCABULARY_TOOL_API_BASE_URL=https://vocabulary-tool-api.integrations-lab-forge.deltatre.digital
-VOCABULARY_TOOL_VOC_CODE=_default_
-VOCABULARY_TOOL_TRANSLATIONS_REVALIDATE_TIME=120
-GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL=https://graphicassetapi.integrations-lab-forge.deltatre.digital
+NODE_ENV='production'
+REACT_NAV_LOGGING='false'
+LOG_MINIMUM_LEVEL='Warning'
+LANGUAGE='en'
+CULTURE='en-GB'
+ENVIRONMENT='sandbox'
+REVALIDATE_TOKEN='xxx'
+VERSION='{build-image-version}'
+FORGE_DISTRIBUTION_API_BASE_URL='https://forge-dapi.deltatre.digital'
+GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL='https://graphicassetapi.deltatre.digital'
+PAGE_BUILDER_FRONTEND_API_BASE_URL='https://pagebuilder-fe-api.deltatre.digital'
+PAGE_BUILDER_FRONTEND_API_SECRET='FrontendApi key=intkey'
+VOCABULARY_TOOL_API_BASE_URL='https://vocabulary-tool-api.deltatre.digital'
+VOCABULARY_TOOL_VOC_CODE='react-fe-vocabulary'
+THEMING_SUFFIX_NAME='d3'
+AZURE_COGNITIVE_SEARCH_ENDPOINT_URL='https://search.search.windows.net'
+AZURE_COGNITIVE_SEARCH_INDEX_NAME='dapi-en-gb'
+AZURE_COGNITIVE_SEARCH_KEY='xxx'
+AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME='key-pages'
+LIVE_BLOGGING_DAPI_BASE_URL='https://liveblogging.deltatre.digital'
+VIDEO_SETTINGS_BASE_URL='https://divafe.akamaized.net/diva5/settings'
+DIVA_OPT_PROPS_BITRATE_MIN='-1'
+DIVA_OPT_PROPS_BITRATE_MAX='-1'
+DIVA_OPT_PROPS_BITRATE_STARTING='-1'
+DIVA_OPT_PROPS_BITRATE_USE_LAST='false'
+KEEP_LINK_RULES_LOCAL='true'
+LINK_RULES_LOCAL_HOSTNAME='localhost'
+LINK_RULES_LOCAL_PORT='3000'
+LINK_RULES_LOCAL_PROTOCOL='http'
 ```
 
 ## CSS 

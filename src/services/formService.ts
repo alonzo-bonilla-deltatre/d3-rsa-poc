@@ -1,6 +1,6 @@
 import { getBooleanPropertyDefault, getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 import { DistributionEntity } from '@/models/types/forge';
-import { FormEntity, FormFields } from '@/models/types/forge.customEntityFields';
+import { FormEntity, FormFields } from '@/models/types/forgeCustomEntityFields';
 import { LoggerLevel } from '@/models/types/logger';
 import logger from '@/utilities/loggerUtility';
 import axios from 'axios';

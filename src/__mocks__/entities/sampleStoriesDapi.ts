@@ -1,14 +1,14 @@
-import { DistributionEntity, ForgeEntityType, PagedResult, Tag } from '@/models/types/forge';
+import { DistributionEntity, ForgeEntityCode, ForgeEntityType, PagedResult, Tag } from '@/models/types/forge';
 import { ImageAsset } from '@/models/types/images';
 
 const mockTag: Tag = {
-  _translationId: 'trans-001',
-  _entityId: 'tag-001',
+  _translationId: 'TestTranslationId',
+  _entityId: 'TestEntityId',
   type: 'topic',
-  selfUrl: 'http://example.com/tags/tag-001',
-  title: 'Sports',
-  slug: 'sports',
-  neutralSlug: 'sports',
+  selfUrl: 'https://test.url.com/tags/test-tag',
+  title: 'Test',
+  slug: 'test',
+  neutralSlug: 'test',
   externalSourceName: null,
   externalSourceReference: {},
   fields: {},
@@ -16,61 +16,61 @@ const mockTag: Tag = {
 };
 
 const mockImageAsset: ImageAsset = {
-  title: 'Image title',
-  templateUrl: 'ImagetemplateUrl',
-  format: 'image-format',
-  slug: '12345-slug',
+  title: 'TestImageTitle',
+  templateUrl: 'https://test.url.com/image/private/{formatInstructions}/v0000000000/Test.png',
+  format: 'png',
+  slug: 'TestSlug',
 };
 
 const mockDistributionEntity: DistributionEntity = {
-  id: 'entity-001',
+  id: 'TestEntityId',
   type: ForgeEntityType.story,
-  _translationId: 'trans-001',
-  _entityId: 'entity-001',
-  selfUrl: 'http://example.com/entities/entity-001',
-  slug: 'sample-article',
-  title: 'Sample Article Title',
-  headline: 'This is a headline',
-  description: 'This is a description of the article content',
+  _translationId: 'TestTranslationId',
+  _entityId: 'TestEntityId',
+  selfUrl: 'https://test.url.com/entities/test-entity',
+  slug: 'test-article',
+  title: 'Test Article Title',
+  headline: 'Test Headline',
+  description: 'Test Description',
   tags: [mockTag],
   relations: [],
   references: {},
   fields: {},
-  createdBy: 'user-001',
-  lastUpdatedBy: 'user-002',
-  lastUpdatedDate: '2023-11-06T12:00:00Z',
-  contentDate: '2023-11-06T00:00:00Z',
+  createdBy: 'TestCreator',
+  lastUpdatedBy: 'TestUpdater',
+  lastUpdatedDate: '2022-01-01T00:00:00Z',
+  contentDate: '2022-01-01T00:00:00Z',
   context: mockTag,
   featured: 1,
   thumbnail: mockImageAsset,
   image: mockImageAsset,
   parts: [],
-  entityCode: 'articles',
-  url: 'http://example.com/sample-article',
+  entityCode: ForgeEntityCode.story,
+  url: 'https://test.url.com/test-article',
   elements: [],
   elementsCount: 0,
 };
 
 const mockPagedResult: PagedResult = {
   pagination: {
-    nextUrl: 'http://example.com/page/2',
-    previousUrl: 'http://example.com/page/1',
+    nextUrl: 'https://test.url.com/page/2',
+    previousUrl: 'https://test.url.com/page/1',
     maxItems: 50,
     page: 1,
     hasPagination: true,
   },
   meta: {
     apiVersion: '1.0',
-    generatedAt: '2023-11-06T12:00:00Z',
+    generatedAt: '2022-01-01T00:00:00Z',
   },
   items: [
     mockDistributionEntity,
     {
       ...mockDistributionEntity,
-      id: 'entity-002',
-      slug: 'another-article',
-      title: 'Another Article Title',
-      url: 'http://example.com/another-article',
+      id: 'TestEntityId2',
+      slug: 'test-article-2',
+      title: 'Test Article Title 2',
+      url: 'https://test.url.com/test-article-2',
     },
   ],
 };

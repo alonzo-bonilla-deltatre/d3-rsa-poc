@@ -49,38 +49,36 @@ describe('groupSearchResultsByEntityType', () => {
         count: 2,
         items: [
           {
-            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
-            Title: 'volleyballworld.com',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Id: 'test-id-1',
+            Title: 'Test Title 1',
+            Summary: 'Test Summary 1',
+            Image: 'https://test.url.com/test-image-path-1',
             Schema_Keywords: [],
             Schema_Abstract: [],
             Schema_Text: [],
             Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2023-06-27T11:15:38.75Z',
-            Url: 'https://en.volleyballworld.com/',
+            Original_Meta_Title: 'Test Meta Title 1',
+            Original_Meta_Summary: 'Test Meta Summary 1',
+            LastIndex: '2022-01-01T00:00:00Z',
+            Url: 'https://test.url.com/',
             Culture: 'en-GB',
-            Tags: ['volley'],
+            Tags: ['test-tag-1'],
           },
           {
-            Id: '64a6dd61-857e-4886-ae05-b5229b130e39',
-            Title: 'Volleyball',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://images.volleyballworld.com/image/upload/f_png/assets/backgrounds/Branded_Bg_-_Libero_Magenta_2_-_1920',
+            Id: 'test-id-2',
+            Title: 'Test Title 2',
+            Summary: 'Test Summary 2',
+            Image: 'https://test.url.com/test-image-path-2',
             Schema_Keywords: [],
             Schema_Abstract: [],
             Schema_Text: [],
             Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2022-01-13T15:20:01.675Z',
-            Url: 'https://en.volleyballworld.com/',
+            Original_Meta_Title: 'Test Meta Title 2',
+            Original_Meta_Summary: 'Test Meta Summary 2',
+            LastIndex: '2022-01-01T00:00:00Z',
+            Url: 'https://test.url.com/',
             Culture: 'en-GB',
-            Tags: ['volley', 'volleyball', 'federation'],
+            Tags: ['test-tag-2', 'test-tag-3'],
           },
         ],
       },
@@ -122,38 +120,36 @@ describe('groupSearchResultsByEntityType', () => {
         count: 2,
         items: [
           {
-            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
-            Title: 'volleyballworld.com',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Id: 'test-id-1',
+            Title: 'Test Title 1',
+            Summary: 'Test Summary 1',
+            Image: 'https://test.url.com/test-image-path-1',
             Schema_Keywords: [],
             Schema_Abstract: [],
             Schema_Text: [],
             Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2023-06-27T11:15:38.75Z',
-            Url: 'https://en.volleyballworld.com/',
+            Original_Meta_Title: 'Test Meta Title 1',
+            Original_Meta_Summary: 'Test Meta Summary 1',
+            LastIndex: '2022-01-01T00:00:00Z',
+            Url: 'https://test.url.com/',
             Culture: 'en-GB',
-            Tags: ['volley'],
+            Tags: ['test-tag-1'],
           },
           {
-            Id: '64a6dd61-857e-4886-ae05-b5229b130e39',
-            Title: 'Volleyball',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://images.volleyballworld.com/image/upload/f_png/assets/backgrounds/Branded_Bg_-_Libero_Magenta_2_-_1920',
+            Id: 'test-id-2',
+            Title: 'Test Title 2',
+            Summary: 'Test Summary 2',
+            Image: 'https://test.url.com/test-image-path-2',
             Schema_Keywords: [],
             Schema_Abstract: [],
             Schema_Text: [],
             Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2022-01-13T15:20:01.675Z',
-            Url: 'https://en.volleyballworld.com/',
+            Original_Meta_Title: 'Test Meta Title 2',
+            Original_Meta_Summary: 'Test Meta Summary 2',
+            LastIndex: '2022-01-01T00:00:00Z',
+            Url: 'https://test.url.com/',
             Culture: 'en-GB',
-            Tags: ['volley', 'volleyball', 'federation'],
+            Tags: ['test-tag-2', 'test-tag-3'],
           },
         ],
       },
@@ -209,38 +205,36 @@ describe('groupSearchResultsByEntityType', () => {
         count: 2,
         items: [
           {
-            Id: '515c4c05-ba54-4228-9ca2-86be80793501',
-            Title: 'volleyballworld.com',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://volleyball-world-ressh.cloudinary.com/image/upload/v1619617498/assets/VolleyballWorld_Icon_Logo_Black_qgytes.png',
+            Id: 'test-id-1',
+            Title: 'Test Title 1',
+            Summary: 'Test Summary 1',
+            Image: 'https://test.url.com/test-image-path-1',
             Schema_Keywords: [],
             Schema_Abstract: [],
             Schema_Text: [],
             Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2023-06-27T11:15:38.75Z',
-            Url: 'https://en.volleyballworld.com/',
+            Original_Meta_Title: 'Test Meta Title 1',
+            Original_Meta_Summary: 'Test Meta Summary 1',
+            LastIndex: '2022-01-01T00:00:00Z',
+            Url: 'https://test.url.com/',
             Culture: 'en-GB',
-            Tags: ['volley'],
+            Tags: ['test-tag-1'],
           },
           {
-            Id: '64a6dd61-857e-4886-ae05-b5229b130e39',
-            Title: 'Volleyball',
-            Summary: 'The official Volleyball World website',
-            Image:
-              'https://images.volleyballworld.com/image/upload/f_png/assets/backgrounds/Branded_Bg_-_Libero_Magenta_2_-_1920',
+            Id: 'test-id-2',
+            Title: 'Test Title 2',
+            Summary: 'Test Summary 2',
+            Image: 'https://test.url.com/test-image-path-2',
             Schema_Keywords: [],
             Schema_Abstract: [],
             Schema_Text: [],
             Schema_Image: [],
-            Original_Meta_Title: 'volleyballworld.com',
-            Original_Meta_Summary: 'The official Volleyball World website',
-            LastIndex: '2022-01-13T15:20:01.675Z',
-            Url: 'https://en.volleyballworld.com/',
+            Original_Meta_Title: 'Test Meta Title 2',
+            Original_Meta_Summary: 'Test Meta Summary 2',
+            LastIndex: '2022-01-01T00:00:00Z',
+            Url: 'https://test.url.com/',
             Culture: 'en-GB',
-            Tags: ['volley', 'volleyball', 'federation'],
+            Tags: ['test-tag-2', 'test-tag-3'],
           },
         ],
       },
@@ -256,10 +250,10 @@ describe('groupSearchResultsByEntityType', () => {
     expect(azureSearchResult.forgeEntities.items.find((item) => item.type === 'video')?.count).toBe(4);
 
     expect(
-      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.brightcoveVideo)
+      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.brightcoveVideo),
     ).toBeFalsy();
     expect(
-      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.youTubeVideo)
+      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.youTubeVideo),
     ).toBeFalsy();
   });
 });
@@ -275,13 +269,13 @@ describe('createFilter', () => {
   it('should create the group filter string correctly', () => {
     // ASSERT
     expect(createFilter('type', 'video')).toEqual(
-      "type eq 'video' or type eq 'brightcovevideo' or type eq 'jwplayervideo' or type eq 'youtubevideo' or type eq 'vimeovideo' or type eq 'divavideo'"
+      'type eq \'video\' or type eq \'brightcovevideo\' or type eq \'jwplayervideo\' or type eq \'youtubevideo\' or type eq \'vimeovideo\' or type eq \'divavideo\'',
     );
   });
 
   it('should create the filter string correctly', () => {
     // ASSERT
-    expect(createFilter('type', ForgeEntityCode.photo)).toEqual("type eq 'photo'");
+    expect(createFilter('type', ForgeEntityCode.photo)).toEqual('type eq \'photo\'');
   });
 });
 
@@ -368,7 +362,7 @@ describe('processDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async *[Symbol.asyncIterator]() {
+      async* [Symbol.asyncIterator]() {
         yield {
           document: { type: ForgeEntityCode.story, entityCode: null },
         };
@@ -400,7 +394,7 @@ describe('processDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async *[Symbol.asyncIterator]() {
+      async* [Symbol.asyncIterator]() {
         yield {
           document: { type: ForgeEntityCode.photo, entityCode: 'foo' },
         };
@@ -435,7 +429,7 @@ describe('processDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async *[Symbol.asyncIterator]() {
+      async* [Symbol.asyncIterator]() {
         // No results returned
       },
     };
@@ -460,12 +454,12 @@ describe('processKeyPagesDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async *[Symbol.asyncIterator]() {
+      async* [Symbol.asyncIterator]() {
         yield {
-          document: { id: '515c4c05-ba54-4228-9ca2-86be80793501', title: 'volleyballworld.com' },
+          document: { id: '515c4c05-ba54-4228-9ca2-86be80793501', title: 'test.com' },
         };
         yield {
-          document: { id: '64a6dd61-857e-4886-ae05-b5229b130e39', title: 'Volleyball' },
+          document: { id: '64a6dd61-857e-4886-ae05-b5229b130e39', title: 'Test' },
         };
       },
     };
@@ -476,15 +470,15 @@ describe('processKeyPagesDocuments', () => {
 
     // ASSERT
     expect(keyPages.length).toBe(2);
-    expect(keyPages[0]).toEqual({ id: '515c4c05-ba54-4228-9ca2-86be80793501', title: 'volleyballworld.com' });
-    expect(keyPages[1]).toEqual({ id: '64a6dd61-857e-4886-ae05-b5229b130e39', title: 'Volleyball' });
+    expect(keyPages[0]).toEqual({ id: '515c4c05-ba54-4228-9ca2-86be80793501', title: 'test.com' });
+    expect(keyPages[1]).toEqual({ id: '64a6dd61-857e-4886-ae05-b5229b130e39', title: 'Test' });
   });
 
   it('should handle empty search results', async () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async *[Symbol.asyncIterator]() {
+      async* [Symbol.asyncIterator]() {
         // No results returned
       },
     };
@@ -618,7 +612,7 @@ describe('enrichSearchResultsWithDistributionEntities', () => {
         key: 'image_placeholder',
         keyValue: {
           value:
-            'https://res.cloudinary.com/forgephotos/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/sandbox-integrations/react-poc/d3-placeholder_d8r7kc',
+            'https://res.cloudinary.com/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/d3-placeholder_d8r7kc',
           valueType: 'string',
         },
       },

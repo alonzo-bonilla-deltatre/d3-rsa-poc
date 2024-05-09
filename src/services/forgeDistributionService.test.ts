@@ -21,6 +21,7 @@ jest.mock('@/helpers/forgeDistributionEntityHelper', () => ({
 const enrichDistributionEntities = actualEnrichDistributionEntities as jest.Mock;
 
 const defaultSortQueryString = '&$sort=contentDate';
+const urlBase = process.env.FORGE_DISTRIBUTION_API_BASE_URL;
 
 describe('forgeDistributionService', () => {
   const mockAxiosGet = axios.get as jest.Mock;
@@ -37,7 +38,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories/example-of-a-story'
+        `${urlBase}/v2/content/en-GB/stories/example-of-a-story`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], null);
@@ -55,7 +56,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories/example-of-a-story'
+        `${urlBase}/v2/content/en-GB/stories/example-of-a-story`
       );
       expect(result).toBeNull();
     });
@@ -69,7 +70,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories/example-of-a-story'
+        `${urlBase}/v2/content/en-GB/stories/example-of-a-story`
       );
       expect(result).toBeNull();
     });
@@ -126,7 +127,6 @@ describe('forgeDistributionService', () => {
 
     it('should return null in case of exception for empty url and return null', async () => {
       // ASSERT
-      const apiUrl = process.env.FORGE_DISTRIBUTION_API_BASE_URL;
       process.env.FORGE_DISTRIBUTION_API_BASE_URL = undefined;
 
       // ACT
@@ -138,7 +138,7 @@ describe('forgeDistributionService', () => {
         expect.stringMatching('FORGE DISTRIBUTION API Error'),
         LoggerLevel.error
       );
-      process.env.FORGE_DISTRIBUTION_API_BASE_URL = apiUrl;
+      process.env.FORGE_DISTRIBUTION_API_BASE_URL = urlBase;
     });
   });
 
@@ -157,7 +157,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories?$skip=5&$limit=10' +
+        `${urlBase}/v2/content/en-GB/stories?$skip=5&$limit=10` +
           defaultSortQueryString
       );
 
@@ -178,7 +178,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories?$skip=5&$limit=10' +
+        `${urlBase}/v2/content/en-GB/stories?$skip=5&$limit=10` +
           defaultSortQueryString
       );
 
@@ -239,7 +239,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?$skip=5&$limit=10&fields.videoStatus=Scheduled' +
+        `${urlBase}/v2/content/en-GB/divavideos?$skip=5&$limit=10&fields.videoStatus=Scheduled` +
           defaultSortQueryString
       );
 
@@ -263,7 +263,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?$limit=10&$sort=fields.scheduledStartTime:asc'
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=10&$sort=fields.scheduledStartTime:asc`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -286,7 +286,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?$limit=10&$sort=contentDate:desc'
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=10&$sort=contentDate:desc`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -307,7 +307,7 @@ describe('forgeDistributionService', () => {
       // ASSERT
 
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        `https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?$limit=20${defaultSortQueryString}&fields.scheduledStartTime=$range(2023-10-10,)`
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=20${defaultSortQueryString}&fields.scheduledStartTime=$range(2023-10-10,)`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -327,7 +327,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?$limit=20' +
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=20` +
           defaultSortQueryString
       );
 
@@ -348,7 +348,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?$limit=20' +
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=20` +
           defaultSortQueryString
       );
 
@@ -357,7 +357,6 @@ describe('forgeDistributionService', () => {
 
     it('should return null in case of exception for empty url and return null', async () => {
       // ASSERT
-      const apiUrl = process.env.FORGE_DISTRIBUTION_API_BASE_URL;
       process.env.FORGE_DISTRIBUTION_API_BASE_URL = undefined;
 
       // ACT
@@ -369,7 +368,7 @@ describe('forgeDistributionService', () => {
         expect.stringMatching('FORGE DISTRIBUTION API Error'),
         LoggerLevel.error
       );
-      process.env.FORGE_DISTRIBUTION_API_BASE_URL = apiUrl;
+      process.env.FORGE_DISTRIBUTION_API_BASE_URL = urlBase;
     });
   });
 
@@ -386,7 +385,7 @@ describe('forgeDistributionService', () => {
 
     // ASSERT
     expect(mockAxiosGet).toHaveBeenCalledWith(
-      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/divavideos?context.slug=highlighted-videos' +
+      `${urlBase}/v2/content/en-GB/divavideos?context.slug=highlighted-videos` +
         defaultSortQueryString
     );
 
@@ -406,7 +405,7 @@ describe('forgeDistributionService', () => {
 
     // ASSERT
     expect(mockAxiosGet).toHaveBeenCalledWith(
-      'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories?$sort=contentDate&_listAvailability=1'
+      `${urlBase}/v2/content/en-GB/stories?$sort=contentDate&_listAvailability=1`
     );
 
     expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -425,7 +424,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/sel-test-editorial-list?$sort=contentDate'
+        `${urlBase}/v2/content/en-GB/sel-test-editorial-list?$sort=contentDate`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -483,7 +482,6 @@ describe('forgeDistributionService', () => {
 
     it('should return null in case of exception for empty url and return null', async () => {
       // ASSERT
-      const apiUrl = process.env.FORGE_DISTRIBUTION_API_BASE_URL;
       process.env.FORGE_DISTRIBUTION_API_BASE_URL = undefined;
 
       // ACT
@@ -495,7 +493,7 @@ describe('forgeDistributionService', () => {
         expect.stringMatching('FORGE DISTRIBUTION API Error'),
         LoggerLevel.error
       );
-      process.env.FORGE_DISTRIBUTION_API_BASE_URL = apiUrl;
+      process.env.FORGE_DISTRIBUTION_API_BASE_URL = urlBase;
     });
   });
 
@@ -510,7 +508,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/sel-test-editorial-list?$sort=contentDate'
+        `${urlBase}/v2/content/en-GB/sel-test-editorial-list?$sort=contentDate`
       );
       expect(result).not.toBeNull();
     });
@@ -524,7 +522,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories?$sort=contentDate'
+        `${urlBase}/v2/content/en-GB/stories?$sort=contentDate`
       );
       expect(result).not.toBeNull();
     });
@@ -538,7 +536,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories?$sort=contentDate'
+        `${urlBase}/v2/content/en-GB/stories?$sort=contentDate`
       );
       expect(result).not.toBeNull();
     });
@@ -572,7 +570,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/sel-test-editorial-list?$sort=contentDate'
+        `${urlBase}/v2/content/en-GB/sel-test-editorial-list?$sort=contentDate`
       );
       expect(result).not.toBeNull();
     });
@@ -596,13 +594,12 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://forge-dapi.integrations-lab-forge.deltatre.digital/v2/content/en-GB/stories?$sort=contentDate'
+        `${urlBase}/v2/content/en-GB/stories?$sort=contentDate`
       );
       expect(result).not.toBeNull();
     });
     it('should return null in case of exception for empty url and return null', async () => {
       // ASSERT
-      const apiUrl = process.env.FORGE_DISTRIBUTION_API_BASE_URL;
       process.env.FORGE_DISTRIBUTION_API_BASE_URL = undefined;
 
       // ACT
@@ -614,7 +611,7 @@ describe('forgeDistributionService', () => {
         expect.stringMatching('FORGE DISTRIBUTION API Error'),
         LoggerLevel.error
       );
-      process.env.FORGE_DISTRIBUTION_API_BASE_URL = apiUrl;
+      process.env.FORGE_DISTRIBUTION_API_BASE_URL = urlBase;
     });
   });
 });

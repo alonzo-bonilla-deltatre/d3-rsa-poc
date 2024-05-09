@@ -55,7 +55,7 @@ variables:
 
 steps:
   # Validate PullRequest title format (adjust the PATTERN regex based on your project needs)
-  - script: | 
+  - script: |
       pr_title="$(curl --silent -u azdo:$SYSTEM_ACCESSTOKEN \
         $(System.CollectionUri)_apis/git/repositories/$(Build.Repository.ID)/pullRequests/$(System.PullRequest.PullRequestId)?api-version=5.1 \
         | grep -Po '"title":.*?[^\\]",' | cut -d'"' -f4)"
@@ -79,8 +79,8 @@ steps:
         exit 1
       fi
     displayName: Validate PR Title
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))    
-
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+  
   # Create GitFinalVersion variable
   - template: build/common-solution/steps/set-version-universal.yml@templates
 
@@ -131,9 +131,9 @@ steps:
   # Docker push Frontend Image
   - template: build/common-solution/steps/docker-push.yml@templates
     parameters:
-        IMAGE_NAME: $(_frontendImageName)
-        IMAGE_VERSION: $(_imageVersion)
-        CONTAINER_REGISTRY: $(_azureContainerRegistry)
+      IMAGE_NAME: $(_frontendImageName)
+      IMAGE_VERSION: $(_imageVersion)
+      CONTAINER_REGISTRY: $(_azureContainerRegistry)
 
   # Clean files build server
   - template: build/common-solution/steps/delete-files.yml@templates
@@ -144,7 +144,7 @@ steps:
       IMAGE_VERSION: npm_$(_imageVersion)
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
       CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
-      
+  
   # Build Storybook DockerFile per Storybook
   - template: build/common-solution/steps/docker-build-for-ci.yml@templates
     parameters:

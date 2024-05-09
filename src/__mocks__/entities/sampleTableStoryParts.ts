@@ -3,7 +3,7 @@ import { emptyDistributionEntity, emptyDistributionEntityStoryPart } from '@/__m
 import { ForgeEntityType, ForgeExternalEntityType } from '@/models/types/forge';
 
 //********** TABLE ************/
-const partiaTablePart1 = {
+const partialTablePart1 = {
   type: ForgeEntityType.external,
   content: {
     title: 'Table title',
@@ -13,7 +13,7 @@ const partiaTablePart1 = {
   inputUrl: '',
 };
 
-const partiaTablePart2 = {
+const partialTablePart2 = {
   type: ForgeEntityType.external,
   content: {
     title: 'Table title',
@@ -23,7 +23,7 @@ const partiaTablePart2 = {
   inputUrl: '',
 };
 
-const partiaTablePart3 = {
+const partialTablePart3 = {
   type: ForgeEntityType.external,
   content: {
     title: 'Table title',
@@ -36,19 +36,19 @@ const partiaTablePart3 = {
 const sampleTableStoryPart1: StoryPart = {
   ...emptyDistributionEntity,
   ...emptyDistributionEntityStoryPart,
-  ...partiaTablePart1,
+  ...partialTablePart1,
 };
 
 const sampleTableStoryPart2: StoryPart = {
   ...emptyDistributionEntity,
   ...emptyDistributionEntityStoryPart,
-  ...partiaTablePart2,
+  ...partialTablePart2,
 };
 
 const sampleTableStoryPart3: StoryPart = {
   ...emptyDistributionEntity,
   ...emptyDistributionEntityStoryPart,
-  ...partiaTablePart3,
+  ...partialTablePart3,
 };
 
 export { sampleTableStoryPart1, sampleTableStoryPart2, sampleTableStoryPart3 };

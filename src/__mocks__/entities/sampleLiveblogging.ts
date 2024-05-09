@@ -10,38 +10,37 @@ import {
 import { ImageAsset } from '@/models/types/images';
 
 const sampleBlogWidgetConfig: LiveBloggingWidgetConfig = {
-  slug: 'sample-blog',
+  slug: 'test-blog',
   culture: 'en-GB',
-  baseUrl: 'https://liveblogging.integrations-lab-forge.deltatre.digital',
+  baseUrl: 'https://liveblogging.test-url.com',
   showKeyMoments: true,
 };
 
 const sampleTags: LiveBloggingTagEntity[] = [
   {
-    slug: 'awards',
-    id: '9a220596-d930-4689-a28b-e6186ec76017',
-    label: 'awards',
+    slug: 'test',
+    id: 'Test-Id',
+    label: 'test',
     extradata: {},
   },
 ];
 
 const sampleBlog: LiveBloggingBlogEntity = {
-  title: 'sample blog',
-  slug: 'sample-blog',
-  description: 'this is a sample blog',
+  title: 'test blog',
+  slug: 'test-blog',
+  description: 'this is a test blog',
   tags: sampleTags,
   language: 'en-GB',
   dateFrom: '',
   dateTo: '',
-  lastUpdateDate: '2022-01-11T14:15:24.126Z',
+  lastUpdateDate: '2022-01-01T00:00:00Z',
   timeZone: {
     offset: 'UTC+01:00DST',
   },
   coverImage: {
-    templateUrl:
-      'https://res.cloudinary.com/dqss5rlhj/image/private/{formatInstructions}/v1604563660/forgego-liveblogging/ufdhb2ndt3i7x1zre0rg',
+    templateUrl: 'https://test.url.com/image/private/{formatInstructions}/v0000000000/Test.png',
   },
-  totalPosts: 17,
+  totalPosts: 10,
   presentation: {
     keyMomentsVisible: true,
     showBlogDefinition: true,
@@ -63,14 +62,14 @@ const sampleBlog: LiveBloggingBlogEntity = {
       position: 'inline',
       size: 'leaderboard',
       type: 'blog',
-      env: 'integration',
+      env: 'dev',
       culture: 'en-GB',
-      slug: 'sample-blog',
+      slug: 'test-blog',
     },
     enableCompanionAd: false,
   },
   oembed: {
-    templateUrl: 'https://liveblogging.integrations-lab-forge.deltatre.digital/oembed?url={url}',
+    templateUrl: 'https://liveblogging.test-url.com/oembed?url={url}',
   },
   event: null,
   widgetConfig: sampleBlogWidgetConfig,
@@ -78,10 +77,10 @@ const sampleBlog: LiveBloggingBlogEntity = {
 };
 
 const samplePost: LiveBloggingPostEntity = {
-  postId: 'post-id',
+  postId: 'test-post-id',
   tags: sampleTags,
   author: {
-    fullName: 'author',
+    fullName: 'test author',
   },
   type: PostType.Post,
   isSticky: false,
@@ -94,13 +93,13 @@ const samplePost: LiveBloggingPostEntity = {
       type: 'text',
       content: {},
       externalSourceReference: {
-        externalSourceId: 'externalSourceId',
-        externalSourceType: 'externalSourceType',
+        externalSourceId: 'test-externalSourceId',
+        externalSourceType: 'test-externalSourceType',
       },
     },
   ],
   properties: {},
-  timestamp: '2022-01-11T14:15:24.126Z',
+  timestamp: '2022-01-01T00:00:00Z',
 };
 
 const sampleBlogs: LiveBloggingBlogEntity[] = [sampleBlog];

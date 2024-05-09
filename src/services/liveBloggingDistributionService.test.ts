@@ -24,6 +24,8 @@ jest.mock('@/helpers/liveBloggingBlogEntityHelper', () => {
   };
 });
 
+const urlBase = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
+
 describe('liveBloggingDistributionService', () => {
   const mockAxiosGet = axios.get as jest.Mock;
   const mockLogger = logger.log as jest.Mock;
@@ -42,12 +44,12 @@ describe('liveBloggingDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs/sample-blog'
+        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog`
       );
 
       expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
         sampleBlog,
-        'https://liveblogging.integrations-lab-forge.deltatre.digital',
+        `${urlBase}`,
         'en-GB',
         'sample-blog',
         true
@@ -126,12 +128,12 @@ describe('liveBloggingDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs/sample-blog/Posts?$skip=1&$limit=1'
+        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts?$skip=1&$limit=1`
       );
 
       expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
         samplePost,
-        'https://liveblogging.integrations-lab-forge.deltatre.digital',
+        `${urlBase}`,
         'en-GB',
         'sample-blog',
         true
@@ -147,12 +149,12 @@ describe('liveBloggingDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs/sample-blog/Posts'
+        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts`
       );
 
       expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
         samplePost,
-        'https://liveblogging.integrations-lab-forge.deltatre.digital',
+        `${urlBase}`,
         'en-GB',
         'sample-blog',
         true
@@ -231,7 +233,7 @@ describe('liveBloggingDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs?$skip=1&$limit=1'
+        `${urlBase}/api/distribution/v1/en-GB/Blogs?$skip=1&$limit=1`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith(sampleBlogs, queryOptions);
@@ -246,7 +248,7 @@ describe('liveBloggingDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        'https://liveblogging.integrations-lab-forge.deltatre.digital/api/distribution/v1/en-GB/Blogs'
+        `${urlBase}/api/distribution/v1/en-GB/Blogs`
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith(sampleBlogs, null);
@@ -293,7 +295,6 @@ describe('liveBloggingDistributionService', () => {
 
     it('should return null in case of exception for empty url and return null', async () => {
       // ARRANGE
-      const apiUrl = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
       process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
 
       // ACT
@@ -305,7 +306,7 @@ describe('liveBloggingDistributionService', () => {
         expect.stringMatching('LIVEBLOGGING DISTRIBUTION API Error'),
         LoggerLevel.error
       );
-      process.env.LIVE_BLOGGING_DAPI_BASE_URL = apiUrl;
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = urlBase;
     });
   });
 });

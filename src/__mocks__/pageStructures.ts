@@ -6,7 +6,7 @@ const indexStructure: PageStructureResponse = {
     structure: {
       key: {
         id: 'default',
-        namespace: 'urn:forgegosandbox',
+        namespace: 'urn:online-common',
       },
       type: PageStructureItemType.template,
       properties: {},
@@ -26,7 +26,7 @@ const indexStructure: PageStructureResponse = {
         {
           key: {
             id: 'Section',
-            namespace: 'urn:online-common-xrc',
+            namespace: 'urn:online-common',
           },
           type: PageStructureItemType.layout,
           properties: {
