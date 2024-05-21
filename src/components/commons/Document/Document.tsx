@@ -18,10 +18,6 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
   const documentUrl = getSrcWithTransformation(entity?.file?.templateUrl, transformations.good_assets.desktop.transformation);
   const [isIOSMobile, setIsIOSMobile] = useState(false);
 
-  if (!documentUrl) {
-    return null;
-  }
-
   const fileTitle = (entity as any)?.title;
   const isIOSMobileWindow =
     typeof window !== 'undefined'
@@ -35,6 +31,10 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
     }
   }, [entity, isIOSMobileWindow]);
 
+  if (!documentUrl) {
+    return null;
+  }
+  
   return (
     <>
       {isIOSMobile ? (
@@ -55,7 +55,7 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
       ) : (
         <iframe
           src={documentUrl}
-          className="w-full aspect-video rounded-lg"
+          className="w-full aspect-w-16 aspect-h-9 rounded-lg"
         />
       )}
     </>

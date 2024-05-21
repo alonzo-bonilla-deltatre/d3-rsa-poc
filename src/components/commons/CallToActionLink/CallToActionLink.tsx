@@ -3,7 +3,7 @@ import styles from '@/components/commons/CallToActionLink/CallToActionLink.modul
 import Typography from '@/components/commons/Typography/Typography';
 import TranslatedLabel from '@/components/commons/TranslatedLabel/TranslatedLabel';
 
-export enum CallToActionTypes {
+export enum CallToActionLinkTypes {
   filled = 'filled',
   outlined = 'outlined',
 }
@@ -12,14 +12,14 @@ type CallToActionProps = {
   url: string;
   text: string;
   baseUrl?: string;
-  type?: CallToActionTypes;
+  type?: CallToActionLinkTypes;
 };
 
 const CallToActionLink = ({
                             url,
                             text,
                             baseUrl,
-                            type = CallToActionTypes.filled,
+                            type = CallToActionLinkTypes.filled,
                           }: CallToActionProps) => {
   return (
     <Link

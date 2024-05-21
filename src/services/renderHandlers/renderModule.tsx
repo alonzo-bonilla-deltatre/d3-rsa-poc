@@ -6,6 +6,7 @@ import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWr
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
+import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderText from '@/components/modules/Text/TextWrapper';
 
@@ -19,6 +20,7 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   Image: renderImage,
   Menu: renderMenu,
   Story: renderStory,
+  SearchResults: renderSearchResults,
   Text: renderText,
 };
 

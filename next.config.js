@@ -19,6 +19,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images-product.deltatre.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
   async rewrites() {

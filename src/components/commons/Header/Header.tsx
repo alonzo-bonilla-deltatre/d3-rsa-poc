@@ -9,6 +9,8 @@ import { HeaderScrollManager } from '@/components/commons/Header/HeaderScrollMan
 import { AzureSearchOption } from '@/models/types/azureSearch';
 import { translate } from '@/helpers/translationHelper';
 import { getPageStructureFromVariablePath } from '@/helpers/pageHelper';
+import SearchBarOverlay from '@/components/commons/SearchBarOverlay/SearchBarOverlay';
+import { getSearchPath } from '@/components/modules/SearchResults/SearchResultsHelper';
 
 enum CommonHeaderSlots {
   logo = 'logo',
@@ -91,6 +93,10 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
             )}
           </div>
         </div>
+        <SearchBarOverlay
+          redirectPath={getSearchPath(data.variables)}
+          inputValue={azureSearchOption.q}
+        />
         <div className="container px-4 hidden lg:block">
           <div
             className="w-full flex items-center"

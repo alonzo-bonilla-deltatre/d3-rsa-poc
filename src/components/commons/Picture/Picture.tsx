@@ -14,6 +14,7 @@ type PictureProps = {
   sizes?: string;
   priority?: boolean;
   imageStyle?: CSSProperties;
+  figureClassName?: string;
 };
 
 const Picture = ({
@@ -27,6 +28,7 @@ const Picture = ({
                    sizes,
                    priority,
                    imageStyle,
+                   figureClassName,
                  }: PictureProps) => {
   if (!src) {
     return null;
@@ -36,7 +38,7 @@ const Picture = ({
 
   if (!transformations) {
     return (
-      <figure>
+      <figure className={figureClassName}>
         <Image
           src={src}
           alt={alt}
@@ -99,7 +101,7 @@ const Picture = ({
   const mobileHeight = height ?? transformations?.mobile.height;
 
   return (
-    <figure>
+    <figure className={figureClassName}>
       <picture>
         <source
           srcSet={!isUnoptimizedImage ? srcSetDesktop ?? desktopSrc : desktopSrc}
