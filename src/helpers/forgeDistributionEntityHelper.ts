@@ -22,6 +22,7 @@ import {
 import { getPageNumber } from '@/helpers/paginationHelper';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
+import { hasValidUrl } from '@/helpers/urlHelper';
 
 const culture = process.env.CULTURE;
 const environment = process.env.ENVIRONMENT;
@@ -308,7 +309,7 @@ export const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleR
   const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
   entity.url = linkRule?.url ?? entity.url;
 
-  if (entity.url && entity.url !== '#nolink' && process.env.KEEP_LINK_RULES_LOCAL === 'true') {
+  if (entity.url && hasValidUrl(entity.url) && process.env.KEEP_LINK_RULES_LOCAL === 'true') {
     try {
       const url = new URL(entity.url);
       url.hostname = process.env.LINK_RULES_LOCAL_HOSTNAME ?? 'localhost';

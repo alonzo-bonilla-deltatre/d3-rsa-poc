@@ -51,6 +51,7 @@ export enum ImageTransformationName {
   image_original_extra_large = 'image_original_extraLarge',
   image_original_extra_extra_large = 'image_original_extraExtraLarge',
 
+  good_assets = 'good_assets',
   best_assets = 'best_assets',
   thumbnail_wide_detail = 'thumbnail_wide_detail',
   thumbnail_landscape_detail = 'thumbnail_landscape_detail',
@@ -58,4 +59,8 @@ export enum ImageTransformationName {
   thumbnail_square_detail = 'thumbnail_square_detail',
   thumbnail_portrait_detail = 'thumbnail_portrait_detail',
   thumbnail_portrait_wide_detail = 'thumbnail_portrait_wide_detail',
+
+  // Modules
+  fancy_box_detail = 'fancy_box_detail',
+  story_header_background = 'story_header_background',
 }

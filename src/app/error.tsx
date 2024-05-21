@@ -1,30 +1,33 @@
 'use client';
+
 import useTranslate from '@/hooks/useTranslate';
-import Link from 'next/link';
+import Link from '@/components/commons/Link/Link';
+import Typography from '@/components/commons/Typography/Typography';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   const translate = useTranslate();
   return (
     <section className="flex h-screen overflow-hidden m-0 p-0">
       <div className="m-auto">
-        <h1 className="font-bold text-5xl uppercase mb-6">Oops! There was an error</h1>
-        <nav
-          className="mt-8"
-          aria-label={translate('error-navigation')}
-        >
+        <Typography variant={'h2'} className="mb-6">{translate('500-error')}</Typography>
+        <Typography variant={'h3'} className="mb-12">{translate('500-oops-error')}</Typography>
+        <nav>
           <ul className="list-none flex space-x-5">
             <li>
               <Link
                 href={'/'}
-                title={'Back to homepage'}
-              ></Link>
+                title={translate('back-to-homepage')}
+                className={'uppercase transition duration-300 hover:text-link'}
+              >
+                <Typography variant={'navigation-m'}>{translate('back-to-homepage')}</Typography>
+              </Link>
             </li>
             <li>
               <button
-                className="inline-block text-black bg-white font-bold uppercase px-8 py-3 rounded-full outline-none"
+                className="uppercase transition duration-300 hover:text-link"
                 onClick={() => reset()}
               >
-                Try again
+                <Typography variant={'navigation-m'}>{translate('try-again')}</Typography>
               </button>
             </li>
           </ul>

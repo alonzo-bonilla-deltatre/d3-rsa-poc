@@ -2,8 +2,6 @@
   getBooleanProperty,
   getBooleanPropertyDefault,
   getBooleanPropertyFromString,
-  getDarkClass,
-  getDarkTheme,
   getHeadingTag,
   getHeadingTagNumber,
   getHideLayout,
@@ -229,62 +227,6 @@ describe('getStringProperty function', () => {
     const result = getStringProperty(propertyValue, defaultValue);
     // ASSERT
     expect(result).toEqual(defaultValue);
-  });
-});
-describe('getDarkTheme function', () => {
-  it('should return undefined if propertyValue is undefined', () => {
-    // ARRANGE
-    const propertyValue = undefined;
-    // ACT
-    const result = getDarkTheme(propertyValue);
-    // ASSERT
-    expect(result).toBe('light');
-  });
-
-  it('should return undefined if propertyValue is false', () => {
-    // ARRANGE
-    const propertyValue = false;
-    // ACT
-    const result = getDarkTheme(propertyValue);
-    // ASSERT
-    expect(result).toBe('light');
-  });
-
-  it('should return dark if propertyValue is true', () => {
-    // ARRANGE
-    const propertyValue = true;
-    // ACT
-    const result = getDarkTheme(propertyValue);
-    // ASSERT
-    expect(result).toEqual('dark');
-  });
-});
-describe('getDarkClass function', () => {
-  it('should return empty string if propertyValue is undefined', () => {
-    // ARRANGE
-    const propertyValue = undefined;
-    // ACT
-    const result = getDarkClass(propertyValue);
-    // ASSERT
-    expect(result).toBe('light');
-  });
-
-  it('should return empty string  if propertyValue is false', () => {
-    // ARRANGE
-    const propertyValue = false;
-    // ACT
-    const result = getDarkClass(propertyValue);
-    // ASSERT
-    expect(result).toBe('light');
-  });
-
-  it('should return dark if propertyValue is true', () => {
-    // ARRANGE
-    const propertyValue = true;
-    // ACT
-    const result = getDarkClass(propertyValue);
-    // ASSERT
-    expect(result).toEqual('dark');
   });
 });
 describe('getHideModule function', () => {

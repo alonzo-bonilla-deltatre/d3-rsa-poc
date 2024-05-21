@@ -65,27 +65,6 @@ export const getStringProperty = (propertyValue?: string | null, defaultValue: s
 };
 
 /**
- * Returns a string value based on the provided boolean property value.
- *
- * @param {boolean | undefined} propertyValue - The boolean property value to check.
- * @returns {string} 'dark' if the property value is true, 'light' otherwise.
- */
-export const getDarkClass = (propertyValue?: boolean): string => {
-  return getDarkTheme(propertyValue);
-};
-
-/**
- * Returns a string value based on the provided boolean property value.
- *
- * @param {boolean | undefined} propertyValue - The boolean property value to check.
- * @returns {string} 'dark' if the property value is true, 'light' otherwise.
- */
-export const getDarkTheme = (propertyValue?: boolean): string => {
-  const property = getBooleanPropertyDefault(Boolean(propertyValue), false);
-  return property ? 'dark' : 'light';
-};
-
-/**
  * Returns a boolean value based on the hideModule property of the provided properties object.
  *
  * @param {ComponentProps & { hideModule?: boolean } | undefined} properties - The properties object to check.

@@ -38,3 +38,9 @@ export type MenuIcon = {
 export type MenuProperty = {
   data: string;
 };
+
+export enum MenuSources {
+  header = 'header',
+  footer = 'footer',
+  hamburger = 'hamburger',
+}

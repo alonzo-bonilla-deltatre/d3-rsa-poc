@@ -170,6 +170,11 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
     tablet: defaultCloudinaryTransformations.q_best,
     desktop: defaultCloudinaryTransformations.q_best,
   },
+  good_assets: {
+    mobile: defaultCloudinaryTransformations.q_good,
+    tablet: defaultCloudinaryTransformations.q_good,
+    desktop: defaultCloudinaryTransformations.q_good,
+  },
   best_assets: {
     mobile: defaultCloudinaryTransformations.q_best,
     tablet: defaultCloudinaryTransformations.q_best,
@@ -178,17 +183,17 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   thumbnail_wide_detail: {
     mobile: defaultCloudinaryTransformations.ratio21_9_size20,
     tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
   },
   thumbnail_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
   },
   thumbnail_small_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
   },
   thumbnail_square_detail: {
     mobile: defaultCloudinaryTransformations.ratio1_1_size20,
@@ -204,6 +209,18 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
     mobile: defaultCloudinaryTransformations.ratio10_16_size10,
     tablet: defaultCloudinaryTransformations.ratio10_16_size20,
     desktop: defaultCloudinaryTransformations.ratio10_16_size20,
+  },
+  // Fancy box detail
+  fancy_box_detail: {
+    mobile: defaultCloudinaryTransformations.ratio16_9_size10_c_pad_b_none,
+    tablet: defaultCloudinaryTransformations.ratio16_9_size30_c_pad_b_none,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size50_c_pad_b_none,
+  },
+  // Module Story: header
+  story_header_background: {
+    mobile: defaultCloudinaryTransformations.ratio1_1_size20,
+    tablet: defaultCloudinaryTransformations.ratio21_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
   },
 };
 

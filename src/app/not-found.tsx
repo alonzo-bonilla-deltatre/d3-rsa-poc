@@ -1,18 +1,20 @@
-import Link from 'next/link';
 import { translate } from '@/helpers/translationHelper';
+import Link from '@/components/commons/Link/Link';
+import Typography from '@/components/commons/Typography/Typography';
 
 export default function NotFound() {
   return (
     <section className="flex h-screen overflow-hidden m-0 p-0">
       <div className="m-auto">
-        <h1 className="font-bold text-5xl uppercase mb-6">404 - Not found</h1>
-        <h2 className="mb-6 font-semibold">Oops! That page can&apos;t be found</h2>
-        <p className="mb-12 text-lg">The page you are looking for it may be deleted or doesn&apos;t exist</p>
+        <Typography variant={'h2'} className="mb-6">{translate('404-error')}</Typography>
+        <Typography variant={'h3'} className="mb-6">{translate('404-oops-error')}</Typography>
+        <Typography variant={'body-m'} className="mb-12">{translate('404-error-message')}</Typography>
         <Link
           href={'/'}
           title={translate('back-to-homepage')}
+          className={'uppercase transition duration-300 hover:text-link'}
         >
-          {translate('back-to-homepage')}
+          <Typography variant={'navigation-m'}>{translate('back-to-homepage')}</Typography>
         </Link>
       </div>
     </section>

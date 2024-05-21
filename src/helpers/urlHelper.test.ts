@@ -1,4 +1,4 @@
-import { changeHistory, checkPathFormats, isExternalLink, setURLSearchParams } from '@/helpers/urlHelper';
+import { changeHistory, checkPathFormats, hasValidUrl, isExternalLink, setURLSearchParams } from '@/helpers/urlHelper';
 
 describe('getDataVariable function', () => {
   it('should return the pagePath with initial slash', () => {
@@ -81,6 +81,53 @@ describe('isExternalLink function', () => {
     // ACT
     const result = isExternalLink('/news');
 
+    // ASSERT
+    expect(result).toBeFalsy();
+  });
+});
+
+describe('hasValidUrl function', () => {
+  it('should return true for a valid URL', () => {
+    // ARRANGE
+    const url = 'https://www.valid-url.com';
+    // ACT
+    const result = hasValidUrl(url);
+    // ASSERT
+    expect(result).toBeTruthy();
+  });
+
+  it('should return false for an undefined URL', () => {
+    // ARRANGE
+    const url = undefined;
+    // ACT
+    const result = hasValidUrl(url);
+    // ASSERT
+    expect(result).toBeFalsy();
+  });
+
+  it('should return false for a null URL', () => {
+    // ARRANGE
+    const url = null as any
+    // ACT
+    const result = hasValidUrl(url);
+    // ASSERT
+    expect(result).toBeFalsy();
+  });
+
+  it('should return false for an empty string URL', () => {
+    // ARRANGE
+    const url = '';
+    // ACT
+    const result = hasValidUrl(url);
+    // ASSERT
+    expect(result).toBeFalsy();
+  });
+
+  it('should return false for a URL equal to "#nolink"', () => {
+    // ARRANGE
+    const url = '#nolink';
+    // ACT
+    const result = hasValidUrl(url);
     // ASSERT
     expect(result).toBeFalsy();
   });

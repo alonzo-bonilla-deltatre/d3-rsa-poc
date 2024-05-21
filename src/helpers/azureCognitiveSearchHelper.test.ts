@@ -250,10 +250,10 @@ describe('groupSearchResultsByEntityType', () => {
     expect(azureSearchResult.forgeEntities.items.find((item) => item.type === 'video')?.count).toBe(4);
 
     expect(
-      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.brightcoveVideo),
+      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.brightcoveVideo)
     ).toBeFalsy();
     expect(
-      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.youTubeVideo),
+      azureSearchResult.forgeEntities.items.some((item) => item.type === ForgeEntityCode.youTubeVideo)
     ).toBeFalsy();
   });
 });
@@ -269,13 +269,13 @@ describe('createFilter', () => {
   it('should create the group filter string correctly', () => {
     // ASSERT
     expect(createFilter('type', 'video')).toEqual(
-      'type eq \'video\' or type eq \'brightcovevideo\' or type eq \'jwplayervideo\' or type eq \'youtubevideo\' or type eq \'vimeovideo\' or type eq \'divavideo\'',
+      "type eq 'video' or type eq 'brightcovevideo' or type eq 'jwplayervideo' or type eq 'youtubevideo' or type eq 'vimeovideo' or type eq 'divavideo'"
     );
   });
 
   it('should create the filter string correctly', () => {
     // ASSERT
-    expect(createFilter('type', ForgeEntityCode.photo)).toEqual('type eq \'photo\'');
+    expect(createFilter('type', ForgeEntityCode.photo)).toEqual("type eq 'photo'");
   });
 });
 
@@ -362,7 +362,7 @@ describe('processDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async* [Symbol.asyncIterator]() {
+      async *[Symbol.asyncIterator]() {
         yield {
           document: { type: ForgeEntityCode.story, entityCode: null },
         };
@@ -394,7 +394,7 @@ describe('processDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async* [Symbol.asyncIterator]() {
+      async *[Symbol.asyncIterator]() {
         yield {
           document: { type: ForgeEntityCode.photo, entityCode: 'foo' },
         };
@@ -429,7 +429,7 @@ describe('processDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async* [Symbol.asyncIterator]() {
+      async *[Symbol.asyncIterator]() {
         // No results returned
       },
     };
@@ -454,7 +454,7 @@ describe('processKeyPagesDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async* [Symbol.asyncIterator]() {
+      async *[Symbol.asyncIterator]() {
         yield {
           document: { id: '515c4c05-ba54-4228-9ca2-86be80793501', title: 'test.com' },
         };
@@ -478,7 +478,7 @@ describe('processKeyPagesDocuments', () => {
     // ARRANGE
     const results: SearchIterator<Pick<unknown, never>> = {
       // @ts-ignore
-      async* [Symbol.asyncIterator]() {
+      async *[Symbol.asyncIterator]() {
         // No results returned
       },
     };

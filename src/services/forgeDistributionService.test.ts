@@ -37,9 +37,7 @@ describe('forgeDistributionService', () => {
       const result = await getEntity(ForgeDapiEntityCode.stories, 'example-of-a-story');
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories/example-of-a-story`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/v2/content/en-GB/stories/example-of-a-story`);
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], null);
       expect(result).not.toBeNull();
@@ -55,9 +53,7 @@ describe('forgeDistributionService', () => {
       const result = await getEntity(ForgeDapiEntityCode.stories, 'example-of-a-story');
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories/example-of-a-story`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/v2/content/en-GB/stories/example-of-a-story`);
       expect(result).toBeNull();
     });
 
@@ -69,9 +65,7 @@ describe('forgeDistributionService', () => {
       const result = await getEntity(ForgeDapiEntityCode.stories, 'example-of-a-story');
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories/example-of-a-story`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/v2/content/en-GB/stories/example-of-a-story`);
       expect(result).toBeNull();
     });
 
@@ -157,8 +151,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories?$skip=5&$limit=10` +
-          defaultSortQueryString
+        `${urlBase}/v2/content/en-GB/stories?$skip=5&$limit=10` + defaultSortQueryString
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -178,8 +171,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories?$skip=5&$limit=10` +
-          defaultSortQueryString
+        `${urlBase}/v2/content/en-GB/stories?$skip=5&$limit=10` + defaultSortQueryString
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -239,8 +231,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/divavideos?$skip=5&$limit=10&fields.videoStatus=Scheduled` +
-          defaultSortQueryString
+        `${urlBase}/v2/content/en-GB/divavideos?$skip=5&$limit=10&fields.videoStatus=Scheduled` + defaultSortQueryString
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -327,8 +318,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/divavideos?$limit=20` +
-          defaultSortQueryString
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=20` + defaultSortQueryString
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -348,8 +338,7 @@ describe('forgeDistributionService', () => {
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/divavideos?$limit=20` +
-          defaultSortQueryString
+        `${urlBase}/v2/content/en-GB/divavideos?$limit=20` + defaultSortQueryString
       );
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -385,8 +374,7 @@ describe('forgeDistributionService', () => {
 
     // ASSERT
     expect(mockAxiosGet).toHaveBeenCalledWith(
-      `${urlBase}/v2/content/en-GB/divavideos?context.slug=highlighted-videos` +
-        defaultSortQueryString
+      `${urlBase}/v2/content/en-GB/divavideos?context.slug=highlighted-videos` + defaultSortQueryString
     );
 
     expect(enrichDistributionEntities).toHaveBeenCalledWith([sampleStory], queryOptions);
@@ -521,9 +509,7 @@ describe('forgeDistributionService', () => {
       const result = await getEntityList('', ForgeDapiEntityCode.stories);
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories?$sort=contentDate`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/v2/content/en-GB/stories?$sort=contentDate`);
       expect(result).not.toBeNull();
     });
 
@@ -535,9 +521,7 @@ describe('forgeDistributionService', () => {
       const result = await getEntityList(null, ForgeDapiEntityCode.stories);
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories?$sort=contentDate`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/v2/content/en-GB/stories?$sort=contentDate`);
       expect(result).not.toBeNull();
     });
 
@@ -593,9 +577,7 @@ describe('forgeDistributionService', () => {
       const result = await getEntityList('', ForgeDapiEntityCode.stories, { hasPagination: true });
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/v2/content/en-GB/stories?$sort=contentDate`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/v2/content/en-GB/stories?$sort=contentDate`);
       expect(result).not.toBeNull();
     });
     it('should return null in case of exception for empty url and return null', async () => {

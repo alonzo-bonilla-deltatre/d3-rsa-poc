@@ -44,12 +44,12 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       className={`${content.variable} ${navigation.variable} ${heading.variable}`}
       dir={getSiteDirection(process.env.LANGUAGE ?? '')}
     >
-      <head>
+    <head>
         <Favicon />
-      </head>
-      <body suppressHydrationWarning={true}>
-        <TranslationProvider translations={translations}>
-          <EnvVarsProvider envVars={publicEnvVariables}>
+    </head>
+    <body suppressHydrationWarning={true}>
+    <TranslationProvider translations={translations}>
+      <EnvVarsProvider envVars={publicEnvVariables}>
             <FeatureFlagsProvider featureFlags={featureFlags}>{children}</FeatureFlagsProvider>
           </EnvVarsProvider>
         </TranslationProvider>

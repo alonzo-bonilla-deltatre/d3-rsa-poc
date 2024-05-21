@@ -1,4 +1,4 @@
-import { isExternalLink } from '@/helpers/urlHelper';
+import { hasValidUrl, isExternalLink } from '@/helpers/urlHelper';
 import Link, { LinkProps } from 'next/link';
 import { AnchorHTMLAttributes } from 'react';
 
@@ -11,6 +11,10 @@ const LinkComponent = ({ children, ...props }: LinkComponentProps) => {
   const { baseUrl, href, ...linkProps } = props;
   if (!href) {
     return null;
+  }
+  
+  if(!hasValidUrl(href)) {
+    return <div className={linkProps.className}>{children}</div>;
   }
 
   const isExternal = isExternalLink(href, baseUrl);

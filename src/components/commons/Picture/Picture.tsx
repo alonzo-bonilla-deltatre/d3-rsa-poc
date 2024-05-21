@@ -17,17 +17,17 @@ type PictureProps = {
 };
 
 const Picture = ({
-  src,
-  alt,
-  format,
-  transformations,
-  className,
-  width,
-  height,
-  sizes,
-  priority,
-  imageStyle,
-}: PictureProps) => {
+                   src,
+                   alt,
+                   format,
+                   transformations,
+                   className,
+                   width,
+                   height,
+                   sizes,
+                   priority,
+                   imageStyle,
+                 }: PictureProps) => {
   if (!src) {
     return null;
   }
@@ -36,20 +36,22 @@ const Picture = ({
 
   if (!transformations) {
     return (
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className={className}
-        style={imageStyle}
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        unoptimized={isUnoptimizedImage}
-        quality={100}
-      />
+      <figure>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className={className}
+          style={imageStyle}
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          unoptimized={isUnoptimizedImage}
+          quality={100}
+        />
+      </figure>
     );
   }
 
@@ -97,35 +99,37 @@ const Picture = ({
   const mobileHeight = height ?? transformations?.mobile.height;
 
   return (
-    <picture>
-      <source
-        srcSet={!isUnoptimizedImage ? srcSetDesktop ?? desktopSrc : desktopSrc}
-        media="(min-width: 1024px)"
-      ></source>
-      <source
-        srcSet={!isUnoptimizedImage ? srcSetTablet ?? tabletSrc : tabletSrc}
-        media="(min-width: 768px)"
-      ></source>
-      <source
-        srcSet={!isUnoptimizedImage ? srcSetMobile ?? mobileSrc : mobileSrc}
-        media="(min-width: 640px)"
-      ></source>
+    <figure>
+      <picture>
+        <source
+          srcSet={!isUnoptimizedImage ? srcSetDesktop ?? desktopSrc : desktopSrc}
+          media="(min-width: 1024px)"
+        ></source>
+        <source
+          srcSet={!isUnoptimizedImage ? srcSetTablet ?? tabletSrc : tabletSrc}
+          media="(min-width: 768px)"
+        ></source>
+        <source
+          srcSet={!isUnoptimizedImage ? srcSetMobile ?? mobileSrc : mobileSrc}
+          media="(min-width: 640px)"
+        ></source>
 
-      <Image
-        src={mobileSrc}
-        width={mobileWidth}
-        height={mobileHeight}
-        alt={alt}
-        className={className}
-        style={imageStyle}
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        unoptimized={isUnoptimizedImage}
-        quality={100}
-      />
-    </picture>
+        <Image
+          src={mobileSrc}
+          width={mobileWidth}
+          height={mobileHeight}
+          alt={alt}
+          className={className}
+          style={imageStyle}
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          unoptimized={isUnoptimizedImage}
+          quality={100}
+        />
+      </picture>
+    </figure>
   );
 };
 

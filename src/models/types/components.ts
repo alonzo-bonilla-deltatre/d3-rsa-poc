@@ -19,39 +19,23 @@ export type ComponentProps = {
   previewToken?: string;
 };
 
-export type HeaderTitleProps = {
-  headerTitle?: string;
-  headerTitleHeadingLevel?: string;
-  hideHeaderTitle?: boolean;
-  textAlignment?: string;
-  noTranslation?: boolean;
-  ctaTitle?: string;
-  ctaLink?: string;
-  description?: string;
-  sponsorBy?: string;
-  className?: string;
-  typographyClassName?: string;
-};
-
 export type LayoutProps = {
   removeSectionHtmlTag?: boolean;
   isFullWidth?: boolean;
-  isDark?: boolean;
   hideLayout?: boolean;
-} & HeaderTitleProps;
+};
 
 export type ModuleProps = {
   isFullWidth?: boolean;
-  isDark?: boolean;
   hideModule?: boolean;
-} & HeaderTitleProps;
+};
 
-export type EditorialProps = {
+export type EditorialListProps = {
   selectionSlug?: string;
   skip?: number;
   limit?: number;
 };
 
-export type EditorialModuleProps = EditorialProps & ModuleProps;
+export type EditorialListModuleProps = EditorialListProps & ModuleProps;
 
 export type ReturnComponentRender = React.ReactElement | undefined | null;

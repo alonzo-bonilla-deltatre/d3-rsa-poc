@@ -4,14 +4,26 @@ import { StoryPart } from '@/models/types/storyPart';
 import { ReturnComponentRender } from '@/models/types/components';
 import { ForgeEntityCode, ForgeEntityType, ForgeExternalEntityType } from '@/models/types/forge';
 
+import renderMarkdownStoryPart from '@/components/storyParts/Markdown/MarkdownWrapper';
+import renderPhotoStoryPart from '@/components/storyParts/Photo/PhotoWrapper';
+import renderAlbumStoryPart from '@/components/storyParts/Album/AlbumWrapper';
+import renderDocumentStoryPart from '@/components/storyParts/Document/DocumentWrapper';
+import renderPromoStoryPart from '@/components/storyParts/Promo/PromoWrapper';
+import renderEventStoryPart from '@/components/storyParts/Event/EventWrapper';
+import renderYouTubeVideoStoryPart from '@/components/storyParts/YouTubeVideo/YouTubeVideoWrapper';
+import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVideo/BrightcoveVideoWrapper';
+import renderOembedStoryPart from '@/components/storyParts/Oembed/OembedWrapper';
+import renderQuoteStoryPart from '@/components/storyParts/Quote/QuoteWrapper';
+import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
+
 /**
  * Type definition for the keys of the `storyPartList` object.
  * It includes the `ForgeEntityType` values for markdown, photo, and album, the `ForgeEntityCode` values for Brightcove and Diva videos,
  * and the `ForgeExternalEntityType` values for oembed, quote, and table.
  */
 type StoryPartListKey =
-  | Extract<ForgeEntityType, ForgeEntityType.markdown | ForgeEntityType.photo | ForgeEntityType.album>
-  | Extract<ForgeEntityCode, ForgeEntityCode.brightcoveVideo | ForgeEntityCode.divaVideo>
+  | Extract<ForgeEntityType, ForgeEntityType.markdown | ForgeEntityType.photo | ForgeEntityType.album | ForgeEntityType.document>
+  | Extract<ForgeEntityCode, ForgeEntityCode.event | ForgeEntityCode.promo | ForgeEntityCode.youTubeVideo | ForgeEntityCode.brightcoveVideo>
   | Extract<
       ForgeExternalEntityType,
       ForgeExternalEntityType.oembed | ForgeExternalEntityType.storyPartQuote | ForgeExternalEntityType.storyPartTable
@@ -22,14 +34,17 @@ type StoryPartListKey =
  * Each function takes a `StoryPart` and returns a `ReturnComponentRender`.
  */
 const storyPartList: Record<StoryPartListKey, (item: StoryPart) => ReturnComponentRender> = {
-  [ForgeEntityType.markdown]: () => null,
-  [ForgeEntityType.photo]: () => null,
-  [ForgeEntityType.album]: () => null,
-  [ForgeEntityCode.brightcoveVideo]: () => null,
-  [ForgeEntityCode.divaVideo]: () => null,
-  [ForgeExternalEntityType.oembed]: () => null,
-  [ForgeExternalEntityType.storyPartQuote]: () => null,
-  [ForgeExternalEntityType.storyPartTable]: () => null,
+  [ForgeEntityType.markdown]: renderMarkdownStoryPart,
+  [ForgeEntityType.photo]: renderPhotoStoryPart,
+  [ForgeEntityType.album]: renderAlbumStoryPart,
+  [ForgeEntityType.document]: renderDocumentStoryPart,
+  [ForgeEntityCode.event]: renderEventStoryPart,
+  [ForgeEntityCode.promo]: renderPromoStoryPart,
+  [ForgeEntityCode.youTubeVideo]: renderYouTubeVideoStoryPart,
+  [ForgeEntityCode.brightcoveVideo]: renderBrightcoveVideoStoryPart,
+  [ForgeExternalEntityType.oembed]: renderOembedStoryPart,
+  [ForgeExternalEntityType.storyPartQuote]: renderQuoteStoryPart,
+  [ForgeExternalEntityType.storyPartTable]: renderTableStoryPart,
 };
 
 /**

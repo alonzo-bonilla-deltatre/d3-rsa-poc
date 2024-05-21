@@ -43,17 +43,9 @@ describe('liveBloggingDistributionService', () => {
       await getBlogEntity('sample-blog', true);
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog`);
 
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
-        sampleBlog,
-        `${urlBase}`,
-        'en-GB',
-        'sample-blog',
-        true
-      );
+      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(sampleBlog, `${urlBase}`, 'en-GB', 'sample-blog', true);
     });
 
     it('should handle error responses with no data', async () => {
@@ -131,13 +123,7 @@ describe('liveBloggingDistributionService', () => {
         `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts?$skip=1&$limit=1`
       );
 
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
-        samplePost,
-        `${urlBase}`,
-        'en-GB',
-        'sample-blog',
-        true
-      );
+      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(samplePost, `${urlBase}`, 'en-GB', 'sample-blog', true);
     });
 
     it('should retrieve and enrich entity data successfully without options', async () => {
@@ -148,17 +134,9 @@ describe('liveBloggingDistributionService', () => {
       await getBlogPosts('sample-blog', true);
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts`);
 
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(
-        samplePost,
-        `${urlBase}`,
-        'en-GB',
-        'sample-blog',
-        true
-      );
+      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(samplePost, `${urlBase}`, 'en-GB', 'sample-blog', true);
     });
 
     it('should handle error responses with no data', async () => {
@@ -232,9 +210,7 @@ describe('liveBloggingDistributionService', () => {
       await getBlogs(queryOptions);
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/api/distribution/v1/en-GB/Blogs?$skip=1&$limit=1`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/api/distribution/v1/en-GB/Blogs?$skip=1&$limit=1`);
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith(sampleBlogs, queryOptions);
     });
@@ -247,9 +223,7 @@ describe('liveBloggingDistributionService', () => {
       await getBlogs();
 
       // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/api/distribution/v1/en-GB/Blogs`
-      );
+      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/api/distribution/v1/en-GB/Blogs`);
 
       expect(enrichDistributionEntities).toHaveBeenCalledWith(sampleBlogs, null);
     });

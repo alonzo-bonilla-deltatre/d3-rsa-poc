@@ -2,12 +2,25 @@ import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
+import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
+import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
+import renderImage from '@/components/modules/Image/ImageWrapper';
+import renderMenu from '@/components/modules/Menu/MenuWrapper';
+import renderStory from '@/components/modules/Story/StoryWrapper';
+import renderText from '@/components/modules/Text/TextWrapper';
 
 /**
  * A list of module components mapped to their respective render functions.
  * Each function takes an object with a `data` property of type `ComponentProps` and returns a `ReturnComponentRender`.
  */
-const componentList: Record<any, (data: { data: ComponentProps }) => ReturnComponentRender> = {};
+const componentList: Record<any, (data: { data: ComponentProps }) => ReturnComponentRender> = {
+  GraphicAsset: renderGraphicAsset,
+  HtmlContent: renderHtmlContent,
+  Image: renderImage,
+  Menu: renderMenu,
+  Story: renderStory,
+  Text: renderText,
+};
 
 /**
  * Function to render a module based on the provided `StructureItem`.

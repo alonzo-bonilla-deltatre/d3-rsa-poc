@@ -1,4 +1,5 @@
 ﻿import React, { ElementType } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Variant =
   | 'h1'
@@ -56,7 +57,7 @@ const tags: Record<Variant, ElementType> = {
 const sizes: Record<Variant, string> = {
   h1: 'font-heading text-[60px] leading-[60px] font-normal -tracking-[1.2px] uppercase lg:text-[120px] lg:leading-[100px]',
   h2: 'font-heading text-[50px] leading-[40px] font-normal uppercase lg:text-[100px] lg:leading-[86px]',
-  h3: 'font-heading text-[28px] leading-[40px] font-normal uppercase lg:text-[40px] lg:leading-[48px]',
+  h3: 'font-heading text-[48px] leading-[40px] font-normal uppercase lg:text-[40px] lg:leading-[48px]',
   h4: 'font-heading text-[40px] leading-[36px] font-normal uppercase lg:text-[44px] lg:leading-[40px]',
   h5: 'font-heading text-[18px] leading-[18px] font-bold uppercase lg:text-[22px] lg:leading-[22px]',
   h6: 'font-heading text-[14px] leading-[20px] font-bold uppercase lg:text-[20px] lg:leading-[28px]',
@@ -75,7 +76,7 @@ const sizes: Record<Variant, string> = {
   'navigation-m': 'font-heading text-[20px] leading-[34px] font-normal tracking-[0.5px] uppercase',
   'navigation-l': 'font-heading text-[20px] leading-[40px] font-normal tracking-[0.6px] uppercase',
   'navigation-xl': 'font-heading text-[24px] leading-[40px] font-normal tracking-[0.6px] uppercase lg:text-[28px]',
-  'cta-m': 'font-navigation text-[22px] leading-[26px] font-semibold',
+  'cta-m': 'font-navigation text-[20px] leading-[28px] font-semibold',
   'cta-l': 'font-navigation text-[22px] leading-[28px] font-semibold',
   'story-description': 'font-content text-[20px] leading-[32px] font-normal italic lg:text-[28px] lg:leading-[32px]',
 };
@@ -91,7 +92,7 @@ const Typography = ({ variant, children, className, as }: TypographyProps) => {
   const sizeClasses = sizes[variant];
   const Tag = as || tags[variant];
 
-  return <Tag className={`${sizeClasses} ${className}`}>{children}</Tag>;
+  return <Tag className={twMerge(sizeClasses, className)}>{children}</Tag>;
 };
 
 export default Typography;

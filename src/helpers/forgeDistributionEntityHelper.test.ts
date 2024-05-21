@@ -81,8 +81,7 @@ const mockedVariables: Variable[] = [
     type: 'keyValue',
     key: 'image_placeholder',
     keyValue: {
-      value:
-        'https://test.url.com/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/d3-placeholder_d8r7kc',
+      value: 'https://test.url.com/image/private/{formatInstructions}/s--s2uj4h43--/v1684849708/d3-placeholder_d8r7kc',
       valueType: 'string',
     },
   },

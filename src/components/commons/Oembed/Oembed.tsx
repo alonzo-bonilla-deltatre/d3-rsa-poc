@@ -2,6 +2,9 @@ import { getSrcFromMarkup } from '@/helpers/storyPartsHelper';
 import { StoryPart } from '@/models/types/storyPart';
 import YouTubeOembed from '@/components/commons/Oembed/YouTubeOembed';
 import HtmlOembed from '@/components/commons/Oembed/HtmlOembed';
+import InstagramOembed from '@/components/commons/Oembed/InstagramOembed';
+import TwitterOembed from '@/components/commons/Oembed/TwitterOembed';
+import FacebookOembed from '@/components/commons/Oembed/FacebookOembed';
 
 type OembedProps = {
   entity?: StoryPart;
@@ -9,8 +12,8 @@ type OembedProps = {
 
 const Oembed = ({ entity }: OembedProps) => {
   if (!entity) return null;
-  const content = entity?.content;
-  let src = undefined;
+  const content = entity?.content as any;
+  let src: string | undefined = undefined;
   let isYouTubeOembed = false;
   let html = content['html'];
 
@@ -19,12 +22,32 @@ const Oembed = ({ entity }: OembedProps) => {
     isYouTubeOembed = true;
   }
 
+  const isTwitter = content['provider_name'] && content['provider_name'].toLowerCase() === 'twitter';
+  const isInstagram = content['provider_name'] && content['provider_name'].toLowerCase() === 'instagram';
+  let isFacebook = false;
+  
   if (content['provider_name'] && content['provider_name'].toLowerCase() === 'facebook') {
     html = html.replace('data-width="552"', 'data-width="350"');
+    isFacebook = true;
+  }
+
+  const handleEmbeds = () => {
+    switch (true) {
+      case isYouTubeOembed:
+        return <YouTubeOembed src={src!}></YouTubeOembed>;
+      case isTwitter:
+        return <TwitterOembed html={html}></TwitterOembed>;
+      case isInstagram:
+        return <InstagramOembed html={html}></InstagramOembed>;
+      case isFacebook:
+        return <FacebookOembed html={html}></FacebookOembed>;
+      default:
+        return <HtmlOembed html={html}></HtmlOembed>;
+    }
   }
 
   return (
-    <>{isYouTubeOembed && src ? <YouTubeOembed src={src}></YouTubeOembed> : <HtmlOembed html={html}></HtmlOembed>}</>
+    <>{handleEmbeds()}</>
   );
 };
 

@@ -56,3 +56,16 @@ export const setURLSearchParams = (params: Record<string, string>) => {
 export const isExternalLink = (url: string, baseUrl?: string) => {
   return url.startsWith('http') && baseUrl && !url.includes(baseUrl);
 };
+
+/**
+ * Checks if a given URL is valid.
+ *
+ * This function checks if the URL is not undefined, null, or an empty string, and if it is not equal to '#nolink'.
+ * If both conditions are met, the function returns true, indicating that the URL is valid.
+ *
+ * @param {string} [url] - The URL to check.
+ * @returns {boolean} True if the URL is valid, false otherwise.
+ */
+export const hasValidUrl = (url?: string): boolean => {
+  return !!url && url !== '#nolink';
+};

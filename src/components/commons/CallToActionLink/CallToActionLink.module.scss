@@ -1,0 +1,8 @@
+﻿.filled {
+  @apply inline-flex items-center gap-2 uppercase border border-white bg-white text-black relative py-2 px-5 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300 hover:border-link
+}
+
+.outlined {
+  @apply uppercase text-white relative py-2 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300
+  after:block after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center
+}
