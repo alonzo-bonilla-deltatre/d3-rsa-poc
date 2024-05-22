@@ -28,7 +28,10 @@ const MenuList = ({ menuItems, source, baseUrl }: MenuProps) => {
   return (
     <ul className="flex flex-row items-center justify-center transition duration-300 gap-3 lg:gap-4">
       {menuItems.map((menuItem: MenuItem) => (
-        <li key={menuItem.id} className="relative">
+        <li
+          key={menuItem.id}
+          className="relative"
+        >
           <MenuListItem
             menuItem={menuItem}
             source={source}

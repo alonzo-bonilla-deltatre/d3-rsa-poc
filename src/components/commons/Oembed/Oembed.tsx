@@ -25,7 +25,7 @@ const Oembed = ({ entity }: OembedProps) => {
   const isTwitter = content['provider_name'] && content['provider_name'].toLowerCase() === 'twitter';
   const isInstagram = content['provider_name'] && content['provider_name'].toLowerCase() === 'instagram';
   let isFacebook = false;
-  
+
   if (content['provider_name'] && content['provider_name'].toLowerCase() === 'facebook') {
     html = html.replace('data-width="552"', 'data-width="350"');
     isFacebook = true;
@@ -44,11 +44,9 @@ const Oembed = ({ entity }: OembedProps) => {
       default:
         return <HtmlOembed html={html}></HtmlOembed>;
     }
-  }
+  };
 
-  return (
-    <>{handleEmbeds()}</>
-  );
+  return <>{handleEmbeds()}</>;
 };
 
 export default Oembed;

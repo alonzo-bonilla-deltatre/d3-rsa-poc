@@ -19,17 +19,17 @@ type ImageViewProps = {
 };
 
 const ImageView = ({
-                     imageEntity,
-                     imageTransformation,
-                     imageContainerCssClass,
-                     linkCssClass,
-                     link,
-                     asset,
-                     caption,
-                     isFullWidth,
-                     width,
-                     height,
-                   }: ImageViewProps) => {
+  imageEntity,
+  imageTransformation,
+  imageContainerCssClass,
+  linkCssClass,
+  link,
+  asset,
+  caption,
+  isFullWidth,
+  width,
+  height,
+}: ImageViewProps) => {
   if (!imageEntity || !asset || !imageTransformation) return null;
 
   return (

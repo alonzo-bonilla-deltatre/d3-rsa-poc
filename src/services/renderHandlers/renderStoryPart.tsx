@@ -22,8 +22,14 @@ import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
  * and the `ForgeExternalEntityType` values for oembed, quote, and table.
  */
 type StoryPartListKey =
-  | Extract<ForgeEntityType, ForgeEntityType.markdown | ForgeEntityType.photo | ForgeEntityType.album | ForgeEntityType.document>
-  | Extract<ForgeEntityCode, ForgeEntityCode.event | ForgeEntityCode.promo | ForgeEntityCode.youTubeVideo | ForgeEntityCode.brightcoveVideo>
+  | Extract<
+      ForgeEntityType,
+      ForgeEntityType.markdown | ForgeEntityType.photo | ForgeEntityType.album | ForgeEntityType.document
+    >
+  | Extract<
+      ForgeEntityCode,
+      ForgeEntityCode.event | ForgeEntityCode.promo | ForgeEntityCode.youTubeVideo | ForgeEntityCode.brightcoveVideo
+    >
   | Extract<
       ForgeExternalEntityType,
       ForgeExternalEntityType.oembed | ForgeExternalEntityType.storyPartQuote | ForgeExternalEntityType.storyPartTable

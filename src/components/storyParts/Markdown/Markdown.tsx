@@ -8,9 +8,7 @@ const Markdown = ({ data }: { data: StoryPart }) => {
   if (!data) {
     return null;
   }
-  return (
-    <MarkdownComponent markdownText={data.content?.toString() ?? ''} />
-  );
+  return <MarkdownComponent markdownText={data.content?.toString() ?? ''} />;
 };
 
 export default Markdown;

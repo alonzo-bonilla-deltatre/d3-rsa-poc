@@ -9,8 +9,18 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   return (
     <section className="flex h-screen overflow-hidden m-0 p-0">
       <div className="m-auto">
-        <Typography variant={'h2'} className="mb-6">{translate('500-error')}</Typography>
-        <Typography variant={'h3'} className="mb-12">{translate('500-oops-error')}</Typography>
+        <Typography
+          variant={'h2'}
+          className="mb-6"
+        >
+          {translate('500-error')}
+        </Typography>
+        <Typography
+          variant={'h3'}
+          className="mb-12"
+        >
+          {translate('500-oops-error')}
+        </Typography>
         <nav>
           <ul className="list-none flex space-x-5">
             <li>

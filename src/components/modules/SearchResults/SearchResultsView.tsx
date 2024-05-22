@@ -19,11 +19,7 @@ type SearchResultViewProps = {
   isDark?: boolean;
 };
 
-const SearchResultView = ({
-  searchPath,
-  initialAzureSearchOption,
-  variables,
-}: SearchResultViewProps) => {
+const SearchResultView = ({ searchPath, initialAzureSearchOption, variables }: SearchResultViewProps) => {
   const [searchResult, setSearchResult] = useState<AzureSearchResult>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -62,9 +58,7 @@ const SearchResultView = ({
         </div>
       ) : (
         <div className="flex flex-col gap-4 lg:gap-6">
-          <SearchResultsKeyPagesView
-            initialAzureSearchOption={initialAzureSearchOption}
-          />
+          <SearchResultsKeyPagesView initialAzureSearchOption={initialAzureSearchOption} />
           <SearchResultsForgeEntitiesView
             types={types}
             initialAzureSearchOption={initialAzureSearchOption}

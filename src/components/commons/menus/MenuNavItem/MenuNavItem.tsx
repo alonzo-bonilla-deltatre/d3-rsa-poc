@@ -25,21 +25,21 @@ type MenuNavItemProps = {
 };
 
 const MenuNavItem = ({
-                       menuItem,
-                       parentId,
-                       iconWidth,
-                       iconHeight,
-                       source,
-                       subMenuId,
-                       lastSubMenuId,
-                       baseUrl,
-                       onMouseEnter,
-                       onMouseLeave,
-                       onClick,
-                       onFocus,
-                       onBlur,
-                       onKeyEnter,
-                     }: MenuNavItemProps) => {
+  menuItem,
+  parentId,
+  iconWidth,
+  iconHeight,
+  source,
+  subMenuId,
+  lastSubMenuId,
+  baseUrl,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  onFocus,
+  onBlur,
+  onKeyEnter,
+}: MenuNavItemProps) => {
   const isActive = getBooleanProperty(menuItem?.isActive);
   const itemText = menuItem?.tag ? (
     <TranslatedLabel translationTermKey={menuItem.tag} />
@@ -64,13 +64,18 @@ const MenuNavItem = ({
   };
 
   const menuClasses =
-    source === MenuSources.header ?
-      'after:block after:bottom-0 after:content-[\'\'] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-center' :
-      'after:block after:bottom-0 after:content-[\'\'] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-left';
+    source === MenuSources.header
+      ? "after:block after:bottom-0 after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-center"
+      : "after:block after:bottom-0 after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-left";
 
   const itemValue = (
     <div
-      className={twMerge('flex items-center transition duration-300 hover:text-link cursor-pointer', isActive ? 'text-link' : '', menuClasses)}>
+      className={twMerge(
+        'flex items-center transition duration-300 hover:text-link cursor-pointer',
+        isActive ? 'text-link' : '',
+        menuClasses
+      )}
+    >
       {itemIcon ? itemIcon : null}
       {itemText && <Typography variant={'navigation-m'}>{itemText}</Typography>}
     </div>

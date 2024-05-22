@@ -18,18 +18,18 @@ type PictureProps = {
 };
 
 const Picture = ({
-                   src,
-                   alt,
-                   format,
-                   transformations,
-                   className,
-                   width,
-                   height,
-                   sizes,
-                   priority,
-                   imageStyle,
-                   figureClassName,
-                 }: PictureProps) => {
+  src,
+  alt,
+  format,
+  transformations,
+  className,
+  width,
+  height,
+  sizes,
+  priority,
+  imageStyle,
+  figureClassName,
+}: PictureProps) => {
   if (!src) {
     return null;
   }

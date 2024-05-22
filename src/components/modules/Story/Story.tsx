@@ -35,7 +35,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const fbAppId = getMetadata(
     data.metadata || [],
     ForgeMetadataCategoryType.socials,
-    ForgeSocialsMetadataKey.fb_app_id,
+    ForgeSocialsMetadataKey.fb_app_id
   )?.value;
 
   const storyEntity = await getEntity(ForgeDapiEntityCode.stories, props.slug, {
@@ -59,21 +59,29 @@ const Story = async ({ data }: { data: ComponentProps }) => {
           {relatedArticles.length > 0 && (
             <div className="col-span-3 z-10 hidden lg:flex border-r pe-8">
               <div className="w-full flex flex-col">
-                <Typography variant={'h3'} className={'mb-6'}>{translate('related-articles')}</Typography>
+                <Typography
+                  variant={'h3'}
+                  className={'mb-6'}
+                >
+                  {translate('related-articles')}
+                </Typography>
                 <div className={'flex flex-col gap-6'}>
-                  <RelatedItems
-                    relations={relatedArticles}
-                  ></RelatedItems>
+                  <RelatedItems relations={relatedArticles}></RelatedItems>
                 </div>
               </div>
             </div>
           )}
           <div
-            className={`${relatedArticles.length > 0 ? 'col-span-9' : 'col-start-3 col-end-11'} flex flex-col gap-5 lg:gap-10`}>
+            className={`${relatedArticles.length > 0 ? 'col-span-9' : 'col-start-3 col-end-11'} flex flex-col gap-5 lg:gap-10`}
+          >
             <div className="flex flex-col gap-2 lg:gap-4">
               <div className="flex flex-row justify-between gap-4">
                 <div className="flex flex-row items-center">
-                  <Typography variant={'tag-l'} as={'time'} className="text-gray-500 uppercase">
+                  <Typography
+                    variant={'tag-l'}
+                    as={'time'}
+                    className="text-gray-500 uppercase"
+                  >
                     {formatDate(storyEntity?.contentDate, 'DD MMMM YYYY')}
                   </Typography>
                 </div>
@@ -82,23 +90,29 @@ const Story = async ({ data }: { data: ComponentProps }) => {
                   fbAppId={fbAppId}
                 />
               </div>
-              <Typography variant={'h1'} className="uppercase">{storyEntity?.title}</Typography>
+              <Typography
+                variant={'h1'}
+                className="uppercase"
+              >
+                {storyEntity?.title}
+              </Typography>
               {description && (
                 <Typography variant={'story-description'}>
-                  <Markdown
-                    markdownText={description}
-                  />
+                  <Markdown markdownText={description} />
                 </Typography>
               )}
             </div>
             <StoryParts storyEntity={storyEntity}></StoryParts>
             {relatedArticles.length > 0 && (
               <div className="flex flex-col lg:hidden border-t">
-                <Typography variant={'h3'} className={'pt-10 mb-6'}>{translate('related-articles')}</Typography>
+                <Typography
+                  variant={'h3'}
+                  className={'pt-10 mb-6'}
+                >
+                  {translate('related-articles')}
+                </Typography>
                 <div className="grid md:grid-cols-3 md:gap-x-3 lg:gap-x-6">
-                  <RelatedItems
-                    relations={relatedArticles}
-                  ></RelatedItems>
+                  <RelatedItems relations={relatedArticles}></RelatedItems>
                 </div>
               </div>
             )}

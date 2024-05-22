@@ -16,8 +16,7 @@ type TextProps = {
 } & ModuleProps;
 
 const Text = async ({ data }: { data: ComponentProps }) => {
-  const { slug, textAlignment, isFullWidth } =
-    data.properties as TextProps;
+  const { slug, textAlignment, isFullWidth } = data.properties as TextProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 

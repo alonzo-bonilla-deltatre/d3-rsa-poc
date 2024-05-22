@@ -9,9 +9,12 @@ const Section = ({ data }: { data: ComponentProps }) => {
   if (getHideLayout(data)) {
     return null;
   }
-  
+
   return (
-    <SectionContainer isFullWidth={isFullWidth} removeSectionHtmlTag={removeSectionHtmlTag}>
+    <SectionContainer
+      isFullWidth={isFullWidth}
+      removeSectionHtmlTag={removeSectionHtmlTag}
+    >
       {data.items?.map((item: StructureItem) => renderItem(item, data.variables, data.metadata, data.previewToken))}
     </SectionContainer>
   );

@@ -15,14 +15,17 @@ type DocumentProps = {
 };
 
 export const Document = ({ entity, className, iconSize }: DocumentProps) => {
-  const documentUrl = getSrcWithTransformation(entity?.file?.templateUrl, transformations.good_assets.desktop.transformation);
+  const documentUrl = getSrcWithTransformation(
+    entity?.file?.templateUrl,
+    transformations.good_assets.desktop.transformation
+  );
   const [isIOSMobile, setIsIOSMobile] = useState(false);
 
   const fileTitle = (entity as any)?.title;
   const isIOSMobileWindow =
     typeof window !== 'undefined'
       ? /iPad|iPhone|iPod/.test(navigator.platform) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
       : false;
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
   if (!documentUrl) {
     return null;
   }
-  
+
   return (
     <>
       {isIOSMobile ? (
@@ -50,12 +53,17 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
             height: getNumberProperty(iconSize, 80),
             className: 'shrink-0',
           })}
-          <Typography variant={'h6'} className="uppercase">{fileTitle}</Typography>
+          <Typography
+            variant={'h6'}
+            className="uppercase"
+          >
+            {fileTitle}
+          </Typography>
         </Link>
       ) : (
         <iframe
           src={documentUrl}
-          className="w-full aspect-w-16 aspect-h-9 rounded-lg"
+          className="w-full aspect-video rounded-lg"
         />
       )}
     </>

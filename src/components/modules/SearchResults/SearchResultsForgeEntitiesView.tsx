@@ -22,11 +22,7 @@ type SearchResultViewProps = {
   variables?: Variable[];
 };
 
-const SearchResultsForgeEntitiesView = ({
-  types,
-  initialAzureSearchOption,
-  variables,
-}: SearchResultViewProps) => {
+const SearchResultsForgeEntitiesView = ({ types, initialAzureSearchOption, variables }: SearchResultViewProps) => {
   const [searchResult, setSearchResult] = useState<DistributionEntity[]>([]);
   const [azureSearchOption, setAzureSearchOption] = useState<AzureSearchOption>(initialAzureSearchOption);
   const [isLoading, setIsLoading] = useState<boolean>(true);

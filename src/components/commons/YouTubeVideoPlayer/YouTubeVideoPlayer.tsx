@@ -10,7 +10,7 @@ type YouTubeVideoPlayerProps = {
 const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
 const YouTubeVideoPlayer = ({ ...props }: YouTubeVideoPlayerProps) => {
-  const { entity} = props as YouTubeVideoPlayerProps;
+  const { entity } = props as YouTubeVideoPlayerProps;
   const containerCss = getStringProperty(props.containerCss, 'grid grid-cols-1 relative overflow-hidden w-full');
   const oembedUrl = `https://www.youtube.com/embed/${entity?.fields?.videoId}`;
 

@@ -21,14 +21,15 @@ type SearchCategoriesProps = {
 const getFacetType = (type: string) => (['photo', 'album', 'document', 'story'].includes(type) ? 'type' : 'entityCode');
 
 const SearchCategories = ({
-                            refreshSearch,
-                            setAzureSearchOption,
-                            azureSearchOption,
-                            types,
-                            setIsLoading,
-                          }: SearchCategoriesProps) => {
+  refreshSearch,
+  setAzureSearchOption,
+  azureSearchOption,
+  types,
+  setIsLoading,
+}: SearchCategoriesProps) => {
   const translate = useTranslate();
-  const itemClassName = 'transition duration-300 hover:text-link cursor-pointer whitespace-nowrap after:block after:bottom-0 after:content-[\'\'] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-left';
+  const itemClassName =
+    "transition duration-300 hover:text-link cursor-pointer whitespace-nowrap after:block after:bottom-0 after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-left";
   const [activeItem, setActiveItem] = useState<string>(allTranslatedTag);
 
   const handlerNavigationClick = (q: string, facetType: string = '', facetValue: string = '') => {
@@ -44,7 +45,10 @@ const SearchCategories = ({
 
   return (
     <ul className="flex flex-row relative gap-4 overflow-auto mb-6 ">
-      <li key={translate(allTranslatedTag)} className="relative">
+      <li
+        key={translate(allTranslatedTag)}
+        className="relative"
+      >
         <button
           className={twMerge(itemClassName, activeItem === allTranslatedTag ? 'after:scale-x-100 text-link' : '')}
           onClick={() => handlerNavigationClick(azureSearchOption.q)}
@@ -55,7 +59,10 @@ const SearchCategories = ({
         </button>
       </li>
       {types?.map((type: string) => (
-        <li key={type} className="relative">
+        <li
+          key={type}
+          className="relative"
+        >
           <button
             className={twMerge(itemClassName, activeItem === type ? 'after:scale-x-100 text-link' : '')}
             onClick={() => handlerNavigationClick(azureSearchOption.q, getFacetType(type), type)}

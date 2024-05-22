@@ -17,8 +17,7 @@ type ImageProps = {
 } & ModuleProps;
 
 const Image = async ({ data }: { data: ComponentProps }) => {
-  const { slug, ratio, size, alignment, isFullWidth } =
-    data.properties as ImageProps;
+  const { slug, ratio, size, alignment, isFullWidth } = data.properties as ImageProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 

@@ -4,7 +4,7 @@ import StoryRelatedItemCard from '@/components/commons/cards/StoryRelatedItemCar
 import { DistributionEntity } from '@/models/types/forge';
 
 export type CardProps = {
-  entity: DistributionEntity;  
+  entity: DistributionEntity;
 };
 
 export enum CardsType {
@@ -22,7 +22,5 @@ export const renderCard = (card: keyof typeof cards, props?: CardProps) => {
     return null;
   }
   const CardComponent: React.ElementType = cards[card];
-  return (
-    <CardComponent {...props} />
-  );
+  return <CardComponent {...props} />;
 };

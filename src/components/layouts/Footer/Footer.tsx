@@ -34,7 +34,7 @@ const Footer = ({ data }: { data: ComponentProps }) => {
                 FooterLayoutSlots.serviceNavigation,
                 [...(data.variables || []), footerNavigationSource],
                 data.metadata,
-                data.previewToken,
+                data.previewToken
               )}
             </div>
           </div>

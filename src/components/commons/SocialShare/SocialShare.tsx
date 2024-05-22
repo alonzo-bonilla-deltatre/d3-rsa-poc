@@ -24,7 +24,7 @@ const SocialShare = ({ title, fbAppId }: SocialShareProps) => {
       //@ts-ignore
       window.fbInit = true;
       //@ts-ignore
-      window.fbAsyncInit = function() {
+      window.fbAsyncInit = function () {
         //@ts-ignore
         window.FB.init({
           appId: fbAppId,
@@ -33,7 +33,7 @@ const SocialShare = ({ title, fbAppId }: SocialShareProps) => {
         });
       };
 
-      (function(d, s, id) {
+      (function (d, s, id) {
         // eslint-disable-next-line
         let js,
           fjs = d.getElementsByTagName(s)[0];
@@ -92,7 +92,7 @@ const SocialShare = ({ title, fbAppId }: SocialShareProps) => {
     { id: 'whatsapp', icon: 'WhatsAppRounded' },
     { id: 'link', icon: 'CopyLinkRounded' },
   ];
-  
+
   return (
     <div className="flex flex-row gap-2 text-gray-500 relative">
       {copiedLink && (

@@ -18,13 +18,13 @@ type CallToActionProps = {
 };
 
 const CallToActionLink = ({
-                            text,
-                            onClick,
-                            buttonType = 'button',
-                            isLoading = false,
-                            isDisabled = false,
-                            type = CallToActionButtonTypes.filled,
-                          }: CallToActionProps) => {
+  text,
+  onClick,
+  buttonType = 'button',
+  isLoading = false,
+  isDisabled = false,
+  type = CallToActionButtonTypes.filled,
+}: CallToActionProps) => {
   return (
     <button
       onClick={onClick}

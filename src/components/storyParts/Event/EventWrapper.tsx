@@ -3,11 +3,7 @@ import { ReturnComponentRender } from '@/models/types/components';
 import { nanoid } from 'nanoid';
 import Event from '@/components/storyParts/Event/Event';
 
-const EventWrapper = ({ data }: { data: StoryPart }): ReturnComponentRender => (
-  <Event
-    entity={data}
-  />
-);
+const EventWrapper = ({ data }: { data: StoryPart }): ReturnComponentRender => <Event entity={data} />;
 
 const render = ({ ...data }: StoryPart): ReturnComponentRender => (
   <EventWrapper

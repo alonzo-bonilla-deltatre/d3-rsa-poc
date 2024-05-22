@@ -107,7 +107,7 @@ describe('hasValidUrl function', () => {
 
   it('should return false for a null URL', () => {
     // ARRANGE
-    const url = null as any
+    const url = null as any;
     // ACT
     const result = hasValidUrl(url);
     // ASSERT

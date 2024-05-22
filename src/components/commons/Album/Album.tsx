@@ -94,7 +94,7 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
   const pagination = {
     el: '[data-js-carousel-pagination]',
     //@ts-ignore
-    renderBullet: function(index, className) {
+    renderBullet: function (index, className) {
       return '<span class="' + className + '"></span>';
     },
   };
@@ -118,13 +118,11 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
       }}
     >
       {albumEntity?.elements?.map((slide: DistributionEntity, index: number) => (
-        <SwiperSlide
-          key={index}
-        >
+        <SwiperSlide key={index}>
           <a
             href={getSrcWithTransformation(
               slide.image?.templateUrl,
-              transformations.fancy_box_detail.desktop.transformation,
+              transformations.fancy_box_detail.desktop.transformation
             )}
             data-fancybox="gallery"
             data-caption={slide?.fields?.description || slide.title}

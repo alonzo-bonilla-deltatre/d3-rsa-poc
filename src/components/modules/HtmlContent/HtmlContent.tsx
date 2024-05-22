@@ -14,9 +14,7 @@ const HtmlContent = ({ data }: { data: ComponentProps }) => {
 
   return (
     <ModuleContainer isFullWidth={isFullWidth}>
-      <HtmlContentComponent
-        content={content}
-      />
+      <HtmlContentComponent content={content} />
     </ModuleContainer>
   );
 };

@@ -22,14 +22,22 @@ const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
     url: '/assets/default-thumbnail.jpg',
   } as StoryHeaderDefaultImage;
 
-  const imageUrl = getSrcWithTransformation(storyEntity.thumbnail?.templateUrl ? storyEntity?.thumbnail?.templateUrl : defaultThumbnail.url, transformations.thumbnail_wide_detail.desktop.transformation);
+  const imageUrl = getSrcWithTransformation(
+    storyEntity.thumbnail?.templateUrl ? storyEntity?.thumbnail?.templateUrl : defaultThumbnail.url,
+    transformations.thumbnail_wide_detail.desktop.transformation
+  );
 
   return (
-    <ModuleContainer isFullWidth className="relative first:mt-0">
-      <div className="bg-[length:100vh] md:bg-cover bg-no-repeat min-h-[40svh] md:min-h-[60svh] lg:min-h-[80svh] bg-fixed bg-top" style={{
+    <ModuleContainer
+      isFullWidth
+      className="relative first:mt-0"
+    >
+      <div
+        className="bg-[length:100vh] md:bg-cover bg-no-repeat min-h-[40svh] md:min-h-[60svh] lg:min-h-[80svh] bg-fixed bg-top"
+        style={{
           backgroundImage: `url('${imageUrl}')`,
-        }}>
-      </div>
+        }}
+      ></div>
       {/*<Picture*/}
       {/*  src={storyEntity.thumbnail?.templateUrl ? storyEntity?.thumbnail?.templateUrl : defaultThumbnail.url}*/}
       {/*  transformations={transformations.story_header_background}*/}

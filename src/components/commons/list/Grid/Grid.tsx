@@ -23,7 +23,7 @@ export const getGridClasses = (itemsPerRow: number) => {
 const Grid = ({ itemsPerRow, items, cardsType }: GridProps) => {
   items = items as DistributionEntity[];
   const gridClassName = `grid grid-cols-2 gap-2 md:gap-x-3 lg:gap-x-4 lg:gap-y-10 ${getGridClasses(
-    getNumberProperty(itemsPerRow, 4),
+    getNumberProperty(itemsPerRow, 4)
   )}`;
 
   return (

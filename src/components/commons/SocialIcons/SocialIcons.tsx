@@ -6,7 +6,10 @@ export type SocialIconsProps = {
   className?: string;
 };
 
-const SocialIcons = ({ className = 'cursor-pointer text-gray-500 hover:text-link transition duration-300', size = 34 }: SocialIconsProps) => {
+const SocialIcons = ({
+  className = 'cursor-pointer text-gray-500 hover:text-link transition duration-300',
+  size = 34,
+}: SocialIconsProps) => {
   return (
     <>
       {renderSvgIcon('FacebookRounded', { className: className, width: size, height: size })}

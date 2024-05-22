@@ -15,12 +15,7 @@ type CallToActionProps = {
   type?: CallToActionLinkTypes;
 };
 
-const CallToActionLink = ({
-                            url,
-                            text,
-                            baseUrl,
-                            type = CallToActionLinkTypes.filled,
-                          }: CallToActionProps) => {
+const CallToActionLink = ({ url, text, baseUrl, type = CallToActionLinkTypes.filled }: CallToActionProps) => {
   return (
     <Link
       href={url}

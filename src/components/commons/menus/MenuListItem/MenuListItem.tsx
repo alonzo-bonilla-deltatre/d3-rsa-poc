@@ -54,9 +54,7 @@ const MenuListItem = ({
           aria-hidden={subMenuId === menuItem.id ? 'false' : isHeader || isHeaderMobile ? 'true' : undefined}
         >
           {menuItem.items.map((subMenuItem: MenuItem) => (
-            <li
-              key={subMenuItem.id}
-            >
+            <li key={subMenuItem.id}>
               <MenuNavItem
                 menuItem={subMenuItem}
                 parentId={menuItem.id}

@@ -8,18 +8,18 @@ type StoryPartsProps = {
 
 const StoryParts = ({ storyEntity }: StoryPartsProps) => {
   return (
-    <div className="mb-8 lg:mb-10">
+    <>
       {storyEntity?.parts?.map((part: StoryPart, index: number) => {
         return (
           <div
             key={index}
-            className="mb-8 lg:mb-10"
+            className="mb-8 lg:mb-10 last:mb-0"
           >
             {renderStoryPart(part)}
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 

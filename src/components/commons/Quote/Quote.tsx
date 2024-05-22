@@ -16,8 +16,20 @@ const Quote = ({ entity }: QuoteProps) => {
       <div className={'flex'}>
         {renderSvgIcon('QuoteLeft', { className: 'text-link', width: 25, height: 21 })}
         <div className="w-full flex flex-col mx-4">
-          <Typography variant={'quote'} as={'span'} className={'text-center'}>{quote}</Typography>
-          <Typography variant={'h6'} as={'cite'} className={'mt-4 uppercase not-italic mx-auto'}>{author}</Typography>
+          <Typography
+            variant={'quote'}
+            as={'span'}
+            className={'text-center'}
+          >
+            {quote}
+          </Typography>
+          <Typography
+            variant={'h6'}
+            as={'cite'}
+            className={'mt-4 uppercase not-italic mx-auto'}
+          >
+            {author}
+          </Typography>
         </div>
         {renderSvgIcon('QuoteRight', { className: 'text-link', width: 25, height: 21 })}
       </div>

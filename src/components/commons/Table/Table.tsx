@@ -13,12 +13,7 @@ const Table = ({ entity }: TableProps) => {
   return (
     <div className="grid grid-cols-1 relative overflow-hidden w-full">
       {title && <div className={'d3-ty-heading-6 font-bold mb-4'}>{title}</div>}
-      {body && (
-        <HtmlContent
-          content={body}
-          className={'d3-table mx-auto'}
-        />
-      )}
+      {body && <HtmlContent content={body} />}
     </div>
   );
 };

@@ -12,8 +12,8 @@ const LinkComponent = ({ children, ...props }: LinkComponentProps) => {
   if (!href) {
     return null;
   }
-  
-  if(!hasValidUrl(href)) {
+
+  if (!hasValidUrl(href)) {
     return <div className={linkProps.className}>{children}</div>;
   }
 
