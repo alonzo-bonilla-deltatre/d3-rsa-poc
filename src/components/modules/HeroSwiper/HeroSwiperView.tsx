@@ -14,6 +14,7 @@ import styles from '@/components/modules/HeroSwiper/HeroSwiper.module.scss';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import { getSiteDirection } from '@/helpers/pageHelper';
 import Typography from '@/components/commons/Typography/Typography';
+import React from 'react';
 
 type HeroSwiperViewProps = {
   slides: DistributionEntity[];
@@ -66,11 +67,12 @@ export const HeroSwiperView = ({ slides }: HeroSwiperViewProps) => {
       <div className={'hero'}>
         <Swiper
           dir={getSiteDirection(LANGUAGE)}
-          style={{
-            // @ts-ignore
-            '--swiper-pagination-bottom': '46px',
-            '--swiper-wrapper-transition-timing-function': 'cubic-bezier(.62,-0.01,0,1.01)',
-          }}
+          style={
+            {
+              '--swiper-pagination-bottom': '46px',
+              '--swiper-wrapper-transition-timing-function': 'cubic-bezier(.62,-0.01,0,1.01)',
+            } as React.CSSProperties
+          }
           modules={[Pagination, Autoplay]}
           pagination={customPagination(slides)}
           spaceBetween={0}

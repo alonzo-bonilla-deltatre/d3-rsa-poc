@@ -4,19 +4,28 @@ import Toast from '@/components/commons/Toast/Toast';
 import { icons, renderSvgIcon } from '@/components/icons';
 import { useEffect, useState } from 'react';
 import TranslatedLabel from '@/components/commons/TranslatedLabel/TranslatedLabel';
+import { getMetadata } from '@/services/metadataService';
+import { ForgeMetadataCategoryType, ForgeSocialsMetadataKey } from '@/models/types/forge';
+import { Metadata } from '@/models/types/pageStructure';
 
 type SocialShareProps = {
   title: string;
-  fbAppId?: string;
+  metadata?: Metadata[];
 };
 
 type ShareUnion = 'whatsapp' | 'x' | 'facebook' | 'link';
 
-const SocialShare = ({ title, fbAppId }: SocialShareProps) => {
+const SocialShare = ({ title, metadata }: SocialShareProps) => {
   const [url, setUrl] = useState('');
   const [copiedLink, setCopiedLink] = useState(false);
   const iconSize = 36;
   const iconClass = 'cursor-pointer transition duration-300 hover:text-link';
+
+  const fbAppId = getMetadata(
+    metadata || [],
+    ForgeMetadataCategoryType.socials,
+    ForgeSocialsMetadataKey.fb_app_id
+  )?.value;
 
   useEffect(() => {
     //@ts-ignore

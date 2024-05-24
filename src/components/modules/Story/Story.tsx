@@ -12,12 +12,7 @@ import { formatDate } from '@/helpers/dateHelper';
 import logger from '@/utilities/loggerUtility';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
-import {
-  ForgeDapiEntityCode,
-  ForgeEntityType,
-  ForgeMetadataCategoryType,
-  ForgeSocialsMetadataKey,
-} from '@/models/types/forge';
+import { ForgeDapiEntityCode, ForgeEntityType } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
 
@@ -31,12 +26,6 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const props = data.properties as StoryProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
-
-  const fbAppId = getMetadata(
-    data.metadata || [],
-    ForgeMetadataCategoryType.socials,
-    ForgeSocialsMetadataKey.fb_app_id
-  )?.value;
 
   const storyEntity = await getEntity(ForgeDapiEntityCode.stories, props.slug, {
     hasLinkRulesForRelationsAndParts: true,
@@ -85,7 +74,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
                 </div>
                 <SocialShare
                   title={storyEntity?.title}
-                  fbAppId={fbAppId}
+                  metadata={data.metadata}
                 />
               </div>
               <Typography
