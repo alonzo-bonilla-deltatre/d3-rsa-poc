@@ -2,7 +2,6 @@
 
 import Picture from '@/components/commons/Picture/Picture';
 import { CarouselNavigation } from '@/components/commons/CarouselNavigation/CarouselNavigation';
-import { NavButtonSize } from '@/models/types/carousel';
 import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { Fancybox } from '@fancyapps/ui';
@@ -145,7 +144,6 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
       <CarouselNavigation
         swiperRef={swiperRef}
         uniqueId={uniqueId}
-        navButtonSize={NavButtonSize.Large}
       ></CarouselNavigation>
     </Swiper>
   );

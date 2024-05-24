@@ -30,12 +30,7 @@ const Grid = ({ itemsPerRow, items, cardsType }: GridProps) => {
     <div className={gridClassName}>
       {items &&
         items.map((entity: DistributionEntity, index: number) => {
-          return (
-            <div key={index}>
-              {renderCard(cardsType, entity)}
-              <SearchCard entity={entity} />
-            </div>
-          );
+          return <div key={index}>{renderCard(cardsType, { entity })}</div>;
         })}
     </div>
   );

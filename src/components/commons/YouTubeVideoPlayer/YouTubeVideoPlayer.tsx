@@ -23,7 +23,7 @@ const YouTubeVideoPlayer = ({ ...props }: YouTubeVideoPlayerProps) => {
       <div className={containerCss}>
         <iframe
           title={entity.title}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"
           allowFullScreen
           src={oembedUrl}
           className="w-full h-full aspect-video"

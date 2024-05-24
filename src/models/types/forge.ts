@@ -242,6 +242,7 @@ export enum ForgeDapiEntityCode {
   accordions = 'accordions',
   forms = 'forms',
   youTubeVideos = 'youtubevideos',
+  jwPlayerVideos = 'jwplayervideos',
 }
 
 export enum ForgeEntityCode {
@@ -266,4 +267,5 @@ export enum ForgeEntityCode {
   accordion = 'accordion',
   form = 'form',
   youTubeVideo = 'youtubevideo',
+  jwPlayerVideo = 'jwplayervideo',
 }

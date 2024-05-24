@@ -63,4 +63,6 @@ export enum ImageTransformationName {
   // Modules
   fancy_box_detail = 'fancy_box_detail',
   story_header_background = 'story_header_background',
+  hero_swiper_main_item = 'hero_swiper_main_item',
+  hero_swiper_pagination_item = 'hero_swiper_pagination_item',
 }

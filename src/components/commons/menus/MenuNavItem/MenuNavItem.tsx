@@ -5,6 +5,9 @@ import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { MenuItem, MenuSources } from '@/models/types/menu';
 import Typography from '@/components/commons/Typography/Typography';
 import { twMerge } from 'tailwind-merge';
+import HeaderMenuNavItem from '@/components/commons/menus/HeaderMenuNavItem/HeaderMenuNavItem';
+import FooterMenuNavItem from '@/components/commons/menus/FooterMenuNavItem/FooterMenuNavItem';
+import HamburgerMenuNavItem from '@/components/commons/menus/HamburgerMenuNavItem/HamburgerMenuNavItem';
 
 type MenuNavItemProps = {
   menuItem?: MenuItem;
@@ -41,13 +44,13 @@ const MenuNavItem = ({
   onKeyEnter,
 }: MenuNavItemProps) => {
   const isActive = getBooleanProperty(menuItem?.isActive);
-  const itemText = menuItem?.tag ? (
-    <TranslatedLabel translationTermKey={menuItem.tag} />
-  ) : (
-    <TranslatedLabel translationTermKey={menuItem?.text || ''} />
+  const translatedText = menuItem?.tag ? menuItem.tag : menuItem?.text ?? '';
+  const itemText = (
+    <Typography variant={'navigation-m'}>
+      <TranslatedLabel translationTermKey={translatedText} />
+    </Typography>
   );
   const icon = menuItem?.icon?.data ?? '';
-
   let itemIcon;
   if (icon) {
     itemIcon = renderSvgIcon(icon as keyof typeof icons, {
@@ -55,32 +58,54 @@ const MenuNavItem = ({
       height: iconHeight,
     });
   }
-
+  let itemValue: JSX.Element | null = null;
+  switch (source) {
+    case MenuSources.header:
+      itemValue = (
+        <HeaderMenuNavItem
+          menuItem={menuItem}
+          itemIcon={itemIcon}
+        />
+      );
+      break;
+    case MenuSources.hamburger:
+      itemValue = (
+        <HamburgerMenuNavItem
+          menuItem={menuItem}
+          itemIcon={itemIcon}
+          itemText={itemText}
+        />
+      );
+      break;
+    case MenuSources.footer:
+      itemValue = (
+        <FooterMenuNavItem
+          menuItem={menuItem}
+          itemIcon={itemIcon}
+          itemText={itemText}
+        />
+      );
+      break;
+    default:
+      itemValue = (
+        <div
+          className={twMerge(
+            'flex items-center transition duration-300 hover:text-link cursor-pointer',
+            isActive ? 'text-link' : ''
+          )}
+        >
+          {itemIcon}
+          {itemText}
+        </div>
+      );
+      break;
+  }
   const additionalAttributes = {
     ...(parentId ? { parentId: parentId } : undefined),
     ...(menuItem?.target && menuItem?.link ? { target: menuItem.target } : undefined),
     ...(!menuItem?.target && menuItem?.link ? { rel: 'noopener' } : undefined),
     ...(menuItem?.tag ? { 'data-tag': menuItem.tag } : undefined),
   };
-
-  const menuClasses =
-    source === MenuSources.header
-      ? "after:block after:bottom-0 after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-center"
-      : "after:block after:bottom-0 after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-left";
-
-  const itemValue = (
-    <div
-      className={twMerge(
-        'flex items-center transition duration-300 hover:text-link cursor-pointer',
-        isActive ? 'text-link' : '',
-        menuClasses
-      )}
-    >
-      {itemIcon ? itemIcon : null}
-      {itemText && <Typography variant={'navigation-m'}>{itemText}</Typography>}
-    </div>
-  );
-
   if (menuItem?.link) {
     return (
       <Link

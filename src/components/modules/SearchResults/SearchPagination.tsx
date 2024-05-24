@@ -1,9 +1,7 @@
 'use client';
 
 import { AzureSearchOption } from '@/models/types/azureSearch';
-import CallToActionButton, {
-  CallToActionButtonTypes,
-} from '@/components/commons/CallToActionButton/CallToActionButton';
+import CallToActionFilledButton from '@/components/commons/CallToActionButton/CallToActionFilledButton';
 import { Dispatch, SetStateAction } from 'react';
 import useTranslate from '@/hooks/useTranslate';
 
@@ -43,20 +41,18 @@ const SearchPagination = ({
     <div className="flex w-full justify-between mt-8">
       <div className="flex-start">
         {prevPage > -1 && (
-          <CallToActionButton
+          <CallToActionFilledButton
             text={translate(previousTranslatedTag)}
             onClick={() => handlerNavigationClick(prevPage)}
-            type={CallToActionButtonTypes.filled}
-          ></CallToActionButton>
+          ></CallToActionFilledButton>
         )}
       </div>
       <div className="flex-end">
         {nextPage > 0 && (
-          <CallToActionButton
+          <CallToActionFilledButton
             text={translate(nextTranslatedTag)}
             onClick={() => handlerNavigationClick(nextPage)}
-            type={CallToActionButtonTypes.filled}
-          ></CallToActionButton>
+          ></CallToActionFilledButton>
         )}
       </div>
     </div>

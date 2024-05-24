@@ -14,7 +14,7 @@ const SearchCard = ({ entity }: SearchCardProps) => {
   const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center overflow-hidden rounded-lg">
         <Picture
           src={
             entity?.thumbnail?.templateUrl
@@ -30,18 +30,17 @@ const SearchCard = ({ entity }: SearchCardProps) => {
             hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
           )}
           format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
-          figureClassName={'overflow-hidden rounded-lg'}
         />
       </div>
       <Typography
         variant={'body-l'}
-        className={'line-clamp-1'}
+        className={'line-clamp-1 text-ellipsis uppercase'}
       >
         {entity.title}
       </Typography>
       <Typography
         variant={'body-s'}
-        className={'text-gray-500 line-clamp-2'}
+        className={'text-gray-500 line-clamp-2 text-ellipsis'}
       >
         {description}
       </Typography>

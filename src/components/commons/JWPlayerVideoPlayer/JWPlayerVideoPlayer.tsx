@@ -1,20 +1,19 @@
 import { DistributionEntity } from '@/models/types/forge';
 import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 
-type BrightcoveVideoPlayerProps = {
+type JWPlayerVideoPlayerProps = {
   entity?: DistributionEntity;
   containerCss?: string;
 };
 
-const BrightcoveVideoPlayer = ({ entity, containerCss }: BrightcoveVideoPlayerProps) => {
+const JWPlayerVideoPlayer = ({ entity, containerCss }: JWPlayerVideoPlayerProps) => {
   if (!entity) return null;
 
   containerCss = getStringProperty(containerCss, 'grid grid-cols-1 relative overflow-hidden w-full');
-  const brightcoveAccountId = entity?.fields?.brightcoveAccountId ?? '';
-  const brightcoveId = entity?.fields?.brightcoveId ?? '';
-  const oembedUrl = `https://players.brightcove.net/${brightcoveAccountId}/default_default/index.html?videoId=${brightcoveId}`;
+  const videoId = entity?.fields?.videoId ?? '';
+  const oembedUrl = `https://cdn.jwplayer.com/players/${videoId}-3R7PqOD3.html`;
 
-  if (!brightcoveAccountId || !brightcoveId) return null;
+  if (!videoId) return null;
 
   return (
     <>
@@ -30,4 +29,4 @@ const BrightcoveVideoPlayer = ({ entity, containerCss }: BrightcoveVideoPlayerPr
   );
 };
 
-export default BrightcoveVideoPlayer;
+export default JWPlayerVideoPlayer;

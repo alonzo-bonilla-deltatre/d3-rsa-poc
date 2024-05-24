@@ -64,6 +64,7 @@ const SocialShare = ({ title, fbAppId }: SocialShareProps) => {
   };
 
   const share = (type: ShareUnion) => {
+    if (window == undefined) return null;
     if (type === 'whatsapp') {
       return window.open(`https://api.whatsapp.com/send?text=${url}`);
     }
@@ -103,18 +104,19 @@ const SocialShare = ({ title, fbAppId }: SocialShareProps) => {
           />
         </div>
       )}
-      {shareItems.map((item, index) => (
-        <button
-          onClick={() => share(item.id)}
-          onKeyDown={(e) => (e.key === 'Enter' ? share(item.id) : undefined)}
-          key={index}
-        >
-          {renderSvgIcon(item.icon, { className: iconClass, width: iconSize, height: iconSize })}
-          <span className="sr-only">
-            <TranslatedLabel translationTermKey={`share-${item.id}`}></TranslatedLabel>
-          </span>
-        </button>
-      ))}
+      {shareItems &&
+        shareItems.map((item, index) => (
+          <button
+            onClick={() => share(item.id)}
+            onKeyDown={(e) => (e.key === 'Enter' ? share(item.id) : undefined)}
+            key={index}
+          >
+            {renderSvgIcon(item.icon, { className: iconClass, width: iconSize, height: iconSize })}
+            <span className="sr-only">
+              <TranslatedLabel translationTermKey={`share-${item.id}`}></TranslatedLabel>
+            </span>
+          </button>
+        ))}
     </div>
   );
 };

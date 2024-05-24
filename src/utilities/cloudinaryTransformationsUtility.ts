@@ -206,7 +206,7 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
     desktop: defaultCloudinaryTransformations.ratio3_4_size60,
   },
   thumbnail_portrait_wide_detail: {
-    mobile: defaultCloudinaryTransformations.ratio10_16_size10,
+    mobile: defaultCloudinaryTransformations.ratio10_16_size20,
     tablet: defaultCloudinaryTransformations.ratio10_16_size20,
     desktop: defaultCloudinaryTransformations.ratio10_16_size20,
   },
@@ -221,6 +221,18 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
     mobile: defaultCloudinaryTransformations.ratio1_1_size20,
     tablet: defaultCloudinaryTransformations.ratio21_9_size40,
     desktop: defaultCloudinaryTransformations.ratio21_9_size60,
+  },
+  // Module Hero main item
+  hero_swiper_main_item: {
+    mobile: defaultCloudinaryTransformations.ratio3_4_size60,
+    tablet: defaultCloudinaryTransformations.ratio1_1_size20,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
+  },
+  // Module Hero pagination item
+  hero_swiper_pagination_item: {
+    mobile: defaultCloudinaryTransformations.ratio16_9_size20,
+    tablet: defaultCloudinaryTransformations.ratio16_9_size20,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size20,
   },
 };
 

@@ -71,10 +71,8 @@ const Story = async ({ data }: { data: ComponentProps }) => {
               </div>
             </div>
           )}
-          <div
-            className={`${relatedArticles.length > 0 ? 'col-span-9' : 'col-start-3 col-end-11'} flex flex-col gap-5 lg:gap-10`}
-          >
-            <div className="flex flex-col gap-2 lg:gap-4">
+          <div className={`${relatedArticles.length > 0 ? 'col-span-9' : 'col-start-3 col-end-11'} flex flex-col`}>
+            <div className="flex flex-col gap-2 lg:gap-4 mb-8 lg:mb-10">
               <div className="flex flex-row justify-between gap-4">
                 <div className="flex flex-row items-center">
                   <Typography

@@ -81,7 +81,7 @@ const sizes: Record<Variant, string> = {
   'story-description': 'font-content text-[20px] leading-[32px] font-normal italic lg:text-[28px] lg:leading-[32px]',
 };
 
-type TypographyProps = {
+export type TypographyProps = {
   variant: Variant;
   children: React.ReactNode;
   className?: string;

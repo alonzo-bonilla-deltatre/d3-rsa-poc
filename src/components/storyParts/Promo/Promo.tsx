@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { DistributionEntity } from '@/models/types/forge';
 import Typography from '@/components/commons/Typography/Typography';
-import CallToActionLink, { CallToActionLinkTypes } from '@/components/commons/CallToActionLink/CallToActionLink';
+import CallToActionOutlinedLink from '@/components/commons/CallToActionLink/CallToActionOutlinedLink';
 import { twMerge } from 'tailwind-merge';
 
 type PromoProps = {
@@ -50,11 +50,10 @@ const Promo = ({ entity }: PromoProps) => {
         >
           {entity.title}
         </Typography>
-        <CallToActionLink
+        <CallToActionOutlinedLink
           text={entity?.fields?.url?.displayText}
           url={entity?.fields?.url?.url}
-          type={CallToActionLinkTypes.outlined}
-        ></CallToActionLink>
+        ></CallToActionOutlinedLink>
       </div>
     </div>
   );

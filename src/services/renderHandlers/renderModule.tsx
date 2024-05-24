@@ -2,10 +2,13 @@ import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
+import renderAlbumListCarousel from '@/components/modules/AlbumListCarousel/AlbumListCarouselWrapper';
 import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
+import renderHeroSwiper from '@/components/modules/HeroSwiper/HeroSwiperWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
+import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderText from '@/components/modules/Text/TextWrapper';
@@ -15,12 +18,16 @@ import renderText from '@/components/modules/Text/TextWrapper';
  * Each function takes an object with a `data` property of type `ComponentProps` and returns a `ReturnComponentRender`.
  */
 const componentList: Record<any, (data: { data: ComponentProps }) => ReturnComponentRender> = {
+  AlbumListCarousel: renderAlbumListCarousel,
   GraphicAsset: renderGraphicAsset,
+  Hero: renderHeroSwiper,
+  HeroSwiper: renderHeroSwiper,
   HtmlContent: renderHtmlContent,
   Image: renderImage,
   Menu: renderMenu,
-  Story: renderStory,
+  Partners: renderPartners,
   SearchResults: renderSearchResults,
+  Story: renderStory,
   Text: renderText,
 };
 

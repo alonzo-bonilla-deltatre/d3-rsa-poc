@@ -12,6 +12,7 @@ import renderPromoStoryPart from '@/components/storyParts/Promo/PromoWrapper';
 import renderEventStoryPart from '@/components/storyParts/Event/EventWrapper';
 import renderYouTubeVideoStoryPart from '@/components/storyParts/YouTubeVideo/YouTubeVideoWrapper';
 import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVideo/BrightcoveVideoWrapper';
+import renderJWPlayerVideoStoryPart from '@/components/storyParts/JWPlayerVideo/JWPlayerVideoWrapper';
 import renderOembedStoryPart from '@/components/storyParts/Oembed/OembedWrapper';
 import renderQuoteStoryPart from '@/components/storyParts/Quote/QuoteWrapper';
 import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
@@ -28,7 +29,11 @@ type StoryPartListKey =
     >
   | Extract<
       ForgeEntityCode,
-      ForgeEntityCode.event | ForgeEntityCode.promo | ForgeEntityCode.youTubeVideo | ForgeEntityCode.brightcoveVideo
+      | ForgeEntityCode.event
+      | ForgeEntityCode.promo
+      | ForgeEntityCode.youTubeVideo
+      | ForgeEntityCode.brightcoveVideo
+      | ForgeEntityCode.jwPlayerVideo
     >
   | Extract<
       ForgeExternalEntityType,
@@ -48,6 +53,7 @@ const storyPartList: Record<StoryPartListKey, (item: StoryPart) => ReturnCompone
   [ForgeEntityCode.promo]: renderPromoStoryPart,
   [ForgeEntityCode.youTubeVideo]: renderYouTubeVideoStoryPart,
   [ForgeEntityCode.brightcoveVideo]: renderBrightcoveVideoStoryPart,
+  [ForgeEntityCode.jwPlayerVideo]: renderJWPlayerVideoStoryPart,
   [ForgeExternalEntityType.oembed]: renderOembedStoryPart,
   [ForgeExternalEntityType.storyPartQuote]: renderQuoteStoryPart,
   [ForgeExternalEntityType.storyPartTable]: renderTableStoryPart,

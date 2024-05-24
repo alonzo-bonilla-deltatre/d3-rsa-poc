@@ -1,35 +1,29 @@
-import styles from '@/components/commons/CallToActionButton/CallToActionButton.module.scss';
 import Typography from '@/components/commons/Typography/Typography';
 import TranslatedLabel from '@/components/commons/TranslatedLabel/TranslatedLabel';
 import Loader from '@/components/commons/Loader/Loader';
 
-export enum CallToActionButtonTypes {
-  filled = 'filled',
-  outlined = 'outlined',
-}
-
-type CallToActionProps = {
+type CallToActionFilledButtonProps = {
   text: string;
   onClick: () => void;
   buttonType?: 'button' | 'submit' | 'reset';
   isLoading?: boolean;
   isDisabled?: boolean;
-  type?: CallToActionButtonTypes;
 };
 
-const CallToActionLink = ({
+const CallToActionFilledButton = ({
   text,
   onClick,
   buttonType = 'button',
   isLoading = false,
   isDisabled = false,
-  type = CallToActionButtonTypes.filled,
-}: CallToActionProps) => {
+}: CallToActionFilledButtonProps) => {
   return (
     <button
       onClick={onClick}
       type={buttonType || 'button'}
-      className={type ? styles[type] : ''}
+      className={
+        'inline-flex items-center gap-2 uppercase text-current border border-current relative py-2 px-5 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300'
+      }
       disabled={isDisabled}
     >
       {isLoading && <Loader />}
@@ -40,4 +34,4 @@ const CallToActionLink = ({
   );
 };
 
-export default CallToActionLink;
+export default CallToActionFilledButton;

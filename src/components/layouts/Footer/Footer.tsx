@@ -10,6 +10,8 @@ import SocialIcons from '@/components/commons/SocialIcons/SocialIcons';
 
 enum FooterLayoutSlots {
   logo = 'logo',
+  footerContent = 'footerContent',
+  footerNavigation = 'footerNavigation',
   serviceNavigation = 'serviceNavigation',
 }
 
@@ -22,7 +24,18 @@ const Footer = ({ data }: { data: ComponentProps }) => {
 
   return (
     <footer>
-      <ModuleContainer className={'border-t pt-6'}>
+      <ModuleContainer className={'border-t pt-6 last:mb-10'}>
+        {hasItemsInSlot(data.items, FooterLayoutSlots.footerContent) && (
+          <div className="flex flex-col pb-6 lg:pb-10 mb-6 lg:mb-10 h-full border-b">
+            {renderItemsInSlot(
+              data.items,
+              FooterLayoutSlots.footerContent,
+              [...(data.variables || []), footerNavigationSource],
+              data.metadata,
+              data.previewToken
+            )}
+          </div>
+        )}
         <div className={'my-6 lg:text-center flex justify-center gap-4'}>
           <SocialIcons />
         </div>
@@ -32,6 +45,19 @@ const Footer = ({ data }: { data: ComponentProps }) => {
               {renderItemsInSlot(
                 data.items,
                 FooterLayoutSlots.serviceNavigation,
+                [...(data.variables || []), footerNavigationSource],
+                data.metadata,
+                data.previewToken
+              )}
+            </div>
+          </div>
+        )}
+        {hasItemsInSlot(data.items, FooterLayoutSlots.footerNavigation) && (
+          <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
+            <div className="pb-6 lg:text-center flex flex-col border-b">
+              {renderItemsInSlot(
+                data.items,
+                FooterLayoutSlots.footerNavigation,
                 [...(data.variables || []), footerNavigationSource],
                 data.metadata,
                 data.previewToken
