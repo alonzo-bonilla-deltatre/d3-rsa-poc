@@ -2,8 +2,21 @@ import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
+
+import renderAdv from '@/components/modules/Adv/AdvWrapper';
 import renderAlbumListCarousel from '@/components/modules/AlbumListCarousel/AlbumListCarouselWrapper';
+import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
+import renderFeaturedCarousel from '@/components/modules/FeaturedCarousel/FeaturedCarouselWrapper';
+import renderFeaturedEventList from '@/components/modules/FeaturedEventList/FeaturedEventListWrapper';
+import renderFeaturedMatches from '@/components/modules/FeaturedMatches/FeaturedMatchesWrapper';
+import renderFeaturedMixedList from '@/components/modules/FeaturedMixedList/FeaturedMixedListWrapper';
+import renderFeaturedPlayerListCarousel from '@/components/modules/FeaturedPlayerListCarousel/FeaturedPlayerListCarouselWrapper';
+import renderFeaturedShopList from '@/components/modules/FeaturedShopList/FeaturedShopListWrapper';
+import renderFeaturedVideoList from '@/components/modules/FeaturedVideoList/FeaturedVideoListWrapper';
+import renderFeaturedVideoListCarousel from '@/components/modules/FeaturedVideoListCarousel/FeaturedVideoListCarouselWrapper';
+import renderFocusOn from '@/components/modules/FocusOn/FocusOnWrapper';
 import renderGraphicAsset from '@/components/modules/GraphicAsset/GraphicAssetWrapper';
+import renderGridList from '@/components/modules/GridList/GridListWrapper';
 import renderHeroSwiper from '@/components/modules/HeroSwiper/HeroSwiperWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
@@ -18,8 +31,20 @@ import renderText from '@/components/modules/Text/TextWrapper';
  * Each function takes an object with a `data` property of type `ComponentProps` and returns a `ReturnComponentRender`.
  */
 const componentList: Record<any, (data: { data: ComponentProps }) => ReturnComponentRender> = {
+  Adv: renderAdv,
   AlbumListCarousel: renderAlbumListCarousel,
+  BrightcoveVideo: renderBrightcoveVideo,
+  FeaturedCarousel: renderFeaturedCarousel,
+  FeaturedEventList: renderFeaturedEventList,
+  FeaturedMatches: renderFeaturedMatches,
+  FeaturedMixedList: renderFeaturedMixedList,
+  FeaturedPlayerListCarousel: renderFeaturedPlayerListCarousel,
+  FeaturedShopList: renderFeaturedShopList,
+  FeaturedVideoList: renderFeaturedVideoList,
+  FeaturedVideoListCarousel: renderFeaturedVideoListCarousel,
+  FocusOn: renderFocusOn,
   GraphicAsset: renderGraphicAsset,
+  GridList: renderGridList,
   Hero: renderHeroSwiper,
   HeroSwiper: renderHeroSwiper,
   HtmlContent: renderHtmlContent,

@@ -6,9 +6,10 @@ import React from 'react';
 type HeaderMenuNavItemProps = {
   menuItem?: MenuItem;
   itemIcon?: JSX.Element | null;
+  itemText?: JSX.Element | null;
 };
 
-const HeaderMenuNavItem = ({ menuItem, itemIcon }: HeaderMenuNavItemProps) => {
+const HeaderMenuNavItem = ({ menuItem, itemIcon, itemText }: HeaderMenuNavItemProps) => {
   const isActive = getBooleanProperty(menuItem?.isActive);
   return (
     <div
@@ -18,6 +19,7 @@ const HeaderMenuNavItem = ({ menuItem, itemIcon }: HeaderMenuNavItemProps) => {
       )}
     >
       {itemIcon}
+      {itemText}
     </div>
   );
 };

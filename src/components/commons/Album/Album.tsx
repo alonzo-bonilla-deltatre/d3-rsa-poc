@@ -89,6 +89,7 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
   const navigation = {
     prevEl: `[data-js-carousel-prev="${uniqueId}"]`,
     nextEl: `[data-js-carousel-next="${uniqueId}"]`,
+    disabledClass: 'opacity-25 pointer-events-none',
   };
   const pagination = {
     el: '[data-js-carousel-pagination]',

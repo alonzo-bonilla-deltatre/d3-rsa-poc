@@ -65,6 +65,7 @@ const MenuNavItem = ({
         <HeaderMenuNavItem
           menuItem={menuItem}
           itemIcon={itemIcon}
+          itemText={itemText}
         />
       );
       break;

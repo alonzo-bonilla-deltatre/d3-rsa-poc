@@ -1,7 +1,7 @@
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 import { nanoid } from 'nanoid';
-const HeroSwiper = dynamic(() => import('@/components/modules/HeroSwiper/HeroSwiper'));
+const HeroSwiper = dynamic(() => import('@/components/modules/HeroSwiper/HeroSwiper'), { ssr: false });
 
 const HeroSwiperWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <HeroSwiper data={data} />;
 

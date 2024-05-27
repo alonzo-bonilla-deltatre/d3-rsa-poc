@@ -234,6 +234,18 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
     tablet: defaultCloudinaryTransformations.ratio16_9_size20,
     desktop: defaultCloudinaryTransformations.ratio16_9_size20,
   },
+  // Module Focus on: background
+  focus_on_background: {
+    mobile: defaultCloudinaryTransformations.ratio3_4_size20,
+    tablet: defaultCloudinaryTransformations.ratio4_3_size40,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
+  },
+  // Module Focus on: photo
+  focus_on_photo: {
+    mobile: defaultCloudinaryTransformations.ratio16_9_size20,
+    tablet: defaultCloudinaryTransformations.ratio16_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
+  },
 };
 
 /**

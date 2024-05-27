@@ -5,15 +5,15 @@ import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 
-type StoryRelatedItemCardProps = {
+type CardProps = {
   entity: DistributionEntity;
 };
 
-const StoryRelatedItemCard = ({ entity }: StoryRelatedItemCardProps) => {
+const StoryRelatedItemCard = ({ entity }: CardProps) => {
   if (!entity) return null;
   const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
   return (
-    <div className="flex flex-col gap-2 overflow-hidden rounded-lg">
+    <div className="flex flex-col gap-2 overflow-hidden rounded-lg relative">
       {entity?.tags && entity?.tags.length > 0 && (
         <div className={'flex flex-col gap-2'}>
           {entity?.tags.map((tag: Tag, index: number) => (
@@ -34,7 +34,7 @@ const StoryRelatedItemCard = ({ entity }: StoryRelatedItemCardProps) => {
       </Typography>
       <Typography
         variant={'body-s'}
-        className={'text-gray-500 line-clamp-2 text-ellipsis'}
+        className={'text-grey-100 line-clamp-2 text-ellipsis'}
       >
         {description}
       </Typography>

@@ -104,7 +104,7 @@ const SocialShare = ({ title, metadata }: SocialShareProps) => {
   ];
 
   return (
-    <div className="flex flex-row gap-2 text-gray-500 relative">
+    <div className="flex flex-row gap-2 text-grey-100 relative">
       {copiedLink && (
         <div className="absolute top-0 right-0 ">
           <Toast

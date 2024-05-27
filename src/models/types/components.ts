@@ -40,14 +40,11 @@ export type HeaderTitleProps = {
   headerTitle?: string;
   headerTitleHeadingLevel?: string;
   hideHeaderTitle?: boolean;
-  textAlignment?: string;
-  noTranslation?: boolean;
   ctaTitle?: string;
   ctaLink?: string;
   description?: string;
   sponsorBy?: string;
   className?: string;
-  typographyClassName?: string;
 };
 
 export type EditorialListModuleProps = EditorialListProps & ModuleProps;

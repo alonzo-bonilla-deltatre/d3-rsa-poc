@@ -1,0 +1,43 @@
+.wrapperWithBackground {
+  :global {
+    position: relative;
+
+    $i: 1;
+    $unit: '%';
+    @while $i < 101 {
+      .custom-bg-size-#{$i} {
+        background-size: #{$i}#{$unit};
+      }
+      .desktop-custom-bg-size-#{$i} {
+        @media (min-width: 1024px) {
+          background-size: #{$i}#{$unit};
+        }
+      }
+      $i: $i + 1;
+    }
+
+    .background-container {
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-image: var(--wrapper-background-mobile-url);
+
+      @media (min-width: 1024px) {
+        background-image: var(--wrapper-background-desktop-url);
+      }
+
+      &:where(.-clipped) {
+        height: min(300px, 100%);
+        bottom: auto;
+        /* Keep a consistent angle for full width elements
+          https://kilianvalkhof.com/2017/design/sloped-edges-with-consistent-angle-in-css/ */
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6vw), 0 100%);
+
+        @media (min-width: 1024px) {
+          height: min(370px, 100%);
+          clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3vw), 0 100%);
+        }
+      }
+    }
+  }
+}

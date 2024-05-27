@@ -7,7 +7,7 @@ export type SocialIconsProps = {
 };
 
 const SocialIcons = ({
-  className = 'cursor-pointer text-gray-500 hover:text-link transition duration-300',
+  className = 'cursor-pointer text-grey-100 hover:text-link transition duration-300',
   size = 34,
 }: SocialIconsProps) => {
   return (

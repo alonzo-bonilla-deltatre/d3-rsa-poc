@@ -65,4 +65,6 @@ export enum ImageTransformationName {
   story_header_background = 'story_header_background',
   hero_swiper_main_item = 'hero_swiper_main_item',
   hero_swiper_pagination_item = 'hero_swiper_pagination_item',
+  focus_on_background = 'focus_on_background',
+  focus_on_photo = 'focus_on_photo',
 }

@@ -41,7 +41,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const relatedArticles = storyEntity?.relations?.filter((entity) => entity.type === ForgeEntityType.story) ?? [];
 
   return (
-    <article>
+    <article className={'bg-white text-black border-b h-full'}>
       <StoryHeader storyEntity={storyEntity}></StoryHeader>
       <ModuleContainer>
         <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 lg:max-w-full lg:mx-auto content m-2 lg:m-0">
@@ -67,7 +67,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
                   <Typography
                     variant={'tag-l'}
                     as={'time'}
-                    className="text-gray-500 uppercase"
+                    className="text-grey-100 uppercase"
                   >
                     {formatDate(storyEntity?.contentDate, 'DD MMMM YYYY')}
                   </Typography>

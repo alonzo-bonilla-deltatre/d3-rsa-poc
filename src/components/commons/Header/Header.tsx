@@ -62,13 +62,13 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
       {isTransparent && (
         <HeaderScrollManager
           transparentClasses={['bg-transparent']}
-          defaultColor="bg-stone-600"
+          defaultColor="bg-grey-900"
         />
       )}
       <nav
         id="header-nav"
         className={`flex flex-col justify-center ${
-          isTransparent ? 'transition-colors duration-200 ease-linear fixed top-0 left-0 right-0' : 'bg-stone-600'
+          isTransparent ? 'transition-colors duration-200 ease-linear fixed top-0 left-0 right-0' : 'bg-grey-900'
         }`}
       >
         <div className="h-[72px] container mx-auto px-4 grid grid-cols-3 grid-flow-row gap-4 md:items-center md:justify-between">

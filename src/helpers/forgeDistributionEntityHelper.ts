@@ -327,7 +327,7 @@ export const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleR
  *
  * This function enriches the entities with references fields, GAD assets fields, a thumbnail placeholder, and link rules
  * based on the provided options. The enrichments are performed in the following order:
- * 1. References fields enrichment is performed if `options.hasReferencesFieldsInList` is true.
+ * 1. Reference fields enrichment is performed if `options.hasReferencesFieldsInList` is true.
  * 2. GAD assets fields enrichment is performed if `options.hasGadAssetsFields` is true.
  * 3. Thumbnail placeholder enrichment is performed if `options.hasThumbnailPlaceholder` is true.
  * 4. Link rules enrichment is performed if `options.hasLinkRules` or `options.hasLinkRulesForRelationsAndParts` is true.

@@ -7,6 +7,7 @@ import { createDataVariable } from '@/helpers/dataVariableHelper';
 import { MenuSources } from '@/models/types/menu';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import SocialIcons from '@/components/commons/SocialIcons/SocialIcons';
+import Typography from '@/components/commons/Typography/Typography';
 
 enum FooterLayoutSlots {
   logo = 'logo',
@@ -23,10 +24,10 @@ const Footer = ({ data }: { data: ComponentProps }) => {
   const footerNavigationSource: Variable = createDataVariable('source', MenuSources.footer);
 
   return (
-    <footer>
-      <ModuleContainer className={'border-t pt-6 last:mb-10'}>
+    <footer className={'bg-white text-black'}>
+      <ModuleContainer className={'pt-6 first:mt-0'}>
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerContent) && (
-          <div className="flex flex-col pb-6 lg:pb-10 mb-6 lg:mb-10 h-full border-b">
+          <div className="flex flex-col pb-6 lg:pb-10 mb-6 lg:mb-10 h-full border-b border-black">
             {renderItemsInSlot(
               data.items,
               FooterLayoutSlots.footerContent,
@@ -37,7 +38,7 @@ const Footer = ({ data }: { data: ComponentProps }) => {
           </div>
         )}
         <div className={'my-6 lg:text-center flex justify-center gap-4'}>
-          <SocialIcons />
+          <SocialIcons className={'cursor-pointer text-grey-500 hover:text-link transition duration-300'} />
         </div>
         {hasItemsInSlot(data.items, FooterLayoutSlots.serviceNavigation) && (
           <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
@@ -54,7 +55,7 @@ const Footer = ({ data }: { data: ComponentProps }) => {
         )}
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerNavigation) && (
           <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
-            <div className="pb-6 lg:text-center flex flex-col border-b">
+            <div className="pb-6 lg:text-center flex flex-col border-b border-black">
               {renderItemsInSlot(
                 data.items,
                 FooterLayoutSlots.footerNavigation,
@@ -71,7 +72,7 @@ const Footer = ({ data }: { data: ComponentProps }) => {
               {renderItemsInSlot(data.items, FooterLayoutSlots.logo, data.variables, data.metadata, data.previewToken)}
             </div>
           )}
-          <div className="flex justify-center">{translate('footer-copyright')}</div>
+          <Typography variant={'body-xs'} className="flex justify-center text-grey-500">{translate('footer-copyright')}</Typography>
         </div>
       </ModuleContainer>
     </footer>

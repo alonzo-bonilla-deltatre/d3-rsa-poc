@@ -24,14 +24,14 @@ const Hamburger = ({ data }: { data: ComponentProps }) => {
   const hasFrontendConfiguration = frontendConfiguration && frontendConfiguration?.allSites?.length > 0;
 
   return (
-    <div className="hamburger z-50 flex items-center justify-start">
+    <div className="hamburger z-50 flex items-center justify-start text-black">
       <HamburgerDrawer>
         <div className="w-full min-h-[4rem] flex-grow flex items-center justify-center mx-auto">
           <div className="w-140px">
             {renderItemsInSlot(data.items, HamburgerLayoutSlots.logo, data.variables, data.metadata, data.previewToken)}
           </div>
         </div>
-        <div className="h-full flex overflow-auto py-2 mx-10 pt-5 uppercase flex-col border-t-2">
+        <div className="h-full flex overflow-auto py-2 mx-10 pt-5 uppercase flex-col border-t-2 border-t-black">
           {renderItemsInSlot(
             data.items,
             HamburgerLayoutSlots.primaryNavigation,

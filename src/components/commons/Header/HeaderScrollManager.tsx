@@ -13,7 +13,7 @@ export type ScrollManagerProps = {
  * @param defaultColor the default theme color
  * @param transparentClasses
  */
-export const HeaderScrollManager = ({ defaultColor = 'bg-stone-600', transparentClasses = [] }: ScrollManagerProps) => {
+export const HeaderScrollManager = ({ defaultColor = 'bg-grey-900', transparentClasses = [] }: ScrollManagerProps) => {
   useEffect(() => {
     const handleScroll = () => {
       const header = document?.querySelector('#header-nav');
