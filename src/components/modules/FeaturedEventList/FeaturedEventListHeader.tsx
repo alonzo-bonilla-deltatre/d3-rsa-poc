@@ -12,7 +12,12 @@ type EventListHeaderProps = {
 const EventListHeader = ({ headerTitle, headerTitleHeadingLevel, hideHeaderTitle }: EventListHeaderProps) => {
   return (
     <div className="flex flex-col justify-center items-center">
-      <Typography variant={'caption-m'} className="uppercase text-grey-100">{translate('calendar')}</Typography>
+      <Typography
+        variant={'caption-m'}
+        className="uppercase text-grey-100"
+      >
+        {translate('calendar')}
+      </Typography>
       <HeaderTitle
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}

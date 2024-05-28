@@ -39,7 +39,6 @@ const sampleAlbum: AlbumEntity = {
   selfUrl: 'TestSelfUrl',
   slug: 'TestSlug',
   title: 'TestTitle',
-  headline: 'TestHeadline',
   tags: sampleTags,
   relations: [],
   references: {},

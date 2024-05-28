@@ -15,8 +15,8 @@ const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
 
   const featuredDescription = description
     ? await getEntity(ForgeDapiEntityCode.pageBuilderTextEditors, description, {
-      variables: data.variables,
-    })
+        variables: data.variables,
+      })
     : null;
   const sponsor = sponsorBy ? await getEntity(ForgeDapiEntityCode.partners, sponsorBy) : null;
   const featuredSponsor = sponsor?.fields?.partnerLogo ? await getSingleAssetByTag(sponsor.fields.partnerLogo) : null;

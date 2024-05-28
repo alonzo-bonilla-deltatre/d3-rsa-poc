@@ -1,16 +1,12 @@
 ﻿import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 import { nanoid } from 'nanoid';
-const FeaturedCarousel = dynamic(() => import('@/components/modules/FeaturedCarousel/FeaturedCarousel'), {
-  ssr: false,
-});
+const DivaVideo = dynamic(() => import('@/components/modules/DivaVideo/DivaVideo'));
 
-const FeaturedCarouselWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
-  <FeaturedCarousel data={data} />
-);
+const DivaVideoWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <DivaVideo data={data} />;
 
 const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
-  <FeaturedCarouselWrapper
+  <DivaVideoWrapper
     key={nanoid()}
     data={data}
   />

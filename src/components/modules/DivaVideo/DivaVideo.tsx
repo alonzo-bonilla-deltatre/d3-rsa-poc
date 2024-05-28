@@ -1,33 +1,33 @@
-import BrightcoveVideoPlayer from '@/components/commons/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
-import { moduleIsNotValid } from '@/helpers/moduleHelper';
-import { ComponentProps, ModuleProps } from '@/models/types/components';
+﻿import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import { formatDate } from '@/helpers/dateHelper';
-import logger from '@/utilities/loggerUtility';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { notFound } from 'next/navigation';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
+import DivaVideoPlayer from '@/components/commons/DivaVideoPlayer/DivaVideoPlayer';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
+import logger from '@/utilities/loggerUtility';
+import { formatDate } from '@/helpers/dateHelper';
 
-type BrightcoveVideoProps = {
+type DivaVideoProps = {
   slug?: string;
-  preventSettingMetadata?: boolean;
 } & ModuleProps;
 
-const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
-  const { slug, isFullWidth } = data.properties as BrightcoveVideoProps;
+const DivaVideo = async ({ data }: { data: ComponentProps }) => {
+  const { slug, isFullWidth } = data.properties as DivaVideoProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 
-  const entity = await getEntity(ForgeDapiEntityCode.brightcoveVideos, slug, {
+  const entity = await getEntity(ForgeDapiEntityCode.divaVideos, slug, {
     variables: data.variables,
   });
 
   if (entity == null) {
-    logger.log(`Cannot find album brightcovevideos with slug ${slug} `, LoggerLevel.warning);
+    logger.log(`Cannot find album divavideos with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
+
   const description = entity?.fields?.description ?? '';
 
   return (
@@ -43,9 +43,9 @@ const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
           {formatDate(entity?.contentDate, 'DD MMMM YYYY')}
         </Typography>
       </div>
-      <BrightcoveVideoPlayer entity={entity} />
+      <DivaVideoPlayer entity={entity} />
     </ModuleContainer>
   );
 };
 
-export default BrightcoveVideo;
+export default DivaVideo;

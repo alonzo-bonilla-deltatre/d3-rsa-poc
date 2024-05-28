@@ -96,7 +96,11 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
               </div>
               <div className={'flex flex-col justify-between items-center'}>
                 {entity?.fields?.venue && (
-                  <div className={'hidden md:block absolute mt-[16px] left-1/2 transform -translate-x-1/2 max-w-[360px] font-heading text-[120px] xl:text-[120px] leading-[144px] text-center text-grey-500 uppercase opacity-20 uppercase'}>
+                  <div
+                    className={
+                      'hidden md:block absolute mt-[16px] left-1/2 transform -translate-x-1/2 max-w-[360px] font-heading text-[120px] xl:text-[120px] leading-[144px] text-center text-grey-500 uppercase opacity-20 uppercase'
+                    }
+                  >
                     {entity?.fields?.venue ?? ''}
                   </div>
                 )}

@@ -30,7 +30,7 @@ const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
   return (
     <ModuleContainer
       isFullWidth
-      className="relative first:mt-0"
+      className="relative first:mt-0 lg:first:mt-0"
     >
       <div
         className="bg-[length:100vh] md:bg-cover bg-no-repeat min-h-[40svh] md:min-h-[60svh] lg:min-h-[80svh] bg-fixed bg-top"
@@ -38,17 +38,6 @@ const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
           backgroundImage: `url('${imageUrl}')`,
         }}
       ></div>
-      {/*<Picture*/}
-      {/*  src={storyEntity.thumbnail?.templateUrl ? storyEntity?.thumbnail?.templateUrl : defaultThumbnail.url}*/}
-      {/*  transformations={transformations.story_header_background}*/}
-      {/*  alt={storyEntity.thumbnail?.title ?? ''}*/}
-      {/*  className="w-full h-full object-cover fixed top-0"*/}
-      {/*  imageStyle={{*/}
-      {/*    width: '100%',*/}
-      {/*    height: 'auto',*/}
-      {/*  }}*/}
-      {/*/>*/}
-      {/*<div className={'absolute top-0 h-[400px] bg-transparent'}></div>*/}
     </ModuleContainer>
   );
 };

@@ -15,7 +15,10 @@ const DefaultCard = ({ entity }: CardProps) => {
   if (!entity) return null;
   const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
   return (
-    <Link href={entity.url} className={'w-full h-full'}>
+    <Link
+      href={entity.url}
+      className={'w-full h-full'}
+    >
       <div className="flex rounded-lg relative">
         <figure className="bg-black overflow-hidden rounded-lg z-10">
           <Picture
@@ -30,7 +33,7 @@ const DefaultCard = ({ entity }: CardProps) => {
             alt={entity.title}
             className={twMerge(
               'block h-full w-full object-cover object-center opacity-[.60] rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : '',
+              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />
@@ -50,11 +53,7 @@ const DefaultCard = ({ entity }: CardProps) => {
               {description}
             </Typography>
           )}
-          <Typography
-            variant={'tag-m'}
-          >
-            {formatDate(entity?.contentDate, 'DD MMM, YYYY')}
-          </Typography>
+          <Typography variant={'tag-m'}>{formatDate(entity?.contentDate, 'DD MMM, YYYY')}</Typography>
         </div>
       </div>
     </Link>

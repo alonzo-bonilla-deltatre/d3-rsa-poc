@@ -29,10 +29,18 @@ const FocusOnView = ({ storyEntity }: FocusOnViewProps) => {
         </div>
         <div className="container mx-auto px-4">
           <div className="absolute top-2/3 transform -translate-y-2/3 lg:px-6">
-            <Typography variant={'tag-l'}
+            <Typography
+              variant={'tag-l'}
               className={`uppercase text-white mb-1 px-1 py-0.5 w-fit`}
-            >{storyEntity?.context?.title}</Typography>
-            <Typography variant={'h2'} className="font-bold mb-8 md:mt-4 lg:mt-6 ">{storyEntity?.title}</Typography>
+            >
+              {storyEntity?.context?.title}
+            </Typography>
+            <Typography
+              variant={'h2'}
+              className="font-bold mb-8 md:mt-4 lg:mt-6 "
+            >
+              {storyEntity?.title}
+            </Typography>
           </div>
         </div>
       </div>
@@ -42,7 +50,10 @@ const FocusOnView = ({ storyEntity }: FocusOnViewProps) => {
             <h3 className="font-heading text-4xl font-bold text-gray-800 dark:text-gray-200 mb-0">
               {storyEntity?.headline}
             </h3>
-            <Typography variant={'body-s'} className="pt-8 pr-8 pb-6 md:pt-12 md:pr-16 md:pb-12 text-gray-400">
+            <Typography
+              variant={'body-s'}
+              className="pt-8 pr-8 pb-6 md:pt-12 md:pr-16 md:pb-12 text-gray-400"
+            >
               {summary}
             </Typography>
             <CallToActionFilledLink

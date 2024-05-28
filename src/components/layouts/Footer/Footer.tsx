@@ -72,7 +72,12 @@ const Footer = ({ data }: { data: ComponentProps }) => {
               {renderItemsInSlot(data.items, FooterLayoutSlots.logo, data.variables, data.metadata, data.previewToken)}
             </div>
           )}
-          <Typography variant={'body-xs'} className="flex justify-center text-grey-500">{translate('footer-copyright')}</Typography>
+          <Typography
+            variant={'body-xs'}
+            className="flex justify-center text-grey-500"
+          >
+            {translate('footer-copyright')}
+          </Typography>
         </div>
       </ModuleContainer>
     </footer>

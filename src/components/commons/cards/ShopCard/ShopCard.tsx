@@ -14,14 +14,16 @@ type CardProps = {
 const ShopCard = ({ entity }: CardProps) => {
   if (!entity) return null;
   const isPromo = getBooleanProperty(entity.fields?.enablePromoBadge);
+  const shopUrl = entity.fields?.url?.url ? entity.fields?.url?.url : entity.url;
 
   return (
-    <Link href={entity.url} className={'w-full h-full'}>
+    <Link
+      href={shopUrl ?? entity.url}
+      className={'w-full h-full'}
+    >
       <div className={'flex flex-col gap-2 lg:gap-4'}>
-        <div className={twMerge('flex rounded-lg relative',
-          isPromo ? 'border-4 border-link' : 'w-[calc(100%_-_3px)]')}>
-          <figure className={twMerge('overflow-hidden rounded-lg z-10 relative',
-            isPromo ? 'rounded' : 'rounded-lg')}>
+        <div className={twMerge('flex rounded-lg relative', isPromo ? 'border-4 border-link' : 'w-[calc(100%_-_3px)]')}>
+          <figure className={twMerge('overflow-hidden rounded-lg z-10 relative', isPromo ? 'rounded' : 'rounded-lg')}>
             <Picture
               src={
                 entity?.thumbnail?.templateUrl
@@ -34,14 +36,18 @@ const ShopCard = ({ entity }: CardProps) => {
               alt={entity.title}
               className={twMerge(
                 'block h-full w-full object-cover object-center',
-                hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : '',
+                hasValidUrl(shopUrl) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
               )}
               format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
             />
           </figure>
-          <div className="flex flex-col absolute w-full h-full text-white gap-5 justify-end items-start p-6">
-            <Typography variant={'tag-m'}
-                        className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase bottom-2 lg:bottom-3 left-2 lg:left-3 text-white bg-link">promo</Typography>
+          <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start p-6">
+            <Typography
+              variant={'tag-m'}
+              className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase bottom-2 lg:bottom-3 left-2 lg:left-3 text-white bg-link"
+            >
+              promo
+            </Typography>
           </div>
         </div>
 
@@ -53,15 +59,11 @@ const ShopCard = ({ entity }: CardProps) => {
         </Typography>
         {isPromo ? (
           <div className={'flex flex-row mt-2 text-2xl md:text-2.5xl tracking-[0.0175em]'}>
-            <div className={'text-grey-300 dark:text-grey-100 me-2 line-through'}>
-              {entity.fields?.price}
-            </div>
+            <div className={'text-grey-300 dark:text-grey-100 me-2 line-through'}>{entity.fields?.price}</div>
             {entity.fields?.salePrice}
           </div>
         ) : (
-          <div className={'flex flex-row mt-1 text-2xl md:text-2.5xl  tracking-[0.0175em]'}>
-            {entity.fields?.price}
-          </div>
+          <div className={'flex flex-row mt-1 text-2xl md:text-2.5xl  tracking-[0.0175em]'}>{entity.fields?.price}</div>
         )}
       </div>
     </Link>

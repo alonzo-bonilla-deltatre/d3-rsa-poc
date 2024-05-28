@@ -1,16 +1,13 @@
 ﻿import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
+import React from 'react';
 import { nanoid } from 'nanoid';
-const FeaturedCarousel = dynamic(() => import('@/components/modules/FeaturedCarousel/FeaturedCarousel'), {
-  ssr: false,
-});
+const LiveBloggingServer = dynamic(() => import('@/components/modules/LiveBlogging/LiveBloggingServer'));
 
-const FeaturedCarouselWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
-  <FeaturedCarousel data={data} />
-);
+const LiveBloggingWrapper = ({ data }: { data: ComponentProps }) => <LiveBloggingServer data={data} />;
 
 const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
-  <FeaturedCarouselWrapper
+  <LiveBloggingWrapper
     key={nanoid()}
     data={data}
   />

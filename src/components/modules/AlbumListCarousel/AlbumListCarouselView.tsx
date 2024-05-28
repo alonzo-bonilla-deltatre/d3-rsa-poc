@@ -23,7 +23,10 @@ const AlbumListCarouselView = ({
   hideHeaderTitle,
 }: AlbumListCarouselViewProps) => {
   return (
-    <ModuleContainer isFullWidth className="flex flex-col gap-5 lg:gap-10 px-2">
+    <ModuleContainer
+      isFullWidth
+      className="flex flex-col gap-5 lg:gap-10 px-2"
+    >
       <Typography
         variant={(headerTitleHeadingLevel as TypographyProps['variant']) ?? 'h2'}
         className={twMerge('container mx-auto', getBooleanProperty(hideHeaderTitle) ? 'hidden' : '')}

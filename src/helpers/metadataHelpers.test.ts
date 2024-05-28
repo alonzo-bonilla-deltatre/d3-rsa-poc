@@ -120,6 +120,33 @@ describe('overrideDefaultMetadata', () => {
     };
     expect(og.tags).toEqual(undefined);
   });
+
+  it('should return enriched metadata with tags empty if request tags is has wrong object', () => {
+    // ARRANGE
+    const storyEntityWithoutTags = Object.assign({ ...storyEntity, tags: [{id: 'id'}] });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutTags);
+
+    // ASSERT
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: 'article';
+      tags?: null | string | Array<string>;
+    };
+    expect(og.tags).toEqual('');
+  });
+
+  it('should return enriched metadata with description if request has description in fields.description', () => {
+    // ARRANGE
+    const storyEntityWithoutTags = Object.assign({ ...storyEntity, headline: undefined, description: undefined, fields: { description: 'description' } });
+
+    // ACT
+    const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutTags);
+
+    // ASSERT
+    expect(result.description).toEqual('description');
+  });
 });
 describe('overrideAlbumMetadata', () => {
   afterEach(() => {
@@ -142,7 +169,7 @@ describe('overrideAlbumMetadata', () => {
     // ARRANGE
 
     // ACT
-    const result = overrideAlbumMetadata(parentMetadata, entity);
+    const result = overrideAlbumMetadata(parentMetadata, sampleAlbum);
 
     // ASSERT
     // OpenGraphArticle is not exported so we replicate its definition
@@ -153,11 +180,11 @@ describe('overrideAlbumMetadata', () => {
       authors?: null | string | URL | Array<string | URL>;
     };
     expect(result?.title).toBe(entity.title);
-    expect(result?.description).toBe(entity.headline);
+    expect(result?.description).toBe(entity.description);
     expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('article');
     expect(result?.twitter?.title).toBe(entity.title);
-    expect(result?.twitter?.description).toBe(entity.headline);
+    expect(result?.twitter?.description).toBe(entity.description);
   });
 });
 describe('overrideStoryMetadata', () => {
@@ -222,7 +249,7 @@ describe('overrideVideoMetadata', () => {
     // ARRANGE
 
     // ACT
-    const result = overrideVideoMetadata(parentMetadata, entity);
+    const result = overrideVideoMetadata(parentMetadata, sampleAlbum);
 
     // ASSERT
     // OpenGraphArticle is not exported so we replicate its definition
@@ -233,11 +260,11 @@ describe('overrideVideoMetadata', () => {
       authors?: null | string | URL | Array<string | URL>;
     };
     expect(result?.title).toBe(entity.title);
-    expect(result?.description).toBe(entity.headline);
+    expect(result?.description).toBe(entity.description);
     expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('video.other');
     expect(result?.twitter?.title).toBe(entity.title);
-    expect(result?.twitter?.description).toBe(entity.headline);
+    expect(result?.twitter?.description).toBe(entity.description);
   });
 });
 
@@ -303,7 +330,7 @@ describe('overrideLiveBloggingMetadata', () => {
     expect(og.type).toBe('article');
     expect(og.description).toBe('');
     if ('tags' in og) {
-      expect(og.tags).toBe('');
+      expect(og.tags).toBe('tag1');
     }
     expect(result?.twitter?.title).toBe(bolg.title);
     expect(result?.twitter?.description).toBe('');

@@ -6,6 +6,7 @@ import ThemingVariables from '@/components/commons/ThemingVariables/ThemingVaria
 import { renderItem } from '@/services/renderService';
 import AppViewLinksHandler from '@/components/commons/AppViewLinksHandler/AppViewLinksHandler';
 import { enrichPageVariables, getPageData } from '@/helpers/pageHelper';
+import { headers } from 'next/headers';
 
 /**
  * Renders a page based on the provided parameters.
@@ -34,6 +35,11 @@ export const renderPage = async (params: {
   // Get the path name from the parameters
   const path = requestUrlParser.getPathName(params);
 
+  const headersList = headers();
+  const protocol = headersList.get('x-forwarded-proto');
+  const host = headersList.get('host'); // to get domain
+  const pageUrl = new URL(path, `${protocol}://${host}`)?.toString();
+
   // Set the preview token, defaulting to an empty string if no token is provided. The token is empty outside of the "preview" route
   const previewToken = token ?? '';
 
@@ -57,6 +63,7 @@ export const renderPage = async (params: {
 
   // Enrich the page variables
   enrichPageVariables(variables, {
+    pageUrl: pageUrl,
     pagePath: path,
     azureSearchOption: JSON.stringify(azureSearchOption, null, 2),
     appView: appView,

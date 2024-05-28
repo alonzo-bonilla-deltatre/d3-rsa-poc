@@ -75,11 +75,17 @@ function renderSection(props: FeaturedRowProps) {
   return (
     <SectionContainer className={getStringProperty(sectionClassName)}>
       <div
-        className={twMerge('flex flex-col lg:grid lg:grid-cols-4 lg:gap-6 lg:max-w-full', !hasFullWidthContent ? 'container' : '')}
+        className={twMerge(
+          'flex flex-col lg:grid lg:grid-cols-4 lg:gap-6 lg:max-w-full',
+          !hasFullWidthContent ? 'container' : ''
+        )}
       >
         {showHeader && (
           <div
-            className={twMerge(getStringProperty(headerClassName), 'bg-bullets lg:bg-top lg:min-h-[381px] bg-no-repeat py-1 xl:py-4 lg:p-0 lg:block lg:relative lg:col-span-1 lg:row-span-1 lg:columns-1')}
+            className={twMerge(
+              getStringProperty(headerClassName),
+              'bg-bullets lg:bg-top lg:min-h-[381px] bg-no-repeat py-1 xl:py-4 lg:p-0 lg:block lg:relative lg:col-span-1 lg:row-span-1 lg:columns-1'
+            )}
           >
             <div className={'flex md:justify-between mb-6'}>
               <div className="w-full">
@@ -91,12 +97,18 @@ function renderSection(props: FeaturedRowProps) {
                 ></HeaderTitle>
                 <div>
                   {featuredDescription && (
-                    <Typography variant={'body-s'} className={'mb-6 text-grey-100'}>
+                    <Typography
+                      variant={'body-s'}
+                      className={'mb-6 text-grey-100'}
+                    >
                       {featuredDescription}
                     </Typography>
                   )}
                   {featuredSponsor && (
-                    <Typography variant={'tag-m'} className={'mb-6 uppercase flex items-center text-white'}>
+                    <Typography
+                      variant={'tag-m'}
+                      className={'mb-6 uppercase flex items-center text-white'}
+                    >
                       {translate('sponsored-by')}
                       <div className={'ml-2 rtl:ml-0 rtl:mr-2 max-w-[30px] max-h-[30px]'}>
                         <GadAsset
@@ -130,7 +142,10 @@ function renderSection(props: FeaturedRowProps) {
         )}
         {children && (
           <div
-            className={twMerge(getStringProperty(contentClassName), 'xl:pb-8 py-1 xl:py-4 lg:p-0 lg:block lg:relative lg:rounded-md lg:col-span-3 lg:row-span-2 lg:columns-1')}
+            className={twMerge(
+              getStringProperty(contentClassName),
+              'xl:pb-8 py-1 xl:py-4 lg:p-0 lg:block lg:relative lg:rounded-md lg:col-span-3 lg:row-span-2 lg:columns-1'
+            )}
           >
             {children}
           </div>

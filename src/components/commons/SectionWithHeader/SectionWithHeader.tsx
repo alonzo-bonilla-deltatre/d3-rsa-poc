@@ -111,9 +111,7 @@ function renderSection(props: SectionWithHeaderProps) {
         </div>
       )}
       {children && (
-        <div
-          className={twMerge(!hasFullWidthContent ? 'container mx-auto' : '', getStringProperty(contentClassName))}
-        >
+        <div className={twMerge(!hasFullWidthContent ? 'container mx-auto' : '', getStringProperty(contentClassName))}>
           {children}
         </div>
       )}

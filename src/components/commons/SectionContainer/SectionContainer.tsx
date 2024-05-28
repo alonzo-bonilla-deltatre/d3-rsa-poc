@@ -15,7 +15,11 @@ const SectionContainer = ({ children, isFullWidth, removeSectionHtmlTag, classNa
   const SectionContainer = `${!keepSectionTag ? 'div' : 'section'}` as keyof JSX.IntrinsicElements;
   return (
     <SectionContainer
-      className={twMerge('mb-5 lg:mb-10 first:mt-5 lg:first:mt-10', className, isFullWidth ? 'w-full' : 'container mx-auto px-2')}
+      className={twMerge(
+        'mb-5 lg:mb-10 first:mt-5 lg:first:mt-10',
+        className,
+        isFullWidth ? 'w-full' : 'container mx-auto px-2'
+      )}
     >
       {children}
     </SectionContainer>

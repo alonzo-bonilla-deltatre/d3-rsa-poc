@@ -19,7 +19,10 @@ const PlayerCard = ({ entity }: CardProps) => {
   const playerSurname = entity?.fields?.surname ?? '';
 
   return (
-    <Link href={entity.url} className={'w-full h-full'}>
+    <Link
+      href={entity.url}
+      className={'w-full h-full'}
+    >
       <div className="flex rounded-lg relative">
         <figure className="bg-black overflow-hidden rounded-lg z-10">
           <Picture
@@ -34,35 +37,35 @@ const PlayerCard = ({ entity }: CardProps) => {
             alt={entity.title}
             className={twMerge(
               'block h-full w-full object-cover object-center opacity-[.60] rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : '',
+              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />
         </figure>
         <div className="absolute top-1 left-5 z-10">
-          {playerNumber &&
-            <Typography variant={'h1'} className="text-grey-300 leading-none">{playerNumber}</Typography>}
+          {playerNumber && (
+            <Typography
+              variant={'h1'}
+              className="text-grey-300 leading-none"
+            >
+              {playerNumber}
+            </Typography>
+          )}
         </div>
         <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start p-6 z-10">
           <div className="flex justify-end flex-col z-10">
-            <div
-              className="font-heading font-light text-5xl xl:text-6xl uppercase flex flex-row tracking-wide">
+            <div className="font-heading font-light text-5xl xl:text-6xl uppercase flex flex-row tracking-wide">
               {playerName}
-              <div
-                className={
-                  'ml-2 font-heading font-normal text-5xl xl:text-6xl text-white uppercase tracking-wide'
-                }
-              >
+              <div className={'ml-2 font-heading font-normal text-5xl xl:text-6xl text-white uppercase tracking-wide'}>
                 {playerSurname}
               </div>
             </div>
             {entity?.fields?.roles && entity?.fields.roles.length > 0 && (
-              <div
-                className="font-heading font-light text-2xl xl:text-3xl uppercase tracking-wide">
+              <div className="font-heading font-light text-2xl xl:text-3xl uppercase tracking-wide">
                 {entity?.fields.roles[0]}
               </div>
             )}
-            <div className="my-2 flex gap-2 items-center">
+            <div className="flex gap-2 items-center">
               {entity?.fields?.playerNationalityFlag?.assetUrl && (
                 <div className={'w-full h-full max-w-[20px] max-h-[20px] xl:max-w-[28px] xl:max-h-[28px]'}>
                   <GadAsset
@@ -73,9 +76,8 @@ const PlayerCard = ({ entity }: CardProps) => {
                     transformations={transformations.best_assets}
                     className={'rounded-full object-fill'}
                     imageStyle={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'fill',
+                      width: '22px',
+                      height: '22px',
                     }}
                   />
                 </div>

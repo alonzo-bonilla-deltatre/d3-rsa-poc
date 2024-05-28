@@ -30,7 +30,14 @@ export const overrideDefaultMetadata = (
   );
 
   const title: string = entity.title;
-  const description: string = entity.headline || '';
+  const description: string = 
+    entity.description ?
+      entity.description :
+      entity?.headline ?
+        entity?.headline :
+        entity?.fields?.description ?
+          entity?.fields?.description :
+          '';
 
   return {
     title,
@@ -41,7 +48,7 @@ export const overrideDefaultMetadata = (
       title,
       description,
       images: [{ url: image ?? null }],
-      tags: entity?.tags && entity?.tags.length ? entity?.tags?.map(getTagTitleOrLabel)?.join(',') : undefined,
+      tags: entity?.tags && entity?.tags?.length > 0 ? entity?.tags?.map(getTagTitleOrLabel)?.join(',') : undefined,
     },
     twitter: {
       title,
@@ -68,8 +75,11 @@ const getTagTitleOrLabel = (tag: Tag | LiveBloggingTagEntity) => {
     return tag.title;
   } else if ('label' in tag) {
     return tag.label;
+  } else if ('slug' in tag) {
+    return tag.slug;
+  } else {
+    return '';
   }
-  return '';
 };
 
 /**
@@ -173,16 +183,13 @@ export const overrideVideoMetadata = (
  * @returns {Metadata} The overridden metadata.
  */
 export const overrideLiveBloggingMetadata = (parentMetadata: Metadata, entity: LiveBloggingBlogEntity): Metadata => {
-  const description = entity?.description ?? '';
   const metadata = overrideDefaultMetadata(parentMetadata, entity);
-  metadata.description = description;
-  if (metadata.twitter) metadata.twitter.description = description;
   metadata.openGraph = {
     ...metadata.openGraph,
     type: 'article',
-    publishedTime: entity?.lastUpdateDate,
-    modifiedTime: entity?.lastUpdateDate,
-    description: description,
+    publishedTime: entity.contentDate,
+    modifiedTime: entity.lastUpdatedDate,
+    authors: entity.createdBy,
   } as OpenGraph;
   return Object.assign(parentMetadata, metadata);
 };

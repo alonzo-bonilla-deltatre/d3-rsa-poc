@@ -11,16 +11,8 @@ import { CardsType } from '@/components/commons/cards';
 type FeaturedPlayerListCarouselProps = EditorialListModuleProps & HeaderTitleProps;
 
 const FeaturedPlayerListCarousel = async ({ data }: { data: ComponentProps }) => {
-  const {
-    selectionSlug,
-    skip,
-    limit,
-    headerTitle,
-    headerTitleHeadingLevel,
-    hideHeaderTitle,
-    description,
-    sponsorBy,
-  } = data.properties as FeaturedPlayerListCarouselProps;
+  const { selectionSlug, skip, limit, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy } =
+    data.properties as FeaturedPlayerListCarouselProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
@@ -36,13 +28,13 @@ const FeaturedPlayerListCarousel = async ({ data }: { data: ComponentProps }) =>
 
   const featuredDescription = description
     ? await getEntity(ForgeDapiEntityCode.pageBuilderTextEditors, description, {
-      variables: data.variables,
-    })
+        variables: data.variables,
+      })
     : null;
   const sponsor = sponsorBy
     ? await getEntity(ForgeDapiEntityCode.partners, sponsorBy, {
-      variables: data.variables,
-    })
+        variables: data.variables,
+      })
     : null;
   const featuredSponsor = sponsor?.fields?.partnerLogo ? await getSingleAssetByTag(sponsor.fields.partnerLogo) : null;
 

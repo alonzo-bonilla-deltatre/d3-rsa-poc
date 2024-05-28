@@ -20,20 +20,31 @@ const VideoCard = ({ entity }: CardProps) => {
   const isFreemium = rights?.toLowerCase() === 'freemium';
   const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
   return (
-    <Link href={entity.url} className={'w-full h-full'}>
+    <Link
+      href={entity.url}
+      className={'w-full h-full'}
+    >
       <div className={'flex flex-col gap-2'}>
         <div className={'relative'}>
-          <div className={twMerge('flex rounded-lg relative',
-            rights ? 'border-4 border-link' : '',
-            isPremium ? 'border-4 border-gold' : '',
-            isFreemium ? 'border-4 border-white' : '',
-            isPremium || isFreemium ? '' : 'w-[calc(100%_-_3px)]')}>
-            <figure className={twMerge('bg-black overflow-hidden z-10 relative',
-              isPremium || isFreemium || rights ? 'rounded' : 'rounded-lg')}>
+          <div
+            className={twMerge(
+              'flex rounded-lg relative',
+              rights ? 'border-4 border-link' : '',
+              isPremium ? 'border-4 border-gold' : '',
+              isFreemium ? 'border-4 border-white' : '',
+              !rights ? '' : 'w-[calc(100%_-_3px)]'
+            )}
+          >
+            <figure
+              className={twMerge(
+                'bg-black overflow-hidden z-10 relative',
+                isPremium || isFreemium || rights ? 'rounded' : 'rounded-lg'
+              )}
+            >
               <Picture
                 src={
                   entity?.thumbnail?.templateUrl
-                    ? entity?.thumbnail?.templateUrl 
+                    ? entity?.thumbnail?.templateUrl
                     : entity?.image?.templateUrl
                       ? entity?.image?.templateUrl
                       : ''
@@ -42,26 +53,24 @@ const VideoCard = ({ entity }: CardProps) => {
                 alt={entity.title}
                 className={twMerge(
                   'block h-full w-full object-cover object-center',
-                  hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : '',
+                  hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
                 )}
                 format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
               />
             </figure>
             {rights && (
               <div className="flex flex-col absolute w-full h-full text-black gap-5 justify-end items-start p-6">
-                <Typography variant={'tag-m'}
-                            className={twMerge('absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase top-2 lg:top-3 end-2 lg:end-3 text-white bg-link', isFreemium ? 'text-black bg-white' : '', isPremium ? 'text-black bg-gold' : '')}>
+                <Typography
+                  variant={'tag-m'}
+                  className={twMerge(
+                    'absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase top-2 lg:top-3 end-2 lg:end-3 text-white bg-link',
+                    isFreemium ? 'text-black bg-white' : '',
+                    isPremium ? 'text-black bg-gold' : ''
+                  )}
+                >
                   {rights}
-                  {isPremium && (
-                    <>
-                      {renderSvgIcon('Lock', { className: 'w-2.5 h-3', width: 10, height: 10 })}
-                    </>
-                  )}
-                  {isFreemium && (
-                    <>
-                      {renderSvgIcon('Unlock', { className: 'w-2.5 h-3', width: 10, height: 10 })}
-                    </>
-                  )}
+                  {isPremium && <>{renderSvgIcon('Lock', { className: 'w-2.5 h-3', width: 10, height: 10 })}</>}
+                  {isFreemium && <>{renderSvgIcon('Unlock', { className: 'w-2.5 h-3', width: 10, height: 10 })}</>}
                 </Typography>
               </div>
             )}
@@ -85,11 +94,7 @@ const VideoCard = ({ entity }: CardProps) => {
               {description}
             </Typography>
           )}
-          <Typography
-            variant={'tag-m'}
-          >
-            {formatDate(entity?.contentDate, 'DD MMM, YYYY')}
-          </Typography>
+          <Typography variant={'tag-m'}>{formatDate(entity?.contentDate, 'DD MMM, YYYY')}</Typography>
         </div>
       </div>
     </Link>

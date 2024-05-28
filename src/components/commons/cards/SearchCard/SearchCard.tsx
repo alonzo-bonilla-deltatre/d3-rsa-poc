@@ -14,7 +14,10 @@ const SearchCard = ({ entity }: CardProps) => {
   if (!entity) return null;
   const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
   return (
-    <Link href={entity.url} className={'w-full h-full'}>
+    <Link
+      href={entity.url}
+      className={'w-full h-full'}
+    >
       <div className="flex flex-col gap-2 relative">
         <div className="flex items-center justify-center overflow-hidden rounded-lg">
           <Picture
@@ -29,7 +32,7 @@ const SearchCard = ({ entity }: CardProps) => {
             alt={entity.title}
             className={twMerge(
               'w-auto h-[revert-layer] object-[inherit] rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : '',
+              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />

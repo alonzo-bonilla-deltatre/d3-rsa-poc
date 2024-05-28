@@ -3,7 +3,7 @@
   body {
     /* https://www.terluinwebdesign.nl/en/css/position-sticky-not-working-try-overflow-clip-not-overflow-hidden/ */
     overflow-x: clip;
-    @apply text-white bg-grey-900 bg-dark-body-image bg-center bg-contain bg-repeat-y;
+    @apply text-white bg-grey-900 bg-dark-body-image;
 
     @supports not (overflow: clip) {
       /* overflow-x hidden also when page is dragged on ios < 16

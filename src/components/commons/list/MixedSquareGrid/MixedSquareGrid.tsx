@@ -25,7 +25,7 @@ export const getGridClasses = (index: number) => {
   } else if (count % 4 === 0) {
     return `row-span-2 col-span-2 row-start-${row} col-start-2`;
   } else if (count % 5 === 0) {
-    return `row-span-1 col-span-1 col-start-1 row-start-${row+1}`;
+    return `row-span-1 col-span-1 col-start-1 row-start-${row + 1}`;
   } else if (count % 6 === 0) {
     return `row-span-2 col-span-2`;
   } else {
@@ -41,8 +41,14 @@ const MixedSquareGrid = ({ items, cardsType }: MixedSquareGridProps) => {
     <div className={gridClassName}>
       {items &&
         items.map((entity: DistributionEntity, index: number) => {
-          return <div key={index}
-                      className={getGridClasses(index)}>{renderCard(cardsType, { entity })}</div>;
+          return (
+            <div
+              key={index}
+              className={getGridClasses(index)}
+            >
+              {renderCard(cardsType, { entity })}
+            </div>
+          );
         })}
     </div>
   );

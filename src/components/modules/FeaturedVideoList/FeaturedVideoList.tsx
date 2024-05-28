@@ -10,28 +10,20 @@ import { CardsType } from '@/components/commons/cards';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
 const FeaturedVideoList = async ({ data }: { data: ComponentProps }) => {
-  const {
-    headerTitle,
-    headerTitleHeadingLevel,
-    hideHeaderTitle,
-    skip,
-    limit,
-    selectionSlug,
-    description,
-    sponsorBy,
-  } = data.properties as EditorialListModuleProps & HeaderTitleProps;
+  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, skip, limit, selectionSlug, description, sponsorBy } =
+    data.properties as EditorialListModuleProps & HeaderTitleProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
   const featuredDescription = description
     ? await getEntity(ForgeDapiEntityCode.pageBuilderTextEditors, description, {
-      variables: data.variables,
-    })
+        variables: data.variables,
+      })
     : null;
   const sponsor = sponsorBy
     ? await getEntity(ForgeDapiEntityCode.partners, sponsorBy, {
-      variables: data.variables,
-    })
+        variables: data.variables,
+      })
     : null;
   const featuredSponsor = sponsor?.fields?.partnerLogo ? await getSingleAssetByTag(sponsor.fields.partnerLogo) : null;
 

@@ -6,6 +6,7 @@ import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure'
 import renderAdv from '@/components/modules/Adv/AdvWrapper';
 import renderAlbumListCarousel from '@/components/modules/AlbumListCarousel/AlbumListCarouselWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
+import renderDivaVideo from '@/components/modules/DivaVideo/DivaVideoWrapper';
 import renderFeaturedCarousel from '@/components/modules/FeaturedCarousel/FeaturedCarouselWrapper';
 import renderFeaturedEventList from '@/components/modules/FeaturedEventList/FeaturedEventListWrapper';
 import renderFeaturedMatches from '@/components/modules/FeaturedMatches/FeaturedMatchesWrapper';
@@ -20,6 +21,7 @@ import renderGridList from '@/components/modules/GridList/GridListWrapper';
 import renderHeroSwiper from '@/components/modules/HeroSwiper/HeroSwiperWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
+import renderLiveBlogging from '@/components/modules/LiveBlogging/LiveBloggingWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
@@ -34,6 +36,7 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   Adv: renderAdv,
   AlbumListCarousel: renderAlbumListCarousel,
   BrightcoveVideo: renderBrightcoveVideo,
+  DivaVideo: renderDivaVideo,
   FeaturedCarousel: renderFeaturedCarousel,
   FeaturedEventList: renderFeaturedEventList,
   FeaturedMatches: renderFeaturedMatches,
@@ -49,6 +52,7 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   HeroSwiper: renderHeroSwiper,
   HtmlContent: renderHtmlContent,
   Image: renderImage,
+  LiveBlogging: renderLiveBlogging,
   Menu: renderMenu,
   Partners: renderPartners,
   SearchResults: renderSearchResults,

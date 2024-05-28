@@ -10,16 +10,8 @@ import { CardsType } from '@/components/commons/cards';
 type FeaturedCarouselProps = EditorialListModuleProps & HeaderTitleProps;
 
 const FeaturedCarousel = async ({ data }: { data: ComponentProps }) => {
-  const {
-    selectionSlug,
-    skip,
-    limit,
-    headerTitle,
-    headerTitleHeadingLevel,
-    hideHeaderTitle,
-    description,
-    sponsorBy,
-  } = data.properties as FeaturedCarouselProps;
+  const { selectionSlug, skip, limit, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy } =
+    data.properties as FeaturedCarouselProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
@@ -56,7 +48,7 @@ const FeaturedCarousel = async ({ data }: { data: ComponentProps }) => {
         featuredDescription: featuredDescription?.fields?.body,
         featuredSponsor: featuredSponsor,
         uniqueId: featuredCarouselViewUniqueId,
-        hasPagination:false,
+        hasPagination: false,
         hasNavigation: true,
       }}
     />

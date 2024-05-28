@@ -20,7 +20,7 @@ SwiperCore.use([A11y]);
 type CarouselProps = {
   items?: DistributionEntity[] | LiveBloggingBlogEntity[] | null;
   className?: string;
-  cardsType: CardsType,
+  cardsType: CardsType;
   uniqueId: string;
   swiperRef: RefObject<SwiperRef>;
   hasPagination: boolean;
@@ -29,15 +29,15 @@ type CarouselProps = {
 };
 
 const Carousel = ({
-                    items,
-                    className,
-                    cardsType,
-                    uniqueId,
-                    swiperRef,
-                    hasPagination,
-                    hasNavigation,
-                    hasExternalNavigation,
-                  }: CarouselProps) => {
+  items,
+  className,
+  cardsType,
+  uniqueId,
+  swiperRef,
+  hasPagination,
+  hasNavigation,
+  hasExternalNavigation,
+}: CarouselProps) => {
   const translate = useTranslate();
   items = items as DistributionEntity[];
   className = getStringProperty(className);
@@ -53,7 +53,7 @@ const Carousel = ({
   const pagination = {
     el: '.carousel__pagination',
     //@ts-ignore
-    renderBullet: function(index, className) {
+    renderBullet: function (index, className) {
       return '<span class="' + className + '"></span>';
     },
   };
@@ -69,7 +69,7 @@ const Carousel = ({
         spaceBetween={24}
         modules={[Navigation, Pagination]}
         navigation={hasNavigation ? navigation : false}
-        pagination={hasPagination ? pagination as PaginationOptions : false}
+        pagination={hasPagination ? (pagination as PaginationOptions) : false}
         a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
         breakpoints={{
           320: {

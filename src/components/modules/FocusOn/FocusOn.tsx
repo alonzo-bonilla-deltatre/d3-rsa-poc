@@ -13,7 +13,8 @@ import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContaine
 
 type FocusOnProps = {
   slug?: string;
-} & ModuleProps & HeaderTitleProps;
+} & ModuleProps &
+  HeaderTitleProps;
 
 const FocusOn = async ({ data }: { data: ComponentProps }) => {
   const { slug, headerTitle, headerTitleHeadingLevel, hideHeaderTitle } = data.properties as FocusOnProps;
@@ -33,15 +34,13 @@ const FocusOn = async ({ data }: { data: ComponentProps }) => {
 
   return (
     <ModuleContainer isFullWidth>
-        <HeaderTitle
-          className="d3-section__header-title"
-          headerTitle={headerTitle}
-          headerTitleHeadingLevel={headerTitleHeadingLevel}
-          hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
-        ></HeaderTitle>
-        <FocusOnView
-          storyEntity={storyEntity}
-        />
+      <HeaderTitle
+        className="d3-section__header-title"
+        headerTitle={headerTitle}
+        headerTitleHeadingLevel={headerTitleHeadingLevel}
+        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
+      ></HeaderTitle>
+      <FocusOnView storyEntity={storyEntity} />
     </ModuleContainer>
   );
 };

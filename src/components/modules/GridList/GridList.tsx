@@ -15,7 +15,8 @@ import { CardsType } from '@/components/commons/cards';
 
 type GridListProps = {
   itemsPerRow?: number;
-} & EditorialListModuleProps & HeaderTitleProps;
+} & EditorialListModuleProps &
+  HeaderTitleProps;
 
 const GridList = ({ data }: { data: ComponentProps }) => {
   const {
@@ -70,7 +71,7 @@ const GridList = ({ data }: { data: ComponentProps }) => {
   if (moduleIsNotValid(data, ['selectionSlug'])) {
     return null;
   }
-  
+
   if (!items?.length) return null;
 
   return (

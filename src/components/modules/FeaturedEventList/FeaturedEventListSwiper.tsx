@@ -46,7 +46,10 @@ export const FeaturedEventListSwiper = ({ slides }: FeaturedEventListSwiperProps
 
   return (
     <>
-      <ModuleContainer isFullWidth className={'flex'}>
+      <ModuleContainer
+        isFullWidth
+        className={'flex'}
+      >
         <Swiper
           dir={getSiteDirection(LANGUAGE)}
           modules={[Pagination, Navigation]}
@@ -84,7 +87,7 @@ export const FeaturedEventListSwiper = ({ slides }: FeaturedEventListSwiperProps
           }}
         >
           {slides.map((slide, index) => {
-            return <SwiperSlide key={index}>{renderCard(CardsType.EventCard,{entity:slide})}</SwiperSlide>;
+            return <SwiperSlide key={index}>{renderCard(CardsType.EventCard, { entity: slide })}</SwiperSlide>;
           })}
         </Swiper>
       </ModuleContainer>

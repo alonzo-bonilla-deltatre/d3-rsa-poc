@@ -9,10 +9,7 @@ type CarouselNavigationAsideProps = {
   swiperRef: RefObject<SwiperRef>;
 };
 
-export const CarouselNavigationAside = ({
-                                          uniqueId,
-                                          swiperRef,
-                                        }: CarouselNavigationAsideProps) => {
+export const CarouselNavigationAside = ({ uniqueId, swiperRef }: CarouselNavigationAsideProps) => {
   const [, setPrevEl] = useState<HTMLElement | null>(null);
   const [, setNextEl] = useState<HTMLElement | null>(null);
 

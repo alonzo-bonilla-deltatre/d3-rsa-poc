@@ -9,14 +9,12 @@ type CarouselNavigationProps = {
   swiperRef: RefObject<SwiperRef>;
 };
 
-export const CarouselNavigation = ({
-  uniqueId,
-  swiperRef,
-}: CarouselNavigationProps) => {
+export const CarouselNavigation = ({ uniqueId, swiperRef }: CarouselNavigationProps) => {
   const [, setPrevEl] = useState<HTMLElement | null>(null);
   const [, setNextEl] = useState<HTMLElement | null>(null);
 
-  const buttonClassName = 'lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:z-10 aspect-square rounded-full opacity-70 disabled:opacity-25 p-2 2xl:p-3 bg-black text-white';
+  const buttonClassName =
+    'lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:z-10 aspect-square rounded-full opacity-70 disabled:opacity-25 p-2 2xl:p-3 bg-black text-white';
 
   const iconClassName = 'w-auto h-7 2xl:h-9';
 

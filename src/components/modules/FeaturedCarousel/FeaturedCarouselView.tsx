@@ -15,7 +15,7 @@ import { CardsType } from '@/components/commons/cards';
 
 type FeaturedCarouselViewProps = {
   items: DistributionEntity[];
-  cardsType: CardsType,
+  cardsType: CardsType;
   featuredDescription?: string;
   featuredSponsor?: GraphicAssetsDashboardItem | null;
   uniqueId: string;
