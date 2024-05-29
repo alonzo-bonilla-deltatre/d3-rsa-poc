@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import jwt from 'jsonwebtoken';

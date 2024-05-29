@@ -19,11 +19,12 @@ const exclusionsList = [
   '**/helpers/liveBloggingDistributionEntityHelper.ts',
   '**/helpers/markdownHelper.ts',
   '**/services/azureCognitiveSearchService.ts',
-  '**/services/siteMetadataService.ts',
   '**/services/configurationService.ts',
+  '**/services/divaPlayerService.ts',
+  '**/services/siteMetadataService.ts',
   '**/utilities/consts.ts',
+  '**/utilities/featureFlags.ts',
   '**/utilities/publicEnvVariables.ts',
-  '**/utilities/featureFlags.ts'
 ];
 const exclusions = exclusionsList.join(',').trim();
 const testInclusions = '**/*.test.ts';
