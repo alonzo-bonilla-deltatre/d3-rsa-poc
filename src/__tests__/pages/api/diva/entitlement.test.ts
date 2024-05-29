@@ -33,14 +33,19 @@ describe('renderDivaPlayerEntitlement', () => {
   });
 
   it('logs error and returns 500 status when an exception occurs', () => {
-    (getDivaPlayerEntitlement as jest.Mock).mockImplementation(() => { throw new Error('Test error'); });
+    (getDivaPlayerEntitlement as jest.Mock).mockImplementation(() => {
+      throw new Error('Test error');
+    });
 
     const req = { body: {} } as NextApiRequest;
     const res = { status: jest.fn().mockReturnThis(), send: jest.fn(), end: jest.fn() } as unknown as NextApiResponse;
 
     renderDivaPlayerEntitlement(req, res);
 
-    expect(logger.log).toHaveBeenCalledWith(expect.stringMatching('Error rendering Diva Player Entitlement'), LoggerLevel.error);
+    expect(logger.log).toHaveBeenCalledWith(
+      expect.stringMatching('Error rendering Diva Player Entitlement'),
+      LoggerLevel.error
+    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.send).toHaveBeenCalledWith('Internal server error');
   });

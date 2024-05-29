@@ -33,14 +33,19 @@ describe('renderDivaPlayerDictionary', () => {
   });
 
   it('logs error and returns 500 status when an exception occurs', () => {
-    (getDivaPlayerDictionary as jest.Mock).mockImplementation(() => { throw new Error('Test error'); });
+    (getDivaPlayerDictionary as jest.Mock).mockImplementation(() => {
+      throw new Error('Test error');
+    });
 
     const req = { body: {} } as NextApiRequest;
     const res = { status: jest.fn().mockReturnThis(), send: jest.fn(), end: jest.fn() } as unknown as NextApiResponse;
 
     renderDivaPlayerDictionary(req, res);
 
-    expect(logger.log).toHaveBeenCalledWith(expect.stringMatching('Error rendering Diva Player Dictionary'), LoggerLevel.error);
+    expect(logger.log).toHaveBeenCalledWith(
+      expect.stringMatching('Error rendering Diva Player Dictionary'),
+      LoggerLevel.error
+    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.send).toHaveBeenCalledWith('Internal server error');
   });

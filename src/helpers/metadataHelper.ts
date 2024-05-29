@@ -30,14 +30,13 @@ export const overrideDefaultMetadata = (
   );
 
   const title: string = entity.title;
-  const description: string = 
-    entity.description ?
-      entity.description :
-      entity?.headline ?
-        entity?.headline :
-        entity?.fields?.description ?
-          entity?.fields?.description :
-          '';
+  const description: string = entity.description
+    ? entity.description
+    : entity?.headline
+      ? entity?.headline
+      : entity?.fields?.description
+        ? entity?.fields?.description
+        : '';
 
   return {
     title,

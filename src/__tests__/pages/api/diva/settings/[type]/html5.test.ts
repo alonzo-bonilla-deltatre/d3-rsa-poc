@@ -34,7 +34,9 @@ describe('renderDivaPlayerSetting', () => {
   });
 
   it('logs error and returns 500 status when an exception occurs', async () => {
-    (getDivaPlayerSetting as jest.Mock).mockImplementation(() => { throw new Error('Test error'); });
+    (getDivaPlayerSetting as jest.Mock).mockImplementation(() => {
+      throw new Error('Test error');
+    });
 
     const req = { body: {}, query: { type: VideoType.vod } } as unknown as NextApiRequest;
     const res = { status: jest.fn().mockReturnThis(), send: jest.fn(), end: jest.fn() } as unknown as NextApiResponse;
@@ -42,7 +44,10 @@ describe('renderDivaPlayerSetting', () => {
     // ACT
     renderDivaPlayerSetting(req, res);
 
-    expect(logger.log).toHaveBeenCalledWith(expect.stringMatching('Error rendering Diva Player Setting for vod'), LoggerLevel.error);
+    expect(logger.log).toHaveBeenCalledWith(
+      expect.stringMatching('Error rendering Diva Player Setting for vod'),
+      LoggerLevel.error
+    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.send).toHaveBeenCalledWith('Internal server error');
   });

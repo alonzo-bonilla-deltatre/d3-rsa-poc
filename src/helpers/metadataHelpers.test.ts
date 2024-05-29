@@ -123,7 +123,7 @@ describe('overrideDefaultMetadata', () => {
 
   it('should return enriched metadata with tags empty if request tags is has wrong object', () => {
     // ARRANGE
-    const storyEntityWithoutTags = Object.assign({ ...storyEntity, tags: [{id: 'id'}] });
+    const storyEntityWithoutTags = Object.assign({ ...storyEntity, tags: [{ id: 'id' }] });
 
     // ACT
     const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutTags);
@@ -139,7 +139,12 @@ describe('overrideDefaultMetadata', () => {
 
   it('should return enriched metadata with description if request has description in fields.description', () => {
     // ARRANGE
-    const storyEntityWithoutTags = Object.assign({ ...storyEntity, headline: undefined, description: undefined, fields: { description: 'description' } });
+    const storyEntityWithoutTags = Object.assign({
+      ...storyEntity,
+      headline: undefined,
+      description: undefined,
+      fields: { description: 'description' },
+    });
 
     // ACT
     const result = overrideDefaultMetadata(parentMetadata, storyEntityWithoutTags);
