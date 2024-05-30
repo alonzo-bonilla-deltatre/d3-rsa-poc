@@ -22,6 +22,8 @@ RUN corepack enable && \
 
 FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
+RUN corepack enable
+RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
@@ -40,8 +42,6 @@ ARG sonarprojectkey
 ARG sonarlogin
 ARG version
 
-RUN corepack enable
-RUN yarn set version 4.2.2
 RUN yarn test
 RUN yarn sonar
 RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
