@@ -22,7 +22,7 @@ RUN corepack enable && \
   yarn install
 RUN yarn run build-storybook
 
-FROM nginx:alpine3.20-slim
+FROM nginx:stable-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
 
