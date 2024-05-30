@@ -3,6 +3,8 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
+RUN apk update && \
+	apk upgrade
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 4.2.2
 RUN yarn set version stable && yarn install
 
