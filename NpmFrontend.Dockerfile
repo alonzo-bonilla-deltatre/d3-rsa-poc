@@ -1,7 +1,7 @@
 FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
+COPY ./ .
 
 RUN corepack enable
 RUN yarn set version 4.2.2
