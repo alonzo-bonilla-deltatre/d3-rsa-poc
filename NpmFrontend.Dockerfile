@@ -3,6 +3,9 @@ WORKDIR /app
 
 COPY ./ .
 
+RUN ls ./.yarn
+RUN ls ./.yarn/releases
+
 RUN corepack enable
 RUN yarn set version 4.2.2
 RUN yarn install --immutable
