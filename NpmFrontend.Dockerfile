@@ -5,7 +5,8 @@ COPY ./package.json ./yarn.lock ./
 
 # Add authentication to .yarnrc.yml file for azuredecops npm custom packages
 ARG Yarnrc=".yarnrc.yml"
-RUN echo "npmScopes:" >> ${Yarnrc} && \
+RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
+  echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
   echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
   echo "    npmAuthIdent: RDNBbG06Z2VjM2liYWh6dWdkbTdwM3prejZ3amNlNGNhb2x6ZmlmZGRkY3J4amR2aTRpMm9zM2JkcQ==" >> ${Yarnrc} && \

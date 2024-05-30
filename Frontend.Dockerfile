@@ -5,7 +5,8 @@ COPY ./package.json ./yarn.lock ./
 
 # Add authentication to .yarnrc.yml file for azuredecops npm custom packages
 ARG Yarnrc=".yarnrc.yml"
-RUN echo "npmScopes:" >> ${Yarnrc} && \
+RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
+  echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
   echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
   echo "    npmAuthIdent: RDNBbG06Z2VjM2liYWh6dWdkbTdwM3prejZ3amNlNGNhb2x6ZmlmZGRkY3J4amR2aTRpMm9zM2JkcQ==" >> ${Yarnrc} && \
@@ -15,9 +16,9 @@ RUN echo "npmScopes:" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
-RUN corepack enable
-RUN yarn set version 4.2.2
-RUN yarn install
+RUN corepack enable && \
+  yarn set version 4.2.2 && \
+  yarn install
 
 FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
@@ -38,12 +39,11 @@ ARG sonarprojectkey
 ARG sonarlogin
 ARG version
 
-RUN corepack enable
-RUN yarn set version 4.2.2
-RUN yarn test
-RUN yarn sonar
-
-RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
+RUN corepack enable && \
+  yarn set version 4.2.2 && \
+  yarn test && \
+  yarn sonar && \
+  yarn cross-env NODE_ENV='production' VERSION=$version next build
 
 FROM node:22.2.0-alpine3.20 AS runner
 WORKDIR /app
