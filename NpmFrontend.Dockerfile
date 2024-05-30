@@ -1,7 +1,7 @@
 FROM node:lts-alpine3.20 AS builder
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
+COPY ./package.json ./.yarn/ ./yarn.lock ./.yarnrc.yml ./
 
 RUN yarn install --immutable
 

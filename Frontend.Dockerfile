@@ -1,11 +1,11 @@
 FROM node:lts-alpine3.20 AS deps
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
+COPY ./package.json ./.yarn/ ./yarn.lock ./.yarnrc.yml ./
 
 RUN yarn install --immutable
 
-FROM node:20-slim AS builder
+FROM node:lts-alpine3.20 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
