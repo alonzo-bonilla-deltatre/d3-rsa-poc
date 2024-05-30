@@ -2,6 +2,7 @@ FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
+COPY ./yarnrc.yml ./.yarnrc.yml
 
 # Add authentication to .yarnrc.yml file for azuredecops npm custom packages
 ARG Yarnrc=".yarnrc.yml"
