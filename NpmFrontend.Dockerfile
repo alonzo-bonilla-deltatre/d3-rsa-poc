@@ -1,9 +1,9 @@
-FROM node:20-slim AS builder
+FROM node:lts-alpine3.20 AS builder
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
-RUN yarn set version berry && \
+RUN yarn set version stable && \
     yarn install
 
 RUN mkdir -p /npm/src/prd_node_modules

@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
-RUN yarn set version berry && \
+RUN yarn set version stable && \
     yarn install
 
 FROM node:20-slim AS builder
