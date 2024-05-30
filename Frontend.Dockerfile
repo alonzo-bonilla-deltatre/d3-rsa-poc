@@ -31,7 +31,7 @@ COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 
 RUN yarn test
 
-FROM node:22.2.0 AS sonar
+FROM node:22.2.0-alpine3.20 AS sonar
 WORKDIR /app
 RUN corepack enable
 RUN yarn set version 4.2.2
