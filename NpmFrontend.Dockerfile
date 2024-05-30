@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY ./package.json ./.yarn/ ./yarn.lock ./.yarnrc.yml ./
 
-RUN yarn install --immutable
+RUN yarn install
 
 RUN mkdir -p /npm/src/prd_node_modules
 
