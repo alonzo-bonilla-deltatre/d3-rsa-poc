@@ -3,8 +3,9 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
+RUN corepack enable
 RUN yarn set version 4.2.2
-RUN yarn install
+RUN yarn install --pure-lockfile
 
 FROM node:20-slim AS builder
 WORKDIR /app
