@@ -29,7 +29,7 @@ RUN yarn sonar
 
 RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
 
-FROM node:20.12.2-alpine3.19 AS runner
+FROM node:22.2.0-alpine3.20 AS runner
 WORKDIR /app
 
 COPY --from=builder /app/next.config.js ./

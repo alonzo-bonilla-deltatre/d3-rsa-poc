@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.20 AS builder
+FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 
 COPY ./package.json ./.yarn/ ./yarn.lock ./.yarnrc.yml ./
