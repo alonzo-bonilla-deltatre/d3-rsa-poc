@@ -19,6 +19,8 @@ RUN corepack enable
 RUN yarn set version 4.2.2
 RUN yarn install
 
+RUN ls ./
+
 RUN mkdir -p /npm/src/prd_node_modules
 
 RUN cp -r /app/node_modules/*  /npm/src/prd_node_modules/
