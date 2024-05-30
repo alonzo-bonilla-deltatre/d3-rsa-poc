@@ -315,6 +315,3 @@ yarn-error.log*
 
 # jest Test
 test-report.xml
-
-# yarn
-.yarn/

@@ -3,8 +3,6 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
-RUN corepack enable
-RUN yarn set version 4.2.2
 RUN yarn install --immutable
 
 RUN mkdir -p /npm/src/prd_node_modules

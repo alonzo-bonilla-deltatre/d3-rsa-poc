@@ -3,8 +3,6 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
-RUN corepack enable
-RUN yarn set version 4.2.2
 RUN yarn install --immutable
 
 FROM node:20-slim AS builder
