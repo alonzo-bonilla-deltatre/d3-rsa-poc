@@ -1,8 +1,10 @@
 FROM node:22.2.0-alpine3.20 AS deps
 WORKDIR /app
 
-COPY ./package.json ./.yarn/ ./yarn.lock ./.yarnrc.yml ./
+COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
 
+RUN corepack enable
+RUN yarn set version 4.2.2
 RUN yarn install
 
 FROM node:22.2.0-alpine3.20 AS builder
@@ -24,6 +26,8 @@ ARG sonarprojectkey
 ARG sonarlogin
 ARG version
 
+RUN corepack enable
+RUN yarn set version 4.2.2
 RUN yarn test
 RUN yarn sonar
 
