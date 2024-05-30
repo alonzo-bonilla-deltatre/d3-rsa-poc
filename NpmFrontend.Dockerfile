@@ -18,6 +18,8 @@ RUN echo "npmScopes:\r" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'\r" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
+RUN ls -l ./.yarnrc.yml
+
 RUN corepack enable
 RUN yarn set version 4.2.2
 RUN yarn install
