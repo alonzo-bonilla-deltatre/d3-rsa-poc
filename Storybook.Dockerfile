@@ -22,6 +22,23 @@ RUN corepack enable && \
   yarn install
 RUN yarn run build-storybook
 
-FROM nginx:22.2.0-alpine3.20
+FROM nginx:alpine3.20-slim
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
+
+RUN adduser \
+  --disabled-password \
+  --home /app \
+  --gecos '' \
+  --uid 10001 \
+  app
+
+RUN touch /var/run/nginx.pid && \
+    chown -R app: /etc/nginx/ && \
+    chown -R app: /var/cache/nginx && \
+    chown -R app: /var/run/nginx.pid && \
+    chown -R app: /usr/share/nginx/html
+
+USER app
+
+EXPOSE 8080
