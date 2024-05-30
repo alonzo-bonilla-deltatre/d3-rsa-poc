@@ -27,6 +27,7 @@ RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
+RUN ls
 
 # ----- SONARQUBE ---
 ARG version=1.0.0
