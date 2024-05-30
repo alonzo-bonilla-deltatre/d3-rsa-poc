@@ -20,7 +20,7 @@ RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install
 
-FROM node:22.2.0-alpine3.20 AS test
+FROM node:22.2.0-alpine3.20 AS tests
 WORKDIR /app
 RUN corepack enable
 RUN yarn set version 4.2.2
@@ -39,6 +39,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
+COPY --from=tests /app/test-report.xml ./test-report.xml
 
 # ----- SONARQUBE ---
 ARG version=1.0.0
