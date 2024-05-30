@@ -20,7 +20,7 @@ RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install
 
-FROM node:22.2.0-alpine3.20 AS builder
+FROM node:22.2.0-slim AS builder
 WORKDIR /app
 RUN corepack enable
 RUN yarn set version 4.2.2
