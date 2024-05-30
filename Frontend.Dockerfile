@@ -26,19 +26,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
 
-# Add authentication to .yarnrc.yml file for azuredecops npm custom packages
-ARG Yarnrc=".yarnrc.yml"
-RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
-  echo "npmScopes:" >> ${Yarnrc} && \
-  echo "  d3-forge:" >> ${Yarnrc} && \
-  echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthIdent: RDNBbG06Z2VjM2liYWh6dWdkbTdwM3prejZ3amNlNGNhb2x6ZmlmZGRkY3J4amR2aTRpMm9zM2JkcQ==" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
-  echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: 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" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
-# End .yarnrc.yml auth
-
 # ----- SONARQUBE ---
 ARG version=1.0.0
 ARG BuildSourceBranchName=refs/heads/master
@@ -53,11 +40,11 @@ ARG sonarprojectkey
 ARG sonarlogin
 ARG version
 
-RUN corepack enable && \
-  yarn set version 4.2.2 && \
-  yarn test && \
-  yarn sonar && \
-  yarn cross-env NODE_ENV='production' VERSION=$version next build
+RUN corepack enable
+RUN yarn set version 4.2.2
+RUN yarn test
+RUN yarn sonar
+RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
 
 FROM node:22.2.0-alpine3.20 AS runner
 WORKDIR /app
