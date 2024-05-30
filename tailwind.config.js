@@ -32,4 +32,7 @@ module.exports = {
       },
     },
   },
+  safelist: [
+'w-[42px]','h-[40px]','md:h-[60px]','lg:w-[86px]',' lg:h-[115px]','before:content-[\'\']','before:w-full','before:h-full','before:bg-black','before:absolute','before:top-0','before:left-0','before:opacity-50','before:transition-opacity','before:duration-500','before:ease-in-out','before:z-[1]',
+  ],
 }

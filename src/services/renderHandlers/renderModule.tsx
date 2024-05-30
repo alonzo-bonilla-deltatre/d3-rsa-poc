@@ -5,6 +5,7 @@ import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure'
 
 import renderAdv from '@/components/modules/Adv/AdvWrapper';
 import renderAlbumListCarousel from '@/components/modules/AlbumListCarousel/AlbumListCarouselWrapper';
+import renderAlbumMosaic from '@/components/modules/AlbumMosaic/AlbumMosaicWrapper';
 import renderBrightcoveVideo from '@/components/modules/BrightcoveVideo/BrightcoveVideoWrapper';
 import renderDivaVideo from '@/components/modules/DivaVideo/DivaVideoWrapper';
 import renderFeaturedCarousel from '@/components/modules/FeaturedCarousel/FeaturedCarouselWrapper';
@@ -35,6 +36,7 @@ import renderText from '@/components/modules/Text/TextWrapper';
 const componentList: Record<any, (data: { data: ComponentProps }) => ReturnComponentRender> = {
   Adv: renderAdv,
   AlbumListCarousel: renderAlbumListCarousel,
+  AlbumMosaic: renderAlbumMosaic,
   BrightcoveVideo: renderBrightcoveVideo,
   DivaVideo: renderDivaVideo,
   FeaturedCarousel: renderFeaturedCarousel,

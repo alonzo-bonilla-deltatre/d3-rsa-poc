@@ -46,7 +46,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
       <ModuleContainer>
         <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 lg:max-w-full lg:mx-auto content m-2 lg:m-0">
           {relatedArticles.length > 0 && (
-            <div className="col-span-3 z-10 hidden lg:flex border-r pe-8">
+            <div className="col-span-3 z-10 hidden lg:flex ltr:border-r rtl:border-l pe-8">
               <div className="w-full flex flex-col">
                 <Typography
                   variant={'h3'}

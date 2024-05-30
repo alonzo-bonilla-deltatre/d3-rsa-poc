@@ -75,7 +75,7 @@ const VideoCard = ({ entity }: CardProps) => {
               </div>
             )}
           </div>
-          <div className={'absolute bottom-2 lg:bottom-4 left-2 lg:left-4 text-white z-10'}>
+          <div className={'absolute bottom-2 lg:bottom-4 left-2 lg:left-4 rtl:right-2 rtl:lg:right-4 text-white z-10'}>
             {renderSvgIcon('Play', { className: 'w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12', width: 50, height: 50 })}
           </div>
         </div>

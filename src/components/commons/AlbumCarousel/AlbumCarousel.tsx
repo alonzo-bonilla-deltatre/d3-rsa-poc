@@ -12,9 +12,10 @@ import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { PaginationOptions } from 'swiper/types/modules/pagination';
-import { getSiteDirection } from '@/helpers/pageHelper';
+import { getSiteDirection, isRtlSiteDirection } from '@/helpers/pageHelper';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import useTranslate from '@/hooks/useTranslate';
+import { twMerge } from 'tailwind-merge';
 
 SwiperCore.use([A11y]);
 
@@ -26,7 +27,8 @@ type AlbumProps = {
   hasPagination?: boolean;
 };
 
-export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPagination }: AlbumProps) => {
+export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPagination }: AlbumProps) => {
+  const { LANGUAGE } = useEnvVars();
   const translate = useTranslate();
   useEffect(() => {
     Fancybox.bind('[data-fancybox]', {
@@ -34,9 +36,9 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
       Thumbs: false,
       Toolbar: {
         display: {
-          left: [],
+          left: [isRtlSiteDirection(LANGUAGE) ? 'close' : ''],
           middle: [],
-          right: ['close'],
+          right: [!isRtlSiteDirection(LANGUAGE) ? 'close' : ''],
         },
       },
       backdropClick: false,
@@ -77,8 +79,6 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
   const handleGalleryShow = (event: { preventDefault: () => void }) => {
     event?.preventDefault();
   };
-
-  const { LANGUAGE } = useEnvVars();
 
   const swiperRef = useRef<SwiperRef>(null);
 
@@ -132,13 +132,19 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
             data-media="(max-width: 40em);(max-width: 64em)"
             data-sources={`${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.mobile.transformation)};
                 ${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.tablet.transformation)}`}
+            className={'w-full h-full'}
           >
-            <Picture
-              src={slide?.image?.templateUrl ?? ''}
-              transformations={transformations.thumbnail_landscape_detail}
-              alt={slide.title}
-              className={isStoryPart ? 'w-full h-full object-cover rounded-lg' : 'w-full h-full object-cover'}
-            />
+            <figure className={'block overflow-hidden w-full h-full'}>
+              <Picture
+                src={slide?.image?.templateUrl ?? ''}
+                transformations={transformations.thumbnail_landscape_detail}
+                alt={slide.title}
+                className={twMerge(
+                  'w-full h-full object-cover block object-center hover:scale-110 transition duration-300 cursor-pointer',
+                  isStoryPart ? 'rounded-lg' : ''
+                )}
+              />
+            </figure>
           </a>
         </SwiperSlide>
       ))}
@@ -150,4 +156,4 @@ export const Album = ({ albumEntity, uniqueId, isStoryPart, hasNavigation, hasPa
   );
 };
 
-export default Album;
+export default AlbumCarousel;

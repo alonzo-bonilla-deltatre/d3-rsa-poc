@@ -1,12 +1,12 @@
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 import { nanoid } from 'nanoid';
-const HeroSwiper = dynamic(() => import('@/components/modules/HeroSwiper/HeroSwiper'));
+const AlbumMosaic = dynamic(() => import('@/components/modules/AlbumMosaic/AlbumMosaic'));
 
-const HeroSwiperWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <HeroSwiper data={data} />;
+const MosaicPhotosWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <AlbumMosaic data={data} />;
 
 const render = ({ data }: { data: ComponentProps }): ReturnComponentRender => (
-  <HeroSwiperWrapper
+  <MosaicPhotosWrapper
     key={nanoid()}
     data={data}
   />

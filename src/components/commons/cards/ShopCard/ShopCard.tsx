@@ -44,7 +44,7 @@ const ShopCard = ({ entity }: CardProps) => {
           <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start p-6">
             <Typography
               variant={'tag-m'}
-              className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase bottom-2 lg:bottom-3 left-2 lg:left-3 text-white bg-link"
+              className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase bottom-2 lg:bottom-3 ltr:left-2 ltr:lg:left-3 rtl:right-2 rtl:lg:right-3 text-white bg-link"
             >
               promo
             </Typography>

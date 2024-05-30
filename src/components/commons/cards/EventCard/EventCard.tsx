@@ -25,7 +25,7 @@ const EventCard = ({ entity }: CardProps) => {
     >
       <div className="relative rounded-lg">
         <div className={'absolute rounded-lg bg-event-mask bg-bottom w-full h-[234px] px-6 pt-24 z-10'}>
-          <div className="flex flex-col justify-items-center center absolute top-0 left-2 lg:left-4 bg-event-date w-[64px] h-[82px] z-10">
+          <div className="flex flex-col justify-items-center center absolute top-0 ltr:left-2 ltr:lg:left-4 rtl:right-2 rtl:lg:right-4 bg-event-date w-[64px] h-[82px] z-10">
             <Typography
               variant={'caption-l'}
               className="text-center"
@@ -41,7 +41,7 @@ const EventCard = ({ entity }: CardProps) => {
           </div>
           <div
             className={
-              'absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 top-2 lg:top-3 right-2 lg:right-3 py-4 text-white bg-grey-500'
+              'absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 top-2 lg:top-3 ltr:right-2 ltr:lg:right-3 rtl:left-2 rtl:lg:left-3 py-4 text-white bg-grey-500'
             }
           >
             {renderSvgIcon('Event', {

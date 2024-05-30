@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 export const CarouselPagination = () => {
   return (
@@ -17,7 +17,7 @@ export const CarouselPagination = () => {
           '.swiper-pagination-bullet': {
             'border-radius': '0',
           },
-        } as React.CSSProperties
+        } as CSSProperties
       }
       data-js-carousel-pagination
     ></div>

@@ -60,11 +60,17 @@ export enum ImageTransformationName {
   thumbnail_portrait_detail = 'thumbnail_portrait_detail',
   thumbnail_portrait_wide_detail = 'thumbnail_portrait_wide_detail',
 
-  // Modules
+  // Modules or Common components
   fancy_box_detail = 'fancy_box_detail',
   story_header_background = 'story_header_background',
   hero_swiper_main_item = 'hero_swiper_main_item',
   hero_swiper_pagination_item = 'hero_swiper_pagination_item',
   focus_on_background = 'focus_on_background',
   focus_on_photo = 'focus_on_photo',
+  mosaic_square = 'mosaic_square',
+  mosaic_landscape = 'mosaic_landscape',
+  mosaic_landscape_square = 'mosaic_landscape_square',
+  mosaic_wide = 'mosaic_wide',
+  mosaic_portrait = 'mosaic_portrait',
+  mosaic_portrait_wide = 'mosaic_portrait_wide',
 }
