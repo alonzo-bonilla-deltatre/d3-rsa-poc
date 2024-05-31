@@ -39,6 +39,7 @@ RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
+COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 COPY --from=tests /app/test-report.xml ./test-report.xml
 
 # ----- SONARQUBE ---
