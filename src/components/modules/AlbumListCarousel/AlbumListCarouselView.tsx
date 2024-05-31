@@ -9,6 +9,7 @@ import { twMerge } from 'tailwind-merge';
 
 type AlbumListCarouselViewProps = {
   items: DistributionEntity[];
+  isFullWidth?: boolean;
   uniqueId: string;
   headerTitle?: string;
   headerTitleHeadingLevel?: string;
@@ -17,6 +18,7 @@ type AlbumListCarouselViewProps = {
 
 const AlbumListCarouselView = ({
   items,
+  isFullWidth,
   uniqueId,
   headerTitle,
   headerTitleHeadingLevel,
@@ -24,7 +26,7 @@ const AlbumListCarouselView = ({
 }: AlbumListCarouselViewProps) => {
   return (
     <ModuleContainer
-      isFullWidth
+      isFullWidth={isFullWidth}
       className="flex flex-col gap-5 lg:gap-10 px-2"
     >
       <Typography

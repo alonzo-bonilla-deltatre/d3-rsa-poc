@@ -22,12 +22,14 @@ import renderGridList from '@/components/modules/GridList/GridListWrapper';
 import renderHeroSwiper from '@/components/modules/HeroSwiper/HeroSwiperWrapper';
 import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapper';
 import renderImage from '@/components/modules/Image/ImageWrapper';
+import renderJWPlayerVideo from '@/components/modules/JWPlayerVideo/JWPlayerVideoWrapper';
 import renderLiveBlogging from '@/components/modules/LiveBlogging/LiveBloggingWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderText from '@/components/modules/Text/TextWrapper';
+import renderYouTubeVideo from '@/components/modules/YouTubeVideo/YouTubeVideoWrapper';
 
 /**
  * A list of module components mapped to their respective render functions.
@@ -54,12 +56,14 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   HeroSwiper: renderHeroSwiper,
   HtmlContent: renderHtmlContent,
   Image: renderImage,
+  JWPlayerVideo: renderJWPlayerVideo,
   LiveBlogging: renderLiveBlogging,
   Menu: renderMenu,
   Partners: renderPartners,
   SearchResults: renderSearchResults,
   Story: renderStory,
   Text: renderText,
+  YouTubeVideo: renderYouTubeVideo,
 };
 
 /**

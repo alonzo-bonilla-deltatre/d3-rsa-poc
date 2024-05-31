@@ -9,13 +9,12 @@ import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContaine
 type SearchResultsProps = {
   limit?: number;
   keyPagesLimit?: number;
-  cardLayout?: string;
 } & ModuleProps;
 
 const defaultLimit = 25;
 
 const SearchResults = async ({ data }: { data: ComponentProps }) => {
-  const { limit, keyPagesLimit, isFullWidth, cardLayout } = data.properties as SearchResultsProps;
+  const { limit, keyPagesLimit, isFullWidth } = data.properties as SearchResultsProps;
 
   if (getHideModule(data)) return null;
 
@@ -29,7 +28,10 @@ const SearchResults = async ({ data }: { data: ComponentProps }) => {
   const searchPath = getSearchPath(data.variables);
 
   return (
-    <ModuleContainer className="px-2">
+    <ModuleContainer
+      isFullWidth={isFullWidth}
+      className="px-2"
+    >
       <SearchResultView
         searchPath={searchPath}
         initialAzureSearchOption={azureSearchOption}

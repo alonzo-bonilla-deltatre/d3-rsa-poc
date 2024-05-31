@@ -4,6 +4,7 @@ import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
+import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -11,7 +12,7 @@ type CardProps = {
 
 const StoryRelatedItemCard = ({ entity }: CardProps) => {
   if (!entity) return null;
-  const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
+  const description = getDescriptionField(entity);
   return (
     <div className="flex flex-col gap-2 overflow-hidden rounded-lg relative">
       {entity?.tags && entity?.tags.length > 0 && (

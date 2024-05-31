@@ -3,6 +3,7 @@ import { getSrcWithTransformation, transformations } from '@/utilities/cloudinar
 import { Metadata } from 'next';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { LiveBloggingBlogEntity, LiveBloggingTagEntity } from '@/models/types/liveblogging';
+import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
 /**
  * Overrides the default metadata of a given entity with specific metadata fields.
@@ -30,13 +31,7 @@ export const overrideDefaultMetadata = (
   );
 
   const title: string = entity.title;
-  const description: string = entity.description
-    ? entity.description
-    : entity?.headline
-      ? entity?.headline
-      : entity?.fields?.description
-        ? entity?.fields?.description
-        : '';
+  const description: string = getDescriptionField(entity);
 
   return {
     title,

@@ -1,4 +1,4 @@
-﻿import { ComponentProps, HeaderTitleProps } from '@/models/types/components';
+﻿import { ComponentProps, FeaturedHeaderTitleProps, ModuleProps } from '@/models/types/components';
 import { getEntity } from '@/services/forgeDistributionService';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
@@ -10,8 +10,8 @@ import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContaine
 const MatchesList = dynamic(() => import('@/components/commons/matches/MatchesList/MatchesList'));
 
 const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
-  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy } =
-    data.properties as HeaderTitleProps;
+  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy, isFullWidth } =
+    data.properties as FeaturedHeaderTitleProps & ModuleProps;
 
   const featuredDescription = description
     ? await getEntity(ForgeDapiEntityCode.pageBuilderTextEditors, description, {
@@ -22,7 +22,7 @@ const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
   const featuredSponsor = sponsor?.fields?.partnerLogo ? await getSingleAssetByTag(sponsor.fields.partnerLogo) : null;
 
   return (
-    <ModuleContainer>
+    <ModuleContainer isFullWidth={isFullWidth}>
       <FeaturedRow
         data={{
           headerTitle: headerTitle,

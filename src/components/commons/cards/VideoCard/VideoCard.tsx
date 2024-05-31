@@ -8,6 +8,7 @@ import { getBooleanProperty, getStringProperty } from '@/helpers/pageComponentPr
 import { formatDate } from '@/helpers/dateHelper';
 import { renderSvgIcon } from '@/components/icons';
 import Link from '@/components/commons/Link/Link';
+import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -18,7 +19,7 @@ const VideoCard = ({ entity }: CardProps) => {
   const rights = getStringProperty(entity.fields?.rights, '');
   const isPremium = rights?.toLowerCase() === 'premium';
   const isFreemium = rights?.toLowerCase() === 'freemium';
-  const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
+  const description = getDescriptionField(entity);
   return (
     <Link
       href={entity.url}

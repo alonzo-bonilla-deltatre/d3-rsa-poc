@@ -18,9 +18,8 @@ RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
 
 RUN corepack enable && \
   yarn set version 4.2.2 && \
-  yarn install
-
-RUN ls ./
+  yarn install --immutable
+RUN rm -rf ./.yarnrc.yml
 
 RUN mkdir -p /npm/src/prd_node_modules
 

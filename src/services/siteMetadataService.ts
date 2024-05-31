@@ -100,7 +100,7 @@ const setMetadataBasedOnItem = async (
   nextMetadata: NextMetadata,
   seoData: NextMetadata | null
 ) => {
-  if (item?.properties?.preventSettingMetadata === true) {
+  if (item?.properties?.preventSettingMetadata === undefined || item?.properties?.preventSettingMetadata === false) {
     await setMetadataFromModule(moduleId, item?.properties?.slug?.toString() ?? '', nextMetadata, seoData);
   }
 };
@@ -126,7 +126,7 @@ const setMetadataFromModule = async (
       const story = await getEntity(ForgeDapiEntityCode.stories, slug);
       pageMetadata = story ? overrideStoryMetadata(pageMetadata, story) : enrichPageMetadata(nextMetadata, seoData);
       break;
-    case 'Album':
+    case 'AlbumMosaic':
       const album = await getEntity(ForgeDapiEntityCode.albums, slug);
       pageMetadata = album ? overrideAlbumMetadata(pageMetadata, album) : enrichPageMetadata(nextMetadata, seoData);
       break;

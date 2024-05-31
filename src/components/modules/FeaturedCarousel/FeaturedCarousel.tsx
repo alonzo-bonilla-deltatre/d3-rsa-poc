@@ -1,17 +1,26 @@
-﻿import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
+﻿import { ComponentProps, EditorialListModuleProps, FeaturedHeaderTitleProps } from '@/models/types/components';
 import { getEntity, getSelection } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import FeaturedCarouselView from '@/components/modules/FeaturedCarousel/FeaturedCarouselView';
-import { getNumberProperty, getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import { CardsType } from '@/components/commons/cards';
 
-type FeaturedCarouselProps = EditorialListModuleProps & HeaderTitleProps;
+type FeaturedCarouselProps = EditorialListModuleProps & FeaturedHeaderTitleProps;
 
 const FeaturedCarousel = async ({ data }: { data: ComponentProps }) => {
-  const { selectionSlug, skip, limit, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy } =
-    data.properties as FeaturedCarouselProps;
+  const {
+    selectionSlug,
+    skip,
+    limit,
+    headerTitle,
+    headerTitleHeadingLevel,
+    hideHeaderTitle,
+    description,
+    sponsorBy,
+    isFullWidth,
+  } = data.properties as FeaturedCarouselProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
@@ -41,6 +50,7 @@ const FeaturedCarousel = async ({ data }: { data: ComponentProps }) => {
     <FeaturedCarouselView
       data={{
         items: items,
+        isFullWidth: isFullWidth,
         cardsType: CardsType.DefaultCard,
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,

@@ -1,4 +1,4 @@
-﻿import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
+﻿import { ComponentProps, EditorialListModuleProps, FeaturedHeaderTitleProps } from '@/models/types/components';
 import { getEntity, getSelection } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import FeaturedCarouselView from '@/components/modules/FeaturedCarousel/FeaturedCarouselView';
@@ -8,11 +8,20 @@ import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import { CardsType } from '@/components/commons/cards';
 
-type FeaturedVideoListCarouselProps = EditorialListModuleProps & HeaderTitleProps;
+type FeaturedVideoListCarouselProps = EditorialListModuleProps & FeaturedHeaderTitleProps;
 
 const FeaturedVideoListCarousel = async ({ data }: { data: ComponentProps }) => {
-  const { selectionSlug, skip, limit, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy } =
-    data.properties as FeaturedVideoListCarouselProps;
+  const {
+    selectionSlug,
+    skip,
+    limit,
+    headerTitle,
+    headerTitleHeadingLevel,
+    hideHeaderTitle,
+    description,
+    sponsorBy,
+    isFullWidth,
+  } = data.properties as FeaturedVideoListCarouselProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
@@ -43,7 +52,7 @@ const FeaturedVideoListCarousel = async ({ data }: { data: ComponentProps }) => 
   if (!items?.length) return null;
 
   return (
-    <ModuleContainer>
+    <ModuleContainer isFullWidth={isFullWidth}>
       <FeaturedCarouselView
         data={{
           items: items,

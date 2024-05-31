@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 import { formatDate } from '@/helpers/dateHelper';
 import Link from '@/components/commons/Link/Link';
+import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -13,7 +14,7 @@ type CardProps = {
 
 const DefaultCard = ({ entity }: CardProps) => {
   if (!entity) return null;
-  const description = entity?.fields?.description ? entity?.fields?.description : entity?.headline;
+  const description = getDescriptionField(entity);
   return (
     <Link
       href={entity.url}

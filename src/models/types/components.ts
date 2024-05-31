@@ -26,8 +26,10 @@ export type LayoutProps = {
 };
 
 export type ModuleProps = {
+  slug?: string;
   isFullWidth?: boolean;
   hideModule?: boolean;
+  preventSettingMetadata?: boolean;
 };
 
 export type EditorialListProps = {
@@ -42,10 +44,12 @@ export type HeaderTitleProps = {
   hideHeaderTitle?: boolean;
   ctaTitle?: string;
   ctaLink?: string;
+};
+
+export type FeaturedHeaderTitleProps = {
   description?: string;
   sponsorBy?: string;
-  className?: string;
-};
+} & HeaderTitleProps;
 
 export type EditorialListModuleProps = EditorialListProps & ModuleProps;
 

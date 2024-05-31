@@ -13,7 +13,6 @@ enum FooterLayoutSlots {
   logo = 'logo',
   footerContent = 'footerContent',
   footerNavigation = 'footerNavigation',
-  serviceNavigation = 'serviceNavigation',
 }
 
 const Footer = ({ data }: { data: ComponentProps }) => {
@@ -40,19 +39,6 @@ const Footer = ({ data }: { data: ComponentProps }) => {
         <div className={'my-6 lg:text-center flex justify-center gap-4'}>
           <SocialIcons className={'cursor-pointer text-grey-500 hover:text-link transition duration-300'} />
         </div>
-        {hasItemsInSlot(data.items, FooterLayoutSlots.serviceNavigation) && (
-          <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
-            <div className="pb-6 lg:text-center flex flex-col border-b">
-              {renderItemsInSlot(
-                data.items,
-                FooterLayoutSlots.serviceNavigation,
-                [...(data.variables || []), footerNavigationSource],
-                data.metadata,
-                data.previewToken
-              )}
-            </div>
-          </div>
-        )}
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerNavigation) && (
           <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
             <div className="pb-6 lg:text-center flex flex-col border-b border-black">

@@ -9,6 +9,7 @@ import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContaine
 import Typography from '@/components/commons/Typography/Typography';
 import logger from '@/utilities/loggerUtility';
 import { formatDate } from '@/helpers/dateHelper';
+import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
 type DivaVideoProps = {
   slug?: string;
@@ -23,15 +24,15 @@ const DivaVideo = async ({ data }: { data: ComponentProps }) => {
     variables: data.variables,
   });
 
-  if (entity == null) {
-    logger.log(`Cannot find album divavideos with slug ${slug} `, LoggerLevel.warning);
+  if (!entity) {
+    logger.log(`Cannot find ${ForgeDapiEntityCode.divaVideos} entity with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
 
-  const description = entity?.fields?.description ?? '';
+  const description = getDescriptionField(entity);
 
   return (
-    <ModuleContainer>
+    <ModuleContainer isFullWidth={isFullWidth}>
       <div className="flex flex-col gap-2 pb-10">
         <Typography variant={'h1'}>{entity?.title}</Typography>
         {description && <Typography variant={'body-m'}>{description}</Typography>}

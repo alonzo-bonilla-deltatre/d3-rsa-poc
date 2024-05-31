@@ -1,4 +1,4 @@
-import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
+import { ComponentProps, EditorialListModuleProps, FeaturedHeaderTitleProps } from '@/models/types/components';
 import { getEntity, getEntityList } from '@/services/forgeDistributionService';
 import GridComponent from '@/components/commons/list/Grid/Grid';
 import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
@@ -10,8 +10,17 @@ import { CardsType } from '@/components/commons/cards';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
 const FeaturedVideoList = async ({ data }: { data: ComponentProps }) => {
-  const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, skip, limit, selectionSlug, description, sponsorBy } =
-    data.properties as EditorialListModuleProps & HeaderTitleProps;
+  const {
+    headerTitle,
+    headerTitleHeadingLevel,
+    hideHeaderTitle,
+    skip,
+    limit,
+    selectionSlug,
+    description,
+    sponsorBy,
+    isFullWidth,
+  } = data.properties as EditorialListModuleProps & FeaturedHeaderTitleProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
 
@@ -38,7 +47,7 @@ const FeaturedVideoList = async ({ data }: { data: ComponentProps }) => {
   if (!items?.length) return null;
 
   return (
-    <ModuleContainer>
+    <ModuleContainer isFullWidth={isFullWidth}>
       <FeaturedRow
         data={{
           headerTitle: headerTitle,

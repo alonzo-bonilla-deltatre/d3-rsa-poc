@@ -8,7 +8,7 @@ import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
 const EventList = async ({ data }: { data: ComponentProps }) => {
-  const { skip, limit, selectionSlug } = data.properties as EditorialListModuleProps;
+  const { skip, limit, selectionSlug, isFullWidth } = data.properties as EditorialListModuleProps;
   const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle } = data.properties as HeaderTitleProps;
 
   if (moduleIsNotValid(data, ['selectionSlug'])) return null;
@@ -26,7 +26,7 @@ const EventList = async ({ data }: { data: ComponentProps }) => {
 
   return (
     <ModuleContainer
-      isFullWidth
+      isFullWidth={isFullWidth}
       className={'relative max-w-[2048px] mx-auto'}
     >
       <FeaturedEventListHeader

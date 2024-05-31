@@ -3,9 +3,13 @@
 import TranslateLabel from '@/components/commons/TranslatedLabel/TranslatedLabel';
 import { getBooleanProperty, getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 import useTranslate from '@/hooks/useTranslate';
-import { HeaderTitleProps } from '@/models/types/components';
+import { HeaderTitleProps as CommonHeaderTitleProps } from '@/models/types/components';
 import CallToAction from '@/components/commons/CallToActionLink/CallToActionOutlinedLink';
 import Typography, { TypographyVariant } from '@/components/commons/Typography/Typography';
+
+type HeaderTitleProps = {
+  className?: string;
+} & CommonHeaderTitleProps;
 
 const HeaderTitle = ({
   headerTitle,

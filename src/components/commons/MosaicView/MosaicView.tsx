@@ -84,7 +84,7 @@ const MosaicView = ({ items }: MosaicViewProps) => {
     event?.preventDefault();
   };
   return (
-    <>
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-0.5 w-full mt-5 ">
       {gridImages.map((image: GridImage, index: number) => (
         <div
           key={index}
@@ -121,7 +121,7 @@ const MosaicView = ({ items }: MosaicViewProps) => {
           )}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import { getEntityList } from '@/services/forgeDistributionService';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 
 const AlbumListCarousel = async ({ data }: { data: ComponentProps }) => {
-  const { skip, limit, selectionSlug } = data.properties as EditorialListModuleProps;
+  const { skip, limit, selectionSlug, isFullWidth } = data.properties as EditorialListModuleProps;
 
   const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle } = data.properties as HeaderTitleProps;
 
@@ -30,6 +30,7 @@ const AlbumListCarousel = async ({ data }: { data: ComponentProps }) => {
   return (
     <AlbumListCarouselView
       items={items}
+      isFullWidth={isFullWidth}
       uniqueId={albumListCarouselViewUniqueId}
       headerTitle={headerTitle}
       headerTitleHeadingLevel={headerTitleHeadingLevel}

@@ -10,7 +10,6 @@ import { LoggerLevel } from '@/models/types/logger';
 
 type LiveBloggingServerProps = {
   slug?: string;
-  hideKeyMoments?: boolean;
 };
 
 const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {

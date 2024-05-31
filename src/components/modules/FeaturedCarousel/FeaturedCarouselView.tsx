@@ -4,7 +4,7 @@ import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
 import React from 'react';
 import { DistributionEntity } from '@/models/types/forge';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
-import { getBooleanProperty, getStringProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { HeaderTitleProps } from '@/models/types/components';
 import { SwiperRef } from 'swiper/react';
 import { useRef } from 'react';
@@ -15,6 +15,7 @@ import { CardsType } from '@/components/commons/cards';
 
 type FeaturedCarouselViewProps = {
   items: DistributionEntity[];
+  isFullWidth?: boolean;
   cardsType: CardsType;
   featuredDescription?: string;
   featuredSponsor?: GraphicAssetsDashboardItem | null;
@@ -26,6 +27,7 @@ type FeaturedCarouselViewProps = {
 const FeaturedCarouselView = ({ data }: { data: FeaturedCarouselViewProps }) => {
   const {
     items,
+    isFullWidth,
     cardsType,
     headerTitle,
     headerTitleHeadingLevel,
@@ -33,7 +35,6 @@ const FeaturedCarouselView = ({ data }: { data: FeaturedCarouselViewProps }) => 
     featuredDescription,
     featuredSponsor,
   } = data as FeaturedCarouselViewProps;
-  const className = getStringProperty(data.className);
   const swiperRef = useRef<SwiperRef>(null);
   const uniqueId = data.uniqueId;
   const hasPagination = getBooleanProperty(data.hasPagination);
@@ -42,7 +43,7 @@ const FeaturedCarouselView = ({ data }: { data: FeaturedCarouselViewProps }) => 
   if (!items?.length) return null;
 
   return (
-    <ModuleContainer>
+    <ModuleContainer isFullWidth={isFullWidth}>
       <FeaturedRow
         data={{
           headerTitle: headerTitle,
@@ -56,7 +57,6 @@ const FeaturedCarouselView = ({ data }: { data: FeaturedCarouselViewProps }) => 
               uniqueId={uniqueId}
             ></CarouselNavigationAside>
           ),
-          sectionClassName: className,
           children: (
             <Carousel
               items={items}

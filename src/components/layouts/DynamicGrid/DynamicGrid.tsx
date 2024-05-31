@@ -7,10 +7,10 @@ import { renderItemsInSlot } from '@/services/renderService';
 export type DynamicGridProps = {
   gridTemplate: string;
   componentProps: ComponentProps;
-};
+} & LayoutProps;
 
 const DynamicGrid = ({ gridTemplate, componentProps }: DynamicGridProps) => {
-  const { isFullWidth, removeSectionHtmlTag } = componentProps.properties as LayoutProps;
+  const { isFullWidth, removeSectionHtmlTag } = componentProps.properties as DynamicGridProps;
   const { items, variables, metadata, previewToken } = componentProps;
   const childrenClasses: string[] = getGridChildrenCssClasses(gridTemplate);
   const slotsLength: number = gridTemplate.split('-').length;

@@ -18,12 +18,8 @@ import Typography from '@/components/commons/Typography/Typography';
 
 const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
-type StoryProps = {
-  slug?: string;
-} & ModuleProps;
-
 const Story = async ({ data }: { data: ComponentProps }) => {
-  const props = data.properties as StoryProps;
+  const props = data.properties as ModuleProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 
@@ -33,7 +29,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
     variables: data.variables,
   });
   if (!storyEntity) {
-    logger.log(`Cannot find Story entity with slug ${props.slug} `, LoggerLevel.warning);
+    logger.log(`Cannot find ${ForgeDapiEntityCode.stories} entity with slug ${props.slug} `, LoggerLevel.warning);
     notFound();
   }
 

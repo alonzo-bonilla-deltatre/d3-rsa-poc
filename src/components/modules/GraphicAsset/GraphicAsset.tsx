@@ -27,7 +27,7 @@ const GraphicAsset = async ({ data }: { data: ComponentProps }) => {
   const link = assetLink ?? '#nolink';
 
   if (!asset || !asset?.assetUrl) {
-    logger.log(`Cannot find GraphicAsset entity with tag ${assetTag} `, LoggerLevel.warning);
+    logger.log(`Cannot find GAD Asset with tag ${assetTag} `, LoggerLevel.warning);
     return null;
   }
 

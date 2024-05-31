@@ -24,7 +24,10 @@ const Text = async ({ data }: { data: ComponentProps }) => {
     variables: data.variables,
   });
   if (!textEntity) {
-    logger.log(`Cannot find Text entity with slug ${slug} `, LoggerLevel.warning);
+    logger.log(
+      `Cannot find ${ForgeDapiEntityCode.pageBuilderTextEditors} entity with slug ${slug} `,
+      LoggerLevel.warning
+    );
     return null;
   }
 

@@ -1,4 +1,3 @@
-import BrightcoveVideoPlayer from '@/components/commons/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
@@ -9,19 +8,20 @@ import { notFound } from 'next/navigation';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
+import JWPlayerVideoPlayer from '@/components/commons/JWPlayerVideoPlayer/JWPlayerVideoPlayer';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
-const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
+const JWPlayerVideo = async ({ data }: { data: ComponentProps }) => {
   const { slug, isFullWidth } = data.properties as ModuleProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 
-  const entity = await getEntity(ForgeDapiEntityCode.brightcoveVideos, slug, {
+  const entity = await getEntity(ForgeDapiEntityCode.jwPlayerVideos, slug, {
     variables: data.variables,
   });
 
-  if (!entity) {
-    logger.log(`Cannot find ${ForgeDapiEntityCode.brightcoveVideos} entity with slug ${slug} `, LoggerLevel.warning);
+  if (entity == null) {
+    logger.log(`Cannot find ${ForgeDapiEntityCode.jwPlayerVideos} entity with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
   const description = getDescriptionField(entity);
@@ -39,9 +39,9 @@ const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
           {formatDate(entity?.contentDate, 'DD MMMM YYYY')}
         </Typography>
       </div>
-      <BrightcoveVideoPlayer entity={entity} />
+      <JWPlayerVideoPlayer entity={entity} />
     </ModuleContainer>
   );
 };
 
-export default BrightcoveVideo;
+export default JWPlayerVideo;

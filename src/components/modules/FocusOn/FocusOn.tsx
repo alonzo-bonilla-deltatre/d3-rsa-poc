@@ -11,13 +11,10 @@ import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
-type FocusOnProps = {
-  slug?: string;
-} & ModuleProps &
-  HeaderTitleProps;
+type FocusOnProps = ModuleProps & HeaderTitleProps;
 
 const FocusOn = async ({ data }: { data: ComponentProps }) => {
-  const { slug, headerTitle, headerTitleHeadingLevel, hideHeaderTitle } = data.properties as FocusOnProps;
+  const { slug, headerTitle, headerTitleHeadingLevel, hideHeaderTitle, isFullWidth } = data.properties as FocusOnProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 
@@ -25,15 +22,13 @@ const FocusOn = async ({ data }: { data: ComponentProps }) => {
     hasLinkRules: true,
     variables: data.variables,
   });
-  if (storyEntity == null) {
-    logger.log(`Cannot find story entity with slug ${slug} `, LoggerLevel.warning);
+  if (!storyEntity) {
+    logger.log(`Cannot find ${ForgeDapiEntityCode.stories} entity with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
-  const hasFullWidthHeader = true;
-  const hasFullWidthContent = true;
 
   return (
-    <ModuleContainer isFullWidth>
+    <ModuleContainer isFullWidth={isFullWidth}>
       <HeaderTitle
         className="d3-section__header-title"
         headerTitle={headerTitle}

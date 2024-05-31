@@ -1,4 +1,4 @@
-import BrightcoveVideoPlayer from '@/components/commons/BrightcoveVideoPlayer/BrightcoveVideoPlayer';
+import YouTubeVideoPlayer from '@/components/commons/YouTubeVideoPlayer/YouTubeVideoPlayer';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
@@ -11,17 +11,17 @@ import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContaine
 import Typography from '@/components/commons/Typography/Typography';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
-const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
+const YouTubeVideo = async ({ data }: { data: ComponentProps }) => {
   const { slug, isFullWidth } = data.properties as ModuleProps;
 
   if (moduleIsNotValid(data, ['slug'])) return null;
 
-  const entity = await getEntity(ForgeDapiEntityCode.brightcoveVideos, slug, {
+  const entity = await getEntity(ForgeDapiEntityCode.youTubeVideos, slug, {
     variables: data.variables,
   });
 
-  if (!entity) {
-    logger.log(`Cannot find ${ForgeDapiEntityCode.brightcoveVideos} entity with slug ${slug} `, LoggerLevel.warning);
+  if (entity == null) {
+    logger.log(`Cannot find ${ForgeDapiEntityCode.youTubeVideos} entity with slug ${slug} `, LoggerLevel.warning);
     notFound();
   }
   const description = getDescriptionField(entity);
@@ -39,9 +39,9 @@ const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
           {formatDate(entity?.contentDate, 'DD MMMM YYYY')}
         </Typography>
       </div>
-      <BrightcoveVideoPlayer entity={entity} />
+      <YouTubeVideoPlayer entity={entity} />
     </ModuleContainer>
   );
 };
 
-export default BrightcoveVideo;
+export default YouTubeVideo;

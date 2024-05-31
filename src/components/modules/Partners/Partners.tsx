@@ -5,6 +5,7 @@ import { ComponentProps, EditorialListModuleProps } from '@/models/types/compone
 import { getSelection } from '@/services/forgeDistributionService';
 import { getSiteUrl } from '@/services/configurationService';
 import { DistributionEntity } from '@/models/types/forge';
+import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
 const Partners = async ({ data }: { data: ComponentProps }) => {
   const { selectionSlug, isFullWidth } = data.properties as EditorialListModuleProps;
@@ -23,24 +24,26 @@ const Partners = async ({ data }: { data: ComponentProps }) => {
   const source = getDataVariable(data.variables, 'source') || '';
 
   return (
-    <div
-      className={`flex flex-row justify-center ${
-        direction === 'vertical' ? 'flex-col items-center' : ' '
-      } flex-wrap gap-4`}
-    >
-      {items.map((entity: DistributionEntity) => {
-        return (
-          <Partner
-            key={entity.id ?? entity._translationId}
-            entity={entity}
-            direction={direction}
-            baseUrl={baseUrl}
-            width={200}
-            height={50}
-          />
-        );
-      })}
-    </div>
+    <ModuleContainer isFullWidth={isFullWidth}>
+      <div
+        className={`flex flex-row justify-center ${
+          direction === 'vertical' ? 'flex-col items-center' : ' '
+        } flex-wrap gap-4`}
+      >
+        {items.map((entity: DistributionEntity) => {
+          return (
+            <Partner
+              key={entity.id ?? entity._translationId}
+              entity={entity}
+              direction={direction}
+              baseUrl={baseUrl}
+              width={200}
+              height={50}
+            />
+          );
+        })}
+      </div>
+    </ModuleContainer>
   );
 };
 

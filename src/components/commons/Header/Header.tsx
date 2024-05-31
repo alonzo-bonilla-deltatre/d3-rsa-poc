@@ -15,10 +15,7 @@ import { getSearchPath } from '@/components/modules/SearchResults/SearchResultsH
 enum CommonHeaderSlots {
   logo = 'logo',
   hamburger = 'hamburger',
-  primaryNavigation = 'primaryNavigation',
-  secondaryNavigation = 'secondaryNavigation',
   serviceNavigation = 'serviceNavigation',
-  middleContent = 'middleContent',
 }
 
 export type CommonHeaderProps = {
@@ -48,8 +45,6 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
       )
     : [];
 
-  const primaryNavigationSource: Variable = createDataVariable('source', MenuSources.header);
-  const secondaryNavigationSource: Variable = createDataVariable('source', MenuSources.header);
   const serviceNavigationSource: Variable = createDataVariable('source', MenuSources.header);
 
   const azureSearchOption = JSON.parse(getDataVariable(data.variables, 'azureSearchOption')) as AzureSearchOption;
@@ -97,52 +92,6 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
           redirectPath={getSearchPath(data.variables)}
           inputValue={azureSearchOption.q}
         />
-        <div className="container px-4 hidden lg:block">
-          <div
-            className="w-full flex items-center"
-            id={CommonHeaderSlots.primaryNavigation}
-          >
-            <div className="container mx-auto lg:text-center">
-              <div className="flex flex-row uppercase items-center justify-center flex-wrap lg:justify-between">
-                {renderItemsInSlot(
-                  data.items,
-                  CommonHeaderSlots.primaryNavigation,
-                  [...(data.variables || []), primaryNavigationSource],
-                  data.metadata,
-                  data.previewToken
-                )}
-              </div>
-            </div>
-          </div>
-          <div
-            className="w-full flex items-center justify-center"
-            id={CommonHeaderSlots.secondaryNavigation}
-          >
-            <div className="container mx-auto lg:text-center">
-              <div className="flex flex-row uppercase items-center justify-center flex-wrap lg:justify-between">
-                {renderItemsInSlot(
-                  data.items,
-                  CommonHeaderSlots.secondaryNavigation,
-                  [...(data.variables || []), secondaryNavigationSource],
-                  data.metadata,
-                  data.previewToken
-                )}
-              </div>
-            </div>
-          </div>
-          <div
-            className="w-full flex items-center"
-            id={CommonHeaderSlots.middleContent}
-          >
-            {renderItemsInSlot(
-              data.items,
-              CommonHeaderSlots.middleContent,
-              data.variables,
-              data.metadata,
-              data.previewToken
-            )}
-          </div>
-        </div>
       </nav>
     </header>
   );
