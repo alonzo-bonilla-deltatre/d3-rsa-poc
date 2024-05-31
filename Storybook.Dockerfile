@@ -21,7 +21,6 @@ RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install --immutable
 RUN yarn run build-storybook
-RUN rm -rf ./.yarnrc.yml
 
 FROM nginx:stable-alpine
 COPY nginx.conf /etc/nginx/nginx.conf

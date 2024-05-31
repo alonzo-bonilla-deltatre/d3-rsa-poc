@@ -27,8 +27,10 @@ RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
+COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 
 RUN yarn test
+RUN rm -rf ./.yarnrc.yml
 
 FROM node:22.2.0 AS sonar
 WORKDIR /app
@@ -62,6 +64,7 @@ RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 RUN rm -rf ./.yarnrc.yml
+COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 
 ARG version=1.0.0
 ARG version
