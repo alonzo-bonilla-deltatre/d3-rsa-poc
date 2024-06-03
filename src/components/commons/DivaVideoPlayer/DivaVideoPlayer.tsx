@@ -15,7 +15,7 @@ const DivaVideoPlayer = ({ entity }: DivaVideoPlayerProps) => {
   const envVars = useEnvVars();
   const videoId = entity?.fields?.videoId;
   const videoType = getVideoType(entity);
-  const videoSettingsUrl = envVars.VIDEO_SETTINGS_BASE_URL || '';
+  const videoSettingsUrl = envVars.DIVA_PLAYER_VIDEO_SETTINGS_BASE_URL || '';
   const settingUrl = getSettingUrl(videoType, videoSettingsUrl);
 
   if (!videoId || !videoSettingsUrl) return null;

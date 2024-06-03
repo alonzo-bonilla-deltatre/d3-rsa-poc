@@ -19,7 +19,7 @@ import {
  * @param {ForgeMetadataCategoryType} category - The category to filter by.
  * @returns {MetadataItem[]} - The filtered metadata items.
  */
-export function getMetadataGroup(metadata: MetadataItem[] | null, category: ForgeMetadataCategoryType) {
+export const getMetadataGroup = (metadata: MetadataItem[] | null, category: ForgeMetadataCategoryType) => {
   const categoryMetadata: MetadataItem[] = [];
   metadata?.forEach((item) => {
     if (item.category === category) {
@@ -27,7 +27,7 @@ export function getMetadataGroup(metadata: MetadataItem[] | null, category: Forg
     }
   });
   return categoryMetadata;
-}
+};
 
 /**
  * Function to get a metadata item with the specified category and key.
@@ -38,13 +38,13 @@ export function getMetadataGroup(metadata: MetadataItem[] | null, category: Forg
  * @param {ForgeMetadataKeyType} key - The key to search for.
  * @returns {MetadataItem | null} - The found metadata item or `null` if no item was found.
  */
-export function getMetadata(
+export const getMetadata = (
   metadata: MetadataItem[] | null,
   category: ForgeMetadataCategoryType,
   key: ForgeMetadataKeyType
-) {
+) => {
   return metadata ? metadata.find((item) => item.category === category && item.key === key) : null;
-}
+};
 
 /**
  * Function to set the page metadata.

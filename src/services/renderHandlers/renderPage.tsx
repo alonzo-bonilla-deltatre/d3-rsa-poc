@@ -8,6 +8,8 @@ import AppViewLinksHandler from '@/components/commons/AppViewLinksHandler/AppVie
 import { enrichPageVariables, getPageData } from '@/helpers/pageHelper';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
+import { getSiteUrl, setFrontendAllSiteConfiguration } from '@/services/configurationService';
+import { getPageStructure } from '@/services/pageService';
 
 /**
  * Renders a page based on the provided parameters.
@@ -31,11 +33,16 @@ export const renderPage = async (params: {
   appView?: string;
 }): Promise<ReturnComponentRender> => {
   try {
+    const pageStructure = await getPageStructure('~/');
+    setFrontendAllSiteConfiguration(pageStructure?.data.metadata ?? []);
+
     // Destructure the parameters
     const { q, token, appView } = params;
 
     // Get the path name from the parameters
     const path = requestUrlParser.getPathName(params);
+    const siteUrl = await getSiteUrl();
+    const pageUrl = new URL(path, siteUrl).href;
 
     // Set the preview token, defaulting to an empty string if no token is provided. The token is empty outside of the "preview" route
     const previewToken = token ?? '';
@@ -60,6 +67,7 @@ export const renderPage = async (params: {
 
     // Enrich the page variables
     enrichPageVariables(variables, {
+      pageUrl: pageUrl,
       pagePath: path,
       azureSearchOption: JSON.stringify(azureSearchOption, null, 2),
       appView: appView,
