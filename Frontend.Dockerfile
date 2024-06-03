@@ -78,10 +78,9 @@ WORKDIR /app
 # Install bash
 RUN apk add --no-cache bash
 
-COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/standalone/.next/
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=deps /app/node_modules ./node_modules
 
 RUN adduser \
