@@ -78,11 +78,9 @@ WORKDIR /app
 # Install bash
 RUN apk add --no-cache bash
 
-COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next/static ./.next/standalone/.next/
 
 RUN adduser \
   --disabled-password \
