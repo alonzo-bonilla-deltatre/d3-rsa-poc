@@ -65,7 +65,7 @@ const manualBuildOptions = {
   "sonar.testExecutionReportPaths": "/app/test-report.xml",
 }
 
-sonarqubeScanner(
+sonarqubeScanner.scan(
   {
     serverUrl,
     token,
