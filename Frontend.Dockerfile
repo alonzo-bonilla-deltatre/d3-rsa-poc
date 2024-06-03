@@ -75,6 +75,9 @@ RUN yarn cross-env NODE_ENV='production' VERSION=$version next build
 FROM node:22.2.0-alpine3.20 AS runner
 WORKDIR /app
 
+# Install bash
+RUN apk add --no-cache bash
+
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
