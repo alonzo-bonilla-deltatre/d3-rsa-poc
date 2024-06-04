@@ -30,8 +30,6 @@ RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt) && \
   echo "    npmRegistryServer: 'https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
-RUN cat .yarnrc.yml
-
 RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install --immutable

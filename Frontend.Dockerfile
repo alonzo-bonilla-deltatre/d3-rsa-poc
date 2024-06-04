@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
 
+ARG npm_image
 FROM $npm_image as npm-install
 COPY --from=npm-install ./npm/src/prd_node_modules ./node_modules
 COPY --from=npm-install ./npm/.yarnrc.yml ./.yarnrc.yml
