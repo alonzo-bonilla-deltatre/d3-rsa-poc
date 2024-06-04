@@ -22,6 +22,7 @@ ARG Yarnrc=".yarnrc.yml"
 RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
+  echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
   echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
@@ -29,6 +30,8 @@ RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "    npmAuthToken: ${CODEARTIFACT_AUTH_TOKEN}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
+
+RUN cat .yarnrc.yml
 
 RUN corepack enable && \
   yarn set version 4.2.2 && \
