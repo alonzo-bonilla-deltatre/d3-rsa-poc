@@ -12,14 +12,13 @@ FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
-COPY --from=aws-login /app/aws-token.txt ./aws-token.txt
-RUN ENV CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt)
-RUN echo "CODEARTIFACT_AUTH_TOKEN: ${CODEARTIFACT_AUTH_TOKEN}"
+COPY --from=aws-login /app/aws-token.txt ./aws-token.txt  
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
 ARG Yarnrc=".yarnrc.yml"
-RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
+RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt) && \
+  echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
   echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
