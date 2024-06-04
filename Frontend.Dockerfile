@@ -13,7 +13,7 @@ RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${deltatreVxpToken}" >> ${Yarnrc} && \
+  echo "    npmAuthToken: ${deltatreVxpGitHubToken}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
