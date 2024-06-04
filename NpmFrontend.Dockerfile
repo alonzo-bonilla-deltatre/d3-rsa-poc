@@ -5,8 +5,6 @@ ENV AWS_ACCESS_KEY_ID=AKIAQ3EGPXNUL5NWASF2
 ENV AWS_SECRET_ACCESS_KEY=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
 ENV AWS_DEFAULT_REGION=eu-central-1
 
-RUN aws configure
-
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
 ARG deltatreVxpGitHubToken
