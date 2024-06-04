@@ -12,6 +12,8 @@ RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --d
 FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 
+RUN echo "${AWS_DEFAULT_REGION}"
+
 COPY ./package.json ./yarn.lock ./
 COPY --from=aws-login /app/aws-token.txt ./aws-token.txt
 RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt)
