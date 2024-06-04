@@ -14,22 +14,21 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
 COPY --from=aws-login /app/aws-token.txt ./aws-token.txt
-RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt) && echo $CODEARTIFACT_AUTH_TOKEN
+RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt)
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
-ARG deltatreVxpGitHubToken
 ARG Yarnrc=".yarnrc.yml"
 RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
   echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc}
+  echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
+  echo "  deltatre-vxp:" >> ${Yarnrc} && \
+  echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
+  echo "    npmAuthToken: ${CODEARTIFACT_AUTH_TOKEN}" >> ${Yarnrc} && \
+  echo "    npmRegistryServer: 'https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
-
-RUN yarn config set npmRegistryServer "https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/"
-RUN yarn config set 'npmRegistries["https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/"].npmAuthToken' "${CODEARTIFACT_AUTH_TOKEN}"
-RUN yarn config set 'npmRegistries["https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/"].npmAlwaysAuth' "true"
 
 RUN corepack enable && \
   yarn set version 4.2.2 && \
