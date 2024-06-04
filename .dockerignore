@@ -35,3 +35,4 @@ renovate.json
 **/NuGet.Config
 test-report.xml
 .yarn
+.yarnrc.yml

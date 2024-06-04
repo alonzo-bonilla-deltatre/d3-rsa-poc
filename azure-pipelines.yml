@@ -135,16 +135,6 @@ steps:
       IMAGE_NAME: $(_frontendImageName)
       IMAGE_VERSION: $(_imageVersion)
       CONTAINER_REGISTRY: $(_azureContainerRegistry)
-
-  # Clean files build server
-  - template: build/common-solution/steps/delete-files.yml@templates
-
-  # Removing images
-  - template: build/common-solution/steps/docker-remove-image.yml@templates
-    parameters:
-      IMAGE_VERSION: npm_$(_imageVersion)
-      CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
-      CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
   
   # Build Storybook DockerFile per Storybook
   - template: build/common-solution/steps/docker-build-for-ci.yml@templates
@@ -173,5 +163,19 @@ steps:
   - template: build/common-solution/steps/docker-remove-image.yml@templates
     parameters:
       IMAGE_VERSION: npm_$(_imageVersion)
+      CONTAINER_REGISTRY_REPOSITORY_NAME: $(_storybookImageName)
+      CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
+      
+  # Removing images
+  - template: build/common-solution/steps/docker-remove-image.yml@templates
+    parameters:
+      IMAGE_VERSION: $(_imageVersion)
+      CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
+      CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)
+      
+  # Removing images
+  - template: build/common-solution/steps/docker-remove-image.yml@templates
+    parameters:
+      IMAGE_VERSION: $(_imageVersion)
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_storybookImageName)
       CONTAINER_REGISTRY_ENDPOINT: $(_container_registry_endpoint)

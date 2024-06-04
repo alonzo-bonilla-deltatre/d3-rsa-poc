@@ -2,28 +2,17 @@
 WORKDIR /storybook
 
 COPY ./ ./
-RUN rm -rf ./.yarnrc.yml
 
-# Add authentication to .yarnrc.yml file for azuredevops npm custom packages
-ARG token
-ARG deltatreVxpGitHubToken
-ARG Yarnrc=".yarnrc.yml"
-RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
-  echo "npmScopes:" >> ${Yarnrc} && \
-  echo "  d3-forge:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
-  echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${deltatreVxpGitHubToken}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
-# End .yarnrc.yml auth
+FROM $npm_image as npm-install
+COPY --from=npm-install ./npm/src/prd_node_modules ./node_modules
+COPY --from=npm-install ./npm/.yarnrc.yml ./.yarnrc.yml
 
 RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install --immutable
 RUN yarn run build-storybook
 
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine AS runner
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
 

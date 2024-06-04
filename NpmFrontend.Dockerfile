@@ -22,8 +22,8 @@ RUN cat ./.yarnrc.yml
 RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install --immutable
-RUN rm -rf ./.yarnrc.yml
 
 RUN mkdir -p /npm/src/prd_node_modules
 
 RUN cp -r /app/node_modules/*  /npm/src/prd_node_modules/
+RUN cp -r /app/.yarnrc.yml  /npm/.yarnrc.yml

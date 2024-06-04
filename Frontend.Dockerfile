@@ -3,19 +3,9 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
 
-# Add authentication to .yarnrc.yml file for azuredevops npm custom packages
-ARG token
-ARG deltatreVxpGitHubToken
-ARG Yarnrc=".yarnrc.yml"
-RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
-  echo "npmScopes:" >> ${Yarnrc} && \
-  echo "  d3-forge:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
-  echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${deltatreVxpGitHubToken}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
-# End .yarnrc.yml auth
+FROM $npm_image as npm-install
+COPY --from=npm-install ./npm/src/prd_node_modules ./node_modules
+COPY --from=npm-install ./npm/.yarnrc.yml ./.yarnrc.yml
 
 RUN corepack enable && \
   yarn set version 4.2.2 && \
@@ -27,7 +17,6 @@ RUN corepack enable
 RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
-RUN rm -rf ./.yarnrc.yml
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 
 RUN yarn test
@@ -39,7 +28,6 @@ RUN corepack enable
 RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
-RUN rm -rf ./.yarnrc.yml
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 COPY --from=tests /app/test-report.xml ./test-report.xml
 
@@ -65,7 +53,6 @@ RUN corepack enable
 RUN yarn set version 4.2.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
-RUN rm -rf ./.yarnrc.yml
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 
 ARG version=1.0.0
