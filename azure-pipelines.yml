@@ -127,7 +127,7 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
       NPM_VERSION: $(_npm_version)
       ASS_VERSION: $(_imageVersion)
-      YARN_BUILD_COMMAND: $(YARN_BUILD_COMMAND)
+      ADDITIONAL_PARAMETERS: $(ADDITIONAL_PARAMETERS)
 
   # Docker push Frontend Image
   - template: build/common-solution/steps/docker-push.yml@templates
@@ -157,6 +157,7 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_storybookImageName)
       NPM_VERSION: $(_npm_version)
       ASS_VERSION: $(_imageVersion)
+      ADDITIONAL_PARAMETERS: $(ADDITIONAL_PARAMETERS)
 
   # Docker push Storybook Image
   - template: build/common-solution/steps/docker-push.yml@templates

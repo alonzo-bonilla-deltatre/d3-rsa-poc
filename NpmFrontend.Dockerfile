@@ -5,7 +5,7 @@ COPY ./package.json ./yarn.lock ./
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
-ARG deltatreVxpToken
+ARG deltatreVxpGitHubToken
 ARG Yarnrc=".yarnrc.yml"
 RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
@@ -13,7 +13,7 @@ RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: $(echo ${deltatreVxpToken})" >> ${Yarnrc} && \
+  echo "    npmAuthToken: ${deltatreVxpToken}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
