@@ -6,17 +6,15 @@ ENV AWS_SECRET_ACCESS_KEY=OkOFiOtTzqLzeUHvKZzAs2xObOkkIlrCc1mOTW2X
 ENV AWS_DEFAULT_REGION=eu-central-1
 
 RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain deltatre-diva --domain-owner 058264107880 --region eu-central-1 --query authorizationToken --output text` && \
-    echo "CODEARTIFACT_AUTH_TOKEN: ${CODEARTIFACT_AUTH_TOKEN}" && \
     echo "${CODEARTIFACT_AUTH_TOKEN}" > ./aws-token.txt
 
 FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 
-RUN echo "${AWS_DEFAULT_REGION}"
-
 COPY ./package.json ./yarn.lock ./
 COPY --from=aws-login /app/aws-token.txt ./aws-token.txt
-RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt)
+RUN ENV CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt)
+RUN echo "CODEARTIFACT_AUTH_TOKEN: ${CODEARTIFACT_AUTH_TOKEN}"
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
