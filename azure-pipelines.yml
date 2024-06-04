@@ -95,6 +95,7 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
       NPM_VERSION: $(_npm_version)
       ASS_VERSION: $(_imageVersion)
+      ADDITIONAL_PARAMETERS: $(ADDITIONAL_PARAMETERS)
 
   - template: build/common-solution/steps/owasp-node-modules.yml@templates
     parameters:
