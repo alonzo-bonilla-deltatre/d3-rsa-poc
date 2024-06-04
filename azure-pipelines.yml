@@ -16,7 +16,7 @@ resources:
     - repository: templates
       name: SXP-DevOps/d3ops-pipelines-templates
       type: git
-      ref: "feat/test-new-build-arg"
+      ref: "refs/tags/build/common-solution/steps/1.1.9"
 
 variables:
   - group: SonarSecret
