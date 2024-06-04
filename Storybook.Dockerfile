@@ -5,14 +5,14 @@ COPY ./ ./
 RUN rm -rf ./.yarnrc.yml
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
-ARG d3ForgeToken
+ARG token
 ARG deltatreVxpToken
 ARG Yarnrc=".yarnrc.yml"
 RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
   echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthIdent: $(echo -n ${d3ForgeToken} | base64)" >> ${Yarnrc} && \
+  echo "    npmAuthIdent: $(echo -n ${token} | base64)" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
   echo "    npmAuthToken: $(echo -n ${deltatreVxpToken} | base64)" >> ${Yarnrc} && \
