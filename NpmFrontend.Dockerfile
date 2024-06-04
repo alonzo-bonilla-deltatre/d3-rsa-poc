@@ -10,8 +10,7 @@ ARG Yarnrc=".yarnrc.yml"
 RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
-  echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthIdent: ${token}" >> ${Yarnrc} && \
+  echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
   echo "    npmAuthToken: $(echo ${deltatreVxpToken} | base64)" >> ${Yarnrc} && \
