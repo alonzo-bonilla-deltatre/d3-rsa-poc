@@ -4,16 +4,18 @@ WORKDIR /storybook
 COPY ./ ./
 RUN rm -rf ./.yarnrc.yml
 
-# Add authentication to .yarnrc.yml file for azuredecops npm custom packages
+# Add authentication to .yarnrc.yml file for azuredevops npm custom packages
+ARG d3ForgeToken
+ARG deltatreVxpToken
 ARG Yarnrc=".yarnrc.yml"
 RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "npmScopes:" >> ${Yarnrc} && \
   echo "  d3-forge:" >> ${Yarnrc} && \
   echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthIdent: RDNBbG06Z2VjM2liYWh6dWdkbTdwM3prejZ3amNlNGNhb2x6ZmlmZGRkY3J4amR2aTRpMm9zM2JkcQ==" >> ${Yarnrc} && \
+  echo "    npmAuthIdent: ${d3ForgeToken}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAuthToken: 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" >> ${Yarnrc} && \
+  echo "    npmAuthToken: ${deltatreVxpToken}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
