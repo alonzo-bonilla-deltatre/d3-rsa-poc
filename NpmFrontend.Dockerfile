@@ -13,12 +13,9 @@ RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
-#  echo "    npmAuthToken: ${deltatreVxpGitHubToken}" >> ${Yarnrc} && \
-  echo "    npmAuthToken: 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" >> ${Yarnrc} && \
+  echo "    npmAuthToken: ${deltatreVxpGitHubToken}" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
-
-RUN cat ./.yarnrc.yml
 
 RUN corepack enable && \
   yarn set version 4.2.2 && \
