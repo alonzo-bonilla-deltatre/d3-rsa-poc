@@ -11,7 +11,7 @@ RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --d
 FROM node:22.2.0-alpine3.20 AS deps
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./
+COPY ./ ./
 COPY --from=aws-diva-login /app/aws-diva-token.txt ./aws-diva-token.txt  
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages

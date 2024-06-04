@@ -43,7 +43,6 @@ COPY ./ .
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
 
 RUN yarn test
-RUN rm -rf ./.yarnrc.yml
 
 FROM node:22.2.0 AS sonar
 WORKDIR /app
