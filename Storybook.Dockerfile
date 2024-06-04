@@ -40,7 +40,7 @@ RUN yarn run build-storybook
 
 FROM nginx:stable-alpine AS runner
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=npm-base /storybook/storybook-static /usr/share/nginx/html
+COPY --from=deps /storybook/storybook-static /usr/share/nginx/html
 
 RUN adduser \
   --disabled-password \
