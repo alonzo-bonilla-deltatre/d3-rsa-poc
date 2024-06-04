@@ -18,6 +18,8 @@ RUN echo "nodeLinker: node-modules" >> ${Yarnrc} && \
   echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
+RUN cat ./.yarnrc.yml
+
 RUN corepack enable && \
   yarn set version 4.2.2 && \
   yarn install --immutable
