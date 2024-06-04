@@ -12,7 +12,7 @@ FROM node:22.2.0-alpine3.20 AS deps
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
-COPY --from=aws-aws-diva-login /app/aws-diva-token.txt ./aws-diva-token.txt  
+COPY --from=aws-diva-login /app/aws-diva-token.txt ./aws-diva-token.txt  
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
