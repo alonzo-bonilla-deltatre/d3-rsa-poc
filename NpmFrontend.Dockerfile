@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
 COPY --from=aws-login /app/aws-token.txt ./aws-token.txt
-RUN export CODEARTIFACT_AUTH_TOKEN=$(cat /aws-token.txt) && echo $CODEARTIFACT_AUTH_TOKEN
+RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-token.txt) && echo $CODEARTIFACT_AUTH_TOKEN
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
