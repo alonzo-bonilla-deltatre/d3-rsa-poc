@@ -1,9 +1,12 @@
 FROM amazon/aws-cli:2.16.0 AS aws-diva-login
 WORKDIR /app
 
-ENV AWS_ACCESS_KEY_ID=AKIAQ3EGPXNUL5NWASF2
-ENV AWS_SECRET_ACCESS_KEY=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
-ENV AWS_DEFAULT_REGION=eu-central-1
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ARG AWS_DEFAULT_REGION
+ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 
 RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain deltatre-diva --domain-owner 058264107880 --region eu-central-1 --query authorizationToken --output text` && \
     echo "${CODEARTIFACT_AUTH_TOKEN}" > ./aws-diva-token.txt

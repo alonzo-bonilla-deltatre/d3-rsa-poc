@@ -20,6 +20,7 @@ resources:
 
 variables:
   - group: SonarSecret
+  - group: CodeArtifact_AWS_Secret
   - name: disable.coverage.autogenerate
     value: "true"
   - name: DOCKER_BUILDKIT
