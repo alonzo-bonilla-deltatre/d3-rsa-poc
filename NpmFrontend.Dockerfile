@@ -9,7 +9,6 @@ ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 
 RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain deltatre-diva --domain-owner 058264107880 --region eu-central-1 --query authorizationToken --output text` && \
-    echo "CODEARTIFACT_AUTH_TOKEN: ${CODEARTIFACT_AUTH_TOKEN}" && \
     echo "${CODEARTIFACT_AUTH_TOKEN}" > ./aws-diva-token.txt
 
 FROM node:22.2.0-alpine3.20 AS builder
