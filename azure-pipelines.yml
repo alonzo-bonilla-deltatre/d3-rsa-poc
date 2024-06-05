@@ -16,7 +16,7 @@ resources:
     - repository: templates
       name: SXP-DevOps/d3ops-pipelines-templates
       type: git
-      ref: "refs/tags/build/common-solution/steps/1.1.9"
+      ref: "refs/tags/build/common-solution/steps/1.2.0"
 
 variables:
   - group: SonarSecret
@@ -96,7 +96,6 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
       NPM_VERSION: $(_npm_version)
       ASS_VERSION: $(_imageVersion)
-      ADDITIONAL_PARAMETERS: $(ADDITIONAL_PARAMETERS)
 
   - template: build/common-solution/steps/owasp-node-modules.yml@templates
     parameters:
@@ -128,7 +127,6 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_frontendImageName)
       NPM_VERSION: $(_npm_version)
       ASS_VERSION: $(_imageVersion)
-      ADDITIONAL_PARAMETERS: $(ADDITIONAL_PARAMETERS)
 
   # Docker push Frontend Image
   - template: build/common-solution/steps/docker-push.yml@templates
@@ -148,7 +146,6 @@ steps:
       CONTAINER_REGISTRY_REPOSITORY_NAME: $(_storybookImageName)
       NPM_VERSION: $(_npm_version)
       ASS_VERSION: $(_imageVersion)
-      ADDITIONAL_PARAMETERS: $(ADDITIONAL_PARAMETERS)
 
   # Docker push Storybook Image
   - template: build/common-solution/steps/docker-push.yml@templates
