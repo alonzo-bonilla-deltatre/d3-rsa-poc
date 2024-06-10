@@ -9,7 +9,7 @@ import 'swiper/swiper-bundle.css';
 import { DistributionEntity } from '@/models/types/forge';
 import React from 'react';
 import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
-import { formatDate } from '@/helpers/dateHelper';
+import { getDay, getMonth } from '@/helpers/dateHelper';
 import { getSiteDirection } from '@/helpers/pageHelper';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import { CardsType, renderCard } from '@/components/commons/cards';
@@ -32,8 +32,8 @@ const customPagination = (slides: DistributionEntity[]) => ({
     const dateFrom = getStringProperty(slides[index].fields?.dateFrom, '');
     return `
     <button class='${className}' role="button" aria-label="${slides[index].thumbnail?.title ?? ''}">
-    <span class='font-heading text-[80px] leading-[64px] text-center w-full'>${formatDate(dateFrom, 'DD')}</span>
-    <span class='font-heading text-[30px] uppercase text-center -mt-1 w-full'>${formatDate(dateFrom, 'MMM')}</span>
+    <span class='font-heading text-[80px] leading-[64px] text-center w-full'>${getDay(dateFrom)}</span>
+    <span class='font-heading text-[30px] uppercase text-center -mt-1 w-full'>${getMonth(dateFrom)}</span>
     <div class='absolute top-6 right-0 h-[80px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-white to-transparent opacity-20'></div>
     <div class='transition duration-300 ease-in w-full h-[6px] bg-link'></div>
     </button>

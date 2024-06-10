@@ -30,7 +30,6 @@ const FocusOn = async ({ data }: { data: ComponentProps }) => {
   return (
     <ModuleContainer isFullWidth={isFullWidth}>
       <HeaderTitle
-        className="d3-section__header-title"
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}
         hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}

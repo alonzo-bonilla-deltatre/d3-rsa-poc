@@ -1,5 +1,6 @@
-﻿import { ReactNode } from 'react';
+﻿import { ReactNode, Suspense } from 'react';
 import { twMerge } from 'tailwind-merge';
+import Loader from '@/components/commons/Loader/Loader';
 
 type ModuleContainerProps = {
   children?: ReactNode;
@@ -16,7 +17,7 @@ const ModuleContainer = ({ children, isFullWidth, className }: ModuleContainerPr
         isFullWidth ? 'w-full' : 'container mx-auto px-2'
       )}
     >
-      {children}
+      <Suspense fallback={<Loader />}>{children}</Suspense>
     </div>
   );
 };

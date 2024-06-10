@@ -13,6 +13,7 @@ import renderEventStoryPart from '@/components/storyParts/Event/EventWrapper';
 import renderYouTubeVideoStoryPart from '@/components/storyParts/YouTubeVideo/YouTubeVideoWrapper';
 import renderBrightcoveVideoStoryPart from '@/components/storyParts/BrightcoveVideo/BrightcoveVideoWrapper';
 import renderJWPlayerVideoStoryPart from '@/components/storyParts/JWPlayerVideo/JWPlayerVideoWrapper';
+import renderDivaVideoStoryPart from '@/components/storyParts/DivaVideo/DivaVideoWrapper';
 import renderOembedStoryPart from '@/components/storyParts/Oembed/OembedWrapper';
 import renderQuoteStoryPart from '@/components/storyParts/Quote/QuoteWrapper';
 import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
@@ -25,15 +26,16 @@ import renderTableStoryPart from '@/components/storyParts/Table/TableWrapper';
 type StoryPartListKey =
   | Extract<
       ForgeEntityType,
-      ForgeEntityType.markdown | ForgeEntityType.photo | ForgeEntityType.album | ForgeEntityType.document
+      ForgeEntityType.markdown | ForgeEntityType.album | ForgeEntityType.document | ForgeEntityType.photo
     >
   | Extract<
       ForgeEntityCode,
+      | ForgeEntityCode.brightcoveVideo
+      | ForgeEntityCode.divaVideo
       | ForgeEntityCode.event
+      | ForgeEntityCode.jwPlayerVideo
       | ForgeEntityCode.promo
       | ForgeEntityCode.youTubeVideo
-      | ForgeEntityCode.brightcoveVideo
-      | ForgeEntityCode.jwPlayerVideo
     >
   | Extract<
       ForgeExternalEntityType,
@@ -45,14 +47,15 @@ type StoryPartListKey =
  * Each function takes a `StoryPart` and returns a `ReturnComponentRender`.
  */
 const storyPartList: Record<StoryPartListKey, (item: StoryPart) => ReturnComponentRender> = {
+  [ForgeEntityType.album]: renderAlbumStoryPart,
+  [ForgeEntityCode.brightcoveVideo]: renderBrightcoveVideoStoryPart,
+  [ForgeEntityCode.divaVideo]: renderDivaVideoStoryPart,
   [ForgeEntityType.markdown]: renderMarkdownStoryPart,
   [ForgeEntityType.photo]: renderPhotoStoryPart,
-  [ForgeEntityType.album]: renderAlbumStoryPart,
   [ForgeEntityType.document]: renderDocumentStoryPart,
   [ForgeEntityCode.event]: renderEventStoryPart,
   [ForgeEntityCode.promo]: renderPromoStoryPart,
   [ForgeEntityCode.youTubeVideo]: renderYouTubeVideoStoryPart,
-  [ForgeEntityCode.brightcoveVideo]: renderBrightcoveVideoStoryPart,
   [ForgeEntityCode.jwPlayerVideo]: renderJWPlayerVideoStoryPart,
   [ForgeExternalEntityType.oembed]: renderOembedStoryPart,
   [ForgeExternalEntityType.storyPartQuote]: renderQuoteStoryPart,

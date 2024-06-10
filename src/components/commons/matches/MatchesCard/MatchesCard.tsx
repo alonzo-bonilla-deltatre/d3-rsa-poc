@@ -117,7 +117,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                   </div>
                 </div>
                 <div className={'text-grey-100 text-base font-navigation uppercase -tracking-[0.01] text-center'}>
-                  {entity?.fields?.kickOffDateTime ? formatDate(entity?.fields?.kickOffDateTime, 'DD MMM, YYYY') : ''}
+                  {entity?.fields?.kickOffDateTime ? formatDate(entity?.fields?.kickOffDateTime, 'DD MMMM YYYY') : ''}
                   {entity?.fields?.kickOffDateTime && entity?.fields?.matchDay ? ' - ' : ''}
                   {entity?.fields?.matchDay ? entity?.fields?.matchDay : ''}
                 </div>

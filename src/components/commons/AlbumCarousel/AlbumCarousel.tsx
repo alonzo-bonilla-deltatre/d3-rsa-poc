@@ -1,6 +1,5 @@
 'use client';
 
-import Picture from '@/components/commons/Picture/Picture';
 import { CarouselNavigation } from '@/components/commons/CarouselNavigation/CarouselNavigation';
 import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
@@ -16,6 +15,7 @@ import { getSiteDirection, isRtlSiteDirection } from '@/helpers/pageHelper';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import useTranslate from '@/hooks/useTranslate';
 import { twMerge } from 'tailwind-merge';
+import Picture from '@/components/commons/Picture/Picture';
 
 SwiperCore.use([A11y]);
 
@@ -134,7 +134,7 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
                 ${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.tablet.transformation)}`}
             className={'w-full h-full'}
           >
-            <figure className={'block overflow-hidden w-full h-full'}>
+            <figure className={'block overflow-hidden w-full h-full rounded-lg'}>
               <Picture
                 src={slide?.image?.templateUrl ?? ''}
                 transformations={transformations.thumbnail_landscape_detail}

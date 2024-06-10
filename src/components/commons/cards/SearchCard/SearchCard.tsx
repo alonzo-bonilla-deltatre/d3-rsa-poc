@@ -1,11 +1,11 @@
 ﻿import Typography from '@/components/commons/Typography/Typography';
 import { DistributionEntity } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 import Link from '@/components/commons/Link/Link';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
+import Picture from '@/components/commons/Picture/Picture';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -20,7 +20,7 @@ const SearchCard = ({ entity }: CardProps) => {
       className={'w-full h-full'}
     >
       <div className="flex flex-col gap-2 relative">
-        <div className="flex items-center justify-center overflow-hidden rounded-lg">
+        <div className="flex items-center justify-center overflow-hidden rounded-lg aspect-[16/9] min-w-[224px]">
           <Picture
             src={
               entity?.thumbnail?.templateUrl
@@ -32,7 +32,7 @@ const SearchCard = ({ entity }: CardProps) => {
             transformations={transformations.thumbnail_landscape_detail}
             alt={entity.title}
             className={twMerge(
-              'w-auto h-[revert-layer] object-[inherit] rounded-lg',
+              'block h-full w-full max-h-[208px] aspect-[16/9] min-w-[224px] object-fill object-center rounded-lg',
               hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}

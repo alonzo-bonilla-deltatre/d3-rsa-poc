@@ -1,5 +1,8 @@
 ﻿import { ImageTransformations } from '@/models/types/images';
-import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformationsUtility';
+import {
+  getSrcWithTransformation,
+  transformations as defaultTransformations,
+} from '@/utilities/cloudinaryTransformationsUtility';
 import { CSSProperties } from 'react';
 import Image, { getImageProps } from 'next/image';
 
@@ -25,7 +28,7 @@ const Picture = ({
   width,
   height,
   sizes,
-  priority,
+  priority = true,
   imageStyle,
 }: PictureProps) => {
   if (!src) {
@@ -36,26 +39,30 @@ const Picture = ({
 
   if (!transformations) {
     return (
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className={className}
-        style={imageStyle}
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        unoptimized={isUnoptimizedImage}
-        quality={100}
-      />
+      <picture>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className={className}
+          style={imageStyle}
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          unoptimized={true}
+          quality={100}
+        />
+      </picture>
     );
   }
 
   const desktopSrc = getSrcWithTransformation(src, transformations?.desktop.transformation);
   const tabletSrc = getSrcWithTransformation(src, transformations?.tablet.transformation);
   const mobileSrc = getSrcWithTransformation(src, transformations?.mobile.transformation);
+
+  const unoptimizedSrc = getSrcWithTransformation(src, defaultTransformations?.best_assets?.mobile.transformation);
 
   alt = alt ? 'image: ' + alt : 'image'; // for accessibility, we specify a different alt for each image
 
@@ -99,20 +106,20 @@ const Picture = ({
   return (
     <picture>
       <source
-        srcSet={!isUnoptimizedImage ? srcSetDesktop ?? desktopSrc : desktopSrc}
+        srcSet={!isUnoptimizedImage ? srcSetDesktop : unoptimizedSrc}
         media="(min-width: 1024px)"
       ></source>
       <source
-        srcSet={!isUnoptimizedImage ? srcSetTablet ?? tabletSrc : tabletSrc}
+        srcSet={!isUnoptimizedImage ? srcSetTablet : unoptimizedSrc}
         media="(min-width: 768px)"
       ></source>
       <source
-        srcSet={!isUnoptimizedImage ? srcSetMobile ?? mobileSrc : mobileSrc}
+        srcSet={!isUnoptimizedImage ? srcSetMobile : unoptimizedSrc}
         media="(min-width: 640px)"
       ></source>
 
       <Image
-        src={mobileSrc}
+        src={!isUnoptimizedImage ? mobileSrc : unoptimizedSrc}
         width={mobileWidth}
         height={mobileHeight}
         alt={alt}

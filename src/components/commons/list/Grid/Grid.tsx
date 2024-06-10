@@ -18,7 +18,7 @@ export const getGridClasses = (itemsPerRow: number) => {
       return 'md:gap-x-3';
     case 4:
     default:
-      return 'md:grid-cols-3 lg:grid-cols-4';
+      return 'lg:grid-cols-4';
   }
 };
 

@@ -1,6 +1,5 @@
 'use client';
 
-import Picture from '@/components/commons/Picture/Picture';
 import useIsMobile from '@/hooks/useIsMobile';
 import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
@@ -11,6 +10,7 @@ import { generateMosaicLayout } from '@/components/commons/MosaicView/MosaicView
 import { GridImage, MosaicPatternItem } from '@/components/commons/MosaicView/types';
 import { isRtlSiteDirection } from '@/helpers/pageHelper';
 import { useEnvVars } from '@/hooks/useEnvVars';
+import Picture from '@/components/commons/Picture/Picture';
 
 type MosaicViewProps = {
   items: DistributionEntity[];

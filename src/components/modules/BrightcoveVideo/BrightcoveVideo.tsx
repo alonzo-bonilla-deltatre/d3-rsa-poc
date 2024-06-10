@@ -3,13 +3,14 @@ import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import { formatDate } from '@/helpers/dateHelper';
 import logger from '@/utilities/loggerUtility';
 import { notFound } from 'next/navigation';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
+import Date from '@/components/commons/Date/Date';
+import { DateType } from '@/models/types/date';
 
 const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
   const { slug, isFullWidth } = data.properties as ModuleProps;
@@ -36,7 +37,10 @@ const BrightcoveVideo = async ({ data }: { data: ComponentProps }) => {
           as={'time'}
           className="text-grey-500 uppercase"
         >
-          {formatDate(entity?.contentDate, 'DD MMMM YYYY')}
+          <Date
+            date={entity?.contentDate}
+            dateType={DateType.standard}
+          />
         </Typography>
       </div>
       <BrightcoveVideoPlayer entity={entity} />

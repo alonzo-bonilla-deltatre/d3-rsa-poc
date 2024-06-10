@@ -1,11 +1,11 @@
 ﻿import Typography from '@/components/commons/Typography/Typography';
 import { DistributionEntity } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 import GadAsset from '@/components/commons/GadAsset/GadAsset';
 import Link from '@/components/commons/Link/Link';
+import Picture from '@/components/commons/Picture/Picture';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -52,11 +52,13 @@ const PlayerCard = ({ entity }: CardProps) => {
             </Typography>
           )}
         </div>
-        <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start p-6 z-10">
-          <div className="flex justify-end flex-col z-10">
-            <div className="font-heading font-light text-5xl xl:text-6xl uppercase flex flex-row tracking-wide">
-              {playerName}
-              <div className={'ml-2 font-heading font-normal text-5xl xl:text-6xl text-white uppercase tracking-wide'}>
+        <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start m-2 lg:m-6 z-10">
+          <div className="flex justify-end flex-col flex-shrink-0 z-10">
+            <div className={'flex flex-wrap gap-2'}>
+              <div className="flex flex-col font-heading font-light text-5xl xl:text-6xl uppercase tracking-wide">
+                {playerName}
+              </div>
+              <div className={'font-heading font-normal text-5xl xl:text-6xl text-white uppercase tracking-wide'}>
                 {playerSurname}
               </div>
             </div>

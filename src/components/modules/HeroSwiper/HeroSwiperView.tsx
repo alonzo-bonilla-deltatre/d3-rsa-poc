@@ -9,12 +9,12 @@ import 'swiper/swiper-bundle.css';
 
 import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
-import Picture from '@/components/commons/Picture/Picture';
 import styles from '@/components/modules/HeroSwiper/HeroSwiper.module.scss';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import { getSiteDirection } from '@/helpers/pageHelper';
 import Typography from '@/components/commons/Typography/Typography';
 import React from 'react';
+import Picture from '@/components/commons/Picture/Picture';
 
 type HeroSwiperViewProps = {
   slides: DistributionEntity[];

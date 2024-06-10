@@ -24,7 +24,7 @@ const Footer = ({ data }: { data: ComponentProps }) => {
 
   return (
     <footer className={'bg-white text-black'}>
-      <ModuleContainer className={'pt-6 first:mt-0'}>
+      <ModuleContainer className={'first:mt-0'}>
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerContent) && (
           <div className="flex flex-col pb-6 lg:pb-10 mb-6 lg:mb-10 h-full border-b border-black">
             {renderItemsInSlot(

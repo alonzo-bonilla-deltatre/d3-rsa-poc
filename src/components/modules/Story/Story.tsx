@@ -6,15 +6,15 @@ import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
-import { getMetadata } from '@/services/metadataService';
 import { translate } from '@/helpers/translationHelper';
-import { formatDate } from '@/helpers/dateHelper';
 import logger from '@/utilities/loggerUtility';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import { ForgeDapiEntityCode, ForgeEntityType } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
+import Date from '@/components/commons/Date/Date';
+import { DateType } from '@/models/types/date';
 
 const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
@@ -65,7 +65,10 @@ const Story = async ({ data }: { data: ComponentProps }) => {
                     as={'time'}
                     className="text-grey-100 uppercase"
                   >
-                    {formatDate(storyEntity?.contentDate, 'DD MMMM YYYY')}
+                    <Date
+                      date={storyEntity?.contentDate}
+                      dateType={DateType.standard}
+                    />
                   </Typography>
                 </div>
                 <SocialShare

@@ -12,12 +12,6 @@ import { LiveBloggingBlogEntity } from '@/models/types/liveblogging';
  * @param {DistributionEntity | LiveBloggingBlogEntity} entity - The entity object from which to get the description.
  * @returns {string} The description field from the entity object or an empty string if no description field is found.
  */
-export const getDescriptionField = (entity: DistributionEntity | LiveBloggingBlogEntity) => {
-  return entity?.description
-    ? entity.description
-    : entity?.headline
-      ? entity.headline
-      : entity?.fields?.description
-        ? entity.fields.description
-        : '';
+export const getDescriptionField = (entity: DistributionEntity | LiveBloggingBlogEntity): string => {
+  return entity?.description ?? entity?.headline ?? entity?.fields?.description ?? '';
 };

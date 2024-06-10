@@ -66,25 +66,18 @@ const Carousel = ({
         dir={getSiteDirection(LANGUAGE)}
         className={className}
         key={uniqueId}
-        spaceBetween={24}
+        spaceBetween={8}
         modules={[Navigation, Pagination]}
         navigation={hasNavigation ? navigation : false}
         pagination={hasPagination ? (pagination as PaginationOptions) : false}
         a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
+        slidesPerView={'auto'}
         breakpoints={{
-          320: {
-            slidesPerView: 1.2,
+          640: {
             spaceBetween: 16,
           },
-          640: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 12,
-          },
           1280: {
-            slidesPerView: 3,
+            spaceBetween: 24,
           },
         }}
       >
@@ -92,7 +85,7 @@ const Carousel = ({
           return (
             <SwiperSlide
               key={index}
-              className={'max-w-[354px]'}
+              className={'max-w-[210px] lg:max-w-[420px]'}
               onFocus={() => swiperRef.current?.swiper?.slideTo(index)}
             >
               {renderCard(cardsType, { entity: slide })}

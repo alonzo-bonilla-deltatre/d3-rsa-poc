@@ -1,10 +1,10 @@
 ﻿import Typography from '@/components/commons/Typography/Typography';
 import { DistributionEntity, Tag } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
+import Picture from '@/components/commons/Picture/Picture';
 
 type CardProps = {
   entity: DistributionEntity;

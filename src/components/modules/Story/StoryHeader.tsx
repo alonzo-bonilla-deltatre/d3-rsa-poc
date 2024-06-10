@@ -1,9 +1,6 @@
 import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
-import Typography from '@/components/commons/Typography/Typography';
-import React from 'react';
-import Picture from '@/components/commons/Picture/Picture';
 
 type StoryHeaderProps = {
   storyEntity: DistributionEntity;
@@ -24,7 +21,7 @@ const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
 
   const imageUrl = getSrcWithTransformation(
     storyEntity.thumbnail?.templateUrl ? storyEntity?.thumbnail?.templateUrl : defaultThumbnail.url,
-    transformations.thumbnail_wide_detail.desktop.transformation
+    transformations.story_header_background.desktop.transformation
   );
 
   return (

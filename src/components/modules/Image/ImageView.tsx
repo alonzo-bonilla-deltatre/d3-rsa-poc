@@ -1,9 +1,9 @@
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { ImageTransformations } from '@/models/types/images';
 import { DistributionEntity } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import Link from '@/components/commons/Link/Link';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
+import Picture from '@/components/commons/Picture/Picture';
 
 type ImageViewProps = {
   link?: string;

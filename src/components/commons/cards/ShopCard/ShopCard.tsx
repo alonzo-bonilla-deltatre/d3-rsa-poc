@@ -1,11 +1,11 @@
 ﻿import Typography from '@/components/commons/Typography/Typography';
 import { DistributionEntity } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import Link from '@/components/commons/Link/Link';
+import Picture from '@/components/commons/Picture/Picture';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -22,7 +22,12 @@ const ShopCard = ({ entity }: CardProps) => {
       className={'w-full h-full'}
     >
       <div className={'flex flex-col gap-2 lg:gap-4'}>
-        <div className={twMerge('flex rounded-lg relative', isPromo ? 'border-4 border-link' : 'w-[calc(100%_-_3px)]')}>
+        <div
+          className={twMerge(
+            'flex rounded-lg relative aspect-[10/16] h-full min-w-[136px] bg-black',
+            isPromo ? 'border-4 border-link' : 'w-[calc(100%_-_3px)]'
+          )}
+        >
           <figure className={twMerge('overflow-hidden rounded-lg z-10 relative', isPromo ? 'rounded' : 'rounded-lg')}>
             <Picture
               src={

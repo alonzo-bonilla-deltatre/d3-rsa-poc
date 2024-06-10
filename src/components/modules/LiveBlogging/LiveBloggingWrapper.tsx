@@ -2,7 +2,10 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { nanoid } from 'nanoid';
-const LiveBloggingServer = dynamic(() => import('@/components/modules/LiveBlogging/LiveBloggingServer'));
+
+const LiveBloggingServer = dynamic(() => import('@/components/modules/LiveBlogging/LiveBloggingServer'), {
+  ssr: false,
+});
 
 const LiveBloggingWrapper = ({ data }: { data: ComponentProps }) => <LiveBloggingServer data={data} />;
 

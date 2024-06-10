@@ -8,6 +8,8 @@ import { A11y } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { CardsType, renderCard } from '@/components/commons/cards';
+import { getSiteDirection } from '@/helpers/pageHelper';
+import { useEnvVars } from '@/hooks/useEnvVars';
 
 SwiperCore.use([A11y]);
 
@@ -20,9 +22,12 @@ const CarouselAlbum = ({ items, uniqueId }: CarouselAlbumProps) => {
   items = items as DistributionEntity[];
   const translate = useTranslate();
   const swiperRef = useRef<SwiperRef>(null);
+  const { LANGUAGE } = useEnvVars();
+
   return (
     <Swiper
       ref={swiperRef}
+      dir={getSiteDirection(LANGUAGE)}
       key={uniqueId}
       a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
       centerInsufficientSlides

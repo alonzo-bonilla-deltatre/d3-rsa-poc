@@ -1,11 +1,11 @@
 ﻿import Typography from '@/components/commons/Typography/Typography';
 import { DistributionEntity, ForgeDapiEntityCode } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
 import TranslatedLabel from '@/components/commons/TranslatedLabel/TranslatedLabel';
 import Link from '@/components/commons/Link/Link';
+import Picture from '@/components/commons/Picture/Picture';
 
 type CardProps = {
   entity: DistributionEntity;

@@ -183,27 +183,27 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   thumbnail_wide_detail: {
     mobile: defaultCloudinaryTransformations.ratio21_9_size20,
     tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size40,
   },
   thumbnail_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
   },
   thumbnail_small_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
   },
   thumbnail_square_detail: {
     mobile: defaultCloudinaryTransformations.ratio1_1_size20,
     tablet: defaultCloudinaryTransformations.ratio1_1_size40,
-    desktop: defaultCloudinaryTransformations.ratio1_1_size60,
+    desktop: defaultCloudinaryTransformations.ratio1_1_size40,
   },
   thumbnail_portrait_detail: {
     mobile: defaultCloudinaryTransformations.ratio3_4_size20,
     tablet: defaultCloudinaryTransformations.ratio3_4_size40,
-    desktop: defaultCloudinaryTransformations.ratio3_4_size60,
+    desktop: defaultCloudinaryTransformations.ratio3_4_size40,
   },
   thumbnail_portrait_wide_detail: {
     mobile: defaultCloudinaryTransformations.ratio10_16_size20,
@@ -219,7 +219,7 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   // Module Story: header
   story_header_background: {
     mobile: defaultCloudinaryTransformations.ratio1_1_size20,
-    tablet: defaultCloudinaryTransformations.ratio21_9_size40,
+    tablet: defaultCloudinaryTransformations.ratio1_1_size40,
     desktop: defaultCloudinaryTransformations.ratio21_9_size60,
   },
   // Module Hero main item
@@ -236,8 +236,8 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   },
   // Module Focus on: background
   focus_on_background: {
-    mobile: defaultCloudinaryTransformations.ratio3_4_size20,
-    tablet: defaultCloudinaryTransformations.ratio4_3_size40,
+    mobile: defaultCloudinaryTransformations.ratio21_9_size20,
+    tablet: defaultCloudinaryTransformations.ratio21_9_size40,
     desktop: defaultCloudinaryTransformations.ratio21_9_size60,
   },
   // Module Focus on: photo

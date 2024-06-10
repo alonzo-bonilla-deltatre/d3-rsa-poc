@@ -5,13 +5,15 @@ import { DistributionEntity } from '@/models/types/forge';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import { DivaWebBoAdapter } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter'; // bo adapter sdk
 import '@deltatre-vxp/diva-sdk/diva-web-sdk/index.min.css';
-import { BoAdapterWebComponentProps } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter/types/types'; // Import SDK style
+import { BoAdapterWebComponentProps } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter/types/types';
+import { twMerge } from 'tailwind-merge'; // Import SDK style
 
 type DivaVideoPlayerProps = {
   entity: DistributionEntity;
+  containerCss?: string;
 };
 
-const DivaVideoPlayer = ({ entity }: DivaVideoPlayerProps) => {
+const DivaVideoPlayer = ({ entity, containerCss }: DivaVideoPlayerProps) => {
   const envVars = useEnvVars();
   const videoId = entity?.fields?.videoId;
   const videoType = getVideoType(entity);
@@ -41,7 +43,7 @@ const DivaVideoPlayer = ({ entity }: DivaVideoPlayerProps) => {
   };
 
   return (
-    <div className="block relative w-full">
+    <div className={twMerge('block relative w-full', containerCss)}>
       <DivaWebBoAdapter {...props} />
     </div>
   );

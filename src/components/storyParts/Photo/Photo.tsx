@@ -1,8 +1,8 @@
 import React from 'react';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ImageAsset } from '@/models/types/images';
+import Picture from '@/components/commons/Picture/Picture';
 
 type PhotoProps = {
   className?: string;

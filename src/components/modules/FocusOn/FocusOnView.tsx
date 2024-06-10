@@ -1,10 +1,10 @@
 import React from 'react';
-import Picture from '@/components/commons/Picture/Picture';
 import { DistributionEntity, ForgeEntityType } from '@/models/types/forge';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { translate } from '@/helpers/translationHelper';
 import CallToActionFilledLink from '@/components/commons/CallToActionLink/CallToActionFilledLink';
 import Typography from '@/components/commons/Typography/Typography';
+import Picture from '@/components/commons/Picture/Picture';
 
 type FocusOnViewProps = {
   storyEntity?: DistributionEntity;
@@ -18,15 +18,13 @@ const FocusOnView = ({ storyEntity }: FocusOnViewProps) => {
   const firstPhotoPart = parts?.find((part) => part.type === ForgeEntityType.photo);
   return (
     <>
-      <div className={`max-w-[1920px] overflow-hidden mx-auto relative`}>
-        <div className="h-[481px] md:h-[617px]">
-          <Picture
-            className="md:max-w-none md:w-max lg:w-full h-full md:h-fit object-cover object-center opacity-[.50]"
-            src={storyEntity?.thumbnail?.templateUrl ?? ''}
-            alt={storyEntity?.title}
-            transformations={transformations.focus_on_background}
-          />
-        </div>
+      <div className={`overflow-hidden mx-auto relative`}>
+        <Picture
+          className="w-full h-full md:h-fit object-cover object-center opacity-[.50]"
+          src={storyEntity?.thumbnail?.templateUrl ?? ''}
+          alt={storyEntity?.title}
+          transformations={transformations.focus_on_background}
+        />
         <div className="container mx-auto px-4">
           <div className="absolute top-2/3 transform -translate-y-2/3 lg:px-6">
             <Typography

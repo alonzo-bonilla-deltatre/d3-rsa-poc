@@ -7,8 +7,9 @@ import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
-import { formatDate } from '@/helpers/dateHelper';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
+import Date from '@/components/commons/Date/Date';
+import { DateType } from '@/models/types/date';
 
 const AlbumMosaic = async ({ data }: { data: ComponentProps }) => {
   const { slug, isFullWidth } = data.properties as ModuleProps;
@@ -37,7 +38,10 @@ const AlbumMosaic = async ({ data }: { data: ComponentProps }) => {
           as={'time'}
           className="text-grey-500 uppercase"
         >
-          {formatDate(albumEntity?.contentDate, 'DD MMMM YYYY')}
+          <Date
+            date={albumEntity?.contentDate}
+            dateType={DateType.standard}
+          />
         </Typography>
       </div>
       <MosaicView items={albumEntity.elements} />

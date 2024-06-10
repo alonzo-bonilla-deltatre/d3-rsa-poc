@@ -22,7 +22,7 @@ function getAdvImage(type?: string) {
     case 'wideSkyscraper':
       image.width = 160;
       image.height = 600;
-      image.url = 'https://placehold.co/728x90';
+      image.url = wideSkyscraper.src;
       break;
     case 'medRec':
       image.width = 300;

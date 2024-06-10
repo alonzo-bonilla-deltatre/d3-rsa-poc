@@ -8,8 +8,9 @@ import DivaVideoPlayer from '@/components/commons/DivaVideoPlayer/DivaVideoPlaye
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 import Typography from '@/components/commons/Typography/Typography';
 import logger from '@/utilities/loggerUtility';
-import { formatDate } from '@/helpers/dateHelper';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
+import Date from '@/components/commons/Date/Date';
+import { DateType } from '@/models/types/date';
 
 type DivaVideoProps = {
   slug?: string;
@@ -41,7 +42,10 @@ const DivaVideo = async ({ data }: { data: ComponentProps }) => {
           as={'time'}
           className="text-grey-500 uppercase"
         >
-          {formatDate(entity?.contentDate, 'DD MMMM YYYY')}
+          <Date
+            date={entity?.contentDate}
+            dateType={DateType.standard}
+          />
         </Typography>
       </div>
       <DivaVideoPlayer entity={entity} />

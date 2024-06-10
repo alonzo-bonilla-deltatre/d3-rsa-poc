@@ -1,9 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
-import { getRobotsTxt } from '@/services/robotsService';
 import { getDivaPlayerSetting } from '@/services/divaPlayerService';
-import { HealthzStatus } from '@/pages/api/healthz/live';
 
 /**
  * This function handles the rendering of Diva Player Settings.

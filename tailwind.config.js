@@ -30,6 +30,14 @@ module.exports = {
         'event-mask': "url('/assets/event-mask.png')",
         'event-date': "url('/assets/event-date.png')",
       },
+      aspectRatio: {
+        '1/1': '1 / 1',
+        '3/4': '3 / 4',
+        '4/3': '4 / 3',
+        '10/16': '10 / 16',
+        '16/9': '16 / 9',
+        '21/9': '21 / 9',
+      },
     },
   },
   safelist: [

@@ -1,14 +1,15 @@
 ﻿import Typography from '@/components/commons/Typography/Typography';
 import { DistributionEntity } from '@/models/types/forge';
-import Picture from '@/components/commons/Picture/Picture';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { twMerge } from 'tailwind-merge';
 import { hasValidUrl } from '@/helpers/urlHelper';
-import { getBooleanProperty, getStringProperty } from '@/helpers/pageComponentPropertyHelper';
-import { formatDate } from '@/helpers/dateHelper';
+import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 import { renderSvgIcon } from '@/components/icons';
 import Link from '@/components/commons/Link/Link';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
+import Picture from '@/components/commons/Picture/Picture';
+import Date from '@/components/commons/Date/Date';
+import { DateType } from '@/models/types/date';
 
 type CardProps = {
   entity: DistributionEntity;
@@ -29,7 +30,7 @@ const VideoCard = ({ entity }: CardProps) => {
         <div className={'relative'}>
           <div
             className={twMerge(
-              'flex rounded-lg relative',
+              'flex rounded-lg relative aspect-[10/16] h-full min-w-[136px] bg-black',
               rights ? 'border-4 border-link' : '',
               isPremium ? 'border-4 border-gold' : '',
               isFreemium ? 'border-4 border-white' : '',
@@ -51,6 +52,9 @@ const VideoCard = ({ entity }: CardProps) => {
                       : ''
                 }
                 transformations={transformations.thumbnail_portrait_wide_detail}
+                imageStyle={{
+                  aspectRatio: '10:16',
+                }}
                 alt={entity.title}
                 className={twMerge(
                   'block h-full w-full object-cover object-center',
@@ -95,7 +99,12 @@ const VideoCard = ({ entity }: CardProps) => {
               {description}
             </Typography>
           )}
-          <Typography variant={'tag-m'}>{formatDate(entity?.contentDate, 'DD MMM, YYYY')}</Typography>
+          <Typography variant={'tag-m'}>
+            <Date
+              date={entity?.contentDate}
+              dateType={DateType.short}
+            />
+          </Typography>
         </div>
       </div>
     </Link>
