@@ -2,13 +2,19 @@ import { Metadata } from 'next';
 import { generatePageMetadata } from '@/helpers/pageHelper';
 import { ReturnComponentRender } from '@/models/types/components';
 import { renderPage } from '@/services/renderHandlers/renderPage';
+import { notFound } from 'next/navigation';
 
 export default async function Page({
   params,
 }: {
   params: { pageName: string[]; q?: string; token?: string; appView?: string };
 }): Promise<ReturnComponentRender> {
-  return await renderPage(params);
+  const page = await renderPage(params);
+  if (page) {
+    return page;
+  } else {
+    return notFound();
+  }
 }
 
 export async function generateMetadata({ params }: { params: { pageName: string[] } }): Promise<Metadata> {

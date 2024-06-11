@@ -1,7 +1,7 @@
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
 import dynamic from 'next/dynamic';
 import { nanoid } from 'nanoid';
-const AlbumMosaic = dynamic(() => import('@/components/modules/AlbumMosaic/AlbumMosaic'));
+const AlbumMosaic = dynamic(() => import('@/components/modules/AlbumMosaic/AlbumMosaic'), { ssr: false });
 
 const MosaicPhotosWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <AlbumMosaic data={data} />;
 

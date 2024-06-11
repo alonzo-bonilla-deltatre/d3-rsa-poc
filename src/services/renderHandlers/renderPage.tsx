@@ -1,7 +1,6 @@
 ﻿import { ReturnComponentRender } from '@/models/types/components';
 import { requestUrlParser } from '@/utilities/requestUrlParserUtility';
 import { AzureSearchOption } from '@/models/types/azureSearch';
-import { notFound } from 'next/navigation';
 import ThemingVariables from '@/components/commons/ThemingVariables/ThemingVariables';
 import { renderItem } from '@/services/renderService';
 import AppViewLinksHandler from '@/components/commons/AppViewLinksHandler/AppViewLinksHandler';
@@ -31,7 +30,7 @@ export const renderPage = async (params: {
   q?: string;
   token?: string;
   appView?: string;
-}): Promise<ReturnComponentRender> => {
+}): Promise<ReturnComponentRender | null> => {
   try {
     const pageStructure = await getPageStructure('~/');
     setFrontendAllSiteConfiguration(pageStructure?.data.metadata ?? []);
@@ -59,7 +58,7 @@ export const renderPage = async (params: {
 
     // If no page data is fetched, call the notFound function
     if (!pageData) {
-      notFound();
+      return null;
     }
 
     // Destructure the page data
@@ -83,6 +82,6 @@ export const renderPage = async (params: {
     );
   } catch (error) {
     logger.log(JSON.stringify(error), LoggerLevel.error);
+    return null;
   }
-  return null;
 };

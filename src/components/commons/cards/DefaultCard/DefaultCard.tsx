@@ -21,7 +21,7 @@ const DefaultCard = ({ entity }: CardProps) => {
       href={entity.url}
       className={'w-full h-full'}
     >
-      <div className="flex rounded-lg relative aspect-[1/1] h-full min-w-[224px]">
+      <div className="flex rounded-lg relative aspect-[1/1] h-full w-full">
         <figure className="bg-black overflow-hidden rounded-lg z-10">
           <Picture
             src={

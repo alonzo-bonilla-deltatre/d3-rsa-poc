@@ -19,6 +19,7 @@ COPY --from=aws-diva-login /app/aws-diva-token.txt ./aws-diva-token.txt
 
 # Add authentication to .yarnrc.yml file for azuredevops npm custom packages
 ARG token
+ARG GitHubToken
 ARG Yarnrc=".yarnrc.yml"
 RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-diva-token.txt) && \
   echo "nodeLinker: node-modules" >> ${Yarnrc} && \
@@ -29,8 +30,10 @@ RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-diva-token.txt) && \
   echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
   echo "  deltatre-vxp:" >> ${Yarnrc} && \
   echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${CODEARTIFACT_AUTH_TOKEN}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/'" >> ${Yarnrc}
+  echo "    npmAuthToken: ${GitHubToken}" >> ${Yarnrc} && \
+  echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
+#  echo "    npmAuthToken: ${CODEARTIFACT_AUTH_TOKEN}" >> ${Yarnrc} && \
+#  echo "    npmRegistryServer: 'https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/'" >> ${Yarnrc}
 # End .yarnrc.yml auth
 
 RUN corepack enable && \

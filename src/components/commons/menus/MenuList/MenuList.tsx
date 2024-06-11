@@ -1,6 +1,7 @@
 'use client';
 
 import HeaderMenuList from '@/components/commons/menus/HeaderMenuList/HeaderMenuList';
+import FooterMenuList from '@/components/commons/menus/FooterMenuList/FooterMenuList';
 import MenuListItem from '@/components/commons/menus/MenuListItem/MenuListItem';
 import { MenuItem, MenuSources } from '@/models/types/menu';
 
@@ -18,6 +19,16 @@ const MenuList = ({ menuItems, source, baseUrl }: MenuProps) => {
   if (source === MenuSources.header || source === MenuSources.hamburger) {
     return (
       <HeaderMenuList
+        menuItems={menuItems}
+        source={source}
+        baseUrl={baseUrl}
+      />
+    );
+  }
+
+  if (source === MenuSources.footer) {
+    return (
+      <FooterMenuList
         menuItems={menuItems}
         source={source}
         baseUrl={baseUrl}
