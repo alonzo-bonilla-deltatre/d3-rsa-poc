@@ -58,7 +58,11 @@ const FooterMenuList = ({ menuItems, source, baseUrl }: FooterMenuListProps) => 
   };
 
   return (
-    <ul className={twMerge('flex flex-col md:flex-row items-center justify-center transition duration-300 gap-3 lg:gap-4')}>
+    <ul
+      className={twMerge(
+        'flex flex-col md:flex-row items-center justify-center transition duration-300 gap-3 lg:gap-4'
+      )}
+    >
       {menuItems.map((menuItem: MenuItem) => (
         <li
           className="relative w-fit"

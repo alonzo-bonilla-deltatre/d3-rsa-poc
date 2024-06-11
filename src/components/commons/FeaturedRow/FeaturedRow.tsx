@@ -24,49 +24,29 @@ export type FeaturedRowProps = {
   sectionClassName?: string;
   headerClassName?: string;
   contentClassName?: string;
-  background?: WrapperWithBackgroundProps;
-  hasBackground?: boolean;
-  hasFullWidthHeader?: boolean;
-  hasFullWidthContent?: boolean;
+  hasFullWidth?: boolean;
   headerSubTitle?: string;
   removeSectionHtmlTag?: boolean;
 } & HeaderTitleProps;
 
 const FeaturedRow = ({ data }: { data: FeaturedRowProps }) => {
-  const hasBackground = getBooleanProperty(data.hasBackground);
-  return (
-    <>
-      {hasBackground ? (
-        <WrapperWithBackground
-          sizeClass="bg-cover"
-          additionalClasses="bg-greyscale-dark"
-          {...data.background}
-        >
-          {renderSection(data)}
-        </WrapperWithBackground>
-      ) : (
-        renderSection(data)
-      )}
-    </>
-  );
-};
-
-function renderSection(props: FeaturedRowProps) {
   const {
     children,
     leftChildren,
+    featuredDescription,
     featuredSponsor,
-    sectionClassName,
-    headerClassName,
-    contentClassName,
-    hasFullWidthContent,
+    removeSectionHtmlTag,
     headerTitle,
     headerTitleHeadingLevel,
     hideHeaderTitle,
-    featuredDescription,
-    removeSectionHtmlTag,
-  } = props as FeaturedRowProps;
-
+    headerSubTitle,
+    headerClassName,
+    contentClassName,
+    hasFullWidth,
+    sectionClassName,
+    ctaTitle,
+    ctaLink,
+  } = data;
   const showHeader = headerTitle || leftChildren || featuredDescription || featuredSponsor;
   const keepSectionTag =
     removeSectionHtmlTag === undefined && children ? getOppositeBooleanProperty(removeSectionHtmlTag) : false;
@@ -77,7 +57,7 @@ function renderSection(props: FeaturedRowProps) {
       <div
         className={twMerge(
           'flex flex-col lg:grid lg:grid-cols-4 lg:gap-6 lg:max-w-full',
-          !hasFullWidthContent ? 'container' : ''
+          !hasFullWidth ? 'container' : ''
         )}
       >
         {showHeader && (
@@ -153,6 +133,6 @@ function renderSection(props: FeaturedRowProps) {
       </div>
     </SectionContainer>
   );
-}
+};
 
 export default FeaturedRow;

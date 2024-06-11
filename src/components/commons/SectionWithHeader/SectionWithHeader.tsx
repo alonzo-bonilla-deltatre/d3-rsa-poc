@@ -28,32 +28,11 @@ export type SectionWithHeaderProps = {
   hasBackground?: boolean;
   hasFullWidthHeader?: boolean;
   hasFullWidthContent?: boolean;
-  headerSubTitle?: string;
   removeSectionHtmlTag?: boolean;
   headerTitleAlignment?: string;
 } & HeaderTitleProps;
 
 const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
-  const hasBackground = getBooleanProperty(data.hasBackground);
-
-  return (
-    <>
-      {hasBackground ? (
-        <WrapperWithBackground
-          sizeClass="bg-cover"
-          additionalClasses="bg-greyscale-dark"
-          {...data.background}
-        >
-          {renderSection(data)}
-        </WrapperWithBackground>
-      ) : (
-        renderSection(data)
-      )}
-    </>
-  );
-};
-
-function renderSection(props: SectionWithHeaderProps) {
   const {
     children,
     topChildren,
@@ -70,8 +49,7 @@ function renderSection(props: SectionWithHeaderProps) {
     ctaTitle,
     ctaLink,
     removeSectionHtmlTag,
-  } = props;
-
+  } = data;
   const showHeader = (!hideHeaderTitle && headerTitle) || additionalChildren || topChildren || featuredSponsor;
   const keepSectionTag =
     removeSectionHtmlTag === undefined && children ? getOppositeBooleanProperty(removeSectionHtmlTag) : false;
@@ -93,7 +71,6 @@ function renderSection(props: SectionWithHeaderProps) {
               ctaLink={ctaLink}
               className={'mb-6'}
             ></HeaderTitle>
-
             {additionalChildren && additionalChildren}
           </div>
           {featuredSponsor && (
@@ -118,5 +95,6 @@ function renderSection(props: SectionWithHeaderProps) {
       )}
     </SectionContainer>
   );
-}
+};
+
 export default SectionWithHeader;

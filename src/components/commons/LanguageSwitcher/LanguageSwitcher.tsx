@@ -1,7 +1,9 @@
 import { FrontendConfiguration, FrontendSiteConfiguration } from '@/models/types/frontendConfiguration';
 import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
 import { translate } from '@/helpers/translationHelper';
-import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { twMerge } from 'tailwind-merge';
+import { getDataVariable } from '@/helpers/dataVariableHelper';
+import { Variable } from '@/models/types/pageStructure';
 
 type LanguageSwitcherProps = {
   allSiteConfiguration?: FrontendConfiguration;
@@ -10,6 +12,7 @@ type LanguageSwitcherProps = {
   languageContainerCssClasses?: string;
   languageSeparatorCssClasses?: string;
   hasLanguageSeparator?: boolean;
+  variables?: Variable[];
 };
 
 const LanguageSwitcher = ({
@@ -19,11 +22,13 @@ const LanguageSwitcher = ({
   languageContainerCssClasses = 'overflow-auto inline-flex gap-2',
   languageSeparatorCssClasses = 'border-l border-l-text-component-commons-language-switcher-separator rotate-[17deg]',
   hasLanguageSeparator,
+  variables
 }: LanguageSwitcherProps) => {
   allSiteConfiguration = allSiteConfiguration ?? getFrontendAllSiteConfiguration();
   const navItemCssClasses = languageNavItemCssClasses ?? languageNavItemCssClasses;
   const containerNavItemCssClasses = languageContainerNavItemCssClasses ?? languageContainerNavItemCssClasses;
-
+  const pageBaseUrl = getDataVariable(variables, 'pageBaseUrl');
+  
   return (
     <div className={languageContainerCssClasses}>
       {allSiteConfiguration &&
@@ -36,7 +41,7 @@ const LanguageSwitcher = ({
               >
                 <a
                   href={new URL('/', item.url).href}
-                  className={navItemCssClasses}
+                  className={twMerge(navItemCssClasses, pageBaseUrl && item.url.startsWith(pageBaseUrl) ? 'font-bold' : '')}
                 >
                   {translate(item.translation)}
                 </a>

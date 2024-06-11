@@ -40,8 +40,8 @@ export const renderPage = async (params: {
 
     // Get the path name from the parameters
     const path = requestUrlParser.getPathName(params);
-    const siteUrl = await getSiteUrl();
-    const pageUrl = new URL(path, siteUrl).href;
+    const pageBaseUrl = await getSiteUrl();
+    const pageUrl = new URL(path, pageBaseUrl).href;
 
     // Set the preview token, defaulting to an empty string if no token is provided. The token is empty outside of the "preview" route
     const previewToken = token ?? '';
@@ -66,6 +66,7 @@ export const renderPage = async (params: {
 
     // Enrich the page variables
     enrichPageVariables(variables, {
+      pageBaseUrl: pageBaseUrl,
       pageUrl: pageUrl,
       pagePath: path,
       azureSearchOption: JSON.stringify(azureSearchOption, null, 2),

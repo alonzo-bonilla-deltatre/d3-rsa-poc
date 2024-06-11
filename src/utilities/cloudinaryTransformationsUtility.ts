@@ -244,7 +244,7 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   focus_on_photo: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
   },
   // Common Component Mosaic
   mosaic_square: {
