@@ -91,6 +91,7 @@ function renderSection(props: SectionWithHeaderProps) {
               hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
               ctaTitle={ctaTitle}
               ctaLink={ctaLink}
+              className={'mb-6'}
             ></HeaderTitle>
 
             {additionalChildren && additionalChildren}
