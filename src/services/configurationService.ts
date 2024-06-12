@@ -66,5 +66,5 @@ export const getSiteUrl = async () => {
     const pageStructure = await getPageStructure('~/');
     setFrontendAllSiteConfiguration(pageStructure?.data.metadata ?? []);
   }
-  return frontendConfiguration!.allSites.find((s) => s.culture === siteCulture || 'en-GB')?.url ?? '';
+  return frontendConfiguration!.allSites.find((s) => s.culture === siteCulture)?.url ?? '';
 };
