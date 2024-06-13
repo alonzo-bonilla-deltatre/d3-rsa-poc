@@ -1,8 +1,5 @@
 import GadAsset from '@/components/commons/GadAsset/GadAsset';
 import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
-import WrapperWithBackground, {
-  WrapperWithBackgroundProps,
-} from '@/components/commons/WrapperWithBackground/WrapperWithBackground';
 import {
   getBooleanProperty,
   getOppositeBooleanProperty,
@@ -24,7 +21,6 @@ export type SectionWithHeaderProps = {
   sectionClassName?: string;
   headerClassName?: string;
   contentClassName?: string;
-  background?: WrapperWithBackgroundProps;
   hasBackground?: boolean;
   hasFullWidthHeader?: boolean;
   hasFullWidthContent?: boolean;

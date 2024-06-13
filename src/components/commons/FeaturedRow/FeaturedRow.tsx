@@ -9,9 +9,6 @@ import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { translate } from '@/helpers/translationHelper';
 import GadAsset from '@/components/commons/GadAsset/GadAsset';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
-import WrapperWithBackground, {
-  WrapperWithBackgroundProps,
-} from '@/components/commons/WrapperWithBackground/WrapperWithBackground';
 import { HeaderTitleProps } from '@/models/types/components';
 import { twMerge } from 'tailwind-merge';
 import Typography from '@/components/commons/Typography/Typography';

@@ -37,7 +37,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const relatedArticles = storyEntity?.relations?.filter((entity) => entity.type === ForgeEntityType.story) ?? [];
 
   return (
-    <article className={'bg-white text-black border-b h-full'}>
+    <article className={'bg-white text-black pb-5 lg:pb-10 h-full'}>
       <StoryHeader storyEntity={storyEntity}></StoryHeader>
       <ModuleContainer>
         <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 lg:max-w-full lg:mx-auto content m-2 lg:m-0">

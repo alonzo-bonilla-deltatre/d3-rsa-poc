@@ -29,7 +29,7 @@ const HeaderTitle = ({
     return null;
   }
   return (
-    <div className={`${getStringProperty(className)} flex items-center justify-between gap-2 lg:gap-6 text-white`}>
+    <div className={`${getStringProperty(className)} flex items-center justify-between gap-2 lg:gap-6`}>
       <Typography
         variant={headingTag as TypographyVariant}
         className={getBooleanProperty(hideHeaderTitle) ? 'hidden' : ''}

@@ -122,10 +122,6 @@ const setMetadataFromModule = async (
   seoData: NextMetadata | null
 ) => {
   switch (moduleId) {
-    case 'Story':
-      const story = await getEntity(ForgeDapiEntityCode.stories, slug);
-      pageMetadata = story ? overrideStoryMetadata(pageMetadata, story) : enrichPageMetadata(nextMetadata, seoData);
-      break;
     case 'AlbumMosaic':
       const album = await getEntity(ForgeDapiEntityCode.albums, slug);
       pageMetadata = album ? overrideAlbumMetadata(pageMetadata, album) : enrichPageMetadata(nextMetadata, seoData);
@@ -142,10 +138,26 @@ const setMetadataFromModule = async (
         ? overrideVideoMetadata(pageMetadata, divaVideo)
         : enrichPageMetadata(nextMetadata, seoData);
       break;
+    case 'JWPlayerVideo':
+      const jWPlayerVideo = await getEntity(ForgeDapiEntityCode.jwPlayerVideos, slug);
+      pageMetadata = jWPlayerVideo
+        ? overrideVideoMetadata(pageMetadata, jWPlayerVideo)
+        : enrichPageMetadata(nextMetadata, seoData);
+      break;
     case 'LiveBlogging':
       const liveBlogging = await getBlogEntity(slug, false);
       pageMetadata = liveBlogging
         ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging)
+        : enrichPageMetadata(nextMetadata, seoData);
+      break;
+    case 'Story':
+      const story = await getEntity(ForgeDapiEntityCode.stories, slug);
+      pageMetadata = story ? overrideStoryMetadata(pageMetadata, story) : enrichPageMetadata(nextMetadata, seoData);
+      break;
+    case 'YouTubeVideo':
+      const youTubeVideo = await getEntity(ForgeDapiEntityCode.youTubeVideos, slug);
+      pageMetadata = youTubeVideo
+        ? overrideVideoMetadata(pageMetadata, youTubeVideo)
         : enrichPageMetadata(nextMetadata, seoData);
       break;
   }

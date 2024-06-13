@@ -48,7 +48,11 @@ const Hamburger = ({ data }: { data: ComponentProps }) => {
           </div>
           {hasFrontendConfiguration && (
             <div className="flex gap-2 pb-4 justify-center w-full">
-              <LanguageSwitcher hasLanguageSeparator variables={data.variables} allSiteConfiguration={frontendConfiguration}/>
+              <LanguageSwitcher
+                hasLanguageSeparator
+                variables={data.variables}
+                allSiteConfiguration={frontendConfiguration}
+              />
             </div>
           )}
         </div>

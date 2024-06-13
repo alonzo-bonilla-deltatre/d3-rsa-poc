@@ -1,9 +1,8 @@
-import { getBooleanProperty, getHideLayout, getStringProperty } from '@/helpers/pageComponentPropertyHelper';
-import { ComponentProps, HeaderTitleProps, LayoutProps } from '@/models/types/components';
+import { getHideLayout } from '@/helpers/pageComponentPropertyHelper';
+import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
 import SectionContainer from '@/components/commons/SectionContainer/SectionContainer';
-import HeaderTitle from '@/components/commons/HeaderTitle/HeaderTitle';
 import React from 'react';
 
 const Section = ({ data }: { data: ComponentProps }) => {

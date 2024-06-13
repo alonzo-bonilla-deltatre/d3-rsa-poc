@@ -22,13 +22,13 @@ const LanguageSwitcher = ({
   languageContainerCssClasses = 'overflow-auto inline-flex gap-2',
   languageSeparatorCssClasses = 'border-l border-l-text-component-commons-language-switcher-separator rotate-[17deg]',
   hasLanguageSeparator,
-  variables
+  variables,
 }: LanguageSwitcherProps) => {
   allSiteConfiguration = allSiteConfiguration ?? getFrontendAllSiteConfiguration();
   const navItemCssClasses = languageNavItemCssClasses ?? languageNavItemCssClasses;
   const containerNavItemCssClasses = languageContainerNavItemCssClasses ?? languageContainerNavItemCssClasses;
   const pageBaseUrl = getDataVariable(variables, 'pageBaseUrl');
-  
+
   return (
     <div className={languageContainerCssClasses}>
       {allSiteConfiguration &&
@@ -41,7 +41,10 @@ const LanguageSwitcher = ({
               >
                 <a
                   href={new URL('/', item.url).href}
-                  className={twMerge(navItemCssClasses, pageBaseUrl && item.url.startsWith(pageBaseUrl) ? 'font-bold' : '')}
+                  className={twMerge(
+                    navItemCssClasses,
+                    pageBaseUrl && item.url.startsWith(pageBaseUrl) ? 'font-bold' : ''
+                  )}
                 >
                   {translate(item.translation)}
                 </a>
