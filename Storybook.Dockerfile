@@ -1,5 +1,19 @@
-﻿FROM amazon/aws-cli:2.16.0 AS aws-diva-login
+﻿FROM node:22.2.0-alpine3.20 AS deps
 WORKDIR /app
+
+RUN corepack enable && \
+  yarn set version 4.2.2
+
+RUN apk add --no-cache aws-cli
+
+ARG token
+ARG Yarnrc=".yarnrc.yml"
+
+RUN echo "nodeLinker: node-modules" >> ${Yarnrc}
+
+RUN yarn config set npmScopes.d3-forge.npmRegistryServer "https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/"
+RUN yarn config set npmScopes.d3-forge.npmAuthToken ${token}
+RUN yarn config set npmScopes.d3-forge.npmAlwaysAuth "true"
 
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
@@ -8,38 +22,19 @@ ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
 ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 
-RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain deltatre-diva --domain-owner 058264107880 --region eu-central-1 --query authorizationToken --output text` && \
-    echo "${CODEARTIFACT_AUTH_TOKEN}" > ./aws-diva-token.txt
+RUN aws codeartifact login --tool npm --domain deltatre-diva --domain-owner 058264107880 --repository Diva
 
-FROM node:22.2.0-alpine3.20 AS deps
-WORKDIR /app
+RUN yarn config set npmScopes.deltatre-vxp.npmRegistryServer "https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/"
+RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain deltatre-diva --domain-owner 058264107880 --region eu-central-1 --query authorizationToken --output text` && \
+    yarn config set npmScopes.deltatre-vxp.npmAuthToken ${CODEARTIFACT_AUTH_TOKEN}
+RUN yarn config set npmScopes.deltatre-vxp.npmAlwaysAuth "true"
 
 COPY ./ ./
-COPY --from=aws-diva-login /app/aws-diva-token.txt ./aws-diva-token.txt  
 
-# Add authentication to .yarnrc.yml file for azuredevops npm custom packages
-ARG token
-ARG GitHubToken
-ARG Yarnrc=".yarnrc.yml"
-RUN export CODEARTIFACT_AUTH_TOKEN=$(cat ./aws-diva-token.txt) && \
-  echo "nodeLinker: node-modules" >> ${Yarnrc} && \
-  echo "npmScopes:" >> ${Yarnrc} && \
-  echo "  d3-forge:" >> ${Yarnrc} && \
-  echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${token}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://alm.deltatre.it/tfs/D3Alm/_packaging/platforms.team.webplu/npm/registry/'" >> ${Yarnrc} && \
-  echo "  deltatre-vxp:" >> ${Yarnrc} && \
-  echo "    npmAlwaysAuth: true" >> ${Yarnrc} && \
-  echo "    npmAuthToken: ${GitHubToken}" >> ${Yarnrc} && \
-  echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ${Yarnrc}
-#  echo "    npmAuthToken: ${CODEARTIFACT_AUTH_TOKEN}" >> ${Yarnrc} && \
-#  echo "    npmRegistryServer: 'https://deltatre-diva-058264107880.d.codeartifact.eu-central-1.amazonaws.com/npm/Diva/'" >> ${Yarnrc}
-# End .yarnrc.yml auth
-
-RUN corepack enable && \
-  yarn set version 4.2.2 && \
-  yarn install --immutable
+RUN yarn install --immutable
 RUN yarn run build-storybook
+
+RUN rm -f ${Yarnrc}
 
 FROM nginx:stable-alpine AS runner
 COPY nginx.conf /etc/nginx/nginx.conf
