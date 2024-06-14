@@ -30,7 +30,8 @@ const exclusions = exclusionsList.join(',').trim();
 const testInclusions = '**/*.test.ts';
 
 const pullrequestOptions = {
-  "sonar.login": token,
+  "sonar.scm.provider": "git",
+  "sonar.token": token,
   "sonar.host.url": "https://sqcorporate.deltatre.com/",
   "sonar.projectVersion": process.env.version,
   "sonar.projectKey": process.env.sonarprojectkey,
@@ -51,7 +52,8 @@ const pullrequestOptions = {
 };
 
 const manualBuildOptions = {
-  "sonar.login": token,
+  "sonar.scm.provider": "git",
+  "sonar.token": token,
   "sonar.host.url": "https://sqcorporate.deltatre.com/",
   "sonar.projectVersion": process.env.version,
   "sonar.projectKey": process.env.sonarprojectkey,
