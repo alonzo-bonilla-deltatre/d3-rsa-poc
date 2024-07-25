@@ -19,8 +19,7 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
   if (moduleIsNotValid(data, ['slug'])) return null;
 
   const postId = getDataVariable(data.variables, 'postid');
-  // const pageUrl = getDataVariable(data.variables, 'pageUrl');
-  const pageUrl = 'http://localhost:3000/liveblogging/';
+  const pageUrl = getDataVariable(data.variables, 'pageUrl');
   const params: ParamsType = {
     dapi_url: process.env.LIVE_BLOGGING_DAPI_BASE_URL ?? '',
     page_url: pageUrl,
