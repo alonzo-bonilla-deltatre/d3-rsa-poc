@@ -5,6 +5,7 @@ import HtmlOembed from '@/components/commons/Oembed/HtmlOembed';
 import InstagramOembed from '@/components/commons/Oembed/InstagramOembed';
 import TwitterOembed from '@/components/commons/Oembed/TwitterOembed';
 import FacebookOembed from '@/components/commons/Oembed/FacebookOembed';
+import TikTokOembed from '@/components/commons/Oembed/TikTokOembed';
 
 type OembedProps = {
   entity?: StoryPart;
@@ -24,6 +25,7 @@ const Oembed = ({ entity }: OembedProps) => {
 
   const isTwitter = content['provider_name'] && content['provider_name'].toLowerCase() === 'twitter';
   const isInstagram = content['provider_name'] && content['provider_name'].toLowerCase() === 'instagram';
+  const isTikTok = content['provider_name'] && content['provider_name'].toLowerCase() === 'tiktok';
   let isFacebook = false;
 
   if (content['provider_name'] && content['provider_name'].toLowerCase() === 'facebook') {
@@ -41,6 +43,8 @@ const Oembed = ({ entity }: OembedProps) => {
         return <InstagramOembed html={html}></InstagramOembed>;
       case isFacebook:
         return <FacebookOembed html={html}></FacebookOembed>;
+      case isTikTok:
+        return <TikTokOembed html={html}></TikTokOembed>;
       default:
         return <HtmlOembed html={html}></HtmlOembed>;
     }

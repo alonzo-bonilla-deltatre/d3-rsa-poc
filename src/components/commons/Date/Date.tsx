@@ -13,8 +13,8 @@ type DateProps = {
 
 const Date = ({ date, dateType }: DateProps) => {
   const translate = useTranslate();
-  const envVars = useEnvVars();
-  const isRtlSiteDir = isRtlSiteDirection(envVars.LANGUAGE ?? '');
+  const { LANGUAGE } = useEnvVars();
+  const isRtlSiteDir = isRtlSiteDirection(LANGUAGE ?? '');
   let translatedDate: string | null = ``;
   if (!date) {
     return null;

@@ -29,10 +29,12 @@ const sampleBlog: LiveBloggingBlogEntity = {
   title: 'test blog',
   slug: 'test-blog',
   description: 'this is a test blog',
+  publisher: 'test publisher',
   tags: sampleTags,
   language: 'en-GB',
   dateFrom: '',
   dateTo: '',
+  datePublished: '2022-01-01T00:00:00Z',
   lastUpdateDate: '2022-01-01T00:00:00Z',
   timeZone: {
     offset: 'UTC+01:00DST',
@@ -78,6 +80,7 @@ const sampleBlog: LiveBloggingBlogEntity = {
 
 const samplePost: LiveBloggingPostEntity = {
   postId: 'test-post-id',
+  headline: 'headline',
   tags: sampleTags,
   author: {
     fullName: 'test author',
@@ -100,6 +103,7 @@ const samplePost: LiveBloggingPostEntity = {
   ],
   properties: {},
   timestamp: '2022-01-01T00:00:00Z',
+  lastModifiedDate: '2022-01-01T00:00:00Z',
 };
 
 const sampleBlogs: LiveBloggingBlogEntity[] = [sampleBlog];

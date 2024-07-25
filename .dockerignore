@@ -30,7 +30,6 @@ README.md
 **/appsettings.Development.json
 **/localhost.crt
 **/localhost.key
-renovate.json
 **/NuGet.Config
 test-report.xml
 .yarn

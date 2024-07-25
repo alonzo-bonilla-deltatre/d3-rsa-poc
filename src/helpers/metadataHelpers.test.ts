@@ -1,5 +1,6 @@
 import { sampleStory as storyEntityMock } from '@/__mocks__/entities/story';
 import {
+  getTagTitleOrLabel,
   overrideAlbumMetadata,
   overrideDefaultMetadata,
   overrideLiveBloggingMetadata,
@@ -10,7 +11,7 @@ import { getSrcWithTransformation } from '@/utilities/cloudinaryTransformationsU
 import { Metadata } from 'next';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { sampleAlbum } from '@/__mocks__/entities/sampleAlbum';
-import { sampleBlog } from '@/__mocks__/entities/sampleLiveblogging';
+import { sampleBlog, samplePost } from '@/__mocks__/entities/sampleLiveblogging';
 
 jest.mock('@/utilities/cloudinaryTransformationsUtility', () => {
   const originalModule = jest.requireActual('@/utilities/cloudinaryTransformationsUtility');
@@ -153,6 +154,7 @@ describe('overrideDefaultMetadata', () => {
     expect(result.description).toEqual('description');
   });
 });
+
 describe('overrideAlbumMetadata', () => {
   afterEach(() => {
     jest.restoreAllMocks();
@@ -192,6 +194,7 @@ describe('overrideAlbumMetadata', () => {
     expect(result?.twitter?.description).toBe(entity.description);
   });
 });
+
 describe('overrideStoryMetadata', () => {
   afterEach(() => {
     jest.restoreAllMocks();
@@ -234,6 +237,7 @@ describe('overrideStoryMetadata', () => {
     expect(result?.twitter?.description).toBe(storyEntity.headline);
   });
 });
+
 describe('overrideVideoMetadata', () => {
   afterEach(() => {
     jest.restoreAllMocks();
@@ -339,5 +343,103 @@ describe('overrideLiveBloggingMetadata', () => {
     }
     expect(result?.twitter?.title).toBe(bolg.title);
     expect(result?.twitter?.description).toBe('');
+  });
+
+  const baseMetadata: Metadata = {
+    title: 'Base Title',
+    description: 'Base Description',
+    openGraph: {},
+    twitter: {},
+  };
+
+  it('returns base metadata when blog is null', () => {
+    const result = overrideLiveBloggingMetadata(baseMetadata, null);
+    expect(result).toEqual(baseMetadata);
+  });
+
+  it('overrides metadata with blog entity fields', () => {
+    const result = overrideLiveBloggingMetadata(baseMetadata, sampleBlog);
+    expect(result.title).toEqual(sampleBlog.title);
+
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: string;
+      publishedTime?: string;
+      modifiedTime?: string;
+      authors?: null | string | URL | Array<string | URL>;
+    };
+    expect(og.type).toEqual('article');
+    expect(og.publishedTime).toEqual(sampleBlog.datePublished);
+    expect(og.modifiedTime).toEqual(sampleBlog.lastUpdateDate);
+  });
+
+  it('overrides metadata with post entity fields when provided', () => {
+    const result = overrideLiveBloggingMetadata(baseMetadata, sampleBlog, samplePost);
+    expect(result.title).toEqual(samplePost.headline);
+
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: string;
+      publishedTime?: string;
+      modifiedTime?: string;
+      authors?: null | string | URL | Array<string | URL>;
+    };
+    expect(og.publishedTime).toEqual(sampleBlog.datePublished);
+    expect(og.modifiedTime).toEqual(sampleBlog.lastUpdateDate);
+  });
+
+  it('uses blog contentDate when post timestamp is not available', () => {
+    const modifiedPostEntity = { ...samplePost, timestamp: '' };
+    const result = overrideLiveBloggingMetadata(baseMetadata, sampleBlog, modifiedPostEntity);
+
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: string;
+      publishedTime?: string;
+      modifiedTime?: string;
+      authors?: null | string | URL | Array<string | URL>;
+    };
+    expect(og.publishedTime).toEqual(sampleBlog.datePublished);
+  });
+
+  it('uses blog lastUpdatedDate when post timestamp is not available', () => {
+    const modifiedPostEntity = { ...samplePost, timestamp: '' };
+    const result = overrideLiveBloggingMetadata(baseMetadata, sampleBlog, modifiedPostEntity);
+
+    // OpenGraphArticle is not exported so we replicate its definition
+    const og = result?.openGraph as OpenGraph & {
+      type: string;
+      publishedTime?: string;
+      modifiedTime?: string;
+      authors?: null | string | URL | Array<string | URL>;
+    };
+    expect(og.modifiedTime).toEqual(sampleBlog.lastUpdateDate);
+  });
+});
+
+describe('getTagTitleOrLabel', () => {
+  it('returns title when tag has title property', () => {
+    const tag = { title: 'News', slug: 'news' };
+    expect(getTagTitleOrLabel(tag as any)).toEqual('News');
+  });
+
+  it('returns label when tag has label property', () => {
+    const tag = { label: 'Breaking', slug: 'breaking' };
+    expect(getTagTitleOrLabel(tag as any)).toEqual('Breaking');
+  });
+
+  it('returns label when tag has label property but undefined', () => {
+    const tag = { label: undefined };
+    expect(getTagTitleOrLabel(tag as any)).toEqual('');
+  });
+
+  it('returns slug when tag has neither title nor label property', () => {
+    const tag = { slug: 'general' }; // Simulating a minimal tag object
+    expect(getTagTitleOrLabel(tag as any)).toEqual('general');
+  });
+
+  it('returns empty string when tag has no title, label, or slug property', () => {
+    const tag = {}; // Simulating an empty tag object
+    expect(getTagTitleOrLabel(tag as any)).toEqual('');
   });
 });

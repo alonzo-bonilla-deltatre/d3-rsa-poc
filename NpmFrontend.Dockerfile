@@ -2,7 +2,7 @@ FROM node:22.2.0-alpine3.20 AS yarn-install
 WORKDIR /app
 
 RUN corepack enable && \
-  yarn set version 4.2.2
+  yarn set version 4.3.1
 
 RUN apk add --no-cache aws-cli
 
@@ -30,6 +30,8 @@ RUN export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --d
 RUN yarn config set npmScopes.deltatre-vxp.npmAlwaysAuth "true"
 
 COPY ./package.json ./yarn.lock ./
+
+RUN cat ${Yarnrc}
 
 RUN yarn install --immutable
 

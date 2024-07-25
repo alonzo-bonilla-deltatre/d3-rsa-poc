@@ -14,7 +14,7 @@ const InstagramOembed = ({ ...props }: OembedProps) => {
     const scriptId = 'instagram-embed-script';
 
     const initializeInstagramEmbeds = () => {
-      const instagram = (window as any).instagram;
+      const instagram = (window as any).instgrm;
       if (instagram?.Embeds) {
         instagram.Embeds.process();
       } else {
@@ -22,11 +22,10 @@ const InstagramOembed = ({ ...props }: OembedProps) => {
           const script = document.createElement('script');
           script.id = scriptId;
           script.src = '//www.instagram.com/embed.js';
-          script.async = true;
-          document.body.appendChild(script);
+          document.head.appendChild(script);
 
           script.onload = () => {
-            const instagram = (window as any).instagram;
+            const instagram = (window as any).instgrm;
             instagram?.Embeds?.process();
           };
         }
@@ -34,13 +33,6 @@ const InstagramOembed = ({ ...props }: OembedProps) => {
     };
 
     initializeInstagramEmbeds();
-
-    return () => {
-      const existingScript = document.getElementById(scriptId);
-      if (existingScript) {
-        document.body.removeChild(existingScript);
-      }
-    };
   }, [html]);
 
   if (!html) return null;

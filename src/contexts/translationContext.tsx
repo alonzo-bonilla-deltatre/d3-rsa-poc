@@ -24,6 +24,10 @@ export const TranslationContext = createContext<Record<string, Translation> | un
  * @param {any} props.translations - The translations to pass down the component tree.
  * @returns {React.ReactElement} A context provider that passes the translations to all children.
  */
-export const TranslationProvider = ({ children, translations }: { children: React.ReactNode; translations: any }) => (
-  <TranslationContext.Provider value={translations}>{children}</TranslationContext.Provider>
-);
+export const TranslationProvider = ({
+  children,
+  translations,
+}: {
+  children: React.ReactNode;
+  translations: any;
+}): React.ReactElement => <TranslationContext.Provider value={translations}>{children}</TranslationContext.Provider>;

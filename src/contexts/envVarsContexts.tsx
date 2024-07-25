@@ -30,6 +30,6 @@ export const EnvVarsProvider = ({
 }: {
   envVars: Record<string, string | number | boolean | undefined>;
   children: React.ReactNode;
-}) => {
+}): React.ReactElement => {
   return <EnvVarContext.Provider value={envVars}>{children}</EnvVarContext.Provider>;
 };

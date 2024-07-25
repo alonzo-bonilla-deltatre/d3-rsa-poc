@@ -14,33 +14,30 @@ const FacebookOembed = ({ ...props }: OembedProps) => {
     const scriptId = 'facebook-embed-script';
 
     const initializeFacebookEmbeds = () => {
-      const facebook = (window as any).facebook;
-      if (facebook?.Embeds) {
-        facebook.Embeds.process();
+      const facebook = (window as any).FB;
+      if (facebook?.FB) {
+        facebook?.FB?.xfbml.parse();
       } else {
         if (!document.getElementById(scriptId)) {
           const script = document.createElement('script');
           script.id = scriptId;
           script.src = '//connect.facebook.net/en_US/sdk.js';
           script.async = true;
-          document.body.appendChild(script);
+          document.head.appendChild(script);
 
           script.onload = () => {
-            const facebook = (window as any).facebook;
-            facebook?.Embeds?.process();
+            const facebook = (window as any).FB;
+            facebook.init({
+              xfbml: true,
+              version: 'v19.0',
+            });
+            facebook?.FB?.xfbml.parse();
           };
         }
       }
     };
 
     initializeFacebookEmbeds();
-
-    return () => {
-      const existingScript = document.getElementById(scriptId);
-      if (existingScript) {
-        document.body.removeChild(existingScript);
-      }
-    };
   }, [html]);
 
   if (!html) return null;

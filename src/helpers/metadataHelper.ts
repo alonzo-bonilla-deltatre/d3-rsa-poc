@@ -2,7 +2,7 @@
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { Metadata } from 'next';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import { LiveBloggingBlogEntity, LiveBloggingTagEntity } from '@/models/types/liveblogging';
+import { LiveBloggingBlogEntity, LiveBloggingPostEntity, LiveBloggingTagEntity } from '@/models/types/liveblogging';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 
 /**
@@ -23,11 +23,11 @@ import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
  */
 export const overrideDefaultMetadata = (
   parentMetadata: Metadata,
-  entity: DistributionEntity | LiveBloggingBlogEntity
+  entity: DistributionEntity | LiveBloggingBlogEntity,
 ): Metadata => {
   const image: string = getSrcWithTransformation(
     entity?.thumbnail?.templateUrl ?? null,
-    transformations.thumbnail_landscape_detail.desktop.transformation
+    transformations.thumbnail_landscape_detail.desktop.transformation,
   );
 
   const title: string = entity.title;
@@ -64,11 +64,11 @@ export const overrideDefaultMetadata = (
  * @param {Tag | LiveBloggingTagEntity} tag - The tag object to check.
  * @returns {string} The title or label of the tag, or an empty string if neither is present.
  */
-const getTagTitleOrLabel = (tag: Tag | LiveBloggingTagEntity) => {
+export const getTagTitleOrLabel = (tag: Tag | LiveBloggingTagEntity): string => {
   if ('title' in tag) {
     return tag.title;
   } else if ('label' in tag) {
-    return tag.label;
+    return tag.label ?? '';
   } else if ('slug' in tag) {
     return tag.slug;
   } else {
@@ -148,7 +148,7 @@ export const overrideAlbumMetadata = (parentMetadata: Metadata, entity: Distribu
  */
 export const overrideVideoMetadata = (
   parentMetadata: Metadata,
-  entity: DistributionEntity | LiveBloggingBlogEntity
+  entity: DistributionEntity | LiveBloggingBlogEntity,
 ): Metadata => {
   const metadata = overrideDefaultMetadata(parentMetadata, entity);
   metadata.openGraph = {
@@ -159,31 +159,49 @@ export const overrideVideoMetadata = (
 };
 
 /**
- * Overrides the default metadata of a given live blogging entity with specific metadata fields.
+ * Overrides the default metadata for live blogging entities with specific metadata fields.
  *
- * This function takes a parent metadata object and a live blogging entity, and overrides the metadata fields with specific fields from the entity.
- * The entity's thumbnail is transformed and used for the open graph and twitter images.
- * The entity's title is used for the title and open graph title.
- * The entity's description is used for the description, open graph description, and twitter description.
- * The entity's tags are mapped to their labels and used for the open graph tags.
- * If the entity does not have a description, an empty string is used for the description.
- * If the entity does not have a thumbnail or the thumbnail does not have a templateUrl, null is used for the images.
- * If the entity does not have tags, null is used for the open graph tags.
- * The open graph type is set to 'article'.
- * The open graph published time and modified time are set to the entity's last updated date.
+ * This function customizes the metadata for live blogging content by using specific fields from the provided live blogging entity and optionally a post.
+ * It starts with a base metadata object and applies transformations and overrides based on the properties of the live blogging entity and post.
+ * The function is designed to handle cases where only a blog entity is provided or both a blog and a post entity are provided.
+ * The resulting metadata includes customized titles, descriptions, and Open Graph properties tailored to the live blogging content.
+ * It ensures that the metadata accurately reflects the content's current state, including its publication and last modified times.
+ * This function is particularly useful for enhancing the SEO and shareability of live blogging content on social media platforms.
  *
- * @param {Metadata} parentMetadata - The parent metadata to be overridden.
- * @param {LiveBloggingBlogEntity} entity - The live blogging entity whose fields are to be used for overriding.
- * @returns {Metadata} The overridden metadata.
+ * @param {Metadata} parentMetadata - The initial metadata object that will be overridden with specific fields from the live blogging entity.
+ * @param {LiveBloggingBlogEntity} blog - The live blogging entity containing the fields to override the parent metadata.
+ * @param {LiveBloggingPostEntity} [post] - Optional. A specific post within the live blogging entity to further customize the metadata.
+ * @returns {Metadata} The customized metadata object with overrides applied from the live blogging entity and optionally a post.
  */
-export const overrideLiveBloggingMetadata = (parentMetadata: Metadata, entity: LiveBloggingBlogEntity): Metadata => {
-  const metadata = overrideDefaultMetadata(parentMetadata, entity);
+export const overrideLiveBloggingMetadata = (
+  parentMetadata: Metadata,
+  blog: LiveBloggingBlogEntity | null,
+  post?: LiveBloggingPostEntity | null,
+): Metadata => {
+  if (!blog) return parentMetadata;
+  const metadata = overrideDefaultMetadata(parentMetadata, blog);
+  const author = post?.author?.fullName ? post?.author?.fullName : blog?.publisher;
+  const image: string = getSrcWithTransformation(
+    blog?.coverImage?.templateUrl,
+    transformations.thumbnail_landscape_detail.desktop.transformation,
+  );
+  metadata.title = post?.headline ? post?.headline : blog.title;
+  metadata.twitter = {
+    ...metadata.twitter,
+    images: image ?? null,
+  };
   metadata.openGraph = {
     ...metadata.openGraph,
     type: 'article',
-    publishedTime: entity.contentDate,
-    modifiedTime: entity.lastUpdatedDate,
-    authors: entity.createdBy,
+    images: [{ url: image ?? null }],
+    publishedTime: post?.timestamp ? post?.timestamp : blog?.datePublished,
+    modifiedTime: post?.lastModifiedDate ? post?.lastModifiedDate : blog?.lastUpdateDate,
   } as OpenGraph;
+  if (author) {
+    metadata.openGraph = {
+      ...metadata.openGraph,
+      authors: author,
+    } as OpenGraph;
+  }
   return Object.assign(parentMetadata, metadata);
 };

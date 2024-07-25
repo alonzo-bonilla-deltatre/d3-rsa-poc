@@ -1,25 +1,26 @@
 ﻿'use client';
 
-import { Widget } from '@d3-forge/d3-liveblog-widget';
+import { PostPartProps, Widget } from '@d3-forge/d3-liveblog-widget';
+import DivaVideoPlayer from '@/components/commons/DivaVideoPlayer/DivaVideoPlayer';
+import { memo } from 'react';
 
 type LiveBloggingClientProps = {
   blogData: any;
 };
 
-const labels = {
-  key_moments_title: 'Key Moments!!!',
-  hero_updated_label: 'Updated!!!',
-  btn_load_more_label: 'Load more!!!',
-  btn_new_content_label: 'New Updates!!!!',
-  share_link_copied_label: 'Copied!!!',
+const ForgeDivaPostPart = ({ content }: PostPartProps) => {
+  return <DivaVideoPlayer entity={content} />;
 };
 
 const LiveBloggingClient = ({ blogData }: LiveBloggingClientProps) => {
   return (
     <Widget
       {...blogData}
-      blogPageTitle={blogData?.config?.title}
-      labels={labels}
+      customizations={{
+        postParts: {
+          'forge-divavideo': memo(ForgeDivaPostPart) as typeof ForgeDivaPostPart,
+        },
+      }}
     />
   );
 };

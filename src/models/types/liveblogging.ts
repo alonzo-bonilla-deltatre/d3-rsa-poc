@@ -2,22 +2,23 @@
 import { LinkRuleVariation } from '@/models/types/linkRule';
 
 export type LiveBloggingBlogEntity = {
-  slug: string;
   title: string;
+  slug: string;
   description?: string;
+  publisher: string;
   tags: LiveBloggingTagEntity[];
   language: string;
   dateFrom: string;
   dateTo: string;
   lastUpdateDate: string;
+  datePublished: string;
   timeZone: Timezone;
-  totalPosts: number;
   coverImage?: CoverImageDistribution;
+  totalPosts: number;
   presentation: LiveBloggingPresentation;
   monetization: ReadMonetization | null;
   oembed: BlogOembed | null;
   event: BlogEventInfo | null;
-  widgetConfig: LiveBloggingWidgetConfig | null;
   url: string;
   [key: string]: any;
 };
@@ -53,13 +54,15 @@ export enum PostType {
 
 export type LiveBloggingPostEntity = {
   postId: string;
+  headline: string;
   parts: LiveBloggingPostPartEntity[];
   tags: LiveBloggingTagEntity[];
   timestamp: string;
+  lastModifiedDate: string;
   isSticky: boolean;
-  author: LiveBloggingAuthorEntity;
   keyMoment: KeyMoment;
   properties: object;
+  author: LiveBloggingAuthorEntity;
   type: PostType;
 };
 

@@ -1,5 +1,5 @@
 ﻿/* istanbul ignore file */
-import { Metadata, PageStructureItemType, StructureItem } from '@/models/types/pageStructure';
+import { Metadata, PageStructureItemType, StructureItem, Variable } from '@/models/types/pageStructure';
 import { enrichPageMetadata } from '@/helpers/pageHelper';
 import { Metadata as NextMetadata } from 'next';
 import { getEntity } from '@/services/forgeDistributionService';
@@ -9,118 +9,153 @@ import {
   overrideVideoMetadata,
   overrideLiveBloggingMetadata,
 } from '@/helpers/metadataHelper';
-import { getBlogEntity } from '@/services/liveBloggingDistributionService';
+import { getBlogEntity, getBlogPost } from '@/services/liveBloggingDistributionService';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
+import { getDataVariable } from '@/helpers/dataVariableHelper';
 
 // Global variable to hold the page metadata
 let pageMetadata: NextMetadata = {};
 
 /**
- * Function to render metadata for a structure item.
- * It enriches the provided `nextMetadata` with `seoData` and stores it in `pageMetadata`.
- * If `item` is not provided, it returns `pageMetadata`.
- * Otherwise, it calls `renderMetadataItem` with `item`, `nextMetadata`, and `seoData`,
- * and returns `pageMetadata` if it has a `title` property, or the enriched `nextMetadata` otherwise.
+ * Asynchronously renders metadata for a given structure item.
  *
- * @param {StructureItem} item - The structure item to render metadata for.
- * @param {NextMetadata} nextMetadata - The initial metadata.
- * @param {NextMetadata | null} seoData - The SEO data to enrich the metadata with.
- * @returns {Promise<Metadata | {}>} - The rendered metadata.
+ * This function is responsible for enriching the provided `nextMetadata` object with additional `seoData`.
+ * The enriched metadata is then stored in a global `pageMetadata` variable. If the `item` parameter is not
+ * provided, the function simply returns the current state of `pageMetadata`. If an `item` is provided, the
+ * function proceeds to call `renderMetadataItem` with the `item`, `nextMetadata`, and `seoData` as arguments.
+ * After the `renderMetadataItem` function call, it checks if `pageMetadata` has a `title` property. If it does,
+ * `pageMetadata` is returned; otherwise, it returns the metadata enriched with `seoData`. This function allows
+ * for dynamic rendering of metadata based on the structure of the content and SEO requirements.
+ *
+ * @param {StructureItem} item - The structure item for which to render metadata. Can be null.
+ * @param {NextMetadata} nextMetadata - The initial metadata object to be enriched.
+ * @param {NextMetadata | null} seoData - Additional SEO data to enrich the metadata with. Can be null.
+ * @param {Variable[]} [variables] - Optional. Additional variables that might influence metadata rendering.
+ * @returns {Promise<Metadata | {}>} A promise that resolves to the rendered metadata object or an empty object if no metadata could be rendered.
  */
 export const renderMetadata = async (
   item: StructureItem,
   nextMetadata: NextMetadata,
-  seoData: NextMetadata | null
+  seoData: NextMetadata | null,
+  variables?: Variable[]
 ): Promise<Metadata | {}> => {
   pageMetadata = enrichPageMetadata(nextMetadata, seoData);
   if (!item) {
     return pageMetadata;
   }
-  await renderMetadataItem(item, nextMetadata, seoData);
+  await renderMetadataItem(item, nextMetadata, seoData, variables);
   return pageMetadata?.title ? pageMetadata : enrichPageMetadata(nextMetadata, seoData);
 };
 
 /**
- * Function to render metadata for multiple structure items.
- * It iterates over the provided `items` and calls `renderMetadataItem` for each item.
+ * Asynchronously processes and renders metadata for an array of structure items.
  *
- * @param {StructureItem[] | undefined} items - The structure items to render metadata for.
- * @param {NextMetadata} nextMetadata - The initial metadata.
- * @param {NextMetadata | null} seoData - The SEO data to enrich the metadata with.
+ * This function is designed to handle an array of structure items, iterating through each item and
+ * applying metadata rendering logic individually. It leverages `renderMetadataItem` to process each item,
+ * ensuring that metadata is appropriately enriched based on the item's characteristics and any provided SEO data.
+ * This approach allows for batch processing of items, making it efficient for scenarios where multiple items
+ * need their metadata rendered or updated simultaneously.
+ *
+ * @param {StructureItem[] | undefined} items - An array of structure items to render metadata for. If undefined, the function will not perform any operations.
+ * @param {NextMetadata} nextMetadata - The base metadata object that will be used as the starting point for enrichment.
+ * @param {NextMetadata | null} seoData - Optional SEO data that can be used to further enrich the metadata. If null, no additional SEO-specific enrichment will be applied.
+ * @param {Variable[]} [variables] - An optional array of variables that may influence how metadata is rendered for each item.
+ * @returns {Promise<void>} A promise that resolves once all items have been processed. Does not return any value.
  */
 export const renderMetadataItems = async (
   items: StructureItem[] | undefined,
   nextMetadata: NextMetadata,
-  seoData: NextMetadata | null
-) => {
+  seoData: NextMetadata | null,
+  variables?: Variable[]
+): Promise<void> => {
   for (const item of items ?? []) {
-    await renderMetadataItem(item, nextMetadata, seoData);
+    await renderMetadataItem(item, nextMetadata, seoData, variables);
   }
 };
 
 /**
- * Function to render metadata for a single structure item.
- * If `item` is not provided, it returns `pageMetadata`.
- * If `item` is a template or layout, it calls `renderMetadataItems` with `item.items`, `nextMetadata`, and `seoData`.
- * If `item` is a module, it calls `setMetadataBasedOnItem` with `item`, `item.key.id`, `nextMetadata`, and `seoData`.
+ * Asynchronously renders metadata for a specific structure item.
  *
- * @param {StructureItem} item - The structure item to render metadata for.
- * @param {NextMetadata} nextMetadata - The initial metadata.
- * @param {NextMetadata | null} seoData - The SEO data to enrich the metadata with.
+ * This function is a key part of the metadata rendering process, handling the rendering of metadata for individual structure items.
+ * Depending on the type of the item (template, layout, or module), it delegates the task to other functions designed for batch processing or specific metadata setting.
+ *
+ * - If no item is provided, it simply returns the current global `pageMetadata`.
+ * - For template or layout items, it recursively processes their child items using `renderMetadataItems`.
+ * - For module items, it directly sets the metadata based on the module's specifics through `setMetadataBasedOnItem`.
+ *
+ * This approach allows for a flexible and scalable way to handle metadata rendering across different types of content structures.
+ *
+ * @param {StructureItem} item - The structure item to render metadata for. If null, returns the current `pageMetadata`.
+ * @param {NextMetadata} nextMetadata - The initial metadata object to be enriched.
+ * @param {NextMetadata | null} seoData - Optional SEO data for further enriching the metadata.
+ * @param {Variable[]} [variables] - Optional variables that might influence metadata rendering, specific to the structure item.
  */
 export const renderMetadataItem = async (
   item: StructureItem,
   nextMetadata: NextMetadata,
-  seoData: NextMetadata | null
+  seoData: NextMetadata | null,
+  variables?: Variable[]
 ) => {
   if (!item) {
     return pageMetadata;
   }
   if (item.type === PageStructureItemType.template || item.type === PageStructureItemType.layout) {
-    await renderMetadataItems(item.items, nextMetadata, seoData);
+    await renderMetadataItems(item.items, nextMetadata, seoData, variables);
   }
   if (item.type === PageStructureItemType.module) {
-    await setMetadataBasedOnItem(item, item.key.id, nextMetadata, seoData);
+    await setMetadataBasedOnItem(item, item.key.id, nextMetadata, seoData, variables);
   }
 };
 
 /**
- * Function to set metadata based on a structure item.
- * If `item` is provided and its `properties.preventSettingMetadata` property is `true`,
- * it calls `setMetadataFromModule` with `moduleId`, `item.properties.slug.toString()`, `nextMetadata`, and `seoData`.
+ * Asynchronously sets metadata for a given structure item based on its module ID.
+ * This function checks if the `preventSettingMetadata` property of the item is either not set or false,
+ * and if so, it proceeds to call `setMetadataFromModule` to set the metadata based on the module's specific logic.
+ * It's designed to selectively apply metadata settings, allowing certain modules to opt out of automatic metadata setting
+ * through their `preventSettingMetadata` property.
  *
- * @param {StructureItem | undefined} item - The structure item to set metadata based on.
- * @param {string} moduleId - The ID of the module to set metadata for.
- * @param {NextMetadata} nextMetadata - The initial metadata.
- * @param {NextMetadata | null} seoData - The SEO data to enrich the metadata with.
+ * @param {StructureItem | undefined} item - The structure item to set metadata based on. If undefined, no action is taken.
+ * @param {string} moduleId - The ID of the module to set metadata for. Determines which metadata override function is called.
+ * @param {NextMetadata} nextMetadata - The initial metadata object that may be enriched or overridden.
+ * @param {NextMetadata | null} seoData - Optional SEO data to enrich the metadata with. Can be null.
+ * @param {Variable[]} [variables] - Optional. Additional variables that might influence metadata setting.
  */
 const setMetadataBasedOnItem = async (
   item: StructureItem | undefined,
   moduleId: string,
   nextMetadata: NextMetadata,
-  seoData: NextMetadata | null
+  seoData: NextMetadata | null,
+  variables?: Variable[]
 ) => {
   if (item?.properties?.preventSettingMetadata === undefined || item?.properties?.preventSettingMetadata === false) {
-    await setMetadataFromModule(moduleId, item?.properties?.slug?.toString() ?? '', nextMetadata, seoData);
+    await setMetadataFromModule(moduleId, nextMetadata, seoData, item?.properties, variables);
   }
 };
 
 /**
- * Function to set metadata from a module.
- * It checks the `moduleId` and calls the corresponding metadata override function with `pageMetadata` and the retrieved entity.
- * If the entity cannot be retrieved, it enriches `nextMetadata` with `seoData`.
+ * Asynchronously sets metadata for a given structure item based on its module ID.
+ * This function dynamically selects the appropriate metadata override function based on the `moduleId` parameter.
+ * It attempts to retrieve the relevant entity using the `slug` property from the module's properties. If the entity
+ * is successfully retrieved, the corresponding override function is called to update the global `pageMetadata` object
+ * with specific metadata for the entity. If the entity cannot be retrieved, it falls back to enriching the `nextMetadata`
+ * object with any provided `seoData`. This mechanism allows for flexible and dynamic metadata setting based on the
+ * type of content being processed.
  *
- * @param {string} moduleId - The ID of the module to set metadata from.
- * @param {string} slug - The slug of the entity to get.
- * @param {NextMetadata} nextMetadata - The initial metadata.
- * @param {NextMetadata | null} seoData - The SEO data to enrich the metadata with.
+ * @param {string} moduleId - The ID of the module to set metadata from. Determines which override function is used.
+ * @param {NextMetadata} nextMetadata - The initial metadata object that may be enriched or overridden.
+ * @param {NextMetadata | null} seoData - Optional SEO data to enrich the metadata with. Can be null.
+ * @param {Record<string, unknown>} [properties] - The properties of the module, including the `slug` used to retrieve the entity.
+ * @param {Variable[]} [variables] - Optional. Additional variables that might influence metadata setting.
  */
 const setMetadataFromModule = async (
   moduleId: string,
-  slug: string,
   nextMetadata: NextMetadata,
-  seoData: NextMetadata | null
+  seoData: NextMetadata | null,
+  properties?: Record<string, unknown>,
+  variables?: Variable[]
 ) => {
+  const slug = properties?.slug?.toString() ?? '';
+  if (!slug) return;
   switch (moduleId) {
     case 'AlbumMosaic':
       const album = await getEntity(ForgeDapiEntityCode.albums, slug);
@@ -145,11 +180,20 @@ const setMetadataFromModule = async (
         : enrichPageMetadata(nextMetadata, seoData);
       break;
     case 'LiveBlogging':
-      const liveBlogging = await getBlogEntity(slug, false);
-      pageMetadata = liveBlogging
-        ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging)
-        : enrichPageMetadata(nextMetadata, seoData);
-      break;
+      const postId = getDataVariable(variables, 'postid');
+      const liveBlogging = await getBlogEntity(slug);
+      if (postId) {
+        const liveBloggingPost = await getBlogPost(slug, postId);
+        pageMetadata = liveBlogging
+          ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging, liveBloggingPost)
+          : enrichPageMetadata(nextMetadata, seoData);
+        break;
+      } else {
+        pageMetadata = liveBlogging
+          ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging)
+          : enrichPageMetadata(nextMetadata, seoData);
+        break;
+      }
     case 'Story':
       const story = await getEntity(ForgeDapiEntityCode.stories, slug);
       pageMetadata = story ? overrideStoryMetadata(pageMetadata, story) : enrichPageMetadata(nextMetadata, seoData);

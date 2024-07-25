@@ -1,4 +1,4 @@
-import { Metadata, StructureItem, Variable } from '@/models/types/pageStructure';
+import { Metadata, PageStructureData, StructureItem, Variable } from '@/models/types/pageStructure';
 import { setPageMetadata } from '@/services/metadataService';
 import { getPageStructure } from '@/services/pageService';
 import { Metadata as NextMetadata } from 'next';
@@ -116,14 +116,14 @@ export const enrichPageVariables = (defaultVariables: Variable[], { ...params })
 export const generatePageMetadata = async (params: { pageName: string[] }): Promise<NextMetadata> => {
   await setSiteTranslations();
   const path = requestUrlParser.getPathName(params);
-  const previewToken = ''; // The token is empty outside of the "preview" route
+  const previewToken = ''; // The token is empty outside the "preview" route
   const pageData = await getPageData(path, previewToken);
   if (!pageData) {
     return {};
   }
-  const { structure, metadataItems, seoData } = pageData;
+  const { structure, metadataItems, seoData, variables } = pageData;
   setFrontendAllSiteConfiguration(metadataItems);
-  return await renderMetadata(structure, {}, seoData);
+  return await renderMetadata(structure, {}, seoData, variables);
 };
 
 /**
@@ -142,7 +142,7 @@ export const getPageStructureFromVariablePath = async (
   variableName: string,
   variables?: Variable[],
   previewToken?: string
-) => {
+): Promise<PageStructureData | null> => {
   const path = getDataVariable(variables, variableName);
 
   if (!path) {
@@ -163,7 +163,7 @@ export const getPageStructureFromVariablePath = async (
  * @param {string} language - The language to check.
  * @returns {string} The site direction ('rtl' or 'ltr').
  */
-export const getSiteDirection = (language: string) => {
+export const getSiteDirection = (language: string): string => {
   return isRtlSiteDirection(language) ? 'rtl' : 'ltr';
 };
 
@@ -177,6 +177,6 @@ export const getSiteDirection = (language: string) => {
  * @param {string} language - The language to check.
  * @returns {boolean} True if the site direction is right-to-left, false otherwise.
  */
-export const isRtlSiteDirection = (language: string) => {
+export const isRtlSiteDirection = (language: string): boolean => {
   return language?.toLowerCase() === 'ar';
 };

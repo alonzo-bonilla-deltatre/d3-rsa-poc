@@ -2,20 +2,12 @@ import { sampleBlog, sampleBlogs, samplePost } from '@/__mocks__/entities/sample
 import axios from 'axios';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
-import { getBlogEntity, getBlogPosts, getBlogs } from '@/services/liveBloggingDistributionService';
-import { addLiveBloggingWidgetConfig } from '@/helpers/liveBloggingDistributionEntityHelper';
+import { getBlogEntity, getBlogPost, getBlogs } from '@/services/liveBloggingDistributionService';
 import { enrichDistributionEntities } from '@/helpers/liveBloggingBlogEntityHelper';
 import { LiveBloggingDistributionApiOption } from '@/models/types/liveblogging';
 
 jest.mock('axios');
 jest.mock('@/utilities/loggerUtility');
-jest.mock('@/helpers/liveBloggingDistributionEntityHelper', () => {
-  const actual = jest.requireActual('@/helpers/liveBloggingDistributionEntityHelper');
-  return {
-    ...actual,
-    addLiveBloggingWidgetConfig: jest.fn(),
-  };
-});
 jest.mock('@/helpers/liveBloggingBlogEntityHelper', () => {
   const actual = jest.requireActual('@/helpers/liveBloggingBlogEntityHelper');
   return {
@@ -40,12 +32,10 @@ describe('liveBloggingDistributionService', () => {
       mockAxiosGet.mockResolvedValueOnce({ data: sampleBlog });
 
       // ACT
-      await getBlogEntity('sample-blog', true);
+      await getBlogEntity('sample-blog');
 
       // ASSERT
       expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog`);
-
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(sampleBlog, `${urlBase}`, 'en-GB', 'sample-blog', true);
     });
 
     it('should handle error responses with no data', async () => {
@@ -53,15 +43,13 @@ describe('liveBloggingDistributionService', () => {
       mockAxiosGet.mockRejectedValueOnce({ message: 'unauthorized' });
 
       // ACT
-      await getBlogEntity('sample-blog', true);
+      await getBlogEntity('sample-blog');
 
       // ASSERT
       expect(mockLogger).toHaveBeenLastCalledWith(
         expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error: unauthorized'),
         LoggerLevel.error
       );
-
-      expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
     });
 
     it('should handle error responses with data', async () => {
@@ -75,7 +63,7 @@ describe('liveBloggingDistributionService', () => {
       });
 
       // ACT
-      await getBlogEntity('sample-blog', true);
+      await getBlogEntity('sample-blog');
 
       // ASSERT
       expect(mockLogger).toHaveBeenNthCalledWith(
@@ -83,8 +71,6 @@ describe('liveBloggingDistributionService', () => {
         expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error'),
         LoggerLevel.error
       );
-
-      expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
     });
 
     it('should return null in case of exception for empty url and return null', async () => {
@@ -93,98 +79,7 @@ describe('liveBloggingDistributionService', () => {
       process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
 
       // ACT
-      const result = await getBlogEntity('sample-blog', true);
-
-      // ASSERT
-      expect(result).toBeNull();
-      expect(logger.log as jest.Mock).toHaveBeenCalledWith(
-        expect.stringMatching('LIVEBLOGGING DISTRIBUTION API Error'),
-        LoggerLevel.error
-      );
-      process.env.LIVE_BLOGGING_DAPI_BASE_URL = apiUrl;
-    });
-  });
-
-  describe('getBlogPosts', () => {
-    it('should retrieve and enrich entity data successfully with skip e limit', async () => {
-      // ARRANGE
-      const queryOptions: LiveBloggingDistributionApiOption = {
-        limit: 1,
-        skip: 1,
-        variables: [],
-      };
-      mockAxiosGet.mockResolvedValueOnce({ data: samplePost });
-
-      // ACT
-      await getBlogPosts('sample-blog', true, queryOptions);
-
-      // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(
-        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts?$skip=1&$limit=1`
-      );
-
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(samplePost, `${urlBase}`, 'en-GB', 'sample-blog', true);
-    });
-
-    it('should retrieve and enrich entity data successfully without options', async () => {
-      // ARRANGE
-      mockAxiosGet.mockResolvedValueOnce({ data: samplePost });
-
-      // ACT
-      await getBlogPosts('sample-blog', true);
-
-      // ASSERT
-      expect(mockAxiosGet).toHaveBeenCalledWith(`${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts`);
-
-      expect(addLiveBloggingWidgetConfig).toHaveBeenCalledWith(samplePost, `${urlBase}`, 'en-GB', 'sample-blog', true);
-    });
-
-    it('should handle error responses with no data', async () => {
-      // ARRANGE
-      mockAxiosGet.mockRejectedValueOnce({ message: 'unauthorized' });
-
-      // ACT
-      await getBlogPosts('sample-blog', true, null);
-
-      // ASSERT
-      expect(mockLogger).toHaveBeenLastCalledWith(
-        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error: unauthorized'),
-        LoggerLevel.error
-      );
-
-      expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
-    });
-
-    it('should handle error responses with data', async () => {
-      // ARRANGE
-      mockAxiosGet.mockRejectedValueOnce({
-        message: 'unauthorized',
-        data: {
-          status: 401,
-          title: 'unauthorized',
-        },
-      });
-
-      // ACT
-      await getBlogPosts('sample-blog', true, null);
-
-      // ASSERT
-      expect(mockLogger).toHaveBeenNthCalledWith(
-        2,
-        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error'),
-        LoggerLevel.error
-      );
-
-      expect(addLiveBloggingWidgetConfig).toBeCalledTimes(0);
-    });
-
-    it('should return null in case of exception for empty url and return null', async () => {
-      // ARRANGE
-      const apiUrl = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
-      process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
-
-      // ACT
-      const result = await getBlogPosts('sample-blog', true, null);
+      const result = await getBlogEntity('sample-blog');
 
       // ASSERT
       expect(result).toBeNull();
@@ -241,7 +136,7 @@ describe('liveBloggingDistributionService', () => {
         LoggerLevel.error
       );
 
-      expect(enrichDistributionEntities).toBeCalledTimes(0);
+      expect(enrichDistributionEntities).toHaveBeenCalledTimes(0);
     });
 
     it('should handle error responses with data', async () => {
@@ -264,7 +159,7 @@ describe('liveBloggingDistributionService', () => {
         LoggerLevel.error
       );
 
-      expect(enrichDistributionEntities).toBeCalledTimes(0);
+      expect(enrichDistributionEntities).toHaveBeenCalledTimes(0);
     });
 
     it('should return null in case of exception for empty url and return null', async () => {
@@ -281,6 +176,86 @@ describe('liveBloggingDistributionService', () => {
         LoggerLevel.error
       );
       process.env.LIVE_BLOGGING_DAPI_BASE_URL = urlBase;
+    });
+  });
+
+  describe('getBlogPost', () => {
+    it('should retrieve and enrich entity data successfully with skip e limit', async () => {
+      // ARRANGE
+      mockAxiosGet.mockResolvedValueOnce({ data: samplePost });
+
+      // ACT
+      await getBlogPost('sample-blog', 'test-post-id');
+
+      // ASSERT
+      expect(mockAxiosGet).toHaveBeenCalledWith(
+        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts/test-post-id`
+      );
+    });
+
+    it('should retrieve and enrich entity data successfully without options', async () => {
+      // ARRANGE
+      mockAxiosGet.mockResolvedValueOnce({ data: samplePost });
+
+      // ACT
+      await getBlogPost('sample-blog', 'test-post-id');
+
+      // ASSERT
+      expect(mockAxiosGet).toHaveBeenCalledWith(
+        `${urlBase}/api/distribution/v1/en-GB/Blogs/sample-blog/Posts/test-post-id`
+      );
+    });
+
+    it('should handle error responses with no data', async () => {
+      // ARRANGE
+      mockAxiosGet.mockRejectedValueOnce({ message: 'unauthorized' });
+
+      // ACT
+      await getBlogPost('sample-blog', 'test-post-id');
+
+      // ASSERT
+      expect(mockLogger).toHaveBeenLastCalledWith(
+        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error: unauthorized'),
+        LoggerLevel.error
+      );
+    });
+
+    it('should handle error responses with data', async () => {
+      // ARRANGE
+      mockAxiosGet.mockRejectedValueOnce({
+        message: 'unauthorized',
+        data: {
+          status: 401,
+          title: 'unauthorized',
+        },
+      });
+
+      // ACT
+      await getBlogPost('sample-blog', 'test-post-id');
+
+      // ASSERT
+      expect(mockLogger).toHaveBeenNthCalledWith(
+        2,
+        expect.stringContaining('LIVEBLOGGING DISTRIBUTION API Error'),
+        LoggerLevel.error
+      );
+    });
+
+    it('should return null in case of exception for empty url and return null', async () => {
+      // ARRANGE
+      const apiUrl = process.env.LIVE_BLOGGING_DAPI_BASE_URL;
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = undefined;
+
+      // ACT
+      const result = await getBlogPost('sample-blog', 'test-post-id');
+
+      // ASSERT
+      expect(result).toBeNull();
+      expect(logger.log as jest.Mock).toHaveBeenCalledWith(
+        expect.stringMatching('LIVEBLOGGING DISTRIBUTION API Error'),
+        LoggerLevel.error
+      );
+      process.env.LIVE_BLOGGING_DAPI_BASE_URL = apiUrl;
     });
   });
 });

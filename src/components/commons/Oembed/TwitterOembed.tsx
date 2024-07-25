@@ -34,13 +34,6 @@ const TwitterOembed = ({ ...props }: OembedProps) => {
     };
 
     loadTwitterWidgets();
-
-    return () => {
-      const existingScript = document.getElementById(scriptId);
-      if (existingScript) {
-        document.body.removeChild(existingScript);
-      }
-    };
   }, [html]);
 
   if (!html) return null;

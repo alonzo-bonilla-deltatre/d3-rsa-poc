@@ -5,7 +5,7 @@ import { DistributionEntity } from '@/models/types/forge';
 import { useEnvVars } from '@/hooks/useEnvVars';
 import { DivaWebBoAdapter } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter'; // bo adapter sdk
 import '@deltatre-vxp/diva-sdk/diva-web-sdk/index.min.css';
-import { BoAdapterWebComponentProps } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter/types/types';
+import { BoAdapterWebComponentProps } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter/types';
 import { twMerge } from 'tailwind-merge'; // Import SDK style
 
 type DivaVideoPlayerProps = {

@@ -32,6 +32,6 @@ export const FeatureFlagsProvider = ({
 }: {
   featureFlags: FeatureFlagsContextType;
   children: React.ReactNode;
-}) => {
+}): React.ReactElement => {
   return <FeatureFlagsContext.Provider value={featureFlags}>{children}</FeatureFlagsContext.Provider>;
 };

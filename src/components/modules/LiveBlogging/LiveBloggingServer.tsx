@@ -7,6 +7,7 @@ import { ParamsType } from '@d3-forge/d3-liveblog-widget';
 import '@d3-forge/d3-liveblog-widget/style';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
+import { notFound } from 'next/navigation';
 
 type LiveBloggingServerProps = {
   slug?: string;
@@ -18,14 +19,16 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
   if (moduleIsNotValid(data, ['slug'])) return null;
 
   const postId = getDataVariable(data.variables, 'postid');
-  const pageUrl = getDataVariable(data.variables, 'pageUrl');
+  // const pageUrl = getDataVariable(data.variables, 'pageUrl');
+  const pageUrl = 'http://localhost:3000/liveblogging/';
   const params: ParamsType = {
     dapi_url: process.env.LIVE_BLOGGING_DAPI_BASE_URL ?? '',
     page_url: pageUrl,
     blog_slug: props.slug ?? '',
     culture: process.env.CULTURE ?? 'en-GB',
-    pollingTimeout: 5000,
+    pollingTimeout: 3000,
     post_id: postId,
+    post_id_path: '/post/',
   };
 
   let blogData = null;
@@ -37,6 +40,13 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
   }
 
   if (!blogData) return null;
+
+  // @ts-ignore
+  if (blogData?.error) {
+    // @ts-ignore
+    logger.log(blogData?.error, LoggerLevel.warning);
+    notFound();
+  }
 
   return <LiveBloggingClient blogData={blogData} />;
 };
