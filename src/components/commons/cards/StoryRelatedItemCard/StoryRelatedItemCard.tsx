@@ -57,7 +57,7 @@ const StoryRelatedItemCard = ({ entity }: CardProps) => {
             alt={entity.title}
             className={twMerge(
               'w-auto h-[revert-layer] object-[inherit] rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : '',
+              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />

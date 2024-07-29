@@ -29,7 +29,7 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
   };
 
   items?.forEach((item) => {
-    if (!item?.coverImage || item?.coverImage?.templateUrl === '') {
+    if (!item?.coverImage || !item?.coverImage?.templateUrl) {
       item.coverImage = fallbackImageAsset;
     }
   });
@@ -101,7 +101,12 @@ export const enrichDistributionEntities = /* istanbul ignore next */ async (
  * @param {string} tags - The tags to include in the query.
  * @returns {string} The query string for the API.
  */
-export const getQueryString = /* istanbul ignore next */ (skip: number, limit: number, tags: string) => {
+export const getQueryString = /* istanbul ignore next */ (
+  skip: number,
+  limit: number,
+  tags?: string,
+  eventId?: string
+) => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
   if (skip) {
@@ -115,6 +120,9 @@ export const getQueryString = /* istanbul ignore next */ (skip: number, limit: n
     tagSlugs.forEach((tag) => {
       queryString.push(`tags.slug=${tag}`);
     });
+  }
+  if (eventId) {
+    queryString.push(`eventId=${eventId}`);
   }
   return queryString.join('&');
 };

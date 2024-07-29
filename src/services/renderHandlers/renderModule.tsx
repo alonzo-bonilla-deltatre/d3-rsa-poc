@@ -24,6 +24,7 @@ import renderHtmlContent from '@/components/modules/HtmlContent/HtmlContentWrapp
 import renderImage from '@/components/modules/Image/ImageWrapper';
 import renderJWPlayerVideo from '@/components/modules/JWPlayerVideo/JWPlayerVideoWrapper';
 import renderLiveBlogging from '@/components/modules/LiveBlogging/LiveBloggingWrapper';
+import renderLiveBloggingGridList from '@/components/modules/LiveBloggingGridList/LiveBloggingGridListWrapper';
 import renderMenu from '@/components/modules/Menu/MenuWrapper';
 import renderPartners from '@/components/modules/Partners/PartnersWrapper';
 import renderSearchResults from '@/components/modules/SearchResults/SearchResultsWrapper';
@@ -58,6 +59,7 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   Image: renderImage,
   JWPlayerVideo: renderJWPlayerVideo,
   LiveBlogging: renderLiveBlogging,
+  LiveBloggingGridList: renderLiveBloggingGridList,
   Menu: renderMenu,
   Partners: renderPartners,
   SearchResults: renderSearchResults,

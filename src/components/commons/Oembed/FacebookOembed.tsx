@@ -21,7 +21,7 @@ const FacebookOembed = ({ ...props }: OembedProps) => {
         if (!document.getElementById(scriptId)) {
           const script = document.createElement('script');
           script.id = scriptId;
-          script.src = '//connect.facebook.net/en_US/sdk.js';
+          script.src = 'https://connect.facebook.net/en_US/sdk.js';
           script.async = true;
           document.head.appendChild(script);
 

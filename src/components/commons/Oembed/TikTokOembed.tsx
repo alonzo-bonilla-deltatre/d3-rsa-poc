@@ -8,16 +8,16 @@ type OembedProps = {
 };
 
 const TikTokOembed = ({ ...props }: OembedProps) => {
-  const { html} = props as OembedProps;
-  
+  const { html } = props as OembedProps;
+
   useEffect(() => {
     const scriptId = 'tiktok-widgets-script';
 
     const loadTikTokWidgets = () => {
       if ((window as any)?.tiktokEmbed) {
-        const tikTokList = Array.from(
-          document.querySelectorAll('blockquote.tiktok-embed')
-        ).filter((tt) => !tt.querySelector('iframe'));
+        const tikTokList = Array.from(document.querySelectorAll('blockquote.tiktok-embed')).filter(
+          (tt) => !tt.querySelector('iframe')
+        );
         (window as any)?.tiktokEmbed?.lib?.render(tikTokList);
       } else {
         if (!document.getElementById(scriptId)) {
@@ -27,9 +27,9 @@ const TikTokOembed = ({ ...props }: OembedProps) => {
           document.head.appendChild(script);
 
           script.onload = () => {
-            const tikTokList = Array.from(
-              document.querySelectorAll('blockquote.tiktok-embed')
-            ).filter((tt) => !tt?.querySelector('iframe'));
+            const tikTokList = Array.from(document.querySelectorAll('blockquote.tiktok-embed')).filter(
+              (tt) => !tt?.querySelector('iframe')
+            );
             (window as any)?.tiktokEmbed?.lib?.render(tikTokList);
           };
         }

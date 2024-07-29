@@ -31,8 +31,6 @@ RUN yarn config set npmScopes.deltatre-vxp.npmAlwaysAuth "true"
 
 COPY ./package.json ./yarn.lock ./
 
-RUN cat ${Yarnrc}
-
 RUN yarn install --immutable
 
 RUN rm -f ${Yarnrc}

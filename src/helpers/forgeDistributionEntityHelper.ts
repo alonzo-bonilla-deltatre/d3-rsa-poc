@@ -46,7 +46,7 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
   };
 
   items?.forEach((item) => {
-    if (!item?.thumbnail || item?.thumbnail?.templateUrl === '') {
+    if (!item?.thumbnail || !item?.thumbnail?.templateUrl) {
       item.thumbnail = fallbackImageAsset;
     }
 

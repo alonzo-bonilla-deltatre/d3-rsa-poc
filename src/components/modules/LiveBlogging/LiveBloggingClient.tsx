@@ -9,8 +9,9 @@ type LiveBloggingClientProps = {
 };
 
 const ForgeDivaPostPart = ({ content }: PostPartProps) => {
-  const description = content?.description || content?.headline || content?.summary || content?.fields?.description || '';
-  
+  const description =
+    content?.description || content?.headline || content?.summary || content?.fields?.description || '';
+
   return (
     <div className="d3lb-forge">
       <div className="d3lb-forge__inner">

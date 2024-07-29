@@ -6,6 +6,7 @@ import InstagramOembed from '@/components/commons/Oembed/InstagramOembed';
 import TwitterOembed from '@/components/commons/Oembed/TwitterOembed';
 import FacebookOembed from '@/components/commons/Oembed/FacebookOembed';
 import TikTokOembed from '@/components/commons/Oembed/TikTokOembed';
+import Script from 'next/script';
 
 type OembedProps = {
   entity?: StoryPart;
@@ -40,7 +41,16 @@ const Oembed = ({ entity }: OembedProps) => {
       case isTwitter:
         return <TwitterOembed html={html}></TwitterOembed>;
       case isInstagram:
-        return <InstagramOembed html={html}></InstagramOembed>;
+        return (
+          <>
+            <Script
+              src="https://www.instagram.com/embed.js"
+              strategy={'beforeInteractive'}
+              id={'instagram-embed-script'}
+            ></Script>
+            <InstagramOembed html={html}></InstagramOembed>
+          </>
+        );
       case isFacebook:
         return <FacebookOembed html={html}></FacebookOembed>;
       case isTikTok:

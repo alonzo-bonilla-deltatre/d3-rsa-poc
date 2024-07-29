@@ -21,7 +21,7 @@ const InstagramOembed = ({ ...props }: OembedProps) => {
         if (!document.getElementById(scriptId)) {
           const script = document.createElement('script');
           script.id = scriptId;
-          script.src = '//www.instagram.com/embed.js';
+          script.src = 'https://www.instagram.com/embed.js';
           document.head.appendChild(script);
 
           script.onload = () => {

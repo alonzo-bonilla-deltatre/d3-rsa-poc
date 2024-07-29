@@ -21,7 +21,7 @@ const TwitterOembed = ({ ...props }: OembedProps) => {
         if (!document.getElementById(scriptId)) {
           const script = document.createElement('script');
           script.id = scriptId;
-          script.src = '//platform.twitter.com/widgets.js';
+          script.src = 'https://platform.twitter.com/widgets.js';
           script.async = true;
           document.body.appendChild(script);
 

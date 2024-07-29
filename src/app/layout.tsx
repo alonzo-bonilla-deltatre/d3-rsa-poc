@@ -44,12 +44,11 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       className={`${content.variable} ${navigation.variable} ${heading.variable}`}
       dir={getSiteDirection(process.env.LANGUAGE ?? '')}
     >
-    <head>
-      <script id="instagram-embed-script" src="https://www.instagram.com/embed.js"></script>
-      <Favicon />
-    </head>
-    <body suppressHydrationWarning={true}>
-    <TranslationProvider translations={translations}>
+      <head>
+        <Favicon />
+      </head>
+      <body suppressHydrationWarning={true}>
+        <TranslationProvider translations={translations}>
           <EnvVarsProvider envVars={publicEnvVariables}>
             <FeatureFlagsProvider featureFlags={featureFlags}>{children}</FeatureFlagsProvider>
           </EnvVarsProvider>

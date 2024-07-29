@@ -23,11 +23,11 @@ import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
  */
 export const overrideDefaultMetadata = (
   parentMetadata: Metadata,
-  entity: DistributionEntity | LiveBloggingBlogEntity,
+  entity: DistributionEntity | LiveBloggingBlogEntity
 ): Metadata => {
   const image: string = getSrcWithTransformation(
     entity?.thumbnail?.templateUrl ?? null,
-    transformations.thumbnail_landscape_detail.desktop.transformation,
+    transformations.thumbnail_landscape_detail.desktop.transformation
   );
 
   const title: string = entity.title;
@@ -148,7 +148,7 @@ export const overrideAlbumMetadata = (parentMetadata: Metadata, entity: Distribu
  */
 export const overrideVideoMetadata = (
   parentMetadata: Metadata,
-  entity: DistributionEntity | LiveBloggingBlogEntity,
+  entity: DistributionEntity | LiveBloggingBlogEntity
 ): Metadata => {
   const metadata = overrideDefaultMetadata(parentMetadata, entity);
   metadata.openGraph = {
@@ -176,14 +176,14 @@ export const overrideVideoMetadata = (
 export const overrideLiveBloggingMetadata = (
   parentMetadata: Metadata,
   blog: LiveBloggingBlogEntity | null,
-  post?: LiveBloggingPostEntity | null,
+  post?: LiveBloggingPostEntity | null
 ): Metadata => {
   if (!blog) return parentMetadata;
   const metadata = overrideDefaultMetadata(parentMetadata, blog);
   const author = post?.author?.fullName ? post?.author?.fullName : blog?.publisher;
   const image: string = getSrcWithTransformation(
     blog?.coverImage?.templateUrl,
-    transformations.thumbnail_landscape_detail.desktop.transformation,
+    transformations.thumbnail_landscape_detail.desktop.transformation
   );
   metadata.title = post?.headline ? post?.headline : blog.title;
   metadata.twitter = {

@@ -129,4 +129,5 @@ export type LiveBloggingDistributionApiOption = {
   tags?: string;
   variables?: Variable[];
   linkRuleVariations?: LinkRuleVariation[];
+  eventId?: string;
 } | null;

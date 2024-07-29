@@ -72,7 +72,7 @@ export const getBlogs = async (
   try {
     const skip = options?.skip ?? 0;
     const limit = options?.limit ?? 0;
-    const queryParameters = getQueryString(skip, limit, options?.tags ?? '');
+    const queryParameters = getQueryString(skip, limit, options?.tags, options?.eventId);
     const queryString = queryParameters.length ? `?${queryParameters}` : '';
     let apiUrl = distributionBlogsUrl + queryString;
     apiUrl = new URL(apiUrl, dapiBlogUrl).href;
