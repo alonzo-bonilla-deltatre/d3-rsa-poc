@@ -32,6 +32,7 @@ async function expandSitemapItem(item: SitemapItem): Promise<SitemapItem[]> {
   const parameterValuesArray = [];
 
   for (const parameterName of parameterNames) {
+    if (!parameters[parameterName]?.validation) return []; // If a parameter is missing validation, we exclude the item itself
     const { dataPath, allowedValues } = parameters[parameterName].validation;
 
     if (dataPath || !allowedValues) {
