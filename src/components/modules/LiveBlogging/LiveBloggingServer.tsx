@@ -8,6 +8,7 @@ import '@d3-forge/d3-liveblog-widget/style';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 
 type LiveBloggingServerProps = {
   slug?: string;
@@ -47,7 +48,16 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
     notFound();
   }
 
-  return <LiveBloggingClient blogData={blogData} />;
+  return (
+    <>
+      <Script
+        src="https://www.instagram.com/embed.js"
+        strategy={'beforeInteractive'}
+        id={'instagram-embed-script'}
+      ></Script>
+      <LiveBloggingClient blogData={blogData} />
+      </>
+  );
 };
 
 export default LiveBloggingServer;
