@@ -1,15 +1,14 @@
-import { Metadata as MetadataItem } from '@/models/types/pageStructure';
-import { getSiteUrl } from '@/services/configurationService';
-import { Twitter } from 'next/dist/lib/metadata/types/twitter-types';
-import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
-import { translate } from '@/helpers/translationHelper';
 import {
   ForgeMetadataCategoryType,
   ForgeMetadataKeyType,
   ForgeSEOMetadataKey,
   ForgeSocialsMetadataKey,
 } from '@/models/types/forge';
+import { Metadata as MetadataItem } from '@/models/types/pageStructure';
+import { getSiteUrl } from '@/services/configurationService';
+import { Twitter } from 'next/dist/lib/metadata/types/twitter-types';
+import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 
 /**
  * Function to get a group of metadata items with the specified category.
@@ -74,13 +73,9 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
     return metadataItem?.value ?? defaultValue;
   };
 
-  const title = translate(getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.title));
-  const description = translate(
-    getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.description)
-  );
-  const siteName = translate(
-    getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.site_name)
-  );
+  const title = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.title);
+  const description = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.description);
+  const siteName = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.site_name);
   const siteUrl = await getSiteUrl();
   const robots = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.robots, 'noodp');
   const image = getValueOrDefault(metadataItems, ForgeMetadataCategoryType.seo, ForgeSEOMetadataKey.image);

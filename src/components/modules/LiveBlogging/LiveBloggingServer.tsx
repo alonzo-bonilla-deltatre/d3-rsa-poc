@@ -56,7 +56,7 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
         id={'instagram-embed-script'}
       ></Script>
       <LiveBloggingClient blogData={blogData} />
-      </>
+    </>
   );
 };
 

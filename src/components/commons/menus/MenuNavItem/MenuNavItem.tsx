@@ -44,7 +44,7 @@ const MenuNavItem = ({
   onKeyEnter,
 }: MenuNavItemProps) => {
   const isActive = getBooleanProperty(menuItem?.isActive);
-  const translatedText = menuItem?.tag ? menuItem.tag : (menuItem?.text ?? '');
+  const translatedText = menuItem?.tag ? menuItem.tag : menuItem?.text ?? '';
   const itemText = (
     <Typography variant={'navigation-m'}>
       <TranslatedLabel translationTermKey={translatedText} />

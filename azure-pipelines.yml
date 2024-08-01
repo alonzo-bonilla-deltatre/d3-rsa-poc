@@ -69,14 +69,14 @@ steps:
 
   - script: |
       # Define the regex pattern
-      PATTERN='^[0-9]+:[[:space:]].{1,100}$'
+      PATTERN='^FFR-[0-9]+:[[:space:]].{1,100}$'
 
       # Display the PR title
       echo "PR Title: $PR_TITLE"
 
       # Validate the PR title using regex
       if [[ ! $PR_TITLE =~ $PATTERN ]]; then
-        echo "PR title does not match the required format (e.g., 306193: add new feature). Please update the title."
+        echo "PR title does not match the required format (e.g., FFR-306193: add new feature). Please update the title."
         exit 1
       fi
     displayName: Validate PR Title
