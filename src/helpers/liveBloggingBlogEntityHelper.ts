@@ -29,7 +29,7 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
   };
 
   items?.forEach((item) => {
-    if (!item?.coverImage || !item?.coverImage?.templateUrl) {
+    if (!item?.coverImage?.templateUrl) {
       item.coverImage = fallbackImageAsset;
     }
   });
@@ -99,6 +99,7 @@ export const enrichDistributionEntities = /* istanbul ignore next */ async (
  * @param {number} skip - The number of items to skip.
  * @param {number} limit - The maximum number of items to return.
  * @param {string} tags - The tags to include in the query.
+ * @param {string} eventId - The eventId to include in the query.
  * @returns {string} The query string for the API.
  */
 export const getQueryString = /* istanbul ignore next */ (
@@ -106,7 +107,7 @@ export const getQueryString = /* istanbul ignore next */ (
   limit: number,
   tags?: string,
   eventId?: string
-) => {
+): string => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
   if (skip) {

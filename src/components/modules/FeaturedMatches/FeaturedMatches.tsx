@@ -3,11 +3,9 @@ import { getEntity } from '@/services/forgeDistributionService';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import FeaturedRow from '@/components/commons/FeaturedRow/FeaturedRow';
 import { getSingleAssetByTag } from '@/services/gadService';
-import dynamic from 'next/dynamic';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
-
-const MatchesList = dynamic(() => import('@/components/commons/matches/MatchesList/MatchesList'));
+import MatchesList from '@/components/commons/matches/MatchesList/MatchesList';
 
 const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
   const { headerTitle, headerTitleHeadingLevel, hideHeaderTitle, description, sponsorBy, isFullWidth } =

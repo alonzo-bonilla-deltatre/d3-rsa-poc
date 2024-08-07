@@ -41,16 +41,7 @@ const Oembed = ({ entity }: OembedProps) => {
       case isTwitter:
         return <TwitterOembed html={html}></TwitterOembed>;
       case isInstagram:
-        return (
-          <>
-            <Script
-              src="https://www.instagram.com/embed.js"
-              strategy={'beforeInteractive'}
-              id={'instagram-embed-script'}
-            ></Script>
-            <InstagramOembed html={html}></InstagramOembed>
-          </>
-        );
+        return <InstagramOembed html={html}></InstagramOembed>;
       case isFacebook:
         return <FacebookOembed html={html}></FacebookOembed>;
       case isTikTok:

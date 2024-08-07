@@ -118,6 +118,37 @@ describe('expandSitemapItem', () => {
     );
     expect(result.length).toBe(4); // two parameters with two values each should create 4 combinations
   });
+
+  it('should expand a sitemap item with empty array with missing validation prop', async () => {
+    // ARRANGE
+    const sitemapItemWithParameters: SitemapItem = {
+      url: {
+        value: '/path/{param1}/{param2}',
+        parameters: {
+          param1: {
+            validation: undefined as any,
+          },
+          param2: {
+            validation: {
+              allowedValues: 'alpha,beta',
+            },
+          },
+        },
+      },
+      alias: {
+        value: '/alias-path',
+        parameters: {
+          param1: {} as any,
+          param2: {} as any,
+        },
+      }
+    };
+    // ACT
+    const result = await expandSitemapItem(sitemapItemWithParameters);
+
+    // ASSERT
+    expect(result.length).toBe(0); // two parameters with two values each should create 4 combinations
+  });
 });
 
 describe('expandSitemapItems', () => {

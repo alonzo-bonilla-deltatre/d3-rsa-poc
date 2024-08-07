@@ -93,8 +93,8 @@ describe('getRobotsTxt', () => {
 
     // ASSERT
     expect(result).toContain('User-agent: *');
+    expect(result).toContain('Disallow: /');
     expect(result).not.toContain('Allow:');
-    expect(result).not.toContain('Disallow:');
     expect(result).not.toContain('Sitemap:');
 
     expect(getPageStructure).toHaveBeenCalledWith('~/', '');

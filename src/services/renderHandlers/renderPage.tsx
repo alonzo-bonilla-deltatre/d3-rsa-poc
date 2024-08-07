@@ -41,9 +41,9 @@ export const renderPage = async (params: {
     // Get the path name from the parameters
     const path = requestUrlParser.getPathName(params);
     const pageBaseUrl = await getSiteUrl();
-    const pageUrl = new URL(path, pageBaseUrl).href;
+    const pageUrl = pageBaseUrl ? new URL(path, pageBaseUrl).href : path;
 
-    // Set the preview token, defaulting to an empty string if no token is provided. The token is empty outside of the "preview" route
+    // Set the preview token, defaulting to an empty string if no token is provided. The token is empty outside the "preview" route
     const previewToken = token ?? '';
 
     // Set the Azure search options

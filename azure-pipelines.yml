@@ -109,7 +109,7 @@ steps:
 
   - template: build/common-solution/steps/OWASP-dependency-check.yml@templates
     parameters:
-      projectname: Deltatre.Frontend.React.Poc.Frontend
+      projectname: $(_prjName)
       report_path: /src/OWASPreports
       scanpath: ./
 

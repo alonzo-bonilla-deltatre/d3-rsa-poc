@@ -16,7 +16,6 @@ const exclusionsList = [
   '**/OWASPreports/**',
   '**/sonarqube-scanner.js',
   '**/helpers/customForgeDistributionEntityHelper.ts',
-  '**/helpers/liveBloggingDistributionEntityHelper.ts',
   '**/helpers/markdownHelper.ts',
   '**/services/azureCognitiveSearchService.ts',
   '**/services/configurationService.ts',

@@ -46,7 +46,7 @@ export const enrichEntitiesWithThumbnailPlaceholder = (
   };
 
   items?.forEach((item) => {
-    if (!item?.thumbnail || !item?.thumbnail?.templateUrl) {
+    if (!item?.thumbnail?.templateUrl) {
       item.thumbnail = fallbackImageAsset;
     }
 
@@ -70,7 +70,7 @@ export const enrichEntitiesWithThumbnailPlaceholderRelations = (
   fallbackImageAsset: ImageAsset
 ) => {
   item.relations?.forEach((relation) => {
-    if (!relation?.thumbnail || relation?.thumbnail?.templateUrl === '') {
+    if (!relation?.thumbnail?.templateUrl) {
       relation.thumbnail = fallbackImageAsset;
     }
   });
@@ -90,7 +90,7 @@ export const enrichEntitiesWithThumbnailPlaceholderParts = (
 ) => {
   item.parts?.forEach((part) => {
     if (part.type != ForgeEntityType.external && part.type != ForgeEntityType.markdown) {
-      if (!part?.thumbnail || !part?.thumbnail?.templateUrl || part?.thumbnail?.templateUrl === '') {
+      if (!part?.thumbnail?.templateUrl) {
         part.thumbnail = fallbackImageAsset;
       }
     }

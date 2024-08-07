@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import HtmlOembed from './HtmlOembed';
+import Script from 'next/script';
 
 type OembedProps = {
   html: string;
@@ -11,37 +12,24 @@ const TikTokOembed = ({ ...props }: OembedProps) => {
   const { html } = props as OembedProps;
 
   useEffect(() => {
-    const scriptId = 'tiktok-widgets-script';
-
-    const loadTikTokWidgets = () => {
-      if ((window as any)?.tiktokEmbed) {
-        const tikTokList = Array.from(document.querySelectorAll('blockquote.tiktok-embed')).filter(
-          (tt) => !tt.querySelector('iframe')
-        );
-        (window as any)?.tiktokEmbed?.lib?.render(tikTokList);
-      } else {
-        if (!document.getElementById(scriptId)) {
-          const script = document.createElement('script');
-          script.id = scriptId;
-          script.src = 'https://www.tiktok.com/embed.js';
-          document.head.appendChild(script);
-
-          script.onload = () => {
-            const tikTokList = Array.from(document.querySelectorAll('blockquote.tiktok-embed')).filter(
-              (tt) => !tt?.querySelector('iframe')
-            );
-            (window as any)?.tiktokEmbed?.lib?.render(tikTokList);
-          };
-        }
-      }
-    };
-
-    loadTikTokWidgets();
+    const tikTokList = Array.from(document.querySelectorAll('blockquote.tiktok-embed')).filter(
+      (tt) => !tt.querySelector('iframe'),
+    );
+    (window as any)?.tiktokEmbed?.lib?.render(tikTokList);
   }, []);
 
   if (!html) return null;
 
-  return <HtmlOembed html={html} />;
+  return (
+    <>
+      <Script
+        src="https://www.tiktok.com/embed.js"
+        strategy={'beforeInteractive'}
+        id={'instagram-embed-script'}
+      ></Script>
+      <HtmlOembed html={html} />
+    </>
+  );
 };
 
 export default TikTokOembed;

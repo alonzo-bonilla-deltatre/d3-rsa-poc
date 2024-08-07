@@ -24,14 +24,18 @@ type RobotsProps = {
  *
  * @returns {Promise<string | null>} - The content of the robots.txt file or `null` if the page structure cannot be retrieved.
  */
-export const getRobotsTxt = async () => {
+export const getRobotsTxt = async (): Promise<string | null> => {
   const pageStructure = await getPageStructure('~/', '');
   if (!pageStructure) {
     return null;
   }
   const metadata: Metadata[] = pageStructure.data.metadata;
 
-  const { sitemaps, allows, disallows } = getRobotsProps(metadata);
+  let { sitemaps, allows, disallows } = getRobotsProps(metadata);
+  
+  if (allows.length === 0 && disallows.length === 0) {
+    disallows = ['/'];
+  }
 
   const sitemapEntries: string = sitemaps.map((sitemap) => `Sitemap: ${sitemap}`).join('\n');
   const allowEntries: string[] = allows.map((allow) => `Allow: ${allow}`);

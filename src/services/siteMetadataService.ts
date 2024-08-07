@@ -9,7 +9,7 @@ import {
   overrideVideoMetadata,
   overrideLiveBloggingMetadata,
 } from '@/helpers/metadataHelper';
-import { getBlogEntity, getBlogPost } from '@/services/liveBloggingDistributionService';
+import { getBlogEntity, getBlogPost, getBlogs } from '@/services/liveBloggingDistributionService';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 
@@ -62,7 +62,7 @@ export const renderMetadata = async (
  * @param {Variable[]} [variables] - An optional array of variables that may influence how metadata is rendered for each item.
  * @returns {Promise<void>} A promise that resolves once all items have been processed. Does not return any value.
  */
-export const renderMetadataItems = async (
+const renderMetadataItems = async (
   items: StructureItem[] | undefined,
   nextMetadata: NextMetadata,
   seoData: NextMetadata | null,
@@ -90,7 +90,7 @@ export const renderMetadataItems = async (
  * @param {NextMetadata | null} seoData - Optional SEO data for further enriching the metadata.
  * @param {Variable[]} [variables] - Optional variables that might influence metadata rendering, specific to the structure item.
  */
-export const renderMetadataItem = async (
+const renderMetadataItem = async (
   item: StructureItem,
   nextMetadata: NextMetadata,
   seoData: NextMetadata | null,
@@ -180,10 +180,21 @@ const setMetadataFromModule = async (
         : enrichPageMetadata(nextMetadata, seoData);
       break;
     case 'LiveBlogging':
-      const postId = getDataVariable(variables, 'postid');
-      const liveBlogging = await getBlogEntity(slug);
+      let blogSlug = slug ?? '';
+      const tags = properties?.tags as string[] ?? [];
+      const eventId = properties?.eventId as string;
+      if (!slug && tags?.length) {
+        const blogs = await getBlogs({
+          tags: tags?.toString(),
+          eventId: eventId,
+        });
+        const blog = blogs?.[0] ?? null;
+        blogSlug = blog?.slug ?? '';
+      }
+      const postId = getDataVariable(variables, 'postid') as string;
+      const liveBlogging = await getBlogEntity(blogSlug);
       if (postId) {
-        const liveBloggingPost = await getBlogPost(slug, postId);
+        const liveBloggingPost = await getBlogPost(blogSlug, postId);
         pageMetadata = liveBlogging
           ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging, liveBloggingPost)
           : enrichPageMetadata(nextMetadata, seoData);
