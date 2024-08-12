@@ -4,7 +4,6 @@ import { setPageMetadata } from '@/services/metadataService';
 import { indexStructure } from '@/__mocks__/pageStructures';
 import { Metadata } from 'next';
 import {
-  enrichPageMetadata,
   enrichPageVariables,
   generatePageMetadata,
   getPageData,
@@ -77,82 +76,6 @@ describe('getPageData', () => {
     expect(result?.metadataItems).toBe(indexStructure.data.metadata);
     expect(result?.variables).toBe(indexStructure.data.variables);
     expect(result?.seoData).toBe(seoData);
-  });
-});
-
-describe('enrichPageMetadata', () => {
-  it('should assign metadata properties when seoData is provided', () => {
-    // ARRANGE
-    const metadata = {};
-    const seoData = {
-      title: 'Page Title',
-      description: 'Page Description',
-      metadataBase: 'Page Metadata Base',
-      alternates: ['Alternate 1', 'Alternate 2'],
-      authors: ['Author 1', 'Author 2'],
-      robots: 'noindex',
-      openGraph: { ogProperty: 'OG Property' },
-      twitter: { twitterProperty: 'Twitter Property' },
-      other: { customProperty: 'Custom Property' },
-    } as unknown as Metadata;
-
-    // ACT
-    enrichPageMetadata(metadata, seoData);
-
-    // ASSERT
-    expect(metadata).toEqual({
-      title: 'Page Title',
-      description: 'Page Description',
-      metadataBase: 'Page Metadata Base',
-      alternates: ['Alternate 1', 'Alternate 2'],
-      authors: ['Author 1', 'Author 2'],
-      robots: 'noindex',
-      openGraph: { ogProperty: 'OG Property' },
-      twitter: { twitterProperty: 'Twitter Property' },
-      other: { customProperty: 'Custom Property' },
-    });
-  });
-
-  it('should not assign metadata properties when seoData is null', () => {
-    // ARRANGE
-    const metadata = {};
-    const seoData = null;
-
-    // ACT
-    enrichPageMetadata(metadata, seoData);
-
-    // ASSERT
-    expect(metadata).toEqual({});
-  });
-
-  it('should assign metadata properties when seoData is provided and use fallback for title and description if is empty', () => {
-    // ARRANGE
-    const metadata = {};
-    const seoData = {
-      metadataBase: 'Page Metadata Base',
-      alternates: ['Alternate 1', 'Alternate 2'],
-      authors: ['Author 1', 'Author 2'],
-      robots: 'noindex',
-      openGraph: { ogProperty: 'OG Property' },
-      twitter: { twitterProperty: 'Twitter Property' },
-      other: { customProperty: 'Custom Property' },
-    } as unknown as Metadata;
-
-    // ACT
-    enrichPageMetadata(metadata, seoData);
-
-    // ASSERT
-    expect(metadata).toEqual({
-      title: '',
-      description: '',
-      metadataBase: 'Page Metadata Base',
-      alternates: ['Alternate 1', 'Alternate 2'],
-      authors: ['Author 1', 'Author 2'],
-      robots: 'noindex',
-      openGraph: { ogProperty: 'OG Property' },
-      twitter: { twitterProperty: 'Twitter Property' },
-      other: { customProperty: 'Custom Property' },
-    });
   });
 });
 

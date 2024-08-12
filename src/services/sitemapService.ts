@@ -170,8 +170,10 @@ export async function getSitemapsList(): Promise<string[]> {
   const entityConfig = await getSiteMapEntitiesFromMetadata();
 
   return [
-    `${frontendBaseUrl}/sitemap.xml`,
-    ...entityConfig.map((config) => `${frontendBaseUrl}/sitemap-${config.name}.xml`),
+    frontendBaseUrl ? new URL('/sitemap.xml', frontendBaseUrl).href : '/sitemap.xml',
+    ...entityConfig.map((config) =>
+      frontendBaseUrl ? new URL(`/sitemap-${config.name}.xml`, frontendBaseUrl).href : `/sitemap-${config.name}.xml`
+    ),
   ];
 }
 

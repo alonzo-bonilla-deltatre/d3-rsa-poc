@@ -231,7 +231,7 @@ describe('Sitemap Services', () => {
   });
 
   describe('getSitemapIndexXml', () => {
-    it('should return the correct XML string for sitemap index', async () => {
+    it('should return the correct XML string for sitemap index with absolute url if languages url metadata is configured', async () => {
       // ARRANGE
       (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockApiResponse });
       (getPageStructure as jest.Mock).mockResolvedValueOnce(mockPageStructureResponse);
@@ -243,6 +243,20 @@ describe('Sitemap Services', () => {
       // ASSERT
       expect(result).toContain('<loc>http://localhost/sitemap.xml</loc>');
       expect(result).toContain('<loc>http://localhost/sitemap-article.xml</loc>');
+    });
+
+    it('should return the correct XML string for sitemap index with relative path if languages url metadata is not configured', async () => {
+      // ARRANGE
+      (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockApiResponse });
+      (getPageStructure as jest.Mock).mockResolvedValueOnce(mockPageStructureResponse);
+      (getSiteUrl as jest.Mock).mockResolvedValueOnce('');
+
+      // ACT
+      const result = await getSitemapIndexXml();
+
+      // ASSERT
+      expect(result).toContain('<loc>/sitemap.xml</loc>');
+      expect(result).toContain('<loc>/sitemap-article.xml</loc>');
     });
   });
 

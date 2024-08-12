@@ -105,7 +105,7 @@ export const overrideStoryMetadata = (parentMetadata: Metadata, entity: Distribu
     modifiedTime: entity.lastUpdatedDate,
     authors: entity.createdBy,
   } as OpenGraph;
-  return Object.assign(parentMetadata, metadata);
+  return metadata;
 };
 
 /**
@@ -125,8 +125,7 @@ export const overrideStoryMetadata = (parentMetadata: Metadata, entity: Distribu
  * @returns {Metadata} The overridden metadata.
  */
 export const overrideAlbumMetadata = (parentMetadata: Metadata, entity: DistributionEntity): Metadata => {
-  const metadata = overrideDefaultMetadata(parentMetadata, entity);
-  return Object.assign(parentMetadata, metadata);
+  return overrideDefaultMetadata(parentMetadata, entity);
 };
 
 /**
@@ -155,7 +154,7 @@ export const overrideVideoMetadata = (
     ...metadata.openGraph,
     type: 'video.other',
   };
-  return Object.assign(parentMetadata, metadata);
+  return metadata;
 };
 
 /**
@@ -203,5 +202,5 @@ export const overrideLiveBloggingMetadata = (
       authors: author,
     } as OpenGraph;
   }
-  return Object.assign(parentMetadata, metadata);
+  return metadata;
 };

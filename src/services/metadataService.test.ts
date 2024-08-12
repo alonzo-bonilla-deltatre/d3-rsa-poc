@@ -21,10 +21,9 @@ describe('setPageMetadata function', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  it('returns null if metadata list is null', async () => {
+  it('returns empty object if metadata list is null', async () => {
     const metadata = await setPageMetadata(null);
-
-    expect(metadata).toBeNull();
+    expect(metadata).toStrictEqual({});
   });
   it('should return the correct metadata content when title & desc data is missing', async () => {
     // ARRANGE

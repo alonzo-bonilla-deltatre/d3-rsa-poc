@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { getImageContainerCssClass, getLinkCssClass } from '@/components/modules/Image/ImageHelper';
+import { containerCssSize, getImageContainerCssClass, getLinkCssClass } from '@/components/modules/Image/ImageHelper';
 
 describe('getLinkCssClass', () => {
   test('should return default value if alignment is not set', () => {
@@ -90,5 +90,32 @@ describe('getImageContainerCssClass', () => {
 
     // ASSERT
     expect(result).toBe(linkCssClass);
+  });
+});
+
+describe('containerCssSize', () => {
+  it('returns correct CSS class for square_extraSmall', () => {
+    // ASSERT
+    expect(containerCssSize.square_extraSmall).toBe('max-w-[208px] max-h-[208px]');
+  });
+
+  it('returns correct CSS class for portrait_large', () => {
+    // ASSERT
+    expect(containerCssSize.portrait_large).toBe('max-w-[840px] max-h-[1120px]');
+  });
+
+  it('returns correct CSS class for landscape_medium', () => {
+    // ASSERT
+    expect(containerCssSize.landscape_medium).toBe('max-w-[624px] max-h-[351px]');
+  });
+
+  it('returns correct CSS class for hero_extraLarge', () => {
+    // ASSERT
+    expect(containerCssSize.hero_extraLarge).toBe('max-w-[1281px] max-h-[549px]');
+  });
+
+  it('returns correct CSS class for non-existent key', () => {
+    // ASSERT
+    expect(containerCssSize['non_existent_key']).toBeUndefined();
   });
 });

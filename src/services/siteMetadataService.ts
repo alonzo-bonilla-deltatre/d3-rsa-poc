@@ -1,17 +1,8 @@
-﻿/* istanbul ignore file */
-import { Metadata, PageStructureItemType, StructureItem, Variable } from '@/models/types/pageStructure';
-import { enrichPageMetadata } from '@/helpers/pageHelper';
+﻿import { PageStructureItemType, StructureItem, Variable } from '@/models/types/pageStructure';
 import { Metadata as NextMetadata } from 'next';
-import { getEntity } from '@/services/forgeDistributionService';
-import {
-  overrideAlbumMetadata,
-  overrideStoryMetadata,
-  overrideVideoMetadata,
-  overrideLiveBloggingMetadata,
-} from '@/helpers/metadataHelper';
-import { getBlogEntity, getBlogPost, getBlogs } from '@/services/liveBloggingDistributionService';
-import { ForgeDapiEntityCode } from '@/models/types/forge';
-import { getDataVariable } from '@/helpers/dataVariableHelper';
+import logger from '@/utilities/loggerUtility';
+import { LoggerLevel } from '@/models/types/logger';
+import { moduleHandlers, ModuleHandlers } from '@/services/moduleSeoMetadataHandlers/moduleSeoMetadataHandlers';
 
 // Global variable to hold the page metadata
 let pageMetadata: NextMetadata = {};
@@ -28,23 +19,21 @@ let pageMetadata: NextMetadata = {};
  * for dynamic rendering of metadata based on the structure of the content and SEO requirements.
  *
  * @param {StructureItem} item - The structure item for which to render metadata. Can be null.
- * @param {NextMetadata} nextMetadata - The initial metadata object to be enriched.
  * @param {NextMetadata | null} seoData - Additional SEO data to enrich the metadata with. Can be null.
  * @param {Variable[]} [variables] - Optional. Additional variables that might influence metadata rendering.
  * @returns {Promise<Metadata | {}>} A promise that resolves to the rendered metadata object or an empty object if no metadata could be rendered.
  */
 export const renderMetadata = async (
   item: StructureItem,
-  nextMetadata: NextMetadata,
-  seoData: NextMetadata | null,
+  seoData: NextMetadata,
   variables?: Variable[]
-): Promise<Metadata | {}> => {
-  pageMetadata = enrichPageMetadata(nextMetadata, seoData);
+): Promise<NextMetadata> => {
+  pageMetadata = {};
   if (!item) {
-    return pageMetadata;
+    return seoData;
   }
-  await renderMetadataItem(item, nextMetadata, seoData, variables);
-  return pageMetadata?.title ? pageMetadata : enrichPageMetadata(nextMetadata, seoData);
+  await renderMetadataItem(item, seoData, variables);
+  return pageMetadata?.title ? pageMetadata : seoData;
 };
 
 /**
@@ -57,19 +46,20 @@ export const renderMetadata = async (
  * need their metadata rendered or updated simultaneously.
  *
  * @param {StructureItem[] | undefined} items - An array of structure items to render metadata for. If undefined, the function will not perform any operations.
- * @param {NextMetadata} nextMetadata - The base metadata object that will be used as the starting point for enrichment.
  * @param {NextMetadata | null} seoData - Optional SEO data that can be used to further enrich the metadata. If null, no additional SEO-specific enrichment will be applied.
  * @param {Variable[]} [variables] - An optional array of variables that may influence how metadata is rendered for each item.
  * @returns {Promise<void>} A promise that resolves once all items have been processed. Does not return any value.
  */
 const renderMetadataItems = async (
   items: StructureItem[] | undefined,
-  nextMetadata: NextMetadata,
-  seoData: NextMetadata | null,
+  seoData: NextMetadata,
   variables?: Variable[]
 ): Promise<void> => {
-  for (const item of items ?? []) {
-    await renderMetadataItem(item, nextMetadata, seoData, variables);
+  if (!items || !items.length) {
+    return;
+  }
+  for (const item of items) {
+    await renderMetadataItem(item, seoData, variables);
   }
 };
 
@@ -86,24 +76,22 @@ const renderMetadataItems = async (
  * This approach allows for a flexible and scalable way to handle metadata rendering across different types of content structures.
  *
  * @param {StructureItem} item - The structure item to render metadata for. If null, returns the current `pageMetadata`.
- * @param {NextMetadata} nextMetadata - The initial metadata object to be enriched.
  * @param {NextMetadata | null} seoData - Optional SEO data for further enriching the metadata.
  * @param {Variable[]} [variables] - Optional variables that might influence metadata rendering, specific to the structure item.
  */
 const renderMetadataItem = async (
   item: StructureItem,
-  nextMetadata: NextMetadata,
-  seoData: NextMetadata | null,
+  seoData: NextMetadata,
   variables?: Variable[]
-) => {
+): Promise<void> => {
   if (!item) {
-    return pageMetadata;
+    return;
   }
   if (item.type === PageStructureItemType.template || item.type === PageStructureItemType.layout) {
-    await renderMetadataItems(item.items, nextMetadata, seoData, variables);
+    await renderMetadataItems(item.items, seoData, variables);
   }
   if (item.type === PageStructureItemType.module) {
-    await setMetadataBasedOnItem(item, item.key.id, nextMetadata, seoData, variables);
+    await setMetadataBasedOnItem(item, item.key.id, seoData, variables);
   }
 };
 
@@ -116,19 +104,17 @@ const renderMetadataItem = async (
  *
  * @param {StructureItem | undefined} item - The structure item to set metadata based on. If undefined, no action is taken.
  * @param {string} moduleId - The ID of the module to set metadata for. Determines which metadata override function is called.
- * @param {NextMetadata} nextMetadata - The initial metadata object that may be enriched or overridden.
  * @param {NextMetadata | null} seoData - Optional SEO data to enrich the metadata with. Can be null.
  * @param {Variable[]} [variables] - Optional. Additional variables that might influence metadata setting.
  */
 const setMetadataBasedOnItem = async (
   item: StructureItem | undefined,
   moduleId: string,
-  nextMetadata: NextMetadata,
-  seoData: NextMetadata | null,
+  seoData: NextMetadata,
   variables?: Variable[]
-) => {
+): Promise<void> => {
   if (item?.properties?.preventSettingMetadata === undefined || item?.properties?.preventSettingMetadata === false) {
-    await setMetadataFromModule(moduleId, nextMetadata, seoData, item?.properties, variables);
+    await setMetadataFromModule(moduleId, seoData, item?.properties, variables);
   }
 };
 
@@ -142,78 +128,22 @@ const setMetadataBasedOnItem = async (
  * type of content being processed.
  *
  * @param {string} moduleId - The ID of the module to set metadata from. Determines which override function is used.
- * @param {NextMetadata} nextMetadata - The initial metadata object that may be enriched or overridden.
  * @param {NextMetadata | null} seoData - Optional SEO data to enrich the metadata with. Can be null.
  * @param {Record<string, unknown>} [properties] - The properties of the module, including the `slug` used to retrieve the entity.
  * @param {Variable[]} [variables] - Optional. Additional variables that might influence metadata setting.
  */
 const setMetadataFromModule = async (
   moduleId: string,
-  nextMetadata: NextMetadata,
-  seoData: NextMetadata | null,
+  seoData: NextMetadata,
   properties?: Record<string, unknown>,
   variables?: Variable[]
-) => {
-  const slug = properties?.slug?.toString() ?? '';
-  if (!slug) return;
-  switch (moduleId) {
-    case 'AlbumMosaic':
-      const album = await getEntity(ForgeDapiEntityCode.albums, slug);
-      pageMetadata = album ? overrideAlbumMetadata(pageMetadata, album) : enrichPageMetadata(nextMetadata, seoData);
-      break;
-    case 'BrightcoveVideo':
-      const brightcoveVideo = await getEntity(ForgeDapiEntityCode.brightcoveVideos, slug);
-      pageMetadata = brightcoveVideo
-        ? overrideVideoMetadata(pageMetadata, brightcoveVideo)
-        : enrichPageMetadata(nextMetadata, seoData);
-      break;
-    case 'DivaVideo':
-      const divaVideo = await getEntity(ForgeDapiEntityCode.divaVideos, slug);
-      pageMetadata = divaVideo
-        ? overrideVideoMetadata(pageMetadata, divaVideo)
-        : enrichPageMetadata(nextMetadata, seoData);
-      break;
-    case 'JWPlayerVideo':
-      const jWPlayerVideo = await getEntity(ForgeDapiEntityCode.jwPlayerVideos, slug);
-      pageMetadata = jWPlayerVideo
-        ? overrideVideoMetadata(pageMetadata, jWPlayerVideo)
-        : enrichPageMetadata(nextMetadata, seoData);
-      break;
-    case 'LiveBlogging':
-      let blogSlug = slug ?? '';
-      const tags = properties?.tags as string[] ?? [];
-      const eventId = properties?.eventId as string;
-      if (!slug && tags?.length) {
-        const blogs = await getBlogs({
-          tags: tags?.toString(),
-          eventId: eventId,
-        });
-        const blog = blogs?.[0] ?? null;
-        blogSlug = blog?.slug ?? '';
-      }
-      const postId = getDataVariable(variables, 'postid') as string;
-      const liveBlogging = await getBlogEntity(blogSlug);
-      if (postId) {
-        const liveBloggingPost = await getBlogPost(blogSlug, postId);
-        pageMetadata = liveBlogging
-          ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging, liveBloggingPost)
-          : enrichPageMetadata(nextMetadata, seoData);
-        break;
-      } else {
-        pageMetadata = liveBlogging
-          ? overrideLiveBloggingMetadata(pageMetadata, liveBlogging)
-          : enrichPageMetadata(nextMetadata, seoData);
-        break;
-      }
-    case 'Story':
-      const story = await getEntity(ForgeDapiEntityCode.stories, slug);
-      pageMetadata = story ? overrideStoryMetadata(pageMetadata, story) : enrichPageMetadata(nextMetadata, seoData);
-      break;
-    case 'YouTubeVideo':
-      const youTubeVideo = await getEntity(ForgeDapiEntityCode.youTubeVideos, slug);
-      pageMetadata = youTubeVideo
-        ? overrideVideoMetadata(pageMetadata, youTubeVideo)
-        : enrichPageMetadata(nextMetadata, seoData);
-      break;
+): Promise<void> => {
+  try {
+    if (moduleId in moduleHandlers) {
+      const handler = moduleHandlers[moduleId as keyof ModuleHandlers];
+      pageMetadata = await handler(seoData, properties, variables);
+    }
+  } catch (e) {
+    logger.log(`${JSON.stringify(e)}`, LoggerLevel.error);
   }
 };

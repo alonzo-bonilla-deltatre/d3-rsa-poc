@@ -56,9 +56,9 @@ export const getMetadata = (
  * @param {MetadataItem[] | null} metadataItems - The metadata items to use.
  * @returns {Promise<Metadata | null>} - The page metadata or `null` if no metadata items were provided.
  */
-export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Promise<Metadata | null> => {
+export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Promise<Metadata> => {
   if (!metadataItems) {
-    return null;
+    return {};
   }
 
   const seoData: Metadata = {};

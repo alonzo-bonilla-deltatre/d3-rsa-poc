@@ -13,7 +13,7 @@ const TikTokOembed = ({ ...props }: OembedProps) => {
 
   useEffect(() => {
     const tikTokList = Array.from(document.querySelectorAll('blockquote.tiktok-embed')).filter(
-      (tt) => !tt.querySelector('iframe'),
+      (tt) => !tt.querySelector('iframe')
     );
     (window as any)?.tiktokEmbed?.lib?.render(tikTokList);
   }, []);

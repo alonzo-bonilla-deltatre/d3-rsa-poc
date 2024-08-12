@@ -27,7 +27,7 @@ export const getPageData = async (
   structure: StructureItem;
   metadataItems: Metadata[];
   variables: Variable[];
-  seoData: NextMetadata | null;
+  seoData: NextMetadata;
 } | null> => {
   const pageStructure = await getPageStructure(path, token);
   if (!pageStructure?.data) {
@@ -38,7 +38,7 @@ export const getPageData = async (
   const metadataItems = pageStructure.data.metadata;
   const variables = pageStructure.data.variables;
 
-  const seoData: NextMetadata | null = await setPageMetadata(metadataItems);
+  const seoData: NextMetadata = await setPageMetadata(metadataItems);
 
   return {
     structure,
@@ -46,34 +46,6 @@ export const getPageData = async (
     variables,
     seoData,
   };
-};
-
-/**
- * Enriches the metadata of a page with SEO data.
- *
- * This function takes a metadata object and SEO data as input. If the SEO data is provided,
- * it adds the SEO data to the metadata object and returns the enriched metadata object.
- * If the SEO data is not provided, it returns the metadata object as is.
- *
- * @param {Metadata | {}} metadata - The metadata object to enrich.
- * @param {NextMetadata | null} seoData - The SEO data to add to the metadata object.
- * @returns {Metadata | {}} The enriched metadata object.
- */
-export const enrichPageMetadata = (metadata: Metadata | {}, seoData: NextMetadata | null): Metadata | {} => {
-  if (seoData) {
-    Object.assign(metadata, {
-      title: seoData?.title ? seoData.title : '',
-      description: seoData?.description ? seoData?.description : '',
-      metadataBase: seoData?.metadataBase,
-      alternates: seoData?.alternates,
-      authors: seoData?.authors,
-      robots: seoData?.robots,
-      openGraph: seoData?.openGraph,
-      twitter: seoData?.twitter,
-      other: seoData?.other,
-    });
-  }
-  return metadata;
 };
 
 /**
@@ -123,7 +95,7 @@ export const generatePageMetadata = async (params: { pageName: string[] }): Prom
   }
   const { structure, metadataItems, seoData, variables } = pageData;
   setFrontendAllSiteConfiguration(metadataItems);
-  return await renderMetadata(structure, {}, seoData, variables);
+  return await renderMetadata(structure, seoData, variables);
 };
 
 /**

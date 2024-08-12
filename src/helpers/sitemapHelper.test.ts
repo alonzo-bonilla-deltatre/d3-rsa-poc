@@ -141,7 +141,7 @@ describe('expandSitemapItem', () => {
           param1: {} as any,
           param2: {} as any,
         },
-      }
+      },
     };
     // ACT
     const result = await expandSitemapItem(sitemapItemWithParameters);

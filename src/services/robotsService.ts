@@ -32,7 +32,7 @@ export const getRobotsTxt = async (): Promise<string | null> => {
   const metadata: Metadata[] = pageStructure.data.metadata;
 
   let { sitemaps, allows, disallows } = getRobotsProps(metadata);
-  
+
   if (allows.length === 0 && disallows.length === 0) {
     disallows = ['/'];
   }

@@ -21,7 +21,7 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
   let blogSlug = slug ?? '';
   if (!slug && !tags && !eventId) return null;
 
-  if (!slug && tags?.length || eventId) {
+  if ((!slug && tags?.length) || (!slug && eventId)) {
     const blogs = await getBlogs({
       tags: tags?.toString(),
       eventId: eventId,

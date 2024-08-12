@@ -62,7 +62,7 @@ export const getFrontendAllSiteConfiguration = (): FrontendConfiguration => {
  * @throws {Error} - If an error occurs while retrieving the page structure.
  */
 export const getSiteUrl = async () => {
-  if (!frontendConfiguration) {
+  if (!frontendConfiguration || !frontendConfiguration.allSites.length) {
     const pageStructure = await getPageStructure('~/');
     setFrontendAllSiteConfiguration(pageStructure?.data.metadata ?? []);
   }

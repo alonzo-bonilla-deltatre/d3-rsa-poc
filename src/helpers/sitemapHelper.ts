@@ -8,7 +8,9 @@ const removeDisallowItems = (items: SitemapItem[], disallowedValues: string[]): 
 
 const sitemapItemsManipulation = (items: SitemapItem[], frontendBaseUrl: string): SitemapItem[] => {
   return items.map((item) => {
-    const updatedUrlValue = item.url.value.replace('~', frontendBaseUrl);
+    const updatedUrlValue = frontendBaseUrl
+      ? new URL(item.url.value.replace('~', ''), frontendBaseUrl).href
+      : item.url.value.replace('~', '');
     return {
       ...item,
       url: {
