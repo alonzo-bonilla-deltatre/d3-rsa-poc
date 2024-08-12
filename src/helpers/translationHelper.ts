@@ -20,9 +20,14 @@ export const deleteSiteTranslations = () => {
  * Fetches and sets the site translations for the current culture.
  */
 export const setSiteTranslations = async () => {
-  const translations = await getAllTranslations();
-  const culture = `${process.env.CULTURE?.toLowerCase()}`;
-  siteTranslations = translations?.resources[culture]?.translation;
+  try {
+    const translations = await getAllTranslations();
+    const culture = `${process.env.CULTURE?.toLowerCase()}`;
+    siteTranslations = translations?.resources[culture]?.translation;
+  } catch (error) {
+    logger.log(`TRANSLATION error: ${JSON.stringify(error)}`, LoggerLevel.error);
+    siteTranslations = {};
+  }
 };
 
 /**

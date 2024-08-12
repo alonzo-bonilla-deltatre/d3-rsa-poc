@@ -31,6 +31,7 @@ import renderSearchResults from '@/components/modules/SearchResults/SearchResult
 import renderStory from '@/components/modules/Story/StoryWrapper';
 import renderText from '@/components/modules/Text/TextWrapper';
 import renderYouTubeVideo from '@/components/modules/YouTubeVideo/YouTubeVideoWrapper';
+import renderStaticText from '@/components/modules/StaticText/StaticTextWrapper';
 
 /**
  * A list of module components mapped to their respective render functions.
@@ -66,6 +67,7 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   Story: renderStory,
   Text: renderText,
   YouTubeVideo: renderYouTubeVideo,
+  StaticText: renderStaticText,
 };
 
 /**
