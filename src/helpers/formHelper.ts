@@ -45,7 +45,7 @@ export const validateFilesServer = (files: formidable.Files, fields: formidable.
     const acceptValuesArray = fields[key]?.[0]?.split(',');
     const isAccepted = value?.some((file) => acceptValuesArray?.includes(file.mimetype ?? '') && file.size > 0);
     if (!isAccepted) {
-      logger.log(`File ${value} has a not supported format`, LoggerLevel.error);
+      logger.log(`File ${JSON.stringify(value)} has a not supported format`, LoggerLevel.error);
       res.status(500).send('Not supported format');
       break;
     }
@@ -109,18 +109,18 @@ export const validateField = (field: {
   pattern?: string;
 }) => {
   if (!field.value && field.required) {
-    logger.log(`"${field.name}" must have a value`, LoggerLevel.error);
+    logger.log(`"${field?.name}" must have a value`, LoggerLevel.error);
     return false;
   }
   if (field.maxLength && field?.value && field.value?.toString().length > +field.maxLength) {
-    logger.log(`"${field.name}" has not a valid length`, LoggerLevel.error);
+    logger.log(`"${field?.name}" has not a valid length`, LoggerLevel.error);
     return false;
   }
   const pattern = field.pattern ? field.pattern : getDefaultInputPattern(field.fieldType as FormFieldType);
   if (pattern && field?.value) {
     const reg = new RegExp(pattern);
     if (!reg.test(field.value)) {
-      logger.log(`"${field.name}" does not respect the specific input pattern "${pattern}"`, LoggerLevel.error);
+      logger.log(`"${field?.name}" does not respect the specific input pattern "${pattern}"`, LoggerLevel.error);
       return false;
     }
   }

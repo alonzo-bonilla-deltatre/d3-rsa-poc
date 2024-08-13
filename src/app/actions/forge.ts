@@ -15,7 +15,7 @@ export async function getForgeEntity(
     return { data };
   } catch (e) {
     let message = errorMessage;
-    if (e instanceof Error) message = e.message;
+    if (e instanceof Error) message = e?.message ? e?.message : errorMessage;
     return { error: message };
   }
 }
@@ -30,7 +30,7 @@ export async function getForgeEntityList(
     return { data };
   } catch (e) {
     let message = errorMessage;
-    if (e instanceof Error) message = e.message;
+    if (e instanceof Error) message = e?.message ? e?.message : errorMessage;
     return { error: message };
   }
 }

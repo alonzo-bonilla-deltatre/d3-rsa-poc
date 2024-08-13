@@ -6,6 +6,7 @@
 } from '@/helpers/translationHelper';
 import { getAllTranslations } from '@/services/translationService';
 import logger from '@/utilities/loggerUtility';
+import { LoggerLevel } from '@/models/types/logger';
 
 jest.mock('@/services/translationService');
 jest.mock('@/utilities/loggerUtility');
@@ -263,5 +264,15 @@ describe('translationHelper', () => {
 
     // ASSERT
     expect(result).toEqual('Contact');
+  });
+
+  it('logs error and sets siteTranslations to undefined when fetching translations fails', async () => {
+    const error = new Error('Fetching error');
+    (getAllTranslations as jest.Mock).mockRejectedValue(error);
+
+    const siteTranslations = await setSiteTranslations();
+
+    expect(logger.log).toHaveBeenCalledWith(`TRANSLATION error: ${JSON.stringify(error)}`, LoggerLevel.error);
+    expect(siteTranslations).toEqual(undefined);
   });
 });

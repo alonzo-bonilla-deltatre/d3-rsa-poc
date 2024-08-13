@@ -22,11 +22,7 @@ const StaticText = async ({ data }: { data: ComponentProps }) => {
     return null;
   }
 
-  return (
-    <Markdown
-      markdownText={staticText}
-    />
-  );
+  return <Markdown markdownText={staticText} />;
 };
 
 export default StaticText;

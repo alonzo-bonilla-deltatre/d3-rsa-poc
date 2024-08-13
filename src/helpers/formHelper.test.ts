@@ -73,7 +73,10 @@ describe('validateFilesServer function', () => {
     // ACT
     validateFilesServer(invalidFiles as unknown as formidable.Files, fields, mockRes);
     // ASSERT
-    expect(mockLogger).toHaveBeenLastCalledWith('File [object Object] has a not supported format', LoggerLevel.error);
+    expect(mockLogger).toHaveBeenLastCalledWith(
+      'File [{"lastModifiedDate":2023,"newFilename":"286ddbe5360b27f9a2cdcef03.png","originalFilename":"localhost_3000_test_enr.png","mimetype":"image/svg","size":383354}] has a not supported format',
+      LoggerLevel.error
+    );
   });
 
   it('should not log and not break the foreach', () => {

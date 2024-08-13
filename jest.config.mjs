@@ -13,7 +13,6 @@ const config = {
   collectCoverageFrom: [
     "**/*.ts",
     "!**/coverage/**",
-    "!**/app/**",
     "!**/models/**",
     "!**/*.tsx", // Components don't have tests
     "!**/*.stories.{ts,tsx,js,jsx}*",

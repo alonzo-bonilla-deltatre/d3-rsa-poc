@@ -7,7 +7,6 @@ const exclusionsList = [
   '**/node_modules/**',  
   '**/coverage/**',  
   '**/__mocks__/**',  
-  '**/app/**',  
   '**/models/**',  
   '**/*.tsx',  
   '**/*.stories.*',  

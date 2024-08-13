@@ -1,8 +1,11 @@
-import { translate } from '@/helpers/translationHelper';
-import Link from '@/components/commons/Link/Link';
+'use client';
+
+import Link from 'next/link';
+import useTranslate from '@/hooks/useTranslate';
 import Typography from '@/components/commons/Typography/Typography';
 
 export default function NotFound() {
+  const translate = useTranslate();
   return (
     <section className="flex h-screen overflow-hidden m-0 p-0">
       <div className="m-auto">
@@ -29,7 +32,7 @@ export default function NotFound() {
           title={translate('back-to-homepage')}
           className={'uppercase transition duration-300 hover:text-link'}
         >
-          <Typography variant={'navigation-m'}>{translate('back-to-homepage')}</Typography>
+          <Typography variant={'navigation-l'}>{translate('back-to-homepage')}</Typography>
         </Link>
       </div>
     </section>

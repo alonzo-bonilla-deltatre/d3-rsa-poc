@@ -17,12 +17,12 @@ import { getHideModule } from './pageComponentPropertyHelper';
 export const moduleIsNotValid = (data: ComponentProps, validation?: string[]): boolean => {
   let notValid = false;
   if (getHideModule(data)) {
-    logger.log(`Cannot render ${data.itemKey?.id} module because it has been set as hidden`, LoggerLevel.warning);
+    logger.log(`Cannot render ${data?.itemKey?.id} module because it has been set as hidden`, LoggerLevel.warning);
     return true;
   }
   validation?.forEach((field) => {
     if (!Object.hasOwn(data.properties, field)) {
-      logger.log(`Cannot render ${data.itemKey?.id} module with empty '${field}'`, LoggerLevel.warning);
+      logger.log(`Cannot render ${data?.itemKey?.id} module with empty '${field}'`, LoggerLevel.warning);
       notValid = true;
     }
   });

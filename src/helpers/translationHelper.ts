@@ -11,7 +11,7 @@ let siteTranslations: Record<string, Translation> | undefined = undefined;
  * This function sets the `siteTranslations` cache to `undefined`.
  * @returns {Record<string, Translation> | undefined} The updated site translations.
  */
-export const deleteSiteTranslations = () => {
+export const deleteSiteTranslations = (): Record<string, Translation> | undefined => {
   siteTranslations = undefined;
   return siteTranslations;
 };
@@ -26,7 +26,7 @@ export const setSiteTranslations = async () => {
     siteTranslations = translations?.resources[culture]?.translation;
   } catch (error) {
     logger.log(`TRANSLATION error: ${JSON.stringify(error)}`, LoggerLevel.error);
-    siteTranslations = {};
+    siteTranslations = undefined;
   }
 };
 

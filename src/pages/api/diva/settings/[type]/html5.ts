@@ -22,7 +22,7 @@ const renderDivaPlayerSetting = (req: NextApiRequest, res: NextApiResponse) => {
     res.end();
   } catch (error) {
     logger.log(
-      `Error rendering Diva Player Setting for ${req.query.type}: ${JSON.stringify(error)}`,
+      `Error rendering Diva Player Setting for ${req?.query?.type}: ${JSON.stringify(error)}`,
       LoggerLevel.error
     );
     res.status(500).send('Internal server error');

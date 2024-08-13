@@ -81,7 +81,7 @@ export async function getSiteStructureData(): Promise<SitemapItem[] | null> {
     const expandedSitemap = await expandSitemapItems(cleanedValues);
     return sitemapItemsManipulation(expandedSitemap, frontendBaseUrl);
   } catch (error) {
-    logger.log(`Error during site structure generation: ${error}`, LoggerLevel.error);
+    logger.log(`Error during site structure generation: ${JSON.stringify(error)}`, LoggerLevel.error);
     return null;
   }
 }
@@ -113,7 +113,7 @@ export async function getSiteStructureXml(): Promise<string | null> {
           </urlset>`
     );
   } catch (error) {
-    logger.log(`Error in getSiteStructureXml: ${error}`, LoggerLevel.error);
+    logger.log(`Error in getSiteStructureXml: ${JSON.stringify(error)}`, LoggerLevel.error);
     return null;
   }
 }
@@ -140,7 +140,7 @@ export async function getSitemapEntityXml(sitemapName: string): Promise<string |
 
   if (!data?.items) {
     logger.log(
-      `Error in getSitemapEntityXml. No data for entity code ${entity.entity_code} have been found`,
+      `Error in getSitemapEntityXml. No data for entity code ${entity?.entity_code} have been found`,
       LoggerLevel.warning
     );
     return null;
@@ -149,7 +149,7 @@ export async function getSitemapEntityXml(sitemapName: string): Promise<string |
   const schemaConfig = SCHEMA_CONFIG[entity.schema];
 
   if (!schemaConfig) {
-    logger.log(`Error in getSitemapEntityXml. Schema ${entity.schema} not found`, LoggerLevel.warning);
+    logger.log(`Error in getSitemapEntityXml. Schema ${entity?.schema} not found`, LoggerLevel.warning);
     return null;
   }
 

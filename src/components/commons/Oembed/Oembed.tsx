@@ -6,7 +6,6 @@ import InstagramOembed from '@/components/commons/Oembed/InstagramOembed';
 import TwitterOembed from '@/components/commons/Oembed/TwitterOembed';
 import FacebookOembed from '@/components/commons/Oembed/FacebookOembed';
 import TikTokOembed from '@/components/commons/Oembed/TikTokOembed';
-import Script from 'next/script';
 
 type OembedProps = {
   entity?: StoryPart;

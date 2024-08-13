@@ -21,6 +21,12 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
         >
           {translate('500-oops-error')}
         </Typography>
+        <Typography
+          variant={'body-m'}
+          className="mb-12"
+        >
+          {translate('500-error-message')}
+        </Typography>
         <nav>
           <ul className="list-none flex space-x-5">
             <li>
@@ -29,7 +35,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
                 title={translate('back-to-homepage')}
                 className={'uppercase transition duration-300 hover:text-link'}
               >
-                <Typography variant={'navigation-m'}>{translate('back-to-homepage')}</Typography>
+                <Typography variant={'navigation-l'}>{translate('back-to-homepage')}</Typography>
               </Link>
             </li>
             <li>
@@ -37,7 +43,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
                 className="uppercase transition duration-300 hover:text-link"
                 onClick={() => reset()}
               >
-                <Typography variant={'navigation-m'}>{translate('try-again')}</Typography>
+                <Typography variant={'navigation-l'}>{translate('try-again')}</Typography>
               </button>
             </li>
           </ul>
