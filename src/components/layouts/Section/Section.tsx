@@ -1,4 +1,4 @@
-import { getHideLayout } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { StructureItem } from '@/models/types/pageStructure';
 import { renderItem } from '@/services/renderService';
@@ -13,8 +13,8 @@ const Section = ({ data }: { data: ComponentProps }) => {
 
   return (
     <SectionContainer
-      isFullWidth={isFullWidth}
-      removeSectionHtmlTag={removeSectionHtmlTag}
+      isFullWidth={getBooleanProperty(isFullWidth)}
+      removeSectionHtmlTag={getBooleanProperty(removeSectionHtmlTag)}
     >
       {data.items?.map((item: StructureItem) => renderItem(item, data.variables, data.metadata, data.previewToken))}
     </SectionContainer>

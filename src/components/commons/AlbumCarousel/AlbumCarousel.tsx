@@ -1,6 +1,7 @@
 'use client';
 
 import { CarouselNavigation } from '@/components/commons/CarouselNavigation/CarouselNavigation';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { DistributionEntity } from '@/models/types/forge';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
 import { Fancybox } from '@fancyapps/ui';
@@ -106,8 +107,8 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
       key={uniqueId}
       spaceBetween={20}
       modules={[Navigation, Pagination, Autoplay]}
-      navigation={hasNavigation ? navigation : false}
-      pagination={hasPagination ? (pagination as PaginationOptions) : false}
+      navigation={getBooleanProperty(hasNavigation) ? navigation : false}
+      pagination={getBooleanProperty(hasPagination) ? (pagination as PaginationOptions) : false}
       a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
       loop={true}
       slidesPerView={'auto'}
@@ -141,7 +142,7 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
                 alt={slide.title}
                 className={twMerge(
                   'w-full h-full object-cover block object-center hover:scale-110 transition duration-300 cursor-pointer',
-                  isStoryPart ? 'rounded-lg' : ''
+                  getBooleanProperty(isStoryPart) ? 'rounded-lg' : ''
                 )}
               />
             </figure>

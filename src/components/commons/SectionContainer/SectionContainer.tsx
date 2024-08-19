@@ -1,5 +1,5 @@
 ﻿import { ReactNode } from 'react';
-import { getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { twMerge } from 'tailwind-merge';
 import { HeaderTitleProps } from '@/models/types/components';
 
@@ -18,7 +18,7 @@ const SectionContainer = ({ children, isFullWidth, removeSectionHtmlTag, classNa
       className={twMerge(
         'mb-5 lg:mb-10 first:mt-5 lg:first:mt-10',
         className,
-        isFullWidth ? 'w-full' : 'container mx-auto px-2'
+        getBooleanProperty(isFullWidth) ? 'w-full' : 'container mx-auto px-2'
       )}
     >
       {children}

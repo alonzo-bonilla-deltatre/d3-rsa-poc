@@ -3,7 +3,7 @@ import { ReturnComponentRender } from '@/models/types/components';
 import { nanoid } from 'nanoid';
 import Promo from '@/components/storyParts/Promo/Promo';
 
-const PromoWrapper = ({ data }: { data: StoryPart }): ReturnComponentRender => <Promo entity={data} />;
+const PromoWrapper = ({ data }: { data: StoryPart }): ReturnComponentRender => <Promo data={data} />;
 
 const render = ({ ...data }: StoryPart): ReturnComponentRender => (
   <PromoWrapper

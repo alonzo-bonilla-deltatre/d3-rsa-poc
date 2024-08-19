@@ -22,7 +22,7 @@ const TwitterOembed = ({ ...props }: OembedProps) => {
       <Script
         src="https://platform.twitter.com/widgets.js"
         strategy={'beforeInteractive'}
-        id={'instagram-embed-script'}
+        id={'twitter-embed-script'}
       ></Script>
       <HtmlOembed html={html} />
     </>

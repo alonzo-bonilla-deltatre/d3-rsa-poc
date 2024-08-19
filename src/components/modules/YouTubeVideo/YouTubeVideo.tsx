@@ -1,5 +1,6 @@
 import YouTubeVideoPlayer from '@/components/commons/YouTubeVideoPlayer/YouTubeVideoPlayer';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
@@ -28,7 +29,7 @@ const YouTubeVideo = async ({ data }: { data: ComponentProps }) => {
   const description = getDescriptionField(entity);
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <div className="flex flex-col gap-2 pb-10">
         <Typography variant={'h1'}>{entity?.title}</Typography>
         {description && <Typography variant={'body-m'}>{description}</Typography>}

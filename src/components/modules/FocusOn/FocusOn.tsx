@@ -28,7 +28,7 @@ const FocusOn = async ({ data }: { data: ComponentProps }) => {
   }
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <HeaderTitle
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}

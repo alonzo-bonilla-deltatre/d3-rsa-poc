@@ -1,6 +1,6 @@
 import AlbumListCarouselView from '@/components/modules/AlbumListCarousel/AlbumListCarouselView';
 import { customEnrichAlbumListWithElementCount } from '@/helpers/customForgeDistributionEntityHelper';
-import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
 import { DistributionEntity } from '@/models/types/forge';
 import { getEntityList } from '@/services/forgeDistributionService';
@@ -30,11 +30,11 @@ const AlbumListCarousel = async ({ data }: { data: ComponentProps }) => {
   return (
     <AlbumListCarouselView
       items={items}
-      isFullWidth={isFullWidth}
+      isFullWidth={getBooleanProperty(isFullWidth)}
       uniqueId={albumListCarouselViewUniqueId}
       headerTitle={headerTitle}
       headerTitleHeadingLevel={headerTitleHeadingLevel}
-      hideHeaderTitle={hideHeaderTitle}
+      hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
     />
   );
 };

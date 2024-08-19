@@ -1,6 +1,6 @@
 import SectionContainer from '@/components/commons/SectionContainer/SectionContainer';
 import { getGridChildrenCssClasses } from '@/components/layouts/DynamicGrid/DynamicGridHelper';
-import { getHideLayout, getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, LayoutProps } from '@/models/types/components';
 import { renderItemsInSlot } from '@/services/renderService';
 
@@ -20,8 +20,8 @@ const DynamicGrid = ({ gridTemplate, componentProps }: DynamicGridProps) => {
 
   return (
     <SectionContainer
-      isFullWidth={isFullWidth}
-      removeSectionHtmlTag={removeSectionHtmlTag}
+      isFullWidth={getBooleanProperty(isFullWidth)}
+      removeSectionHtmlTag={getBooleanProperty(removeSectionHtmlTag)}
       className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-4 lg:gap-y-6"
     >
       {[...Array(slotsLength)].map((_, index: number) => (

@@ -3,12 +3,7 @@ import Photo from '@/components/storyParts/Photo/Photo';
 import { ReturnComponentRender } from '@/models/types/components';
 import { nanoid } from 'nanoid';
 
-const PhotoWrapper = ({ data }: { data: StoryPart }): ReturnComponentRender => (
-  <Photo
-    slug={data.slug}
-    image={data.image}
-  />
-);
+const PhotoWrapper = ({ data }: { data: StoryPart }): ReturnComponentRender => <Photo data={data} />;
 
 const render = ({ ...data }: StoryPart): ReturnComponentRender => (
   <PhotoWrapper

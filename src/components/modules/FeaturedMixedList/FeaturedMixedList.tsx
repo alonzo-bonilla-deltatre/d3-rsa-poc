@@ -40,7 +40,7 @@ const FeaturedMixedList = async ({ data }: { data: ComponentProps }) => {
   const results = (await getEntityList(parseFieldValue(selectionSlug, data.variables), null, {
     hasThumbnailPlaceholder: true,
     hasLinkRules: true,
-    skip,
+    skip: getNumberProperty(skip, 0),
     limit: getNumberProperty(limit, 13),
     variables: data.variables,
     hasReferencesFieldsInList: true,
@@ -51,7 +51,7 @@ const FeaturedMixedList = async ({ data }: { data: ComponentProps }) => {
   if (!items?.length && !(items?.length > 0)) return null;
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <FeaturedRow
         data={{
           headerTitle: headerTitle,

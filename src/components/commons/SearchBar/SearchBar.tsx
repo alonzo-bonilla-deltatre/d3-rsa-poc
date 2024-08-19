@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import React, { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type SearchBarProps = {
@@ -24,6 +25,7 @@ const SearchBar = ({
   showResultsCount = false,
   widthCssClass = 'w-full',
 }: SearchBarProps) => {
+  showResultsCount = getBooleanProperty(showResultsCount);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // once pressed "Enter", go to "/search" page passing the query string

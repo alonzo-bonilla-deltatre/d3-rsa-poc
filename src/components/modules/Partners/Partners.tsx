@@ -1,6 +1,7 @@
 import Partner from '@/components/commons/Partner/Partner';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, EditorialListModuleProps } from '@/models/types/components';
 import { getSelection } from '@/services/forgeDistributionService';
 import { getSiteUrl } from '@/services/configurationService';
@@ -14,8 +15,7 @@ const Partners = async ({ data }: { data: ComponentProps }) => {
 
   const baseUrl = process.env.BASE_URL || (await getSiteUrl());
 
-  const selectionFetch = getSelection(selectionSlug);
-  const [selection] = await Promise.all([selectionFetch]);
+  const selection = await getSelection(selectionSlug);
   const items = selection?.items;
 
   if (!items?.length) return null;
@@ -24,7 +24,7 @@ const Partners = async ({ data }: { data: ComponentProps }) => {
   const source = getDataVariable(data.variables, 'source') || '';
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <div
         className={`flex flex-row justify-center ${
           direction === 'vertical' ? 'flex-col items-center' : ' '

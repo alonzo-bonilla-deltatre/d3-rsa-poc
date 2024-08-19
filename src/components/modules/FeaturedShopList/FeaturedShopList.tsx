@@ -39,7 +39,7 @@ const FeaturedShopList = async ({ data }: { data: ComponentProps }) => {
   const items = (await getEntityList(selectionSlug, null, {
     hasThumbnailPlaceholder: true,
     hasLinkRules: true,
-    skip,
+    skip: getNumberProperty(skip, 0),
     limit: getNumberProperty(limit, 6),
     variables: data.variables,
   })) as DistributionEntity[] | null;
@@ -47,7 +47,7 @@ const FeaturedShopList = async ({ data }: { data: ComponentProps }) => {
   if (!items?.length) return null;
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <FeaturedRow
         data={{
           headerTitle: headerTitle,

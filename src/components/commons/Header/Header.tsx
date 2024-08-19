@@ -2,7 +2,7 @@
 import { renderItemsInSlot } from '@/services/renderService';
 import { use } from 'react';
 import { PageStructureData, Variable } from '@/models/types/pageStructure';
-import { getHideLayout } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getHideLayout } from '@/helpers/pageComponentPropertyHelper';
 import { createDataVariable, getDataVariable } from '@/helpers/dataVariableHelper';
 import { MenuSources } from '@/models/types/menu';
 import { HeaderScrollManager } from '@/components/commons/Header/HeaderScrollManager';
@@ -54,7 +54,7 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
       id="header"
       className="z-50 w-full"
     >
-      {isTransparent && (
+      {getBooleanProperty(isTransparent) && (
         <HeaderScrollManager
           transparentClasses={['bg-transparent']}
           defaultColor="bg-grey-900"
@@ -63,7 +63,9 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
       <nav
         id="header-nav"
         className={`flex flex-col justify-center ${
-          isTransparent ? 'transition-colors duration-200 ease-linear fixed top-0 left-0 right-0' : 'bg-grey-900'
+          getBooleanProperty(isTransparent)
+            ? 'transition-colors duration-200 ease-linear fixed top-0 left-0 right-0'
+            : 'bg-grey-900'
         }`}
       >
         <div className="h-[72px] container mx-auto px-4 grid grid-cols-3 grid-flow-row gap-4 md:items-center md:justify-between">

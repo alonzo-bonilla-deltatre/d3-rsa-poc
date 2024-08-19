@@ -1,3 +1,4 @@
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { FrontendConfiguration, FrontendSiteConfiguration } from '@/models/types/frontendConfiguration';
 import { getFrontendAllSiteConfiguration } from '@/services/configurationService';
 import { translate } from '@/helpers/translationHelper';
@@ -48,7 +49,9 @@ const LanguageSwitcher = ({
                 >
                   {translate(item.translation)}
                 </a>
-                {index + 1 !== array.length && hasLanguageSeparator && <div className={languageSeparatorCssClasses} />}
+                {index + 1 !== array.length && getBooleanProperty(hasLanguageSeparator) && (
+                  <div className={languageSeparatorCssClasses} />
+                )}
               </div>
             );
           }

@@ -1,7 +1,6 @@
 import { ComponentProps, ReturnComponentRender } from '@/models/types/components';
-import dynamic from 'next/dynamic';
 import { nanoid } from 'nanoid';
-const StaticText = dynamic(() => import('@/components/modules/StaticText/StaticText'));
+import StaticText from '@/components/modules/StaticText/StaticText';
 
 const StaticTextWrapper = ({ data }: { data: ComponentProps }): ReturnComponentRender => <StaticText data={data} />;
 

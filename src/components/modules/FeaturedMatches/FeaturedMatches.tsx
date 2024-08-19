@@ -20,7 +20,7 @@ const FeaturedMatches = async ({ data }: { data: ComponentProps }) => {
   const featuredSponsor = sponsor?.fields?.partnerLogo ? await getSingleAssetByTag(sponsor.fields.partnerLogo) : null;
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <FeaturedRow
         data={{
           headerTitle: headerTitle,

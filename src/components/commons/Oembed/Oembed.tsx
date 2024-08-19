@@ -6,6 +6,7 @@ import InstagramOembed from '@/components/commons/Oembed/InstagramOembed';
 import TwitterOembed from '@/components/commons/Oembed/TwitterOembed';
 import FacebookOembed from '@/components/commons/Oembed/FacebookOembed';
 import TikTokOembed from '@/components/commons/Oembed/TikTokOembed';
+import React from 'react';
 
 type OembedProps = {
   entity?: StoryPart;

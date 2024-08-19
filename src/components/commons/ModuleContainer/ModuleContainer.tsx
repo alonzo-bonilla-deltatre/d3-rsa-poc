@@ -1,4 +1,5 @@
-﻿import { ReactNode, Suspense } from 'react';
+﻿import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
+import { ReactNode, Suspense } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Loader from '@/components/commons/Loader/Loader';
 
@@ -14,7 +15,7 @@ const ModuleContainer = ({ children, isFullWidth, className }: ModuleContainerPr
       className={twMerge(
         'mb-5 lg:mb-10 first:mt-5 lg:first:mt-10',
         className,
-        isFullWidth ? 'w-full' : 'container mx-auto px-2'
+        getBooleanProperty(isFullWidth) ? 'w-full' : 'container mx-auto px-2'
       )}
     >
       <Suspense fallback={<Loader />}>{children}</Suspense>

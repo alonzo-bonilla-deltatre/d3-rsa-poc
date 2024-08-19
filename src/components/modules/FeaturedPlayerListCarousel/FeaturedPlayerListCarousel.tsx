@@ -2,7 +2,7 @@
 import { getEntity, getSelection } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import FeaturedCarouselView from '@/components/modules/FeaturedCarousel/FeaturedCarouselView';
-import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
@@ -52,14 +52,14 @@ const FeaturedPlayerListCarousel = async ({ data }: { data: ComponentProps }) =>
   if (!items?.length) return null;
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <FeaturedCarouselView
         data={{
           items: items,
           cardsType: CardsType.PlayerCard,
           headerTitle: headerTitle,
           headerTitleHeadingLevel: headerTitleHeadingLevel,
-          hideHeaderTitle: hideHeaderTitle,
+          hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
           featuredDescription: featuredDescription?.fields?.body,
           featuredSponsor: featuredSponsor,
           uniqueId: featuredCarouselViewUniqueId,

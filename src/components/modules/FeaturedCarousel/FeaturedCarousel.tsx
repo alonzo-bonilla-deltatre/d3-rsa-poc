@@ -2,7 +2,7 @@
 import { getEntity, getSelection } from '@/services/forgeDistributionService';
 import { getSingleAssetByTag } from '@/services/gadService';
 import FeaturedCarouselView from '@/components/modules/FeaturedCarousel/FeaturedCarouselView';
-import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import { CardsType } from '@/components/commons/cards';
@@ -50,11 +50,11 @@ const FeaturedCarousel = async ({ data }: { data: ComponentProps }) => {
     <FeaturedCarouselView
       data={{
         items: items,
-        isFullWidth: isFullWidth,
+        isFullWidth: getBooleanProperty(isFullWidth),
         cardsType: CardsType.DefaultCard,
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,
-        hideHeaderTitle: hideHeaderTitle,
+        hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
         featuredDescription: featuredDescription?.fields?.body,
         featuredSponsor: featuredSponsor,
         uniqueId: featuredCarouselViewUniqueId,

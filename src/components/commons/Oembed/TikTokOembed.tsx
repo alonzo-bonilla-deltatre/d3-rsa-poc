@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import HtmlOembed from './HtmlOembed';
 import Script from 'next/script';
 
@@ -25,7 +25,7 @@ const TikTokOembed = ({ ...props }: OembedProps) => {
       <Script
         src="https://www.tiktok.com/embed.js"
         strategy={'beforeInteractive'}
-        id={'instagram-embed-script'}
+        id={'tiktok-embed-script'}
       ></Script>
       <HtmlOembed html={html} />
     </>

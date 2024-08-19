@@ -46,7 +46,8 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
     ctaLink,
     removeSectionHtmlTag,
   } = data;
-  const showHeader = (!hideHeaderTitle && headerTitle) || additionalChildren || topChildren || featuredSponsor;
+  const showHeader =
+    (!getBooleanProperty(hideHeaderTitle) && headerTitle) || additionalChildren || topChildren || featuredSponsor;
   const keepSectionTag =
     removeSectionHtmlTag === undefined && children ? getOppositeBooleanProperty(removeSectionHtmlTag) : false;
   const SectionContainer = `${!keepSectionTag ? 'div' : 'section'}` as keyof JSX.IntrinsicElements;
@@ -55,7 +56,10 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
     <SectionContainer className={getStringProperty(sectionClassName)}>
       {showHeader && (
         <div
-          className={twMerge(!hasFullWidthHeader ? 'container mx-auto' : 'px-2', getStringProperty(headerClassName))}
+          className={twMerge(
+            !getBooleanProperty(hasFullWidthHeader) ? 'container mx-auto' : 'px-2',
+            getStringProperty(headerClassName)
+          )}
         >
           <div className="flex flex-col gap-2 w-full">
             {topChildren && topChildren}
@@ -85,7 +89,12 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
         </div>
       )}
       {children && (
-        <div className={twMerge(!hasFullWidthContent ? 'container mx-auto' : '', getStringProperty(contentClassName))}>
+        <div
+          className={twMerge(
+            !getBooleanProperty(hasFullWidthContent) ? 'container mx-auto' : '',
+            getStringProperty(contentClassName)
+          )}
+        >
           {children}
         </div>
       )}

@@ -2,16 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { getSrcWithTransformation, transformations } from '@/utilities/cloudinaryTransformationsUtility';
-import { DistributionEntity } from '@/models/types/forge';
 import Typography from '@/components/commons/Typography/Typography';
 import CallToActionOutlinedLink from '@/components/commons/CallToActionLink/CallToActionOutlinedLink';
 import { twMerge } from 'tailwind-merge';
+import { StoryPart } from '@/models/types/storyPart';
 
-type PromoProps = {
-  entity?: DistributionEntity;
-};
-
-const Promo = ({ entity }: PromoProps) => {
+const Promo = ({ data }: { data: StoryPart }) => {
   const [isIOSMobile, setIsIOSMobile] = useState(false);
 
   const isIOSMobileWindow =
@@ -24,11 +20,11 @@ const Promo = ({ entity }: PromoProps) => {
     if (isIOSMobileWindow) {
       setIsIOSMobile(true);
     }
-  }, [entity, isIOSMobileWindow]);
+  }, [data, isIOSMobileWindow]);
 
-  if (!entity) return null;
+  if (!data) return null;
   const imageUrl = getSrcWithTransformation(
-    entity.thumbnail?.templateUrl,
+    data.thumbnail?.templateUrl,
     transformations.best_assets.desktop.transformation
   );
   if (!imageUrl) return null;
@@ -48,11 +44,11 @@ const Promo = ({ entity }: PromoProps) => {
           variant={'h3'}
           className={'text-white flex items-center justify-center'}
         >
-          {entity.title}
+          {data.title}
         </Typography>
         <CallToActionOutlinedLink
-          text={entity?.fields?.url?.displayText}
-          url={entity?.fields?.url?.url}
+          text={data?.fields?.url?.displayText}
+          url={data?.fields?.url?.url}
         ></CallToActionOutlinedLink>
       </div>
     </div>

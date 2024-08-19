@@ -15,7 +15,7 @@ const HeroSwiper = async ({ data }: { data: ComponentProps }) => {
 
   const selection = await getSelection(selectionSlug, {
     hasLinkRules: true,
-    skip: skip,
+    skip: getNumberProperty(skip, 0),
     limit: itemsLimit,
   });
   const items = selection?.items;

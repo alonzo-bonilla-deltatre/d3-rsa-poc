@@ -54,7 +54,7 @@ const FeaturedRow = ({ data }: { data: FeaturedRowProps }) => {
       <div
         className={twMerge(
           'flex flex-col lg:grid lg:grid-cols-4 lg:gap-6 lg:max-w-full',
-          !hasFullWidth ? 'container' : ''
+          !getBooleanProperty(hasFullWidth) ? 'container' : ''
         )}
       >
         {showHeader && (

@@ -1,4 +1,5 @@
-﻿import { ImageTransformations } from '@/models/types/images';
+﻿import { getBooleanPropertyDefault } from '@/helpers/pageComponentPropertyHelper';
+import { ImageTransformations } from '@/models/types/images';
 import {
   getSrcWithTransformation,
   transformations as defaultTransformations,
@@ -28,9 +29,10 @@ const Picture = ({
   width,
   height,
   sizes,
-  priority = true,
+  priority,
   imageStyle,
 }: PictureProps) => {
+  priority = getBooleanPropertyDefault(priority, true);
   if (!src) {
     return null;
   }

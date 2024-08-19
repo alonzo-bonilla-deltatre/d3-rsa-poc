@@ -43,6 +43,7 @@ const Carousel = ({
   className = getStringProperty(className);
   hasPagination = getBooleanProperty(hasPagination);
   hasNavigation = getBooleanProperty(hasNavigation);
+  hasExternalNavigation = getBooleanProperty(hasExternalNavigation);
   const newSwiperRef = useRef<SwiperRef>(null) as RefObject<SwiperRef>;
   swiperRef = swiperRef !== undefined ? swiperRef : newSwiperRef;
   const navigation = {

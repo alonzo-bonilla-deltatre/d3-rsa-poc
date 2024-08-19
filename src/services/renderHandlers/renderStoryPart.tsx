@@ -31,7 +31,7 @@ type StoryPartListKey =
   | Extract<
       ForgeEntityCode,
       | ForgeEntityCode.brightcoveVideo
-      | ForgeEntityCode.divaVideo
+      // | ForgeEntityCode.divaVideo
       | ForgeEntityCode.event
       | ForgeEntityCode.jwPlayerVideo
       | ForgeEntityCode.promo
@@ -49,7 +49,7 @@ type StoryPartListKey =
 const storyPartList: Record<StoryPartListKey, (item: StoryPart) => ReturnComponentRender> = {
   [ForgeEntityType.album]: renderAlbumStoryPart,
   [ForgeEntityCode.brightcoveVideo]: renderBrightcoveVideoStoryPart,
-  [ForgeEntityCode.divaVideo]: renderDivaVideoStoryPart,
+  // [ForgeEntityCode.divaVideo]: renderDivaVideoStoryPart,
   [ForgeEntityType.markdown]: renderMarkdownStoryPart,
   [ForgeEntityType.photo]: renderPhotoStoryPart,
   [ForgeEntityType.document]: renderDocumentStoryPart,

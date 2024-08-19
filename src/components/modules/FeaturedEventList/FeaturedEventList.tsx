@@ -1,6 +1,6 @@
 import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
 import { getEntityList } from '@/services/forgeDistributionService';
-import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { FeaturedEventListSwiper } from '@/components/modules/FeaturedEventList/FeaturedEventListSwiper';
 import FeaturedEventListHeader from '@/components/modules/FeaturedEventList/FeaturedEventListHeader';
 import { DistributionEntity } from '@/models/types/forge';
@@ -17,7 +17,7 @@ const EventList = async ({ data }: { data: ComponentProps }) => {
   const items = (await getEntityList(selectionSlug, null, {
     hasThumbnailPlaceholder: true,
     hasLinkRules: true,
-    skip,
+    skip: getNumberProperty(skip, 0),
     limit: getNumberProperty(limit, defaultItemLimit),
     variables: data.variables,
   })) as DistributionEntity[] | null;
@@ -26,13 +26,13 @@ const EventList = async ({ data }: { data: ComponentProps }) => {
 
   return (
     <ModuleContainer
-      isFullWidth={isFullWidth}
+      isFullWidth={getBooleanProperty(isFullWidth)}
       className={'relative max-w-[2048px] mx-auto'}
     >
       <FeaturedEventListHeader
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}
-        hideHeaderTitle={hideHeaderTitle}
+        hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
       ></FeaturedEventListHeader>
       <div className="hidden lg:block absolute top-0 left-1/2 transform -translate-x-1/2 font-heading text-[930px] leading-[868px] text-grey-500 uppercase opacity-20">
         {headerTitle}

@@ -2,7 +2,7 @@
 
 import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
 import GridComponent from '@/components/commons/list/Grid/Grid';
-import { getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import { DistributionEntity, ForgeDapiEntityCode, ForgeDistributionApiOption, PagedResult } from '@/models/types/forge';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
@@ -79,12 +79,12 @@ const GridList = ({ data }: { data: ComponentProps }) => {
       data={{
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,
-        hideHeaderTitle: hideHeaderTitle,
+        hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
         ctaLink: parseFieldValue(ctaLink, data.variables),
         ctaTitle: ctaTitle,
-        hasFullWidthHeader: isFullWidth,
-        hasFullWidthContent: isFullWidth,
-        sectionClassName: `${isFullWidth ? '-full-width' : 'px-2'}`,
+        hasFullWidthHeader: getBooleanProperty(isFullWidth),
+        hasFullWidthContent: getBooleanProperty(isFullWidth),
+        sectionClassName: `${getBooleanProperty(isFullWidth) ? '-full-width' : 'px-2'}`,
         children: isLoading ? (
           <div className={'relative'}>
             <Loader />

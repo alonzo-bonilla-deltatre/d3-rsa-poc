@@ -4,7 +4,6 @@ import { renderItemsInSlot } from '@/services/renderService';
 import React, { use } from 'react';
 import { getAppViewVariable } from '@/helpers/dataVariableHelper';
 import { getPageStructureFromVariablePath } from '@/helpers/pageHelper';
-import Typography from '@/components/commons/Typography/Typography';
 
 enum DefaultTemplateSlots {
   header = 'header',

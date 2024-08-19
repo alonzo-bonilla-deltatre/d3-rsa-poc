@@ -1,4 +1,6 @@
-﻿import styles from '@/components/commons/HtmlContent/HtmlContent.module.scss';
+﻿'use client';
+
+import styles from '@/components/commons/HtmlContent/HtmlContent.module.scss';
 
 type HtmlContentProps = {
   content?: string;

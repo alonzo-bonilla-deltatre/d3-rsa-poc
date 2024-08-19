@@ -1,14 +1,13 @@
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import { getEntity } from '@/services/forgeDistributionService';
 import logger from '@/utilities/loggerUtility';
 import React from 'react';
-import dynamic from 'next/dynamic';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
 import { ForgeDapiEntityCode } from '@/models/types/forge';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
-
-const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
+import Markdown from '@/components/commons/Markdown/Markdown';
 
 type TextProps = {
   slug?: string;
@@ -39,7 +38,7 @@ const Text = async ({ data }: { data: ComponentProps }) => {
   };
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <Markdown
         markdownText={textEntity?.fields?.body?.toString() ?? ''}
         classNames={`${textAlignmentCssClassVariants[textAlignment ? textAlignment : 'left']}`}

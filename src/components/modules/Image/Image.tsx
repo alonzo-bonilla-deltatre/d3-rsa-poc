@@ -1,6 +1,7 @@
 import { containerCssSize, getImageContainerCssClass, getLinkCssClass } from '@/components/modules/Image/ImageHelper';
 import ImageView from '@/components/modules/Image/ImageView';
 import { moduleIsNotValid } from '@/helpers/moduleHelper';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { getEntity } from '@/services/forgeDistributionService';
@@ -44,7 +45,7 @@ const Image = async ({ data }: { data: ComponentProps }) => {
       imageEntity={imageEntity}
       asset={asset}
       caption={caption}
-      isFullWidth={isFullWidth}
+      isFullWidth={getBooleanProperty(isFullWidth)}
       width={asset.width}
       height={asset.height}
     />

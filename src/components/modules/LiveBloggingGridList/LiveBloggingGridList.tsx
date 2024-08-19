@@ -1,3 +1,4 @@
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { ComponentProps, EditorialListModuleProps, HeaderTitleProps } from '@/models/types/components';
 import GridComponent from '@/components/commons/list/Grid/Grid';
 import SectionWithHeader from '@/components/commons/SectionWithHeader/SectionWithHeader';
@@ -36,12 +37,12 @@ const LiveBloggingGridList = async ({ data }: { data: ComponentProps }) => {
       data={{
         headerTitle: headerTitle,
         headerTitleHeadingLevel: headerTitleHeadingLevel,
-        hideHeaderTitle: hideHeaderTitle,
+        hideHeaderTitle: getBooleanProperty(hideHeaderTitle),
         ctaLink: parseFieldValue(ctaLink, data.variables),
         ctaTitle: ctaTitle,
-        hasFullWidthHeader: isFullWidth,
-        hasFullWidthContent: isFullWidth,
-        sectionClassName: `${isFullWidth ? '-full-width' : 'px-2'}`,
+        hasFullWidthHeader: getBooleanProperty(isFullWidth),
+        hasFullWidthContent: getBooleanProperty(isFullWidth),
+        sectionClassName: `${getBooleanProperty(isFullWidth) ? '-full-width' : 'px-2'}`,
         children: (
           <GridComponent
             items={items}

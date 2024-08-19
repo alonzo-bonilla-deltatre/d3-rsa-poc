@@ -10,6 +10,7 @@ import Typography from '@/components/commons/Typography/Typography';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 import Date from '@/components/commons/Date/Date';
 import { DateType } from '@/models/types/date';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 const AlbumMosaic = async ({ data }: { data: ComponentProps }) => {
   const { slug, isFullWidth } = data.properties as ModuleProps;
@@ -29,7 +30,7 @@ const AlbumMosaic = async ({ data }: { data: ComponentProps }) => {
   const description = getDescriptionField(albumEntity);
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <div className="flex flex-col gap-2 pb-10">
         <Typography variant={'h1'}>{albumEntity?.title}</Typography>
         {description && <Typography variant={'body-m'}>{description}</Typography>}

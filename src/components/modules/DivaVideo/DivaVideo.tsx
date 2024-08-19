@@ -11,6 +11,7 @@ import logger from '@/utilities/loggerUtility';
 import { getDescriptionField } from '@/utilities/descriptionFieldUtility';
 import Date from '@/components/commons/Date/Date';
 import { DateType } from '@/models/types/date';
+import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 
 type DivaVideoProps = {
   slug?: string;
@@ -33,7 +34,7 @@ const DivaVideo = async ({ data }: { data: ComponentProps }) => {
   const description = getDescriptionField(entity);
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <div className="flex flex-col gap-2 pb-10">
         <Typography variant={'h1'}>{entity?.title}</Typography>
         {description && <Typography variant={'body-m'}>{description}</Typography>}

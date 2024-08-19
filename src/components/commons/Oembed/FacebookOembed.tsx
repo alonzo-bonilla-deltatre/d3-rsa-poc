@@ -22,7 +22,7 @@ const FacebookOembed = ({ ...props }: OembedProps) => {
       <Script
         src="https://connect.facebook.net/en_US/sdk.js"
         strategy={'beforeInteractive'}
-        id={'instagram-embed-script'}
+        id={'facebook-embed-script'}
       ></Script>
       <HtmlOembed html={html} />
     </>

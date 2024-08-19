@@ -2,7 +2,7 @@ import { getSearchPath } from '@/components/modules/SearchResults/SearchResultsH
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { AzureSearchOption } from '@/models/types/azureSearch';
 import { ComponentProps, ModuleProps } from '@/models/types/components';
-import { getHideModule, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getHideModule, getNumberProperty } from '@/helpers/pageComponentPropertyHelper';
 import SearchResultView from '@/components/modules/SearchResults/SearchResultsView';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
@@ -29,7 +29,7 @@ const SearchResults = async ({ data }: { data: ComponentProps }) => {
 
   return (
     <ModuleContainer
-      isFullWidth={isFullWidth}
+      isFullWidth={getBooleanProperty(isFullWidth)}
       className="px-2"
     >
       <SearchResultView

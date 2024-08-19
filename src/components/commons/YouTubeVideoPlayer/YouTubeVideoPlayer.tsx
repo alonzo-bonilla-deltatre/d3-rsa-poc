@@ -1,13 +1,10 @@
 ﻿import { getStringProperty } from '@/helpers/pageComponentPropertyHelper';
 import { DistributionEntity } from '@/models/types/forge';
-import dynamic from 'next/dynamic';
 
 type YouTubeVideoPlayerProps = {
   entity: DistributionEntity;
   containerCss?: string;
 };
-// @ts-ignore
-const Markdown = dynamic(() => import('@/components/commons/Markdown/Markdown'));
 
 const YouTubeVideoPlayer = ({ ...props }: YouTubeVideoPlayerProps) => {
   const { entity } = props as YouTubeVideoPlayerProps;
@@ -19,17 +16,15 @@ const YouTubeVideoPlayer = ({ ...props }: YouTubeVideoPlayerProps) => {
   }
 
   return (
-    <>
-      <div className={containerCss}>
-        <iframe
-          title={entity.title}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"
-          allowFullScreen
-          src={oembedUrl}
-          className="w-full h-full aspect-video"
-        />
-      </div>
-    </>
+    <div className={containerCss}>
+      <iframe
+        title={entity.title}
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"
+        allowFullScreen
+        src={oembedUrl}
+        className="w-full h-full aspect-video"
+      />
+    </div>
   );
 };
 

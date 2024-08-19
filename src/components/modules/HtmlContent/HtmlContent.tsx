@@ -1,6 +1,6 @@
 import { ComponentProps, ModuleProps } from '@/models/types/components';
 import HtmlContentComponent from '@/components/commons/HtmlContent/HtmlContent';
-import { getHideModule } from '@/helpers/pageComponentPropertyHelper';
+import { getBooleanProperty, getHideModule } from '@/helpers/pageComponentPropertyHelper';
 import ModuleContainer from '@/components/commons/ModuleContainer/ModuleContainer';
 
 type HtmlContentProps = {
@@ -13,7 +13,7 @@ const HtmlContent = ({ data }: { data: ComponentProps }) => {
   if (getHideModule(data)) return null;
 
   return (
-    <ModuleContainer isFullWidth={isFullWidth}>
+    <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <HtmlContentComponent content={content} />
     </ModuleContainer>
   );
