@@ -24,8 +24,8 @@ const TikTokOembed = ({ ...props }: OembedProps) => {
     <>
       <Script
         src="https://www.tiktok.com/embed.js"
-        strategy={'beforeInteractive'}
-        id={'tiktok-embed-script'}
+        strategy="afterInteractive"
+        id="tiktok-embed-script"
       ></Script>
       <HtmlOembed html={html} />
     </>

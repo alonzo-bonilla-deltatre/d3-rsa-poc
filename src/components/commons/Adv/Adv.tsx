@@ -67,7 +67,7 @@ export const Adv = ({ type }: AdvProps) => {
       <Picture
         width={adv.width}
         height={adv.height}
-        alt={'adv'}
+        alt="adv"
         src={adv.url}
         priority={false}
         imageStyle={{
@@ -75,7 +75,7 @@ export const Adv = ({ type }: AdvProps) => {
           width: `100%`,
           height: `auto`,
         }}
-        sizes={'100vw'}
+        sizes="100vw"
       />
     </div>
   );

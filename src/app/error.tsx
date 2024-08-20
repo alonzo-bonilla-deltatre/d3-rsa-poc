@@ -10,19 +10,19 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
     <section className="flex h-screen overflow-hidden m-0 p-0">
       <div className="m-auto">
         <Typography
-          variant={'h2'}
+          variant="h2"
           className="mb-6"
         >
           {translate('500-error')}
         </Typography>
         <Typography
-          variant={'h3'}
+          variant="h3"
           className="mb-12"
         >
           {translate('500-oops-error')}
         </Typography>
         <Typography
-          variant={'body-m'}
+          variant="body-m"
           className="mb-12"
         >
           {translate('500-error-message')}
@@ -31,11 +31,11 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
           <ul className="list-none flex space-x-5">
             <li>
               <Link
-                href={'/'}
+                href="/"
                 title={translate('back-to-homepage')}
-                className={'uppercase transition duration-300 hover:text-link'}
+                className="uppercase transition duration-300 hover:text-link"
               >
-                <Typography variant={'navigation-l'}>{translate('back-to-homepage')}</Typography>
+                <Typography variant="navigation-l">{translate('back-to-homepage')}</Typography>
               </Link>
             </li>
             <li>
@@ -43,7 +43,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
                 className="uppercase transition duration-300 hover:text-link"
                 onClick={() => reset()}
               >
-                <Typography variant={'navigation-l'}>{translate('try-again')}</Typography>
+                <Typography variant="navigation-l">{translate('try-again')}</Typography>
               </button>
             </li>
           </ul>

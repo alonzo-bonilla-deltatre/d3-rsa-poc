@@ -22,7 +22,7 @@ const DefaultCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
       <div className="flex rounded-lg relative aspect-[1/1] h-full w-full">
         {templateUrl && (
@@ -41,20 +41,20 @@ const DefaultCard = ({ entity }: CardProps) => {
         )}
         <div className="flex flex-col absolute bottom-0 text-white gap-2 justify-end items-start p-2 lg:p-6 z-10">
           <Typography
-            variant={'body-l'}
-            className={'line-clamp-2 text-ellipsis font-bold'}
+            variant="body-l"
+            className="line-clamp-2 text-ellipsis font-bold"
           >
             {entity.title}
           </Typography>
           {description && (
             <Typography
-              variant={'body-s'}
-              className={'line-clamp-2 text-ellipsis text-grey-100'}
+              variant="body-s"
+              className="line-clamp-2 text-ellipsis text-grey-100"
             >
               {description}
             </Typography>
           )}
-          <Typography variant={'tag-m'}>
+          <Typography variant="tag-m">
             <Date
               date={entity?.contentDate}
               dateType={DateType.short}

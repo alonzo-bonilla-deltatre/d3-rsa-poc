@@ -42,7 +42,7 @@ const componentList: Record<any, (data: { data: ComponentProps }) => ReturnCompo
   AlbumListCarousel: renderAlbumListCarousel,
   AlbumMosaic: renderAlbumMosaic,
   BrightcoveVideo: renderBrightcoveVideo,
-  DivaVideo: renderDivaVideo,
+  // DivaVideo: renderDivaVideo,
   FeaturedCarousel: renderFeaturedCarousel,
   FeaturedEventList: renderFeaturedEventList,
   FeaturedMatches: renderFeaturedMatches,

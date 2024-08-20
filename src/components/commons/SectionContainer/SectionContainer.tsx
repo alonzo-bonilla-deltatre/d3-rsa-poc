@@ -1,4 +1,4 @@
-﻿import { ReactNode } from 'react';
+﻿import { ReactHTML, ReactNode } from 'react';
 import { getBooleanProperty, getOppositeBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { twMerge } from 'tailwind-merge';
 import { HeaderTitleProps } from '@/models/types/components';
@@ -12,7 +12,7 @@ type SectionContainerProps = {
 
 const SectionContainer = ({ children, isFullWidth, removeSectionHtmlTag, className }: SectionContainerProps) => {
   const keepSectionTag = getOppositeBooleanProperty(removeSectionHtmlTag);
-  const SectionContainer = `${!keepSectionTag ? 'div' : 'section'}` as keyof JSX.IntrinsicElements;
+  const SectionContainer = `${!keepSectionTag ? 'div' : 'section'}` as keyof ReactHTML;
   return (
     <SectionContainer
       className={twMerge(

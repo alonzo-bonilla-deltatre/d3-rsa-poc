@@ -27,7 +27,7 @@ const EventList = async ({ data }: { data: ComponentProps }) => {
   return (
     <ModuleContainer
       isFullWidth={getBooleanProperty(isFullWidth)}
-      className={'relative max-w-[2048px] mx-auto'}
+      className="relative max-w-[2048px] mx-auto"
     >
       <FeaturedEventListHeader
         headerTitle={headerTitle}

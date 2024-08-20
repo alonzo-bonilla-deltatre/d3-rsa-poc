@@ -16,7 +16,7 @@ export const CarouselNavigation = ({ uniqueId, swiperRef }: CarouselNavigationPr
   const iconClassName = 'w-auto h-7 2xl:h-9';
 
   return (
-    <div className={'absolute top-1/2 transform -translate-y-1/2 z-10 block w-full text-white'}>
+    <div className="absolute top-1/2 transform -translate-y-1/2 z-10 block w-full text-white">
       <button
         className={`ms-2 float-start rtl:float-end -prev carousel__navbutton--prev-${uniqueId}`}
         onClick={() => swiperRef.current?.swiper.slidePrev()}

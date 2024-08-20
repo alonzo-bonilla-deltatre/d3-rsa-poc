@@ -15,8 +15,8 @@ const Table = ({ entity }: TableProps) => {
     <div className="grid grid-cols-1 relative overflow-hidden w-full">
       {title && (
         <Typography
-          variant={'h6'}
-          className={'mb-4'}
+          variant="h6"
+          className="mb-4"
         >
           {title}
         </Typography>

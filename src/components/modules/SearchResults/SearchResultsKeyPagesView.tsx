@@ -68,7 +68,7 @@ const SearchResultsKeyPagesView = ({ initialAzureSearchOption }: SearchResultVie
   return (
     searchResult &&
     searchResult.length > 0 && (
-      <div className={'relative'}>
+      <div className="relative">
         {isLoading && <Loader />}
         <GridComponent
           items={searchResult}

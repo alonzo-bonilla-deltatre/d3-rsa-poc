@@ -19,9 +19,9 @@ const ShopCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={shopUrl ?? entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
-      <div className={'flex flex-col gap-2 lg:gap-4'}>
+      <div className="flex flex-col gap-2 lg:gap-4">
         <div
           className={twMerge(
             'flex rounded-lg relative aspect-[10/16] h-full min-w-[136px] bg-black',
@@ -48,7 +48,7 @@ const ShopCard = ({ entity }: CardProps) => {
           </figure>
           <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start p-6">
             <Typography
-              variant={'tag-m'}
+              variant="tag-m"
               className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase bottom-2 lg:bottom-3 ltr:left-2 ltr:lg:left-3 rtl:right-2 rtl:lg:right-3 text-white bg-link"
             >
               promo
@@ -57,18 +57,18 @@ const ShopCard = ({ entity }: CardProps) => {
         </div>
 
         <Typography
-          variant={'body-l'}
-          className={'line-clamp-2 text-ellipsis'}
+          variant="body-l"
+          className="line-clamp-2 text-ellipsis"
         >
           {entity.title}
         </Typography>
         {isPromo ? (
-          <div className={'flex flex-row mt-2 text-2xl md:text-2.5xl tracking-[0.0175em]'}>
-            <div className={'text-grey-300 dark:text-grey-100 me-2 line-through'}>{entity.fields?.price}</div>
+          <div className="flex flex-row mt-2 text-2xl md:text-2.5xl tracking-[0.0175em]">
+            <div className="text-grey-300 dark:text-grey-100 me-2 line-through">{entity.fields?.price}</div>
             {entity.fields?.salePrice}
           </div>
         ) : (
-          <div className={'flex flex-row mt-1 text-2xl md:text-2.5xl  tracking-[0.0175em]'}>{entity.fields?.price}</div>
+          <div className="flex flex-row mt-1 text-2xl md:text-2.5xl  tracking-[0.0175em]">{entity.fields?.price}</div>
         )}
       </div>
     </Link>

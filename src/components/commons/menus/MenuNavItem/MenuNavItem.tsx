@@ -4,6 +4,7 @@ import { icons, renderSvgIcon } from '@/components/icons';
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { MenuItem, MenuSources } from '@/models/types/menu';
 import Typography from '@/components/commons/Typography/Typography';
+import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 import HeaderMenuNavItem from '@/components/commons/menus/HeaderMenuNavItem/HeaderMenuNavItem';
 import FooterMenuNavItem from '@/components/commons/menus/FooterMenuNavItem/FooterMenuNavItem';
@@ -46,7 +47,7 @@ const MenuNavItem = ({
   const isActive = getBooleanProperty(menuItem?.isActive);
   const translatedText = menuItem?.tag ? menuItem.tag : (menuItem?.text ?? '');
   const itemText = (
-    <Typography variant={'navigation-m'}>
+    <Typography variant="navigation-m">
       <TranslatedLabel translationTermKey={translatedText} />
     </Typography>
   );
@@ -58,7 +59,7 @@ const MenuNavItem = ({
       height: iconHeight,
     });
   }
-  let itemValue: JSX.Element | null = null;
+  let itemValue: ReactNode | null = null;
   switch (source) {
     case MenuSources.header:
       itemValue = (

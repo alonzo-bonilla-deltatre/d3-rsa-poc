@@ -43,7 +43,7 @@ const ImageView = ({
             alt={imageEntity?.fields?.altText?.toString() ?? imageEntity.title}
             src={asset.assetUrl}
             transformations={imageTransformation}
-            className={`w-full h-full object-cover`}
+            className="w-full h-full object-cover"
             width={width}
             height={height}
           />

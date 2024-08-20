@@ -31,11 +31,11 @@ const JWPlayerVideo = async ({ data }: { data: ComponentProps }) => {
   return (
     <ModuleContainer isFullWidth={getBooleanProperty(isFullWidth)}>
       <div className="flex flex-col gap-2 pb-10">
-        <Typography variant={'h1'}>{entity?.title}</Typography>
-        {description && <Typography variant={'body-m'}>{description}</Typography>}
+        <Typography variant="h1">{entity?.title}</Typography>
+        {description && <Typography variant="body-m">{description}</Typography>}
         <Typography
-          variant={'tag-l'}
-          as={'time'}
+          variant="tag-l"
+          as="time"
           className="text-grey-500 uppercase"
         >
           <Date

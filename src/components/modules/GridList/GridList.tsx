@@ -86,7 +86,7 @@ const GridList = ({ data }: { data: ComponentProps }) => {
         hasFullWidthContent: getBooleanProperty(isFullWidth),
         sectionClassName: `${getBooleanProperty(isFullWidth) ? '-full-width' : 'px-2'}`,
         children: isLoading ? (
-          <div className={'relative'}>
+          <div className="relative">
             <Loader />
           </div>
         ) : (

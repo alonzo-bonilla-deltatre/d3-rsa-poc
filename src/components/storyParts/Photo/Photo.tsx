@@ -12,7 +12,7 @@ const Photo = ({ data }: { data: StoryPart }) => {
       src={data?.image?.templateUrl ?? ''}
       alt={data?.image?.title ?? ''}
       transformations={transformations.thumbnail_landscape_detail}
-      className={'w-full h-full object-cover rounded-lg'}
+      className="w-full h-full object-cover rounded-lg"
     ></Picture>
   );
 };

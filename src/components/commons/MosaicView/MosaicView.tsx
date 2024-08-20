@@ -78,7 +78,7 @@ const MosaicView = ({ items }: MosaicViewProps) => {
         },
       },
     });
-  }, []);
+  }, [LANGUAGE]);
 
   const handleGalleryShow = (event: { preventDefault: () => void }) => {
     event?.preventDefault();
@@ -102,15 +102,13 @@ const MosaicView = ({ items }: MosaicViewProps) => {
               data-media="(max-width: 40em);(max-width: 64em)"
               data-sources={`${getSrcWithTransformation(image?.src, transformations.fancy_box_detail.mobile.transformation)};
                 ${getSrcWithTransformation(image?.src, transformations.fancy_box_detail.tablet.transformation)}`}
-              className={'w-full h-full'}
+              className="w-full h-full"
             >
-              <figure className={'block overflow-hidden w-full h-full'}>
+              <figure className="block overflow-hidden w-full h-full">
                 <Picture
                   src={image.src}
                   alt={image.title || ''}
-                  className={
-                    'w-full h-full object-cover block object-center hover:scale-110 transition duration-300 cursor-pointer'
-                  }
+                  className="w-full h-full object-cover block object-center hover:scale-110 transition duration-300 cursor-pointer"
                   transformations={image.transformation ?? transformations.thumbnail_landscape_detail}
                   imageStyle={{
                     height: '100%',

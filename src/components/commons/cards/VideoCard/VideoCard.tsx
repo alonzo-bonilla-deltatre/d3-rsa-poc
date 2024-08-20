@@ -24,10 +24,10 @@ const VideoCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
-      <div className={'flex flex-col gap-2'}>
-        <div className={'relative'}>
+      <div className="flex flex-col gap-2">
+        <div className="relative">
           <div
             className={twMerge(
               'flex rounded-lg relative aspect-[10/16] h-full min-w-[136px] bg-black',
@@ -66,7 +66,7 @@ const VideoCard = ({ entity }: CardProps) => {
             {rights && (
               <div className="flex flex-col absolute w-full h-full text-black gap-5 justify-end items-start p-6">
                 <Typography
-                  variant={'tag-m'}
+                  variant="tag-m"
                   className={twMerge(
                     'absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase top-2 lg:top-3 end-2 lg:end-3 text-white bg-link',
                     isFreemium ? 'text-black bg-white' : '',
@@ -80,26 +80,26 @@ const VideoCard = ({ entity }: CardProps) => {
               </div>
             )}
           </div>
-          <div className={'absolute bottom-2 lg:bottom-4 left-2 lg:left-4 rtl:right-2 rtl:lg:right-4 text-white z-10'}>
+          <div className="absolute bottom-2 lg:bottom-4 left-2 lg:left-4 rtl:right-2 rtl:lg:right-4 text-white z-10">
             {renderSvgIcon('Play', { className: 'w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12', width: 50, height: 50 })}
           </div>
         </div>
         <div className="flex flex-col w-full h-full text-white gap-2 justify-end items-start">
           <Typography
-            variant={'body-l'}
-            className={'line-clamp-2 text-ellipsis font-bold'}
+            variant="body-l"
+            className="line-clamp-2 text-ellipsis font-bold"
           >
             {entity.title}
           </Typography>
           {description && (
             <Typography
-              variant={'body-s'}
-              className={'line-clamp-2 text-ellipsis text-grey-100'}
+              variant="body-s"
+              className="line-clamp-2 text-ellipsis text-grey-100"
             >
               {description}
             </Typography>
           )}
-          <Typography variant={'tag-m'}>
+          <Typography variant="tag-m">
             <Date
               date={entity?.contentDate}
               dateType={DateType.short}

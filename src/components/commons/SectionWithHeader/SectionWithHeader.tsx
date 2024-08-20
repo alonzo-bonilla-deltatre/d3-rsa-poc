@@ -9,7 +9,7 @@ import { HeaderTitleProps } from '@/models/types/components';
 import { GraphicAssetsDashboardItem } from '@/models/types/gad';
 import { translate } from '@/helpers/translationHelper';
 import { transformations } from '@/utilities/cloudinaryTransformationsUtility';
-import { ReactNode } from 'react';
+import { ReactHTML, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Typography from '@/components/commons/Typography/Typography';
 
@@ -50,7 +50,7 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
     (!getBooleanProperty(hideHeaderTitle) && headerTitle) || additionalChildren || topChildren || featuredSponsor;
   const keepSectionTag =
     removeSectionHtmlTag === undefined && children ? getOppositeBooleanProperty(removeSectionHtmlTag) : false;
-  const SectionContainer = `${!keepSectionTag ? 'div' : 'section'}` as keyof JSX.IntrinsicElements;
+  const SectionContainer = `${!keepSectionTag ? 'div' : 'section'}` as keyof ReactHTML;
 
   return (
     <SectionContainer className={getStringProperty(sectionClassName)}>
@@ -69,13 +69,13 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
               hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
               ctaTitle={ctaTitle}
               ctaLink={ctaLink}
-              className={'mb-6'}
+              className="mb-6"
             ></HeaderTitle>
             {additionalChildren && additionalChildren}
           </div>
           {featuredSponsor && (
             <div className="flex flex-col gap-1 lg:flex-row">
-              <Typography variant={'tag-m'}>{translate('presented-by')}</Typography>
+              <Typography variant="tag-m">{translate('presented-by')}</Typography>
               <GadAsset
                 className="max-w-[200px] max-h-[80px] mx-auto"
                 src={featuredSponsor.assetUrl}

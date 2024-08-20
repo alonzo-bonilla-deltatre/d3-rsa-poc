@@ -75,7 +75,7 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
         },
       },
     });
-  }, []);
+  }, [LANGUAGE]);
 
   const handleGalleryShow = (event: { preventDefault: () => void }) => {
     event?.preventDefault();
@@ -111,7 +111,7 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
       pagination={getBooleanProperty(hasPagination) ? (pagination as PaginationOptions) : false}
       a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
       loop={true}
-      slidesPerView={'auto'}
+      slidesPerView="auto"
       speed={750}
       autoplay={{
         delay: 3000,
@@ -133,9 +133,9 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
             data-media="(max-width: 40em);(max-width: 64em)"
             data-sources={`${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.mobile.transformation)};
                 ${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.tablet.transformation)}`}
-            className={'w-full h-full'}
+            className="w-full h-full"
           >
-            <figure className={'block overflow-hidden w-full h-full rounded-lg'}>
+            <figure className="block overflow-hidden w-full h-full rounded-lg">
               <Picture
                 src={slide?.image?.templateUrl ?? ''}
                 transformations={transformations.thumbnail_landscape_detail}

@@ -18,7 +18,7 @@ const FocusOnView = ({ storyEntity }: FocusOnViewProps) => {
   const firstPhotoPart = parts?.find((part) => part.type === ForgeEntityType.photo);
   return (
     <>
-      <div className={`overflow-hidden mx-auto relative`}>
+      <div className="overflow-hidden mx-auto relative">
         <Picture
           className="w-full h-full md:h-fit object-cover object-center opacity-[.50]"
           src={storyEntity?.thumbnail?.templateUrl ?? ''}
@@ -28,13 +28,13 @@ const FocusOnView = ({ storyEntity }: FocusOnViewProps) => {
         <div className="container mx-auto px-4">
           <div className="absolute top-2/3 transform -translate-y-2/3 lg:px-6">
             <Typography
-              variant={'tag-l'}
-              className={`uppercase text-white mb-1 px-1 py-0.5 w-fit`}
+              variant="tag-l"
+              className="uppercase text-white mb-1 px-1 py-0.5 w-fit"
             >
               {storyEntity?.context?.title}
             </Typography>
             <Typography
-              variant={'h2'}
+              variant="h2"
               className="font-bold mb-8 md:mt-4 lg:mt-6 "
             >
               {storyEntity?.title}
@@ -42,14 +42,14 @@ const FocusOnView = ({ storyEntity }: FocusOnViewProps) => {
           </div>
         </div>
       </div>
-      <div className={`container mx-auto mt-[-6rem] xl:mt-[-8rem]`}>
+      <div className="container mx-auto mt-[-6rem] xl:mt-[-8rem]">
         <div className="lg:grid relative grid-cols-[586px_minmax(0px,_1fr)] lg:gap-2 xl:gap-6">
-          <div className={`bg-black text-white mx-4 py-6 px-3 md:px-6 lg:py-10 lg:px-5 xl:p-16 xl:max-w-[586px]`}>
+          <div className="bg-black text-white mx-4 py-6 px-3 md:px-6 lg:py-10 lg:px-5 xl:p-16 xl:max-w-[586px]">
             <h3 className="font-heading text-4xl font-bold text-gray-800 dark:text-gray-200 mb-0">
               {storyEntity?.headline}
             </h3>
             <Typography
-              variant={'body-s'}
+              variant="body-s"
               className="pt-8 pr-8 pb-6 md:pt-12 md:pr-16 md:pb-12 text-gray-400"
             >
               {summary}

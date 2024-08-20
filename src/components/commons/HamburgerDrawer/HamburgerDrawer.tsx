@@ -31,7 +31,7 @@ const HamburgerDrawer = ({ children }: DrawerProps) => {
 `;
 
   return (
-    <div className={`flex z-50`}>
+    <div className="flex z-50">
       {isOpen && (
         <div
           className="cover-screen left-0 top-0 right-0 bottom-0 fixed bg-black/60"

@@ -1,12 +1,12 @@
 import { getBooleanProperty } from '@/helpers/pageComponentPropertyHelper';
 import { MenuItem } from '@/models/types/menu';
 import { twMerge } from 'tailwind-merge';
-import React from 'react';
+import { ReactNode } from 'react';
 
 type HeaderMenuNavItemProps = {
   menuItem?: MenuItem;
-  itemIcon?: JSX.Element | null;
-  itemText?: JSX.Element | null;
+  itemIcon?: ReactNode | null;
+  itemText?: ReactNode | null;
 };
 
 const HeaderMenuNavItem = ({ menuItem, itemIcon, itemText }: HeaderMenuNavItemProps) => {

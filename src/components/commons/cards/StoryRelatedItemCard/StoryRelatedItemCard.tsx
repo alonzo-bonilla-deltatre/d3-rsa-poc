@@ -17,14 +17,14 @@ const StoryRelatedItemCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
       <div className="flex flex-col gap-2 overflow-hidden rounded-lg relative">
         {entity?.tags && entity?.tags.length > 0 && (
-          <div className={'flex flex-col gap-2'}>
+          <div className="flex flex-col gap-2">
             {entity?.tags.map((tag: Tag, index: number) => (
               <Typography
-                variant={'tag-l'}
+                variant="tag-l"
                 key={index}
               >
                 {tag.title}
@@ -33,14 +33,14 @@ const StoryRelatedItemCard = ({ entity }: CardProps) => {
           </div>
         )}
         <Typography
-          variant={'body-l'}
+          variant="body-l"
           className="line-clamp-1 text-ellipsis uppercase"
         >
           {entity.title}
         </Typography>
         <Typography
-          variant={'body-s'}
-          className={'text-grey-100 line-clamp-2 text-ellipsis'}
+          variant="body-s"
+          className="text-grey-100 line-clamp-2 text-ellipsis"
         >
           {description}
         </Typography>

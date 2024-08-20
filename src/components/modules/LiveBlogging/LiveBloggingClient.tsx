@@ -15,9 +15,9 @@ const ForgeDivaPostPart = ({ content }: PostPartProps) => {
   return (
     <div className="d3lb-forge">
       <div className="d3lb-forge__inner">
-        {content?.title && <div className={'d3lb-forge__title'}>{content.title}</div>}
+        {content?.title && <div className="d3lb-forge__title">{content.title}</div>}
         <DivaVideoPlayer entity={content} />
-        {description && <div className={'d3lb-forge__description'}>{description}</div>}
+        {description && <div className="d3lb-forge__description">{description}</div>}
       </div>
     </div>
   );

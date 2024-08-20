@@ -37,7 +37,7 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const relatedArticles = storyEntity?.relations?.filter((entity) => entity.type === ForgeEntityType.story) ?? [];
 
   return (
-    <article className={'bg-white text-black pb-5 lg:pb-10 h-full'}>
+    <article className="bg-white text-black pb-5 lg:pb-10 h-full">
       <StoryHeader storyEntity={storyEntity}></StoryHeader>
       <ModuleContainer>
         <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 lg:max-w-full lg:mx-auto content m-2 lg:m-0">
@@ -45,12 +45,12 @@ const Story = async ({ data }: { data: ComponentProps }) => {
             <div className="col-span-3 z-10 hidden lg:flex ltr:border-r rtl:border-l pe-8">
               <div className="w-full flex flex-col">
                 <Typography
-                  variant={'h3'}
-                  className={'mb-6'}
+                  variant="h3"
+                  className="mb-6"
                 >
                   {translate('related-articles')}
                 </Typography>
-                <div className={'flex flex-col gap-6'}>
+                <div className="flex flex-col gap-6">
                   <RelatedItems relations={relatedArticles}></RelatedItems>
                 </div>
               </div>
@@ -61,8 +61,8 @@ const Story = async ({ data }: { data: ComponentProps }) => {
               <div className="flex flex-row justify-between gap-4">
                 <div className="flex flex-row items-center">
                   <Typography
-                    variant={'tag-l'}
-                    as={'time'}
+                    variant="tag-l"
+                    as="time"
                     className="text-grey-100 uppercase"
                   >
                     <Date
@@ -77,13 +77,13 @@ const Story = async ({ data }: { data: ComponentProps }) => {
                 />
               </div>
               <Typography
-                variant={'h1'}
+                variant="h1"
                 className="uppercase"
               >
                 {storyEntity?.title}
               </Typography>
               {description && (
-                <Typography variant={'story-description'}>
+                <Typography variant="story-description">
                   <Markdown markdownText={description} />
                 </Typography>
               )}
@@ -92,8 +92,8 @@ const Story = async ({ data }: { data: ComponentProps }) => {
             {relatedArticles.length > 0 && (
               <div className="flex flex-col lg:hidden border-t">
                 <Typography
-                  variant={'h3'}
-                  className={'pt-10 mb-6'}
+                  variant="h3"
+                  className="pt-10 mb-6"
                 >
                   {translate('related-articles')}
                 </Typography>

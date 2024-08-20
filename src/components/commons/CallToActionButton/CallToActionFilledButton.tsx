@@ -21,13 +21,11 @@ const CallToActionFilledButton = ({
     <button
       onClick={onClick}
       type={buttonType || 'button'}
-      className={
-        'inline-flex items-center gap-2 uppercase text-current border border-current relative py-2 px-5 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300'
-      }
+      className="inline-flex items-center gap-2 uppercase text-current border border-current relative py-2 px-5 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300"
       disabled={isDisabled}
     >
       {isLoading && <Loader />}
-      <Typography variant={'cta-m'}>
+      <Typography variant="cta-m">
         <TranslatedLabel translationTermKey={text} />
       </Typography>
     </button>

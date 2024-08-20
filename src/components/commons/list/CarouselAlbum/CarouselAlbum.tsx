@@ -31,7 +31,7 @@ const CarouselAlbum = ({ items, uniqueId }: CarouselAlbumProps) => {
       key={uniqueId}
       a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
       centerInsufficientSlides
-      slidesPerView={'auto'}
+      slidesPerView="auto"
       spaceBetween={8}
       breakpoints={{
         640: {
@@ -46,7 +46,7 @@ const CarouselAlbum = ({ items, uniqueId }: CarouselAlbumProps) => {
         return (
           <SwiperSlide
             key={slide.id ?? slide._translationId}
-            className={'max-w-[210px] lg:max-w-[420px]'}
+            className="max-w-[210px] lg:max-w-[420px]"
             onFocus={() => swiperRef.current?.swiper?.slideTo(index)}
           >
             {renderCard(CardsType.AlbumCard, { entity: slide })}

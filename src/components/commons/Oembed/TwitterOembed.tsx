@@ -21,8 +21,8 @@ const TwitterOembed = ({ ...props }: OembedProps) => {
     <>
       <Script
         src="https://platform.twitter.com/widgets.js"
-        strategy={'beforeInteractive'}
-        id={'twitter-embed-script'}
+        strategy="afterInteractive"
+        id="twitter-embed-script"
       ></Script>
       <HtmlOembed html={html} />
     </>

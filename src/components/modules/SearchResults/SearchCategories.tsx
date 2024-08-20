@@ -53,7 +53,7 @@ const SearchCategories = ({
           className={twMerge(itemClassName, activeItem === allTranslatedTag ? 'after:scale-x-100 text-link' : '')}
           onClick={() => handlerNavigationClick(azureSearchOption.q)}
         >
-          <Typography variant={'navigation-xl'}>
+          <Typography variant="navigation-xl">
             <TranslatedLabel translationTermKey={allTranslatedTag} />
           </Typography>
         </button>
@@ -67,7 +67,7 @@ const SearchCategories = ({
             className={twMerge(itemClassName, activeItem === type ? 'after:scale-x-100 text-link' : '')}
             onClick={() => handlerNavigationClick(azureSearchOption.q, getFacetType(type), type)}
           >
-            <Typography variant={'navigation-xl'}>
+            <Typography variant="navigation-xl">
               <TranslatedLabel translationTermKey={type} />
             </Typography>
           </button>

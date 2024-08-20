@@ -21,29 +21,25 @@ const EventCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
       <div className="relative rounded-lg">
-        <div className={'absolute rounded-lg bg-event-mask bg-bottom w-full h-[234px] px-6 pt-24 z-10'}>
+        <div className="absolute rounded-lg bg-event-mask bg-bottom w-full h-[234px] px-6 pt-24 z-10">
           <div className="flex flex-col justify-items-center center absolute top-0 ltr:left-2 ltr:lg:left-4 rtl:right-2 rtl:lg:right-4 bg-event-date w-[64px] h-[82px] z-10">
             <Typography
-              variant={'caption-l'}
+              variant="caption-l"
               className="text-center"
             >
               {dateFromDay}
             </Typography>
             <Typography
-              variant={'caption-s'}
+              variant="caption-s"
               className="uppercase text-center -mt-1"
             >
               {dateFromMonth}
             </Typography>
           </div>
-          <div
-            className={
-              'absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 top-2 lg:top-3 ltr:right-2 ltr:lg:right-3 rtl:left-2 rtl:lg:left-3 py-4 text-white bg-grey-500'
-            }
-          >
+          <div className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 top-2 lg:top-3 ltr:right-2 ltr:lg:right-3 rtl:left-2 rtl:lg:left-3 py-4 text-white bg-grey-500">
             {renderSvgIcon('Event', {
               className: 'w-5 h-5',
               width: 20,
@@ -51,15 +47,15 @@ const EventCard = ({ entity }: CardProps) => {
             })}
           </div>
           <Typography
-            variant={'h3'}
-            className={'line-clamp-2 uppercase text-white mt-1 lg:mt-3 mb-2'}
+            variant="h3"
+            className="line-clamp-2 uppercase text-white mt-1 lg:mt-3 mb-2"
           >
             {entity.title}
           </Typography>
         </div>
         {hasTicket && (
           <Typography
-            variant={'tag-m'}
+            variant="tag-m"
             className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center text-black bg-white z-10 bottom-2 lg:bottom-3 left-1/2 transform -translate-x-1/2"
           >
             <span>{entity.fields?.tickets?.displayText}</span>

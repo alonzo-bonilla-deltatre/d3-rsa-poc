@@ -13,7 +13,7 @@ const EventListHeader = ({ headerTitle, headerTitleHeadingLevel, hideHeaderTitle
   return (
     <div className="flex flex-col justify-center items-center">
       <Typography
-        variant={'caption-m'}
+        variant="caption-m"
         className="uppercase text-grey-100"
       >
         {translate('calendar')}

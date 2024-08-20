@@ -64,7 +64,7 @@ export const HeroSwiperView = ({ slides }: HeroSwiperViewProps) => {
   const { LANGUAGE } = useEnvVars();
   return (
     <div className={styles.hero}>
-      <div className={'hero'}>
+      <div className="hero">
         <Swiper
           dir={getSiteDirection(LANGUAGE)}
           style={
@@ -108,7 +108,7 @@ export const HeroSwiperView = ({ slides }: HeroSwiperViewProps) => {
                   )}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
                     <Typography
-                      variant={'h2'}
+                      variant="h2"
                       className="text-white uppercase mt-4 text-center p-6 md:p-12"
                     >
                       {slide.title}

@@ -72,7 +72,7 @@ const Carousel = ({
         navigation={hasNavigation ? navigation : false}
         pagination={hasPagination ? (pagination as PaginationOptions) : false}
         a11y={{ enabled: true, nextSlideMessage: translate('next-slide'), prevSlideMessage: translate('prev-slide') }}
-        slidesPerView={'auto'}
+        slidesPerView="auto"
         breakpoints={{
           640: {
             spaceBetween: 16,
@@ -86,7 +86,7 @@ const Carousel = ({
           return (
             <SwiperSlide
               key={index}
-              className={'max-w-[210px] lg:max-w-[420px]'}
+              className="max-w-[210px] lg:max-w-[420px]"
               onFocus={() => swiperRef.current?.swiper?.slideTo(index)}
             >
               {renderCard(cardsType, { entity: slide })}

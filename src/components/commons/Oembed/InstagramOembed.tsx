@@ -21,8 +21,8 @@ const InstagramOembed = ({ ...props }: OembedProps) => {
     <>
       <Script
         src="https://www.instagram.com/embed.js"
-        strategy={'beforeInteractive'}
-        id={'instagram-embed-script'}
+        strategy="afterInteractive"
+        id="instagram-embed-script"
       ></Script>
       <HtmlOembed html={html} />
     </>

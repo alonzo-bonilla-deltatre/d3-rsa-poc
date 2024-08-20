@@ -48,16 +48,16 @@ export const FeaturedEventListSwiper = ({ slides }: FeaturedEventListSwiperProps
     <>
       <ModuleContainer
         isFullWidth
-        className={'flex'}
+        className="flex"
       >
         <Swiper
           dir={getSiteDirection(LANGUAGE)}
           modules={[Pagination, Navigation]}
           pagination={customPagination(slides)}
-          effect={'coverflow'}
+          effect="coverflow"
           initialSlide={2}
           spaceBetween={20}
-          slidesPerView={'auto'}
+          slidesPerView="auto"
           centeredSlides
           centerInsufficientSlides
           coverflowEffect={{

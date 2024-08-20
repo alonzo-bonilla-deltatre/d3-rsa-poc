@@ -8,7 +8,7 @@ const JWPlayerVideo = ({ data }: { data: StoryPart }) => {
   return (
     <JWPlayerVideoPlayer
       entity={data}
-      containerCss={'grid grid-cols-1 relative overflow-hidden w-full rounded-lg'}
+      containerCss="grid grid-cols-1 relative overflow-hidden w-full rounded-lg"
     />
   );
 };

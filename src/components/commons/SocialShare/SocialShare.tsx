@@ -43,13 +43,12 @@ const SocialShare = ({ title, metadata }: SocialShareProps) => {
       };
 
       (function (d, s, id) {
-        // eslint-disable-next-line
         let js,
           fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
           return;
         }
-        // eslint-disable-next-line
+
         js = d.createElement(s);
         js.id = id;
         //@ts-ignore

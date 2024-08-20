@@ -13,20 +13,20 @@ const Quote = ({ entity }: QuoteProps) => {
   const author = content['author'];
   return (
     <div className="grid grid-cols-1 relative overflow-hidden w-full p-2">
-      <div className={'flex'}>
+      <div className="flex">
         {renderSvgIcon('QuoteLeft', { className: 'text-link', width: 25, height: 21 })}
         <div className="w-full flex flex-col mx-4">
           <Typography
-            variant={'quote'}
-            as={'span'}
-            className={'text-center'}
+            variant="quote"
+            as="span"
+            className="text-center"
           >
             {quote}
           </Typography>
           <Typography
-            variant={'h6'}
-            as={'cite'}
-            className={'mt-4 uppercase not-italic mx-auto'}
+            variant="h6"
+            as="cite"
+            className="mt-4 uppercase not-italic mx-auto"
           >
             {author}
           </Typography>

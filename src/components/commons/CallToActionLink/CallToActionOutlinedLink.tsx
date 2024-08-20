@@ -17,7 +17,7 @@ const CallToActionOutlinedLink = ({ url, text, baseUrl }: CallToActionOutlinedLi
         "uppercase text-current relative py-2 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300 after:block after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
       }
     >
-      <Typography variant={'cta-m'}>
+      <Typography variant="cta-m">
         <TranslatedLabel translationTermKey={text} />
       </Typography>
     </Link>

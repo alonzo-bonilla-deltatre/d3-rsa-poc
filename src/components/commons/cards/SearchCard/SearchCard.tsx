@@ -17,7 +17,7 @@ const SearchCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
       <div className="flex flex-col gap-2 relative">
         <div className="flex items-center justify-center overflow-hidden rounded-lg aspect-[16/9] min-w-[224px]">
@@ -39,14 +39,14 @@ const SearchCard = ({ entity }: CardProps) => {
           />
         </div>
         <Typography
-          variant={'body-l'}
-          className={'line-clamp-1 text-ellipsis uppercase'}
+          variant="body-l"
+          className="line-clamp-1 text-ellipsis uppercase"
         >
           {entity.title}
         </Typography>
         <Typography
-          variant={'body-s'}
-          className={'text-grey-100 line-clamp-2 text-ellipsis'}
+          variant="body-s"
+          className="text-grey-100 line-clamp-2 text-ellipsis"
         >
           {description}
         </Typography>

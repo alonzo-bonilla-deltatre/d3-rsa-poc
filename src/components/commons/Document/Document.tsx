@@ -54,7 +54,7 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
             className: 'shrink-0',
           })}
           <Typography
-            variant={'h6'}
+            variant="h6"
             className="uppercase"
           >
             {fileTitle}

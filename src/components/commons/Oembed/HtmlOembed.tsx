@@ -11,7 +11,7 @@ const HtmlOembed = ({ html }: OembedProps) => {
     <div className="grid grid-cols-1 relative overflow-hidden w-full">
       <HtmlContent
         content={html}
-        className={'mx-auto flex flex-col items-center'}
+        className="mx-auto flex flex-col items-center"
       />
     </div>
   );

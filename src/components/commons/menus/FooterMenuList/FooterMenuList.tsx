@@ -14,12 +14,9 @@ type FooterMenuListProps = {
 const FooterMenuList = ({ menuItems, source, baseUrl }: FooterMenuListProps) => {
   const [subMenuId, setSubMenuId] = useState<string>();
 
-  const handleMenuSelection = useCallback(
-    (id?: string) => {
-      setSubMenuId(id);
-    },
-    [subMenuId]
-  );
+  const handleMenuSelection = useCallback((id?: string) => {
+    setSubMenuId(id);
+  }, []);
 
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {

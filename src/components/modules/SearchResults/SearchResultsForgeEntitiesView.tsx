@@ -61,7 +61,7 @@ const SearchResultsForgeEntitiesView = ({ types, initialAzureSearchOption, varia
   return (
     searchResult &&
     searchResult.length > 0 && (
-      <div className={'relative'}>
+      <div className="relative">
         {isLoading && <Loader />}
         <SearchCategories
           types={types}

@@ -23,8 +23,8 @@ const Footer = ({ data }: { data: ComponentProps }) => {
   const footerNavigationSource: Variable = createDataVariable('source', MenuSources.footer);
 
   return (
-    <footer className={'bg-white text-black border-t'}>
-      <ModuleContainer className={'first:mt-0'}>
+    <footer className="bg-white text-black border-t">
+      <ModuleContainer className="first:mt-0">
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerContent) && (
           <div className="flex flex-col pb-6 lg:pb-10 mb-6 lg:mb-10 h-full border-b border-black">
             {renderItemsInSlot(
@@ -36,8 +36,8 @@ const Footer = ({ data }: { data: ComponentProps }) => {
             )}
           </div>
         )}
-        <div className={'my-6 lg:text-center flex justify-center gap-4'}>
-          <SocialIcons className={'cursor-pointer text-grey-500 hover:text-link transition duration-300'} />
+        <div className="my-6 lg:text-center flex justify-center gap-4">
+          <SocialIcons className="cursor-pointer text-grey-500 hover:text-link transition duration-300" />
         </div>
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerNavigation) && (
           <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
@@ -54,12 +54,12 @@ const Footer = ({ data }: { data: ComponentProps }) => {
         )}
         <div className="lg:text-center flex flex-col">
           {hasItemsInSlot(data.items, FooterLayoutSlots.logo) && (
-            <div className={'flex justify-center mb-5 min-w-[140px] mx-auto'}>
+            <div className="flex justify-center mb-5 min-w-[140px] mx-auto">
               {renderItemsInSlot(data.items, FooterLayoutSlots.logo, data.variables, data.metadata, data.previewToken)}
             </div>
           )}
           <Typography
-            variant={'body-xs'}
+            variant="body-xs"
             className="flex justify-center text-grey-500"
           >
             {translate('footer-copyright')}

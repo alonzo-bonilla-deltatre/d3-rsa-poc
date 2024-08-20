@@ -16,7 +16,7 @@ const AlbumCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className={'w-full h-full'}
+      className="w-full h-full"
     >
       <div className="flex rounded-lg relative">
         <figure className="bg-black overflow-hidden rounded-lg z-10">
@@ -39,14 +39,14 @@ const AlbumCard = ({ entity }: CardProps) => {
         </figure>
         <div className="flex flex-col absolute bottom-0 text-white gap-2 justify-end items-start p-6 z-10">
           <Typography
-            variant={'h3'}
-            as={'div'}
-            className={'line-clamp-2 text-ellipsis uppercase'}
+            variant="h3"
+            as="div"
+            className="line-clamp-2 text-ellipsis uppercase"
           >
             {entity.title}
           </Typography>
           {entity.elementsCount && (
-            <Typography variant={'body-m'}>
+            <Typography variant="body-m">
               <span>
                 {entity.elementsCount + ' '}
                 <TranslatedLabel translationTermKey={ForgeDapiEntityCode.photos ?? ''} />

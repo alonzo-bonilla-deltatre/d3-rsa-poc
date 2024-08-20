@@ -39,10 +39,10 @@ const Event = ({ data }: { data: StoryPart }) => {
         backgroundImage: `url('${imageUrl}')`,
       }}
     >
-      <div className={'bg-black/20 rounded-lg flex flex-col w-full h-full items-center justify-center px-6 gap-6'}>
+      <div className="bg-black/20 rounded-lg flex flex-col w-full h-full items-center justify-center px-6 gap-6">
         <Typography
-          variant={'h3'}
-          className={'text-white flex items-center justify-center'}
+          variant="h3"
+          className="text-white flex items-center justify-center"
         >
           {data.title}
         </Typography>

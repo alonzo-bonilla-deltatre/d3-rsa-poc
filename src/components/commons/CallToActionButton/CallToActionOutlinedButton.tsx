@@ -27,7 +27,7 @@ const CallToActionOutlinedButton = ({
       disabled={isDisabled}
     >
       {isLoading && <Loader />}
-      <Typography variant={'cta-m'}>
+      <Typography variant="cta-m">
         <TranslatedLabel translationTermKey={text} />
       </Typography>
     </button>

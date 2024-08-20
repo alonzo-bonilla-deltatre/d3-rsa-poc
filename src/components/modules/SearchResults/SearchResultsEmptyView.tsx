@@ -13,7 +13,7 @@ const SearchResultsEmptyView = ({ isLoading, searchResult }: SearchResultEmptyVi
   return (
     !isLoading &&
     searchResult &&
-    !searchResult.totalCount && <div className={'mx-auto'}>{translate('empty-search-message')}</div>
+    !searchResult.totalCount && <div className="mx-auto">{translate('empty-search-message')}</div>
   );
 };
 export default SearchResultsEmptyView;

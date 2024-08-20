@@ -40,9 +40,7 @@ const Hamburger = ({ data }: { data: ComponentProps }) => {
             data.previewToken
           )}
         </div>
-        <div
-          className={`w-full flex flex-col justify-center md:justify-between px-4 mx-auto shadow-[0_-6px_9px_0px_rgba(0,0,0,0.20)]`}
-        >
+        <div className="w-full flex flex-col justify-center md:justify-between px-4 mx-auto shadow-[0_-6px_9px_0px_rgba(0,0,0,0.20)]">
           <div className="flex py-4 items-center justify-center gap-4">
             <SocialIcons />
           </div>

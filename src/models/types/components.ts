@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactElement } from 'react';
 import {
   Metadata,
   PageStructureItemKey,
@@ -53,4 +53,4 @@ export type FeaturedHeaderTitleProps = {
 
 export type EditorialListModuleProps = EditorialListProps & ModuleProps;
 
-export type ReturnComponentRender = React.ReactElement | undefined | null;
+export type ReturnComponentRender = ReactElement | undefined | null;

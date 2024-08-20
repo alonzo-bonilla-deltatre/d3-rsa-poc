@@ -13,11 +13,9 @@ const CallToActionFilledLink = ({ url, text, baseUrl }: CallToActionFilledLinkPr
     <Link
       href={url}
       baseUrl={baseUrl}
-      className={
-        'inline-flex items-center gap-2 uppercase text-current border border-current relative py-2 px-5 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300'
-      }
+      className="inline-flex items-center gap-2 uppercase text-current border border-current relative py-2 px-5 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300"
     >
-      <Typography variant={'cta-m'}>
+      <Typography variant="cta-m">
         <TranslatedLabel translationTermKey={text} />
       </Typography>
     </Link>
