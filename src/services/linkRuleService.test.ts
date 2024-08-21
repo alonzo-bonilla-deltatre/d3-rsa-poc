@@ -94,7 +94,7 @@ describe('getLinkRules', () => {
   it('should return null in case of exception for empty url and return null', async () => {
     // ARRANGE
     const apiUrl = process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
-    process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = undefined;
+    delete process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL;
 
     // ACT
     const result = await getLinkRules(body);

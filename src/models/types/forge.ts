@@ -177,7 +177,6 @@ export enum ForgeSocialsMetadataKey {
 export enum ForgeRobotsMetadataKey {
   disallows = 'disallows',
   allows = 'allows',
-  sitemaps = 'sitemaps',
 }
 
 export enum ForgeThemingMetadataKey {

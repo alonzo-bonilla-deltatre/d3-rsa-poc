@@ -1,4 +1,5 @@
 import { Metadata } from '@/models/types/pageStructure';
+import { getSitemapsList } from '@/services/sitemapService';
 import { getPageStructure } from './pageService';
 import { ForgeMetadataCategoryType, ForgeRobotsMetadataKey } from '@/models/types/forge';
 
@@ -25,16 +26,19 @@ type RobotsProps = {
  * @returns {Promise<string | null>} - The content of the robots.txt file or `null` if the page structure cannot be retrieved.
  */
 export const getRobotsTxt = async (): Promise<string | null> => {
-  const pageStructure = await getPageStructure('~/', '');
+  const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
   if (!pageStructure) {
     return null;
   }
   const metadata: Metadata[] = pageStructure.data.metadata;
 
-  let { sitemaps, allows, disallows } = getRobotsProps(metadata);
+  let { allows, disallows } = getRobotsProps(metadata);
+  let sitemaps: string[] = [];
 
   if (allows.length === 0 && disallows.length === 0) {
     disallows = ['/'];
+  } else {
+    sitemaps = await getSitemapsList();
   }
 
   const sitemapEntries: string = sitemaps.map((sitemap) => `Sitemap: ${sitemap}`).join('\n');
@@ -71,8 +75,6 @@ const getRobotsProps = (metadata: Metadata[]): RobotsProps => {
         robotsProps.disallows = item.value ? [...item.value.split('|').filter(Boolean)] : [];
       } else if (item.key === ForgeRobotsMetadataKey.allows) {
         robotsProps.allows = item.value ? [...item.value.split('|').filter(Boolean)] : [];
-      } else if (item.key === ForgeRobotsMetadataKey.sitemaps) {
-        robotsProps.sitemaps = item.value ? [...item.value.split('|').filter(Boolean)] : [];
       }
     }
   });

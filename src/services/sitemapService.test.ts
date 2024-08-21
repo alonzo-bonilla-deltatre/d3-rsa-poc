@@ -34,6 +34,8 @@ describe('Sitemap Services', () => {
   describe('getSiteStructureData', () => {
     it('should return null if getPageStructure returns null', async () => {
       // ARRANGE
+      const basePath = process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH;
+      delete process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH;
       (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
       // ACT
@@ -41,6 +43,7 @@ describe('Sitemap Services', () => {
 
       // ASSERT
       expect(result).toBeNull();
+      process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH = basePath;
     });
 
     it('should return sitemap items if data is valid', async () => {

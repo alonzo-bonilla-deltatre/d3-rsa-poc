@@ -7,6 +7,7 @@ process.env.FORGE_DISTRIBUTION_API_BASE_URL = 'https://forge-dapi.com';
 process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL = 'https://graphicassetapi.com';
 process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL = 'https://pagebuilder-fe-api.com';
 process.env.PAGE_BUILDER_FRONTEND_API_SECRET = 'FrontendApi key=intkey';
+process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH = '/_v2';
 process.env.VOCABULARY_TOOL_API_BASE_URL = 'https://vocabulary-tool-api.com';
 process.env.VOCABULARY_TOOL_VOC_CODE = '_default';
 process.env.THEMING_SUFFIX_NAME = 'poc';

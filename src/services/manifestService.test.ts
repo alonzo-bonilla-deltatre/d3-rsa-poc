@@ -1,5 +1,6 @@
 import { getPageStructure } from '@/services/pageService';
 import { ManifestResponse } from '@/models/types/manifest';
+import { PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH } from '@/utilities/constsUtility';
 import { getManifestJson } from './manifestService';
 import { ForgeMetadataCategoryType, ForgePwaMetadataKey } from '@/models/types/forge';
 
@@ -15,6 +16,8 @@ describe('getManifestJson', () => {
 
   it('should return null if pageStructure is not available', async () => {
     // ARRANGE
+    const basePath = process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH;
+    delete process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH;
     (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
     // ACT
@@ -22,7 +25,8 @@ describe('getManifestJson', () => {
 
     // ASSERT
     expect(result).toBeNull();
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
+    process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH = basePath;
   });
 
   it('should not add properties to the response if metadata category is not "pwa"', async () => {
@@ -39,7 +43,7 @@ describe('getManifestJson', () => {
     const result = await getManifestJson();
 
     // ASSERT
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
     expect(result).toBeDefined();
     expect(result?.name).toBe('');
     expect(result?.short_name).toBeUndefined();
@@ -75,7 +79,7 @@ describe('getManifestJson', () => {
     const result = await getManifestJson();
 
     // ASSERT
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
     expect(result).toBeDefined();
     expect(result!.related_applications).toEqual([]);
   });
@@ -101,7 +105,7 @@ describe('getManifestJson', () => {
     const result = await getManifestJson();
 
     // ASSERT
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
     expect(result).toBeDefined();
     expect(result?.related_applications).toEqual([
       {
@@ -136,7 +140,7 @@ describe('getManifestJson', () => {
     const result = await getManifestJson();
 
     // ASSERT
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
     expect(result).toBeDefined();
     expect(result?.related_applications).toEqual([
       {
@@ -160,7 +164,7 @@ describe('getManifestJson', () => {
     const result = await getManifestJson();
 
     // ASSERT
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
     expect(result?.icons).toEqual([]);
   });
 
@@ -232,7 +236,7 @@ describe('getManifestJson', () => {
     const result = await getManifestJson();
 
     // ASSERT
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
     expect(result).toEqual(expect.objectContaining(expectedResponse));
   });
 });

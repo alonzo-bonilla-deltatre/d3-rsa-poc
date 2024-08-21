@@ -12,7 +12,8 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --silent --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter",
     "prepare": "husky",
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pre-commit": "yarn lint --fix && yarn format"
   },
   "dependencies": {
     "@d3-forge/d3-liveblog-widget": "^0.1.1",

@@ -1,9 +1,14 @@
+import { getSiteUrl } from '@/services/configurationService';
 import { getRobotsTxt } from '@/services/robotsService';
+import { PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH } from '@/utilities/constsUtility';
 import { getPageStructure } from './pageService';
-import { ForgeMetadataCategoryType, ForgeRobotsMetadataKey } from '@/models/types/forge';
+import { ForgeMetadataCategoryType, ForgeRobotsMetadataKey, ForgeSitemapsMetadataKey } from '@/models/types/forge';
 
-jest.mock('./pageService', () => ({
+jest.mock('@/services/pageService', () => ({
   getPageStructure: jest.fn(),
+}));
+jest.mock('@/services/configurationService', () => ({
+  getSiteUrl: jest.fn(),
 }));
 
 describe('getRobotsTxt', () => {
@@ -13,6 +18,8 @@ describe('getRobotsTxt', () => {
 
   it('should return null when getPageStructure returns null', async () => {
     // ARRANGE
+    const basePath = process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH;
+    delete process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH;
     (getPageStructure as jest.Mock).mockResolvedValueOnce(null);
 
     // ACT
@@ -20,7 +27,8 @@ describe('getRobotsTxt', () => {
 
     // ASSERT
     expect(result).toBeNull();
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
+    process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH = basePath;
   });
 
   it('should return the correct robots.txt content when getPageStructure returns valid data', async () => {
@@ -29,9 +37,14 @@ describe('getRobotsTxt', () => {
       data: {
         metadata: [
           {
-            category: ForgeMetadataCategoryType.robots,
-            key: ForgeRobotsMetadataKey.sitemaps,
-            value: 'https://example.com/sitemap.xml|https://example.com/sitemap2.xml',
+            category: ForgeMetadataCategoryType.sitemaps,
+            key: ForgeSitemapsMetadataKey.sitemap_article_entity_code,
+            value: 'stories',
+          },
+          {
+            category: ForgeMetadataCategoryType.sitemaps,
+            key: ForgeSitemapsMetadataKey.sitemap_article_schema,
+            value: 'article',
           },
           {
             category: ForgeMetadataCategoryType.robots,
@@ -46,7 +59,8 @@ describe('getRobotsTxt', () => {
         ],
       },
     };
-    (getPageStructure as jest.Mock).mockResolvedValueOnce(pageStructure);
+    (getPageStructure as jest.Mock).mockResolvedValue(pageStructure);
+    (getSiteUrl as jest.Mock).mockResolvedValueOnce('https://example.com');
 
     // ACT
     const result = await getRobotsTxt();
@@ -58,9 +72,9 @@ describe('getRobotsTxt', () => {
     expect(result).toContain('Disallow: /disallowed-path');
     expect(result).toContain('Disallow: /disallowed-path2');
     expect(result).toContain('Sitemap: https://example.com/sitemap.xml');
-    expect(result).toContain('Sitemap: https://example.com/sitemap2.xml');
+    expect(result).toContain('Sitemap: https://example.com/sitemap-article.xml');
 
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
   });
 
   it('should return the correct robots.txt content when getPageStructure has undefined values', async () => {
@@ -68,11 +82,6 @@ describe('getRobotsTxt', () => {
     const pageStructure = {
       data: {
         metadata: [
-          {
-            category: ForgeMetadataCategoryType.robots,
-            key: ForgeRobotsMetadataKey.sitemaps,
-            value: undefined,
-          },
           {
             category: ForgeMetadataCategoryType.robots,
             key: ForgeRobotsMetadataKey.allows,
@@ -87,6 +96,7 @@ describe('getRobotsTxt', () => {
       },
     };
     (getPageStructure as jest.Mock).mockResolvedValueOnce(pageStructure);
+    (getSiteUrl as jest.Mock).mockResolvedValueOnce('https://example.com');
 
     // ACT
     const result = await getRobotsTxt();
@@ -95,8 +105,9 @@ describe('getRobotsTxt', () => {
     expect(result).toContain('User-agent: *');
     expect(result).toContain('Disallow: /');
     expect(result).not.toContain('Allow:');
-    expect(result).not.toContain('Sitemap:');
+    expect(result).not.toContain('Sitemap: https://example.com/sitemap.xml');
+    expect(result).not.toContain('Sitemap: https://example.com/sitemap-article.xml');
 
-    expect(getPageStructure).toHaveBeenCalledWith('~/', '');
+    expect(getPageStructure).toHaveBeenCalledWith(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH);
   });
 });

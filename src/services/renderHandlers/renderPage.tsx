@@ -32,9 +32,6 @@ export const renderPage = async (params: {
   appView?: string;
 }): Promise<ReturnComponentRender | null> => {
   try {
-    const pageStructure = await getPageStructure('~/');
-    setFrontendAllSiteConfiguration(pageStructure?.data.metadata ?? []);
-
     // Destructure the parameters
     const { q, token, appView } = params;
 

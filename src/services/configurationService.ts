@@ -61,9 +61,9 @@ export const getFrontendAllSiteConfiguration = (): FrontendConfiguration => {
  * @returns {Promise<string>} - The URL of the site for the current culture, or the default URL if the culture is not found.
  * @throws {Error} - If an error occurs while retrieving the page structure.
  */
-export const getSiteUrl = async () => {
+export const getSiteUrl = async (): Promise<string> => {
   if (!frontendConfiguration || !frontendConfiguration.allSites.length) {
-    const pageStructure = await getPageStructure('~/');
+    const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
     setFrontendAllSiteConfiguration(pageStructure?.data.metadata ?? []);
   }
   return frontendConfiguration!.allSites.find((s) => s.culture === siteCulture)?.url ?? '';
