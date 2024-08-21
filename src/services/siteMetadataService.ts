@@ -1,4 +1,5 @@
 ﻿import { PageStructureItemType, StructureItem, Variable } from '@/models/types/pageStructure';
+import { customSetMetadataFromModule } from '@/services/customSiteMetadataService';
 import { Metadata as NextMetadata } from 'next';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
@@ -138,12 +139,8 @@ const setMetadataFromModule = async (
   properties?: Record<string, unknown>,
   variables?: Variable[]
 ): Promise<void> => {
-  try {
-    if (moduleId in moduleHandlers) {
-      const handler = moduleHandlers[moduleId as keyof ModuleHandlers];
-      pageMetadata = await handler(seoData, properties, variables);
-    }
-  } catch (e) {
-    logger.log(`${JSON.stringify(e)}`, LoggerLevel.error);
+  const moduleSeoData = await customSetMetadataFromModule(moduleId, seoData, properties, variables);
+  if (moduleSeoData) {
+    pageMetadata = moduleSeoData;
   }
 };

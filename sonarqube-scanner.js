@@ -19,7 +19,6 @@ const exclusionsList = [
   '**/services/azureCognitiveSearchService.ts',
   '**/services/configurationService.ts',
   '**/services/divaPlayerService.ts',
-  '**/services/siteMetadataService.ts',
   '**/utilities/consts.ts',
   '**/utilities/featureFlags.ts',
   '**/utilities/publicEnvVariables.ts',
@@ -27,7 +26,7 @@ const exclusionsList = [
 const exclusions = exclusionsList.join(',').trim();
 const testInclusions = '**/*.test.ts';
 
-const pullrequestOptions = {
+const pullRequestOptions = {
   "sonar.scm.provider": "git",
   "sonar.token": token,
   "sonar.host.url": "https://sqcorporate.deltatre.com/",
@@ -72,7 +71,7 @@ sonarqubeScanner.scan(
     options: (
       process.env.PRPullRequestId && 
       process.env.PRPullRequestId !== '$(System.PullRequest.PullRequestId)'
-      ) ? pullrequestOptions : manualBuildOptions,
+      ) ? pullRequestOptions : manualBuildOptions,
   },
   () => {
   }
