@@ -2,7 +2,7 @@
 WORKDIR /app
 
 RUN corepack enable && \
-  yarn set version 4.3.1
+  yarn set version 4.4.0
 
 RUN apk add --no-cache aws-cli
 

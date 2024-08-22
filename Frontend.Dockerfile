@@ -36,7 +36,7 @@ RUN yarn install --immutable
 FROM node:22.2.0-alpine3.20 AS tests
 WORKDIR /app
 RUN corepack enable
-RUN yarn set version 4.3.1
+RUN yarn set version 4.4.0
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
@@ -46,7 +46,7 @@ RUN yarn test
 FROM node:22.2.0 AS sonar
 WORKDIR /app
 RUN corepack enable
-RUN yarn set version 4.3.1
+RUN yarn set version 4.4.0
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
@@ -71,7 +71,7 @@ RUN yarn sonar
 FROM node:22.2.0-alpine3.20 AS builder
 WORKDIR /app
 RUN corepack enable
-RUN yarn set version 4.3.1
+RUN yarn set version 4.4.0
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./ .
 COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
