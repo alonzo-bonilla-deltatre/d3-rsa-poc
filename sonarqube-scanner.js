@@ -17,9 +17,9 @@ const exclusionsList = [
   '**/helpers/customForgeDistributionEntityHelper.ts',
   '**/helpers/markdownHelper.ts',
   '**/services/azureCognitiveSearchService.ts',
-  '**/services/configurationService.ts',
   '**/services/divaPlayerService.ts',
   '**/utilities/consts.ts',
+  '**/utilities/defaultCloudinaryTransformationsUtility.ts',
   '**/utilities/featureFlags.ts',
   '**/utilities/publicEnvVariables.ts',
 ];

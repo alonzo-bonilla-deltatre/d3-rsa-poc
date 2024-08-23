@@ -31,6 +31,19 @@ describe('getRobotsTxt', () => {
     process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH = basePath;
   });
 
+  it('should return default robots when getPageStructure returns without metadata field', async () => {
+    // ARRANGE
+    (getPageStructure as jest.Mock).mockResolvedValueOnce({ data: {} });
+    (getPageStructure as jest.Mock).mockResolvedValue({ data: {} });
+
+    // ACT
+    const result = await getRobotsTxt();
+
+    // ASSERT
+    expect(result).toContain('User-agent: *');
+    expect(result).toContain('Disallow: /');
+  });
+
   it('should return the correct robots.txt content when getPageStructure returns valid data', async () => {
     // ARRANGE
     const pageStructure = {
