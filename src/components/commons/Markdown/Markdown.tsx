@@ -1,5 +1,5 @@
 import HtmlContent from '@/components/commons/HtmlContent/HtmlContent';
-import { transform } from '@/helpers/markdownHelper';
+import { transform } from '@/utilities/markdownUtility';
 
 type MarkdownProps = {
   markdownText?: string;

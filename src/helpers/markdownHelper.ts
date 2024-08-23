@@ -1,76 +1,3 @@
-/* istanbul ignore file */
-import { remark } from 'remark';
-import remarkHtml from 'remark-html';
-
-type MarkdownObject = {
-  text: string;
-  links: string[];
-  strikeouts: string[];
-  superScripts: string[];
-  subScripts: string[];
-};
-
-/**
- * Transforms the given text by encoding it.
- *
- * This function checks if the provided text is not empty, and if so, it encodes the text and returns the encoded string.
- * If the provided text is empty, it returns an empty string.
- *
- * @async
- * @param {string} [text=''] - The text to be transformed. Defaults to an empty string.
- * @returns {Promise<string>} The transformed text as a Promise.
- */
-export const transform = async (text: string = ''): Promise<string> => {
-  if (!text) {
-    return '';
-  }
-  return await encode(text);
-};
-
-/**
- * Encodes the given text into HTML using the remark library.
- *
- * This function first checks if the provided text is not empty. If it is, it returns an empty string.
- * If the text is not empty, it creates a markdown object with the text and empty arrays for links, strikeouts, superscripts, and subscripts.
- * It then replaces any anchor, strikeout, superscript, and subscript tags in the text with placeholders.
- * After that, it uses the remark library to convert the markdown text into HTML.
- * Finally, it replaces the placeholders in the HTML string with the original tags and returns the resulting HTML string.
- *
- * @async
- * @param {string} text - The text to be encoded into HTML.
- * @returns {Promise<string>} The encoded HTML string.
- */
-export const encode = async (text: string): Promise<string> => {
-  if (!text) {
-    return '';
-  }
-  let markdownObject: MarkdownObject = {
-    text: text,
-    links: [],
-    strikeouts: [],
-    superScripts: [],
-    subScripts: [],
-  };
-
-  // remark and remark-html not manage in the proper way some html tags for this we need to put some placeholder and replace them after the remake process
-  markdownObject = replaceAnchorTagsWithPlaceholder(markdownObject);
-  markdownObject = replaceStrikeoutTagsWithPlaceholder(markdownObject);
-  markdownObject = replaceSuperScriptTagsWithPlaceholder(markdownObject);
-  markdownObject = replaceSubScriptTagsWithPlaceholder(markdownObject);
-
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark().use(remarkHtml, { sanitize: true }).process(markdownObject.text);
-  markdownObject.text = processedContent?.toString() ? processedContent?.toString() : markdownObject.text;
-
-  // replaced placeholder with correct html tags
-  markdownObject = replacePlaceholderWithAnchorTags(markdownObject);
-  markdownObject = replacePlaceholderWithStrikeoutTags(markdownObject);
-  markdownObject = replacePlaceholderWithSuperScriptTags(markdownObject);
-  markdownObject = replacePlaceholderWithSubScriptTags(markdownObject);
-
-  return markdownObject.text;
-};
-
 /**
  * Replaces anchor tags in the text of a given markdown object with placeholders and stores the original anchor tags.
  *
@@ -83,7 +10,7 @@ export const encode = async (text: string): Promise<string> => {
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with anchor tags replaced by placeholders.
  */
-export function replaceAnchorTagsWithPlaceholder(markdownObject: MarkdownObject) {
+export function replaceAnchorTagsWithPlaceholder(markdownObject: MarkdownObject): MarkdownObject {
   // manage links
   const patternRegex = /<\s*(a)[^>]*>(.*?)<\s*\/\s*(a)>/g;
   const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map((m) => m[0]);
@@ -108,7 +35,7 @@ export function replaceAnchorTagsWithPlaceholder(markdownObject: MarkdownObject)
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with strikeout tags replaced by placeholders.
  */
-export function replaceStrikeoutTagsWithPlaceholder(markdownObject: MarkdownObject) {
+export function replaceStrikeoutTagsWithPlaceholder(markdownObject: MarkdownObject): MarkdownObject {
   // manage strikeout
   const patternRegex = /<\s*(s)[^>]*>(.*?)<\s*\/\s*(s)>/g;
   const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map((m) => m[0]);
@@ -136,7 +63,7 @@ export function replaceStrikeoutTagsWithPlaceholder(markdownObject: MarkdownObje
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with superscript tags replaced by placeholders.
  */
-export function replaceSuperScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
+export function replaceSuperScriptTagsWithPlaceholder(markdownObject: MarkdownObject): MarkdownObject {
   // manage superscript
   const patternRegex = /<\s*(sup)[^>]*>(.*?)<\s*\/\s*(sup)>/g;
   const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map((m) => m[0]);
@@ -163,7 +90,7 @@ export function replaceSuperScriptTagsWithPlaceholder(markdownObject: MarkdownOb
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with subscript tags replaced by placeholders.
  */
-export function replaceSubScriptTagsWithPlaceholder(markdownObject: MarkdownObject) {
+export function replaceSubScriptTagsWithPlaceholder(markdownObject: MarkdownObject): MarkdownObject {
   // manage subscript
   const patternRegex = /<\s*(sub)[^>]*>(.*?)<\s*\/\s*(sub)>/g;
   const matches = Array.from(markdownObject.text.matchAll(patternRegex)).map((m) => m[0]);
@@ -190,7 +117,7 @@ export function replaceSubScriptTagsWithPlaceholder(markdownObject: MarkdownObje
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with placeholders replaced by anchor tags.
  */
-export function replacePlaceholderWithAnchorTags(markdownObject: MarkdownObject) {
+export function replacePlaceholderWithAnchorTags(markdownObject: MarkdownObject): MarkdownObject {
   // manage links
   for (let i = 0; i < markdownObject.links.length; i++) {
     let link = markdownObject.links[i];
@@ -211,7 +138,7 @@ export function replacePlaceholderWithAnchorTags(markdownObject: MarkdownObject)
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with placeholders replaced by strikeout tags.
  */
-export function replacePlaceholderWithStrikeoutTags(markdownObject: MarkdownObject) {
+export function replacePlaceholderWithStrikeoutTags(markdownObject: MarkdownObject): MarkdownObject {
   // manage strikeouts
   for (let i = 0; i < markdownObject.strikeouts.length; i++) {
     let link = markdownObject.strikeouts[i];
@@ -232,7 +159,7 @@ export function replacePlaceholderWithStrikeoutTags(markdownObject: MarkdownObje
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with placeholders replaced by superscript tags.
  */
-export function replacePlaceholderWithSuperScriptTags(markdownObject: MarkdownObject) {
+export function replacePlaceholderWithSuperScriptTags(markdownObject: MarkdownObject): MarkdownObject {
   // manage superscripts
   for (let i = 0; i < markdownObject.superScripts.length; i++) {
     let link = markdownObject.superScripts[i];
@@ -253,7 +180,7 @@ export function replacePlaceholderWithSuperScriptTags(markdownObject: MarkdownOb
  * @param {MarkdownObject} markdownObject - The markdown object to process.
  * @returns {MarkdownObject} The updated markdown object with placeholders replaced by subscript tags.
  */
-export function replacePlaceholderWithSubScriptTags(markdownObject: MarkdownObject) {
+export function replacePlaceholderWithSubScriptTags(markdownObject: MarkdownObject): MarkdownObject {
   // manage subscripts
   for (let i = 0; i < markdownObject.subScripts.length; i++) {
     let link = markdownObject.subScripts[i];

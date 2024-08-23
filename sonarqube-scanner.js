@@ -21,6 +21,7 @@ const exclusionsList = [
   '**/utilities/consts.ts',
   '**/utilities/defaultCloudinaryTransformationsUtility.ts',
   '**/utilities/featureFlags.ts',
+  '**/utilities/markdownUtility.ts',
   '**/utilities/publicEnvVariables.ts',
 ];
 const exclusions = exclusionsList.join(',').trim();
