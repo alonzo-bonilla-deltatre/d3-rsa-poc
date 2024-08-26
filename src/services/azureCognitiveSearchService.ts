@@ -1,5 +1,4 @@
-﻿/* istanbul ignore file */
-import {
+﻿import {
   AzureSearchForgeEntitiesResult,
   AzureSearchKeyPagesResult,
   AzureSearchOption,
@@ -50,7 +49,7 @@ export const searchTotalCount = async (azureSearchOption: AzureSearchOption): Pr
     if (process.env.AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME) {
       keyPagesClient = new SearchClient(
         process.env.AZURE_COGNITIVE_SEARCH_ENDPOINT_URL ?? '',
-        process.env.AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME ?? '',
+        process.env.AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME,
         new AzureKeyCredential(process.env.AZURE_COGNITIVE_SEARCH_KEY ?? '')
       );
     }
@@ -183,7 +182,7 @@ export const searchKeyPages = async (azureSearchOption: AzureSearchOption): Prom
     if (process.env.AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME) {
       keyPagesClient = new SearchClient(
         process.env.AZURE_COGNITIVE_SEARCH_ENDPOINT_URL ?? '',
-        process.env.AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME ?? '',
+        process.env.AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME,
         new AzureKeyCredential(process.env.AZURE_COGNITIVE_SEARCH_KEY ?? '')
       );
     }
