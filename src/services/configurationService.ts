@@ -59,8 +59,8 @@ export const getFrontendAllSiteConfiguration = (): FrontendConfiguration => {
  */
 export const getSiteUrl = async (): Promise<string> => {
   if (!frontendConfiguration?.allSites?.length) {
-    const pageStructure = await getPageStructure(process.env?.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
+    const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
     setFrontendAllSiteConfiguration(pageStructure?.data?.metadata ?? []);
   }
-  return frontendConfiguration!.allSites.find((s) => s.culture === process.env?.CULTURE)?.url ?? '';
+  return frontendConfiguration!.allSites.find((s) => s.culture === process.env.CULTURE)?.url ?? '';
 };

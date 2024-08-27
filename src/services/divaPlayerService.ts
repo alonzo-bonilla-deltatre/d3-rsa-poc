@@ -10,18 +10,18 @@ const DEFAULT_AKAMAI_EXPIRATION_WINDOW = 60; // in seconds
 
 export const getDivaPlayerSetting = () => {
   // settings.general
-  const audioSelectionMethod = process.env?.DIVA_PLAYER_CUSTOM_AUDIO_SELECTION ?? 'title';
-  const closedCaptionSelectionMethod = process.env?.DIVA_PLAYER_CUSTOM_CC_SELECTION ?? 'lang';
+  const audioSelectionMethod = process.env.DIVA_PLAYER_CUSTOM_AUDIO_SELECTION ?? 'title';
+  const closedCaptionSelectionMethod = process.env.DIVA_PLAYER_CUSTOM_CC_SELECTION ?? 'lang';
   // settings.translation
-  const dictionaryUrl = process.env?.DIVA_PLAYER_CUSTOM_DICTIONARY_URL ?? '/api/diva/dictionary';
+  const dictionaryUrl = process.env.DIVA_PLAYER_CUSTOM_DICTIONARY_URL ?? '/api/diva/dictionary';
   // settings.videoData
-  const videoDataDomain = process.env?.DIVA_PLAYER_VIDEODATA_DOMAIN ?? '';
+  const videoDataDomain = process.env.DIVA_PLAYER_VIDEODATA_DOMAIN ?? '';
   // settings.entitlement
-  const entitlementUrl = process.env?.DIVA_PLAYER_CUSTOM_ENTITLEMENT_URL ?? '/api/diva/entitlement';
-  const heartbeatUrl = process.env?.DIVA_PLAYER_CUSTOM_HEARTBEAT_URL ?? '/api/diva/heartbeat';
+  const entitlementUrl = process.env.DIVA_PLAYER_CUSTOM_ENTITLEMENT_URL ?? '/api/diva/entitlement';
+  const heartbeatUrl = process.env.DIVA_PLAYER_CUSTOM_HEARTBEAT_URL ?? '/api/diva/heartbeat';
   const heartbeatPollingInterval =
-    (Number(process.env?.DIVA_PLAYER_HEARTBEAT_INTERVAL_IN_SECONDS) || DEFAULT_HEARTBEAT) * 1000;
-  const fairPlayCertificateUrl = process.env?.DIVA_PLAYER_FAIRPLAY_CERTIFICATE_URL ?? '';
+    (Number(process.env.DIVA_PLAYER_HEARTBEAT_INTERVAL_IN_SECONDS) || DEFAULT_HEARTBEAT) * 1000;
+  const fairPlayCertificateUrl = process.env.DIVA_PLAYER_FAIRPLAY_CERTIFICATE_URL ?? '';
 
   if (!videoDataDomain) {
     logger.log(`Missing env var 'videoDataDomain'`, LoggerLevel.error);
@@ -303,11 +303,11 @@ export const getDivaPlayerDictionary = () => {
 };
 
 export const getDivaPlayerEntitlement = (request: any) => {
-  const heartbeatPollingInterval = process.env?.DIVA_PLAYER_HEARTBEAT_INTERVAL_IN_SECONDS ?? DEFAULT_HEARTBEAT;
+  const heartbeatPollingInterval = process.env.DIVA_PLAYER_HEARTBEAT_INTERVAL_IN_SECONDS ?? DEFAULT_HEARTBEAT;
   const akamaiExpirationWindow = Number(
-    process.env?.DIVA_PLAYER_AKAMAI_EXPIRATION_WINDOW ?? DEFAULT_AKAMAI_EXPIRATION_WINDOW
+    process.env.DIVA_PLAYER_AKAMAI_EXPIRATION_WINDOW ?? DEFAULT_AKAMAI_EXPIRATION_WINDOW
   );
-  const akamaiKey = process.env?.DIVA_PLAYER_AKAMAI_KEY ?? '';
+  const akamaiKey = process.env.DIVA_PLAYER_AKAMAI_KEY ?? '';
   const contentKeyData = request.ContentKeyData;
   const sessionId = parseSessionId(request.Other);
   const userId = request.User;
@@ -318,7 +318,7 @@ export const getDivaPlayerEntitlement = (request: any) => {
 
   let contentUrl = request.VideoSource;
 
-  if (!!process.env?.DIVA_PLAYER_AKAMAI_KEY) {
+  if (!!process.env.DIVA_PLAYER_AKAMAI_KEY) {
     try {
       contentUrl = generateTokenizedURL(request.VideoSource, akamaiKey, akamaiExpirationWindow);
       return {
@@ -349,9 +349,9 @@ const parseSessionId = (otherParams: any) => {
   return index !== -1 ? otherParams.slice(0, index) : null;
 };
 const generateCastlabAuthToken = (contentKeyData: string, sessionId: string, user: string) => {
-  const livekeyTemplate = process.env?.DIVA_PLAYER_CASTLAB_LIVEKEY_TEMPLATE ?? '';
-  const appProdKey = process.env?.DIVA_PLAYER_CASTLAB_APP_PROD_KEY ?? '';
-  const merchantName = process.env?.DIVA_PLAYER_MERCHANT_NAME ?? '';
+  const livekeyTemplate = process.env.DIVA_PLAYER_CASTLAB_LIVEKEY_TEMPLATE ?? '';
+  const appProdKey = process.env.DIVA_PLAYER_CASTLAB_APP_PROD_KEY ?? '';
+  const merchantName = process.env.DIVA_PLAYER_MERCHANT_NAME ?? '';
   const session = sessionId || null;
 
   const opt = {

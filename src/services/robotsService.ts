@@ -26,7 +26,7 @@ type RobotsProps = {
  * @returns {Promise<string | null>} - The content of the robots.txt file or `null` if the page structure cannot be retrieved.
  */
 export const getRobotsTxt = async (): Promise<string | null> => {
-  const pageStructure = await getPageStructure(process.env?.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
+  const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
   if (!pageStructure) {
     return null;
   }

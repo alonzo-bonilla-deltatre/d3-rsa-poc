@@ -12,7 +12,7 @@ import { ForgeMetadataCategoryType, ForgePwaMetadataKey } from '@/models/types/f
  * @returns {Promise<ManifestResponse | null>} - The manifest JSON or `null` if the page structure cannot be retrieved.
  */
 export const getManifestJson = async (): Promise<ManifestResponse | null> => {
-  const pageStructure = await getPageStructure(process.env?.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
+  const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
   if (!pageStructure) {
     return null;
   }
