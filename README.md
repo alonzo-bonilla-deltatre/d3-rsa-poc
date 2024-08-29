@@ -1,14 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Prerequisites
+- Node version 22.x.x
+
 ## Getting Started
 
-First, install the dependencies:
+First, install the dependencies and let `husky` prepared:
 ```bash
-yarn install
+yarn install && yarn prepare
 ```
 
 Then run the development server:
-
 ```bash
 yarn dev
 ```
@@ -17,23 +19,21 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Production Build 
 If you want, you can double-check the final production output using: 
-
 ```bash
 yarn build
 ```
+copy your `.env.local` file in the `.next/server` folder and run:
+```bash
+yarn start
+```
 
-You can start editing the page by modifying `app/[[...pageName]]page.tsx`. The page auto-updates as you edit the file.
-
-## Mock API
+## API
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-You can also use the `pageStructure` fake endpoint to return the structure of a page.
-This endpoint can be accessed on [http://localhost:3000/api/pageStructure](http://localhost:3000/api/pageStructure). This endpoint can be edited in `pages/api/pageStructure.ts`.
-
 ## Env Variables
-This solution uses the environment variables but we did not push the .env file on origin on purpose.
+This solution uses the environment variables we did not push the .env file on origin on purpose.
 Follow these steps to use the env variables locally:
-- generate an empty  `.env.local` file inside the `web` folder
+- generate an empty  `.env.local` file inside the `root` folder
 - ask your Lead Engineer of you colleague to share its content via `Last Pass` secure note 
 
 The content of this file should look like:
@@ -54,6 +54,7 @@ PAGE_BUILDER_FRONTEND_API_SECRET='FrontendApi key=intkey'
 VOCABULARY_TOOL_API_BASE_URL='https://vocabulary-tool-api.deltatre.digital'
 VOCABULARY_TOOL_VOC_CODE='react-fe-vocabulary'
 THEMING_SUFFIX_NAME='d3'
+PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH='~/'
 # Mandatory general configuration only for local test to keep the link rules on local path
 KEEP_LINK_RULES_LOCAL='true'
 LINK_RULES_LOCAL_HOSTNAME='localhost'
@@ -64,9 +65,9 @@ AZURE_COGNITIVE_SEARCH_ENDPOINT_URL='https://forge-integrations-search.search.wi
 AZURE_COGNITIVE_SEARCH_INDEX_NAME='dapi-en-gb'
 AZURE_COGNITIVE_SEARCH_KEY='xxx'
 AZURE_COGNITIVE_SEARCH_KEY_PAGES_INDEX_NAME='key-pages'
-# Mandatory general configuration for local test and in the deployment for the module and the component releated to the LiveBlogging
+# Mandatory general configuration for local test and in the deployment for the module and the component related to the LiveBlogging
 LIVE_BLOGGING_DAPI_BASE_URL='https://liveblogging.deltatre.digital'
-# Mandatory general configuration for local test and in the deployment for the module and the component releated to the Diva Player
+# Mandatory general configuration for local test and in the deployment for the module and the component related to the Diva Player
 DIVA_PLAYER_VIDEO_SETTINGS_BASE_URL='https://react-fe.net/diva5/settings'
 ```
 
