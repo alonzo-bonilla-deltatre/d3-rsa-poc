@@ -44,10 +44,6 @@ const eslintConfig = [...compat.extends(
         props: 'never',
         children: 'never',
       }],
-      'react-hooks/rules-of-hooks': 'off', // Disable the problematic rule for eslint version > 9.x.x
-      '@next/next/no-duplicate-head': 'off', // Disable the problematic rule for eslint version > 9.x.x
-      '@next/next/no-page-custom-font': 'off', // Disable the problematic rule for eslint version > 9.x.x
-      'storybook/no-uninstalled-addons': 'off', // Disable the problematic rule for eslint version > 9.x.x
       'no-unused-vars': 'off', // Disable the problematic rule
       'no-useless-escape': 'off', // Disable the problematic rule
       'no-extra-boolean-cast': 'off', // Disable the problematic rule
