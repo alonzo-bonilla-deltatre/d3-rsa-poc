@@ -1,7 +1,8 @@
-import { ManifestResponse, RelatedApplication } from '@/models/types/manifest';
+import { ManifestDisplay, ManifestResponse, RelatedApplication } from '@/models/types/manifest';
 import { Metadata } from '@/models/types/pageStructure';
 import { getPageStructure } from '@/services/pageService';
 import { ForgeMetadataCategoryType, ForgePwaMetadataKey } from '@/models/types/forge';
+import { PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH } from '@/utilities/constsUtility';
 
 /**
  * Function to get the manifest JSON.
@@ -12,7 +13,9 @@ import { ForgeMetadataCategoryType, ForgePwaMetadataKey } from '@/models/types/f
  * @returns {Promise<ManifestResponse | null>} - The manifest JSON or `null` if the page structure cannot be retrieved.
  */
 export const getManifestJson = async (): Promise<ManifestResponse | null> => {
-  const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
+  const pageStructure = await getPageStructure(
+    process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH
+  );
   if (!pageStructure) {
     return null;
   }
@@ -57,7 +60,7 @@ const getManifestContent = (metadata: Metadata[]): ManifestResponse => {
         manifestResponse.start_url = getValueOrDefault(item, '/?utm_source=pwa');
         break;
       case ForgePwaMetadataKey.display:
-        manifestResponse.display = getValueOrDefault(item, 'standalone');
+        manifestResponse.display = getValueOrDefault(item, 'standalone') as ManifestDisplay;
         break;
       case ForgePwaMetadataKey.background_color:
         manifestResponse.background_color = getValueOrDefault(item);
@@ -72,8 +75,8 @@ const getManifestContent = (metadata: Metadata[]): ManifestResponse => {
         item.value &&
           manifestResponse.icons?.push({
             src: getValueOrDefault(item),
-            sizes: '72x72 96x96 128x128 256x256',
-            type: 'svg',
+            sizes: 'any',
+            type: 'image/svg+xml',
           });
         break;
       case ForgePwaMetadataKey.android_play_store_url:

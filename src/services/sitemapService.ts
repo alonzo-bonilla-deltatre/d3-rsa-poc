@@ -11,6 +11,7 @@ import { ApiResponse, SitemapItem } from '@/models/types/siteStructure';
 import { EntityConfig } from '@/models/types/sitemap';
 import { getPageStructure } from '@/services/pageService';
 import { formatDate } from '@/helpers/dateHelper';
+import { PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH } from '@/utilities/constsUtility';
 import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
 import { getSiteUrl } from './configurationService';
@@ -59,7 +60,9 @@ export async function getSiteStructureData(): Promise<SitemapItem[] | null> {
       pageBuilderBaseUrl
     ).href;
 
-    const pageStructureResponse = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_URL ?? '~/');
+    const pageStructureResponse = await getPageStructure(
+      process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_URL ?? PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH
+    );
 
     if (!pageStructureResponse) {
       throw new Error('Page structure could not be retrieved');
@@ -206,7 +209,9 @@ export async function getSitemapIndexXml(): Promise<string | null> {
  * @returns {Promise<EntityConfig[]>} - The list of sitemap entities or an empty array if no entities were found.
  */
 export const getSiteMapEntitiesFromMetadata = async (): Promise<EntityConfig[]> => {
-  const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_URL ?? '~/');
+  const pageStructure = await getPageStructure(
+    process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_URL ?? PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH
+  );
 
   type EntityMap = Record<string, Partial<EntityConfig>>;
 

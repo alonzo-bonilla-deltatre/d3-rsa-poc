@@ -1,3 +1,5 @@
+import { MetadataRoute } from 'next';
+
 export type Icon = {
   src: string;
   sizes: string;
@@ -10,14 +12,6 @@ export type RelatedApplication = {
   id?: string;
 };
 
-export type ManifestResponse = {
-  name: string;
-  short_name?: string;
-  start_url?: string;
-  display?: string;
-  background_color?: string;
-  theme_color?: string;
-  scope?: string;
-  icons?: Icon[];
-  related_applications?: RelatedApplication[];
-};
+export type ManifestDisplay = 'fullscreen' | 'standalone' | 'minimal-ui' | 'browser' | undefined;
+
+export type ManifestResponse = MetadataRoute.Manifest & { related_applications: RelatedApplication[] };

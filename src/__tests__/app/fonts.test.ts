@@ -1,4 +1,4 @@
-﻿import fonts from './fonts';
+﻿import fonts from '@/app/fonts';
 
 describe('fonts', () => {
   it('contains heading font with correct variable', () => {

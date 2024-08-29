@@ -1,6 +1,7 @@
 ﻿import { FrontendConfiguration, FrontendSiteConfiguration } from '@/models/types/frontendConfiguration';
 import { Metadata } from '@/models/types/pageStructure';
 import { getMetadataGroup } from '@/services/metadataService';
+import { PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH } from '@/utilities/constsUtility';
 import { getPageStructure } from './pageService';
 import { ForgeMetadataCategoryType } from '@/models/types/forge';
 
@@ -59,7 +60,9 @@ export const getFrontendAllSiteConfiguration = (): FrontendConfiguration => {
  */
 export const getSiteUrl = async (): Promise<string> => {
   if (!frontendConfiguration?.allSites?.length) {
-    const pageStructure = await getPageStructure(process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? '~/');
+    const pageStructure = await getPageStructure(
+      process.env.PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH ?? PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH
+    );
     setFrontendAllSiteConfiguration(pageStructure?.data?.metadata ?? []);
   }
   return frontendConfiguration!.allSites.find((s) => s.culture === process.env.CULTURE)?.url ?? '';

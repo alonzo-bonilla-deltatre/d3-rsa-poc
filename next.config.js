@@ -32,10 +32,6 @@ const nextConfig = {
         destination: '/api/robots',
       },
       {
-        source: '/manifest.json',
-        destination: '/api/manifest',
-      },
-      {
         source: '/healthz/live',
         destination: '/api/healthz/live',
       },

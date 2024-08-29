@@ -10,6 +10,7 @@ import { FeatureFlagsProvider } from '@/contexts/featureFlagsContext';
 import { featureFlags } from '@/utilities/featureFlagsUtility';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Favicon from '@/components/commons/Favicon/Favicon';
+import Script from 'next/script';
 import { ReactNode } from 'react';
 
 // If loading a variable font, you don"t need to specify the font weight
@@ -45,6 +46,11 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       dir={getSiteDirection(process.env.LANGUAGE ?? '')}
     >
       <head>
+        {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId} />}
+        <link
+          rel="manifest"
+          href="/manifest.webmanifest"
+        />
         <Favicon />
       </head>
       <body suppressHydrationWarning={true}>
@@ -53,8 +59,13 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
             <FeatureFlagsProvider featureFlags={featureFlags}>{children}</FeatureFlagsProvider>
           </EnvVarsProvider>
         </TranslationProvider>
+        {googleAnalyticsId && (
+          <Script
+            async
+            src="https://www.googletagservices.com/tag/js/gpt.js"
+          />
+        )}
       </body>
-      {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId} />}
     </html>
   );
 };

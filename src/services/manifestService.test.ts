@@ -214,8 +214,8 @@ describe('getManifestJson', () => {
       icons: [
         {
           src: '/path/to/icon.svg',
-          sizes: '72x72 96x96 128x128 256x256',
-          type: 'svg',
+          sizes: 'any',
+          type: 'image/svg+xml',
         },
       ],
       related_applications: [
