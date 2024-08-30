@@ -47,10 +47,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
     >
       <head>
         {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId} />}
-        <link
-          rel="manifest"
-          href="/manifest.webmanifest"
-        />
         <Favicon />
       </head>
       <body suppressHydrationWarning={true}>
