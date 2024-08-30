@@ -1,5 +1,5 @@
 ﻿import logger from '@/utilities/loggerUtility';
-import { getAdSizesFromString } from './advertisingHelper';
+import { getAdSizesFromString } from '@/helpers/advertisingHelper';
 import { LoggerLevel } from '@/models/types/logger';
 import { describe, expect, it } from '@jest/globals';
 

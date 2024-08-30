@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { createContext } from 'react';
+import { Context, createContext, ReactElement, ReactNode } from 'react';
 
 /**
  * Context for environment variables.
@@ -8,9 +8,11 @@ import React, { createContext } from 'react';
  * This context provides a way to pass environment variables down the component tree
  * without having to pass props down manually at every level.
  *
- * @type {React.Context<Record<string, string | number | boolean | undefined>>}
+ * @type {Context<Record<string, string | number | boolean | undefined>>}
  */
-export const EnvVarContext = createContext<Record<string, string | number | boolean | undefined>>({});
+export const EnvVarContext: Context<Record<string, string | number | boolean | undefined>> = createContext<
+  Record<string, string | number | boolean | undefined>
+>({});
 
 /**
  * Provider component for the environment variables context.
@@ -20,16 +22,16 @@ export const EnvVarContext = createContext<Record<string, string | number | bool
  *
  * @param {object} props - The props for the component.
  * @param {Record<string, string | number | boolean | undefined>} props.envVars - The environment variables to pass down the component tree.
- * @param {React.ReactNode} props.children - The child components to render.
+ * @param {ReactNode} props.children - The child components to render.
  *
- * @returns {React.ReactElement} A context provider that passes the environment variables to all children.
+ * @returns {ReactElement} A context provider that passes the environment variables to all children.
  */
 export const EnvVarsProvider = ({
   envVars,
   children,
 }: {
   envVars: Record<string, string | number | boolean | undefined>;
-  children: React.ReactNode;
-}): React.ReactElement => {
+  children: ReactNode;
+}): ReactElement => {
   return <EnvVarContext.Provider value={envVars}>{children}</EnvVarContext.Provider>;
 };

@@ -22,6 +22,7 @@ describe('azureSearch', () => {
   const variables: Variable[] = [];
 
   it('returns data when search is successful', async () => {
+    // ARRANGE
     const mockResult: AzureSearchResult = {
       totalCount: 10,
       forgeEntities: { count: 5, items: [] },
@@ -31,16 +32,21 @@ describe('azureSearch', () => {
     (searchForgeEntities as jest.Mock).mockResolvedValue({ count: 5, items: [] });
     (searchKeyPages as jest.Mock).mockResolvedValue({ count: 5, items: [] });
 
+    // ACT
     const result = await azureSearch(azureSearchOption, variables);
 
+    // ASSERT
     expect(result.data).toEqual(mockResult);
   });
 
   it('returns error message when search fails', async () => {
+    // ARRANGE
     (searchTotalCount as jest.Mock).mockRejectedValue(new Error('Search failed'));
 
+    // ACT
     const result = await azureSearch(azureSearchOption, variables);
 
+    // ASSERT
     expect(result.error).toBe('Search failed');
   });
 });
@@ -58,19 +64,25 @@ describe('azureSearchForgeEntities', () => {
   const variables: Variable[] = [];
 
   it('returns data when search is successful', async () => {
+    // ARRANGE
     const mockResult = { count: 5, items: [] };
     (searchForgeEntities as jest.Mock).mockResolvedValue(mockResult);
 
+    // ACT
     const result = await azureSearchForgeEntities(azureSearchOption, variables);
 
+    // ASSERT
     expect(result.data).toEqual(mockResult);
   });
 
   it('returns error message when search fails', async () => {
+    // ARRANGE
     (searchForgeEntities as jest.Mock).mockRejectedValue(new Error('Search failed'));
 
+    // ACT
     const result = await azureSearchForgeEntities(azureSearchOption, variables);
 
+    // ASSERT
     expect(result.error).toBe('Search failed');
   });
 });
@@ -87,19 +99,25 @@ describe('azureSearchKeyPages', () => {
   };
 
   it('returns data when search is successful', async () => {
+    // ARRANGE
     const mockResult = { count: 5, items: [] };
     (searchKeyPages as jest.Mock).mockResolvedValue(mockResult);
 
+    // ACT
     const result = await azureSearchKeyPages(azureSearchOption);
 
+    // ASSERT
     expect(result.data).toEqual(mockResult);
   });
 
   it('returns error message when search fails', async () => {
+    // ARRANGE
     (searchKeyPages as jest.Mock).mockRejectedValue(new Error('Search failed'));
 
+    // ACT
     const result = await azureSearchKeyPages(azureSearchOption);
 
+    // ASSERT
     expect(result.error).toBe('Search failed');
   });
 });

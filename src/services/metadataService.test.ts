@@ -1,6 +1,6 @@
 import { getMetadata, getMetadataGroup, setPageMetadata } from '@/services/metadataService';
 import { Author } from 'next/dist/lib/metadata/types/metadata-types';
-import { getPageStructure } from './pageService';
+import { getPageStructure } from '@/services/pageService';
 import { setFrontendAllSiteConfiguration } from '@/services/configurationService';
 import {
   ForgeLanguagesMetadataKey,

@@ -18,7 +18,10 @@ import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
  * @param {ForgeMetadataCategoryType} category - The category to filter by.
  * @returns {MetadataItem[]} - The filtered metadata items.
  */
-export const getMetadataGroup = (metadata: MetadataItem[] | null, category: ForgeMetadataCategoryType) => {
+export const getMetadataGroup = (
+  metadata: MetadataItem[] | null,
+  category: ForgeMetadataCategoryType
+): MetadataItem[] => {
   const categoryMetadata: MetadataItem[] = [];
   metadata?.forEach((item) => {
     if (item.category === category) {
@@ -35,13 +38,13 @@ export const getMetadataGroup = (metadata: MetadataItem[] | null, category: Forg
  * @param {MetadataItem[] | null} metadata - The metadata items to search.
  * @param {ForgeMetadataCategoryType} category - The category to search for.
  * @param {ForgeMetadataKeyType} key - The key to search for.
- * @returns {MetadataItem | null} - The found metadata item or `null` if no item was found.
+ * @returns {MetadataItem | null | undefined} - The found metadata item or `null` if no item was found.
  */
 export const getMetadata = (
   metadata: MetadataItem[] | null,
   category: ForgeMetadataCategoryType,
   key: ForgeMetadataKeyType
-) => {
+): MetadataItem | null | undefined => {
   return metadata ? metadata.find((item) => item.category === category && item.key === key) : null;
 };
 

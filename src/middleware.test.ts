@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import { config, middleware } from './middleware';
+import { config, middleware } from '@/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
 describe('middleware', () => {

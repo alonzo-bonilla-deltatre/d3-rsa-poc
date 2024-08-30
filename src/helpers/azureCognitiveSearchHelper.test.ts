@@ -1,4 +1,3 @@
-import { afterEach, describe, expect, it } from '@jest/globals';
 import { AzureSearchResult } from '@/models/types/azureSearch';
 import { SearchIterator } from '@azure/search-documents';
 import {
@@ -9,11 +8,11 @@ import {
   processDocuments,
   processFacets,
   processKeyPagesDocuments,
-} from './azureCognitiveSearchHelper';
+} from '@/helpers/azureCognitiveSearchHelper';
 import {
   enrichDistributionEntitiesWithLinkRules,
   enrichEntitiesWithThumbnailPlaceholder,
-} from './forgeDistributionEntityHelper';
+} from '@/helpers/forgeDistributionEntityHelper';
 import { Variable } from '@/models/types/pageStructure';
 import { ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
 

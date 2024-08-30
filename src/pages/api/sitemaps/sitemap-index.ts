@@ -15,7 +15,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-const SitemapIndex = async (req: NextApiRequest, res: NextApiResponse) => {
+const SitemapIndex = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
     const xml = await getSitemapIndexXml();
 

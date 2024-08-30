@@ -1,6 +1,6 @@
 import { DistributionEntity, ForgeEntityCode, ForgeEntityType, Tag } from '@/models/types/forge';
 import { ImageAsset } from '@/models/types/images';
-import { samplePhotoStoryPart } from './sampleStoryParts';
+import { samplePhotoStoryPart } from '@/__mocks__/entities/sampleStoryParts';
 
 const sampleContext: Tag = {
   _translationId: 'TestTranslationId',

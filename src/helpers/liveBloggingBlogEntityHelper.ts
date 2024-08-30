@@ -14,7 +14,7 @@ const environment = process.env.ENVIRONMENT;
  * Given the entities array, check if there is the fallback image and fill, if needed
  * @param items the items to check
  * @param variables the variables from were to extract the placeholder image asset from
- * @returns the items enreached with the fallback image where needed
+ * @returns the items enriched with the fallback image where needed
  */
 export const enrichEntitiesWithThumbnailPlaceholder = (
   items: LiveBloggingBlogEntity[] | null,
@@ -140,7 +140,7 @@ export const getFilteredItems = /* istanbul ignore next */ (
   items: LiveBloggingBlogEntity[] | null | undefined,
   skip: number,
   limit: number
-) => {
+): LiveBloggingBlogEntity[] => {
   if (!items?.length) {
     return [];
   }
@@ -196,7 +196,7 @@ const buildLinkRulesRequest = /* istanbul ignore next */ (
 const enrichLinkRuleRequestEntity = /* istanbul ignore next */ (
   entities: LiveBloggingBlogEntity[],
   linkRuleVariations?: LinkRuleVariation[]
-) => {
+): void => {
   if (entities && linkRuleVariations) {
     linkRuleVariations.forEach((variation) => {
       entities.forEach((entity) => {
@@ -219,7 +219,7 @@ const enrichLinkRuleRequestEntity = /* istanbul ignore next */ (
 const addLinkRuleRequest = /* istanbul ignore next */ (
   entity: LiveBloggingBlogEntity,
   linkRulesRequest: LinkRuleRequest[]
-) => {
+): void => {
   linkRulesRequest.push({
     id: createLinkRuleId(entity),
     entity,
@@ -262,7 +262,10 @@ const updateEntityURLs = /* istanbul ignore next */ (
  * @param {LiveBloggingBlogEntity} entity - The entity whose URL is to be updated.
  * @param {LinkRuleResponse} linkRules - The link rules to use for updating the URL.
  */
-const updateEntityURL = /* istanbul ignore next */ (entity: LiveBloggingBlogEntity, linkRules: LinkRuleResponse) => {
+const updateEntityURL = /* istanbul ignore next */ (
+  entity: LiveBloggingBlogEntity,
+  linkRules: LinkRuleResponse
+): void => {
   const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
   entity.url = linkRule?.url ?? entity.url;
 };

@@ -19,7 +19,7 @@ export const deleteSiteTranslations = (): Record<string, Translation> | undefine
 /**
  * Fetches and sets the site translations for the current culture.
  */
-export const setSiteTranslations = async () => {
+export const setSiteTranslations = async (): Promise<void> => {
   try {
     const translations = await getAllTranslations();
     const culture = `${process.env.CULTURE?.toLowerCase()}`;

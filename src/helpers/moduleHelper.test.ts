@@ -1,5 +1,5 @@
 import { ComponentProps } from '@/models/types/components';
-import { moduleIsNotValid } from './moduleHelper';
+import { moduleIsNotValid } from '@/helpers/moduleHelper';
 
 // ARRANGE
 const data = {

@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { createContext } from 'react';
+import { Context, createContext, ReactElement, ReactNode } from 'react';
 
 type FeatureFlagsContextType = Record<string, boolean>;
 
@@ -10,9 +10,9 @@ type FeatureFlagsContextType = Record<string, boolean>;
  * This context provides a way to pass feature flags down the component tree
  * without having to pass props down manually at every level.
  *
- * @type {React.Context<Record<string, boolean>>}
+ * @type {Context<Record<string, boolean>>}
  */
-export const FeatureFlagsContext = createContext<FeatureFlagsContextType>({});
+export const FeatureFlagsContext: Context<Record<string, boolean>> = createContext<FeatureFlagsContextType>({});
 
 /**
  * Provider component for the feature flags context.
@@ -22,16 +22,16 @@ export const FeatureFlagsContext = createContext<FeatureFlagsContextType>({});
  *
  * @param {object} props - The props for the component.
  * @param {Record<string, boolean>} props.featureFlags - The feature flags to pass down the component tree.
- * @param {React.ReactNode} props.children - The child components to render.
+ * @param {ReactNode} props.children - The child components to render.
  *
- * @returns {React.ReactElement} A context provider that passes the feature flags to all children.
+ * @returns {ReactElement} A context provider that passes the feature flags to all children.
  */
 export const FeatureFlagsProvider = ({
   featureFlags,
   children,
 }: {
   featureFlags: FeatureFlagsContextType;
-  children: React.ReactNode;
-}): React.ReactElement => {
+  children: ReactNode;
+}): ReactElement => {
   return <FeatureFlagsContext.Provider value={featureFlags}>{children}</FeatureFlagsContext.Provider>;
 };

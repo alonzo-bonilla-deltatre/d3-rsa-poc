@@ -1,9 +1,6 @@
 ﻿import { PageStructureItemType, StructureItem, Variable } from '@/models/types/pageStructure';
 import { customSetMetadataFromModule } from '@/services/customSiteMetadataService';
 import { Metadata as NextMetadata } from 'next';
-import logger from '@/utilities/loggerUtility';
-import { LoggerLevel } from '@/models/types/logger';
-import { moduleHandlers, ModuleHandlers } from '@/services/moduleSeoMetadataHandlers/moduleSeoMetadataHandlers';
 
 // Global variable to hold the page metadata
 let pageMetadata: NextMetadata = {};

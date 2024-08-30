@@ -17,7 +17,7 @@ import { LoggerLevel } from '@/models/types/logger';
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-const entitySitemapHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const entitySitemapHandler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const { sitemapName } = req.query;
 
   if (!sitemapName) {

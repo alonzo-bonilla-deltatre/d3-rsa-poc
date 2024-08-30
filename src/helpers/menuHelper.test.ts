@@ -1,6 +1,6 @@
 import { MenuItem } from '@/models/types/menu';
 import { Variable } from '@/models/types/pageStructure';
-import { setActiveMenuItem, parseMenuItemFields } from './menuHelper';
+import { setActiveMenuItem, parseMenuItemFields } from '@/helpers/menuHelper';
 
 describe('setActiveMenuItem', () => {
   test('should set the isActive property of the matching menu item to true', () => {

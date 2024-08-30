@@ -28,7 +28,6 @@ export const ServiceName = {
 /**
  * Type for a service to be checked for readiness.
  *
- * @typedef {Object} HealthzReadyReqServiceType
  * @property {string} url - The URL of the service.
  * @property {string} name - The name of the service.
  */
@@ -40,7 +39,6 @@ type HealthzReadyReqServiceType = {
 /**
  * Type for a service status.
  *
- * @typedef {Object} HealthzReadyResServiceType
  * @property {string} status - The status of the service.
  * @property {string} name - The name of the service.
  */
@@ -55,7 +53,7 @@ type HealthzReadyResServiceType = {
  * @async
  * @returns {Promise<string>} The URL to check for readiness.
  */
-const isFrontendApiReady = async () => {
+const isFrontendApiReady = async (): Promise<string> => {
   return new URL('echo', process.env.PAGE_BUILDER_FRONTEND_API_BASE_URL).href;
 };
 
@@ -65,7 +63,7 @@ const isFrontendApiReady = async () => {
  * @async
  * @returns {Promise<string>} The URL to check for readiness.
  */
-const isForgeApiReady = async () => {
+const isForgeApiReady = async (): Promise<string> => {
   return new URL('echo', process.env.FORGE_DISTRIBUTION_API_BASE_URL).href;
 };
 
@@ -75,7 +73,7 @@ const isForgeApiReady = async () => {
  * @async
  * @returns {Promise<string>} The URL to check for readiness.
  */
-const isVocabularyToolApiReady = async () => {
+const isVocabularyToolApiReady = async (): Promise<string> => {
   return new URL('echo', process.env.VOCABULARY_TOOL_API_BASE_URL).href;
 };
 
@@ -85,7 +83,7 @@ const isVocabularyToolApiReady = async () => {
  * @async
  * @returns {Promise<string>} The URL to check for readiness.
  */
-const isGadApiReady = async () => {
+const isGadApiReady = async (): Promise<string> => {
   return new URL('', process.env.GRAPHIC_ASSETS_DASHBOARD_API_BASE_URL).href;
 };
 
@@ -96,7 +94,7 @@ const isGadApiReady = async () => {
  * @param {HealthzReadyReqServiceType} service - The service to fetch the status for.
  * @returns {Promise<HealthzReadyResServiceType>} The status of the service.
  */
-const fetcher = async (service: HealthzReadyReqServiceType) =>
+const fetcher = async (service: HealthzReadyReqServiceType): Promise<HealthzReadyResServiceType> =>
   await axios
     .get(service.url)
     .then(() => {
@@ -112,7 +110,7 @@ const fetcher = async (service: HealthzReadyReqServiceType) =>
  * @param {HealthzReadyReqServiceType[]} services - The services to fetch the statuses for.
  * @returns {Promise<HealthzReadyResServiceType[]>} The statuses of the services.
  */
-const multipleFetcher = (services: HealthzReadyReqServiceType[]) =>
+const multipleFetcher = (services: HealthzReadyReqServiceType[]): Promise<HealthzReadyResServiceType[]> =>
   Promise.all(services.map((service: HealthzReadyReqServiceType) => fetcher(service)));
 
 /**
@@ -126,7 +124,7 @@ const multipleFetcher = (services: HealthzReadyReqServiceType[]) =>
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const servicesStatusFetcher = await multipleFetcher([
     {
       url: await isFrontendApiReady(),

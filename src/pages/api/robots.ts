@@ -15,7 +15,7 @@ import { getRobotsTxt } from '@/services/robotsService';
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-const renderRobots = async (req: NextApiRequest, res: NextApiResponse) => {
+const renderRobots = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
     const robotsTxtContent = await getRobotsTxt();
 

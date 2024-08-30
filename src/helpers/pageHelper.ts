@@ -55,9 +55,9 @@ export const getPageData = async (
  * It adds each additional variable to the array of default variables.
  *
  * @param {Variable[]} defaultVariables - The array of default variables to enrich.
- * @param {Object} params - The object of additional variables.
+ * @param { [p: string]: any } params - The object of additional variables to add.
  */
-export const enrichPageVariables = (defaultVariables: Variable[], { ...params }): void => {
+export const enrichPageVariables = (defaultVariables: Variable[], params: { [p: string]: any }): void => {
   for (const key in params) {
     if (params.hasOwnProperty(key)) {
       const variable: Variable = {

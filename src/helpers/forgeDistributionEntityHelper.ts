@@ -11,7 +11,13 @@ import { ImageAsset } from '@/models/types/images';
 import { Variable } from '@/models/types/pageStructure';
 import { IMAGE_PLACEHOLDER } from '@/utilities/constsUtility';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
-import { LinkRuleRequest, LinkRuleResponse, LinkRuleVariation, LinkRuleVariationType } from '@/models/types/linkRule';
+import {
+  LinkRuleData,
+  LinkRuleRequest,
+  LinkRuleResponse,
+  LinkRuleVariation,
+  LinkRuleVariationType,
+} from '@/models/types/linkRule';
 import { StoryPart } from '@/models/types/storyPart';
 import { getLinkRules } from '@/services/linkRuleService';
 import {
@@ -31,7 +37,7 @@ const environment = process.env.ENVIRONMENT;
  * Given the entities array, check if there is the fallback image and fill, if needed
  * @param items the items to check
  * @param variables the variables from were to extract the placeholder image asset from
- * @returns the items enreached with the fallback image where needed
+ * @returns the items enriched with the fallback image where needed
  */
 export const enrichEntitiesWithThumbnailPlaceholder = (
   items: DistributionEntity[] | null,
@@ -188,7 +194,7 @@ export const buildLinkRulesRequest = (
 export const enrichLinkRuleRequestEntity = (
   entities: DistributionEntity[],
   linkRuleVariations?: LinkRuleVariation[]
-) => {
+): void => {
   if (entities && linkRuleVariations) {
     linkRuleVariations.forEach((variation) => {
       entities.forEach((entity) => {
@@ -218,7 +224,7 @@ export const enrichLinkRuleRequestEntity = (
  * @param {DistributionEntity} entity - The entity for which to create a link rule request.
  * @param {LinkRuleRequest[]} linkRulesRequest - The array of link rule requests to which to add the created link rule request.
  */
-export const addLinkRuleRequest = (entity: DistributionEntity, linkRulesRequest: LinkRuleRequest[]) => {
+export const addLinkRuleRequest = (entity: DistributionEntity, linkRulesRequest: LinkRuleRequest[]): void => {
   linkRulesRequest.push({
     id: createLinkRuleId(entity),
     entity,
@@ -251,7 +257,7 @@ export const getEntityType = (entity: DistributionEntity): string => entity.enti
 export const addLinkRulesForEntities = (
   entities: DistributionEntity[] | undefined,
   linkRulesRequest: LinkRuleRequest[]
-) => {
+): void => {
   if (!entities || entities.length === 0) {
     return;
   }
@@ -305,13 +311,15 @@ export const updateEntityURLs = (entities: DistributionEntity[], linkRules: Link
  * @param {DistributionEntity} entity - The entity whose URL is to be updated.
  * @param {LinkRuleResponse} linkRules - The link rules to use for updating the URL.
  */
-export const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse) => {
-  const linkRule = linkRules.data?.find((l) => l.id === createLinkRuleId(entity));
+export const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleResponse): void => {
+  const linkRule: LinkRuleData | undefined = linkRules.data?.find(
+    (l: LinkRuleData): boolean => l.id === createLinkRuleId(entity)
+  );
   entity.url = linkRule?.url ?? entity.url;
 
   if (entity.url && hasValidUrl(entity.url) && process.env.KEEP_LINK_RULES_LOCAL === 'true') {
     try {
-      const url = new URL(entity.url);
+      const url: URL = new URL(entity.url);
       url.hostname = process.env.LINK_RULES_LOCAL_HOSTNAME ?? 'localhost';
       url.port = process.env.LINK_RULES_LOCAL_PORT ?? '3000';
       url.protocol = process.env.LINK_RULES_LOCAL_PROTOCOL ?? 'http';
@@ -330,7 +338,7 @@ export const updateEntityURL = (entity: DistributionEntity, linkRules: LinkRuleR
  * 1. Reference fields enrichment is performed if `options.hasReferencesFieldsInList` is true.
  * 2. GAD assets fields enrichment is performed if `options.hasGadAssetsFields` is true.
  * 3. Thumbnail placeholder enrichment is performed if `options.hasThumbnailPlaceholder` is true.
- * 4. Link rules enrichment is performed if `options.hasLinkRules` or `options.hasLinkRulesForRelationsAndParts` is true.
+ * 4. Link rules enrichment performed if `options.hasLinkRules` or `options.hasLinkRulesForRelationsAndParts` is true.
  *
  * @async
  * @param {DistributionEntity[]} entities - The entities to be enriched.
@@ -369,7 +377,7 @@ export const enrichDistributionEntities = async (
  * @param {ForgeDistributionApiOption} options - The options for the Forge Distribution API.
  * @returns {string} The query string for the API.
  */
-export const getAPIQueryString = (options: ForgeDistributionApiOption) => {
+export const getAPIQueryString = (options: ForgeDistributionApiOption): string => {
   const skip = options?.skip ?? 0;
   const limit = options?.limit ?? 0;
   const tags = options?.tags ?? '';
@@ -406,7 +414,7 @@ export const getAPIQueryString = (options: ForgeDistributionApiOption) => {
  * // returns "$sort=fields.scheduledStartTime:asc"
  * getSortParams({ field: 'scheduledStartTime', order: 'asc' });
  */
-export const getSortParams = (sort?: SortOptions) => {
+export const getSortParams = (sort?: SortOptions): string | undefined => {
   if (!sort) {
     return undefined;
   }
@@ -431,7 +439,7 @@ export const getSortParams = (sort?: SortOptions) => {
  * // returns "fieldFoo=$range(2023-10-16,2024-01-167)"
  * getRangeParams({ field: "fieldFoo", startDate: "2023-10-16", endDate: "2024-01-167" });
  */
-export const getRangeParams = (range?: RangeOption) => {
+export const getRangeParams = (range?: RangeOption): string | undefined => {
   if (!range || (!range.startDate && !range.endDate)) {
     return undefined;
   }
@@ -450,7 +458,7 @@ export const getRangeParams = (range?: RangeOption) => {
  * // returns "_listAvailability=available"
  * getListAvailabilityParams("available");
  */
-export const getListAvailabilityParams = (listAvailability?: ListAvailabilityOption) => {
+export const getListAvailabilityParams = (listAvailability?: ListAvailabilityOption): string | undefined => {
   if (listAvailability === undefined) {
     return undefined;
   }
@@ -471,7 +479,7 @@ export const getListAvailabilityParams = (listAvailability?: ListAvailabilityOpt
  * // returns ["fields.videoStatus=Live"]
  * getGenericParams("fields", { videoStatus: "Live" });
  */
-export const getGenericParams = (genericKey: string, extraData?: Record<string, unknown>) => {
+export const getGenericParams = (genericKey: string, extraData?: Record<string, unknown>): string[] | undefined => {
   if (!extraData || !genericKey) {
     return undefined;
   }
@@ -497,7 +505,7 @@ export const getGenericParams = (genericKey: string, extraData?: Record<string, 
  * // returns ["tags.slug=supercars", "tags.slug=test"]
  * getTagsParam("supercars,test");
  */
-export const getTagsParam = (tags?: string) => {
+export const getTagsParam = (tags?: string): string[] | undefined => {
   if (!tags || tags.length === 0) {
     return undefined;
   }
@@ -521,7 +529,7 @@ export const getTagsParam = (tags?: string) => {
  * @param {string} [context] - The context to filter by.
  * @returns {string | undefined} The constructed context parameter for the query string, or undefined if no context is provided.
  */
-export const getContextParam = (context?: string) => {
+export const getContextParam = (context?: string): string | undefined => {
   if (!context) {
     return undefined;
   }
@@ -551,7 +559,9 @@ export const getContextParam = (context?: string) => {
  * // returns "$skip=0&$limit=10&tags.slug=supercars&tags.slug=test"
  * getQueryString({ skip: 0, limit: 10, tags: "supercars,test", page: 1 });
  */
-export const getQueryString = (forgeDistributionApiQueryStringOption: ForgeDistributionApiQueryStringOption) => {
+export const getQueryString = (
+  forgeDistributionApiQueryStringOption: ForgeDistributionApiQueryStringOption
+): string => {
   // Should look like $skip=0&$limit=10&tags.slug=supercars&tags.slug=test
   let queryString: string[] = [];
   if (forgeDistributionApiQueryStringOption?.page && forgeDistributionApiQueryStringOption.page > 1) {
@@ -596,7 +606,11 @@ export const getQueryString = (forgeDistributionApiQueryStringOption: ForgeDistr
  * @param {number} limit - The maximum number of items to return.
  * @returns {DistributionEntity[]} The filtered items.
  */
-export const getFilteredItems = (items: DistributionEntity[] | null | undefined, skip: number, limit: number) => {
+export const getFilteredItems = (
+  items: DistributionEntity[] | null | undefined,
+  skip: number,
+  limit: number
+): DistributionEntity[] => {
   if (!items?.length) {
     return [];
   }

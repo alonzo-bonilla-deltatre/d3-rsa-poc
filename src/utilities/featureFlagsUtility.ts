@@ -13,7 +13,7 @@ const { FLAG_ENABLE_TEST_VALUE } = process.env;
  * This object is used to enable or disable certain features in the application.
  * The values of the feature flags are determined by environment variables.
  * The environment variables are converted to boolean values using the convertStringToBoolean function.
- * If an environment variable is not provided, its corresponding feature flag is set to false.
+ * If an environment variable is not provided, its corresponding feature flag set to false.
  *
  * @type {Record<string, boolean>}
  */

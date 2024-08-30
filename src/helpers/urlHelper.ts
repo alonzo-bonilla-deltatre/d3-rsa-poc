@@ -6,7 +6,7 @@
  * @param {string} urlToCheck - The URL to check.
  * @returns {string} The URL with a slash at the beginning.
  */
-export const checkPathFormats = (urlToCheck: string) => {
+export const checkPathFormats = (urlToCheck: string): string => {
   if (!urlToCheck.startsWith('/')) {
     urlToCheck = '/' + urlToCheck;
   }
@@ -18,7 +18,7 @@ export const checkPathFormats = (urlToCheck: string) => {
  *
  * @param {string} url - The new URL.
  */
-export const changeHistory = (url: string) => {
+export const changeHistory = (url: string): void => {
   window.history.replaceState(null, '', url);
 };
 
@@ -32,7 +32,7 @@ export const changeHistory = (url: string) => {
  * @param {Record<string, string>} params - The object of key-value pairs to convert.
  * @returns {string} The URL search params string.
  */
-export const setURLSearchParams = (params: Record<string, string>) => {
+export const setURLSearchParams = (params: Record<string, string>): string => {
   Object.keys(params).forEach((key) => {
     if (!params[key]) {
       delete params[key];
@@ -53,8 +53,8 @@ export const setURLSearchParams = (params: Record<string, string>) => {
  * @param {string} [baseUrl] - The base URL to compare against.
  * @returns {boolean} True if the URL is an external link, false otherwise.
  */
-export const isExternalLink = (url: string, baseUrl?: string) => {
-  return url.startsWith('http') && baseUrl && !url.includes(baseUrl);
+export const isExternalLink = (url?: string, baseUrl?: string): boolean => {
+  return !!url && url.startsWith('http') && !!baseUrl && !url.includes(baseUrl);
 };
 
 /**

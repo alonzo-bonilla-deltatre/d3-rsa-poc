@@ -10,7 +10,7 @@
  * @param {string} dateString - The date string to check.
  * @returns {boolean} True if the input date is greater than the current date, false otherwise.
  */
-export const isDateGreaterThanNow = (dateString: string) => {
+export const isDateGreaterThanNow = (dateString: string): boolean => {
   const inputDate = new Date(dateString);
   const now = new Date();
   return inputDate > now;
@@ -26,7 +26,7 @@ export const isDateGreaterThanNow = (dateString: string) => {
  * @param {string} dateString - The date string to check.
  * @returns {boolean} True if the input date is less than the current date, false otherwise.
  */
-export const isDateMinorThanNow = (dateString: string) => {
+export const isDateMinorThanNow = (dateString: string): boolean => {
   const inputDate = new Date(dateString);
   const now = new Date();
   return inputDate < now;
@@ -44,7 +44,7 @@ export const isDateMinorThanNow = (dateString: string) => {
  * @param {string} [format=''] - The format string to use for formatting the date.
  * @returns {string | null} The formatted date string, or null if the date string is not provided.
  */
-export const formatDate = (date: string, format: string = '') => {
+export const formatDate = (date: string, format: string = ''): string | null => {
   if (date) {
     if (!format) {
       format = 'YYYY/MM/DD HH:mm:ss';
@@ -67,7 +67,7 @@ export const formatDate = (date: string, format: string = '') => {
  * @param {string} [format=''] - The format string to use for formatting the date.
  * @returns {string | null} The day part of the formatted date string, or null if the date string is not provided.
  */
-export const getDay = (date: string, format: string = '') => {
+export const getDay = (date: string, format: string = ''): string | null => {
   if (date) {
     if (!format) {
       format = 'DD';
@@ -90,7 +90,7 @@ export const getDay = (date: string, format: string = '') => {
  * @param {string} [format=''] - The format string to use for formatting the date.
  * @returns {string | null} The month part of the formatted date string, or null if the date string is not provided.
  */
-export const getMonth = (date: string, format: string = '') => {
+export const getMonth = (date: string, format: string = ''): string | null => {
   if (date) {
     if (!format) {
       format = 'MMM';
@@ -113,7 +113,7 @@ export const getMonth = (date: string, format: string = '') => {
  * @param {string} [format=''] - The format string to use for formatting the date.
  * @returns {string | null} The year part of the formatted date string, or null if the date string is not provided.
  */
-export const getYear = (date: string, format: string = '') => {
+export const getYear = (date: string, format: string = ''): string | null => {
   if (date) {
     if (!format) {
       format = 'YYYY';

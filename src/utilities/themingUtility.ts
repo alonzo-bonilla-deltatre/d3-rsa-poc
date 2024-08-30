@@ -10,7 +10,7 @@ import { ForgeMetadataCategoryType } from '@/models/types/forge';
  * @type {string}
  */
 /* istanbul ignore next */
-const themingSuffixName = process.env.THEMING_SUFFIX_NAME ?? 'd3';
+const themingSuffixName: string = process.env.THEMING_SUFFIX_NAME ?? 'd3';
 
 /**
  * Generates a CSS string for theming variables.
@@ -23,7 +23,7 @@ const themingSuffixName = process.env.THEMING_SUFFIX_NAME ?? 'd3';
  * @param {Metadata[]} items - The metadata items to generate the CSS string from.
  * @returns {string} The CSS string for theming variables.
  */
-export const renderThemingVariables = (items: Metadata[]) => {
+export const renderThemingVariables = (items: Metadata[]): string => {
   const themingItems = items.filter((item) => item.category === ForgeMetadataCategoryType.theming);
   const cssString = themingItems
     .map((item) => `--${themingSuffixName.toLowerCase()}-theme-${item.key}: ${item.value};`)

@@ -21,7 +21,11 @@ import { DistributionEntity, ForgeDapiEntityCode } from '@/models/types/forge';
  * @param {formidable.Files} files - The form files to include in the email.
  * @throws {Error} - If the form is not valid.
  */
-export const sendFormEmail = async (slug: string, fields: formidable.Fields, files: formidable.Files) => {
+export const sendFormEmail = async (
+  slug: string,
+  fields: formidable.Fields,
+  files: formidable.Files
+): Promise<void> => {
   const formEntity = await getEntity(ForgeDapiEntityCode.forms, slug);
   if (!isFormValid(fields, formEntity)) {
     throw new Error('Form is not valid');
@@ -44,7 +48,7 @@ export const sendFormEmail = async (slug: string, fields: formidable.Fields, fil
  * @param {DistributionEntity | null} formEntity - The form entity to use for validation.
  * @returns {boolean} - `true` if the form is valid, `false` otherwise.
  */
-const isFormValid = (fields: formidable.Fields, formEntity: DistributionEntity | null) => {
+export const isFormValid = (fields: formidable.Fields, formEntity: DistributionEntity | null): boolean => {
   let isFormValid = true;
   if (fields && formEntity) {
     for (const key in fields) {
@@ -79,7 +83,7 @@ const isFormValid = (fields: formidable.Fields, formEntity: DistributionEntity |
  * @param {string} html - The initial HTML content.
  * @returns {string} - The HTML content of the email message.
  */
-const createMessageHtml = (fields: formidable.Fields, html: string) => {
+export const createMessageHtml = (fields: formidable.Fields, html: string): string => {
   for (const key in fields) {
     // @ts-ignore
     if (fields[key] && fields[key].length > 0 && fields[key][0] && fields[key][0].length > 0) {
@@ -97,7 +101,7 @@ const createMessageHtml = (fields: formidable.Fields, html: string) => {
  * @param {formidable.Files} files - The form files to include in the attachments.
  * @returns {AttachmentJSON[] | undefined} - The attachments of the email message.
  */
-const createMessageAttachments = (files: formidable.Files) => {
+export const createMessageAttachments = (files: formidable.Files): AttachmentJSON[] | undefined => {
   let attachments: AttachmentJSON[] = [];
   if (files?.file && files?.file?.length > 0) {
     files?.file.forEach((file: any) => {
@@ -125,7 +129,11 @@ const createMessageAttachments = (files: formidable.Files) => {
  * @param {MailDataRequired} msg - The message to send.
  * @throws {Error} - If an error occurs during the request.
  */
-const sendEmail = async (fields: formidable.Fields, files: formidable.Files, msg: MailDataRequired) => {
+export const sendEmail = async (
+  fields: formidable.Fields,
+  files: formidable.Files,
+  msg: MailDataRequired
+): Promise<void> => {
   try {
     await sgMail.send(msg).then((response) => {
       logger.log(
@@ -160,7 +168,7 @@ const sendEmail = async (fields: formidable.Fields, files: formidable.Files, msg
  * @param {formidable.Files} files - The form files to include in the email.
  * @param {DistributionEntity | null} formEntity - The form entity to use.
  */
-const sendResponseEmail = async (
+export const sendResponseEmail = async (
   fields: formidable.Fields,
   files: formidable.Files,
   formEntity: DistributionEntity | null
@@ -191,11 +199,11 @@ const sendResponseEmail = async (
  * @param {formidable.Files} files - The form files to include in the email.
  * @param {DistributionEntity | null} formEntity - The form entity to use.
  */
-const sendReceiverEmail = async (
+export const sendReceiverEmail = async (
   fields: formidable.Fields,
   files: formidable.Files,
   formEntity: DistributionEntity | null
-) => {
+): Promise<void> => {
   if (formEntity?.fields?.receiverEmail) {
     let msg: MailDataRequired = {
       to: formEntity?.fields?.receiverEmail,

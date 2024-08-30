@@ -1,7 +1,7 @@
 ﻿/**
  * @jest-environment node
  */
-import { searchTotalCount, searchForgeEntities, searchKeyPages } from './azureCognitiveSearchService';
+import { searchTotalCount, searchForgeEntities, searchKeyPages } from '@/services/azureCognitiveSearchService';
 import { SearchClient } from '@azure/search-documents';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';

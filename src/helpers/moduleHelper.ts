@@ -1,7 +1,7 @@
 import { ComponentProps } from '@/models/types/components';
 import { LoggerLevel } from '@/models/types/logger';
 import logger from '@/utilities/loggerUtility';
-import { getHideModule } from './pageComponentPropertyHelper';
+import { getHideModule } from '@/helpers/pageComponentPropertyHelper';
 
 /**
  * Checks if a module is valid based on its properties and a set of validation rules.

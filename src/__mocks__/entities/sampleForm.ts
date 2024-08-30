@@ -1,4 +1,4 @@
-import { AccessibleLink, FormFields, FormEntity } from '@/models/types/forge.customEntityFields';
+import { FormFields, FormEntity } from '@/models/types/forgeCustomEntityFields';
 import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
 
 const sampleFormFields: FormFields = {

@@ -6,6 +6,7 @@ import {
   expandSitemapItem,
   expandSitemapItems,
   removeDisallowItems,
+  SCHEMA_CONFIG,
   sitemapItemsManipulation,
 } from '@/helpers/sitemapHelper';
 import { DistributionEntity } from '@/models/types/forge';
@@ -308,5 +309,77 @@ describe('cleanString for XML', () => {
 
     // ASSERT
     expect(cleanedString).toBe(expectedResult);
+  });
+});
+
+describe('SCHEMA_CONFIG', () => {
+  it('should generate correct XML container for article', () => {
+    // ARRANGE
+    const content = '<url><loc>http://example.com/article-url</loc></url>';
+    // ACT
+    const xmlContainer = SCHEMA_CONFIG.article.xmlContainer(content);
+    // ASSERT
+    expect(xmlContainer).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"');
+    expect(xmlContainer).toContain('xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">');
+    expect(xmlContainer).toContain(content);
+  });
+
+  it('should generate correct XML schema for article', () => {
+    // ARRANGE
+    const mockEntity = {
+      url: 'http://example.com/article-url',
+      title: 'Example Article',
+      contentDate: '2021-01-01T14:41:27Z',
+    } as any;
+    const language = 'en';
+    // ACT
+    const xmlSchema = SCHEMA_CONFIG.article.xmlSchema(mockEntity, language);
+    // ASSERT
+    expect(xmlSchema).toContain('<loc>http://example.com/article-url</loc>');
+    expect(xmlSchema).toContain('<news:publication_date>2021-01-01</news:publication_date>');
+    expect(xmlSchema).toContain('<news:language>en</news:language>');
+  });
+
+  it('should generate correct XML container for video', () => {
+    // ARRANGE
+    const content = '<url><loc>http://example.com/video-url</loc></url>';
+    // ACT
+    const xmlContainer = SCHEMA_CONFIG.video.xmlContainer(content);
+    // ASSERT
+    expect(xmlContainer).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"');
+    expect(xmlContainer).toContain('xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
+    expect(xmlContainer).toContain(content);
+  });
+
+  it('should generate correct XML schema for video', () => {
+    // ARRANGE
+    const mockEntity = {
+      url: 'http://example.com/video-url',
+      title: 'Example Video',
+      thumbnail: { thumbnailUrl: 'http://example.com/thumbnail.jpg' },
+      fields: { description: 'Video description' },
+      contentDate: '2021-01-01T14:41:27Z',
+    } as any;
+    // ACT
+    const xmlSchema = SCHEMA_CONFIG.video.xmlSchema(mockEntity);
+    // ASSERT
+    expect(xmlSchema).toContain('<loc>http://example.com/video-url</loc>');
+    expect(xmlSchema).toContain('<video:thumbnail_loc>http://example.com/thumbnail.jpg</video:thumbnail_loc>');
+    expect(xmlSchema).toContain('<video:publication_date>2021-01-01</video:publication_date>');
+  });
+
+  it('should handle missing optional fields in video schema', () => {
+    // ARRANGE
+    const mockEntity = {
+      url: 'http://example.com/video-url',
+      title: 'Example Video',
+      contentDate: '2021-01-01T14:41:27Z',
+    } as any;
+    // ACT
+    const xmlSchema = SCHEMA_CONFIG.video.xmlSchema(mockEntity);
+    // ASSERT
+    expect(xmlSchema).toContain('<loc>http://example.com/video-url</loc>');
+    expect(xmlSchema).toContain('<video:title>Example Video</video:title>');
+    expect(xmlSchema).toContain('<video:publication_date>2021-01-01</video:publication_date>');
   });
 });

@@ -9,30 +9,37 @@ jest.mock('@/utilities/loggerUtility');
 
 describe('renderDivaPlayerDictionary', () => {
   it('returns 200 status when dictionary is found', () => {
+    // ARRANGE
     (getDivaPlayerDictionary as jest.Mock).mockReturnValue({ dictionary: 'valid' });
 
     const req = { body: {} } as NextApiRequest;
     const res = { status: jest.fn().mockReturnThis(), json: jest.fn(), end: jest.fn() } as unknown as NextApiResponse;
 
+    // ACT
     renderDivaPlayerDictionary(req, res);
 
+    // ASSERT
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ dictionary: 'valid' });
   });
 
   it('returns 500 status when dictionary is not found', () => {
+    // ARRANGE
     (getDivaPlayerDictionary as jest.Mock).mockReturnValue(null);
 
     const req = { body: {} } as NextApiRequest;
     const res = { status: jest.fn().mockReturnThis(), json: jest.fn(), end: jest.fn() } as unknown as NextApiResponse;
 
+    // ACT
     renderDivaPlayerDictionary(req, res);
 
+    // ASSERT
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith(null);
   });
 
   it('logs error and returns 500 status when an exception occurs', () => {
+    // ARRANGE
     (getDivaPlayerDictionary as jest.Mock).mockImplementation(() => {
       throw new Error('Test error');
     });
@@ -40,8 +47,10 @@ describe('renderDivaPlayerDictionary', () => {
     const req = { body: {} } as NextApiRequest;
     const res = { status: jest.fn().mockReturnThis(), send: jest.fn(), end: jest.fn() } as unknown as NextApiResponse;
 
+    // ACT
     renderDivaPlayerDictionary(req, res);
 
+    // ASSERT
     expect(logger.log).toHaveBeenCalledWith(
       expect.stringMatching('Error rendering Diva Player Dictionary'),
       LoggerLevel.error

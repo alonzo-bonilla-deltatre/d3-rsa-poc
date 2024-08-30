@@ -16,7 +16,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   if (req.headers.token !== process.env.REVALIDATE_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' });
   }

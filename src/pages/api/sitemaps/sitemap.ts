@@ -15,7 +15,7 @@ import logger from '@/utilities/loggerUtility';
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-const sitemapHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const sitemapHandler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
     const xml = await getSiteStructureXml();
 

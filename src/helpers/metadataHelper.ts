@@ -84,13 +84,13 @@ export const getTagTitleOrLabel = (tag: Tag | LiveBloggingTagEntity): string => 
  * The entity's title is used for the title and open graph title.
  * The entity's headline is used for the description and open graph description.
  * The entity's tags are mapped to their titles for DistributionEntity or label for LiveBloggingBlogEntity and used for the open graph tags.
- * If the entity does not have a headline, an empty string is used for the description.
+ * If the entity does not have a headline, an empty string used for the description.
  * If the entity does not have a thumbnail or the thumbnail does not have a templateUrl, null is used for the images.
  * If the entity does not have tags, null is used for the open graph tags.
  * The open graph type is set to 'article'.
- * The open graph published time is set to the entity's content date.
- * The open graph modified time is set to the entity's last updated date.
- * The open graph authors are set to the entity's created by field.
+ * The open graph published time set to the entity's content date.
+ * The open graph modified time set to the entity's last updated date.
+ * The open graph authors set to the entity's created by field.
  *
  * @param {Metadata} parentMetadata - The parent metadata to be overridden.
  * @param {DistributionEntity} entity - The entity whose fields are to be used for overriding.
@@ -116,7 +116,7 @@ export const overrideStoryMetadata = (parentMetadata: Metadata, entity: Distribu
  * The entity's title is used for the title and open graph title.
  * The entity's headline is used for the description and open graph description.
  * The entity's tags are mapped to their titles for DistributionEntity or label for LiveBloggingBlogEntity and used for the open graph tags.
- * If the entity does not have a headline, an empty string is used for the description.
+ * If the entity does not have a headline, an empty string used for the description.
  * If the entity does not have a thumbnail or the thumbnail does not have a templateUrl, null is used for the images.
  * If the entity does not have tags, null is used for the open graph tags.
  *
@@ -136,7 +136,7 @@ export const overrideAlbumMetadata = (parentMetadata: Metadata, entity: Distribu
  * The entity's title is used for the title and open graph title.
  * The entity's headline is used for the description and open graph description.
  * The entity's tags are mapped to their titles for DistributionEntity or label for LiveBloggingBlogEntity and used for the open graph tags.
- * If the entity does not have a headline, an empty string is used for the description.
+ * If the entity does not have a headline, an empty string used for the description.
  * If the entity does not have a thumbnail or the thumbnail does not have a templateUrl, null is used for the images.
  * If the entity does not have tags, null is used for the open graph tags.
  * The open graph type is set to 'video.other'.
@@ -165,7 +165,7 @@ export const overrideVideoMetadata = (
  * The function is designed to handle cases where only a blog entity is provided or both a blog and a post entity are provided.
  * The resulting metadata includes customized titles, descriptions, and Open Graph properties tailored to the live blogging content.
  * It ensures that the metadata accurately reflects the content's current state, including its publication and last modified times.
- * This function is particularly useful for enhancing the SEO and shareability of live blogging content on social media platforms.
+ * This function is particularly useful for enhancing the SEO and share ability of live blogging content on social media platforms.
  *
  * @param {Metadata} parentMetadata - The initial metadata object that will be overridden with specific fields from the live blogging entity.
  * @param {LiveBloggingBlogEntity} blog - The live blogging entity containing the fields to override the parent metadata.

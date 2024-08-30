@@ -10,7 +10,7 @@ import { LoggerLevel } from '@/models/types/logger';
  *
  * @returns {null} Always returns null.
  */
-export const handleApiError = (response: any, apiName: string, apiUrl?: string) => {
+export const handleApiError = (response: any, apiName: string, apiUrl?: string): null => {
   if (response?.data) {
     let errorMessage = `${apiName} Error status: ${response?.status} - ${response?.statusText} - Error: ${JSON.stringify(response?.data)}${apiUrl ? '. URL: ' + apiUrl : '.'}`;
     logger.log(errorMessage, LoggerLevel.error);

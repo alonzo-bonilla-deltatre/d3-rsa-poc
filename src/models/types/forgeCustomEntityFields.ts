@@ -1,4 +1,4 @@
-import { DistributionEntity } from './forge';
+import { DistributionEntity } from '@/models/types/forge';
 
 export type AccessibleLink = {
   displayText: string;

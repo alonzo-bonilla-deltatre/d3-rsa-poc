@@ -18,7 +18,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
  * @param {NextApiRequest} req - The Next.js API request.
  * @param {NextApiResponse} res - The Next.js API response.
  */
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
     const response: PagedResult | null = await getSelection(
       req.query.selectionSlug as string,

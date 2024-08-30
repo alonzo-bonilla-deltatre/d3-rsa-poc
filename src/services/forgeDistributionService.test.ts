@@ -8,7 +8,7 @@ import {
 import { LoggerLevel } from '@/models/types/logger';
 import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
-import { getAllEntities, getEntity, getEntityList, getSelection } from './forgeDistributionService';
+import { getAllEntities, getEntity, getEntityList, getSelection } from '@/services/forgeDistributionService';
 import { enrichDistributionEntities as actualEnrichDistributionEntities } from '@/helpers/forgeDistributionEntityHelper';
 
 jest.mock('axios');

@@ -1,4 +1,4 @@
-﻿import React, { useContext } from 'react';
+﻿import { useContext } from 'react';
 import { TranslationContext } from '@/contexts/translationContext';
 import { TermType, Translation } from '@/models/types/translations';
 import logger from '@/utilities/loggerUtility';
@@ -16,7 +16,7 @@ import { LoggerLevel } from '@/models/types/logger';
  *
  * @returns {(key: string, type: TermType) => string} A function that takes a key and a term type and returns the corresponding translation.
  */
-const useTranslate = () => {
+const useTranslate = (): ((key?: string, type?: TermType) => string) => {
   const context = useContext(TranslationContext);
   return (key: string = '', type: TermType = TermType.standard) => {
     if (!key) {

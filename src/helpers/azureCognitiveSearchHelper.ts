@@ -2,7 +2,12 @@
   enrichDistributionEntitiesWithLinkRules,
   enrichEntitiesWithThumbnailPlaceholder,
 } from '@/helpers/forgeDistributionEntityHelper';
-import { AzureKeyPagesIndexEntity, AzureSearchGroupOption, AzureSearchResult } from '@/models/types/azureSearch';
+import {
+  AzureKeyPagesIndexEntity,
+  AzureSearchGroupOption,
+  AzureSearchResult,
+  SearchResult,
+} from '@/models/types/azureSearch';
 import { DistributionEntity, ForgeEntityType } from '@/models/types/forge';
 import { Variable } from '@/models/types/pageStructure';
 import { SearchIterator } from '@azure/search-documents';
@@ -10,23 +15,23 @@ import { SearchIterator } from '@azure/search-documents';
 /**
  * Group types for Azure Search.
  */
-const groupTypes = {
+const groupTypes: AzureSearchGroupOption = {
   items: [
     {
       type: 'video',
       items: ['video', 'brightcovevideo', 'jwplayervideo', 'youtubevideo', 'vimeovideo', 'divavideo'],
     },
   ],
-} as AzureSearchGroupOption;
+};
 
 /**
  * Groups search results by entity type.
  *
  * @param {AzureSearchResult} azureSearchResult - The Azure search result to group.
  */
-export const groupSearchResultsByEntityType = (azureSearchResult: AzureSearchResult) => {
+export const groupSearchResultsByEntityType = (azureSearchResult: AzureSearchResult): void => {
   groupTypes.items.forEach((groupItem) => {
-    const groups = {
+    const groups: SearchResult = {
       count: 0, // This must be set to 0
       type: groupItem.type,
       documents: new Array(),
@@ -63,7 +68,7 @@ export const groupSearchResultsByEntityType = (azureSearchResult: AzureSearchRes
  * @returns {string} The filter string.
  */
 export const createFilter = (facetType: string, facetValue: string): string => {
-  let filter = '';
+  let filter: string = '';
   if (facetType && facetValue) {
     if (groupTypes.items.some((item) => item.type === facetValue)) {
       groupTypes.items

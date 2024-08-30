@@ -3,7 +3,6 @@
  *
  * This utility provides a function for getting the path name from request parameters.
  *
- * @typedef {Object} requestUrlParser
  * @property {Function} getPathName - The function for getting the path name from request parameters.
  */
 export const requestUrlParser = {

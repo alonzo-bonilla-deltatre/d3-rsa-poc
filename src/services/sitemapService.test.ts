@@ -8,7 +8,7 @@ import {
 import { getPageStructure } from '@/services/pageService';
 import { getAllEntities } from './forgeDistributionService';
 import { mockPagedResult } from '@/__mocks__/entities/sampleStoriesDapi';
-import { getSiteUrl } from './configurationService';
+import { getSiteUrl } from '@/services/configurationService';
 import { mockApiResponse, mockSitemapItems } from '@/__mocks__/sitemaps/sitemapItems';
 import { mockPageStructureResponse } from '@/__mocks__/sitemaps/pageStructure';
 

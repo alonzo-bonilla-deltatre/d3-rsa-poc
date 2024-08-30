@@ -1,5 +1,5 @@
 ﻿import { VideoType } from '@/models/types/diva';
-import { getSettingUrl, getVideoType } from './divaHelper';
+import { getSettingUrl, getVideoType } from '@/helpers/divaHelper';
 import { describe, expect, it } from '@jest/globals';
 
 describe('getVideoType', () => {

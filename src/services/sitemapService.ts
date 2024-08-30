@@ -14,8 +14,8 @@ import { formatDate } from '@/helpers/dateHelper';
 import { PAGE_BUILDER_FRONTEND_PAGE_BASE_PATH } from '@/utilities/constsUtility';
 import logger from '@/utilities/loggerUtility';
 import axios from 'axios';
-import { getSiteUrl } from './configurationService';
-import { getAllEntities } from './forgeDistributionService';
+import { getSiteUrl } from '@/services/configurationService';
+import { getAllEntities } from '@/services/forgeDistributionService';
 import { ForgeDapiEntityCode, ForgeMetadataCategoryType, ForgeSitemapsMetadataKey } from '@/models/types/forge';
 
 // The culture of the site, retrieved from environment variables

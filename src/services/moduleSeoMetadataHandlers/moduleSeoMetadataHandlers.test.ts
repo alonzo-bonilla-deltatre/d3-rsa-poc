@@ -9,7 +9,7 @@ import { moduleHandlers } from './moduleSeoMetadataHandlers';
 import { Metadata as NextMetadata } from 'next';
 import { Variable } from '@/models/types/pageStructure';
 
-jest.mock('./albumMosaicSeoMetadataHandler');
+jest.mock('@/services/moduleSeoMetadataHandlers/albumMosaicSeoMetadataHandler');
 jest.mock('@/services/moduleSeoMetadataHandlers/brightcoveVideoSeoMetadataHandler');
 jest.mock('@/services/moduleSeoMetadataHandlers/divaVideoSeoMetadataHandler');
 jest.mock('@/services/moduleSeoMetadataHandlers/jwPlayerVideoSeoMetadataHandler');

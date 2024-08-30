@@ -10,7 +10,7 @@ import { NextApiResponse } from 'next';
  * @param {FormFieldType} fieldType - The type of the form field.
  * @returns {string | undefined} The default input pattern for the given form field type, or undefined if there is no default pattern.
  */
-export const getDefaultInputPattern = (fieldType: FormFieldType) => {
+export const getDefaultInputPattern = (fieldType: FormFieldType): string | undefined => {
   let pattern;
   switch (fieldType) {
     case FormFieldType.Email:
@@ -40,7 +40,7 @@ export const getDefaultInputPattern = (fieldType: FormFieldType) => {
  * @param {formidable.Fields} fields - The fields in the request.
  * @param {NextApiResponse} res - The response object.
  */
-export const validateFilesServer = (files: formidable.Files, fields: formidable.Fields, res: NextApiResponse) => {
+export const validateFilesServer = (files: formidable.Files, fields: formidable.Fields, res: NextApiResponse): void => {
   for (const [key, value] of Object.entries(files)) {
     const acceptValuesArray = fields[key]?.[0]?.split(',');
     const isAccepted = value?.some((file) => acceptValuesArray?.includes(file.mimetype ?? '') && file.size > 0);
@@ -71,7 +71,7 @@ export const validateFilesClient = (
     }
   >,
   handler: () => void
-) => {
+): boolean => {
   let isValid = true;
   for (const [_key, value] of Object.entries(files)) {
     const acceptValuesArray = value.accept.split(',');
@@ -107,7 +107,7 @@ export const validateField = (field: {
   required?: boolean;
   fieldType?: number;
   pattern?: string;
-}) => {
+}): boolean => {
   if (!field.value && field.required) {
     logger.log(`"${field?.name}" must have a value`, LoggerLevel.error);
     return false;

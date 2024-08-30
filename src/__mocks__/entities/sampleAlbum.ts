@@ -1,6 +1,6 @@
-import { AlbumEntity, DistributionEntity, ForgeEntityCode, ForgeEntityType, Tag } from '@/models/types/forge';
-import { emptyDistributionEntity } from './sampleStoryParts';
-import { sampleContext, sampleTags } from './story';
+import { AlbumEntity, DistributionEntity, ForgeEntityCode, ForgeEntityType } from '@/models/types/forge';
+import { emptyDistributionEntity } from '@/__mocks__/entities/sampleStoryParts';
+import { sampleContext, sampleTags } from '@/__mocks__/entities/story';
 
 const samplePhoto: DistributionEntity = {
   ...emptyDistributionEntity,

@@ -7,8 +7,7 @@ import AppViewLinksHandler from '@/components/commons/AppViewLinksHandler/AppVie
 import { enrichPageVariables, getPageData } from '@/helpers/pageHelper';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
-import { getSiteUrl, setFrontendAllSiteConfiguration } from '@/services/configurationService';
-import { getPageStructure } from '@/services/pageService';
+import { getSiteUrl } from '@/services/configurationService';
 
 /**
  * Renders a page based on the provided parameters.

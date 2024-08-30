@@ -1,6 +1,6 @@
 import { MenuStructureResponse } from '@/models/types/menu';
 
-const testMenu: MenuStructureResponse = {
+const sampleMenu: MenuStructureResponse = {
   data: {
     variables: [],
     items: [
@@ -77,4 +77,4 @@ const testMenu: MenuStructureResponse = {
   },
 };
 
-export { testMenu };
+export { sampleMenu };

@@ -13,9 +13,8 @@ import { getDivaPlayerSetting } from '@/services/divaPlayerService';
  *
  * @param {NextApiRequest} req - The request object.
  * @param {NextApiResponse} res - The response object.
- * @returns {void} - The function does not return anything.
  */
-const renderDivaPlayerSetting = (req: NextApiRequest, res: NextApiResponse) => {
+const renderDivaPlayerSetting = (req: NextApiRequest, res: NextApiResponse): void => {
   try {
     const result = getDivaPlayerSetting();
     res.status(result ? 200 : 500).json(result);

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 /**
  * Props for the useAdvertising hook.
  *
- * @typedef {Object} AdvertisingProps
  * @property {string} mobileSlotName - The slot name for mobile ads.
  * @property {string} desktopSlotName - The slot name for desktop ads.
  * @property {string} uniqueId - The unique ID for the ad.
@@ -27,9 +26,15 @@ type AdvertisingProps = {
  * It also converts the ad sizes from strings to arrays of numbers.
  *
  * @param {AdvertisingProps} props - The props for the hook.
- * @returns {Object} An object with the mobile and desktop ad sizes in the format 'w-width h-height', or undefined if the ad sizes are not valid.
+ * @returns {undefined | object} An object with the mobile and desktop ad sizes in the format 'w-width h-height', or undefined if the ad sizes are not valid.
  */
-const useAdvertising = ({ mobileSlotName, desktopSlotName, mobileSize, desktopSize, uniqueId }: AdvertisingProps) => {
+const useAdvertising = ({
+  mobileSlotName,
+  desktopSlotName,
+  mobileSize,
+  desktopSize,
+  uniqueId,
+}: AdvertisingProps): undefined | object => {
   const mobileSizesArray = getAdSizesFromString(mobileSize);
   const desktopSizesArray = getAdSizesFromString(desktopSize);
 

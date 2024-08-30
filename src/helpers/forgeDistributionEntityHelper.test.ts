@@ -33,7 +33,7 @@ import {
   getTagsParam,
   updateEntityURL,
   updateEntityURLs,
-} from './forgeDistributionEntityHelper';
+} from '@/helpers/forgeDistributionEntityHelper';
 import { StoryPart } from '@/models/types/storyPart';
 import { getLinkRules } from '@/services/linkRuleService';
 import { LinkRuleRequest, LinkRuleResponse, LinkRuleVariation, LinkRuleVariationType } from '@/models/types/linkRule';

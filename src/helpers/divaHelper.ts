@@ -1,12 +1,12 @@
 ﻿import { VideoType } from '@/models/types/diva';
 
 /**
- * Determines the type of a video based on its content fields.
+ * Determines the type of video based on its content fields.
  *
  * @param {any} videoContent - The content fields of the video.
  * @returns {VideoType} The type of the video.
  */
-export const getVideoType = (videoContent: any) => {
+export const getVideoType = (videoContent: any): VideoType => {
   const { videoStatus, WORKFLOW, v_has_data, v_provider } = videoContent.fields;
   const scoreV_provider = v_provider === 'linear' ? 1 : 0;
   const scoreV_has_data = v_has_data === true ? 2 : 0;

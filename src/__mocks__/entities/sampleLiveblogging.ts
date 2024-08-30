@@ -7,7 +7,6 @@ import {
   PaginationType,
   PostType,
 } from '@/models/types/liveblogging';
-import { ImageAsset } from '@/models/types/images';
 
 const sampleBlogWidgetConfig: LiveBloggingWidgetConfig = {
   slug: 'test-blog',

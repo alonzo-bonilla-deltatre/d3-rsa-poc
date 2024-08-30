@@ -5,7 +5,7 @@ import {
   getAppViewVariable,
   getBooleanVariable,
   getDataVariable,
-} from './dataVariableHelper';
+} from '@/helpers/dataVariableHelper';
 
 describe('getDataVariable function', () => {
   // ARRANGE

@@ -1,7 +1,5 @@
-﻿import { LoggerLevel } from '@/models/types/logger';
-import sitemapHandler from '@/pages/api/sitemaps/sitemap';
+﻿import sitemapHandler from '@/pages/api/sitemaps/sitemap';
 import { getSiteStructureXml } from '@/services/sitemapService';
-import logger from '@/utilities/logger';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 jest.mock('@/services/sitemapService');

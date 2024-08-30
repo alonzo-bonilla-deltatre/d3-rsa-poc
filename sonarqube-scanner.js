@@ -16,6 +16,7 @@ const exclusionsList = [
   '**/sonarqube-scanner.js',
   '**/helpers/customForgeDistributionEntityHelper.ts',
   '**/services/divaPlayerService.ts',
+  '**/services/sendGridService.ts',
   '**/utilities/consts.ts',
   '**/utilities/defaultCloudinaryTransformationsUtility.ts',
   '**/utilities/featureFlags.ts',

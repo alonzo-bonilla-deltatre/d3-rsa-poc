@@ -12,7 +12,7 @@ import { NextResponse, NextRequest } from 'next/server';
  * @param {NextRequest} request - The Next.js request object.
  * @returns {NextResponse} A Next.js response object with a rewritten URL, or a response object that allows the request to proceed without modification.
  */
-export function middleware(request: NextRequest) {
+export function middleware(request: NextRequest): NextResponse {
   // Preview handler: URL contains `?token=`
   if (request.nextUrl.searchParams.has('token')) {
     const token = request.nextUrl.searchParams.get('token');
