@@ -52,7 +52,7 @@ describe('getPageData', () => {
     await getPageData('/index', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
 
     // ASSERT
-    expect(await setPageMetadata).not.toHaveBeenCalled();
+    expect(setPageMetadata).not.toHaveBeenCalled();
   });
 
   it('should fetch page data successfully', async () => {
@@ -69,8 +69,8 @@ describe('getPageData', () => {
     const result = await getPageData('/index', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
 
     // ASSERT
-    expect(await setPageMetadata).toHaveBeenCalledTimes(1);
-    expect(await setPageMetadata).toHaveBeenCalledWith(indexStructure.data.metadata);
+    expect(setPageMetadata).toHaveBeenCalledTimes(1);
+    expect(setPageMetadata).toHaveBeenCalledWith(indexStructure.data.metadata, '/index');
 
     expect(result?.structure).toBe(indexStructure.data.structure);
     expect(result?.metadataItems).toBe(indexStructure.data.metadata);

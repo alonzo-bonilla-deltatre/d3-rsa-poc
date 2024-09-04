@@ -5,7 +5,7 @@ import {
   ForgeSocialsMetadataKey,
 } from '@/models/types/forge';
 import { Metadata as MetadataItem } from '@/models/types/pageStructure';
-import { getSiteUrl } from '@/services/configurationService';
+import { getFrontendAllSiteConfiguration, getSiteUrl } from '@/services/configurationService';
 import { Twitter } from 'next/dist/lib/metadata/types/twitter-types';
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
@@ -57,9 +57,10 @@ export const getMetadata = (
  * The `Metadata` object is returned.
  *
  * @param {MetadataItem[] | null} metadataItems - The metadata items to use.
+ * @param path - The path of the page.
  * @returns {Promise<Metadata | null>} - The page metadata or `null` if no metadata items were provided.
  */
-export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Promise<Metadata> => {
+export const setPageMetadata = async (metadataItems: MetadataItem[] | null, path: string): Promise<Metadata> => {
   if (!metadataItems) {
     return {};
   }
@@ -94,6 +95,15 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
     ForgeSocialsMetadataKey.fb_app_id
   );
   const cultureCode = process.env.CULTURE;
+  let canonicalUrl;
+
+  try {
+    canonicalUrl = new URL(path, siteUrl)?.href;
+  } catch (e) {
+    canonicalUrl = siteUrl;
+  }
+
+  const allSiteConfiguration = getFrontendAllSiteConfiguration();
 
   const getTwitterData = (): Twitter => {
     return {
@@ -103,7 +113,7 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
       site: twitterAccount,
       creator: twitterAccount,
       images: image,
-    };
+    } as Twitter;
   };
 
   const getOpenGraphData = (): OpenGraph => {
@@ -114,7 +124,9 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
       siteName,
       images: image,
       locale: cultureCode,
-    };
+      url: canonicalUrl,
+      authors: siteName ? siteName : null,
+    } as OpenGraph;
   };
 
   seoData.title = title;
@@ -130,6 +142,11 @@ export const setPageMetadata = async (metadataItems: MetadataItem[] | null): Pro
   };
 
   seoData.other = fbPages ? fbCodes : undefined;
+  try {
+    seoData.metadataBase = new URL(canonicalUrl);
+  } catch (e) {
+    seoData.metadataBase = null;
+  }
 
   return seoData;
 };

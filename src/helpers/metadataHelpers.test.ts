@@ -213,8 +213,6 @@ describe('overrideStoryMetadata', () => {
   });
 
   it('should return enriched metadata of a Story', () => {
-    // ARRANGE
-
     // ACT
     const result = overrideStoryMetadata(parentMetadata, storyEntity);
 
@@ -228,11 +226,9 @@ describe('overrideStoryMetadata', () => {
     };
     expect(result?.title).toBe(storyEntity.title);
     expect(result?.description).toBe(storyEntity.headline);
-    expect(result?.authors).toBe(undefined);
     expect(og.type).toBe('article');
     expect(og.publishedTime).toBe(storyEntity.contentDate);
     expect(og.modifiedTime).toBe(storyEntity.lastUpdatedDate);
-    expect(og.authors).toBe(storyEntity.createdBy);
     expect(result?.twitter?.title).toBe(storyEntity.title);
     expect(result?.twitter?.description).toBe(storyEntity.headline);
   });

@@ -38,7 +38,7 @@ export const getPageData = async (
   const metadataItems = pageStructure.data.metadata;
   const variables = pageStructure.data.variables;
 
-  const seoData: NextMetadata = await setPageMetadata(metadataItems);
+  const seoData: NextMetadata = await setPageMetadata(metadataItems, path);
 
   return {
     structure,

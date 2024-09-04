@@ -183,12 +183,12 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   thumbnail_wide_detail: {
     mobile: defaultCloudinaryTransformations.ratio21_9_size20,
     tablet: defaultCloudinaryTransformations.ratio21_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio21_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio21_9_size60,
   },
   thumbnail_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
   },
   thumbnail_small_landscape_detail: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
@@ -244,7 +244,7 @@ export const transformations: Record<ImageTransformationName, ImageTransformatio
   focus_on_photo: {
     mobile: defaultCloudinaryTransformations.ratio16_9_size20,
     tablet: defaultCloudinaryTransformations.ratio16_9_size40,
-    desktop: defaultCloudinaryTransformations.ratio16_9_size40,
+    desktop: defaultCloudinaryTransformations.ratio16_9_size60,
   },
   // Common Component Mosaic
   mosaic_square: {

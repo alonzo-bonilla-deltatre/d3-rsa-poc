@@ -34,6 +34,7 @@ export const overrideDefaultMetadata = (
   const description: string = getDescriptionField(entity);
 
   return {
+    ...parentMetadata,
     title,
     description,
     openGraph: {
@@ -43,8 +44,11 @@ export const overrideDefaultMetadata = (
       description,
       images: [{ url: image ?? null }],
       tags: entity?.tags && entity?.tags?.length > 0 ? entity?.tags?.map(getTagTitleOrLabel)?.join(',') : undefined,
+      publishedTime: entity.contentDate,
+      modifiedTime: entity.lastUpdatedDate,
     },
     twitter: {
+      ...parentMetadata.twitter,
       title,
       description,
       images: image ?? null,
@@ -103,7 +107,6 @@ export const overrideStoryMetadata = (parentMetadata: Metadata, entity: Distribu
     type: 'article',
     publishedTime: entity.contentDate,
     modifiedTime: entity.lastUpdatedDate,
-    authors: entity.createdBy,
   } as OpenGraph;
   return metadata;
 };
@@ -196,11 +199,5 @@ export const overrideLiveBloggingMetadata = (
     publishedTime: post?.timestamp ? post?.timestamp : blog?.datePublished,
     modifiedTime: post?.lastModifiedDate ? post?.lastModifiedDate : blog?.lastUpdateDate,
   } as OpenGraph;
-  if (author) {
-    metadata.openGraph = {
-      ...metadata.openGraph,
-      authors: author,
-    } as OpenGraph;
-  }
   return metadata;
 };
