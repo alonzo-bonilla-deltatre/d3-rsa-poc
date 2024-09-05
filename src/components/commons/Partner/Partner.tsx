@@ -36,7 +36,7 @@ const Partner = async ({ entity, width, height, direction, baseUrl }: PartnerPro
       <Link
         href={partnerLink.url}
         title={partnerLink?.accessibleText ? partnerLink.accessibleText : partnerName}
-        className={`cursor-pointer relative ${imageWrapperClass}`}
+        className={`relative cursor-pointer ${imageWrapperClass}`}
         baseUrl={baseUrl}
       >
         <GadAsset
@@ -45,7 +45,7 @@ const Partner = async ({ entity, width, height, direction, baseUrl }: PartnerPro
           width={direction !== 'vertical' ? width : 100}
           height={direction !== 'vertical' ? height : 100}
           transformations={transformations.best_assets}
-          className="max-w-none w-full h-full object-contain"
+          className="h-full w-full max-w-none object-contain"
         />
       </Link>
     );
@@ -59,7 +59,7 @@ const Partner = async ({ entity, width, height, direction, baseUrl }: PartnerPro
         width={direction !== 'vertical' ? width : 200}
         height={direction !== 'vertical' ? height : 50}
         transformations={transformations.best_assets}
-        className="max-w-none w-full h-full object-contain"
+        className="h-full w-full max-w-none object-contain"
       />
     </div>
   );

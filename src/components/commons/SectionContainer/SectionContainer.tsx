@@ -16,7 +16,7 @@ const SectionContainer = ({ children, isFullWidth, removeSectionHtmlTag, classNa
   return (
     <SectionContainer
       className={twMerge(
-        'mb-5 lg:mb-10 first:mt-5 lg:first:mt-10',
+        'mb-5 first:mt-5 lg:mb-10 lg:first:mt-10',
         className,
         getBooleanProperty(isFullWidth) ? 'w-full' : 'container mx-auto px-2'
       )}

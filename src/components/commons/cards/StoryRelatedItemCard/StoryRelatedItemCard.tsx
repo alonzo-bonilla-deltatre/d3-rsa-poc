@@ -17,9 +17,9 @@ const StoryRelatedItemCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
-      <div className="flex flex-col gap-2 overflow-hidden rounded-lg relative">
+      <div className="relative flex flex-col gap-2 overflow-hidden rounded-lg">
         {entity?.tags && entity?.tags.length > 0 && (
           <div className="flex flex-col gap-2">
             {entity?.tags.map((tag: Tag, index: number) => (
@@ -40,7 +40,7 @@ const StoryRelatedItemCard = ({ entity }: CardProps) => {
         </Typography>
         <Typography
           variant="body-s"
-          className="text-grey-100 line-clamp-2 text-ellipsis"
+          className="line-clamp-2 text-ellipsis text-grey-100"
         >
           {description}
         </Typography>
@@ -56,8 +56,8 @@ const StoryRelatedItemCard = ({ entity }: CardProps) => {
             transformations={transformations.thumbnail_landscape_detail}
             alt={entity.title}
             className={twMerge(
-              'w-auto h-[revert-layer] object-[inherit] rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+              'h-[revert-layer] w-auto rounded-lg object-[inherit]',
+              hasValidUrl(entity?.url) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />

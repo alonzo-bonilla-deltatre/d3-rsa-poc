@@ -14,7 +14,7 @@ const HeaderMenuNavItem = ({ menuItem, itemIcon, itemText }: HeaderMenuNavItemPr
   return (
     <div
       className={twMerge(
-        'flex items-center transition duration-300 hover:text-link cursor-pointer',
+        'flex cursor-pointer items-center transition duration-300 hover:text-link',
         isActive ? 'text-link' : ''
       )}
     >

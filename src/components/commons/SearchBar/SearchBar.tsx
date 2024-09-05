@@ -38,10 +38,10 @@ const SearchBar = ({
 
   return (
     <div className={twMerge('flex h-full items-center justify-center', widthCssClass, additionalClasses)}>
-      <div className="w-3/4 px-1 pt-2 flex flex-col justify-center h-full">
+      <div className="flex h-full w-3/4 flex-col justify-center px-1 pt-2">
         <input
           className={twMerge(
-            'bg-transparent border-b-link w-full h-12 leading-5 border-b-2 outline-0 text-2xl placeholder-current',
+            'h-12 w-full border-b-2 border-b-link bg-transparent text-2xl leading-5 placeholder-current outline-0',
             inputAdditionalClasses
           )}
           autoFocus={true}

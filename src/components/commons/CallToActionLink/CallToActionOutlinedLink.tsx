@@ -14,7 +14,7 @@ const CallToActionOutlinedLink = ({ url, text, baseUrl }: CallToActionOutlinedLi
       href={url}
       baseUrl={baseUrl}
       className={
-        "uppercase text-current relative py-2 inset-0 rounded-full cursor-pointer hover:text-link transition duration-300 after:block after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+        "relative inset-0 cursor-pointer rounded-full py-2 uppercase text-current transition duration-300 after:absolute after:block after:w-full after:origin-center after:scale-x-0 after:border after:border-link after:transition after:duration-300 after:content-[''] hover:text-link after:hover:scale-x-100"
       }
     >
       <Typography variant="cta-m">

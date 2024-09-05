@@ -23,10 +23,10 @@ const Footer = ({ data }: { data: ComponentProps }) => {
   const footerNavigationSource: Variable = createDataVariable('source', MenuSources.footer);
 
   return (
-    <footer className="bg-white text-black border-t">
+    <footer className="border-t bg-white text-black">
       <ModuleContainer className="first:mt-0">
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerContent) && (
-          <div className="flex flex-col pb-6 lg:pb-10 mb-6 lg:mb-10 h-full border-b border-black">
+          <div className="mb-6 flex h-full flex-col border-b border-black pb-6 lg:mb-10 lg:pb-10">
             {renderItemsInSlot(
               data.items,
               FooterLayoutSlots.footerContent,
@@ -36,12 +36,12 @@ const Footer = ({ data }: { data: ComponentProps }) => {
             )}
           </div>
         )}
-        <div className="my-6 lg:text-center flex justify-center gap-4">
-          <SocialIcons className="cursor-pointer text-grey-500 hover:text-link transition duration-300" />
+        <div className="my-6 flex justify-center gap-4 lg:text-center">
+          <SocialIcons className="cursor-pointer text-grey-500 transition duration-300 hover:text-link" />
         </div>
         {hasItemsInSlot(data.items, FooterLayoutSlots.footerNavigation) && (
           <div className="flex flex-col pb-6 lg:pb-10 lg:text-center">
-            <div className="pb-6 lg:text-center flex flex-col border-b border-black">
+            <div className="flex flex-col border-b border-black pb-6 lg:text-center">
               {renderItemsInSlot(
                 data.items,
                 FooterLayoutSlots.footerNavigation,
@@ -52,9 +52,9 @@ const Footer = ({ data }: { data: ComponentProps }) => {
             </div>
           </div>
         )}
-        <div className="lg:text-center flex flex-col">
+        <div className="flex flex-col lg:text-center">
           {hasItemsInSlot(data.items, FooterLayoutSlots.logo) && (
-            <div className="flex justify-center mb-5 min-w-[140px] mx-auto">
+            <div className="mx-auto mb-5 flex min-w-[140px] justify-center">
               {renderItemsInSlot(data.items, FooterLayoutSlots.logo, data.variables, data.metadata, data.previewToken)}
             </div>
           )}

@@ -94,7 +94,7 @@ const Carousel = ({
           );
         })}
       </Swiper>
-      {hasPagination && <div className="mt-5 lg:mt-10 container flex justify-center carousel__pagination"></div>}
+      {hasPagination && <div className="carousel__pagination container mt-5 flex justify-center lg:mt-10"></div>}
       {hasNavigation && !hasExternalNavigation && (
         <CarouselNavigation
           swiperRef={swiperRef}

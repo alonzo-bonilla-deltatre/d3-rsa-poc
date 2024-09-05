@@ -31,7 +31,7 @@ const Default = ({ data }: { data: ComponentProps }) => {
   return (
     <div
       id="main-container"
-      className="overflow-hidden flex flex-col justify-between min-h-[100vh]"
+      className="flex min-h-[100vh] flex-col justify-between overflow-hidden"
     >
       {/* Header */}
       {headerStructureItem &&

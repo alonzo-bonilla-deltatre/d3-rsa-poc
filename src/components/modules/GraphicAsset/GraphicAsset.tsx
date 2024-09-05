@@ -34,7 +34,7 @@ const GraphicAsset = async ({ data }: { data: ComponentProps }) => {
   return (
     <a
       href={link}
-      className="w-full flex justify-center"
+      className="flex w-full justify-center"
       aria-label={assetName ?? ''}
     >
       <div className={`max-w-[${assetWidth}px] max-h-[${assetHeight}px]`}>

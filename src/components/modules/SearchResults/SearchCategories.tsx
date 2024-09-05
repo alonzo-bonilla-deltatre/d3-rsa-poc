@@ -44,13 +44,13 @@ const SearchCategories = ({
   };
 
   return (
-    <ul className="flex flex-row relative gap-4 overflow-auto mb-6 ">
+    <ul className="relative mb-6 flex flex-row gap-4 overflow-auto">
       <li
         key={translate(allTranslatedTag)}
         className="relative"
       >
         <button
-          className={twMerge(itemClassName, activeItem === allTranslatedTag ? 'after:scale-x-100 text-link' : '')}
+          className={twMerge(itemClassName, activeItem === allTranslatedTag ? 'text-link after:scale-x-100' : '')}
           onClick={() => handlerNavigationClick(azureSearchOption.q)}
         >
           <Typography variant="navigation-xl">
@@ -64,7 +64,7 @@ const SearchCategories = ({
           className="relative"
         >
           <button
-            className={twMerge(itemClassName, activeItem === type ? 'after:scale-x-100 text-link' : '')}
+            className={twMerge(itemClassName, activeItem === type ? 'text-link after:scale-x-100' : '')}
             onClick={() => handlerNavigationClick(azureSearchOption.q, getFacetType(type), type)}
           >
             <Typography variant="navigation-xl">

@@ -22,24 +22,24 @@ const DefaultCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
-      <div className="flex rounded-lg relative aspect-[1/1] h-full w-full">
+      <div className="relative flex aspect-[1/1] h-full w-full rounded-lg">
         {templateUrl && (
-          <figure className="bg-black overflow-hidden rounded-lg z-10">
+          <figure className="z-10 overflow-hidden rounded-lg bg-black">
             <Picture
               src={templateUrl}
               transformations={transformations.thumbnail_square_detail}
               alt={entity.title}
               className={twMerge(
-                'block h-full w-full object-cover object-center opacity-[.60] rounded-lg',
-                hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+                'block h-full w-full rounded-lg object-cover object-center opacity-[.60]',
+                hasValidUrl(entity?.url) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
               )}
               format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
             />
           </figure>
         )}
-        <div className="flex flex-col absolute bottom-0 text-white gap-2 justify-end items-start p-2 lg:p-6 z-10">
+        <div className="absolute bottom-0 z-10 flex flex-col items-start justify-end gap-2 p-2 text-white lg:p-6">
           <Typography
             variant="body-l"
             className="line-clamp-2 text-ellipsis font-bold"

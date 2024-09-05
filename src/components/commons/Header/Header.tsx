@@ -64,11 +64,11 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
         id="header-nav"
         className={`flex flex-col justify-center ${
           getBooleanProperty(isTransparent)
-            ? 'transition-colors duration-200 ease-linear fixed top-0 left-0 right-0'
+            ? 'fixed left-0 right-0 top-0 transition-colors duration-200 ease-linear'
             : 'bg-grey-900'
         }`}
       >
-        <div className="h-[72px] container mx-auto px-4 grid grid-cols-3 grid-flow-row gap-4 md:items-center md:justify-between">
+        <div className="container mx-auto grid h-[72px] grid-flow-row grid-cols-3 gap-4 px-4 md:items-center md:justify-between">
           {hamburgerElement}
           <div
             className="flex items-center"
@@ -78,7 +78,7 @@ const Header = ({ data }: { data: CommonHeaderProps }) => {
             {renderItemsInSlot(data.items, CommonHeaderSlots.logo, data.variables, data.metadata, data.previewToken)}
           </div>
           <div
-            className="justify-end hidden lg:flex"
+            className="hidden justify-end lg:flex"
             id={CommonHeaderSlots.serviceNavigation}
           >
             {renderItemsInSlot(

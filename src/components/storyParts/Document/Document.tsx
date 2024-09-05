@@ -7,7 +7,7 @@ const Document = async ({ data }: { data: StoryPart }) => {
   return (
     <DocumentComponent
       entity={data}
-      className="p-2 border transition duration-300 hover:text-link hover:border-link"
+      className="border p-2 transition duration-300 hover:border-link hover:text-link"
       iconSize={80}
     />
   );

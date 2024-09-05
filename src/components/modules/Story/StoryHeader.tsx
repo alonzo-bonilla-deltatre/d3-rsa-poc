@@ -30,7 +30,7 @@ const StoryHeader = ({ storyEntity }: StoryHeaderProps) => {
       className="relative first:mt-0 lg:first:mt-0"
     >
       <div
-        className="bg-[length:100vh] md:bg-cover bg-no-repeat min-h-[40svh] md:min-h-[60svh] lg:min-h-[80svh] bg-fixed bg-top"
+        className="min-h-[40svh] bg-[length:100vh] bg-fixed bg-top bg-no-repeat md:min-h-[60svh] md:bg-cover lg:min-h-[80svh]"
         style={{
           backgroundImage: `url('${imageUrl}')`,
         }}

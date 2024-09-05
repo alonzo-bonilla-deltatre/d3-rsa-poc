@@ -66,7 +66,7 @@ const HeaderMenuList = ({ menuItems, source, baseUrl }: HeaderMenuListProps) => 
   };
 
   return (
-    <ul className={twMerge('flex relative w-fit', !isHeader ? 'flex-col' : 'flex-row gap-4 text-white')}>
+    <ul className={twMerge('relative flex w-fit', !isHeader ? 'flex-col' : 'flex-row gap-4 text-white')}>
       {menuItems.map((menuItem: MenuItem) => (
         <li
           className="relative w-fit"

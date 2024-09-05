@@ -21,11 +21,11 @@ const EventCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
       <div className="relative rounded-lg">
-        <div className="absolute rounded-lg bg-event-mask bg-bottom w-full h-[234px] px-6 pt-24 z-10">
-          <div className="flex flex-col justify-items-center center absolute top-0 ltr:left-2 ltr:lg:left-4 rtl:right-2 rtl:lg:right-4 bg-event-date w-[64px] h-[82px] z-10">
+        <div className="absolute z-10 h-[234px] w-full rounded-lg bg-event-mask bg-bottom px-6 pt-24">
+          <div className="center absolute top-0 z-10 flex h-[82px] w-[64px] flex-col justify-items-center bg-event-date ltr:left-2 ltr:lg:left-4 rtl:right-2 rtl:lg:right-4">
             <Typography
               variant="caption-l"
               className="text-center"
@@ -34,12 +34,12 @@ const EventCard = ({ entity }: CardProps) => {
             </Typography>
             <Typography
               variant="caption-s"
-              className="uppercase text-center -mt-1"
+              className="-mt-1 text-center uppercase"
             >
               {dateFromMonth}
             </Typography>
           </div>
-          <div className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 top-2 lg:top-3 ltr:right-2 ltr:lg:right-3 rtl:left-2 rtl:lg:left-3 py-4 text-white bg-grey-500">
+          <div className="absolute top-2 z-10 flex items-center gap-2 rounded-full bg-grey-500 p-2 py-4 text-white lg:top-3 lg:px-4 lg:py-2 ltr:right-2 ltr:lg:right-3 rtl:left-2 rtl:lg:left-3">
             {renderSvgIcon('Event', {
               className: 'w-5 h-5',
               width: 20,
@@ -48,7 +48,7 @@ const EventCard = ({ entity }: CardProps) => {
           </div>
           <Typography
             variant="h3"
-            className="line-clamp-2 uppercase text-white mt-1 lg:mt-3 mb-2"
+            className="mb-2 mt-1 line-clamp-2 uppercase text-white lg:mt-3"
           >
             {entity.title}
           </Typography>
@@ -56,7 +56,7 @@ const EventCard = ({ entity }: CardProps) => {
         {hasTicket && (
           <Typography
             variant="tag-m"
-            className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center text-black bg-white z-10 bottom-2 lg:bottom-3 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 transform items-center gap-2 rounded-full bg-white p-2 text-black lg:bottom-3 lg:px-4 lg:py-2"
           >
             <span>{entity.fields?.tickets?.displayText}</span>
           </Typography>
@@ -73,8 +73,8 @@ const EventCard = ({ entity }: CardProps) => {
             transformations={transformations.thumbnail_square_detail}
             alt={entity.title}
             className={twMerge(
-              'block h-full w-full object-cover object-center rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+              'block h-full w-full rounded-lg object-cover object-center',
+              hasValidUrl(entity?.url) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />

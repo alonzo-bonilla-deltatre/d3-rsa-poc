@@ -22,7 +22,7 @@ const DynamicGrid = ({ gridTemplate, componentProps }: DynamicGridProps) => {
     <SectionContainer
       isFullWidth={getBooleanProperty(isFullWidth)}
       removeSectionHtmlTag={getBooleanProperty(removeSectionHtmlTag)}
-      className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-4 lg:gap-y-6"
+      className="grid grid-cols-1 gap-x-6 gap-y-4 lg:grid-cols-12 lg:gap-y-6"
     >
       {[...Array(slotsLength)].map((_, index: number) => (
         <div

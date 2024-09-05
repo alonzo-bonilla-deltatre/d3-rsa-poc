@@ -47,7 +47,7 @@ const PaginationButtons = ({
   if (!pagination?.hasPagination) return null;
 
   return (
-    <div className="flex w-full justify-between mt-8">
+    <div className="mt-8 flex w-full justify-between">
       <div className="flex-start">
         {previousPage > -1 && (
           <CallToActionFilledButton

@@ -7,7 +7,7 @@ import Typography from '@/components/commons/Typography/Typography';
 export default function NotFound() {
   const translate = useTranslate();
   return (
-    <section className="flex h-screen overflow-hidden m-0 p-0">
+    <section className="m-0 flex h-screen overflow-hidden p-0">
       <div className="m-auto">
         <Typography
           variant="h2"

@@ -43,7 +43,7 @@ const DivaVideoPlayer = ({ entity, containerCss }: DivaVideoPlayerProps) => {
   };
 
   return (
-    <div className={twMerge('block relative w-full', containerCss)}>
+    <div className={twMerge('relative block w-full', containerCss)}>
       <DivaWebBoAdapter {...props} />
     </div>
   );

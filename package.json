@@ -92,6 +92,7 @@
     "lint-staged": "^15.2.9",
     "postcss-import": "^16.1.0",
     "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "sonarqube-scanner": "^4.2.1",
     "storybook": "^8.2.9",
     "typescript": "^5.5.4"

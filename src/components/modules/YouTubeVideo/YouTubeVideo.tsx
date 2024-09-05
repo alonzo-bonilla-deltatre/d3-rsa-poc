@@ -36,7 +36,7 @@ const YouTubeVideo = async ({ data }: { data: ComponentProps }) => {
         <Typography
           variant="tag-l"
           as="time"
-          className="text-grey-500 uppercase"
+          className="uppercase text-grey-500"
         >
           <Date
             date={entity?.contentDate}

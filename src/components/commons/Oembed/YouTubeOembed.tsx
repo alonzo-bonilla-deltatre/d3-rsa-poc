@@ -6,11 +6,11 @@ const YouTubeOembed = ({ src }: YouTubeOembedProps) => {
   if (!src) return null;
 
   return (
-    <div className="grid grid-cols-1 relative overflow-hidden w-full rounded-lg">
+    <div className="relative grid w-full grid-cols-1 overflow-hidden rounded-lg">
       <iframe
         allowFullScreen
         src={src}
-        className="w-full h-full aspect-video"
+        className="aspect-video h-full w-full"
       />
     </div>
   );

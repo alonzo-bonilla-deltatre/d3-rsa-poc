@@ -90,12 +90,12 @@ export const HeroSwiperView = ({ slides }: HeroSwiperViewProps) => {
                 href={slide.url}
                 title={slide.title}
               >
-                <div className="grid grid-cols-1 h-[100vh] w-full overflow-hidden">
+                <div className="grid h-[100vh] w-full grid-cols-1 overflow-hidden">
                   {slide.thumbnail && (
                     <div className="col-start-1 row-start-1 bg-black">
                       <Picture
                         transformations={transformations.hero_swiper_main_item}
-                        className="w-full h-full object-cover opacity-[.50]"
+                        className="h-full w-full object-cover opacity-[.50]"
                         src={slide.image?.templateUrl ?? slide.thumbnail?.templateUrl ?? ''}
                         alt={slide.title}
                         imageStyle={{
@@ -106,10 +106,10 @@ export const HeroSwiperView = ({ slides }: HeroSwiperViewProps) => {
                       />
                     </div>
                   )}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+                  <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform">
                     <Typography
                       variant="h2"
-                      className="text-white uppercase mt-4 text-center p-6 md:p-12"
+                      className="mt-4 p-6 text-center uppercase text-white md:p-12"
                     >
                       {slide.title}
                     </Typography>

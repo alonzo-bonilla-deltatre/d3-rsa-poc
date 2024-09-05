@@ -21,7 +21,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
 
   return (
     <>
-      <div className="flex border-white/20 border-b pb-4 text-grey-100">
+      <div className="flex border-b border-white/20 pb-4 text-grey-100">
         <div
           className={`${tag === 'yesterday' ? selectedItemCssClass : ''} ${navItemCssClass}`}
           onClick={() => {
@@ -54,17 +54,17 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
         return (
           <div
             key={index}
-            className="p-4 border-white/20 border-b first:border-t"
+            className="border-b border-white/20 p-4 first:border-t"
           >
             {/*desktop*/}
-            <div className="hidden sm:grid sm:grid-cols-3 sm:gaps-4 justify-between min-h-[320px]">
+            <div className="sm:gaps-4 hidden min-h-[320px] justify-between sm:grid sm:grid-cols-3">
               <div className="flex items-center justify-start">
-                <div className="bg-bullets-logo min-h-[224px] min-w-[164px] bg-no-repeat bg-left flex items-center flex-col xl:flex-row justify-center">
+                <div className="flex min-h-[224px] min-w-[164px] flex-col items-center justify-center bg-bullets-logo bg-left bg-no-repeat xl:flex-row">
                   {entity?.references?.teamHome &&
                     entity?.references?.teamHome.length > 0 &&
                     entity?.references?.teamHome[0].fields?.teamLogo?.assetUrl && (
                       <div className="flex flex-col items-center pr-5">
-                        <div className="flex flex-col items-center pl-5 max-w-[80px] max-h-[80px]">
+                        <div className="flex max-h-[80px] max-w-[80px] flex-col items-center pl-5">
                           <GadAsset
                             src={entity?.references?.teamHome[0].fields?.teamLogo?.assetUrl ?? ''}
                             height={80}
@@ -81,7 +81,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                         </div>
                       </div>
                     )}
-                  <div className="mt-10 xl:mt-0 font-heading text-5xl uppercase -tracking-[0.031] text-center">
+                  <div className="mt-10 text-center font-heading text-5xl uppercase -tracking-[0.031] xl:mt-0">
                     {entity?.references?.teamHome &&
                     entity?.references?.teamHome.length > 0 &&
                     entity?.references?.teamHome[0]?.fields?.name
@@ -90,16 +90,16 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col justify-between items-center">
+              <div className="flex flex-col items-center justify-between">
                 {entity?.fields?.venue && (
-                  <div className="hidden md:block absolute mt-[16px] left-1/2 transform -translate-x-1/2 max-w-[360px] font-heading text-[120px] xl:text-[120px] leading-[144px] text-center text-grey-500 uppercase opacity-20 uppercase">
+                  <div className="absolute left-1/2 mt-[16px] hidden max-w-[360px] -translate-x-1/2 transform text-center font-heading text-[120px] uppercase leading-[144px] text-grey-500 opacity-20 md:block xl:text-[120px]">
                     {entity?.fields?.venue ?? ''}
                   </div>
                 )}
-                <div className="text-grey-100 text-base font-navigation uppercase -tracking-[0.01]">
+                <div className="font-navigation text-base uppercase -tracking-[0.01] text-grey-100">
                   {entity?.fields?.competitionName ?? ''}
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between">
                   <div className="font-heading text-5xl uppercase -tracking-[0.031]">
                     {entity?.fields?.scoreHome && entity?.fields?.scoreAway
                       ? entity?.fields?.scoreHome + ' - ' + entity?.fields?.scoreAway
@@ -108,15 +108,15 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                         : ''}
                   </div>
                 </div>
-                <div className="text-grey-100 text-base font-navigation uppercase -tracking-[0.01] text-center">
+                <div className="text-center font-navigation text-base uppercase -tracking-[0.01] text-grey-100">
                   {entity?.fields?.kickOffDateTime ? formatDate(entity?.fields?.kickOffDateTime, 'DD MMMM YYYY') : ''}
                   {entity?.fields?.kickOffDateTime && entity?.fields?.matchDay ? ' - ' : ''}
                   {entity?.fields?.matchDay ? entity?.fields?.matchDay : ''}
                 </div>
               </div>
               <div className="flex items-center justify-end">
-                <div className="bg-bullets-logo min-h-[224px] min-w-[164px] bg-no-repeat bg-right flex items-center flex-col xl:flex-row justify-center">
-                  <div className="hidden xl:block mt-10 xl:mt-0 font-heading text-5xl uppercase -tracking-[0.031] text-center">
+                <div className="flex min-h-[224px] min-w-[164px] flex-col items-center justify-center bg-bullets-logo bg-right bg-no-repeat xl:flex-row">
+                  <div className="mt-10 hidden text-center font-heading text-5xl uppercase -tracking-[0.031] xl:mt-0 xl:block">
                     {entity?.references?.teamAway &&
                     entity?.references?.teamAway.length > 0 &&
                     entity?.references?.teamAway[0]?.fields?.name
@@ -127,7 +127,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                     entity?.references?.teamAway.length > 0 &&
                     entity?.references?.teamAway[0].fields?.teamLogo?.assetUrl && (
                       <div className="flex flex-col items-center pl-5">
-                        <div className="flex flex-col items-center pr-5 max-w-[80px] max-h-[80px]">
+                        <div className="flex max-h-[80px] max-w-[80px] flex-col items-center pr-5">
                           <GadAsset
                             src={entity?.references?.teamAway[0].fields?.teamLogo?.assetUrl ?? ''}
                             height={80}
@@ -144,7 +144,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                         </div>
                       </div>
                     )}
-                  <div className="xl:hidden mt-10 xl:mt-0 font-heading text-5xl uppercase -tracking-[0.031] text-center">
+                  <div className="mt-10 text-center font-heading text-5xl uppercase -tracking-[0.031] xl:mt-0 xl:hidden">
                     {entity?.references?.teamAway &&
                     entity?.references?.teamAway.length > 0 &&
                     entity?.references?.teamAway[0].fields?.name
@@ -155,14 +155,14 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
               </div>
             </div>
             {/*mobile*/}
-            <div className="flex sm:hidden flex-col bg-bullets-logo bg-no-repeat bg-left">
+            <div className="flex flex-col bg-bullets-logo bg-left bg-no-repeat sm:hidden">
               <div className="">
-                <div className="flex items-center flex-col ">
-                  <div className="text-grey-100 text-base font-navigation uppercase -tracking-[0.01]">
+                <div className="flex flex-col items-center">
+                  <div className="font-navigation text-base uppercase -tracking-[0.01] text-grey-100">
                     {entity?.fields?.competitionName}
                   </div>
 
-                  <div className="text-grey-100 text-base font-navigation uppercase -tracking-[0.01] text-center">
+                  <div className="text-center font-navigation text-base uppercase -tracking-[0.01] text-grey-100">
                     {entity?.fields?.kickOffDateTime ? formatDate(entity?.fields?.kickOffDateTime, 'DD MMM, YYYY') : ''}
                     {entity?.fields?.kickOffDateTime && entity?.fields?.matchDay ? ' - ' : ''}
                     {entity?.fields?.matchDay ? entity?.fields?.matchDay : ''}
@@ -174,13 +174,13 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                         ? formatDate(entity?.fields?.kickOffDateTime, 'HH:mm')
                         : ''}
                   </div>
-                  <div className="flex flex-row items-center justify-between w-full my-4">
+                  <div className="my-4 flex w-full flex-row items-center justify-between">
                     <div className="flex items-center">
                       {entity?.references?.teamHome &&
                         entity?.references?.teamHome.length > 0 &&
                         entity?.references?.teamHome[0].fields?.teamLogo?.assetUrl && (
                           <div className="flex flex-col items-center pr-5">
-                            <div className="flex flex-col items-center max-w-[40px] max-h-[40px]">
+                            <div className="flex max-h-[40px] max-w-[40px] flex-col items-center">
                               <GadAsset
                                 src={entity?.references?.teamHome[0].fields?.teamLogo?.assetUrl ?? ''}
                                 height={40}
@@ -197,7 +197,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                             </div>
                           </div>
                         )}
-                      <div className="font-heading text-3xl uppercase -tracking-[0.031] text-center">
+                      <div className="text-center font-heading text-3xl uppercase -tracking-[0.031]">
                         {entity?.references?.teamHome &&
                         entity?.references?.teamHome.length > 0 &&
                         entity?.references?.teamHome[0]?.fields?.name
@@ -207,13 +207,13 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                     </div>
                     <div className="font-heading text-3xl uppercase -tracking-[0.031]">{entity?.fields?.scoreHome}</div>
                   </div>
-                  <div className="flex flex-row items-center justify-between w-full mb-4">
+                  <div className="mb-4 flex w-full flex-row items-center justify-between">
                     <div className="flex items-center">
                       {entity?.references?.teamAway &&
                         entity?.references?.teamAway.length > 0 &&
                         entity?.references?.teamAway[0].fields?.teamLogo?.assetUrl && (
                           <div className="flex flex-col items-center pr-5">
-                            <div className="flex flex-col items-center max-w-[40px] max-h-[40px]">
+                            <div className="flex max-h-[40px] max-w-[40px] flex-col items-center">
                               <GadAsset
                                 src={entity?.references?.teamAway[0].fields?.teamLogo?.assetUrl ?? ''}
                                 height={40}
@@ -230,7 +230,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                             </div>
                           </div>
                         )}
-                      <div className="font-heading text-3xl uppercase -tracking-[0.031] text-center">
+                      <div className="text-center font-heading text-3xl uppercase -tracking-[0.031]">
                         {entity?.references?.teamAway &&
                         entity?.references?.teamAway.length > 0 &&
                         entity?.references?.teamAway[0]?.fields?.name
@@ -243,7 +243,7 @@ const MatchesCard = ({ todayItems, tomorrowItems, yesterdayItems }: MatchesCardP
                 </div>
               </div>
               {entity?.fields?.venue && (
-                <div className="text-grey-100 text-base font-navigation uppercase -tracking-[0.01] text-center">
+                <div className="text-center font-navigation text-base uppercase -tracking-[0.01] text-grey-100">
                   {entity?.fields?.venue ?? ''}
                 </div>
               )}

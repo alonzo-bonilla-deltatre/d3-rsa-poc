@@ -14,7 +14,7 @@ const RelatedItems = ({ relations }: RelatedItemsProps) => {
         const cardProps = { entity: relItem } as CardProps;
         return (
           <div
-            className="flex flex-col gap-2 justify-between lg:pb-8 lg:border-b last:border-0"
+            className="flex flex-col justify-between gap-2 last:border-0 lg:border-b lg:pb-8"
             key={index}
           >
             {renderCard(CardsType.StoryRelatedItemCard, cardProps)}

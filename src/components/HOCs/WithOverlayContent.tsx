@@ -22,7 +22,7 @@ const WithOverlayContent = ({
     style={style}
   >
     {children}
-    <div className={`absolute pointer-events-none ${classNames}`}>{content}</div>
+    <div className={`pointer-events-none absolute ${classNames}`}>{content}</div>
   </div>
 );
 

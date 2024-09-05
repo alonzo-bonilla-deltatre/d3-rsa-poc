@@ -91,7 +91,7 @@ export const FeaturedEventListSwiper = ({ slides }: FeaturedEventListSwiperProps
           })}
         </Swiper>
       </ModuleContainer>
-      <div className="swiper-pagination--event hidden md:flex flex-row items-center justify-center gap-2"></div>
+      <div className="swiper-pagination--event hidden flex-row items-center justify-center gap-2 md:flex"></div>
     </>
   );
 };

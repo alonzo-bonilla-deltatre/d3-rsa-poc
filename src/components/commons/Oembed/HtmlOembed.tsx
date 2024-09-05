@@ -8,7 +8,7 @@ const HtmlOembed = ({ html }: OembedProps) => {
   if (!html) return null;
 
   return (
-    <div className="grid grid-cols-1 relative overflow-hidden w-full">
+    <div className="relative grid w-full grid-cols-1 overflow-hidden">
       <HtmlContent
         content={html}
         className="mx-auto flex flex-col items-center"

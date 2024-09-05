@@ -19,7 +19,7 @@ export const CarouselNavigationAside = ({ uniqueId, swiperRef }: CarouselNavigat
   const iconClassName = `w-auto h-7 2xl:h-14`;
 
   return (
-    <div className="mt-1 lg:mt-6 hidden md:flex text-center lg:text-left gap-6">
+    <div className="mt-1 hidden gap-6 text-center md:flex lg:mt-6 lg:text-left">
       <button
         className="ltr:left-2 ltr:xl:left-4 rtl:right-2 rtl:xl:right-4"
         onClick={() => swiperRef.current?.swiper.slidePrev()}

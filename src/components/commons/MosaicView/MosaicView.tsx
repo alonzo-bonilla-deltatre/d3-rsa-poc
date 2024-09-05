@@ -84,7 +84,7 @@ const MosaicView = ({ items }: MosaicViewProps) => {
     event?.preventDefault();
   };
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 gap-0.5 w-full mt-5 ">
+    <div className="mt-5 grid w-full grid-cols-2 gap-0.5 lg:grid-cols-5">
       {gridImages.map((image: GridImage, index: number) => (
         <div
           key={index}
@@ -102,13 +102,13 @@ const MosaicView = ({ items }: MosaicViewProps) => {
               data-media="(max-width: 40em);(max-width: 64em)"
               data-sources={`${getSrcWithTransformation(image?.src, transformations.fancy_box_detail.mobile.transformation)};
                 ${getSrcWithTransformation(image?.src, transformations.fancy_box_detail.tablet.transformation)}`}
-              className="w-full h-full"
+              className="h-full w-full"
             >
-              <figure className="block overflow-hidden w-full h-full">
+              <figure className="block h-full w-full overflow-hidden">
                 <Picture
                   src={image.src}
                   alt={image.title || ''}
-                  className="w-full h-full object-cover block object-center hover:scale-110 transition duration-300 cursor-pointer"
+                  className="block h-full w-full cursor-pointer object-cover object-center transition duration-300 hover:scale-110"
                   transformations={image.transformation ?? transformations.thumbnail_landscape_detail}
                   imageStyle={{
                     height: '100%',

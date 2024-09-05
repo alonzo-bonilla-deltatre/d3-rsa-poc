@@ -32,17 +32,17 @@ const Event = ({ data }: { data: StoryPart }) => {
   return (
     <div
       className={twMerge(
-        'text-white bg-cover bg-no-repeat h-svh max-h-[600px] bg-fixed bg-center rounded-lg',
+        'h-svh max-h-[600px] rounded-lg bg-cover bg-fixed bg-center bg-no-repeat text-white',
         isIOSMobile ? 'bg-scroll' : ''
       )}
       style={{
         backgroundImage: `url('${imageUrl}')`,
       }}
     >
-      <div className="bg-black/20 rounded-lg flex flex-col w-full h-full items-center justify-center px-6 gap-6">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-6 rounded-lg bg-black/20 px-6">
         <Typography
           variant="h3"
-          className="text-white flex items-center justify-center"
+          className="flex items-center justify-center text-white"
         >
           {data.title}
         </Typography>

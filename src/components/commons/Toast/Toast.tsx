@@ -10,11 +10,11 @@ type ToastProps = {
 const Toast = ({ title, className, type }: ToastProps) => {
   return (
     <div
-      className={`flex items-center w-full max-w-xs p-4 mb-4 bg-white rounded-lg shadow ${className ?? ''}`}
+      className={`mb-4 flex w-full max-w-xs items-center rounded-lg bg-white p-4 shadow ${className ?? ''}`}
       role="alert"
     >
       <div
-        className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg ${
+        className={`inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg ${
           type === 'error' ? 'bg-red-100' : 'bg-green-100'
         }`}
       >

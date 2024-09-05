@@ -5,7 +5,7 @@ import React, { CSSProperties } from 'react';
 export const CarouselPagination = () => {
   return (
     <div
-      className="container flex justify-center gap-2 mt-6 lg:mt-10"
+      className="container mt-6 flex justify-center gap-2 lg:mt-10"
       style={
         {
           '--swiper-pagination-color': 'var(--color-red)',

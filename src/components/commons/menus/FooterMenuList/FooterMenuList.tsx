@@ -57,7 +57,7 @@ const FooterMenuList = ({ menuItems, source, baseUrl }: FooterMenuListProps) => 
   return (
     <ul
       className={twMerge(
-        'flex flex-col md:flex-row items-center justify-center transition duration-300 gap-3 lg:gap-4'
+        'flex flex-col items-center justify-center gap-3 transition duration-300 md:flex-row lg:gap-4'
       )}
     >
       {menuItems.map((menuItem: MenuItem) => (

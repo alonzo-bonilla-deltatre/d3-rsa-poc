@@ -23,7 +23,7 @@ const BrightcoveVideoPlayer = ({ entity, containerCss }: BrightcoveVideoPlayerPr
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"
           allowFullScreen
           src={oembedUrl}
-          className="w-full h-full aspect-video"
+          className="aspect-video h-full w-full"
         />
       </div>
     </>

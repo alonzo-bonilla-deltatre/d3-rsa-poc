@@ -24,13 +24,13 @@ const VideoCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
       <div className="flex flex-col gap-2">
         <div className="relative">
           <div
             className={twMerge(
-              'flex rounded-lg relative aspect-[10/16] h-full min-w-[136px] bg-black',
+              'relative flex aspect-[10/16] h-full min-w-[136px] rounded-lg bg-black',
               rights ? 'border-4 border-link' : '',
               isPremium ? 'border-4 border-gold' : '',
               isFreemium ? 'border-4 border-white' : '',
@@ -39,7 +39,7 @@ const VideoCard = ({ entity }: CardProps) => {
           >
             <figure
               className={twMerge(
-                'bg-black overflow-hidden z-10 relative',
+                'relative z-10 overflow-hidden bg-black',
                 isPremium || isFreemium || rights ? 'rounded' : 'rounded-lg'
               )}
             >
@@ -58,19 +58,19 @@ const VideoCard = ({ entity }: CardProps) => {
                 alt={entity.title}
                 className={twMerge(
                   'block h-full w-full object-cover object-center',
-                  hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+                  hasValidUrl(entity?.url) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
                 )}
                 format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
               />
             </figure>
             {rights && (
-              <div className="flex flex-col absolute w-full h-full text-black gap-5 justify-end items-start p-6">
+              <div className="absolute flex h-full w-full flex-col items-start justify-end gap-5 p-6 text-black">
                 <Typography
                   variant="tag-m"
                   className={twMerge(
-                    'absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase top-2 lg:top-3 end-2 lg:end-3 text-white bg-link',
-                    isFreemium ? 'text-black bg-white' : '',
-                    isPremium ? 'text-black bg-gold' : ''
+                    'absolute end-2 top-2 z-10 flex items-center gap-2 rounded-full bg-link p-2 uppercase text-white lg:end-3 lg:top-3 lg:px-4 lg:py-2',
+                    isFreemium ? 'bg-white text-black' : '',
+                    isPremium ? 'bg-gold text-black' : ''
                   )}
                 >
                   {rights}
@@ -80,11 +80,11 @@ const VideoCard = ({ entity }: CardProps) => {
               </div>
             )}
           </div>
-          <div className="absolute bottom-2 lg:bottom-4 left-2 lg:left-4 rtl:right-2 rtl:lg:right-4 text-white z-10">
+          <div className="absolute bottom-2 left-2 z-10 text-white lg:bottom-4 lg:left-4 rtl:right-2 rtl:lg:right-4">
             {renderSvgIcon('Play', { className: 'w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12', width: 50, height: 50 })}
           </div>
         </div>
-        <div className="flex flex-col w-full h-full text-white gap-2 justify-end items-start">
+        <div className="flex h-full w-full flex-col items-start justify-end gap-2 text-white">
           <Typography
             variant="body-l"
             className="line-clamp-2 text-ellipsis font-bold"

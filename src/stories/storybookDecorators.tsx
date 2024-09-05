@@ -8,7 +8,7 @@ export const withBaseDecorator: Decorator = (Story) => (
 );
 export const withStoryPartDecorator: Decorator = (Story) => (
   <div className="container py-12">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <Story />
     </div>
   </div>

@@ -31,16 +31,16 @@ const HamburgerDrawer = ({ children }: DrawerProps) => {
 `;
 
   return (
-    <div className="flex z-50">
+    <div className="z-50 flex">
       {isOpen && (
         <div
-          className="cover-screen left-0 top-0 right-0 bottom-0 fixed bg-black/60"
+          className="cover-screen fixed bottom-0 left-0 right-0 top-0 bg-black/60"
           onClick={() => setOpen(false)}
           aria-hidden="true"
         ></div>
       )}
       <button
-        className="group space-y-2 w-full h-full"
+        className="group h-full w-full space-y-2"
         onClick={() => setOpen(true)}
         aria-expanded={isOpen}
         id="hamburger"
@@ -54,7 +54,7 @@ const HamburgerDrawer = ({ children }: DrawerProps) => {
       </button>
       <div className={drawerClassname}>
         <button
-          className="cursor-pointer absolute top-6 ltr:left-8 rtl:right-8"
+          className="absolute top-6 cursor-pointer ltr:left-8 rtl:right-8"
           onClick={() => setOpen(false)}
           id="hamburger-open"
           aria-label="Close"
@@ -65,7 +65,7 @@ const HamburgerDrawer = ({ children }: DrawerProps) => {
             className: `fill-current transition duration-300 hover:text-link`,
           })}
         </button>
-        <div className="flex flex-col h-full w-full">{children}</div>
+        <div className="flex h-full w-full flex-col">{children}</div>
       </div>
     </div>
   );

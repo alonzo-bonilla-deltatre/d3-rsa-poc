@@ -38,7 +38,7 @@ const SearchPagination = ({
     refreshSearch();
   };
   return (
-    <div className="flex w-full justify-between mt-8">
+    <div className="mt-8 flex w-full justify-between">
       <div className="flex-start">
         {prevPage > -1 && (
           <CallToActionFilledButton

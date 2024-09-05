@@ -12,7 +12,7 @@ const Table = ({ entity }: TableProps) => {
   const title = content['title'];
   const body = content['body'];
   return (
-    <div className="grid grid-cols-1 relative overflow-hidden w-full">
+    <div className="relative grid w-full grid-cols-1 overflow-hidden">
       {title && (
         <Typography
           variant="h6"

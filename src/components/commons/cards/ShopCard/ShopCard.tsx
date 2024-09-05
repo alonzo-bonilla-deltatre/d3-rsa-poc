@@ -19,16 +19,16 @@ const ShopCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={shopUrl ?? entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
       <div className="flex flex-col gap-2 lg:gap-4">
         <div
           className={twMerge(
-            'flex rounded-lg relative aspect-[10/16] h-full min-w-[136px] bg-black',
+            'relative flex aspect-[10/16] h-full min-w-[136px] rounded-lg bg-black',
             isPromo ? 'border-4 border-link' : 'w-[calc(100%_-_3px)]'
           )}
         >
-          <figure className={twMerge('overflow-hidden rounded-lg z-10 relative', isPromo ? 'rounded' : 'rounded-lg')}>
+          <figure className={twMerge('relative z-10 overflow-hidden rounded-lg', isPromo ? 'rounded' : 'rounded-lg')}>
             <Picture
               src={
                 entity?.thumbnail?.templateUrl
@@ -41,15 +41,15 @@ const ShopCard = ({ entity }: CardProps) => {
               alt={entity.title}
               className={twMerge(
                 'block h-full w-full object-cover object-center',
-                hasValidUrl(shopUrl) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+                hasValidUrl(shopUrl) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
               )}
               format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
             />
           </figure>
-          <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start p-6">
+          <div className="absolute bottom-0 flex flex-col items-start justify-end gap-5 p-6 text-white">
             <Typography
               variant="tag-m"
-              className="absolute gap-2 p-2 lg:px-4 lg:py-2 rounded-full flex items-center z-10 uppercase bottom-2 lg:bottom-3 ltr:left-2 ltr:lg:left-3 rtl:right-2 rtl:lg:right-3 text-white bg-link"
+              className="absolute bottom-2 z-10 flex items-center gap-2 rounded-full bg-link p-2 uppercase text-white lg:bottom-3 lg:px-4 lg:py-2 ltr:left-2 ltr:lg:left-3 rtl:right-2 rtl:lg:right-3"
             >
               promo
             </Typography>
@@ -63,12 +63,12 @@ const ShopCard = ({ entity }: CardProps) => {
           {entity.title}
         </Typography>
         {isPromo ? (
-          <div className="flex flex-row mt-2 text-2xl md:text-2.5xl tracking-[0.0175em]">
-            <div className="text-grey-300 dark:text-grey-100 me-2 line-through">{entity.fields?.price}</div>
+          <div className="md:text-2.5xl mt-2 flex flex-row text-2xl tracking-[0.0175em]">
+            <div className="me-2 text-grey-300 line-through dark:text-grey-100">{entity.fields?.price}</div>
             {entity.fields?.salePrice}
           </div>
         ) : (
-          <div className="flex flex-row mt-1 text-2xl md:text-2.5xl  tracking-[0.0175em]">{entity.fields?.price}</div>
+          <div className="md:text-2.5xl mt-1 flex flex-row text-2xl tracking-[0.0175em]">{entity.fields?.price}</div>
         )}
       </div>
     </Link>

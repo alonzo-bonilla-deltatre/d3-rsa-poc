@@ -27,14 +27,14 @@ const EventList = async ({ data }: { data: ComponentProps }) => {
   return (
     <ModuleContainer
       isFullWidth={getBooleanProperty(isFullWidth)}
-      className="relative max-w-[2048px] mx-auto"
+      className="relative mx-auto max-w-[2048px]"
     >
       <FeaturedEventListHeader
         headerTitle={headerTitle}
         headerTitleHeadingLevel={headerTitleHeadingLevel}
         hideHeaderTitle={getBooleanProperty(hideHeaderTitle)}
       ></FeaturedEventListHeader>
-      <div className="hidden lg:block absolute top-0 left-1/2 transform -translate-x-1/2 font-heading text-[930px] leading-[868px] text-grey-500 uppercase opacity-20">
+      <div className="absolute left-1/2 top-0 hidden -translate-x-1/2 transform font-heading text-[930px] uppercase leading-[868px] text-grey-500 opacity-20 lg:block">
         {headerTitle}
       </div>
       <FeaturedEventListSwiper slides={items} />

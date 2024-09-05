@@ -38,17 +38,17 @@ const ImageView = ({
         href={link}
         className={`${linkCssClass ? linkCssClass + ' hover:text-current' : 'hover:text-current'}`}
       >
-        <figure className={`col-start-1 row-start-1 grid-element relative ${imageContainerCssClass ?? ''}`}>
+        <figure className={`grid-element relative col-start-1 row-start-1 ${imageContainerCssClass ?? ''}`}>
           <Picture
             alt={imageEntity?.fields?.altText?.toString() ?? imageEntity.title}
             src={asset.assetUrl}
             transformations={imageTransformation}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             width={width}
             height={height}
           />
         </figure>
-        {caption && <p className="mt-8 mb-3">{caption}</p>}
+        {caption && <p className="mb-3 mt-8">{caption}</p>}
       </Link>
     </ModuleContainer>
   );

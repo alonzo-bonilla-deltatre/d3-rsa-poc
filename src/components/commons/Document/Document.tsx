@@ -63,7 +63,7 @@ export const Document = ({ entity, className, iconSize }: DocumentProps) => {
       ) : (
         <iframe
           src={documentUrl}
-          className="w-full aspect-video rounded-lg"
+          className="aspect-video w-full rounded-lg"
         />
       )}
     </>

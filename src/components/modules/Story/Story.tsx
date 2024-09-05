@@ -37,13 +37,13 @@ const Story = async ({ data }: { data: ComponentProps }) => {
   const relatedArticles = storyEntity?.relations?.filter((entity) => entity.type === ForgeEntityType.story) ?? [];
 
   return (
-    <article className="bg-white text-black pb-5 lg:pb-10 h-full">
+    <article className="h-full bg-white pb-5 text-black lg:pb-10">
       <StoryHeader storyEntity={storyEntity}></StoryHeader>
       <ModuleContainer>
-        <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 lg:max-w-full lg:mx-auto content m-2 lg:m-0">
+        <div className="content m-2 flex flex-col lg:m-0 lg:mx-auto lg:grid lg:max-w-full lg:grid-cols-12 lg:gap-6">
           {relatedArticles.length > 0 && (
-            <div className="col-span-3 z-10 hidden lg:flex ltr:border-r rtl:border-l pe-8">
-              <div className="w-full flex flex-col">
+            <div className="z-10 col-span-3 hidden pe-8 lg:flex ltr:border-r rtl:border-l">
+              <div className="flex w-full flex-col">
                 <Typography
                   variant="h3"
                   className="mb-6"
@@ -57,13 +57,13 @@ const Story = async ({ data }: { data: ComponentProps }) => {
             </div>
           )}
           <div className={`${relatedArticles.length > 0 ? 'col-span-9' : 'col-start-3 col-end-11'} flex flex-col`}>
-            <div className="flex flex-col gap-2 lg:gap-4 mb-8 lg:mb-10">
+            <div className="mb-8 flex flex-col gap-2 lg:mb-10 lg:gap-4">
               <div className="flex flex-row justify-between gap-4">
                 <div className="flex flex-row items-center">
                   <Typography
                     variant="tag-l"
                     as="time"
-                    className="text-grey-100 uppercase"
+                    className="uppercase text-grey-100"
                   >
                     <Date
                       date={storyEntity?.contentDate}
@@ -90,10 +90,10 @@ const Story = async ({ data }: { data: ComponentProps }) => {
             </div>
             <StoryParts storyEntity={storyEntity}></StoryParts>
             {relatedArticles.length > 0 && (
-              <div className="flex flex-col lg:hidden border-t">
+              <div className="flex flex-col border-t lg:hidden">
                 <Typography
                   variant="h3"
-                  className="pt-10 mb-6"
+                  className="mb-6 pt-10"
                 >
                   {translate('related-articles')}
                 </Typography>

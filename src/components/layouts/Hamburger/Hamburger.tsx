@@ -26,12 +26,12 @@ const Hamburger = ({ data }: { data: ComponentProps }) => {
   return (
     <div className="hamburger z-50 flex items-center justify-start text-black">
       <HamburgerDrawer>
-        <div className="w-full min-h-[4rem] flex-grow flex items-center justify-center mx-auto">
+        <div className="mx-auto flex min-h-[4rem] w-full flex-grow items-center justify-center">
           <div className="w-140px">
             {renderItemsInSlot(data.items, HamburgerLayoutSlots.logo, data.variables, data.metadata, data.previewToken)}
           </div>
         </div>
-        <div className="h-full flex overflow-auto py-2 mx-10 pt-5 uppercase flex-col border-t-2 border-t-black">
+        <div className="mx-10 flex h-full flex-col overflow-auto border-t-2 border-t-black py-2 pt-5 uppercase">
           {renderItemsInSlot(
             data.items,
             HamburgerLayoutSlots.primaryNavigation,
@@ -40,12 +40,12 @@ const Hamburger = ({ data }: { data: ComponentProps }) => {
             data.previewToken
           )}
         </div>
-        <div className="w-full flex flex-col justify-center md:justify-between px-4 mx-auto shadow-[0_-6px_9px_0px_rgba(0,0,0,0.20)]">
-          <div className="flex py-4 items-center justify-center gap-4">
+        <div className="mx-auto flex w-full flex-col justify-center px-4 shadow-[0_-6px_9px_0px_rgba(0,0,0,0.20)] md:justify-between">
+          <div className="flex items-center justify-center gap-4 py-4">
             <SocialIcons />
           </div>
           {hasFrontendConfiguration && (
-            <div className="flex gap-2 pb-4 justify-center w-full">
+            <div className="flex w-full justify-center gap-2 pb-4">
               <LanguageSwitcher
                 hasLanguageSeparator
                 variables={data.variables}

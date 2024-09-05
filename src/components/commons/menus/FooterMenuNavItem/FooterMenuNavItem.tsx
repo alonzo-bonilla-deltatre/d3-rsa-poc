@@ -14,7 +14,7 @@ const FooterMenuNavItem = ({ menuItem, itemIcon, itemText }: HeaderMenuNavItemPr
   return (
     <div
       className={twMerge(
-        "flex items-center transition duration-300 hover:text-link cursor-pointer after:block after:bottom-0 after:content-[''] after:absolute after:border after:border-link after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-600 after:origin-center",
+        "after:duration-600 flex cursor-pointer items-center transition duration-300 after:absolute after:bottom-0 after:block after:w-full after:origin-center after:scale-x-0 after:border after:border-link after:transition after:content-[''] hover:text-link after:hover:scale-x-100",
         isActive ? 'text-link after:scale-x-100' : ''
       )}
     >

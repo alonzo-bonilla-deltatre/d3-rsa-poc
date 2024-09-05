@@ -13,7 +13,7 @@ const StoryParts = ({ storyEntity }: StoryPartsProps) => {
         return (
           <div
             key={index}
-            className="mb-8 lg:mb-10 last:mb-0"
+            className="mb-8 last:mb-0 lg:mb-10"
           >
             {renderStoryPart(part)}
           </div>

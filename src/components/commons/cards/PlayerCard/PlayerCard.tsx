@@ -21,10 +21,10 @@ const PlayerCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
-      <div className="flex rounded-lg relative">
-        <figure className="bg-black overflow-hidden rounded-lg z-10">
+      <div className="relative flex rounded-lg">
+        <figure className="z-10 overflow-hidden rounded-lg bg-black">
           <Picture
             src={
               entity?.thumbnail?.templateUrl
@@ -36,40 +36,40 @@ const PlayerCard = ({ entity }: CardProps) => {
             transformations={transformations.thumbnail_portrait_wide_detail}
             alt={entity.title}
             className={twMerge(
-              'block h-full w-full object-cover object-center opacity-[.60] rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+              'block h-full w-full rounded-lg object-cover object-center opacity-[.60]',
+              hasValidUrl(entity?.url) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />
         </figure>
-        <div className="absolute top-1 left-5 z-10">
+        <div className="absolute left-5 top-1 z-10">
           {playerNumber && (
             <Typography
               variant="h1"
-              className="text-grey-300 leading-none"
+              className="leading-none text-grey-300"
             >
               {playerNumber}
             </Typography>
           )}
         </div>
-        <div className="flex flex-col absolute bottom-0 text-white gap-5 justify-end items-start m-2 lg:m-6 z-10">
-          <div className="flex justify-end flex-col flex-shrink-0 z-10">
+        <div className="absolute bottom-0 z-10 m-2 flex flex-col items-start justify-end gap-5 text-white lg:m-6">
+          <div className="z-10 flex flex-shrink-0 flex-col justify-end">
             <div className="flex flex-wrap gap-2">
-              <div className="flex flex-col font-heading font-light text-5xl xl:text-6xl uppercase tracking-wide">
+              <div className="flex flex-col font-heading text-5xl font-light uppercase tracking-wide xl:text-6xl">
                 {playerName}
               </div>
-              <div className="font-heading font-normal text-5xl xl:text-6xl text-white uppercase tracking-wide">
+              <div className="font-heading text-5xl font-normal uppercase tracking-wide text-white xl:text-6xl">
                 {playerSurname}
               </div>
             </div>
             {entity?.fields?.roles && entity?.fields.roles.length > 0 && (
-              <div className="font-heading font-light text-2xl xl:text-3xl uppercase tracking-wide">
+              <div className="font-heading text-2xl font-light uppercase tracking-wide xl:text-3xl">
                 {entity?.fields.roles[0]}
               </div>
             )}
-            <div className="flex gap-2 items-center">
+            <div className="flex items-center gap-2">
               {entity?.fields?.playerNationalityFlag?.assetUrl && (
-                <div className="w-full h-full max-w-[20px] max-h-[20px] xl:max-w-[28px] xl:max-h-[28px]">
+                <div className="h-full max-h-[20px] w-full max-w-[20px] xl:max-h-[28px] xl:max-w-[28px]">
                   <GadAsset
                     src={entity?.fields.playerNationalityFlag?.assetUrl}
                     width={22}
@@ -85,7 +85,7 @@ const PlayerCard = ({ entity }: CardProps) => {
                 </div>
               )}
               {entity?.fields?.nationality && (
-                <div className="font-heading font-light text-2xl xl:text-3xl text-grey-300 uppercase">
+                <div className="font-heading text-2xl font-light uppercase text-grey-300 xl:text-3xl">
                   {entity?.fields.nationality}
                 </div>
               )}

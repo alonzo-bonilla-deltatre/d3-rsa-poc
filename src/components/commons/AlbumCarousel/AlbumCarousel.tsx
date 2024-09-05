@@ -133,15 +133,15 @@ export const AlbumCarousel = ({ albumEntity, uniqueId, isStoryPart, hasNavigatio
             data-media="(max-width: 40em);(max-width: 64em)"
             data-sources={`${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.mobile.transformation)};
                 ${getSrcWithTransformation(slide?.src, transformations.fancy_box_detail.tablet.transformation)}`}
-            className="w-full h-full"
+            className="h-full w-full"
           >
-            <figure className="block overflow-hidden w-full h-full rounded-lg">
+            <figure className="block h-full w-full overflow-hidden rounded-lg">
               <Picture
                 src={slide?.image?.templateUrl ?? ''}
                 transformations={transformations.thumbnail_landscape_detail}
                 alt={slide.title}
                 className={twMerge(
-                  'w-full h-full object-cover block object-center hover:scale-110 transition duration-300 cursor-pointer',
+                  'block h-full w-full cursor-pointer object-cover object-center transition duration-300 hover:scale-110',
                   getBooleanProperty(isStoryPart) ? 'rounded-lg' : ''
                 )}
               />

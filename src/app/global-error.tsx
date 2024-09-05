@@ -7,7 +7,7 @@ import Typography from '@/components/commons/Typography/Typography';
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   const translate = useTranslate();
   return (
-    <section className="flex h-screen overflow-hidden m-0 p-0">
+    <section className="m-0 flex h-screen overflow-hidden p-0">
       <div className="m-auto">
         <Typography
           variant="h2"
@@ -28,7 +28,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
           {translate('500-error-message')}
         </Typography>
         <nav>
-          <ul className="list-none flex space-x-5">
+          <ul className="flex list-none space-x-5">
             <li>
               <Link
                 href="/"

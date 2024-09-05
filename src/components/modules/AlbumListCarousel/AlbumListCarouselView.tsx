@@ -27,7 +27,7 @@ const AlbumListCarouselView = ({
   return (
     <ModuleContainer
       isFullWidth={isFullWidth}
-      className="flex flex-col gap-5 lg:gap-10 px-2"
+      className="flex flex-col gap-5 px-2 lg:gap-10"
     >
       <Typography
         variant={(headerTitleHeadingLevel as TypographyProps['variant']) ?? 'h2'}

@@ -61,7 +61,7 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
             getStringProperty(headerClassName)
           )}
         >
-          <div className="flex flex-col gap-2 w-full">
+          <div className="flex w-full flex-col gap-2">
             {topChildren && topChildren}
             <HeaderTitle
               headerTitle={headerTitle}
@@ -77,7 +77,7 @@ const SectionWithHeader = ({ data }: { data: SectionWithHeaderProps }) => {
             <div className="flex flex-col gap-1 lg:flex-row">
               <Typography variant="tag-m">{translate('presented-by')}</Typography>
               <GadAsset
-                className="max-w-[200px] max-h-[80px] mx-auto"
+                className="mx-auto max-h-[80px] max-w-[200px]"
                 src={featuredSponsor.assetUrl}
                 transformations={transformations.best_assets}
                 title={translate('sponsored-logo')}

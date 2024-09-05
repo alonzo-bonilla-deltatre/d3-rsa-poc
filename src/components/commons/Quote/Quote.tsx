@@ -12,10 +12,10 @@ const Quote = ({ entity }: QuoteProps) => {
   const quote = content['quote'];
   const author = content['author'];
   return (
-    <div className="grid grid-cols-1 relative overflow-hidden w-full p-2">
+    <div className="relative grid w-full grid-cols-1 overflow-hidden p-2">
       <div className="flex">
         {renderSvgIcon('QuoteLeft', { className: 'text-link', width: 25, height: 21 })}
-        <div className="w-full flex flex-col mx-4">
+        <div className="mx-4 flex w-full flex-col">
           <Typography
             variant="quote"
             as="span"
@@ -26,7 +26,7 @@ const Quote = ({ entity }: QuoteProps) => {
           <Typography
             variant="h6"
             as="cite"
-            className="mt-4 uppercase not-italic mx-auto"
+            className="mx-auto mt-4 uppercase not-italic"
           >
             {author}
           </Typography>

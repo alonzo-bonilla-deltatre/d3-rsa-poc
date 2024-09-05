@@ -17,10 +17,10 @@ const SearchCard = ({ entity }: CardProps) => {
   return (
     <Link
       href={entity.url}
-      className="w-full h-full"
+      className="h-full w-full"
     >
-      <div className="flex flex-col gap-2 relative">
-        <div className="flex items-center justify-center overflow-hidden rounded-lg aspect-[16/9] min-w-[224px]">
+      <div className="relative flex flex-col gap-2">
+        <div className="flex aspect-[16/9] min-w-[224px] items-center justify-center overflow-hidden rounded-lg">
           <Picture
             src={
               entity?.thumbnail?.templateUrl
@@ -32,8 +32,8 @@ const SearchCard = ({ entity }: CardProps) => {
             transformations={transformations.thumbnail_landscape_detail}
             alt={entity.title}
             className={twMerge(
-              'block h-full w-full max-h-[208px] aspect-[16/9] min-w-[224px] object-fill object-center rounded-lg',
-              hasValidUrl(entity?.url) ? 'hover:scale-110 transition duration-300 cursor-pointer' : ''
+              'block aspect-[16/9] h-full max-h-[208px] w-full min-w-[224px] rounded-lg object-fill object-center',
+              hasValidUrl(entity?.url) ? 'cursor-pointer transition duration-300 hover:scale-110' : ''
             )}
             format={entity.thumbnail?.format ? entity.thumbnail?.format : entity.image?.format}
           />
@@ -46,7 +46,7 @@ const SearchCard = ({ entity }: CardProps) => {
         </Typography>
         <Typography
           variant="body-s"
-          className="text-grey-100 line-clamp-2 text-ellipsis"
+          className="line-clamp-2 text-ellipsis text-grey-100"
         >
           {description}
         </Typography>
