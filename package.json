@@ -17,8 +17,6 @@
     "pre-commit": "yarn lint --fix && yarn format"
   },
   "dependencies": {
-    "@d3-forge/d3-liveblog-widget": "^0.1.2",
-    "@deltatre-vxp/diva-sdk": "^5.8.5",
     "@fancyapps/ui": "^5.0.36",
     "@next/third-parties": "^14.2.7",
     "@sendgrid/mail": "^8.1.3",

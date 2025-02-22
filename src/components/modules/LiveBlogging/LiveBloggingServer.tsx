@@ -1,14 +1,24 @@
 ﻿import LiveBloggingClient from '@/components/modules/LiveBlogging/LiveBloggingClient';
 import { getDataVariable } from '@/helpers/dataVariableHelper';
 import { ComponentProps } from '@/models/types/components';
-import { fetchData } from '@d3-forge/d3-liveblog-widget/server';
-import { ParamsType } from '@d3-forge/d3-liveblog-widget';
-import '@d3-forge/d3-liveblog-widget/style';
+//import { fetchData } from '@d3-forge/d3-liveblog-widget/server';
+//import { ParamsType } from '@d3-forge/d3-liveblog-widget';
+//import '@d3-forge/d3-liveblog-widget/style';
 import logger from '@/utilities/loggerUtility';
 import { LoggerLevel } from '@/models/types/logger';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { getBlogs } from '@/services/liveBloggingDistributionService';
+
+type ParamsType = {
+  dapi_url: string;
+  page_url: string;
+  blog_slug: string;
+  culture: string;
+  pollingTimeout: number;
+  post_id: string;
+  post_id_path: string;
+};
 
 type LiveBloggingServerProps = {
   slug?: string;
@@ -46,7 +56,8 @@ const LiveBloggingServer = async ({ data }: { data: ComponentProps }) => {
 
   let blogData = null;
   try {
-    blogData = await fetchData(params);
+    ///blogData = await fetchData(params);
+    blogData = null;
   } catch (error) {
     logger.log('Error fetching blog data:', LoggerLevel.error);
     return null;
