@@ -3,9 +3,9 @@
 import { getSettingUrl, getVideoType } from '@/helpers/divaHelper';
 import { DistributionEntity } from '@/models/types/forge';
 import { useEnvVars } from '@/hooks/useEnvVars';
-import { DivaWebBoAdapter } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter'; // bo adapter sdk
-import '@deltatre-vxp/diva-sdk/diva-web-sdk/index.min.css';
-import { BoAdapterWebComponentProps } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter/types';
+//import { DivaWebBoAdapter } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter'; // bo adapter sdk
+//import '@deltatre-vxp/diva-sdk/diva-web-sdk/index.min.css';
+//import { BoAdapterWebComponentProps } from '@deltatre-vxp/diva-sdk/diva-web-bo-adapter/types';
 import { twMerge } from 'tailwind-merge'; // Import SDK style
 
 type DivaVideoPlayerProps = {
@@ -22,7 +22,7 @@ const DivaVideoPlayer = ({ entity, containerCss }: DivaVideoPlayerProps) => {
 
   if (!videoId || !videoSettingsUrl) return null;
 
-  const props: BoAdapterWebComponentProps = {
+  /*const props: BoAdapterWebComponentProps = {
     settingsUrl: settingUrl,
     languageCode: envVars.CULTURE,
     languageDictionary: envVars.CULTURE,
@@ -40,11 +40,14 @@ const DivaVideoPlayer = ({ entity, containerCss }: DivaVideoPlayerProps) => {
       },
       autoplay: false,
     },
-  };
+  };*/
 
   return (
     <div className={twMerge('relative block w-full', containerCss)}>
-      <DivaWebBoAdapter {...props} />
+      {/* <DivaWebBoAdapter {...props} /> */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center bg-black text-white">
+        <span>Loading...</span>
+      </div>
     </div>
   );
 };
